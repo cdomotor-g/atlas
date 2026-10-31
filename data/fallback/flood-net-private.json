@@ -16,8 +16,40 @@
     ],
     "blocked": [
       {
-        "what": "The rewrite needs the owner's computer: force-push, branch deletion, a GitHub Support purge",
-        "on": "human"
+        "id": "history-rewrite",
+        "what": "The rewrite of Flood-Net's history needs the owner's computer: force-push, branch deletion, a GitHub Support purge",
+        "on": "human",
+        "kind": "access",
+        "since": "2026-10-16",
+        "issue": "cdomotor-g/MegaNet#239",
+        "holds": [
+          "the old archive out of Flood-Net's public git history",
+          "cdomotor-g/MegaNet#239's follow-ups: commit IDs translated in Flood-Net's roadmap and docs",
+          "the history-rewrite component's one job"
+        ],
+        "options": [
+          {
+            "what": "Clone this repository on the owner's computer, run DRY_RUN=1 bash history/rewrite-meganet-history.sh, then for real, file the GitHub Support purge from history/README.md, re-clone everywhere, and push commit-map.txt to history/ (cdomotor-g/MegaNet#239 Part 2)",
+            "by": "human",
+            "effort": "an hour",
+            "pros": "dry-run clean on 16 Oct 2026",
+            "recommended": true
+          },
+          {
+            "what": "Share a folder holding this repository through Remote Control (a Mac or Linux computer) and let a cloud session run the script there while the owner approves; the owner still sends the Support request",
+            "by": "agent",
+            "effort": "an hour, owner present",
+            "model": "Sonnet5/Med",
+            "pros": "the owner types no commands",
+            "cons": "needs Claude Code on that computer"
+          },
+          {
+            "what": "Leave it parked, as the owner chose on cdomotor-g/MegaNet#239",
+            "by": "human",
+            "effort": "none",
+            "cons": "old Flood-Net commits still hold the archive"
+          }
+        ]
       }
     ]
   },

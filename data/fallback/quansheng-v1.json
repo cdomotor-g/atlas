@@ -19,8 +19,40 @@
     "summary": "Archived and read-only; its last builds (20 October) carry the V3's decoder, but no modded UV-K5 has been tried on air yet.",
     "blocked": [
       {
+        "id": "uvk5-field-test",
         "what": "First field test: a UV-K5 with the one-capacitor mod beside an ALERT transmitter",
-        "on": "human"
+        "on": "human",
+        "kind": "hardware",
+        "since": "2026-10-20",
+        "holds": [
+          "quansheng-all's Experimental badge on the UV-K5 builds",
+          "the README's status: \"this radio's audio route has not been tried on air yet\"",
+          "older UV-K5s (DP32G030) as ALERT receivers"
+        ],
+        "options": [
+          {
+            "what": "Fit the 100 nF capacitor (BK4819 pin 8, EARO → DP32G030 pin 9, PA8), flash from quansheng_alert_ALL's installer, and run the README's five-step First field test near 18 Bateson, whose Pi decodes ALERT Binary on 151.500 all day, so the radio's DEC count can be checked against the same readings in Flood-Net's Message Log. Report the raw view (BURST, GATED, PEAK, NF, ADC, DEC, INV) on quansheng_alert_ALL, decoded or not: the archive takes no issues.",
+            "by": "human",
+            "effort": "an afternoon",
+            "pros": "a busy channel and a reference receiver side by side",
+            "recommended": true
+          },
+          {
+            "what": "Let it go: keep the UV-K5 builds Experimental and send people to the UV-K5 V3 / UV-K1, which decodes on air with no mod (22 bursts of 22); the field test happens only if someone wants an older radio.",
+            "by": "human",
+            "effort": "5 min to decide",
+            "pros": "no soldering",
+            "cons": "older radios stay unproven"
+          },
+          {
+            "what": "Write a tool in quansheng_alert_ALL that renders ALERT Binary bursts to a WAV (1300/2100 Hz at 300 baud, as quansheng_alert's test/test_alert_demod.c synthesises them), so the modded radio can be tried on the bench from a second handheld sending it on a frequency you are licensed for.",
+            "by": "agent",
+            "effort": "an afternoon",
+            "model": "Sonnet5/Med",
+            "pros": "a repeatable test any time, no station in range needed",
+            "cons": "needs a second radio and a licensed channel; proves the mod, not a real station"
+          }
+        ]
       }
     ]
   },

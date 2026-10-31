@@ -23,8 +23,37 @@
     ],
     "blocked": [
       {
+        "id": "retirement",
         "what": "Retirement steps in Flood-Net's runbook (docs/floodwarning-net.md) are owner dashboard actions",
-        "on": "human"
+        "on": "human",
+        "kind": "access",
+        "since": "2026-09-10",
+        "holds": [
+          "archiving this repository",
+          "the leftover fwlab.floodwarning.net name and its Cloudflare Access login, both still live"
+        ],
+        "options": [
+          {
+            "what": "Open a [Standalone] [Human] issue on Flood-Net with click-by-click steps from the runbook and this repository's docs: copy any S3 archive bucket it used, remove fwlab.floodwarning.net's DNS record and Access app and any tunnel or load balancer left, cancel what bills, then archive this repository; and add it to Flood-Net's roadmap",
+            "by": "agent",
+            "effort": "Med",
+            "model": "Sonnet5/Med",
+            "pros": "nothing tracks this today",
+            "recommended": true
+          },
+          {
+            "what": "Add the README line saying floodwarning.net moved to Flood-Net, then Settings → Archive this repository",
+            "by": "human",
+            "effort": "5 min",
+            "pros": "archiving keeps the history and can be undone",
+            "cons": "leaves the Cloudflare pieces in place"
+          },
+          {
+            "what": "Work through the runbook's five steps in order over two sittings: copy, delete the old Cloudflare pieces, archive, cancel anything paid, leave unknown DNS alone",
+            "by": "human",
+            "effort": "an hour"
+          }
+        ]
       }
     ]
   },
