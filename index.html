@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atlas</title>
+<meta name="description" content="One map of cdomotor-g's repositories: what each is, where it is up to, and how they depend on each other.">
+<link rel="icon" href="assets/logos/atlas.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/atlas.css">
+</head>
+<body>
+<header>
+  <div class="brand">
+    <img src="assets/logos/atlas.svg" alt="">
+    <div><h1>Atlas</h1><p>Every repository, where it is up to, and how they connect</p></div>
+  </div>
+  <nav class="views" aria-label="Views">
+    <button data-view="map" aria-selected="true">Map</button>
+    <button data-view="roadmap">Roadmap</button>
+    <button data-view="board">Board</button>
+    <button data-view="links">Links</button>
+    <button data-view="activity">Activity</button>
+    <button data-view="guide">How it works</button>
+  </nav>
+  <div class="head-right">
+    <input id="search" type="search" placeholder="Find a repo, part or issue…" aria-label="Search">
+    <button class="icon-btn" id="btn-theme" title="Light or dark" aria-label="Switch light or dark">◐</button>
+  </div>
+</header>
+<div class="strip" id="strip"></div>
+<main>
+  <section class="view" id="map-view" aria-label="Map">
+    <svg id="map" role="img" aria-label="Map of the repositories and the links between them"></svg>
+    <div class="map-tools">
+      <button class="icon-btn" id="btn-in" title="Zoom in" aria-label="Zoom in">+</button>
+      <button class="icon-btn" id="btn-out" title="Zoom out" aria-label="Zoom out">−</button>
+      <button class="icon-btn" id="btn-fit" title="Fit everything">Fit</button>
+      <button class="icon-btn" id="btn-anim" title="Animate the flow along each link" aria-pressed="true">Flow</button>
+      <button class="icon-btn" id="btn-expand" title="Show every repository's parts around it">Show all parts</button>
+      <button class="icon-btn" id="btn-reset" title="Put every repository back where the registry places it" hidden>Reset layout</button>
+    </div>
+    <div class="legend" id="legend"></div>
+    <div class="tip" id="tip" role="tooltip"></div>
+  </section>
+  <section class="view" id="roadmap-view" hidden></section>
+  <section class="view" id="board-view" hidden></section>
+  <section class="view" id="links-view" hidden></section>
+  <section class="view" id="activity-view" hidden></section>
+  <section class="view" id="guide-view" hidden></section>
+  <aside id="panel" aria-label="Details"></aside>
+</main>
+<div class="toast" id="toast" role="status"></div>
+<script src="assets/atlas.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+{
+  "$schema": "https://cdomotor-g.github.io/atlas/schema/atlas.schema.json",
+  "atlas": 1,
+  "id": "home",
+  "repo": "cdomotor-g/home",
+  "name": "Home",
+  "tagline": "A zero-cost smart-home dashboard: LPUs post sensor readings to ThingSpeak, and a GitHub Pages page charts them against the forecast.",
+  "about": "A personal monitoring stack built around LPUs (Local Processing Units): field devices that each carry a few sensors and post to their own ThingSpeak channel over HTTPS. The first is a Campbell CR310 logging two rainwater tanks and a rain gauge; a Raspberry Pi with an RTL-SDR (rtl_433, for a 433 MHz weather station), a Pi camera and an ESP32 mushroom house are planned. It borrows the flood network's habits (Campbell loggers called LPUs, a Pi with an RTL-SDR) but shares no code or data with Flood-Net, which neither absorbed nor replaced it.",
+  "kind": "static dashboard + logger programs",
+  "site": "https://cdomotor-g.github.io/home/",
+  "docs": {
+    "readme": "README.md",
+    "agents": "CLAUDE.md"
+  },
+  "status": {
+    "phase": "live",
+    "updated": "2026-10-31",
+    "summary": "Live with one LPU (the CR310 on the tanks and rain gauge); last change 16 Oct 2026 put tank water in and out on one chart.",
+    "next": [
+      "Bring the Pi + RTL-SDR weather-station LPU online (rtl_433 to ThingSpeak)",
+      "Add the Pi camera LPU's time-lapse stills",
+      "Build the ESP32 mushroom-house LPU"
+    ],
+    "later": [
+      "Close the control loop through ThingSpeak TalkBack queues"
+    ]
+  },
+  "components": [
+    {
+      "id": "dashboard",
+      "name": "Dashboard",
+      "what": "One self-contained page: stat tiles, tank volumes and days till empty, charts, forecast vs actual, a CRUD for collections.",
+      "paths": ["index.html", "home-dashboard-config.json"],
+      "url": "https://cdomotor-g.github.io/home/",
+      "status": "live"
+    },
+    {
+      "id": "cr310",
+      "name": "CR310 LPU program",
+      "what": "CRBasic: tank levels, rain accumulation, battery and panel temperature, HTTPPost every 5 minutes.",
+      "paths": ["logger/CR310_ThingSpeak.CR300"],
+      "status": "live"
+    },
+    {
+      "id": "rtl433-bridge",
+      "name": "Weather-station bridge",
+      "what": "Pi script: rtl_433 JSON from a 433 MHz station, aggregated and posted to ThingSpeak.",
+      "paths": ["logger/rpi_rtl433_thingspeak.py"],
+      "status": "planned"
+    },
+    {
+      "id": "camera",
+      "name": "Camera publisher",
+      "what": "Pi script: captures a still, updates manifest.json, prunes and git-pushes it for the dashboard.",
+      "paths": ["logger/rpi_camera_publish.py"],
+      "status": "planned"
+    }
+  ]
+}

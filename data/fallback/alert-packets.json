@@ -1,0 +1,71 @@
+{
+  "$schema": "https://cdomotor-g.github.io/atlas/schema/atlas.schema.json",
+  "atlas": 1,
+  "id": "alert-packets",
+  "repo": "cdomotor-g/ALERT_PACKETS",
+  "name": "ALERT_PACKETS",
+  "tagline": "A one-page decoder and encoder for ALERT/ERTS packets (ABF, BCC, EAF, EIF), built on the Bureau's ERTS Data Formats spec.",
+  "about": "Paste a 40-bit framed message, a 32-bit payload or 8-digit hex and it is decoded against every known format, with check bits and CRC validated and a colour-coded bit map; or encode the other way. Decoded addresses are named from a national ALERT address file, and the page can be driven from the URL with a JSON result. Flood-Net absorbed it: its ALERT Packets tab (packets.js) is the maintained port, carrying the same address file and spec byte for byte.",
+  "kind": "static web tool",
+  "site": "https://cdomotor-g.github.io/ALERT_PACKETS/",
+  "docs": {
+    "readme": "README.md",
+    "agents": "CLAUDE.md",
+    "spec": "BOM spec erts_data_formats_doc.pdf"
+  },
+  "status": {
+    "phase": "maintenance",
+    "updated": "2026-10-31",
+    "summary": "Works as published but superseded by Flood-Net's ALERT Packets tab; last touched 13 Oct 2026, for a CLAUDE.md note only.",
+    "next": [
+      "Point the README at Flood-Net's ALERT Packets tab as the maintained version"
+    ]
+  },
+  "components": [
+    {
+      "id": "codec",
+      "name": "Decoder and encoder page",
+      "what": "ABF, BCC, EAF and EIF decode and encode with check bits, CRC-6 and framing polarity.",
+      "paths": ["index.html"],
+      "url": "https://cdomotor-g.github.io/ALERT_PACKETS/",
+      "status": "live"
+    },
+    {
+      "id": "url-api",
+      "name": "URL interface",
+      "what": "?decode= and ?encode= in the address, with &json=1 for a JSON result.",
+      "paths": ["index.html"],
+      "status": "live"
+    },
+    {
+      "id": "address-file",
+      "name": "ALERT address file",
+      "what": "National ALERT address → station name list used to name decoded readings.",
+      "paths": ["All 2021 Working 2.txt"],
+      "status": "live"
+    },
+    {
+      "id": "spec",
+      "name": "ERTS Data Formats spec",
+      "what": "The Bureau of Meteorology's July 2003 format document the codec follows.",
+      "paths": ["BOM spec erts_data_formats_doc.pdf"]
+    }
+  ],
+  "provides": [
+    {
+      "id": "frame-codec",
+      "name": "ALERT frame formats",
+      "what": "A reference implementation of ALERT framing, fields and check bits; Flood-Net ported it and open-ALERT cites it.",
+      "component": "codec",
+      "paths": ["index.html", "README.md"],
+      "contract": "BOM spec erts_data_formats_doc.pdf"
+    },
+    {
+      "id": "address-list",
+      "name": "National ALERT address file",
+      "what": "Address → station name lookup; Flood-Net carries an identical copy in data/.",
+      "component": "address-file",
+      "paths": ["All 2021 Working 2.txt"]
+    }
+  ]
+}

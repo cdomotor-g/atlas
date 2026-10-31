@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="141.00002"
+   height="269.57693"
+   viewBox="0 0 141.00002 269.57693"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="tower.svg"
+   inkscape:version="1.4.4 (dcaf3e7, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs8" />
+  <sodipodi:namedview
+     id="namedview8"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:zoom="3.25"
+     inkscape:cx="84"
+     inkscape:cy="139.84615"
+     inkscape:window-width="1842"
+     inkscape:window-height="1177"
+     inkscape:window-x="3834"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg8" />
+  <!-- Concrete pad -->
+  <!-- Pole -->
+  <!-- Support braces -->
+  <!-- Platform -->
+  <!-- Handrails -->
+  <!-- Cabinet -->
+  <!-- Antenna mast -->
+  <g
+     id="g1"
+     transform="matrix(-1,0,0,1,141.00002,0)">
+    <line
+       x1="108.96155"
+       y1="80"
+       x2="108.96155"
+       y2="3.7036133e-07"
+       stroke="#333333"
+       stroke-width="1.78885"
+       id="line8"
+       style="stroke:#eaeaea;stroke-opacity:1" />
+    <rect
+       x="-117.79861"
+       y="80.991798"
+       width="17.058756"
+       height="51.093327"
+       fill="#d9d9d9"
+       stroke="#888888"
+       id="rect8"
+       style="fill:#888888;fill-opacity:1;stroke-width:1.76432"
+       transform="scale(-1,1)" />
+    <rect
+       x="-113.448"
+       y="69.80394"
+       width="8.3575211"
+       height="12.853631"
+       fill="#d9d9d9"
+       stroke="#888888"
+       id="rect10"
+       style="fill:#888888;fill-opacity:1;stroke:#1c1c1c;stroke-width:0.619404;stroke-opacity:1"
+       transform="scale(-1,1)" />
+    <rect
+       x="-140.7128"
+       y="262.7103"
+       width="140.42558"
+       height="6.5794158"
+       fill="#cfcfcf"
+       stroke="#999999"
+       id="rect1"
+       style="stroke-width:0.574431"
+       transform="scale(-1,1)" />
+    <rect
+       x="-77.038467"
+       y="132"
+       width="13.076923"
+       height="130.61539"
+       fill="#6e7780"
+       id="rect2"
+       style="stroke-width:1.2461"
+       transform="scale(-1,1)" />
+    <line
+       x1="70.500008"
+       y1="180.92308"
+       x2="110.50001"
+       y2="130.92308"
+       stroke="#6e7780"
+       stroke-width="4"
+       id="line2" />
+    <line
+       x1="70.500008"
+       y1="180.92308"
+       x2="30.50001"
+       y2="130.92308"
+       stroke="#6e7780"
+       stroke-width="4"
+       id="line3" />
+    <rect
+       x="-120.50001"
+       y="129.38461"
+       width="100"
+       height="3.5384614"
+       fill="#444444"
+       id="rect3"
+       style="fill:#6e7780;fill-opacity:1;stroke-width:0.59485"
+       transform="scale(-1,1)" />
+    <rect
+       x="-120.50001"
+       y="82.92308"
+       width="100"
+       height="5"
+       fill="#6e7780"
+       id="rect4"
+       transform="scale(-1,1)" />
+    <rect
+       x="-120.50001"
+       y="83.85582"
+       width="5"
+       height="47.404957"
+       fill="#6e7780"
+       id="rect5"
+       style="stroke-width:1.08863"
+       transform="scale(-1,1)" />
+    <rect
+       x="-25.50001"
+       y="83.85582"
+       width="5"
+       height="47.404957"
+       fill="#6e7780"
+       id="rect6"
+       style="stroke-width:1.08863"
+       transform="scale(-1,1)" />
+    <rect
+       x="-120.50001"
+       y="104.92308"
+       width="100"
+       height="3"
+       fill="#6e7780"
+       id="rect7"
+       transform="scale(-1,1)" />
+    <rect
+       x="-81.038467"
+       y="258.46152"
+       width="21.076923"
+       height="4.1538448"
+       fill="#6e7780"
+       id="rect9"
+       style="stroke-width:0.282118"
+       transform="scale(-1,1)" />
+    <rect
+       x="-72.076927"
+       y="83.85582"
+       width="3.1538463"
+       height="47.404957"
+       fill="#6e7780"
+       id="rect11"
+       style="stroke-width:0.864601"
+       transform="scale(-1,1)" />
+  </g>
+</svg>

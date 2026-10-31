@@ -1,0 +1,46 @@
+# Reusable: the check each repository on the Atlas runs on itself. A repository
+# calls it from its own .github/workflows/atlas.yml:
+#
+#   jobs:
+#     atlas:
+#       uses: cdomotor-g/atlas/.github/workflows/drift.yml@main
+#       permissions: { contents: read, issues: write }
+#
+# It checks that atlas.json is valid and, for every `consumes` entry, whether the
+# provider has changed what is watched since this repository last caught up. An
+# entry with `drift_issue: true` keeps one issue open here while it is behind and
+# closes it once the pin catches up. Only an invalid atlas.json fails the run.
+name: Atlas check
+
+on:
+  workflow_call:
+    inputs:
+      manifest:
+        description: Path to atlas.json in the calling repository
+        type: string
+        default: atlas.json
+      issues:
+        description: Open and close drift issues (false only reports)
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: cdomotor-g/atlas
+          path: .atlas
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check atlas.json and upstream drift
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node .atlas/tools/drift.mjs --manifest "${{ inputs.manifest }}" ${{ (inputs.issues && github.event_name != 'pull_request') && '--issues' || '' }}

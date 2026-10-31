@@ -1,0 +1,81 @@
+<p align="center"><img src="assets/logos/atlas.svg" width="84" alt=""></p>
+
+# Atlas
+
+**One map of every repository: what each is, where it is up to, and how they depend on each other.**
+
+**→ <https://cdomotor-g.github.io/atlas/>**
+
+A zoomable map of the Flood-Net family and its neighbours — the Quansheng radio firmware,
+RPi ALERT, Flood-Net itself, open-ALERT, SoRT, the Droggies and the older tools — with a
+line for everything one repository takes from another. Click a repository to see its parts,
+where it is up to, what is waiting on you, its open issues and a ready-made brief for
+switching back into it. Click a line to see exactly what flows along it and whether the
+receiving end has kept up.
+
+| View | What it answers |
+|---|---|
+| **Map** | How does it all fit together? What is behind? Drag to rearrange, scroll or pinch to zoom, click to drill down. |
+| **Roadmap** | Every repository's Now / Next / Later / Blocked on one screen. |
+| **Board** | Every open issue, by who can move it: waiting on you, ready for an agent (by model), behind upstream, epics. **Prompt** copies a brief for a new Claude Code session or Dispatch. |
+| **Links** | Every dependency between repositories and its state. |
+| **Activity** | The latest commits everywhere, newest first. |
+
+## How it works
+
+```
+ each repository                         this repository                         you
+ ───────────────                         ───────────────                         ───
+ atlas.json  ── what it is, its parts,   tools/collect.mjs (every 3 h)           index.html
+               status (Now/Next/Blocked),  reads every atlas.json, plus          the map, roadmap,
+               what it offers, what it     commits, issues, releases, CI      ─▶ board, links,
+               takes from others           and drift on every link, from         activity
+                                           GitHub → data/map.json
+ .github/workflows/atlas.yml (daily)
+   validates atlas.json; when something it copies or follows has moved
+   on upstream, opens an issue here with the upstream commits (forward)
+
+ CLAUDE.md "Atlas" section
+   agents tell consumers when they change what others rely on (forward),
+   file asks upstream (back), and keep status current
+```
+
+- **Each repository describes itself** in an `atlas.json` at its root — format and every
+  field explained in [`schema/atlas.schema.json`](schema/atlas.schema.json). Links are
+  declared by the *consumer* (`consumes`), because the consumer is what breaks.
+- **Forward propagation.** A consumer records where it last caught up with each provider:
+  a pinned commit (`agent/vendor/meganet/SOURCE`), a version (`RPi ALERT 0.11` in a
+  catalogue) or a review date. When the provider changes a watched file after that, the
+  link turns **behind**; the consumer's daily `atlas.yml` check opens an issue there with
+  the upstream commits and the catch-up step, and closes it once the pin moves.
+- **Back propagation.** When a repository needs another to change, its agent files an
+  issue in the other one and lists it under `asks`. Issues that name another repository
+  show on the line between them.
+- Repositories that can't carry an `atlas.json` (archived, or not attached) are described
+  by the Atlas itself in [`data/fallback/`](data/fallback).
+
+## Files
+
+| Path | What |
+|---|---|
+| `index.html`, `assets/atlas.js`, `assets/atlas.css` | The page. Plain HTML/CSS/JS, no build, no libraries. |
+| `data/registry.json` | Which repositories are on the map, where each sits, which zone. |
+| `data/fallback/*.json` | `atlas.json` for repositories that don't carry their own. |
+| `data/map.json` | What the page draws. Written by `tools/collect.mjs`; don't edit by hand. |
+| `schema/atlas.schema.json` | The `atlas.json` format. |
+| `tools/collect.mjs` | Builds `data/map.json`. `.github/workflows/collect.yml` runs it every three hours. |
+| `tools/drift.mjs`, `.github/workflows/drift.yml` | The check every repository runs on itself (a reusable workflow). |
+| `tools/build-standalone.mjs` | One self-contained HTML file with everything inlined (`dist/atlas.html`). |
+| `assets/logos/` | Logos and pictures; `credits.json` says where each came from. |
+| `test/check.mjs` | The Atlas's own checks (`node test/check.mjs`, about a second). |
+
+## Running it locally
+
+```bash
+python3 -m http.server 8000                         # then http://localhost:8000
+GITHUB_TOKEN=… node tools/collect.mjs               # refresh data/map.json from GitHub
+node tools/collect.mjs --local ~/src                # …reading atlas.json drafts from clones under ~/src first
+node tools/drift.mjs --manifest ../RPi_ALERT/atlas.json   # one repository's check, report only
+```
+
+Adding a repository: [`docs/adding-a-repo.md`](docs/adding-a-repo.md).

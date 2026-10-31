@@ -1,0 +1,122 @@
+{
+  "$schema": "https://cdomotor-g.github.io/atlas/schema/atlas.schema.json",
+  "atlas": 1,
+  "id": "flood-net-private",
+  "repo": "cdomotor-g/flood-net-private",
+  "name": "Flood-Net private archive",
+  "tagline": "Holds Flood-Net's historical site-inspection archive, which carries site access codes and must never be public.",
+  "about": "A private repository beside Flood-Net. It keeps the historical inspection workbook and everything derived from it, because those carry site-access notes and codes meant only for the people who maintain the sites. Its own workflow runs Flood-Net's ingest tools against the archive on every push and daily. It is also where Flood-Net's weekly security review files its findings and keeps its log, so a hole is never published before it is fixed. Described here only from what Flood-Net says about it in public.",
+  "kind": "private data repository",
+  "status": {
+    "phase": "live",
+    "updated": "2026-10-31",
+    "summary": "Live: holds the archive and the security-review findings; Flood-Net's git history still holds the old archive until the owner runs the rewrite.",
+    "next": [
+      "Run the history rewrite to scrub the archive from Flood-Net (cdomotor-g/MegaNet#239)"
+    ],
+    "blocked": [
+      {
+        "what": "The rewrite needs the owner's computer: force-push, branch deletion, a GitHub Support purge",
+        "on": "human"
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "inspections",
+      "name": "Inspection archive",
+      "what": "The workbook and its derived files: staging rows, mined events, station crosswalk, hand-checked sample.",
+      "paths": [
+        "inspections/"
+      ],
+      "status": "live"
+    },
+    {
+      "id": "archive-checks",
+      "name": "Derived-artefact checks",
+      "what": "A workflow that checks out Flood-Net's tools/ingest/ beside the archive and runs its checks, on push and daily.",
+      "paths": [
+        ".github/workflows/"
+      ],
+      "status": "live"
+    },
+    {
+      "id": "security",
+      "name": "Security findings and log",
+      "what": "Where the weekly security review files security-scan issues and appends its scan log.",
+      "paths": [
+        "security/"
+      ],
+      "status": "live"
+    },
+    {
+      "id": "history-rewrite",
+      "name": "History rewrite",
+      "what": "A script that rewrites Flood-Net's git history without the archive; dry-run clean, waiting on the owner.",
+      "paths": [
+        "history/"
+      ],
+      "status": "building"
+    }
+  ],
+  "provides": [
+    {
+      "id": "inspection-archive",
+      "name": "Inspection archive",
+      "what": "What Flood-Net's ingest tools read, from a clone beside Flood-Net or wherever FLOODNET_PRIVATE points.",
+      "component": "inspections",
+      "paths": [
+        "inspections/"
+      ]
+    },
+    {
+      "id": "security-log",
+      "name": "Security-review log and findings",
+      "what": "The scan log the weekly review reads to pick up where the last run stopped, and its open findings.",
+      "component": "security",
+      "paths": [
+        "security/scan-log.md",
+        "security/findings/"
+      ]
+    }
+  ],
+  "consumes": [
+    {
+      "id": "ingest-tools",
+      "from": "flood-net",
+      "provider": "ingest-adapters",
+      "into": "archive-checks",
+      "what": "Flood-Net's ingest tools and checks, checked out beside the archive at run time.",
+      "how": "live",
+      "watch": [
+        "tools/ingest/"
+      ],
+      "on_change": "Nothing to copy: the next run uses them. If a check fails, fix the tool in Flood-Net or the data here."
+    },
+    {
+      "id": "stations",
+      "from": "flood-net",
+      "provider": "station-list",
+      "into": "inspections",
+      "what": "Flood-Net's stations.json on main, which the daily workflow re-derives the station crosswalk against.",
+      "how": "live",
+      "watch": [
+        "stations.json"
+      ],
+      "on_change": "Nothing by hand: the daily run re-derives the crosswalk; look at it if the run fails."
+    },
+    {
+      "id": "security-brief",
+      "from": "flood-net",
+      "provider": "automation",
+      "into": "security",
+      "what": "The weekly security review's brief: the security-scan label, one finding per issue, the scan-log entry format.",
+      "how": "protocol",
+      "watch": [
+        "tools/security-scan/brief.md",
+        "tools/security-scan/README.md"
+      ],
+      "on_change": "Keep security/scan-log.md and the security-scan issues in the shape the brief describes."
+    }
+  ]
+}

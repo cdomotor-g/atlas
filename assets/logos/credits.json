@@ -1,0 +1,11 @@
+[
+  {"file": "flood-net.webp", "from": "cdomotor-g/MegaNet assets/logo.webp", "note": "Flood-Net's own logo, cropped"},
+  {"file": "rpi-alert.svg", "from": "cdomotor-g/RPi_ALERT site/icon.svg"},
+  {"file": "open-alert.svg", "from": "cdomotor-g/open-ALERT site/icon.svg"},
+  {"file": "f-tide.svg", "from": "cdomotor-g/F-TIDE tower.svg"},
+  {"file": "quansheng-v3.png", "from": "cdomotor-g/quansheng_alert_ALL docs/img/screens/v2-list.png", "note": "the ALERT receiver's own screen, captured from a radio"},
+  {"file": "quansheng-v1.jpg", "shows": "Quansheng UV-K5(8) running custom firmware", "author": "kamilsss655 / uv-k5-firmware-custom", "source": "https://github.com/kamilsss655/uv-k5-firmware-custom/blob/main/images/radio_picture.jpg", "license": "Apache-2.0", "modified": "cropped and resized"},
+  {"file": "quansheng-all.jpg", "shows": "Two radios of the older Quansheng family running F4HWN firmware", "author": "Armel Fauveau (F4HWN)", "source": "https://github.com/armel/uv-k5-firmware-custom-feat-F4HWN/blob/main/photos/IMG_3291.png", "license": "Apache-2.0", "modified": "cropped and resized"},
+  {"file": "droggies.jpg", "from": "cdomotor-g/thedroggies characters/art/seasoned-hydrographer.png", "note": "the Seasoned Hydrographer, cropped"},
+  {"file": "sort.svg, alert-packets.svg, html-serial.svg, flood-net-private.svg, fw-lab.svg, home.svg, atlas.svg", "note": "drawn for the Atlas"}
+]

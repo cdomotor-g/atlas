@@ -1,0 +1,29 @@
+{
+  "$comment": "Which repositories are on the Atlas, where each sits on the map and which zone it belongs to. Everything else about a repository comes from its own atlas.json (or data/fallback/<id>.json when it has none). x/y are map coordinates; the map is about 1700 x 1050. To add a repository: add an entry here, give it an atlas.json (template in docs/adding-a-repo.md), push.",
+  "owner": "cdomotor-g",
+  "groups": [
+    { "id": "radio", "name": "On the radio", "about": "Firmware that turns a cheap Quansheng handheld into an ALERT receiver, and the page that installs it.", "color": "#d98b2b" },
+    { "id": "base", "name": "At the base station", "about": "What sits at a base station and listens: receivers that decode the bursts and send readings on.", "color": "#2f9e8f" },
+    { "id": "network", "name": "The network", "about": "Flood-Net: where every reading lands, and the records, maps, bulletins and API built on them.", "color": "#2a7fd4" },
+    { "id": "planning", "name": "Planning & field work", "about": "Tools for deciding what to build and scoping the work at a site.", "color": "#7a5cc9" },
+    { "id": "story", "name": "Story", "about": "The Droggies: hydrography told as a comic, a game, a podcast and a show.", "color": "#c4501b" },
+    { "id": "tools", "name": "Tools & history", "about": "Earlier single-purpose tools whose work now lives in Flood-Net, kept for reference.", "color": "#6b7785" },
+    { "id": "outside", "name": "Outside the network", "about": "Related in spirit, not wired in.", "color": "#9a8a5a" }
+  ],
+  "repos": [
+    { "id": "flood-net",         "repo": "cdomotor-g/MegaNet",              "group": "network",  "x": 930,  "y": 470, "size": 1.6, "logo": "assets/logos/flood-net.webp" },
+    { "id": "flood-net-private", "repo": "cdomotor-g/flood-net-private",    "group": "network",  "x": 1010, "y": 820, "size": 0.8, "logo": "assets/logos/flood-net-private.svg", "private": true },
+    { "id": "rpi-alert",         "repo": "cdomotor-g/RPi_ALERT",            "group": "base",     "x": 610,  "y": 300, "size": 1.15, "logo": "assets/logos/rpi-alert.svg" },
+    { "id": "fw-lab",            "repo": "cdomotor-g/ALERT1v3",             "group": "base",     "x": 560,  "y": 650, "size": 0.85, "logo": "assets/logos/fw-lab.svg" },
+    { "id": "quansheng-v3",      "repo": "cdomotor-g/quansheng_alert_v3",   "group": "radio",    "x": 320,  "y": 400, "size": 1.1, "label": "Quansheng V3 firmware", "logo": "assets/logos/quansheng-v3.png" },
+    { "id": "quansheng-v1",      "repo": "cdomotor-g/quansheng_alert",      "group": "radio",    "x": 140,  "y": 590, "size": 0.85, "label": "Quansheng V1 firmware", "logo": "assets/logos/quansheng-v1.jpg" },
+    { "id": "quansheng-all",     "repo": "cdomotor-g/quansheng_alert_ALL",  "group": "radio",    "x": 140,  "y": 200, "size": 1.0, "label": "Radio setup site", "logo": "assets/logos/quansheng-all.jpg" },
+    { "id": "open-alert",        "repo": "cdomotor-g/open-ALERT",           "group": "planning", "x": 930,  "y": 110, "size": 1.0, "logo": "assets/logos/open-alert.svg" },
+    { "id": "sort",              "repo": "cdomotor-g/SoRT",                 "group": "planning", "x": 1330, "y": 250, "size": 1.0, "logo": "assets/logos/sort.svg" },
+    { "id": "f-tide",            "repo": "cdomotor-g/F-TIDE",               "group": "planning", "x": 1580, "y": 140, "size": 0.8, "logo": "assets/logos/f-tide.svg" },
+    { "id": "droggies",          "repo": "cdomotor-g/thedroggies",          "group": "story",    "x": 1330, "y": 650, "size": 1.1, "logo": "assets/logos/droggies.jpg", "private": true, "pages": "https://cdomotor-g.github.io/thedroggies/" },
+    { "id": "alert-packets",     "repo": "cdomotor-g/ALERT_PACKETS",        "group": "tools",    "x": 300,  "y": 880, "size": 0.8, "logo": "assets/logos/alert-packets.svg" },
+    { "id": "html-serial",       "repo": "cdomotor-g/HTML-serial",          "group": "tools",    "x": 620,  "y": 930, "size": 0.75, "logo": "assets/logos/html-serial.svg" },
+    { "id": "home",              "repo": "cdomotor-g/home",                 "group": "outside",  "x": 1580, "y": 900, "size": 0.8, "logo": "assets/logos/home.svg" }
+  ]
+}

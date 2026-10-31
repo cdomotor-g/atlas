@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cdomotor-g.github.io/atlas/schema/atlas.schema.json",
+  "title": "atlas.json — how one repository describes itself to the Atlas",
+  "description": "Every repository on the Atlas keeps one atlas.json at its root. It says what the repository is, where it is up to, what it is made of, what it offers other repositories and what it takes from them. The Atlas (cdomotor-g/atlas) reads every one of these files every few hours and draws the map from them. Links are declared by the CONSUMER, in `consumes`, because the consumer is the one that breaks when the provider changes. The file is public: no landholder details, site codes, secrets or private issue text.",
+  "type": "object",
+  "required": ["atlas", "id", "repo", "name", "tagline", "status"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "atlas": { "const": 1, "description": "Format version." },
+    "id": { "$ref": "#/$defs/id", "description": "This repository's id on the Atlas — the key in the Atlas's data/registry.json." },
+    "repo": { "type": "string", "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$", "description": "owner/name on GitHub." },
+    "name": { "type": "string", "description": "The name a person reads (Flood-Net, not MegaNet)." },
+    "tagline": { "type": "string", "maxLength": 140, "description": "One line: what it is." },
+    "about": { "type": "string", "description": "Two to four plain sentences: what it does and who it is for." },
+    "kind": { "type": "string", "description": "A few words: web app, firmware, base-station OS, static site, content pipeline…" },
+    "logo": { "type": "string", "description": "Path to a logo or picture in this repository (svg, png, jpg or webp). The Atlas keeps its own copy in assets/logos/ and uses that first." },
+    "site": { "type": "string", "format": "uri", "description": "Where a person uses it." },
+    "docs": {
+      "type": "object",
+      "additionalProperties": { "type": "string" },
+      "description": "Paths in this repository: readme, roadmap, agents (CLAUDE.md) and anything else worth a link."
+    },
+    "version": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Where the current version is written down, so the Atlas can show it.",
+      "properties": {
+        "file": { "type": "string" },
+        "pattern": { "type": "string", "description": "A regular expression whose first group is the version." },
+        "releases": { "type": "boolean", "description": "true when the version is published as GitHub releases." }
+      }
+    },
+    "status": {
+      "type": "object",
+      "required": ["phase", "updated", "summary"],
+      "additionalProperties": false,
+      "properties": {
+        "phase": { "enum": ["idea", "building", "beta", "live", "maintenance", "archived"] },
+        "updated": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$", "description": "The date this status was last checked against the repository." },
+        "summary": { "type": "string", "description": "One sentence: where it is up to, today." },
+        "now": { "type": "array", "items": { "type": "string" }, "description": "What is being worked on. #123 links to an issue here; owner/repo#123 to one elsewhere." },
+        "next": { "type": "array", "items": { "type": "string" }, "description": "What comes after, roughly in order." },
+        "later": { "type": "array", "items": { "type": "string" } },
+        "blocked": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["what", "on"],
+            "additionalProperties": false,
+            "properties": {
+              "what": { "type": "string" },
+              "on": { "type": "string", "description": "\"human\" (something only the owner can do), another Atlas id, or an issue as id#123." }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "type": "array",
+      "description": "The parts worth seeing on the map when you zoom in. Five to twelve is about right.",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "what"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "$ref": "#/$defs/id" },
+          "name": { "type": "string" },
+          "what": { "type": "string" },
+          "paths": { "type": "array", "items": { "type": "string" } },
+          "url": { "type": "string" },
+          "status": { "enum": ["live", "beta", "building", "planned", "retired"] }
+        }
+      }
+    },
+    "provides": {
+      "type": "array",
+      "description": "What other repositories may rely on: a file, a format, an API, a build. Changing one of these is what the Atlas's forward propagation is about.",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "what"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "$ref": "#/$defs/id" },
+          "name": { "type": "string" },
+          "what": { "type": "string" },
+          "component": { "$ref": "#/$defs/id", "description": "The component above it belongs to." },
+          "paths": { "type": "array", "items": { "type": "string" } },
+          "url": { "type": "string" },
+          "contract": { "type": "string", "description": "Path to the document that defines it." }
+        }
+      }
+    },
+    "consumes": {
+      "type": "array",
+      "description": "Everything this repository takes from another. Each entry becomes a line on the map.",
+      "items": {
+        "type": "object",
+        "required": ["id", "from", "what", "how"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "$ref": "#/$defs/id" },
+          "from": { "$ref": "#/$defs/id", "description": "The provider's Atlas id." },
+          "provider": { "$ref": "#/$defs/id", "description": "Which of the provider's `provides` (or components) this is." },
+          "into": { "$ref": "#/$defs/id", "description": "Which of this repository's components takes it." },
+          "what": { "type": "string" },
+          "how": {
+            "enum": ["vendored", "generated", "built", "live", "release", "protocol", "reference", "ported"],
+            "description": "vendored: a verbatim copy kept here. generated: data made here from the provider's. built: the provider's source built into something here. live: read at run time. release: reads the provider's latest release. protocol: implements a format or protocol the provider defines. reference: links to or cites it. ported: taken from it once, now independent."
+          },
+          "url": { "type": "string", "description": "For live links: what is read." },
+          "watch": { "type": "array", "items": { "type": "string" }, "description": "Paths in the provider whose change matters here. A trailing / means everything under it; * matches within a name." },
+          "since": {
+            "description": "The point this repository last caught up with the provider. Upstream commits to `watch` after it are drift.",
+            "oneOf": [
+              { "type": "object", "required": ["file", "pattern"], "additionalProperties": false, "properties": { "file": { "type": "string", "description": "A file in THIS repository that records the provider commit." }, "pattern": { "type": "string", "description": "Regular expression; first group is the commit." } } },
+              { "type": "object", "required": ["commit"], "additionalProperties": false, "properties": { "commit": { "type": "string", "pattern": "^[0-9a-f]{7,40}$" } } },
+              { "type": "object", "required": ["date"], "additionalProperties": false, "properties": { "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$", "description": "Reviewed on this date." } } },
+              { "type": "object", "required": ["version"], "additionalProperties": false, "properties": { "version": { "type": "object", "required": ["file", "pattern"], "properties": { "file": { "type": "string" }, "pattern": { "type": "string" } } } } }
+            ]
+          },
+          "on_change": { "type": "string", "description": "What to do here when the provider changes what is watched." },
+          "drift_issue": { "type": "boolean", "description": "true: the drift check opens an issue in this repository when the provider has moved on. Default false (the Atlas shows it either way)." }
+        }
+      }
+    },
+    "asks": {
+      "type": "array",
+      "description": "Back propagation: things this repository needs another to change. File them as issues in the other repository when you can and put the issue here; until then the Atlas shows the ask on the line between the two.",
+      "items": {
+        "type": "object",
+        "required": ["to", "what"],
+        "additionalProperties": false,
+        "properties": {
+          "to": { "$ref": "#/$defs/id" },
+          "what": { "type": "string" },
+          "issue": { "type": ["string", "null"], "description": "owner/repo#123 once filed." },
+          "since": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" }
+  }
+}

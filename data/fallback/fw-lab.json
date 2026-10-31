@@ -1,0 +1,77 @@
+{
+  "$schema": "https://cdomotor-g.github.io/atlas/schema/atlas.schema.json",
+  "atlas": 1,
+  "id": "fw-lab",
+  "repo": "cdomotor-g/ALERT1v3",
+  "name": "FW-LAB Receiver",
+  "tagline": "An RTL-SDR and GNU Radio ALERT receiver with MQTT output, a web UI with live audio and waterfall, and forensics tools.",
+  "about": "The Flood Warning ALERT Base Station Receiver: a GNU Radio flowgraph that demodulates and decodes ALERT1 bursts from an RTL-SDR, logs them as CSV and JSONL, and publishes them over MQTT. A Python web UI shows events, RF health, trends, path analysis and forensics, and scripts and systemd units run it unattended on a Pi with a cloud control plane. It came before Flood-Net: Flood-Net has taken its floodwarning.net domain and has a runbook to retire it, and RPi ALERT now does its base-station job.",
+  "kind": "SDR receiver (GNU Radio + Python)",
+  "docs": {
+    "readme": "README.md",
+    "roadmap": "docs/ROADMAP.md",
+    "worklog": "WORKLOG.md",
+    "architecture": "docs/ARCHITECTURE.md",
+    "agents": "CLAUDE.md"
+  },
+  "status": {
+    "phase": "maintenance",
+    "updated": "2026-10-31",
+    "summary": "Dormant since about May 2026 and being retired: Flood-Net took floodwarning.net from it, and RPi ALERT replaced it as the base-station receiver.",
+    "next": [
+      "Copy, then archive the repository with a README line pointing to Flood-Net"
+    ],
+    "blocked": [
+      {
+        "what": "Retirement steps in Flood-Net's runbook (docs/floodwarning-net.md) are owner dashboard actions",
+        "on": "human"
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "flowgraph",
+      "name": "GNU Radio flowgraph",
+      "what": "RTL-SDR (osmosdr) receive, FSK demodulation and symbol timing; one channel, default 173.9 MHz.",
+      "paths": ["src/ALERT1v3.grc", "src/fwlab_receiver.py"],
+      "status": "retired"
+    },
+    {
+      "id": "decoder",
+      "name": "Decoder, logger and MQTT blocks",
+      "what": "Python blocks: alert.decode.v1 events, CSV and JSONL logs, MQTT topics under alert/rx/.",
+      "paths": ["src/fwlab_epy_decoder.py", "src/fwlab_epy_logger.py", "src/fwlab_epy_mqtt.py"],
+      "status": "retired"
+    },
+    {
+      "id": "webui",
+      "name": "Web UI",
+      "what": "Dashboard, events, radio (waterfall and browser audio), data, path, stations, admin and forensics pages.",
+      "paths": ["webui/"],
+      "status": "retired"
+    },
+    {
+      "id": "ops",
+      "name": "Install and operations",
+      "what": "Installer, systemd units, auto-update timer, host monitor, log retention, soak and replay tools.",
+      "paths": ["scripts/", "deploy/", "tools/", "sidecars/"],
+      "status": "retired"
+    },
+    {
+      "id": "control-plane",
+      "name": "Control plane",
+      "what": "Edge and control roles, S3 state and Cloudflare load-balancer failover on floodwarning.net hostnames.",
+      "paths": ["docs/CONTROL_PLANE.md", "config/", "scripts/promote_control_plane.sh"],
+      "status": "retired"
+    }
+  ],
+  "provides": [
+    {
+      "id": "receiver-docs",
+      "name": "Receiver capabilities",
+      "what": "What the receiver runs on and what it publishes — cited by open-ALERT's catalogue.",
+      "paths": ["README.md", "docs/PLATFORMS.md", "docs/MQTT.md"],
+      "contract": "docs/MQTT.md"
+    }
+  ]
+}

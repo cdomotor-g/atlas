@@ -1,0 +1,46 @@
+# Rebuilds data/map.json — what the Atlas page draws — from every repository's
+# atlas.json and the GitHub API, and commits it when it changed.
+# Optional secret ATLAS_TOKEN: a fine-grained token with read access to private
+# repositories (Metadata, Contents, Issues: read). Without it, private ones show
+# only what their fallback file says.
+name: Collect
+
+on:
+  schedule:
+    - cron: '23 */3 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['data/registry.json', 'data/fallback/**', 'tools/**', 'schema/**', 'test/**', 'assets/**', 'index.html']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: collect
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check the Atlas's own files
+        run: node test/check.mjs
+      - name: Collect
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ATLAS_TOKEN: ${{ secrets.ATLAS_TOKEN }}
+        run: node tools/collect.mjs
+      - name: Commit the map
+        run: |
+          git diff --quiet data/map.json && { echo "No change."; exit 0; }
+          git config user.name 'atlas-bot'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/map.json
+          git commit -m "data: refresh the map"
+          for i in 1 2 3; do git pull --rebase -q origin main && git push -q origin HEAD:main && exit 0; sleep $((i*5)); done
+          exit 1

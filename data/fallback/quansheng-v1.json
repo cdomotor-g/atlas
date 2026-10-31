@@ -1,0 +1,226 @@
+{
+  "$schema": "https://cdomotor-g.github.io/atlas/schema/atlas.schema.json",
+  "atlas": 1,
+  "id": "quansheng-v1",
+  "repo": "cdomotor-g/quansheng_alert",
+  "name": "Quansheng ALERT receiver (UV-K5, archived)",
+  "tagline": "The first ALERT receiver firmware, for the older DP32G030 Quansheng UV-K5 family. Archived; still builds and flashes.",
+  "about": "Firmware for the UV-K5, UV-K5(8) and UV-K6 (DP32G030, bootloader 2.x), built on egzumer's firmware, that turns the handheld into an ALERT flood-telemetry receiver with a station table generated from Flood-Net. It was archived when work moved to the UV-K5 V3, but its builds and its own web installer still work, and in October 2026 it took the V3's on-air-proven demodulator and decoder. It needs a one-capacitor mod to hear the audio, and no modded radio has decoded on air yet.",
+  "kind": "radio firmware (egzumer fork)",
+  "site": "https://cdomotor-g.github.io/quansheng_alert/",
+  "docs": {
+    "readme": "README.md",
+    "agents": "CLAUDE.md",
+    "upstream": "docs/README-egzumer-upstream.md"
+  },
+  "status": {
+    "phase": "archived",
+    "updated": "2026-10-31",
+    "summary": "Archived and read-only; its last builds (20 October) carry the V3's decoder, but no modded UV-K5 has been tried on air yet.",
+    "blocked": [
+      {
+        "what": "First field test: a UV-K5 with the one-capacitor mod beside an ALERT transmitter",
+        "on": "human"
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "alert-app",
+      "name": "ALERT receiver app",
+      "what": "Burst capture, screens, settings and voice read-out, and one ALERT line per reading on the programming cable's UART.",
+      "paths": [
+        "app/alert.c",
+        "app/alert.h"
+      ],
+      "status": "retired"
+    },
+    {
+      "id": "demodulator",
+      "name": "Software AFSK demodulator",
+      "what": "Samples the receiver audio on PA8 (through the capacitor mod) at 9600 Hz and recovers the 300-baud bits; the V3's design.",
+      "paths": [
+        "app/alert_demod.c",
+        "app/alert_demod.h"
+      ],
+      "status": "retired"
+    },
+    {
+      "id": "decoder",
+      "name": "Frame decoder",
+      "what": "ABF, EIF and A2C decoding, identical to the V3's App/app/alert_decode.c.",
+      "paths": [
+        "app/alert_decode.c",
+        "app/alert_decode.h"
+      ],
+      "status": "retired"
+    },
+    {
+      "id": "station-table",
+      "name": "Station table",
+      "what": "About 6 KB of station names generated from Flood-Net by stations.filter, looked up by binary search in flash.",
+      "paths": [
+        "tools/gen_stations.py",
+        "tools/test_gen_stations.py",
+        "stations.filter",
+        "filters/",
+        "app/alert_stations.c",
+        "app/alert_stations_gen.h"
+      ],
+      "status": "retired"
+    },
+    {
+      "id": "fine-squelch",
+      "name": "Fine squelch",
+      "what": "A 0.0 to 9.0 squelch with open and close delays for the whole radio, so weak bursts open it quickly.",
+      "paths": [
+        "radio.c",
+        "driver/bk4819.c",
+        "app/menu.c",
+        "ui/menu.c",
+        "settings.c"
+      ],
+      "status": "retired"
+    },
+    {
+      "id": "installer",
+      "name": "Web installer",
+      "what": "Four-step Web Serial installer for the UV-K5, with backup and restore, a cable-building page and k5diag.py; still served.",
+      "paths": [
+        "docs/index.html",
+        "docs/js/",
+        "docs/css/",
+        "docs/cable/",
+        "tools/k5diag.py"
+      ],
+      "url": "https://cdomotor-g.github.io/quansheng_alert/",
+      "status": "live"
+    },
+    {
+      "id": "published-firmware",
+      "name": "Published firmware",
+      "what": "Two builds (default: Mt Kanigan and neighbours; South-East Queensland) with a manifest naming the source and Flood-Net commits.",
+      "paths": [
+        "docs/firmware/",
+        "tools/publish_firmware.py",
+        "tools/srcid.sh"
+      ],
+      "status": "live"
+    },
+    {
+      "id": "ci",
+      "name": "CI build",
+      "what": "Built both variants weekly and committed the binaries; stopped when the repository was archived.",
+      "paths": [
+        ".github/workflows/build.yml",
+        "test/",
+        "package.json"
+      ],
+      "status": "retired"
+    },
+    {
+      "id": "egzumer-base",
+      "name": "egzumer base firmware",
+      "what": "egzumer's custom UV-K5 firmware (Apache-2.0), with some features switched off to make room for the station table.",
+      "paths": [
+        "Makefile",
+        "driver/",
+        "ui/",
+        "helper/",
+        "bsp/",
+        "hardware/",
+        "external/"
+      ],
+      "url": "https://github.com/egzumer/uv-k5-firmware-custom"
+    }
+  ],
+  "provides": [
+    {
+      "id": "published-builds",
+      "name": "Published UV-K5 builds",
+      "what": "The final firmware images and manifest.json (size, sha256, station count, source and Flood-Net commits); quansheng_alert_ALL copies them.",
+      "component": "published-firmware",
+      "paths": [
+        "docs/firmware/manifest.json",
+        "docs/firmware/*.bin"
+      ],
+      "url": "https://cdomotor-g.github.io/quansheng_alert/firmware/manifest.json",
+      "contract": "tools/publish_firmware.py"
+    },
+    {
+      "id": "uart-line",
+      "name": "ALERT line on the programming cable",
+      "what": "ALERT,<id>,<value>,<ABF|EIF>,<rssi dBm>,<name> at 38400 8N1 for every reading; RPi ALERT's Quansheng driver reads it.",
+      "component": "alert-app",
+      "paths": [
+        "app/alert.c"
+      ],
+      "contract": "README.md"
+    },
+    {
+      "id": "installer",
+      "name": "UV-K5 installer and cable tools",
+      "what": "The Web Serial installer, the cable page and k5diag.py that quansheng_alert_ALL grew its two-family installer from.",
+      "component": "installer",
+      "paths": [
+        "docs/js/",
+        "docs/cable/",
+        "tools/k5diag.py"
+      ],
+      "url": "https://cdomotor-g.github.io/quansheng_alert/"
+    }
+  ],
+  "consumes": [
+    {
+      "id": "station-table",
+      "from": "flood-net",
+      "provider": "station-list",
+      "into": "station-table",
+      "what": "Station names, sensor kinds, ALERT addresses and repeater networks for the built-in table.",
+      "how": "generated",
+      "watch": [
+        "stations.json",
+        "data/All 2021 Working 2.txt",
+        "data/ALL_REPEATERS.csv"
+      ],
+      "since": {
+        "file": "docs/firmware/manifest.json",
+        "pattern": "\"stations_from\":\\s*\\{\\s*\"repo\":\\s*\"cdomotor-g/MegaNet\",\\s*\"commit\":\\s*\"([0-9a-f]+)\""
+      },
+      "on_change": "Nothing can run while the repository is archived: its weekly build has stopped. To refresh, unarchive it and run build.yml, which regenerates the table and republishes both builds.",
+      "drift_issue": false
+    },
+    {
+      "id": "packet-formats",
+      "from": "flood-net",
+      "provider": "packet-formats",
+      "into": "decoder",
+      "what": "The ABF and EIF bit layouts and CRC-6, a straight port of packets.js.",
+      "how": "ported",
+      "watch": [
+        "packets.js"
+      ],
+      "since": {
+        "date": "2026-10-01"
+      },
+      "on_change": "Nothing while archived."
+    },
+    {
+      "id": "v3-decoder",
+      "from": "quansheng-v3",
+      "provider": "decoder",
+      "into": "decoder",
+      "what": "The V3's on-air-proven demodulator and decoder, brought over in October 2026 (alert_decode.c verbatim).",
+      "how": "ported",
+      "watch": [
+        "App/app/alert_decode.c",
+        "App/app/alert_decode.h",
+        "App/app/alert_adc.c"
+      ],
+      "since": {
+        "date": "2026-10-20"
+      },
+      "on_change": "Nothing while archived; a revived fork would copy alert_decode.c across again."
+    }
+  ]
+}

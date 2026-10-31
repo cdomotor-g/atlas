@@ -1,0 +1,70 @@
+{
+  "$schema": "https://cdomotor-g.github.io/atlas/schema/atlas.schema.json",
+  "atlas": 1,
+  "id": "f-tide",
+  "repo": "cdomotor-g/F-TIDE",
+  "name": "F-TIDE",
+  "tagline": "A decision-tree tool for assessing flood warning towers: guided questions, a delivery risk score and an exportable report.",
+  "about": "Published as FWIN-ONSM-Matrix. Load a decision tree (tree.json), answer its questions about a tower, and export a self-contained HTML report with the path taken, the outcome and a Delivery Risk Score. The tree is edited in the browser (guided editor, a Cytoscape tree map, branches) and saved with a SHA-256-hashed changelog; a station register CSV the user loads fills in each site's details. It serves the same network's sites as Flood-Net but shares no code or data with it; Flood-Net neither absorbed nor replaced it.",
+  "kind": "static web app (decision support)",
+  "logo": "tower.svg",
+  "site": "https://cdomotor-g.github.io/F-TIDE/",
+  "docs": {
+    "readme": "README.md",
+    "agents": "CLAUDE.md",
+    "tree-schema": "tree_schema.json"
+  },
+  "version": {
+    "file": "tree.json",
+    "pattern": "\"version\":\\s*\"v?([0-9.]+)\""
+  },
+  "status": {
+    "phase": "maintenance",
+    "updated": "2026-10-31",
+    "summary": "Working and published; the rule set (v57.2) was last edited in June 2026 and the app last built in July, with nothing since but a CLAUDE.md note."
+  },
+  "components": [
+    {
+      "id": "runner",
+      "name": "Evaluation runner",
+      "what": "Walks the tree question by question, keeps the path and the running risk score, flags missing rules.",
+      "paths": ["modules/runner.js", "modules/state.js"],
+      "status": "live"
+    },
+    {
+      "id": "rule-set",
+      "name": "Rule set",
+      "what": "The tower decision tree, its JSON Schema and its hashed version history.",
+      "paths": ["tree.json", "tree_schema.json", "changelog.json"],
+      "status": "live"
+    },
+    {
+      "id": "editor",
+      "name": "Tree editor and map",
+      "what": "Guided and raw-JSON node editor, Cytoscape tree map, branch forking, save with changelog.",
+      "paths": ["modules/editor.js", "modules/tree-view.js", "modules/file-ops.js"],
+      "status": "live"
+    },
+    {
+      "id": "stations",
+      "name": "Station lookup",
+      "what": "Loads a station register CSV the user supplies and fills each session's site details.",
+      "paths": ["modules/stations.js"],
+      "status": "live"
+    },
+    {
+      "id": "report",
+      "name": "Report export",
+      "what": "A self-contained, printable HTML report of the decision path, outcome and risk band.",
+      "paths": ["modules/file-ops.js", "report.js"],
+      "status": "live"
+    },
+    {
+      "id": "bundle",
+      "name": "Bundle build",
+      "what": "Concatenates modules/ and app.js into app.bundle.js, which the page loads.",
+      "paths": ["scripts/build-bundle.mjs", "app.bundle.js"],
+      "status": "live"
+    }
+  ]
+}
