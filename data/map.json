@@ -1,6 +1,6 @@
 {
- "generated": "2026-10-31T22:18:17.974Z",
- "hash": "efc5992d270fa167",
+ "generated": "2026-10-31T22:26:50.609Z",
+ "hash": "8b9075643a1bbf79",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -113,28 +113,356 @@
      ],
      "blocked": [
       {
-       "what": "#237 switch accounts on: finish 0062, send email through Resend, Supabase sign-in settings",
-       "on": "human"
+       "id": "accounts-email",
+       "what": "#237 switch accounts on: Supabase sending through Resend, the sign-in settings and email templates, then a test drive",
+       "on": "human",
+       "kind": "access",
+       "since": "2026-10-13",
+       "issue": "#237",
+       "holds": [
+        "#158",
+        "#210 (step 1 is #237's Part 5)",
+        "sign-ups from anyone outside the Supabase team (no confirmation email reaches them)",
+        "Bureau password resets (the mail scanner uses up the links)",
+        "the agent API notify list's emails",
+        "bug reports by email"
+       ],
+       "options": [
+        {
+         "what": "Finish #237 in one sitting: Part 3 (custom SMTP: smtp.resend.com, port 465, user resend, the re_ key), Parts 4–6 (password rules, the three templates, Site URL and redirect URLs), set RESEND_API_KEY (and REPORT_EMAIL_TO) as Worker secrets as docs/bug-reports.md says, then Part 8's test drive. Parts 1, 2 and 7 look done already: the live database has admin_user_decide() and the Vault secret resend_api_key, and Resend's DNS records are on floodwarning.net",
+         "by": "human",
+         "effort": "30 min",
+         "pros": "every email path switches on at once",
+         "recommended": true
+        },
+        {
+         "what": "Do Part 5 (the three templates with the Continue link and the six-digit code) and Part 6 (Site URL and redirect URLs) alone, now",
+         "by": "human",
+         "effort": "10 min",
+         "pros": "needs no Resend; stops the Bureau's scanner using up reset links and covers #158",
+         "cons": "sign-ups from outside the team still get no email"
+        },
+        {
+         "what": "Refresh #237's body for what is left: mark Parts 1, 2 and 7 done from the live checks, add the Worker's RESEND_API_KEY step for the notify list and bug reports, and update its roadmap entry",
+         "by": "agent",
+         "effort": "Low",
+         "model": "Sonnet5/Low",
+         "pros": "the owner's sitting covers only what is left",
+         "cons": "clears nothing by itself"
+        }
+       ]
       },
       {
-       "what": "#255 move the database to Small compute; #256 choose how long receptions are kept",
-       "on": "human"
+       "id": "compute-size",
+       "what": "#255 move the database to the Small compute size (2 GB) for the Disk IO budget",
+       "on": "human",
+       "kind": "money",
+       "since": "2026-10-28",
+       "issue": "#255",
+       "holds": [
+        "headroom on Supabase's Disk IO budget (warned 2026-10-28)"
+       ],
+       "options": [
+        {
+         "what": "#255 Part 1: read the compute size and the Database report's Disk IOPS and Memory charts (last 7 days); then Part 2 if it is Nano, disk activity stayed high after 0087, or memory sits at the top: choose Small on Compute and Disk in a quiet dry-weather hour (under 2 min offline), and check the Message Log resumes",
+         "by": "human",
+         "effort": "15 min",
+         "pros": "the whole 902 MB database fits in memory",
+         "cons": "about US$5 a month more than Micro",
+         "recommended": true
+        },
+        {
+         "what": "Read the cache hit ratio and disk reads since 0087–0094 through the Supabase connector (read-only) and post them on #255, so Part 1 becomes a yes or no",
+         "by": "agent",
+         "effort": "Low",
+         "model": "Sonnet5/Low",
+         "pros": "the owner decides from numbers",
+         "cons": "the compute size itself is still a dashboard change"
+        },
+        {
+         "what": "Stay on Micro for now: answer #256 with 30 days so receptions level off near 0.7 GB, and wait for the next Disk IO warning",
+         "by": "human",
+         "effort": "5 min",
+         "pros": "costs nothing",
+         "cons": "the database is already four times the 224 MB of shared buffers"
+        },
+        {
+         "what": "If #256 keeps 90 days, go straight to Medium (4 GB, about US$60 a month) instead of Small",
+         "by": "human",
+         "effort": "10 min",
+         "pros": "one change instead of two within months",
+         "cons": "four times Small's price"
+        }
+       ]
       },
       {
-       "what": "#245 / #248 find ACMA's new register download link; the ACMA layer is stuck on 23 July 2026",
-       "on": "human"
+       "id": "reception-days",
+       "what": "#256 choose how long receptions stay in the database: 90 days or 30",
+       "on": "human",
+       "kind": "decision",
+       "since": "2026-10-28",
+       "issue": "#256",
+       "holds": [
+        "#255 (which compute size stays enough)",
+        "#240"
+       ],
+       "options": [
+        {
+         "what": "Reply (b) 30 days on #256; an agent then sets retain_reception_days by a migration, updates EPIC #240's regime line and the roadmap",
+         "by": "human",
+         "effort": "2 min",
+         "pros": "the table levels off near 0.7 GB and Small stays enough",
+         "cons": "days older than 30 come back only from the R2 archive (#243, its restore test still to run) or the rollups",
+         "recommended": true
+        },
+        {
+         "what": "Reply (a) keep 90 days: nothing changes, and plan on Medium compute within about three months",
+         "by": "human",
+         "effort": "2 min",
+         "pros": "raw receptions stay queryable for a quarter",
+         "cons": "the table nears 2 GB"
+        },
+        {
+         "what": "Reply (c) with a number between, such as 45 or 60 days",
+         "by": "human",
+         "effort": "2 min"
+        }
+       ]
       },
       {
+       "id": "acma-link",
+       "what": "#245 find ACMA's new register download link; the ACMA layer is stuck on the 23 July 2026 extract",
+       "on": "human",
+       "kind": "upstream",
+       "since": "2026-10-22",
+       "issue": "#245",
+       "holds": [
+        "the ACMA layer's licence data (stuck on 23 July 2026)",
+        "ACMA licences in the agent API",
+        "#248",
+        "each missed month of the register, which ACMA does not keep"
+       ],
+       "options": [
+        {
+         "what": "#245's steps: on acma.gov.au's register page open the Data download tab, copy spectra_rrl.zip's link, put it first in ACMA_ZIP_URLS in .github/workflows/acma-refresh.yml, run Refresh ACMA RRL data, and close PR #208 unmerged",
+         "by": "human",
+         "effort": "5 min",
+         "recommended": true
+        },
+        {
+         "what": "Paste the copied link in a comment on #245; an agent puts it in ACMA_ZIP_URLS, runs the workflow, closes PR #208, #245 and #248",
+         "by": "agent",
+         "effort": "Low",
+         "model": "Sonnet5/Low",
+         "pros": "the owner only copies a link",
+         "cons": "the link still needs a person in a browser"
+        },
+        {
+         "what": "Stopgap: download spectra_rrl.zip by hand and attach it to a release tagged acma-data-YYYY-MM-DD, then run the workflow",
+         "by": "human",
+         "effort": "10 min a week",
+         "pros": "works even if the link needs a login",
+         "cons": "the workflow uses a release only under 10 days old, so it repeats weekly"
+        }
+       ]
+      },
+      {
+       "id": "acma-refresh",
+       "what": "#248 the weekly ACMA refresh fails: no ACMA download URL works (the same fix as #245)",
+       "on": "human",
+       "kind": "upstream",
+       "since": "2026-10-27",
+       "issue": "#248",
+       "holds": [
+        "the weekly Refresh ACMA RRL data workflow (red since October)"
+       ],
+       "options": [
+        {
+         "what": "Fix it with #245: the current spectra_rrl.zip link first in ACMA_ZIP_URLS, then Actions → Refresh ACMA RRL data → Run workflow, and check it goes green",
+         "by": "human",
+         "effort": "5 min",
+         "recommended": true
+        },
+        {
+         "what": "Close #248 as a duplicate of #245 so the CI doctor reports in one place, and update the roadmap",
+         "by": "agent",
+         "effort": "Low",
+         "model": "Sonnet5/Low",
+         "cons": "the workflow stays red"
+        },
+        {
+         "what": "Stopgap: attach the zip to an acma-data-YYYY-MM-DD release each week until the link is found",
+         "by": "human",
+         "effort": "10 min a week"
+        }
+       ]
+      },
+      {
+       "id": "history-rewrite",
        "what": "#239 Part 2: rewrite git history to remove the old inspection archive (every commit ID changes)",
-       "on": "human"
+       "on": "human",
+       "kind": "access",
+       "since": "2026-10-16",
+       "issue": "#239",
+       "holds": [
+        "landholder contacts and site codes out of the public git history",
+        "#239's follow-ups: commit IDs translated in the roadmap and docs",
+        "PRs #178 and #208, closed when the old branches go"
+       ],
+       "options": [
+        {
+         "what": "#239 Part 2 on the owner's computer: pause other sessions, clone flood-net-private, DRY_RUN=1 bash history/rewrite-meganet-history.sh, then run it for real, file the GitHub Support purge, re-clone everywhere and run --update on each Pi, and hand commit-map.txt to a new session",
+         "by": "human",
+         "effort": "an hour",
+         "pros": "dry-run clean: 615 commits, main's files unchanged",
+         "recommended": true
+        },
+        {
+         "what": "Share a folder holding a flood-net-private clone through Remote Control (a Mac or Linux computer) and let a cloud session run the dry run and the rewrite there while the owner approves; the owner still sends the Support request",
+         "by": "agent",
+         "effort": "an hour, owner present",
+         "model": "Sonnet5/Med",
+         "pros": "the owner types no commands",
+         "cons": "needs Claude Code on that computer; the force-push still waits on the owner"
+        },
+        {
+         "what": "Leave it parked, as the owner chose: nothing public shows contacts or codes except old commits",
+         "by": "human",
+         "effort": "none",
+         "cons": "anyone who browses old commits can still find them"
+        }
+       ]
       },
       {
-       "what": "#157 commission the base-station logger at its first site; #207 Sign in with Microsoft",
-       "on": "human"
+       "id": "base-logger",
+       "what": "#157 commission the base-station logger (CR300) at its first site",
+       "on": "human",
+       "kind": "hardware",
+       "since": "2026-08-15",
+       "issue": "#157",
+       "holds": [
+        "the CR300 program's first compile (v3.1 never compiled)",
+        "the logger's own rain, level and battery channels (Part 9)",
+        "a base station's MQTT Last Will (Parts 6–8)"
+       ],
+       "options": [
+        {
+         "what": "Part 1 only, at a desk: compile logger/base-station-http.CR300 (v3.1) in CRBasic Editor on a Windows PC and paste the compiler output and MQTTPublish's real signature on #157; an agent fixes what it reports",
+         "by": "human",
+         "effort": "30 min",
+         "pros": "the issue's highest-value part, and no site trip",
+         "recommended": true
+        },
+        {
+         "what": "Decide whether a CR300 base is still wanted: 18 Bateson now runs an RPi ALERT Pi 4 and posts daily, and the CR300's first token was revoked; if not, an agent narrows or closes #157",
+         "by": "human",
+         "effort": "10 min",
+         "pros": "may retire the whole checklist",
+         "cons": "the logger's local sensors and Last Will go unproven"
+        },
+        {
+         "what": "The full trip, Parts 1–10: find why the CR300 went quiet in late August, load v3.1, bench-test with the self-test, set up MQTT and pull the power to prove the will",
+         "by": "human",
+         "effort": "a day"
+        }
+       ]
       },
       {
-       "what": "#204 report templates wait on the owner's example reports; #206 on a credential choice",
-       "on": "human"
+       "id": "microsoft-sign-in",
+       "what": "#207 switch on Sign in with Microsoft (an Entra app and Supabase's Azure provider)",
+       "on": "human",
+       "kind": "access",
+       "since": "2026-09-29",
+       "issue": "#207",
+       "holds": [
+        "one-click sign-in for Bureau staff"
+       ],
+       "options": [
+        {
+         "what": "#207 steps 1–9 (step 0 passed): register the app in Entra with the Supabase callback, add a 24-month secret and the email and xms_edov claims, switch on Azure in Supabase with the Tenant URL pinned to the Bureau's tenant, then test; best done in the same dashboard visit as #237",
+         "by": "human",
+         "effort": "20 min",
+         "recommended": true
+        },
+        {
+         "what": "If the Bureau's tenant refuses app registration: register it in a free Azure tenant as multitenant, keep the Tenant URL pinned to the Bureau's, and send BoM IT the admin-approval request Microsoft offers",
+         "by": "human",
+         "effort": "30 min plus BoM IT's wait",
+         "cons": "waits on BoM IT"
+        },
+        {
+         "what": "Drop it: email and the six-digit code stay the sign-in (after #237's Part 5), and #207 closes",
+         "by": "human",
+         "effort": "2 min",
+         "pros": "no client secret to renew every 24 months",
+         "cons": "staff keep waiting on an email code"
+        }
+       ]
+      },
+      {
+       "id": "report-examples",
+       "what": "#204 report templates wait on the owner's example assessment reports",
+       "on": "human",
+       "kind": "other",
+       "since": "2026-09-28",
+       "issue": "#204",
+       "holds": [
+        "assessment report templates and a drafting guide"
+       ],
+       "options": [
+        {
+         "what": "Put the example reports, with landholder contacts and site codes taken out, in the private flood-net-private repository (not the public issue) and say so on #204; an agent then does its steps 1–4",
+         "by": "human",
+         "effort": "15 min",
+         "pros": "nothing internal is published",
+         "recommended": true
+        },
+        {
+         "what": "List each report type and its section headings in a comment on #204, enough for a first template",
+         "by": "human",
+         "effort": "10 min",
+         "cons": "loses each report's wording and figure conventions"
+        },
+        {
+         "what": "Leave #204 parked: an agent can already draft from the dossier with the prompt in docs/agent-api.md, and nothing else waits on it",
+         "by": "human",
+         "effort": "none"
+        }
+       ]
+      },
+      {
+       "id": "equipment-credential",
+       "what": "#206 the equipment-proposing agent waits on a credential choice",
+       "on": "agent",
+       "kind": "decision",
+       "since": "2026-09-28",
+       "issue": "#206",
+       "holds": [
+        "equipment proposals from new field photos"
+       ],
+       "options": [
+        {
+         "what": "Close #206 as done by the nightly photo reader: it proposes equipment as agent:photo-reader through record_photo_readings() and propose_equipment() (0090) over the Supabase connector, for the Review panel; check #206's Done-when against it, comment, close, and update the roadmap",
+         "by": "agent",
+         "effort": "Low",
+         "model": "Sonnet5/Low",
+         "pros": "the work already runs every night",
+         "cons": "the owner may still want a narrower credential than the connector",
+         "recommended": true
+        },
+        {
+         "what": "Choose the project's secret key (already an Actions secret for the Dropbox and Drive syncs); an agent builds #206's scheduled job beside field-photos-dropbox.yml",
+         "by": "human",
+         "effort": "5 min",
+         "cons": "duplicates the photo reader"
+        },
+        {
+         "what": "Choose a new role with execute on propose_equipment() only; an agent adds its grants by migration and its rules to tools/check_photo_review.sql",
+         "by": "human",
+         "effort": "5 min",
+         "pros": "the narrowest credential"
+        }
+       ]
       }
      ]
     },
@@ -650,12 +978,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-10-31T22:08:19Z",
+    "pushed": "2026-10-31T22:25:23Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "40e90da",
+     "date": "2026-10-31T22:25:20Z",
+     "msg": "Atlas: Flood-Net's blockers, what each holds up, and the ways through",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/40e90da34299b873a7409bad2e7b083c31fe9e4c"
+    },
     {
      "sha": "990d729",
      "date": "2026-10-31T22:08:18Z",
@@ -721,12 +1055,6 @@
      "date": "2026-10-31T18:34:24Z",
      "msg": "Network Weather: daily bulletin for 2026-11-01 — fair; two Tweed stations quiet, a Gold Coast group quiet at night",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/bb6d04afe1e497e36a0bae63f7396f0f59c17548"
-    },
-    {
-     "sha": "19f4189",
-     "date": "2026-10-31T15:15:28Z",
-     "msg": "CI doctor: roadmap — #258 Site features 3-D hand-back flake",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/19f41896f42bf7d9f2a12d3a62ac211ad9447193"
     }
    ],
    "issues": [
@@ -1469,6 +1797,30 @@
    "release": null,
    "ci": [
     {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41248115362",
+     "date": "2026-10-31T22:25:48Z",
+     "event": "push"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41248115333",
+     "date": "2026-10-31T22:25:39Z",
+     "event": "push"
+    },
+    {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41247996323",
+     "date": "2026-10-31T22:23:54Z",
+     "event": "schedule"
+    },
+    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
@@ -1483,30 +1835,6 @@
      "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41247337084",
      "date": "2026-10-31T22:15:56Z",
      "event": "schedule"
-    },
-    {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41247078179",
-     "date": "2026-10-31T22:11:59Z",
-     "event": "schedule"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41246805570",
-     "date": "2026-10-31T22:08:39Z",
-     "event": "push"
-    },
-    {
-     "name": "Web smoke test",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41246805275",
-     "date": "2026-10-31T22:08:41Z",
-     "event": "push"
     },
     {
      "name": "CodeQL",
@@ -1543,7 +1871,7 @@
    ],
    "version": "20261031g",
    "lastCommit": {
-    "date": "2026-10-31T22:08:18Z"
+    "date": "2026-10-31T22:25:20Z"
    }
   },
   {
@@ -1576,8 +1904,40 @@
      ],
      "blocked": [
       {
-       "what": "The rewrite needs the owner's computer: force-push, branch deletion, a GitHub Support purge",
-       "on": "human"
+       "id": "history-rewrite",
+       "what": "The rewrite of Flood-Net's history needs the owner's computer: force-push, branch deletion, a GitHub Support purge",
+       "on": "human",
+       "kind": "access",
+       "since": "2026-10-16",
+       "issue": "cdomotor-g/MegaNet#239",
+       "holds": [
+        "the old archive out of Flood-Net's public git history",
+        "cdomotor-g/MegaNet#239's follow-ups: commit IDs translated in Flood-Net's roadmap and docs",
+        "the history-rewrite component's one job"
+       ],
+       "options": [
+        {
+         "what": "Clone this repository on the owner's computer, run DRY_RUN=1 bash history/rewrite-meganet-history.sh, then for real, file the GitHub Support purge from history/README.md, re-clone everywhere, and push commit-map.txt to history/ (cdomotor-g/MegaNet#239 Part 2)",
+         "by": "human",
+         "effort": "an hour",
+         "pros": "dry-run clean on 16 Oct 2026",
+         "recommended": true
+        },
+        {
+         "what": "Share a folder holding this repository through Remote Control (a Mac or Linux computer) and let a cloud session run the script there while the owner approves; the owner still sends the Support request",
+         "by": "agent",
+         "effort": "an hour, owner present",
+         "model": "Sonnet5/Med",
+         "pros": "the owner types no commands",
+         "cons": "needs Claude Code on that computer"
+        },
+        {
+         "what": "Leave it parked, as the owner chose on cdomotor-g/MegaNet#239",
+         "by": "human",
+         "effort": "none",
+         "cons": "old Flood-Net commits still hold the archive"
+        }
+       ]
       }
      ]
     },
@@ -1765,20 +2125,156 @@
      ],
      "blocked": [
       {
+       "id": "bench-first-run",
        "what": "First run on the bench Pi: V2 and V4 sticks, a Quansheng radio, an ERT-A2, power cuts, kiosk, audio jack (docs/bench-test.md)",
-       "on": "human"
+       "on": "human",
+       "kind": "hardware",
+       "since": "2026-10-02",
+       "holds": [
+        "the RTL-SDR Blog V4 confirmed on hardware (bench-test.md §3)",
+        "a Quansheng radio on USB-C at a Pi (§4)",
+        "an ERT-A2 at a Pi (§5)",
+        "unplug, power-cut and network-loss recovery proven (§6)",
+        "the audio jack's burst chirp"
+       ],
+       "options": [
+        {
+         "what": "Cut docs/bench-test.md down to what the live station has not shown. 18 Bateson (a Pi 4 on Trixie, kiosk on a monitor) has checked in since 6 October and runs two sticks with several channels each, which covers most of §1–3b and the kiosk; what is left is the V4, the Quansheng radio, the ERT-A2, §6's unplug, power and network pulls, and the audio jack. A second Pi has checked in to Flood-Net since 27 October with no receivers: if that is the bench Pi, §1 is done too.",
+         "by": "agent",
+         "effort": "an hour",
+         "model": "Sonnet5/Med",
+         "pros": "shrinks the owner's part to the devices 18 Bateson lacks"
+        },
+        {
+         "what": "Run what is left with Claude Code on a laptop beside the bench (bench-test.md §7): ssh-copy-id to the Pi, point the session at bench-test.md, and plug in the V4, the radio and the ERT-A2 and pull the power and network when it asks. It reads the logs, captures IQ and pushes fixes.",
+         "by": "human",
+         "effort": "1–2 hours",
+         "pros": "you only plug and unplug; fixes land the same day",
+         "cons": "needs a laptop on the bench's network",
+         "recommended": true
+        },
+        {
+         "what": "Write scripts/bench-check.sh for the bench: it runs each section's checks (rpi-alert status --json, lsmod | grep dvb, rtl_test -t, the receivers found, the journal since boot), prompts for each plug and pull, and writes one report file to send back.",
+         "by": "agent",
+         "effort": "an hour",
+         "model": "Sonnet5/Med",
+         "pros": "no laptop or SSH needed",
+         "cons": "fixes wait for the report to come back"
+        },
+        {
+         "what": "Work through docs/bench-test.md alone, start to finish, and send back sudo journalctl -u rpi-alert --since today.",
+         "by": "human",
+         "effort": "an afternoon",
+         "cons": "the longest route"
+        }
+       ]
       },
       {
+       "id": "v4-confirmed",
        "what": "RTL-SDR Blog V4 confirmed on Trixie's librtlsdr and Bookworm's rtl-sdr-blog build",
-       "on": "human"
+       "on": "human",
+       "kind": "hardware",
+       "since": "2026-10-02",
+       "holds": [
+        "hardware.md's \"Not yet seen on hardware here\" against the V4",
+        "bench-test.md §3 and §3a",
+        "open-alert's V4 entry, which cites RPi ALERT's driver notes"
+       ],
+       "options": [
+        {
+         "what": "Plug the V4 into a Pi already on Trixie and checking in to Flood-Net (18 Bateson in place of one of its sticks, or the second Pi) and look at its Receivers card: model RTL-SDR Blog V4, tuner Rafael Micro R828D, bursts decoding on 151.5. An agent can read the same model from the Pi's status in Flood-Net and update hardware.md.",
+         "by": "human",
+         "effort": "15 min",
+         "pros": "no bench needed; Trixie is what the image ships",
+         "cons": "leaves the Bookworm build untried",
+         "recommended": true
+        },
+        {
+         "what": "Stop waiting on the Bookworm half: the image is built on Trixie and only an install over an older Pi meets Bookworm, so say in hardware.md and install.md that the rtl-sdr-blog build is untried.",
+         "by": "agent",
+         "effort": "15 min",
+         "model": "Sonnet5/Low",
+         "cons": "a Bookworm Pi with a V4 stays unproven"
+        },
+        {
+         "what": "Try Bookworm too: flash a spare card with Raspberry Pi OS Lite (Bookworm), run the one-line installer (it builds rtlsdrblog/rtl-sdr-blog), plug in the V4 and repeat bench-test.md §3.",
+         "by": "human",
+         "effort": "an hour"
+        },
+        {
+         "what": "Let the V4 go: open-alert lists it as end of life (the V4L replaces it, and the V3 is RTL-SDR Blog's default), so confirm the stick a new site would buy instead and mark the V4 \"expected to work, not seen here\".",
+         "by": "human",
+         "effort": "10 min to decide",
+         "pros": "tests what will actually be bought",
+         "cons": "the V4 already on hand stays unproven"
+        }
+       ]
       },
       {
-       "what": "A second off-air test vector: a good 151.5 MHz ALERT Binary burst captured on the bench",
-       "on": "human"
+       "id": "binary-test-vector",
+       "what": "A second off-air test vector: a good 151.5 MHz ALERT Binary burst, for the tests beside the 4078 rig's Enhanced iFLOWS one",
+       "on": "human",
+       "kind": "hardware",
+       "since": "2026-10-02",
+       "holds": [
+        "an off-air test of ALERT Binary, the live networks' format (the only off-air burst in the tests is Enhanced iFLOWS)",
+        "Flood-Net's second SDR regression vector (its docs/serial-sdr.md asks for the same capture)",
+        "checking the planned channeliser and filter changes against a real Binary burst"
+       ],
+       "options": [
+        {
+         "what": "Record it at 18 Bateson, which decodes thousands of ALERT Binary bursts on 151.500: Settings → Recordings, add 151.5, wait for a burst whose .json says it decoded, download its .iq8 and .json from the same card, then take 151.5 off the list. An agent adds the pair to agent/test/fixtures with a codecs test, and to Flood-Net's test/fixtures/sdr.",
+         "by": "human",
+         "effort": "10 min",
+         "pros": "no bench needed; a recording is already the 240 ksps format the 4078 rig's file is in",
+         "recommended": true
+        },
+        {
+         "what": "With the owner's go-ahead, do it all from Flood-Net: a config.set request turning on recordings for 151.5 at 18 Bateson, then recordings and recording.get through the request queue (base_station_verb_check() does not offer those two yet), joining the file from its 43 kB pieces.",
+         "by": "agent",
+         "effort": "an hour",
+         "model": "Sonnet5/Med",
+         "cons": "writes to a live station's settings"
+        },
+        {
+         "what": "Capture it on the bench as bench-test.md §2 step 4 says (rtl_sdr at 960 ksps while a station transmits), during the first bench run.",
+         "by": "human",
+         "effort": "10 min, on the bench",
+         "cons": "waits on the bench run"
+        }
+       ]
       },
       {
+       "id": "duplicate-docs",
        "what": "How-it-works and survey docs on a burst heard by two receivers wait for Flood-Net to measure duplicates",
-       "on": "flood-net#232"
+       "on": "flood-net#232",
+       "kind": "upstream",
+       "since": "2026-10-07",
+       "issue": "cdomotor-g/MegaNet#232",
+       "holds": [
+        "how-it-works.md's \"stored once with both paths\"",
+        "survey.md's \"no two receivers time a burst the same\" (the two docs disagree)"
+       ],
+       "options": [
+        {
+         "what": "Work #232 through in Flood-Net. Its step 1 is now done: a read-only check on 31 October found 2,039 of 69,306 ALERT readings over three days with a twin (same address and value, under 2 s apart) from another channel of 18 Bateson's first stick. Next the window in meganet.ingest() for untimed protocols, db-checks for both cases, and the docs in both repositories.",
+         "by": "agent",
+         "effort": "High",
+         "model": "Opus5/High",
+         "issue": "cdomotor-g/MegaNet#232",
+         "pros": "fixes the duplicates, not only the docs; 0053–0055 are live, so nothing it waits on is left",
+         "cons": "unprioritised on Flood-Net's roadmap until the owner says go",
+         "recommended": true
+        },
+        {
+         "what": "Make the two docs true today: say that a burst decoded on two channels or sticks is stored twice for now, each with its own path, and link #232.",
+         "by": "agent",
+         "effort": "20 min",
+         "model": "Sonnet5/Low",
+         "pros": "the docs stop saying something false",
+         "cons": "they change again when #232 lands"
+        }
+       ]
       }
      ]
     },
@@ -2128,12 +2624,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-10-31T22:08:06Z",
+    "pushed": "2026-10-31T22:25:25Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/RPi_ALERT"
    },
    "commits": [
+    {
+     "sha": "45ddd2a",
+     "date": "2026-10-31T22:25:23Z",
+     "msg": "Atlas: RPi ALERT's blockers and the ways through",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/45ddd2a938513138535323bf7a2627a08914d1b6"
+    },
     {
      "sha": "fe7792a",
      "date": "2026-10-31T22:08:04Z",
@@ -2199,12 +2701,6 @@
      "date": "2026-10-21T11:14:20Z",
      "msg": "0.14.1: the ERT-A2 driver reads MegaNet's NHWC-named alert2.js; vendor/meganet whole at MegaNet 92e005d",
      "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/b4ad8afdea3c2d904a6fafb9d0544495c3999316"
-    },
-    {
-     "sha": "a7ffb56",
-     "date": "2026-10-21T08:46:58Z",
-     "msg": "Legacy carrier: the burst's offset only on readings it carried; vendored alert-dsp.js at MegaNet 92e005d (MegaNet #217)",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/a7ffb56c05a08e3bc6e99399f0c10e391cd74f23"
     }
    ],
    "issues": [
@@ -2253,19 +2749,19 @@
    },
    "ci": [
     {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41246788233",
-     "date": "2026-10-31T22:08:29Z",
+     "name": "test",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41248118540",
+     "date": "2026-10-31T22:25:31Z",
      "event": "push"
     },
     {
-     "name": "test",
+     "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41246787868",
-     "date": "2026-10-31T22:09:56Z",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41248118757",
+     "date": "2026-10-31T22:25:46Z",
      "event": "push"
     },
     {
@@ -2287,7 +2783,7 @@
    ],
    "version": "0.15.3",
    "lastCommit": {
-    "date": "2026-10-31T22:08:04Z"
+    "date": "2026-10-31T22:25:23Z"
    }
   },
   {
@@ -2327,8 +2823,37 @@
      ],
      "blocked": [
       {
+       "id": "retirement",
        "what": "Retirement steps in Flood-Net's runbook (docs/floodwarning-net.md) are owner dashboard actions",
-       "on": "human"
+       "on": "human",
+       "kind": "access",
+       "since": "2026-09-10",
+       "holds": [
+        "archiving this repository",
+        "the leftover fwlab.floodwarning.net name and its Cloudflare Access login, both still live"
+       ],
+       "options": [
+        {
+         "what": "Open a [Standalone] [Human] issue on Flood-Net with click-by-click steps from the runbook and this repository's docs: copy any S3 archive bucket it used, remove fwlab.floodwarning.net's DNS record and Access app and any tunnel or load balancer left, cancel what bills, then archive this repository; and add it to Flood-Net's roadmap",
+         "by": "agent",
+         "effort": "Med",
+         "model": "Sonnet5/Med",
+         "pros": "nothing tracks this today",
+         "recommended": true
+        },
+        {
+         "what": "Add the README line saying floodwarning.net moved to Flood-Net, then Settings → Archive this repository",
+         "by": "human",
+         "effort": "5 min",
+         "pros": "archiving keeps the history and can be undone",
+         "cons": "leaves the Cloudflare pieces in place"
+        },
+        {
+         "what": "Work through the runbook's five steps in order over two sittings: copy, delete the old Cloudflare pieces, archive, cancel anything paid, leave unknown DNS alone",
+         "by": "human",
+         "effort": "an hour"
+        }
+       ]
       }
      ]
     },
@@ -3205,12 +3730,18 @@
    "gh": {
     "description": "This is a fork of F4HWN firmware https://github.com/armel/uv-k5-firmware-custom by @muzkr and @armel",
     "archived": false,
-    "pushed": "2026-10-31T22:08:15Z",
+    "pushed": "2026-10-31T22:25:36Z",
     "homepage": null,
     "language": "C",
     "url": "https://github.com/cdomotor-g/quansheng_alert_v3"
    },
    "commits": [
+    {
+     "sha": "988dfe6",
+     "date": "2026-10-31T22:25:34Z",
+     "msg": "Atlas: record blockers with the ways through",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/commit/988dfe6811246d791dfc9f0fce39b46b4ebe8162"
+    },
     {
      "sha": "d779c51",
      "date": "2026-10-31T22:08:14Z",
@@ -3276,12 +3807,6 @@
      "date": "2026-09-30T21:48:36Z",
      "msg": "spec: ALERT receiver v2 - screen, CSV, speaker, log, console",
      "url": "https://github.com/cdomotor-g/quansheng_alert_v3/commit/45499b43a0bb271161701e975a813c4595082640"
-    },
-    {
-     "sha": "80529f1",
-     "date": "2026-09-30T10:56:17Z",
-     "msg": "docs: the receiver works - 22 bursts of 22 through the PA4 audio route",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/commit/80529f1aefcdb7e4475a68280e8d47257c2df3a5"
     }
    ],
    "issues": [],
@@ -3290,10 +3815,10 @@
    "ci": [
     {
      "name": "Build Firmware",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/41246801133",
-     "date": "2026-10-31T22:09:06Z",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/41248131171",
+     "date": "2026-10-31T22:25:51Z",
      "event": "push"
     },
     {
@@ -3307,7 +3832,7 @@
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-10-31T22:08:14Z"
+    "date": "2026-10-31T22:25:34Z"
    }
   },
   {
@@ -3344,8 +3869,40 @@
      "summary": "Archived and read-only; its last builds (20 October) carry the V3's decoder, but no modded UV-K5 has been tried on air yet.",
      "blocked": [
       {
+       "id": "uvk5-field-test",
        "what": "First field test: a UV-K5 with the one-capacitor mod beside an ALERT transmitter",
-       "on": "human"
+       "on": "human",
+       "kind": "hardware",
+       "since": "2026-10-20",
+       "holds": [
+        "quansheng-all's Experimental badge on the UV-K5 builds",
+        "the README's status: \"this radio's audio route has not been tried on air yet\"",
+        "older UV-K5s (DP32G030) as ALERT receivers"
+       ],
+       "options": [
+        {
+         "what": "Fit the 100 nF capacitor (BK4819 pin 8, EARO → DP32G030 pin 9, PA8), flash from quansheng_alert_ALL's installer, and run the README's five-step First field test near 18 Bateson, whose Pi decodes ALERT Binary on 151.500 all day, so the radio's DEC count can be checked against the same readings in Flood-Net's Message Log. Report the raw view (BURST, GATED, PEAK, NF, ADC, DEC, INV) on quansheng_alert_ALL, decoded or not: the archive takes no issues.",
+         "by": "human",
+         "effort": "an afternoon",
+         "pros": "a busy channel and a reference receiver side by side",
+         "recommended": true
+        },
+        {
+         "what": "Let it go: keep the UV-K5 builds Experimental and send people to the UV-K5 V3 / UV-K1, which decodes on air with no mod (22 bursts of 22); the field test happens only if someone wants an older radio.",
+         "by": "human",
+         "effort": "5 min to decide",
+         "pros": "no soldering",
+         "cons": "older radios stay unproven"
+        },
+        {
+         "what": "Write a tool in quansheng_alert_ALL that renders ALERT Binary bursts to a WAV (1300/2100 Hz at 300 baud, as quansheng_alert's test/test_alert_demod.c synthesises them), so the modded radio can be tried on the bench from a second handheld sending it on a frequency you are licensed for.",
+         "by": "agent",
+         "effort": "an afternoon",
+         "model": "Sonnet5/Med",
+         "pros": "a repeatable test any time, no station in range needed",
+         "cons": "needs a second radio and a licensed channel; proves the mod, not a real station"
+        }
+       ]
       }
      ]
     },
@@ -3699,8 +4256,41 @@
      ],
      "blocked": [
       {
-       "what": "Set GitHub Pages to branch main, folder /docs (Settings, Pages); until then /flash/?radio=v3 links 404",
-       "on": "human"
+       "id": "pages-docs",
+       "what": "Set GitHub Pages to branch main, folder /docs (Settings → Pages); until then /flash/?radio=v3 links 404",
+       "on": "human",
+       "kind": "access",
+       "since": "2026-10-20",
+       "holds": [
+        "quansheng-v1's installer link to /flash/?radio=v3 (archived, so it cannot be changed)",
+        "quansheng-v3's README link to the V3 installer",
+        "open-alert's Quansheng V3 entry pointing at the installer",
+        "deleting the root index.html forward"
+       ],
+       "options": [
+        {
+         "what": "GitHub → cdomotor-g/quansheng_alert_ALL → Settings → Pages → Build and deployment: Source \"Deploy from a branch\", Branch main, Folder /docs → Save. A minute later https://cdomotor-g.github.io/quansheng_alert_ALL/flash/?radio=v3 should open the installer; then an agent deletes the root index.html and points atlas.json's /docs/flash/ link at /flash/.",
+         "by": "human",
+         "effort": "2 min",
+         "pros": "the addresses every repository already uses start working; nothing to keep in step",
+         "recommended": true
+        },
+        {
+         "what": "Without the owner: add forwarding pages at the root for each page people link to (flash/index.html, cable/index.html) that send on to docs/<page>/ keeping ?query and #hash, as the root index.html already does.",
+         "by": "agent",
+         "effort": "20 min",
+         "model": "Sonnet5/Low",
+         "pros": "live today, the archived installer's link included",
+         "cons": "the address bar shows /docs/; dead weight once Pages serves /docs"
+        },
+        {
+         "what": "Move the site from docs/ to the repository root, and point the weekly firmware refresh, tools/build_manifest.py, tools/check_manifest.py and the tests at the new paths, so the root publish serves /flash/ as it is.",
+         "by": "agent",
+         "effort": "an hour",
+         "model": "Sonnet5/Med",
+         "cons": "publishes the README, package.json and tests too; breaks again if Pages is later set to /docs"
+        }
+       ]
       }
      ]
     },
@@ -3949,12 +4539,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-10-31T22:08:13Z",
+    "pushed": "2026-10-31T22:25:32Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL"
    },
    "commits": [
+    {
+     "sha": "3052df9",
+     "date": "2026-10-31T22:25:30Z",
+     "msg": "Atlas: the setup site's blocker and the ways through",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/commit/3052df9b1ae55009ced2a09f0a251204a5a620c2"
+    },
     {
      "sha": "bc8a46d",
      "date": "2026-10-31T22:08:12Z",
@@ -4013,27 +4609,27 @@
    },
    "ci": [
     {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41246798806",
-     "date": "2026-10-31T22:08:43Z",
+     "name": "Test the site",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41248126319",
+     "date": "2026-10-31T22:25:37Z",
      "event": "push"
     },
     {
-     "name": "Test the site",
+     "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41246798324",
-     "date": "2026-10-31T22:09:24Z",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41248126558",
+     "date": "2026-10-31T22:25:54Z",
      "event": "push"
     },
     {
      "name": "pages build and deployment",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41246796537",
-     "date": "2026-10-31T22:08:55Z",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41248125101",
+     "date": "2026-10-31T22:25:58Z",
      "event": "dynamic"
     },
     {
@@ -4047,7 +4643,7 @@
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-10-31T22:08:12Z"
+    "date": "2026-10-31T22:25:30Z"
    }
   },
   {
@@ -4326,12 +4922,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-10-31T22:08:09Z",
+    "pushed": "2026-10-31T22:25:34Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/open-ALERT"
    },
    "commits": [
+    {
+     "sha": "91a05d5",
+     "date": "2026-10-31T22:25:32Z",
+     "msg": "Atlas: record blockers with the ways through",
+     "url": "https://github.com/cdomotor-g/open-ALERT/commit/91a05d5c847c76cc7ebd34bc0ed6372bc08e9fcb"
+    },
     {
      "sha": "a88316f",
      "date": "2026-10-31T22:08:07Z",
@@ -4381,28 +4983,28 @@
    "release": null,
    "ci": [
     {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41246791974",
-     "date": "2026-10-31T22:08:29Z",
-     "event": "push"
-    },
-    {
      "name": "test",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41246791746",
-     "date": "2026-10-31T22:08:24Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41248127963",
+     "date": "2026-10-31T22:25:47Z",
      "event": "push"
     },
     {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41246791059",
-     "date": "2026-10-31T22:08:39Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41248127890",
+     "date": "2026-10-31T22:25:59Z",
      "event": "dynamic"
+    },
+    {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41246791974",
+     "date": "2026-10-31T22:08:29Z",
+     "event": "push"
     },
     {
      "name": "pages",
@@ -4415,7 +5017,7 @@
    ],
    "version": "0.1.0",
    "lastCommit": {
-    "date": "2026-10-31T22:08:07Z"
+    "date": "2026-10-31T22:25:32Z"
    }
   },
   {
@@ -4466,8 +5068,40 @@
      ],
      "blocked": [
       {
+       "id": "v2-forums",
        "what": "v2 cutover waits on the owner using it at some real forums",
-       "on": "human"
+       "on": "human",
+       "kind": "time",
+       "since": "2026-10-31",
+       "holds": [
+        "v2 at the /SoRT/ address, v1 kept at /SoRT/v1/ (the cutover commit)",
+        "retiring ROADMAP §1–3, which v2 covers",
+        "deciding whether the station picker (ROADMAP §2) is still needed beside v2's Flood-Net lookup"
+       ],
+       "options": [
+        {
+         "what": "Run the next few forums on v2 at /SoRT/v2/ with v1 open in another tab, and note anything wrong as an issue. Then an agent makes the one cutover commit in v2/README.md's Cutover section (Sonnet5/Low, 20 min).",
+         "by": "human",
+         "effort": "the next 2–3 forums",
+         "pros": "the real test, with v1 a tab away",
+         "recommended": true
+        },
+        {
+         "what": "Rehearse a forum before the first real one: drive v2 in a browser through a real station end to end (Flood-Net lookup, map, Property Services, Copy for Word) with the repo's verify skill and v2/tests/e2e.cjs, and compare the Word tables with v1's for the same answers.",
+         "by": "agent",
+         "effort": "an hour",
+         "model": "Sonnet5/Med",
+         "pros": "catches what would break mid-forum",
+         "cons": "no substitute for real use"
+        },
+        {
+         "what": "Cut over now and lean on the rollback: the cutover is one commit, v1 stays at /SoRT/v1/, and reverting the commit puts v1 back.",
+         "by": "human",
+         "effort": "10 min to decide",
+         "pros": "no wait",
+         "cons": "the first real forum on v2 is the test"
+        }
+       ]
       }
      ]
     },
@@ -4615,12 +5249,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-10-31T22:08:11Z",
+    "pushed": "2026-10-31T22:25:27Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/SoRT"
    },
    "commits": [
+    {
+     "sha": "2dce4b7",
+     "date": "2026-10-31T22:25:26Z",
+     "msg": "Atlas: SoRT's blocker and the ways through",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/2dce4b72010448cf85a05b050ddcb63a57a397da"
+    },
     {
      "sha": "0a05098",
      "date": "2026-10-31T22:08:10Z",
@@ -4686,12 +5326,6 @@
      "date": "2026-09-28T06:04:39Z",
      "msg": "List every location in the Site Map panel, entered or not",
      "url": "https://github.com/cdomotor-g/SoRT/commit/22d98c25ccaf57a08fa8b53bf5f830eeb8041c84"
-    },
-    {
-     "sha": "a69fbfc",
-     "date": "2026-09-28T04:09:20Z",
-     "msg": "Update definitions from SoRT",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/a69fbfc41913cbdc45e2e707fcf86b263631e8ed"
     }
    ],
    "issues": [],
@@ -4702,22 +5336,22 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41246795766",
-     "date": "2026-10-31T22:08:26Z",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41248122542",
+     "date": "2026-10-31T22:25:41Z",
      "event": "push"
     },
     {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41246793649",
-     "date": "2026-10-31T22:08:49Z",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41248120317",
+     "date": "2026-10-31T22:26:09Z",
      "event": "dynamic"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-10-31T22:08:10Z"
+    "date": "2026-10-31T22:25:26Z"
    }
   },
   {
@@ -4979,12 +5613,79 @@
      ],
      "blocked": [
       {
-       "what": "Decide how podcast audio and video are hosted (Git LFS or release attachments) before the first audio lands",
-       "on": "human"
+       "id": "media-hosting",
+       "what": "Decide how podcast audio and video are hosted (in the repo, Git LFS or release attachments) before the first audio lands",
+       "on": "human",
+       "kind": "decision",
+       "since": "2026-07-17",
+       "holds": [
+        "S1E1 podcast audio (podcast.json audio.src)",
+        "S1E1 animatic and animation (animation.json video.src)",
+        "M2: S1E1 complete"
+       ],
+       "options": [
+        {
+         "what": "Decide: audio in the repo as compressed MP3 (an 8-minute episode at 96 kbps is about 6 MB, inside the podcast manual's 25 MB rule, the way Flood-Net commits its bulletin MP3s) and video on YouTube with video.src the URL, as the animator's manual suggests. An agent then writes the choice into docs/plan.md and both manuals.",
+         "by": "human",
+         "effort": "10 min",
+         "pros": "nothing to set up; audio needs no decision beyond the rule already there",
+         "cons": "the show's video sits on a third-party platform",
+         "recommended": true
+        },
+        {
+         "what": "Release attachments for both: one GitHub release per episode carrying its audio and video, with audio.src and video.src the asset URLs.",
+         "by": "human",
+         "effort": "10 min",
+         "pros": "the repo stays small",
+         "cons": "assets are served as downloads; check they play in the site's player"
+        },
+        {
+         "what": "Git LFS: track *.mp3 and *.mp4, and add lfs: true to the checkout in .github/workflows/pages.yml so the deploy carries the files.",
+         "by": "human",
+         "effort": "30 min",
+         "cons": "LFS storage and bandwidth count against a quota, and every Pages deploy downloads the files again"
+        }
+       ]
       },
       {
+       "id": "owner-review",
        "what": "Every generated image, audio and video is reviewed and moved into the repo by the owner",
-       "on": "human"
+       "on": "human",
+       "kind": "decision",
+       "since": "2026-07-17",
+       "holds": [
+        "M2: comic part 2 scene art and pages",
+        "M2: the HR portrait",
+        "M2: S1E1 podcast audio",
+        "M2: the S1E1 animatic and animation",
+        "M5: asset generation from workflows"
+       ],
+       "options": [
+        {
+         "what": "Turn moving into merging: an agent generates a step's candidates (scene art from the prompts in episode.json, audio in voices/cast.json's voices) and opens one pull request per pipeline step with the files at the paths the JSON declares and the statuses flipped; the owner reviews the preview and merges. It is M4's workflow-dispatch runs done by hand first.",
+         "by": "agent",
+         "effort": "an afternoon per step",
+         "model": "Sonnet5/Med",
+         "pros": "the owner reviews instead of downloading, renaming and committing",
+         "cons": "the review itself is still the owner's",
+         "recommended": true
+        },
+        {
+         "what": "Voice the podcast the way Flood-Net voices its bulletins: a workflow modelled on its bulletin-voice.yml and tools/voice/speak.mjs renders podcast.json's script in cast.json's voices to an MP3 artifact to listen to before it lands.",
+         "by": "agent",
+         "effort": "an afternoon",
+         "model": "Sonnet5/Med",
+         "pros": "reuses code that already speaks in these voices",
+         "cons": "needs the podcast script first, and an ElevenLabs key set as this repo's secret by the owner"
+        },
+        {
+         "what": "Narrow the gate: let agents land scene art and comic pages directly as status partial, with the errata loop (agents/08) catching mistakes, and keep owner review for canon changes, final audio and video.",
+         "by": "human",
+         "effort": "10 min to decide",
+         "pros": "art stops waiting",
+         "cons": "unreviewed images go live on the public site"
+        }
+       ]
       }
      ]
     },
@@ -5706,7 +6407,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "1 newer commit upstream since it was last reviewed (2026-10-26), none to watched files."
+    "note": "2 newer commits upstream since it was last reviewed (2026-10-26), none to watched files."
    }
   },
   {
@@ -5756,7 +6457,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "3 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "4 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -6096,7 +6797,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "3 newer commits upstream since it was last reviewed (2026-10-06), none to watched files."
+    "note": "4 newer commits upstream since it was last reviewed (2026-10-06), none to watched files."
    }
   },
   {
@@ -6239,7 +6940,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "432 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "433 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -6335,7 +7036,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "432 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "433 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -6365,7 +7066,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "1 newer commit upstream since it was last reviewed (2026-10-20), none to watched files."
+    "note": "2 newer commits upstream since it was last reviewed (2026-10-20), none to watched files."
    }
   },
   {
@@ -6401,7 +7102,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "1 newer commit upstream since ad166ca, none to watched files."
+    "note": "2 newer commits upstream since ad166ca, none to watched files."
    }
   },
   {
@@ -6458,7 +7159,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "1 newer commit upstream since it was last reviewed (2026-10-20), none to watched files."
+    "note": "2 newer commits upstream since it was last reviewed (2026-10-20), none to watched files."
    }
   },
   {
@@ -6491,7 +7192,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "1 newer commit upstream since it was last reviewed (2026-10-20), none to watched files."
+    "note": "2 newer commits upstream since it was last reviewed (2026-10-20), none to watched files."
    }
   },
   {
@@ -6815,8 +7516,8 @@
     "state": "current",
     "since": {
      "date": "2026-10-31",
-     "commit": "990d729438ed45bfc120a9527e678db38a6e17af",
-     "commitDate": "2026-10-31T22:08:18Z"
+     "commit": "40e90da34299b873a7409bad2e7b083c31fe9e4c",
+     "commitDate": "2026-10-31T22:25:20Z"
     },
     "behind": 0,
     "commits": [],
