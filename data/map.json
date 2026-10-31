@@ -1,6 +1,6 @@
 {
- "generated": "2026-10-31T22:09:11.387Z",
- "hash": "0aa28f19ebbc93e0",
+ "generated": "2026-10-31T22:10:35.993Z",
+ "hash": "57f2499f4e44103f",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1449,27 +1449,27 @@
    "release": null,
    "ci": [
     {
-     "name": "Atlas",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41246805570",
-     "date": "2026-10-31T22:08:25Z",
-     "event": "push"
-    },
-    {
-     "name": "Web smoke test",
-     "status": "pending",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41246805275",
-     "date": "2026-10-31T22:08:22Z",
-     "event": "push"
-    },
-    {
      "name": "CodeQL",
      "status": "in_progress",
      "conclusion": null,
      "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41246805237",
      "date": "2026-10-31T22:08:30Z",
+     "event": "push"
+    },
+    {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41246805570",
+     "date": "2026-10-31T22:08:39Z",
+     "event": "push"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41246805275",
+     "date": "2026-10-31T22:08:41Z",
      "event": "push"
     },
     {
@@ -2233,19 +2233,19 @@
    },
    "ci": [
     {
-     "name": "test",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41246787868",
-     "date": "2026-10-31T22:08:19Z",
-     "event": "push"
-    },
-    {
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41246788233",
      "date": "2026-10-31T22:08:29Z",
+     "event": "push"
+    },
+    {
+     "name": "test",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41246787868",
+     "date": "2026-10-31T22:09:56Z",
      "event": "push"
     },
     {
@@ -3270,10 +3270,10 @@
    "ci": [
     {
      "name": "Build Firmware",
-     "status": "in_progress",
-     "conclusion": null,
+     "status": "completed",
+     "conclusion": "success",
      "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/41246801133",
-     "date": "2026-10-31T22:08:22Z",
+     "date": "2026-10-31T22:09:06Z",
      "event": "push"
     },
     {
@@ -3993,27 +3993,27 @@
    },
    "ci": [
     {
-     "name": "Test the site",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41246798324",
-     "date": "2026-10-31T22:08:20Z",
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41246798806",
+     "date": "2026-10-31T22:08:43Z",
      "event": "push"
     },
     {
-     "name": "Atlas",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41246798806",
-     "date": "2026-10-31T22:08:27Z",
+     "name": "Test the site",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41246798324",
+     "date": "2026-10-31T22:09:24Z",
      "event": "push"
     },
     {
      "name": "pages build and deployment",
-     "status": "in_progress",
-     "conclusion": null,
+     "status": "completed",
+     "conclusion": "success",
      "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41246796537",
-     "date": "2026-10-31T22:08:20Z",
+     "date": "2026-10-31T22:08:55Z",
      "event": "dynamic"
     },
     {
@@ -4361,14 +4361,6 @@
    "release": null,
    "ci": [
     {
-     "name": "pages build and deployment",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41246791059",
-     "date": "2026-10-31T22:08:39Z",
-     "event": "dynamic"
-    },
-    {
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
@@ -4383,6 +4375,14 @@
      "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41246791746",
      "date": "2026-10-31T22:08:24Z",
      "event": "push"
+    },
+    {
+     "name": "pages build and deployment",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41246791059",
+     "date": "2026-10-31T22:08:39Z",
+     "event": "dynamic"
     },
     {
      "name": "pages",
@@ -4688,10 +4688,10 @@
     },
     {
      "name": "pages build and deployment",
-     "status": "in_progress",
-     "conclusion": null,
+     "status": "completed",
+     "conclusion": "success",
      "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41246793649",
-     "date": "2026-10-31T22:08:39Z",
+     "date": "2026-10-31T22:08:49Z",
      "event": "dynamic"
     }
    ],
