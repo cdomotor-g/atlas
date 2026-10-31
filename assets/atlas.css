@@ -1,22 +1,23 @@
 /* Atlas — one map of every repository. Plain CSS, no build. */
 :root {
-  --bg: #f4f1ea;
-  --bg-map: #f7f5ef;
-  --dot: #ddd6c6;
-  --panel: #fffdf8;
-  --panel-2: #f1ece1;
-  --line: #ddd5c4;
-  --ink: #1f2328;
-  --ink-2: #4b5560;
-  --ink-3: #7b8590;
+  /* Layout: a survey chart — zones as tinted catchments on dotted chart paper, detail in a side sheet. */
+  --bg: #eaf0f2;
+  --bg-map: #f2f6f7;
+  --dot: #cdd9de;
+  --panel: #fbfdfd;
+  --panel-2: #e6edf0;
+  --line: #cfdbe0;
+  --ink: #17242c;
+  --ink-2: #44545e;
+  --ink-3: #6f808a;
   --accent: #2a7fd4;
   --good: #2f9e5f;
   --warn: #d98b2b;
   --bad: #d4442f;
   --human: #8a4fd0;
-  --chip: #ebe5d8;
-  --halo: #f7f5ef;
-  --shadow: 0 6px 24px rgba(40, 32, 16, .12);
+  --chip: #e2eaee;
+  --halo: #f2f6f7;
+  --shadow: 0 6px 24px rgba(16, 36, 48, .12);
   --k-copy: #d98b2b;
   --k-live: #2a7fd4;
   --k-release: #8a4fd0;
@@ -57,7 +58,8 @@ button { font: inherit; color: inherit; }
 
 /* ------------------------------------------------------------------ header */
 header {
-  display: flex; align-items: center; gap: 14px; padding: 8px 16px;
+  display: flex; align-items: center; gap: 14px; padding-block: 8px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
   background: var(--panel); border-bottom: 1px solid var(--line); flex-wrap: wrap; z-index: 5;
 }
 .brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
@@ -79,7 +81,7 @@ nav.views button[aria-selected="true"] { background: var(--panel); color: var(--
 }
 .icon-btn:hover { background: var(--panel-2); }
 
-.strip { display: flex; gap: 8px; padding: 6px 16px; flex-wrap: wrap; border-bottom: 1px solid var(--line); background: var(--bg); }
+.strip { display: flex; gap: 8px; padding-block: 6px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); flex-wrap: wrap; border-bottom: 1px solid var(--line); background: var(--bg); }
 .stat {
   display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px;
   background: var(--panel); border: 1px solid var(--line); font-size: 12.5px; cursor: pointer; color: var(--ink-2);
@@ -143,12 +145,12 @@ main { flex: 1; position: relative; min-height: 0; display: flex; }
 .dim .link:not(.hl) { opacity: .1; }
 .dim .zone { opacity: .5; }
 
-.map-tools { position: absolute; top: 10px; left: 10px; display: flex; gap: 6px; flex-wrap: wrap; max-width: calc(100% - 20px); }
+.map-tools { position: absolute; top: 10px; left: max(10px, env(safe-area-inset-left, 0px)); display: flex; gap: 6px; flex-wrap: wrap; max-width: calc(100% - 20px); }
 .map-tools .icon-btn { background: var(--panel); box-shadow: var(--shadow); min-width: 32px; }
 .map-tools .icon-btn[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
 
 .legend {
-  position: absolute; left: 10px; bottom: 10px; background: var(--panel); border: 1px solid var(--line);
+  position: absolute; left: max(10px, env(safe-area-inset-left, 0px)); bottom: max(10px, env(safe-area-inset-bottom, 0px)); background: var(--panel); border: 1px solid var(--line);
   border-radius: var(--radius); box-shadow: var(--shadow); font-size: 12px; max-width: min(330px, calc(100% - 20px)); max-height: 60%; overflow: auto;
 }
 .legend summary { padding: 7px 12px; cursor: pointer; font-weight: 600; }
@@ -219,7 +221,7 @@ main { flex: 1; position: relative; min-height: 0; display: flex; }
 .prompt { white-space: pre-wrap; font: 12px ui-monospace, Menlo, Consolas, monospace; background: var(--panel-2); border-radius: 8px; padding: 10px; max-height: 220px; overflow: auto; margin: 6px 0; }
 
 /* ------------------------------------------------------------------ list views */
-.page { max-width: 1280px; margin: 0 auto; padding: 18px 16px 40px; }
+.page { max-width: 1280px; margin: 0 auto; padding-block: 18px 40px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
 .page h2 { margin: 4px 0 4px; font-size: 20px; }
 .page > p.intro { margin: 0 0 14px; color: var(--ink-2); max-width: 760px; }
 .road { display: grid; grid-template-columns: 210px repeat(4, minmax(0, 1fr)); gap: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--panel); }
@@ -277,15 +279,15 @@ table.links tr:hover td { background: var(--panel-2); }
   .road { grid-template-columns: 170px repeat(4, minmax(0, 1fr)); }
 }
 @media (max-width: 760px) {
-  header { gap: 8px; padding: 8px 12px; }
+  header { gap: 8px; }
   .brand p { display: none; }
   .head-right { margin-left: 0; width: 100%; }
   #search { flex: 1; width: auto; max-width: none; }
   nav.views { order: 3; width: 100%; }
-  .strip { padding: 6px 12px; flex-wrap: nowrap; overflow-x: auto; }
+  .strip { flex-wrap: nowrap; overflow-x: auto; }
   .stat { flex: none; }
   main { flex-direction: column; }
-  #panel { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; max-height: 66%; border-left: 0; border-top: 1px solid var(--line); box-shadow: 0 -8px 30px rgba(0,0,0,.2); border-radius: 16px 16px 0 0; z-index: 10; }
+  #panel { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; max-height: 66%; border-left: 0; border-top: 1px solid var(--line); box-shadow: 0 -8px 30px rgba(0,0,0,.2); border-radius: 16px 16px 0 0; z-index: 10; padding-bottom: env(safe-area-inset-bottom, 0px); }
   .board { grid-template-columns: minmax(0, 1fr); }
   .road { display: block; border: 0; background: none; }
   .road .hd { display: none; }
@@ -295,7 +297,6 @@ table.links tr:hover td { background: var(--panel-2); }
   .road .who { border-top: 2px solid var(--line); margin-top: 10px; }
   .legend { max-height: 45%; }
   .cols2 { grid-template-columns: 1fr; }
-  .page { padding: 14px 12px 40px; }
 }
 
 /* bundles, stale citations, focus */
