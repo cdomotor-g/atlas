@@ -1,6 +1,6 @@
 {
- "generated": "2026-10-31T22:10:35.993Z",
- "hash": "57f2499f4e44103f",
+ "generated": "2026-10-31T22:16:00.673Z",
+ "hash": "b643021712dc0fa4",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -762,7 +762,8 @@
      "created": "2026-10-29T00:09:29Z",
      "comments": 1,
      "labels": [],
-     "mentions": []
+     "mentions": [],
+     "excerpt": "Failing: Data archive into R2 (archive-r2.yml), scheduled run 40708153126 on main (2026-10-28 14:39 UTC), step node archive-to-r2.mjs. Key error: archivedue: 500 {\"code\":\"57014\",...,\"message\":\"canceling statement due to statement timeout\"} What I checked: archivedue() was made cheaper in migration 0074 (counts from daily rollups); schema is at 87 so it…"
     },
     {
      "n": 256,
@@ -778,7 +779,8 @@
      "created": "2026-10-28T23:59:18Z",
      "comments": 0,
      "labels": [],
-     "mentions": []
+     "mentions": [],
+     "excerpt": "meganet.reception is the biggest table: 362 MB today, about 44,000 receptions a day, and about 22 MB a day including its indexes. EPIC #240 keeps them 90 days (appmeta retainreceptiondays), so the table levels off near 2 GB. That is the whole memory of the Small compute size proposed in #255. Disk reads, and so Supabase's Disk IO budget, grow with…"
     },
     {
      "n": 255,
@@ -794,7 +796,8 @@
      "created": "2026-10-28T23:59:05Z",
      "comments": 0,
      "labels": [],
-     "mentions": []
+     "mentions": [],
+     "excerpt": "On 2026-10-28 Supabase emailed that the project is using up its Disk IO Budget. Roadmap revision 200 (0087, live since 23:34 UTC on 28 October, which is 09:34 AEST on the 29th) removed the biggest causes. Pages of readings no longer sort on disk, and the hourly roll-ups no longer re-read finished days. 0087's header has the numbers. What is left is size.…"
     },
     {
      "n": 254,
@@ -876,7 +879,8 @@
      "labels": [],
      "mentions": [
       "meganet"
-     ]
+     ],
+     "excerpt": "Workflow: Refresh ACMA RRL data (.github/workflows/acma-refresh.yml), newest run on main: https://github.com/cdomotor-g/MegaNet/actions/runs/40230634935 (2026-10-25, failure). Error: curl: (22) The requested URL returned error: 404 (cdn.acma.gov.au/rrl-updates/…, cdn.acma.gov.au/offline-rrl/…) curl: (6) Could not resolve host: web.acma.gov.au ##[error]No…"
     },
     {
      "n": 247,
@@ -908,7 +912,8 @@
      "created": "2026-10-22T01:34:33Z",
      "comments": 2,
      "labels": [],
-     "mentions": []
+     "mentions": [],
+     "excerpt": "The weekly Refresh ACMA RRL data workflow (.github/workflows/acma-refresh.yml) cannot download the register extract any more: - https://web.acma.gov.au/rrl-updates/spectrarrl.zip — host no longer resolves (worked on 1 Oct 2026, gone by 22 Oct). - https://cdn.acma.gov.au/rrl-updates/spectrarrl.zip and https://cdn.acma.gov.au/offline-rrl/spectrarrl.zip —…"
     },
     {
      "n": 244,
@@ -975,7 +980,8 @@
      "mentions": [
       "flood-net-private",
       "meganet"
-     ]
+     ],
+     "excerpt": "Human task — Part 1 needs the Supabase dashboard (5 minutes, any time); Part 2 needs your own computer and about an hour, parked until there is time. Nothing here blocks feature work. Nothing public shows a landholder's contact details or a site's codes any more. - Landholder contact details are gone from the app, the terms, the live database and the…"
     },
     {
      "n": 238,
@@ -1009,7 +1015,8 @@
      "labels": [],
      "mentions": [
       "meganet"
-     ]
+     ],
+     "excerpt": "Flood-Net now lets anybody create an account with an email address and a password (8984338): - a confirmed @bom.gov.au address is approved straight away; - anyone else waits for an administrator, who approves them on the Admin tab; - an approved account sees the field photos and keeps its own left-bar views. Until the parts below are done: - Nobody…"
     },
     {
      "n": 236,
@@ -1025,7 +1032,8 @@
      "created": "2026-10-09T05:17:08Z",
      "comments": 0,
      "labels": [],
-     "mentions": []
+     "mentions": [],
+     "excerpt": "Flood-Net counts a field station as \"carried\" by a repeater when one of the station's ALERT addresses falls in the repeater's pass ranges. The Stations map's links, a station's list of carriers, the blast radius and the Network Review all rest on that rule. The register has 1,297 such pairs more than 150 km apart. No VHF hop covers that distance…"
     },
     {
      "n": 235,
@@ -1041,7 +1049,8 @@
      "created": "2026-10-09T05:16:25Z",
      "comments": 0,
      "labels": [],
-     "mentions": []
+     "mentions": [],
+     "excerpt": "The fade-margin colours on the Stations map are computed once and saved to the datastore. Each saved figure is tagged with the settings it was computed under. The default allowance has changed from 16 dB to 12 dB (and earlier, from the land-cover model to the field model). So every saved figure is now stale: each browser recomputes the network the first…"
     },
     {
      "n": 234,
@@ -1057,7 +1066,8 @@
      "created": "2026-10-09T05:15:59Z",
      "comments": 0,
      "labels": [],
-     "mentions": []
+     "mentions": [],
+     "excerpt": "Admin → 📐 Network Review → The model against every attenuator test compares Flood-Net's fade margin for every station's best path with the attenuator tests on file since 2010. Across the network the model fits with a 12 dB allowance. 37 hubs carry five or more tested stations. At 15 of them the tests sit 10 dB or more away from that fit: | Hub | Station…"
     },
     {
      "n": 233,
@@ -1073,7 +1083,8 @@
      "created": "2026-10-09T05:15:42Z",
      "comments": 0,
      "labels": [],
-     "mentions": []
+     "mentions": [],
+     "excerpt": "Near a repeater or base, a few metres of height, or a few tens of metres of position, change a fade margin more than anything along the path. Admin → 📐 Network Review → The register, before a review → Repeaters and bases against the LiDAR reads the national 5 m LiDAR at every repeater and base and compares it with the register. The LiDAR covers 46 of…"
     },
     {
      "n": 232,
@@ -1187,7 +1198,8 @@
      "labels": [],
      "mentions": [
       "meganet"
-     ]
+     ],
+     "excerpt": "Roadmap revision 115 (10b3eed) renamed the app from MegaNet to Flood-Net wherever the code puts words in front of people. Three places that people see are not in the code, so they still say MegaNet: the sign-in email, the Cloudflare Access login screen, and a few rows in the database. This issue covers those three. The repository, the meganet schema,…"
     },
     {
      "n": 207,
@@ -1203,7 +1215,8 @@
      "created": "2026-09-29T22:56:09Z",
      "comments": 1,
      "labels": [],
-     "mentions": []
+     "mentions": [],
+     "excerpt": "Human: the steps need a Microsoft account that can register an app, the Supabase dashboard, and a Bureau machine to test from. Bureau staff have @bom.gov.au Microsoft work accounts. The sign-in panel now shows Sign in with Microsoft above the email box: one click, and no email or code to wait for. The button stays hidden until the Supabase Azure provider…"
     },
     {
      "n": 206,
@@ -1321,7 +1334,8 @@
      "created": "2026-09-09T06:07:08Z",
      "comments": 0,
      "labels": [],
-     "mentions": []
+     "mentions": [],
+     "excerpt": "[Human] because all three need a real browser on the live site, and one of them needs Radio Mobile open beside it. None is a credential problem — the categories on #113 are credentials (retired), toolchain, surface and hardware, and this is toolchain: the agent environment cannot reach nominatim.openstreetmap.org, cannot run Radio Mobile, and cannot form…"
     },
     {
      "n": 177,
@@ -1355,7 +1369,8 @@
      "labels": [],
      "mentions": [
       "meganet"
-     ]
+     ],
+     "excerpt": "This issue used to be \"bench one 115E-2 and answer five questions\". That assumed we had a unit and a laptop in the same room, and we do not — the test unit will be configured by staff at another office pointing at our broker. So the shape flipped: the technician configures, the database answers. Most of the original five questions are now answered by the…"
     },
     {
      "n": 158,
@@ -1371,7 +1386,8 @@
      "created": "2026-08-15T20:15:33Z",
      "comments": 0,
      "labels": [],
-     "mentions": []
+     "mentions": [],
+     "excerpt": "A sign-in to a personal Gmail address produced an email whose link was: https://…supabase.co/auth/v1/verify?token=…&type=magiclink&redirectto=http://localhost:3000 Clicking it produced a blank page. Nothing was broken. The address passed meganet.authusergate(), the token verified, a real session was minted — and GoTrue delivered it to…"
     },
     {
      "n": 157,
@@ -1389,7 +1405,8 @@
      "labels": [],
      "mentions": [
       "meganet"
-     ]
+     ],
+     "excerpt": "[Human] — needs Windows (CRBasic Editor), the database password, the broker console, physical access to a base station, and a judgement call at the end that no agent can make. logger/base-station-http.CR300 landed at 334f798. It is written, checked as far as it can be checked without Campbell's toolchain, and not compiled — CRBasic Editor is Windows-only…"
     },
     {
      "n": 156,
@@ -1405,7 +1422,8 @@
      "created": "2026-08-14T21:03:47Z",
      "comments": 0,
      "labels": [],
-     "mentions": []
+     "mentions": [],
+     "excerpt": "The Message Log tab shipped with: the filterable arrival table (narrow/wide views with a per-view column chooser), the collapsed plot-and-map tray over a row selection (Stations-tab ghosting and pass-range rules), the row detail drawer with the decode and the raw-submission fetch, two-way per-reading links with Field Data, Follow (30-second re-poll), CSV…"
     },
     {
      "n": 113,
@@ -1424,7 +1442,8 @@
      "mentions": [
       "meganet",
       "rpi_alert"
-     ]
+     ],
+     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1047k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
     },
     {
      "n": 66,
@@ -1442,19 +1461,28 @@
      "labels": [
       "enhancement"
      ],
-     "mentions": []
+     "mentions": [],
+     "excerpt": "Follow-up carrying the one unanswered question from #54 (route 2). Everything else on that ticket shipped in #65. Priority: P4. This is a two-minute check that gates whether a larger piece of work is possible at all. Do not start any client code before it is answered. #54 asked for the direct-API route to be investigated and its outcome recorded before…"
     }
    ],
    "issueCount": 43,
    "release": null,
    "ci": [
     {
-     "name": "CodeQL",
+     "name": "Station health",
      "status": "in_progress",
      "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41246805237",
-     "date": "2026-10-31T22:08:30Z",
-     "event": "push"
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41247337084",
+     "date": "2026-10-31T22:15:17Z",
+     "event": "schedule"
+    },
+    {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41247078179",
+     "date": "2026-10-31T22:11:59Z",
+     "event": "schedule"
     },
     {
      "name": "Atlas",
@@ -1470,6 +1498,14 @@
      "conclusion": null,
      "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41246805275",
      "date": "2026-10-31T22:08:41Z",
+     "event": "push"
+    },
+    {
+     "name": "CodeQL",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41246805237",
+     "date": "2026-10-31T22:12:41Z",
      "event": "push"
     },
     {
@@ -1495,22 +1531,6 @@
      "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41246352629",
      "date": "2026-10-31T22:02:57Z",
      "event": "workflow_dispatch"
-    },
-    {
-     "name": "Station health",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41246168528",
-     "date": "2026-10-31T22:01:15Z",
-     "event": "schedule"
-    },
-    {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41245734187",
-     "date": "2026-10-31T21:54:22Z",
-     "event": "schedule"
     },
     {
      "name": "Bulletin voices",
@@ -2233,19 +2253,19 @@
    },
    "ci": [
     {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41246788233",
-     "date": "2026-10-31T22:08:29Z",
-     "event": "push"
-    },
-    {
      "name": "test",
      "status": "completed",
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41246787868",
      "date": "2026-10-31T22:09:56Z",
+     "event": "push"
+    },
+    {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41246788233",
+     "date": "2026-10-31T22:08:29Z",
      "event": "push"
     },
     {
@@ -2280,7 +2300,7 @@
    "logo": "assets/logos/fw-lab.svg",
    "name": "FW-LAB Receiver",
    "private": false,
-   "visible": true,
+   "visible": false,
    "branch": "main",
    "manifest": {
     "$schema": "https://cdomotor-g.github.io/atlas/schema/atlas.schema.json",
@@ -2384,529 +2404,14 @@
    "manifestSource": "fallback",
    "problems": [],
    "gh": {
-    "description": null,
-    "archived": false,
-    "pushed": "2026-10-13T05:14:08Z",
-    "homepage": null,
-    "language": "Python",
     "url": "https://github.com/cdomotor-g/ALERT1v3"
    },
-   "commits": [
-    {
-     "sha": "7db5982",
-     "date": "2026-10-13T05:14:05Z",
-     "msg": "Ask agents to mark the closing report with a numbered run-summary heading",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/commit/7db5982bd769167d6610e37949dc417f0ec6c235"
-    },
-    {
-     "sha": "8462c03",
-     "date": "2026-05-09T02:33:34Z",
-     "msg": "ui(surveying): add printable heading with run/date/crew/station traceability",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/commit/8462c039ea4ac89c6b9256ab85b60f85d46994e7"
-    },
-    {
-     "sha": "b9fa64f",
-     "date": "2026-05-08T23:30:53Z",
-     "msg": "ui(surveying): add print-friendly stylesheet to hide nav/toolbars and improve field sheet output",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/commit/b9fa64f4e2352cc0b6d97ef432950755c48950c2"
-    },
-    {
-     "sha": "9ed65dd",
-     "date": "2026-05-08T23:04:01Z",
-     "msg": "feat(surveying): add local run save/load/delete, CSV export, and print actions",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/commit/9ed65dd5c24e6ba9cd6064d2883a237471a6ed9e"
-    },
-    {
-     "sha": "9b205f1",
-     "date": "2026-05-08T07:11:51Z",
-     "msg": "feat(surveying): enforce setup sequencing and use tolerance formula 0.001m per CP + 0.001m",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/commit/9b205f196ec38a14d36d49733db1384abdeaabaf"
-    },
-    {
-     "sha": "2ef3bf6",
-     "date": "2026-05-08T05:46:12Z",
-     "msg": "feat(surveying): add Pass B auto-calcs for rise/fall, RL progression, gauge datum, and misclose status",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/commit/2ef3bf648388ce41d53bc5ff1762bb87872b2c29"
-    },
-    {
-     "sha": "ff8382b",
-     "date": "2026-05-08T03:39:14Z",
-     "msg": "feat(surveying): build Pass A leveling sheet layout with metadata form and spreadsheet-style row entry",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/commit/ff8382bb0436b11a0bcac909dc04749111d1471c"
-    },
-    {
-     "sha": "feadcb1",
-     "date": "2026-05-08T03:09:30Z",
-     "msg": "ui(nav): add Surveying/Leveling tool link and scaffold page",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/commit/feadcb1c2cf449a0f3bb6ebfb7b50d98779172c0"
-    },
-    {
-     "sha": "738c587",
-     "date": "2026-05-08T03:05:07Z",
-     "msg": "ui(kb): widen ASCII wiring canvas and show explicit crossover lines for null modem",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/commit/738c5873c32389da6d861885605e741947abecd1"
-    },
-    {
-     "sha": "16a734e",
-     "date": "2026-05-08T03:01:27Z",
-     "msg": "ui(kb): enhance ASCII visuals with explicit pin-to-pin connection lines",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/commit/16a734e7d39ebfd15634cca43f6c5f81ef2589d6"
-    },
-    {
-     "sha": "e6a1060",
-     "date": "2026-05-08T02:53:10Z",
-     "msg": "ui(kb): move pinout table under visual and render clear A/B side columns",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/commit/e6a10607d26cd5aa3f012e2371c9ceb3414c8352"
-    },
-    {
-     "sha": "2cf4ce0",
-     "date": "2026-05-08T02:39:04Z",
-     "msg": "docs(roadmap): add epic for RS232 serial ingest and SDR side-by-side validation",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/commit/2cf4ce0b5ffc7e10f8850aaa0503f173fc7ca7fc"
-    }
-   ],
-   "issues": [
-    {
-     "n": 52,
-     "raw": "Epic: RS232 Serial Data Ingest + Side-by-Side Decoder Validation",
-     "structure": null,
-     "parent": null,
-     "model": null,
-     "effort": null,
-     "human": false,
-     "title": "Epic: RS232 Serial Data Ingest + Side-by-Side Decoder Validation",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/issues/52",
-     "updated": "2026-05-08T02:39:18Z",
-     "created": "2026-05-08T02:39:18Z",
-     "comments": 0,
-     "labels": [],
-     "mentions": []
-    },
-    {
-     "n": 51,
-     "raw": "Epic: Industry Procedures, Methods, and QA Workflows",
-     "structure": null,
-     "parent": null,
-     "model": null,
-     "effort": null,
-     "human": false,
-     "title": "Epic: Industry Procedures, Methods, and QA Workflows",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/issues/51",
-     "updated": "2026-05-07T20:37:53Z",
-     "created": "2026-05-07T20:37:53Z",
-     "comments": 0,
-     "labels": [],
-     "mentions": []
-    },
-    {
-     "n": 50,
-     "raw": "Epic: Offline-First Storage + Functionality",
-     "structure": null,
-     "parent": null,
-     "model": null,
-     "effort": null,
-     "human": false,
-     "title": "Epic: Offline-First Storage + Functionality",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/issues/50",
-     "updated": "2026-05-07T20:37:51Z",
-     "created": "2026-05-07T20:37:51Z",
-     "comments": 0,
-     "labels": [],
-     "mentions": []
-    },
-    {
-     "n": 49,
-     "raw": "Epic: Survey Recorder + Datum Reductions",
-     "structure": null,
-     "parent": null,
-     "model": null,
-     "effort": null,
-     "human": false,
-     "title": "Epic: Survey Recorder + Datum Reductions",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/issues/49",
-     "updated": "2026-05-07T20:37:49Z",
-     "created": "2026-05-07T20:37:49Z",
-     "comments": 0,
-     "labels": [],
-     "mentions": []
-    },
-    {
-     "n": 48,
-     "raw": "Epic: Wiring Diagrams + Pinouts Library",
-     "structure": null,
-     "parent": null,
-     "model": null,
-     "effort": null,
-     "human": false,
-     "title": "Epic: Wiring Diagrams + Pinouts Library",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/issues/48",
-     "updated": "2026-05-07T20:37:48Z",
-     "created": "2026-05-07T20:37:48Z",
-     "comments": 0,
-     "labels": [],
-     "mentions": []
-    },
-    {
-     "n": 47,
-     "raw": "Epic: Catchment Travel Times + Schematics",
-     "structure": null,
-     "parent": null,
-     "model": null,
-     "effort": null,
-     "human": false,
-     "title": "Epic: Catchment Travel Times + Schematics",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/issues/47",
-     "updated": "2026-05-07T20:42:00Z",
-     "created": "2026-05-07T20:37:46Z",
-     "comments": 0,
-     "labels": [],
-     "mentions": []
-    },
-    {
-     "n": 46,
-     "raw": "Epic: Benchmark + PSM Metadata",
-     "structure": null,
-     "parent": null,
-     "model": null,
-     "effort": null,
-     "human": false,
-     "title": "Epic: Benchmark + PSM Metadata",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/issues/46",
-     "updated": "2026-05-07T20:37:44Z",
-     "created": "2026-05-07T20:37:44Z",
-     "comments": 0,
-     "labels": [],
-     "mentions": []
-    },
-    {
-     "n": 45,
-     "raw": "Epic: ALERT Accumulator Conversion Toolkit",
-     "structure": null,
-     "parent": null,
-     "model": null,
-     "effort": null,
-     "human": false,
-     "title": "Epic: ALERT Accumulator Conversion Toolkit",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/issues/45",
-     "updated": "2026-05-07T20:37:42Z",
-     "created": "2026-05-07T20:37:42Z",
-     "comments": 0,
-     "labels": [],
-     "mentions": []
-    },
-    {
-     "n": 44,
-     "raw": "Epic: Mobile App Delivery (iOS + Android, minimal codebase growth)",
-     "structure": null,
-     "parent": null,
-     "model": null,
-     "effort": null,
-     "human": false,
-     "title": "Epic: Mobile App Delivery (iOS + Android, minimal codebase growth)",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/issues/44",
-     "updated": "2026-05-07T20:37:40Z",
-     "created": "2026-05-07T20:37:40Z",
-     "comments": 0,
-     "labels": [],
-     "mentions": []
-    },
-    {
-     "n": 43,
-     "raw": "Stations MVP: add /stations upload page and APIs",
-     "structure": null,
-     "parent": null,
-     "model": null,
-     "effort": null,
-     "human": false,
-     "title": "Stations MVP: add /stations upload page and APIs",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/issues/43",
-     "updated": "2026-03-24T01:37:28Z",
-     "created": "2026-03-24T01:37:28Z",
-     "comments": 0,
-     "labels": [],
-     "mentions": []
-    },
-    {
-     "n": 42,
-     "raw": "Epic: Stations registry and path-ready station workflows",
-     "structure": null,
-     "parent": null,
-     "model": null,
-     "effort": null,
-     "human": false,
-     "title": "Epic: Stations registry and path-ready station workflows",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/issues/42",
-     "updated": "2026-03-28T20:16:02Z",
-     "created": "2026-03-24T01:37:26Z",
-     "comments": 6,
-     "labels": [],
-     "mentions": []
-    },
-    {
-     "n": 41,
-     "raw": "Path UI MVP: add /path page with profile, link budget, and fade margin",
-     "structure": null,
-     "parent": null,
-     "model": null,
-     "effort": null,
-     "human": false,
-     "title": "Path UI MVP: add /path page with profile, link budget, and fade margin",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/issues/41",
-     "updated": "2026-03-24T01:13:04Z",
-     "created": "2026-03-23T22:35:55Z",
-     "comments": 7,
-     "labels": [],
-     "mentions": []
-    },
-    {
-     "n": 40,
-     "raw": "Path profile engine MVP: terrain sampling + LOS/Fresnel profile",
-     "structure": null,
-     "parent": null,
-     "model": null,
-     "effort": null,
-     "human": false,
-     "title": "Path profile engine MVP: terrain sampling + LOS/Fresnel profile",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/issues/40",
-     "updated": "2026-03-23T23:44:37Z",
-     "created": "2026-03-23T22:35:48Z",
-     "comments": 4,
-     "labels": [],
-     "mentions": []
-    },
-    {
-     "n": 39,
-     "raw": "Path analysis MVP: define calculator API and schemas",
-     "structure": null,
-     "parent": null,
-     "model": null,
-     "effort": null,
-     "human": false,
-     "title": "Path analysis MVP: define calculator API and schemas",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/issues/39",
-     "updated": "2026-03-24T00:29:22Z",
-     "created": "2026-03-23T22:35:47Z",
-     "comments": 4,
-     "labels": [],
-     "mentions": []
-    },
-    {
-     "n": 38,
-     "raw": "Epic: Radio path mapping + link budget with Radio Mobile parity targets",
-     "structure": null,
-     "parent": null,
-     "model": null,
-     "effort": null,
-     "human": false,
-     "title": "Epic: Radio path mapping + link budget with Radio Mobile parity targets",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/issues/38",
-     "updated": "2026-03-24T18:08:55Z",
-     "created": "2026-03-23T22:35:26Z",
-     "comments": 6,
-     "labels": [],
-     "mentions": []
-    },
-    {
-     "n": 37,
-     "raw": "Pi-light control-plane split: move /data and /forensics heavy reads off-node",
-     "structure": null,
-     "parent": null,
-     "model": null,
-     "effort": null,
-     "human": false,
-     "title": "Pi-light control-plane split: move /data and /forensics heavy reads off-node",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/issues/37",
-     "updated": "2026-03-05T20:18:27Z",
-     "created": "2026-03-05T20:18:27Z",
-     "comments": 0,
-     "labels": [],
-     "mentions": []
-    },
-    {
-     "n": 36,
-     "raw": "Pi-light sidecar expansion: pre-aggregated telemetry for UI",
-     "structure": null,
-     "parent": null,
-     "model": null,
-     "effort": null,
-     "human": false,
-     "title": "Pi-light sidecar expansion: pre-aggregated telemetry for UI",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/issues/36",
-     "updated": "2026-03-05T20:18:26Z",
-     "created": "2026-03-05T20:18:26Z",
-     "comments": 0,
-     "labels": [],
-     "mentions": []
-    },
-    {
-     "n": 35,
-     "raw": "Pi-light quick wins: reduce local UI polling and gate heavy panels",
-     "structure": null,
-     "parent": null,
-     "model": null,
-     "effort": null,
-     "human": false,
-     "title": "Pi-light quick wins: reduce local UI polling and gate heavy panels",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/issues/35",
-     "updated": "2026-03-05T20:18:24Z",
-     "created": "2026-03-05T20:18:24Z",
-     "comments": 0,
-     "labels": [],
-     "mentions": []
-    },
-    {
-     "n": 34,
-     "raw": "Epic: Pi-light mode (offload analytics/control-plane UI from receiver node)",
-     "structure": null,
-     "parent": null,
-     "model": null,
-     "effort": null,
-     "human": false,
-     "title": "Epic: Pi-light mode (offload analytics/control-plane UI from receiver node)",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/issues/34",
-     "updated": "2026-03-05T20:16:14Z",
-     "created": "2026-03-05T20:16:14Z",
-     "comments": 0,
-     "labels": [],
-     "mentions": []
-    },
-    {
-     "n": 33,
-     "raw": "Epic: RF operating-point tuning for ones-saturation and marginal decode quality (Queensland)",
-     "structure": null,
-     "parent": null,
-     "model": null,
-     "effort": null,
-     "human": false,
-     "title": "Epic: RF operating-point tuning for ones-saturation and marginal decode quality (Queensland)",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/issues/33",
-     "updated": "2026-03-03T04:11:44Z",
-     "created": "2026-03-03T04:11:44Z",
-     "comments": 0,
-     "labels": [],
-     "mentions": []
-    },
-    {
-     "n": 28,
-     "raw": "Epic: Control plane and access governance",
-     "structure": null,
-     "parent": null,
-     "model": null,
-     "effort": null,
-     "human": false,
-     "title": "Epic: Control plane and access governance",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/issues/28",
-     "updated": "2026-02-28T00:34:56Z",
-     "created": "2026-02-27T06:01:17Z",
-     "comments": 2,
-     "labels": [],
-     "mentions": []
-    },
-    {
-     "n": 27,
-     "raw": "Epic: Geospatial sensor and node map experience",
-     "structure": null,
-     "parent": null,
-     "model": null,
-     "effort": null,
-     "human": false,
-     "title": "Epic: Geospatial sensor and node map experience",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/issues/27",
-     "updated": "2026-02-27T06:01:15Z",
-     "created": "2026-02-27T06:01:15Z",
-     "comments": 0,
-     "labels": [],
-     "mentions": []
-    },
-    {
-     "n": 26,
-     "raw": "Epic: DataViewer expansion (analytics + derived metrics)",
-     "structure": null,
-     "parent": null,
-     "model": null,
-     "effort": null,
-     "human": false,
-     "title": "Epic: DataViewer expansion (analytics + derived metrics)",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/issues/26",
-     "updated": "2026-02-28T00:59:06Z",
-     "created": "2026-02-27T06:01:12Z",
-     "comments": 1,
-     "labels": [],
-     "mentions": []
-    },
-    {
-     "n": 25,
-     "raw": "Epic: Multi-node RX interface (fleet + node detail)",
-     "structure": null,
-     "parent": null,
-     "model": null,
-     "effort": null,
-     "human": false,
-     "title": "Epic: Multi-node RX interface (fleet + node detail)",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/issues/25",
-     "updated": "2026-02-27T06:01:10Z",
-     "created": "2026-02-27T06:01:10Z",
-     "comments": 0,
-     "labels": [],
-     "mentions": []
-    },
-    {
-     "n": 19,
-     "raw": "Multi-user remote access with identity-based auth gateway",
-     "structure": null,
-     "parent": null,
-     "model": null,
-     "effort": null,
-     "human": false,
-     "title": "Multi-user remote access with identity-based auth gateway",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/issues/19",
-     "updated": "2026-02-28T00:00:00Z",
-     "created": "2026-02-26T06:39:39Z",
-     "comments": 1,
-     "labels": [],
-     "mentions": []
-    },
-    {
-     "n": 15,
-     "raw": "ALERT2 capability planning and implementation path",
-     "structure": null,
-     "parent": null,
-     "model": null,
-     "effort": null,
-     "human": false,
-     "title": "ALERT2 capability planning and implementation path",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/issues/15",
-     "updated": "2026-02-25T19:23:55Z",
-     "created": "2026-02-25T19:23:55Z",
-     "comments": 0,
-     "labels": [],
-     "mentions": []
-    }
-   ],
-   "issueCount": 26,
+   "commits": [],
+   "issues": [],
+   "issueCount": null,
    "release": null,
-   "ci": [
-    {
-     "name": "CI",
-     "status": "completed",
-     "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/actions/runs/38350355616",
-     "date": "2026-10-13T05:14:20Z",
-     "event": "push"
-    },
-    {
-     "name": "platform-smoke",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/ALERT1v3/actions/runs/25589266423",
-     "date": "2026-05-09T02:33:48Z",
-     "event": "push"
-    }
-   ],
-   "version": null,
-   "lastCommit": {
-    "date": "2026-10-13T05:14:05Z"
-   }
+   "ci": [],
+   "version": null
   },
   {
    "id": "quansheng-v3",
@@ -3269,19 +2774,19 @@
    "release": null,
    "ci": [
     {
-     "name": "Build Firmware",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/41246801133",
-     "date": "2026-10-31T22:09:06Z",
-     "event": "push"
-    },
-    {
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/41246801414",
      "date": "2026-10-31T22:08:34Z",
+     "event": "push"
+    },
+    {
+     "name": "Build Firmware",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/41246801133",
+     "date": "2026-10-31T22:09:06Z",
      "event": "push"
     }
    ],
@@ -3301,7 +2806,7 @@
    "logo": "assets/logos/quansheng-v1.jpg",
    "name": "Quansheng ALERT receiver (UV-K5, archived)",
    "private": false,
-   "visible": true,
+   "visible": false,
    "branch": "main",
    "manifest": {
     "$schema": "https://cdomotor-g.github.io/atlas/schema/atlas.schema.json",
@@ -3532,112 +3037,14 @@
    "manifestSource": "fallback",
    "problems": [],
    "gh": {
-    "description": "Firmware repo for quansheng hand-held radio",
-    "archived": false,
-    "pushed": "2026-10-20T01:17:13Z",
-    "homepage": null,
-    "language": "C",
     "url": "https://github.com/cdomotor-g/quansheng_alert"
    },
-   "commits": [
-    {
-     "sha": "e922375",
-     "date": "2026-10-20T01:17:12Z",
-     "msg": "Publish firmware for the web installer",
-     "url": "https://github.com/cdomotor-g/quansheng_alert/commit/e922375dcbaf1c21b71eef5d24ae7a58810b785d"
-    },
-    {
-     "sha": "26f1f09",
-     "date": "2026-10-20T01:14:52Z",
-     "msg": "feat: decode ALERT the way the V3 port does on air",
-     "url": "https://github.com/cdomotor-g/quansheng_alert/commit/26f1f09cf74209fa210a7c396f232f877f4082a1"
-    },
-    {
-     "sha": "8dd30b1",
-     "date": "2026-10-20T00:11:32Z",
-     "msg": "docs: send new visitors and V3 owners to the quansheng_alert_ALL site",
-     "url": "https://github.com/cdomotor-g/quansheng_alert/commit/8dd30b1ef3c9c3415824fd6a5a8be1dd08caff9d"
-    },
-    {
-     "sha": "06ee796",
-     "date": "2026-10-13T05:13:34Z",
-     "msg": "Ask agents to mark the closing report with a numbered run-summary heading",
-     "url": "https://github.com/cdomotor-g/quansheng_alert/commit/06ee796eb2f99b05e724ac02ce56b5514a35f5fc"
-    },
-    {
-     "sha": "21fc797",
-     "date": "2026-09-29T19:31:17Z",
-     "msg": "docs: mark this repository archived and point to the V3 port",
-     "url": "https://github.com/cdomotor-g/quansheng_alert/commit/21fc79727c2e75075bb6ecf6be06d8c3ac3cd819"
-    },
-    {
-     "sha": "ddeef3e",
-     "date": "2026-09-07T02:28:18Z",
-     "msg": "docs: point V3 / UV-K1 owners at the port that suits their radio",
-     "url": "https://github.com/cdomotor-g/quansheng_alert/commit/ddeef3e83debd592e04f2271926257edd8b4cb5a"
-    },
-    {
-     "sha": "86387b7",
-     "date": "2026-09-07T01:07:11Z",
-     "msg": "feat: refuse to flash hardware this firmware cannot run on",
-     "url": "https://github.com/cdomotor-g/quansheng_alert/commit/86387b7daab7aa1df359ea792a422536c34de834"
-    },
-    {
-     "sha": "1d755f6",
-     "date": "2026-09-07T00:23:28Z",
-     "msg": "fix: see a radio in bootloader mode - stop discarding on an absent checksum",
-     "url": "https://github.com/cdomotor-g/quansheng_alert/commit/1d755f69645ca3ab42fafff574235338c4c6c468"
-    },
-    {
-     "sha": "5b4de09",
-     "date": "2026-09-07T00:14:04Z",
-     "msg": "fix: make releasing the serial port possible, visible and unwedgeable",
-     "url": "https://github.com/cdomotor-g/quansheng_alert/commit/5b4de09ee95cc34e80099d6b86071107ed39be9c"
-    },
-    {
-     "sha": "6daac9f",
-     "date": "2026-09-06T23:18:53Z",
-     "msg": "fix: accept the radio's 0xFFFF placeholder CRC and the 0x15 hello reply",
-     "url": "https://github.com/cdomotor-g/quansheng_alert/commit/6daac9fdaa56cef66f0f7e62bf004a485feb9aa8"
-    },
-    {
-     "sha": "93e322b",
-     "date": "2026-09-06T17:47:46Z",
-     "msg": "feat: run the whole cable check from the installer's Toolbox",
-     "url": "https://github.com/cdomotor-g/quansheng_alert/commit/93e322bbf3bd5ca9925d82d7d652448d9f4caaf0"
-    },
-    {
-     "sha": "f02801d",
-     "date": "2026-09-06T08:48:05Z",
-     "msg": "feat: add serial fault-finding for a radio that \"does not answer\"",
-     "url": "https://github.com/cdomotor-g/quansheng_alert/commit/f02801dbe47c1bb06a08913e26df058da279be01"
-    }
-   ],
+   "commits": [],
    "issues": [],
-   "issueCount": 0,
+   "issueCount": null,
    "release": null,
-   "ci": [
-    {
-     "name": "build",
-     "status": "completed",
-     "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/quansheng_alert/actions/runs/40228782787",
-     "date": "2026-10-25T20:02:14Z",
-     "event": "schedule"
-    },
-    {
-     "name": "pages build and deployment",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert/actions/runs/39352585520",
-     "date": "2026-10-20T01:17:57Z",
-     "event": "dynamic"
-    }
-   ],
-   "version": null,
-   "lastCommit": {
-    "date": "2026-10-20T01:17:12Z"
-   }
+   "ci": [],
+   "version": null
   },
   {
    "id": "quansheng-all",
@@ -4361,19 +3768,19 @@
    "release": null,
    "ci": [
     {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41246791974",
-     "date": "2026-10-31T22:08:29Z",
-     "event": "push"
-    },
-    {
      "name": "test",
      "status": "completed",
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41246791746",
      "date": "2026-10-31T22:08:24Z",
+     "event": "push"
+    },
+    {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41246791974",
+     "date": "2026-10-31T22:08:29Z",
      "event": "push"
     },
     {
@@ -4710,7 +4117,7 @@
    "logo": "assets/logos/f-tide.svg",
    "name": "F-TIDE",
    "private": false,
-   "visible": true,
+   "visible": false,
    "branch": "main",
    "manifest": {
     "$schema": "https://cdomotor-g.github.io/atlas/schema/atlas.schema.json",
@@ -4804,104 +4211,14 @@
    "manifestSource": "fallback",
    "problems": [],
    "gh": {
-    "description": null,
-    "archived": false,
-    "pushed": "2026-10-13T05:13:59Z",
-    "homepage": null,
-    "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/F-TIDE"
    },
-   "commits": [
-    {
-     "sha": "56d8367",
-     "date": "2026-10-13T05:13:56Z",
-     "msg": "Ask agents to mark the closing report with a numbered run-summary heading",
-     "url": "https://github.com/cdomotor-g/F-TIDE/commit/56d83676f6072a88fba66b1f5535acade97e7d1c"
-    },
-    {
-     "sha": "8222445",
-     "date": "2026-07-05T20:57:35Z",
-     "msg": "Merge pull request #19 from cdomotor-g/claude/session-image-treemap-layout-lpbp3z",
-     "url": "https://github.com/cdomotor-g/F-TIDE/commit/8222445e57d61431981e19748ddd5069115c2228"
-    },
-    {
-     "sha": "00a4a3b",
-     "date": "2026-07-05T20:54:44Z",
-     "msg": "Place session image and mini tree map cards on the same line",
-     "url": "https://github.com/cdomotor-g/F-TIDE/commit/00a4a3b418b143bf1b6ae8de39108f95623d8565"
-    },
-    {
-     "sha": "e236a4e",
-     "date": "2026-07-03T04:12:06Z",
-     "msg": "Merge pull request #18 from cdomotor-g/claude/decision-tree-node-icons-25hckb",
-     "url": "https://github.com/cdomotor-g/F-TIDE/commit/e236a4e85dcadad15697388beac1eb175aa22458"
-    },
-    {
-     "sha": "50c5eed",
-     "date": "2026-07-03T03:27:29Z",
-     "msg": "Refresh node icon set: drop tofu-prone emoji, add flood/infra icons",
-     "url": "https://github.com/cdomotor-g/F-TIDE/commit/50c5eed8af030aa09cc411786f819b00936f855b"
-    },
-    {
-     "sha": "3ba5662",
-     "date": "2026-07-03T03:09:30Z",
-     "msg": "Merge pull request #17 from cdomotor-g/claude/mini-treemap-horizontal-spacing-43u7cw",
-     "url": "https://github.com/cdomotor-g/F-TIDE/commit/3ba56622f86e7cd6ff780b284b4c287c4dd00710"
-    },
-    {
-     "sha": "0e17b45",
-     "date": "2026-07-03T02:54:56Z",
-     "msg": "Fix mini tree map horizontal letterboxing",
-     "url": "https://github.com/cdomotor-g/F-TIDE/commit/0e17b4518be5d6a8c18cbf0640344f7bf8627bc9"
-    },
-    {
-     "sha": "757da77",
-     "date": "2026-07-03T02:48:47Z",
-     "msg": "Merge pull request #16 from cdomotor-g/claude/column-width-screen-edges-yn9cvq",
-     "url": "https://github.com/cdomotor-g/F-TIDE/commit/757da770ea6c67e236f1796a625fa94e34444f9c"
-    },
-    {
-     "sha": "2aa2c14",
-     "date": "2026-07-03T02:35:50Z",
-     "msg": "Make left/right panels a fixed 50/50 split and use full window width",
-     "url": "https://github.com/cdomotor-g/F-TIDE/commit/2aa2c14b32636d51c05282e0d167e10c732112e0"
-    },
-    {
-     "sha": "0e0e9af",
-     "date": "2026-07-03T02:10:56Z",
-     "msg": "Merge pull request #15 from cdomotor-g/claude/clipboard-image-pill-dmkibj",
-     "url": "https://github.com/cdomotor-g/F-TIDE/commit/0e0e9afdb697c4dd7ed02f4c2133d3c16a61d656"
-    },
-    {
-     "sha": "44700eb",
-     "date": "2026-07-03T02:01:57Z",
-     "msg": "Add session image pill for clipboard/drag-drop screenshots",
-     "url": "https://github.com/cdomotor-g/F-TIDE/commit/44700ebfde709385cf0f1a98707886ba727639ac"
-    },
-    {
-     "sha": "37bbc0d",
-     "date": "2026-07-03T01:36:55Z",
-     "msg": "Resolve assessment report links against SharePoint origin",
-     "url": "https://github.com/cdomotor-g/F-TIDE/commit/37bbc0d8e052cba93d6b07a185553ab791959228"
-    }
-   ],
+   "commits": [],
    "issues": [],
-   "issueCount": 0,
+   "issueCount": null,
    "release": null,
-   "ci": [
-    {
-     "name": "pages build and deployment",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/F-TIDE/actions/runs/38350341237",
-     "date": "2026-10-13T05:15:03Z",
-     "event": "dynamic"
-    }
-   ],
-   "version": "57.2",
-   "lastCommit": {
-    "date": "2026-10-13T05:13:56Z"
-   }
+   "ci": [],
+   "version": null
   },
   {
    "id": "droggies",
@@ -4914,7 +4231,7 @@
    "private": true,
    "pages": "https://cdomotor-g.github.io/thedroggies/",
    "name": "The Droggies",
-   "visible": false,
+   "visible": true,
    "branch": "main",
    "manifest": {
     "$schema": "https://cdomotor-g.github.io/atlas/schema/atlas.schema.json",
@@ -5140,17 +4457,25 @@
      }
     ]
    },
-   "manifestSource": "pages",
+   "manifestSource": "repo",
    "problems": [],
    "gh": {
+    "description": null,
+    "archived": false,
+    "pushed": "2026-10-31T22:08:17Z",
+    "homepage": null,
+    "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/thedroggies"
    },
    "commits": [],
    "issues": [],
-   "issueCount": null,
+   "issueCount": 0,
    "release": null,
    "ci": [],
-   "version": null
+   "version": null,
+   "lastCommit": {
+    "date": "2026-10-31T22:08:16Z"
+   }
   },
   {
    "id": "alert-packets",
@@ -5162,7 +4487,7 @@
    "logo": "assets/logos/alert-packets.svg",
    "name": "ALERT_PACKETS",
    "private": false,
-   "visible": true,
+   "visible": false,
    "branch": "main",
    "manifest": {
     "$schema": "https://cdomotor-g.github.io/atlas/schema/atlas.schema.json",
@@ -5251,62 +4576,14 @@
    "manifestSource": "fallback",
    "problems": [],
    "gh": {
-    "description": null,
-    "archived": false,
-    "pushed": "2026-10-13T05:14:02Z",
-    "homepage": null,
-    "language": "HTML",
     "url": "https://github.com/cdomotor-g/ALERT_PACKETS"
    },
-   "commits": [
-    {
-     "sha": "d782044",
-     "date": "2026-10-13T05:13:59Z",
-     "msg": "Ask agents to mark the closing report with a numbered run-summary heading",
-     "url": "https://github.com/cdomotor-g/ALERT_PACKETS/commit/d7820448ab63ddf0c8feaf8f4e06671686faa8f4"
-    },
-    {
-     "sha": "87fefae",
-     "date": "2026-07-02T05:23:42Z",
-     "msg": "Add ALERT/ERTS packet encoder-decoder web tool",
-     "url": "https://github.com/cdomotor-g/ALERT_PACKETS/commit/87fefae884da29af440685cc0bc1667220dfeed9"
-    },
-    {
-     "sha": "99d6ffc",
-     "date": "2026-07-02T05:13:34Z",
-     "msg": "Add files via upload",
-     "url": "https://github.com/cdomotor-g/ALERT_PACKETS/commit/99d6ffc1c3559c9fd75abd858d4ab3bcd912e9c8"
-    },
-    {
-     "sha": "4219144",
-     "date": "2026-07-02T05:09:01Z",
-     "msg": "Add files via upload",
-     "url": "https://github.com/cdomotor-g/ALERT_PACKETS/commit/42191448e8f8f62f857b269aee47ca6287000d94"
-    },
-    {
-     "sha": "6acea04",
-     "date": "2026-07-02T04:54:32Z",
-     "msg": "Add initial README.md with project title",
-     "url": "https://github.com/cdomotor-g/ALERT_PACKETS/commit/6acea040ce9b41c69eeac3f4540b8b898b6b50ba"
-    }
-   ],
+   "commits": [],
    "issues": [],
-   "issueCount": 0,
+   "issueCount": null,
    "release": null,
-   "ci": [
-    {
-     "name": "pages build and deployment",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/ALERT_PACKETS/actions/runs/38350345437",
-     "date": "2026-10-13T05:14:47Z",
-     "event": "dynamic"
-    }
-   ],
-   "version": null,
-   "lastCommit": {
-    "date": "2026-10-13T05:13:59Z"
-   }
+   "ci": [],
+   "version": null
   },
   {
    "id": "html-serial",
@@ -5318,7 +4595,7 @@
    "logo": "assets/logos/html-serial.svg",
    "name": "HTML-serial",
    "private": false,
-   "visible": true,
+   "visible": false,
    "branch": "main",
    "manifest": {
     "$schema": "https://cdomotor-g.github.io/atlas/schema/atlas.schema.json",
@@ -5362,47 +4639,14 @@
    "manifestSource": "fallback",
    "problems": [],
    "gh": {
-    "description": null,
-    "archived": false,
-    "pushed": "2026-10-13T05:14:05Z",
-    "homepage": null,
-    "language": "HTML",
     "url": "https://github.com/cdomotor-g/HTML-serial"
    },
-   "commits": [
-    {
-     "sha": "e42560d",
-     "date": "2026-10-13T05:14:02Z",
-     "msg": "Ask agents to mark the closing report with a numbered run-summary heading",
-     "url": "https://github.com/cdomotor-g/HTML-serial/commit/e42560d794d86dccf540444fcd955729508f0e49"
-    },
-    {
-     "sha": "dd45217",
-     "date": "2026-06-22T06:04:13Z",
-     "msg": "Fix missing closing tags that prevented script from executing",
-     "url": "https://github.com/cdomotor-g/HTML-serial/commit/dd452174fac6aedf08268b4e72b0a96a067aa372"
-    },
-    {
-     "sha": "5e87e9e",
-     "date": "2026-06-22T06:01:47Z",
-     "msg": "first upload",
-     "url": "https://github.com/cdomotor-g/HTML-serial/commit/5e87e9ebd5a6f8b62d623514156a09fa9fe16c1d"
-    },
-    {
-     "sha": "31449e3",
-     "date": "2026-06-22T06:00:09Z",
-     "msg": "Initial commit",
-     "url": "https://github.com/cdomotor-g/HTML-serial/commit/31449e3545d0252d0ac8016f0c68fbf8e80f318e"
-    }
-   ],
+   "commits": [],
    "issues": [],
-   "issueCount": 0,
+   "issueCount": null,
    "release": null,
    "ci": [],
-   "version": null,
-   "lastCommit": {
-    "date": "2026-10-13T05:14:02Z"
-   }
+   "version": null
   },
   {
    "id": "home",
@@ -5414,7 +4658,7 @@
    "logo": "assets/logos/home.svg",
    "name": "Home",
    "private": false,
-   "visible": true,
+   "visible": false,
    "branch": "main",
    "manifest": {
     "$schema": "https://cdomotor-g.github.io/atlas/schema/atlas.schema.json",
@@ -5487,112 +4731,14 @@
    "manifestSource": "fallback",
    "problems": [],
    "gh": {
-    "description": null,
-    "archived": false,
-    "pushed": "2026-10-16T20:22:34Z",
-    "homepage": null,
-    "language": "HTML",
     "url": "https://github.com/cdomotor-g/home"
    },
-   "commits": [
-    {
-     "sha": "9f572c1",
-     "date": "2026-10-16T20:22:32Z",
-     "msg": "Combine tank usage and collection into one water in & out chart",
-     "url": "https://github.com/cdomotor-g/home/commit/9f572c14e048cd641d7629c56f5f2838d5d40803"
-    },
-    {
-     "sha": "f2e35b7",
-     "date": "2026-10-16T19:42:21Z",
-     "msg": "Add daily water-collected chart for the tanks",
-     "url": "https://github.com/cdomotor-g/home/commit/f2e35b7137e9ca52acda97a14b5e1da7081385fd"
-    },
-    {
-     "sha": "c2f7383",
-     "date": "2026-10-12T23:54:33Z",
-     "msg": "Filter sensor jitter out of tank usage; typical-use context; 2.1 m tank axis",
-     "url": "https://github.com/cdomotor-g/home/commit/c2f7383cc9e725e60c2c531f94ce59374556a0f1"
-    },
-    {
-     "sha": "6dc373c",
-     "date": "2026-10-12T23:19:52Z",
-     "msg": "Add tank dimensions and litre readouts; tank 1 green, tank 2 blue",
-     "url": "https://github.com/cdomotor-g/home/commit/6dc373ce47fe753711eb1cf443c17d051cf5063f"
-    },
-    {
-     "sha": "c6c5616",
-     "date": "2026-10-12T20:50:57Z",
-     "msg": "Add per-sensor chart axis min/max; pin tank charts to 0–2.4 m",
-     "url": "https://github.com/cdomotor-g/home/commit/c6c56164f1a863ff1a2b1ad043f7b744abab23e9"
-    },
-    {
-     "sha": "13d5882",
-     "date": "2026-07-23T02:47:21Z",
-     "msg": "Tighten daily water-usage chart y-axis to the period peak",
-     "url": "https://github.com/cdomotor-g/home/commit/13d588215074dd67d8b39a8ab6df02682ceae210"
-    },
-    {
-     "sha": "b3ce6a1",
-     "date": "2026-07-23T00:50:22Z",
-     "msg": "Merge pull request #13 from cdomotor-g/claude/water-tanks-daily-usage-chart-8pzdl2",
-     "url": "https://github.com/cdomotor-g/home/commit/b3ce6a1747be84b921437d86345226a49b4a3b9e"
-    },
-    {
-     "sha": "dfd993a",
-     "date": "2026-07-23T00:32:02Z",
-     "msg": "Add daily usage bar chart to Water tanks section",
-     "url": "https://github.com/cdomotor-g/home/commit/dfd993a03e1c5c7cdcbb12dcd7dc82d325cb394d"
-    },
-    {
-     "sha": "601294f",
-     "date": "2026-07-19T04:52:11Z",
-     "msg": "Merge pull request #12 from cdomotor-g/claude/numeric-cards-carousel-rzvijv",
-     "url": "https://github.com/cdomotor-g/home/commit/601294f96b742f9c2bc71879383c54a377a31a71"
-    },
-    {
-     "sha": "c9f86be",
-     "date": "2026-07-18T23:12:19Z",
-     "msg": "Add numeric value + days-till-empty cards to the carousel",
-     "url": "https://github.com/cdomotor-g/home/commit/c9f86be1d64414b60ec68dd4053692bd769abf43"
-    },
-    {
-     "sha": "eef9b74",
-     "date": "2026-07-14T02:13:59Z",
-     "msg": "Merge pull request #11 from cdomotor-g/claude/add-min-max-value-cards-qvhdbb",
-     "url": "https://github.com/cdomotor-g/home/commit/eef9b741a7ebf57a77ac550cac7e8c65b955b7fc"
-    },
-    {
-     "sha": "0c20ad3",
-     "date": "2026-07-14T01:03:44Z",
-     "msg": "Show min/max for the selected period on value tiles",
-     "url": "https://github.com/cdomotor-g/home/commit/0c20ad3a7a48f02e6d646792d0a413aa5a52a121"
-    }
-   ],
+   "commits": [],
    "issues": [],
-   "issueCount": 0,
+   "issueCount": null,
    "release": null,
-   "ci": [
-    {
-     "name": "Deploy dashboard to GitHub Pages",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/home/actions/runs/38961786428",
-     "date": "2026-10-16T20:22:57Z",
-     "event": "push"
-    },
-    {
-     "name": "pages build and deployment",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/home/actions/runs/38961784954",
-     "date": "2026-10-16T20:22:58Z",
-     "event": "dynamic"
-    }
-   ],
-   "version": null,
-   "lastCommit": {
-    "date": "2026-10-16T20:22:32Z"
-   }
+   "ci": [],
+   "version": null
   }
  ],
  "links": [
@@ -5614,9 +4760,16 @@
    },
    "on_change": "A recast needs nothing: the next bulletin is voiced with it (run Actions > Bulletin voices to re-voice old ones). A new or renamed field: update tools/voice/speak.mjs and run cd test && npm run bulletin.",
    "drift": {
-    "state": "unknown",
-    "note": "The Atlas could not read one end (a private repository, or one its token cannot reach).",
-    "commits": []
+    "state": "current",
+    "since": {
+     "date": "2026-10-25",
+     "commit": "66a4620c63d10c810db957706b5eff7d61b2f7f8",
+     "commitDate": "2026-10-25T10:46:12Z"
+    },
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "1 newer commit upstream since it was last reviewed (2026-10-25), none to watched files."
    }
   },
   {
@@ -5637,9 +4790,16 @@
    "on_change": "Update ROSTER in health-bulletin.js and PRESENTERS in tools/bulletin/validate.mjs, re-crop a changed portrait into assets/presenters/, run cd test && npm run bulletin, and bump the version stamp.",
    "drift_issue": false,
    "drift": {
-    "state": "unknown",
-    "note": "The Atlas could not read one end (a private repository, or one its token cannot reach).",
-    "commits": []
+    "state": "current",
+    "since": {
+     "date": "2026-10-31",
+     "commit": "dc6cf3280094ae7557860ef7a56580564288bfb0",
+     "commitDate": "2026-10-31T22:08:16Z"
+    },
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "Up to date with upstream."
    }
   },
   {
@@ -5769,12 +4929,8 @@
     "index.html"
    ],
    "drift": {
-    "state": "untracked",
-    "since": null,
-    "behind": 0,
-    "commits": [],
-    "files": [],
-    "note": "No catch-up point recorded."
+    "state": "unknown",
+    "note": "The Atlas could not read one end (a private repository, or one its token cannot reach)."
    }
   },
   {
@@ -5795,16 +4951,8 @@
    "on_change": "Copy the changed file over data/All 2021 Working 2.txt (read by packets.js and serial-radio.js) or the PDF in docs/.",
    "drift_issue": false,
    "drift": {
-    "state": "current",
-    "since": {
-     "date": "2026-10-31",
-     "commit": "d7820448ab63ddf0c8feaf8f4e06671686faa8f4",
-     "commitDate": "2026-10-13T05:13:59Z"
-    },
-    "behind": 0,
-    "commits": [],
-    "files": [],
-    "note": "Up to date with upstream."
+    "state": "unknown",
+    "note": "The Atlas could not read one end (a private repository, or one its token cannot reach)."
    }
   },
   {
@@ -6096,32 +5244,8 @@
    },
    "on_change": "Update the LEGACY pattern in agent/lib/devices/quansheng.js and the sniff in agent/lib/devices/sniff.js, then cd agent && node --test test/devices.test.js.",
    "drift": {
-    "state": "behind",
-    "since": {
-     "date": "2026-10-06",
-     "commit": "21fc79727c2e75075bb6ecf6be06d8c3ac3cd819",
-     "commitDate": "2026-09-29T19:31:17Z"
-    },
-    "behind": 2,
-    "commits": [
-     {
-      "sha": "26f1f09",
-      "date": "2026-10-20T01:14:52Z",
-      "msg": "feat: decode ALERT the way the V3 port does on air",
-      "url": "https://github.com/cdomotor-g/quansheng_alert/commit/26f1f09cf74209fa210a7c396f232f877f4082a1"
-     },
-     {
-      "sha": "8dd30b1",
-      "date": "2026-10-20T00:11:32Z",
-      "msg": "docs: send new visitors and V3 owners to the quansheng_alert_ALL site",
-      "url": "https://github.com/cdomotor-g/quansheng_alert/commit/8dd30b1ef3c9c3415824fd6a5a8be1dd08caff9d"
-     }
-    ],
-    "files": [
-     "app/alert.c",
-     "README.md"
-    ],
-    "note": "2 upstream changes to watched files since it was last reviewed (2026-10-06)."
+    "state": "unknown",
+    "note": "The Atlas could not read one end (a private repository, or one its token cannot reach)."
    }
   },
   {
@@ -6264,30 +5388,8 @@
    "on_change": "Nothing can run while the repository is archived: its weekly build has stopped. To refresh, unarchive it and run build.yml, which regenerates the table and republishes both builds.",
    "drift_issue": false,
    "drift": {
-    "state": "behind",
-    "since": {
-     "commit": "6ef4965",
-     "commitDate": "2026-10-19T23:36:05Z"
-    },
-    "behind": 2,
-    "commits": [
-     {
-      "sha": "2181200",
-      "date": "2026-10-23T07:31:31Z",
-      "msg": "📡 FldWarn KMZ, round two: every repeater-document row on its own station, 60 stations added, manual or automatic recorded",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/2181200f67cee87ae63957425038f455d322707a"
-     },
-     {
-      "sha": "687f1dd",
-      "date": "2026-10-23T06:44:51Z",
-      "msg": "📍 The 2024 FldWarn KMZ, checked pin by pin: 309 stations moved, 12 repeaters and 7 base stations from its paths",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/687f1dd50febe8369d39dc44a2e3f68aa65022fd"
-     }
-    ],
-    "files": [
-     "stations.json"
-    ],
-    "note": "2 upstream changes to watched files since 6ef4965."
+    "state": "unknown",
+    "note": "The Atlas could not read one end (a private repository, or one its token cannot reach)."
    }
   },
   {
@@ -6306,16 +5408,8 @@
    },
    "on_change": "Nothing while archived.",
    "drift": {
-    "state": "current",
-    "since": {
-     "date": "2026-10-01",
-     "commit": "2299acc0c89445ce27d78e1999a0f733d457a63e",
-     "commitDate": "2026-10-01T20:05:31Z"
-    },
-    "behind": 0,
-    "commits": [],
-    "files": [],
-    "note": "432 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "state": "unknown",
+    "note": "The Atlas could not read one end (a private repository, or one its token cannot reach)."
    }
   },
   {
@@ -6336,16 +5430,8 @@
    },
    "on_change": "Nothing while archived; a revived fork would copy alert_decode.c across again.",
    "drift": {
-    "state": "current",
-    "since": {
-     "date": "2026-10-20",
-     "commit": "ad166ca93c17cb5765b17d52a49b1c2c7cc6fb44",
-     "commitDate": "2026-10-20T00:11:32Z"
-    },
-    "behind": 0,
-    "commits": [],
-    "files": [],
-    "note": "1 newer commit upstream since it was last reviewed (2026-10-20), none to watched files."
+    "state": "unknown",
+    "note": "The Atlas could not read one end (a private repository, or one its token cannot reach)."
    }
   },
   {
@@ -6401,15 +5487,8 @@
    "on_change": "Nothing by hand, so no drift issue: the same weekly refresh copies them. quansheng_alert is archived, so they no longer change.",
    "drift_issue": false,
    "drift": {
-    "state": "current",
-    "since": {
-     "commit": "e922375",
-     "commitDate": "2026-10-20T01:17:12Z"
-    },
-    "behind": 0,
-    "commits": [],
-    "files": [],
-    "note": "Up to date with upstream."
+    "state": "unknown",
+    "note": "The Atlas could not read one end (a private repository, or one its token cannot reach)."
    }
   },
   {
@@ -6491,15 +5570,8 @@
    },
    "on_change": "Nothing: taken once and now independent; quansheng_alert is archived.",
    "drift": {
-    "state": "current",
-    "since": {
-     "commit": "e922375",
-     "commitDate": "2026-10-20T01:17:12Z"
-    },
-    "behind": 0,
-    "commits": [],
-    "files": [],
-    "note": "Up to date with upstream."
+    "state": "unknown",
+    "note": "The Atlas could not read one end (a private repository, or one its token cannot reach)."
    }
   },
   {
@@ -6518,15 +5590,8 @@
    },
    "on_change": "Copy tools/k5diag.py over docs/tools/k5diag.py (identical today).",
    "drift": {
-    "state": "current",
-    "since": {
-     "commit": "e922375",
-     "commitDate": "2026-10-20T01:17:12Z"
-    },
-    "behind": 0,
-    "commits": [],
-    "files": [],
-    "note": "Up to date with upstream."
+    "state": "unknown",
+    "note": "The Atlas could not read one end (a private repository, or one its token cannot reach)."
    }
   },
   {
@@ -6621,31 +5686,8 @@
    },
    "on_change": "Update quansheng-uv-k5-dp32 in site/data/radio.js; run npm test.",
    "drift": {
-    "state": "behind",
-    "since": {
-     "date": "2026-10-17",
-     "commit": "06ee796eb2f99b05e724ac02ce56b5514a35f5fc",
-     "commitDate": "2026-10-13T05:13:34Z"
-    },
-    "behind": 2,
-    "commits": [
-     {
-      "sha": "26f1f09",
-      "date": "2026-10-20T01:14:52Z",
-      "msg": "feat: decode ALERT the way the V3 port does on air",
-      "url": "https://github.com/cdomotor-g/quansheng_alert/commit/26f1f09cf74209fa210a7c396f232f877f4082a1"
-     },
-     {
-      "sha": "8dd30b1",
-      "date": "2026-10-20T00:11:32Z",
-      "msg": "docs: send new visitors and V3 owners to the quansheng_alert_ALL site",
-      "url": "https://github.com/cdomotor-g/quansheng_alert/commit/8dd30b1ef3c9c3415824fd6a5a8be1dd08caff9d"
-     }
-    ],
-    "files": [
-     "README.md"
-    ],
-    "note": "2 upstream changes to watched files since it was last reviewed (2026-10-17)."
+    "state": "unknown",
+    "note": "The Atlas could not read one end (a private repository, or one its token cannot reach)."
    }
   },
   {
@@ -6667,16 +5709,8 @@
    },
    "on_change": "Update fwlab-receiver in site/data/alert.js and base-fwlab-x86 in site/js/presets.js (status eol if the repository is archived); run npm test.",
    "drift": {
-    "state": "current",
-    "since": {
-     "date": "2026-10-17",
-     "commit": "7db5982bd769167d6610e37949dc417f0ec6c235",
-     "commitDate": "2026-10-13T05:14:05Z"
-    },
-    "behind": 0,
-    "commits": [],
-    "files": [],
-    "note": "Up to date with upstream."
+    "state": "unknown",
+    "note": "The Atlas could not read one end (a private repository, or one its token cannot reach)."
    }
   },
   {
@@ -6697,16 +5731,8 @@
    },
    "on_change": "Re-check the oa-encoder and diy-minimodem-encoder records in site/data/alert.js.",
    "drift": {
-    "state": "current",
-    "since": {
-     "date": "2026-10-17",
-     "commit": "d7820448ab63ddf0c8feaf8f4e06671686faa8f4",
-     "commitDate": "2026-10-13T05:13:59Z"
-    },
-    "behind": 0,
-    "commits": [],
-    "files": [],
-    "note": "Up to date with upstream."
+    "state": "unknown",
+    "note": "The Atlas could not read one end (a private repository, or one its token cannot reach)."
    }
   },
   {
@@ -6820,9 +5846,16 @@
    },
    "on_change": "Check voices/README.md's recasting steps and its notes on direction, sustain and tempo still match; add any field speak.mjs newly reads to schemas/cast.schema.json.",
    "drift": {
-    "state": "unknown",
-    "note": "The Atlas could not read one end (a private repository, or one its token cannot reach).",
-    "commits": []
+    "state": "current",
+    "since": {
+     "date": "2026-10-25",
+     "commit": "28325c4bc9fbe0bdd23e959f6e388952cf46df52",
+     "commitDate": "2026-10-25T19:51:36Z"
+    },
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "154 newer commits upstream since it was last reviewed (2026-10-25), none to watched files."
    }
   }
  ],

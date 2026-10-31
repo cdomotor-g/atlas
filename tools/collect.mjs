@@ -55,6 +55,20 @@ async function manifestFor(r, branch) {
   }
 }
 
+// The opening of an issue body as plain text: what a [Human] issue asks of the owner.
+function excerpt(body) {
+  if (!body) return '';
+  const text = body
+    .replace(/<!--[\s\S]*?-->/g, '')
+    .split('\n').filter(l => !/^\s*Recommended:/i.test(l) && !/^\s*#{1,6}\s/.test(l) && !/^\s*[-*_]{3,}\s*$/.test(l) && !/^\s*```/.test(l))
+    .join(' ')
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+    .replace(/[*_`>]+/g, '')
+    .replace(/\s+/g, ' ').trim();
+  return text.length > 360 ? text.slice(0, 357).replace(/\s+\S*$/, '') + '…' : text;
+}
+
 async function collectRepo(r) {
   log(`· ${r.repo}`);
   const meta = await gh.req(`/repos/${r.repo}`).catch(() => null);
@@ -106,6 +120,7 @@ async function collectRepo(r) {
       return {
         n: i.number, raw: i.title, ...t, url: i.html_url, updated: i.updated_at, created: i.created_at,
         comments: i.comments, labels: i.labels.map(l => l.name), mentions,
+        ...(t.human ? { excerpt: excerpt(i.body) } : {}),
       };
     });
     if (runs?.workflow_runs) {

@@ -16,6 +16,7 @@
   </div>
   <nav class="views" aria-label="Views">
     <button data-view="map" aria-selected="true">Map</button>
+    <button data-view="blockers">Blockers</button>
     <button data-view="roadmap">Roadmap</button>
     <button data-view="board">Board</button>
     <button data-view="links">Links</button>
@@ -36,12 +37,14 @@
       <button class="icon-btn" id="btn-out" title="Zoom out" aria-label="Zoom out">−</button>
       <button class="icon-btn" id="btn-fit" title="Fit everything">Fit</button>
       <button class="icon-btn" id="btn-anim" title="Animate the flow along each link" aria-pressed="true">Flow</button>
+      <button class="icon-btn" id="btn-blockers" title="Show what is stopping work: lines to you, to agents, or to the repository each waits on" aria-pressed="false">Blockers</button>
       <button class="icon-btn" id="btn-expand" title="Show every repository's parts around it">Show all parts</button>
       <button class="icon-btn" id="btn-reset" title="Put every repository back where the registry places it" hidden>Reset layout</button>
     </div>
     <div class="legend" id="legend"></div>
     <div class="tip" id="tip" role="tooltip"></div>
   </section>
+  <section class="view" id="blockers-view" hidden></section>
   <section class="view" id="roadmap-view" hidden></section>
   <section class="view" id="board-view" hidden></section>
   <section class="view" id="links-view" hidden></section>

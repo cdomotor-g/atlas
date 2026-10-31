@@ -110,6 +110,201 @@ function prepare(data) {
   }
   for (const r of D.repos) { r.behindIn = r.in.filter(l => stateOf(l) === 'behind'); r.staleIn = r.in.filter(l => stateOf(l) === 'stale'); }
   ISSUES = D.repos.flatMap(r => (r.issues || []).map(i => ({ ...i, repo: r })));
+  buildBlockers();
+}
+
+// ------------------------------------------------------------------ blockers
+// Everything stopping work, as one list: what each repository records in status.blocked,
+// plus what the Atlas can see for itself — [Human] issues, links behind upstream, asks
+// nobody has filed, failing CI, a status nobody has checked for a month. Each carries the
+// ways through it: the repository's own options, or a suggested one.
+const KIND = {
+  decision: 'Someone has to choose.',
+  access: 'Needs an account, a secret or a setting only the owner holds.',
+  hardware: 'Needs a device, a bench or a site visit.',
+  money: 'Needs spending.',
+  upstream: 'Waits on another repository or a vendor.',
+  time: 'Waits for data to build up, or for a date.',
+  other: '',
+};
+const LANES = [
+  { id: 'human', name: 'Only you', about: 'Credentials, hardware, money or a judgment call. The options say what an agent can take off your plate first.' },
+  { id: 'agent', name: 'An agent can clear', about: 'Nobody has to decide anything: hand one to a session with the prompt.' },
+  { id: 'repo', name: 'Waiting on another repo', about: 'Clears when the other repository moves. The options say how to make it move.' },
+];
+let BLOCKERS = [];
+const issueNum = ref => { const m = String(ref || '').match(/^#(\d+)$/); return m ? +m[1] : null; };
+function whoOf(on) {
+  if (!on || on === 'human') return 'human';
+  if (on === 'agent') return 'agent';
+  const id = on.split('#')[0];
+  return R.has(id) ? id : 'human';
+}
+const laneOf = b => b.who === 'human' ? 'human' : b.who === 'agent' ? 'agent' : 'repo';
+
+function buildBlockers() {
+  const out = [];
+  for (const r of D.repos) {
+    const declared = r.m.status?.blocked || [];
+    const covered = new Set();
+    declared.forEach((b, i) => {
+      for (const m of `${b.issue || ''} ${b.what}`.matchAll(/(?:^|[^\w/])#(\d+)/g)) covered.add(+m[1]);
+      out.push({ key: `${r.id}:b${i}`, repo: r, what: b.what, on: b.on, who: whoOf(b.on), kind: b.kind || null, since: b.since || null,
+        issue: b.issue || null, holds: b.holds || [], options: b.options || [], source: 'recorded' });
+    });
+    // [Human] issues the repository's status doesn't already cover.
+    for (const i of r.issues || []) {
+      if (!i.human || covered.has(i.n) || /^roadmap\b/i.test(i.title)) continue;
+      const children = (r.issues || []).filter(c => c.structure === 'sub' && c.parent === i.n).map(c => `#${c.n}`);
+      out.push({ key: `${r.id}:i${i.n}`, repo: r, what: `#${i.n} ${i.title}`, on: 'human', who: 'human',
+        kind: /^(decide|choose|review|check|spot-check|maybe)\b/i.test(i.title) ? 'decision' : null,
+        since: i.created?.slice(0, 10), issue: `#${i.n}`, holds: children, source: 'issue', context: i.excerpt || '',
+        options: [
+          { what: `Do what #${i.n} asks; its steps are in the issue.`, by: 'human', recommended: true, issue: `#${i.n}` },
+          { what: `Do every part of #${i.n} that needs no credentials, hardware or decision, and turn the rest into a click-by-click list for the owner in the issue.`, by: 'agent', model: 'Sonnet5/Med', effort: 'Low' },
+        ] });
+    }
+    // Something it takes from another repository has moved on.
+    for (const l of r.behindIn) {
+      const p = R.get(l.from);
+      const issue = (r.issues || []).find(i => /^Upstream moved:/i.test(i.title) && i.title.includes(p.repo.split('/')[1]));
+      const oldest = (l.drift.commits || []).map(c => c.date).sort()[0];
+      const comp = consumerComp(l);
+      out.push({ key: `${r.id}:d:${l.id}`, repo: r, what: `Behind ${p.name}: ${l.what}`, on: 'agent', who: 'agent', kind: 'upstream',
+        since: oldest?.slice(0, 10) || null, issue: issue ? `#${issue.n}` : null, link: l.id, source: 'drift',
+        holds: [comp ? `${comp.name} matching ${p.name}` : `matching ${p.name}`],
+        options: [
+          { what: l.on_change || `Bring it in line with ${p.name}, then move the pin in atlas.json.`, by: 'agent', model: 'Sonnet5/Med', recommended: true, issue: issue ? `#${issue.n}` : undefined },
+          { what: `Check whether the upstream change matters here at all; if not, move the pin and say why in the commit.`, by: 'agent', model: 'Sonnet5/Low', effort: 'Low' },
+        ] });
+    }
+    // Asks of another repository.
+    for (const a of r.m.asks || []) {
+      const t = R.get(a.to);
+      if (!t) continue;
+      out.push({ key: `${r.id}:a:${a.to}:${a.what.slice(0, 24)}`, repo: r, what: a.what, on: a.issue || a.to, who: a.to, kind: 'upstream',
+        since: a.since || null, issue: a.issue || null, holds: [], source: 'ask',
+        options: a.issue
+          ? [{ what: `Work ${a.issue} in ${t.name}.`, by: 'agent', model: 'Sonnet5/Med', recommended: true, issue: a.issue }]
+          : [{ what: `File it as an issue in ${t.repo}, then put the issue in atlas.json's asks.`, by: 'agent', model: 'Sonnet5/Low', effort: '10 min', recommended: true },
+             { what: `Make the change in ${t.name} directly, in a session that has both repositories.`, by: 'agent', model: 'Sonnet5/Med' }] });
+    }
+    for (const c of r.ciFail) out.push({ key: `${r.id}:ci:${c.name}`, repo: r, what: `CI failing: ${c.name}`, on: 'agent', who: 'agent', kind: null,
+      since: c.date?.slice(0, 10), issue: null, holds: [], source: 'ci', url: c.url,
+      options: [{ what: `Read the failing step's log tail and fix it${r.id === 'flood-net' ? ' (or run /ci-doctor)' : ''}.`, by: 'agent', model: 'Sonnet5/Med', recommended: true }] });
+    if (r.manifest && daysSince(r.m.status?.updated) > 30) out.push({ key: `${r.id}:stale`, repo: r, what: `Status not checked since ${r.m.status?.updated}`, on: 'agent', who: 'agent', kind: 'time',
+      since: r.m.status?.updated, holds: ['an accurate map'], source: 'stale',
+      options: [{ what: 'Re-read the repository and its open issues and refresh status in atlas.json.', by: 'agent', model: 'Sonnet5/Low', recommended: true }] });
+  }
+  for (const b of out) {
+    b.lane = laneOf(b);
+    b.age = b.since ? Math.max(0, Math.round(daysSince(b.since))) : null;
+    b.score = b.holds.length * 3 + (b.lane === 'human' ? 1 : 0) + Math.min(b.age || 0, 60) / 20 + (b.source === 'recorded' ? 1 : 0);
+  }
+  out.sort((a, b) => b.score - a.score);
+  BLOCKERS = out;
+  for (const r of D.repos) r.blockers = out.filter(b => b.repo === r);
+}
+
+function holdChip(h, repo) {
+  const m = String(h).match(/^(?:([\w.-]+\/[\w.-]+))?#(\d+)$/);
+  if (m) {
+    const full = m[1] || repo.repo;
+    const tgt = D.repos.find(x => x.repo.toLowerCase() === full.toLowerCase());
+    const iss = (tgt?.issues || []).find(i => i.n === +m[2]);
+    return `<a class="chip hold" href="https://github.com/${esc(full)}/issues/${m[2]}" target="_blank" rel="noopener" title="${esc(iss ? iss.title : 'Issue')}">${m[1] ? esc(full.split('/')[1]) : ''}#${m[2]}${iss ? ' ' + esc(iss.title.length > 34 ? iss.title.slice(0, 32) + '…' : iss.title) : ''}</a>`;
+  }
+  if (R.has(h)) { const t = R.get(h); return `<button class="chip hold" data-go-repo="${esc(t.id)}"><img src="${esc(t.logo)}" alt="">${esc(t.label || t.name)}</button>`; }
+  return `<span class="chip hold">${esc(h)}</span>`;
+}
+
+function byBadge(o) {
+  if (o.by === 'human') return `<span class="by by-human" title="Only you can do this">You</span>`;
+  if (o.by === 'agent') return `<span class="by by-agent" title="An agent can do this${o.model ? ': ' + esc(o.model) + ' recommended' : ''}">Agent${o.model ? ` · ${esc(o.model)}` : ''}</span>`;
+  const t = R.get(o.by);
+  return t ? `<span class="by by-repo" title="Done in ${esc(t.name)}"><img src="${esc(t.logo)}" alt="">${esc(t.label || t.name)}</span>` : `<span class="by">${esc(o.by)}</span>`;
+}
+
+function optionPrompt(b, o) {
+  const r = b.repo, where = R.get(o.by) || r;
+  return [
+    `In ${where.repo}: ${o.what}`,
+    '',
+    `This is a way through a blocker the Atlas records for ${r.name} (${r.repo}): "${b.what}"${b.since ? `, blocking since ${b.since}` : ''}.`,
+    b.holds.length ? `It holds up: ${b.holds.join(', ')}.` : '',
+    b.issue ? `Tracking issue: ${/\//.test(b.issue) ? b.issue : r.repo + b.issue}` : '',
+    o.issue && o.issue !== b.issue ? `This option's issue: ${/\//.test(o.issue) ? o.issue : where.repo + o.issue}` : '',
+    '',
+    `Read ${where.repo}'s CLAUDE.md first and follow it.${o.model ? ` Recommended: ${o.model.replace('/', ' / ')}.` : ''}`,
+    `When you're done, update status.blocked in ${r.repo}'s atlas.json: remove the blocker if it's cleared, or record what changed and what's left.`,
+  ].filter((x, k, a) => x !== '' || a[k - 1] !== '').join('\n');
+}
+function helpPrompt(b, o) {
+  return [
+    `Walk me through this, one step at a time, and tell me what to check after each step: ${o.what}`,
+    '',
+    `It's to clear a blocker in ${b.repo.name} (${b.repo.repo}): "${b.what}".`,
+    o.issue || b.issue ? `The issue has the details: https://github.com/${b.repo.repo}/issues/${issueNum(o.issue || b.issue) || ''}` : '',
+    'Read the issue and the repository\'s CLAUDE.md first. Never ask me to paste a secret into the chat.',
+  ].filter(Boolean).join('\n');
+}
+
+function blockerCard(b, { compact = false } = {}) {
+  const r = b.repo;
+  const src = { recorded: '', issue: term('from an issue', 'A [Human] issue the repository\'s status does not list yet.'), drift: term('behind upstream', 'Worked out by the Atlas: an upstream change this repository has not caught up with.', 'bad'), ask: term('an ask', 'Something this repository asked of another.', 'warn'), ci: term('CI', 'The latest run of this workflow failed.', 'warn'), stale: term('old status', 'Nobody has checked this repository\'s atlas.json status for a month.', 'warn') }[b.source];
+  const on = b.lane === 'repo' ? R.get(b.who) : null;
+  const opts = b.options.length ? b.options : [{ what: 'No way through recorded yet. Ask an agent in this repository to list the options.', by: 'agent', model: 'Sonnet5/Low' }];
+  return `<article class="blk lane-${b.lane}" data-key="${esc(b.key)}">
+    <div class="blk-top">${compact ? '' : `<img src="${esc(r.logo)}" alt=""><button class="linkish" data-go-repo="${esc(r.id)}">${esc(r.label || r.name)}</button>`}
+      ${b.kind ? `<span class="chip" title="${esc(KIND[b.kind] || '')}">${esc(b.kind)}</span>` : ''}${src}
+      ${b.age !== null ? `<span class="chip" title="Blocking since ${esc(b.since)}">${b.age === 0 ? 'today' : b.age === 1 ? '1 day' : b.age + ' days'}</span>` : ''}
+      ${on ? `<span class="chip waits" title="Clears when ${esc(on.name)} moves">waits on <img src="${esc(on.logo)}" alt="">${esc(on.label || on.name)}</span>` : ''}</div>
+    <h4 class="blk-what">${rich(b.what, r.repo)}${b.url ? ` <a href="${esc(b.url)}" target="_blank" rel="noopener">log ↗</a>` : ''}${b.link ? ` <button class="linkish" data-go-link="${esc(b.link)}">the link</button>` : ''}</h4>
+    ${b.context ? `<p class="blk-ctx" title="The opening of the issue">${esc(b.context)}</p>` : ''}
+    ${b.holds.length ? `<div class="holds"><span class="holds-l" title="What clearing this would unblock">Holds up</span>${b.holds.map(h => holdChip(h, r)).join('')}</div>` : ''}
+    <ol class="opts" aria-label="Ways through">${opts.map(o => `<li class="opt ${o.recommended ? 'rec' : ''}">
+      <div class="opt-head">${byBadge(o)}${o.effort ? `<span class="chip" title="Rough effort">${esc(o.effort)}</span>` : ''}${o.recommended ? '<span class="chip good" title="The option the repository would pick">suggested</span>' : ''}
+        ${o.by === 'human' ? promptBtn(helpPrompt(b, o), 'Help me') : promptBtn(optionPrompt(b, o), 'Prompt')}</div>
+      <div class="opt-what">${rich(o.what, (R.get(o.by) || r).repo)}${o.issue && o.issue !== b.issue ? ` ${rich(o.issue, r.repo)}` : ''}</div>
+      ${o.pros || o.cons ? `<div class="opt-pc">${o.pros ? `<span><b>+</b> ${esc(o.pros)}</span>` : ''}${o.cons ? `<span><b>−</b> ${esc(o.cons)}</span>` : ''}</div>` : ''}
+    </li>`).join('')}</ol>
+  </article>`;
+}
+
+function wireCards(el) {
+  $$('[data-copy]', el).forEach(b => b.addEventListener('click', e => { e.stopPropagation(); copyText(PROMPTS.get(b.dataset.copy), b); }));
+  $$('[data-go-repo]', el).forEach(b => b.addEventListener('click', () => goRepo(b.dataset.goRepo)));
+  $$('[data-go-link]', el).forEach(b => b.addEventListener('click', () => { showView('map'); select({ type: 'link', id: b.dataset.goLink }); }));
+}
+
+let blockFilter = { repos: null, lane: null };
+function renderBlockers() {
+  const el = $('#blockers-view');
+  const withB = D.repos.filter(r => r.blockers.length);
+  if (!blockFilter.repos) blockFilter.repos = new Set(withB.map(r => r.id));
+  const q = ($('#search').value || '').toLowerCase();
+  const pick = BLOCKERS.filter(b => blockFilter.repos.has(b.repo.id) && (!q || `${b.what} ${b.repo.name} ${b.options.map(o => o.what).join(' ')}`.toLowerCase().includes(q)));
+  const count = id => pick.filter(b => b.lane === id).length;
+  const holdsMost = [...pick].filter(b => b.holds.length).sort((a, b) => b.holds.length - a.holds.length).slice(0, 3);
+  el.innerHTML = `<div class="page"><h2>Blockers</h2>
+    <p class="intro">Everything stopping work, by who can clear it, with the ways through each one. Repositories record their own in <code>atlas.json</code> (<code>status.blocked</code>); the Atlas adds what it can see for itself: <code>[Human]</code> issues, links behind upstream, asks nobody has filed, failing CI. Each lane is sorted by how much a blocker holds up. <b>Prompt</b> hands an option to a new session; <b>Help me</b> asks one to walk you through yours.</p>
+    <div class="lane-sum">${LANES.map(l => `<button class="lane-pill lane-${l.id}" data-lane="${l.id}" aria-pressed="${blockFilter.lane === l.id}"><b>${count(l.id)}</b> ${esc(l.name.toLowerCase())}</button>`).join('')}<button class="lane-pill" data-lane="" aria-pressed="${!blockFilter.lane}">all <b>${pick.length}</b></button></div>
+    ${holdsMost.length ? `<div class="box most"><b>Clears the most:</b> ${holdsMost.map(b => `<a href="#" data-key="${esc(b.key)}" onclick="return false">${esc(b.repo.label || b.repo.name)} — ${esc(b.what.length > 70 ? b.what.slice(0, 68) + '…' : b.what)}</a> <span class="chip">holds ${b.holds.length}</span>`).join(' · ')}</div>` : ''}
+    <div class="filters">${withB.map(r => `<button data-repo="${esc(r.id)}" aria-pressed="${blockFilter.repos.has(r.id)}"><img src="${esc(r.logo)}" alt="">${esc(r.label || r.name)} <b>${r.blockers.length}</b></button>`).join('')}</div>
+    <div class="lanes">${LANES.filter(l => !blockFilter.lane || blockFilter.lane === l.id).map(l => {
+      const items = pick.filter(b => b.lane === l.id);
+      return `<section class="lane lane-${l.id}"><h3><span>${esc(l.name)}</span><span>${items.length}</span></h3><p class="sub">${esc(l.about)}</p>${items.map(b => blockerCard(b)).join('') || '<div class="empty">Nothing here.</div>'}</section>`;
+    }).join('')}</div></div>`;
+  $$('.filters button', el).forEach(b => b.addEventListener('click', () => {
+    const id = b.dataset.repo, all = withB.length;
+    if (blockFilter.repos.size === all) blockFilter.repos = new Set([id]);
+    else if (blockFilter.repos.has(id)) { blockFilter.repos.delete(id); if (!blockFilter.repos.size) blockFilter.repos = new Set(withB.map(r => r.id)); }
+    else blockFilter.repos.add(id);
+    renderBlockers();
+  }));
+  $$('.lane-pill', el).forEach(b => b.addEventListener('click', () => { blockFilter.lane = b.dataset.lane || null; renderBlockers(); }));
+  $$('.most [data-key]', el).forEach(a => a.addEventListener('click', () => $(`.blk[data-key="${CSS.escape(a.dataset.key)}"]`, el)?.scrollIntoView({ behavior: 'smooth', block: 'center' })));
+  wireCards(el);
 }
 
 // The provider end of a link may name a `provides` entry (which names a component) or a component.
@@ -129,7 +324,14 @@ function consumerComp(l) {
 const view = { x: 0, y: 0, k: 1 };
 const expanded = new Set(store.get('expanded', []));
 let selected = null; // { type: 'repo'|'link'|'comp', id }
-let gWorld, gZones, gLinks, gNodes, gComps;
+let gWorld, gZones, gLinks, gNodes, gComps, gBlock;
+let showBlockers = store.get('blockers', false);
+// Where "You" and "Agents" stand on the map when blockers are shown: below everything.
+function actors() {
+  const xs = D.repos.map(r => r.x), maxY = Math.max(...D.repos.map(r => r.y + r.r));
+  const mid = (Math.min(...xs) + Math.max(...xs)) / 2;
+  return { human: { x: mid - 210, y: maxY + 170, r: 46, name: 'You' }, agent: { x: mid + 210, y: maxY + 170, r: 46, name: 'Agents' } };
+}
 
 function buildMap() {
   const el = $('#map');
@@ -142,6 +344,10 @@ function buildMap() {
     const m = svg('marker', { id: `arrow-${k}`, viewBox: '0 0 10 10', refX: 8.5, refY: 5, markerWidth: 7, markerHeight: 7, orient: 'auto-start-reverse' }, defs);
     svg('path', { d: 'M0,1 L9,5 L0,9 z', style: `fill: var(--${k === 'behind' ? 'bad' : k === 'stale' ? 'warn' : 'k-' + k})` }, m);
   }
+  for (const [k, v] of [['human', 'human'], ['agent', 'accent'], ['repo', 'bad']]) {
+    const m = svg('marker', { id: `arrow-b-${k}`, viewBox: '0 0 10 10', refX: 8.5, refY: 5, markerWidth: 5, markerHeight: 5, orient: 'auto' }, defs);
+    svg('path', { d: 'M0,1 L9,5 L0,9 z', style: `fill: var(--${v})` }, m);
+  }
   const pat = svg('pattern', { id: 'dots', width: 28, height: 28, patternUnits: 'userSpaceOnUse' }, defs);
   svg('circle', { cx: 2, cy: 2, r: 1.3, style: 'fill: var(--dot)' }, pat);
   for (const r of D.repos) {
@@ -152,6 +358,7 @@ function buildMap() {
   gWorld = svg('g', { id: 'world' }, el);
   gZones = svg('g', { class: 'zones' }, gWorld);
   gLinks = svg('g', { class: 'links' }, gWorld);
+  gBlock = svg('g', { class: 'blockers' }, gWorld);
   gComps = svg('g', { class: 'comps' }, gWorld);
   gNodes = svg('g', { class: 'nodes' }, gWorld);
   drawAll();
@@ -159,8 +366,53 @@ function buildMap() {
 }
 
 function drawAll() {
-  drawZones(); drawNodes(); drawComps(); drawLinks(); applyView(); applyHighlight();
+  drawZones(); drawNodes(); drawComps(); drawLinks(); drawBlockers(); applyView(); applyHighlight();
 }
+
+// One line per repository and per whoever can clear its blockers: to You, to Agents, or
+// to the repository it waits on. Thickness is how many; the badge says how many.
+function drawBlockers() {
+  gBlock.innerHTML = '';
+  $('#map').classList.toggle('show-blockers', showBlockers);
+  if (!showBlockers) return;
+  const A = actors();
+  const groups = new Map();
+  for (const b of BLOCKERS) {
+    const key = `${b.repo.id}>${b.who}`;
+    if (!groups.has(key)) groups.set(key, { repo: b.repo, who: b.who, list: [] });
+    groups.get(key).list.push(b);
+  }
+  for (const g of groups.values()) {
+    const a = g.repo, tgt = g.who === 'human' ? A.human : g.who === 'agent' ? A.agent : R.get(g.who);
+    if (!tgt) continue;
+    const dx = tgt.x - a.x, dy = tgt.y - a.y, dist = Math.hypot(dx, dy) || 1;
+    const cx = (a.x + tgt.x) / 2 - dy / dist * dist * 0.12, cy = (a.y + tgt.y) / 2 + dx / dist * dist * 0.12;
+    const t1 = Math.hypot(cx - a.x, cy - a.y) || 1, t2 = Math.hypot(tgt.x - cx, tgt.y - cy) || 1;
+    const sx = a.x + (cx - a.x) / t1 * (a.r + 4), sy = a.y + (cy - a.y) / t1 * (a.r + 4);
+    const ex = tgt.x - (tgt.x - cx) / t2 * (tgt.r + 8), ey = tgt.y - (tgt.y - cy) / t2 * (tgt.r + 8);
+    const lane = g.who === 'human' ? 'human' : g.who === 'agent' ? 'agent' : 'repo';
+    const el = svg('g', { class: `bline lane-${lane}`, 'data-repo': a.id, 'data-who': g.who }, gBlock);
+    const d = `M${sx.toFixed(1)},${sy.toFixed(1)} Q${cx.toFixed(1)},${cy.toFixed(1)} ${ex.toFixed(1)},${ey.toFixed(1)}`;
+    svg('path', { class: 'vis', d, style: `stroke-width:${Math.min(2 + g.list.length * 0.8, 9)}px`, 'marker-end': `url(#arrow-b-${lane})` }, el);
+    svg('path', { class: 'hit', d }, el);
+    const mx = 0.25 * sx + 0.5 * cx + 0.25 * ex, my = 0.25 * sy + 0.5 * cy + 0.25 * ey;
+    svg('path', { class: 'oct', d: octagon(mx, my, 11) }, el);
+    const t = svg('text', { class: 'oct-tx', x: mx, y: my }, el); t.textContent = g.list.length;
+  }
+  for (const [id, p] of Object.entries(A)) {
+    const n = BLOCKERS.filter(b => b.lane === id).length;
+    const g = svg('g', { class: `actor actor-${id}`, 'data-lane': id, transform: `translate(${p.x},${p.y})`, tabindex: 0, role: 'button', 'aria-label': `${p.name}: ${n} blockers` }, gBlock);
+    svg('circle', { r: p.r }, g);
+    if (id === 'human') { svg('circle', { class: 'glyph', cx: 0, cy: -11, r: 10 }, g); svg('path', { class: 'glyph', d: 'M-20,22 C-20,4 20,4 20,22 Z' }, g); }
+    else { svg('rect', { class: 'glyph', x: -17, y: -15, width: 34, height: 28, rx: 7 }, g); svg('circle', { class: 'glyph-eye', cx: -7, cy: -2, r: 4 }, g); svg('circle', { class: 'glyph-eye', cx: 7, cy: -2, r: 4 }, g); svg('path', { class: 'glyph', d: 'M-2,-15 L-2,-22 L2,-22 L2,-15 Z' }, g); }
+    const name = svg('text', { class: 'name', y: p.r + 19 }, g); name.textContent = p.name;
+    const sub = svg('text', { class: 'tag', y: p.r + 33 }, g); sub.textContent = `${n} blocker${n === 1 ? '' : 's'} to clear`;
+  }
+}
+const octagon = (x, y, r) => {
+  const k = r * 0.4142;
+  return `M${x - k},${y - r} L${x + k},${y - r} L${x + r},${y - k} L${x + r},${y + k} L${x + k},${y + r} L${x - k},${y + r} L${x - r},${y + k} L${x - r},${y - k} Z`;
+};
 
 function drawZones() {
   gZones.innerHTML = '';
@@ -308,7 +560,7 @@ function applyView() {
 function fit(ids, animate = true) {
   const el = $('#map'), w = el.clientWidth, h = el.clientHeight;
   if (!w || !h) return;
-  const set = ids ? D.repos.filter(r => ids.includes(r.id)) : D.repos;
+  const set = ids ? D.repos.filter(r => ids.includes(r.id)) : showBlockers ? [...D.repos, ...Object.values(actors())] : D.repos;
   const pad = ids ? 160 : 70;
   const x0 = Math.min(...set.map(r => r.x - r.r)) - pad, x1 = Math.max(...set.map(r => r.x + r.r)) + pad;
   const y0 = Math.min(...set.map(r => r.y - r.r)) - pad, y1 = Math.max(...set.map(r => r.y + r.r)) + pad;
@@ -386,7 +638,7 @@ function wireMap(el) {
     } else {
       const w = toWorld(p);
       drag.r.x = Math.round(w.x - drag.dx); drag.r.y = Math.round(w.y - drag.dy);
-      drawZones(); drawNodes(); drawComps(); drawLinks(); applyHighlight();
+      drawZones(); drawNodes(); drawComps(); drawLinks(); drawBlockers(); applyHighlight();
     }
   });
   const end = e => {
@@ -416,6 +668,9 @@ function wireMap(el) {
 
 function click(t) {
   hideTip();
+  const actor = t.closest('.actor'), bline = t.closest('.bline');
+  if (actor) { blockFilter.lane = actor.dataset.lane; blockFilter.repos = null; showView('blockers'); return; }
+  if (bline) return select({ type: 'blocked', repo: bline.dataset.repo, who: bline.dataset.who });
   const comp = t.closest('.comp'), node = t.closest('.node'), link = t.closest('.link');
   if (comp) return select({ type: 'comp', id: comp.dataset.comp, repo: comp.dataset.repo });
   if (node) {
@@ -441,6 +696,13 @@ function toggleExpand(id, on) {
 let hoverKey = null;
 function hover(e) {
   const t = e.target;
+  const bline = t.closest?.('.bline'), actor = t.closest?.('.actor');
+  if (bline || actor) {
+    const list = bline ? BLOCKERS.filter(b => b.repo.id === bline.dataset.repo && b.who === bline.dataset.who) : BLOCKERS.filter(b => b.lane === actor.dataset.lane);
+    const head = bline ? `${esc(R.get(bline.dataset.repo).name)} → ${esc(bline.dataset.who === 'human' ? 'you' : bline.dataset.who === 'agent' ? 'an agent' : R.get(bline.dataset.who).name)}` : esc(actor.dataset.lane === 'human' ? 'Waiting on you' : 'An agent can clear');
+    showTip(e, `<b>${head} · ${list.length}</b><ul style="margin:4px 0 0;padding-left:16px">${list.slice(0, 6).map(b => `<li>${esc(b.what.length > 70 ? b.what.slice(0, 68) + '…' : b.what)}</li>`).join('')}${list.length > 6 ? `<li class="muted">and ${list.length - 6} more</li>` : ''}</ul><span class="muted">Click for the ways through.</span>`);
+    return;
+  }
   const node = t.closest?.('.node'), link = t.closest?.('.link'), comp = t.closest?.('.comp');
   const key = node ? 'n:' + node.dataset.id : link ? 'l:' + link.dataset.ids : comp ? 'c:' + comp.dataset.repo + ':' + comp.dataset.comp : null;
   if (key !== hoverKey) { hoverKey = key; applyHighlight(); }
@@ -510,7 +772,7 @@ function select(s) {
   applyHighlight();
   const panel = $('#panel');
   if (!s) { panel.classList.remove('open'); setHash(); return; }
-  panel.innerHTML = s.type === 'repo' ? repoPanel(R.get(s.id)) : s.type === 'link' ? linkPanel(L.find(l => l.id === s.id)) : s.type === 'pair' ? pairPanel(s.from, s.to) : compPanel(R.get(s.repo), s.id);
+  panel.innerHTML = s.type === 'repo' ? repoPanel(R.get(s.id)) : s.type === 'link' ? linkPanel(L.find(l => l.id === s.id)) : s.type === 'pair' ? pairPanel(s.from, s.to) : s.type === 'blocked' ? blockedPanel(s.repo, s.who) : compPanel(R.get(s.repo), s.id);
   panel.classList.add('open');
   panel.scrollTop = 0;
   setHash();
@@ -632,7 +894,7 @@ function repoPanel(r) {
       <div><h3>Next</h3>${list(s.next, 'Nothing recorded.')}</div>
     </div>
     ${s.later?.length ? `<h3>Later</h3>${list(s.later)}` : ''}
-    ${s.blocked?.length ? `<h3>Blocked</h3><ul>${s.blocked.map(b => `<li>${rich(b.what, r.repo)} ${b.on === 'human' ? term('on you', 'Only you can do this.', 'human') : `<span class="chip">on ${esc(b.on)}</span>`}</li>`).join('')}</ul>` : ''}
+    ${r.blockers.length ? `<h3>Blocked (${r.blockers.length}) — and the ways through</h3>${r.blockers.map(b => blockerCard(b, { compact: true })).join('')}` : ''}
     ${(m.asks || []).length ? `<h3>Asks of other repos</h3><ul>${m.asks.map(a => `<li><b>${esc(R.get(a.to)?.name || a.to)}</b>: ${rich(a.what)} ${a.issue ? rich(a.issue) : term('not filed', 'Not yet an issue in the other repository.', 'warn')}</li>`).join('')}</ul>` : ''}
     <h3>Takes from (${inL.length})</h3>${inL.length ? inL.map(l => linkRow(l, 'in')).join('') : '<div class="empty">Nothing from the other repositories.</div>'}
     <h3>Gives to (${outL.length})</h3>${outL.length ? outL.map(l => linkRow(l, 'out')).join('') : '<div class="empty">Nothing the other repositories rely on.</div>'}
@@ -687,6 +949,15 @@ function linkPanel(l) {
   </div>`;
 }
 
+function blockedPanel(repoId, who) {
+  const r = R.get(repoId), list = BLOCKERS.filter(b => b.repo.id === repoId && b.who === who);
+  const whoName = who === 'human' ? 'you' : who === 'agent' ? 'an agent' : R.get(who)?.name;
+  return `
+  <div class="p-head"><div class="row1"><img src="${esc(r.logo)}" alt=""><div><h2>${esc(r.name)}</h2><div class="sub">${list.length} blocker${list.length === 1 ? '' : 's'} waiting on ${esc(whoName)}</div></div>
+    <button class="icon-btn p-close" aria-label="Close">✕</button></div></div>
+  <div class="p-body">${list.map(b => blockerCard(b, { compact: true })).join('')}</div>`;
+}
+
 function pairPanel(from, to) {
   const a = R.get(from), b = R.get(to), ls = L.filter(l => l.from === from && l.to === to);
   return `
@@ -730,7 +1001,7 @@ function renderRoadmap() {
       rows.push(ul(s.now, 'Now'));
       rows.push(ul(s.next, 'Next'));
       rows.push(ul(s.later, 'Later'));
-      const blocked = [...(s.blocked || []).map(b => `${rich(b.what, r.repo)} ${b.on === 'human' ? term('you', 'Only you can do this.', 'human') : `<span class="chip">${esc(b.on)}</span>`}`), ...r.behindIn.map(l => `Behind ${esc(R.get(l.from).name)}: ${esc(l.what)} ${term('drift', l.drift.note, 'bad')}`)];
+      const blocked = r.blockers.filter(b => b.source === 'recorded' || b.source === 'drift').map(b => `${rich(b.what, r.repo)} ${b.lane === 'human' ? term('you', 'Only you can clear this.', 'human') : b.lane === 'agent' ? term('agent', 'An agent can clear this.', 'acc') : `<span class="chip">${esc(R.get(b.who)?.name || b.who)}</span>`}${b.options.length ? ` <button class="chip linkish-chip" data-blockers="${esc(r.id)}" title="See the ways through on the Blockers view">${b.options.length} way${b.options.length === 1 ? '' : 's'} through</button>` : ''}`);
       rows.push(`<div data-col="Blocked / behind">${blocked.length ? `<ul>${blocked.map(x => `<li>${x}</li>`).join('')}</ul>` : ''}</div>`);
     }
   }
@@ -738,6 +1009,7 @@ function renderRoadmap() {
     <p class="intro">Every repository's Now / Next / Later, from the <code>status</code> in its own <code>atlas.json</code>. Each repository keeps its own detailed roadmap (linked in its panel); this is the one-screen summary they feed. Blocked items marked <span class="chip human">you</span> wait on you.</p>
     <div class="road"><div class="hd">Repository</div><div class="hd">Now</div><div class="hd">Next</div><div class="hd">Later</div><div class="hd">Blocked / behind</div>${rows.join('')}</div></div>`;
   $$('[data-go-repo]', el).forEach(b => b.addEventListener('click', () => goRepo(b.dataset.goRepo)));
+  $$('[data-blockers]', el).forEach(b => b.addEventListener('click', e => { e.stopPropagation(); blockFilter = { repos: new Set([b.dataset.blockers]), lane: null }; showView('blockers'); }));
 }
 
 // ------------------------------------------------------------------ board view
@@ -836,6 +1108,8 @@ function renderGuide() {
     <div class="box"><h4>3 · Forward: changes travel downstream</h4>A consumer records where it last caught up (a pinned commit, a version, a review date). When the provider changes a watched file after that, the link turns <b style="color:var(--bad)">behind</b>, and the consumer's daily <code>atlas.yml</code> check opens an issue there with the upstream commits and how to catch up.</div>
     <div class="box"><h4>4 · Back: asks travel upstream</h4>When a repo needs another to change, its agent files an issue in the other repo (or records it under <code>asks</code> until it can). Issues that name another repo show on the line between the two.</div>
   </div>
+  <h3>Blockers</h3>
+  <p>Press <b>Blockers</b> on the map to see what is stopping work: a line from each repository to <b>You</b>, to <b>Agents</b>, or to the repository it waits on, as thick as the number of blockers on it. Click a line, or open the <b>Blockers</b> view, for each blocker, what it holds up, and the ways through it, each marked with who can do it, the effort and the one the repository would pick. Repositories record blockers and options in <code>status.blocked</code>; the Atlas adds <code>[Human]</code> issues, links behind upstream, asks nobody has filed and failing CI by itself.</p>
   <h3>Reading the map</h3>
   <ul>
     <li><b>Arrows</b> point from the repository that provides to the one that relies on it — the way a change travels.</li>
@@ -850,13 +1124,14 @@ function renderGuide() {
 }
 
 // ------------------------------------------------------------------ chrome
-const VIEWS = ['map', 'roadmap', 'board', 'links', 'activity', 'guide'];
+const VIEWS = ['map', 'blockers', 'roadmap', 'board', 'links', 'activity', 'guide'];
 let current = 'map';
 function showView(v) {
   if (!VIEWS.includes(v)) v = 'map';
   current = v;
   for (const id of VIEWS) $(`#${id}-view`).hidden = id !== v;
   $$('nav.views button').forEach(b => b.setAttribute('aria-selected', b.dataset.view === v));
+  if (v === 'blockers') renderBlockers();
   if (v === 'roadmap') renderRoadmap();
   if (v === 'board') renderBoard();
   if (v === 'links') renderLinks();
@@ -866,7 +1141,7 @@ function showView(v) {
   setHash();
 }
 function setHash() {
-  const sel = current === 'map' && selected ? '/' + (selected.type === 'comp' ? `${selected.repo}.${selected.id}` : selected.type === 'link' ? 'link:' + selected.id : selected.type === 'pair' ? `pair:${selected.from}>${selected.to}` : selected.id) : '';
+  const sel = current === 'map' && selected && selected.type !== 'blocked' ? '/' + (selected.type === 'comp' ? `${selected.repo}.${selected.id}` : selected.type === 'link' ? 'link:' + selected.id : selected.type === 'pair' ? `pair:${selected.from}>${selected.to}` : selected.id) : '';
   const h = '#' + current + sel;
   if (location.hash !== h) history.replaceState(null, '', h);
 }
@@ -890,14 +1165,15 @@ function renderStrip() {
   $('#strip').innerHTML = [
     `<span class="stat muted" title="Repositories on the map"><b>${D.repos.length}</b> repos · <b>${L.length}</b> links</span>`,
     `<button class="stat" data-go="board"><b>${issues}</b> open issues</button>`,
-    `<button class="stat human" data-go="board" title="Issues tagged [Human] plus status items blocked on you"><b>${humans}</b> waiting on you</button>`,
+    `<button class="stat human" data-go="blockers" data-lane="human" title="Blockers only you can clear: recorded ones and [Human] issues"><b>${BLOCKERS.filter(b => b.lane === 'human').length}</b> waiting on you</button>`,
+    `<button class="stat" data-go="blockers" title="Everything stopping work, with the ways through"><b>${BLOCKERS.length}</b> blockers</button>`,
     `<button class="stat ${behind ? 'bad' : ''}" data-go="links" title="Links where the provider has moved on since the consumer last caught up"><b>${behind}</b> behind upstream</button>`,
     stale ? `<button class="stat warn" data-go="links" title="Citations whose source has changed since they were last reviewed"><b>${stale}</b> may be stale</button>` : '',
     ci ? `<button class="stat warn" data-go="map" title="Repositories whose latest run of a workflow failed"><b>${ci}</b> CI failing</button>` : '',
     old ? `<span class="stat warn muted" title="Repositories whose atlas.json status is over a month old"><b>${old}</b> old status</span>` : '',
     `<span class="stat muted" title="${esc(new Date(D.generated).toLocaleString())}">built ${esc(ago(D.generated))}</span>`,
   ].join('');
-  $$('#strip [data-go]').forEach(b => b.addEventListener('click', () => showView(b.dataset.go)));
+  $$('#strip [data-go]').forEach(b => b.addEventListener('click', () => { if (b.dataset.go === 'blockers') blockFilter = { repos: null, lane: b.dataset.lane || null }; showView(b.dataset.go); }));
 }
 
 function legend() {
@@ -933,6 +1209,12 @@ function wireChrome() {
     $('#btn-expand').textContent = expanded.size ? 'Hide parts' : 'Show all parts';
   });
   $('#btn-expand').textContent = expanded.size ? 'Hide parts' : 'Show all parts';
+  const bb = $('#btn-blockers');
+  bb.setAttribute('aria-pressed', showBlockers);
+  bb.addEventListener('click', () => {
+    showBlockers = !showBlockers; store.set('blockers', showBlockers); bb.setAttribute('aria-pressed', showBlockers);
+    drawBlockers(); applyHighlight(); fit();
+  });
   const reset = $('#btn-reset');
   reset.hidden = !Object.keys(custom).length;
   reset.addEventListener('click', () => {
@@ -948,6 +1230,7 @@ function wireChrome() {
   $('#search').addEventListener('input', () => {
     const q = $('#search').value.trim().toLowerCase();
     if (current === 'board') { renderBoard(); return; }
+    if (current === 'blockers') { renderBlockers(); return; }
     if (!q) { select(null); return; }
     const hit = D.repos.find(r => `${r.name} ${r.repo} ${r.m.tagline || ''}`.toLowerCase().includes(q))
       || D.repos.find(r => r.comps.some(c => `${c.name} ${c.what}`.toLowerCase().includes(q)));

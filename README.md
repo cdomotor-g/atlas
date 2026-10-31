@@ -16,6 +16,7 @@ receiving end has kept up.
 | View | What it answers |
 |---|---|
 | **Map** | How does it all fit together? What is behind? Drag to rearrange, scroll or pinch to zoom, click to drill down. |
+| **Blockers** | Everything stopping work, in three lanes — only you, an agent can, waiting on another repo — each with what it holds up and the ways through it (who can do each, the effort, the one the repo would pick). **Help me** asks a session to walk you through yours. On the map, the **Blockers** button draws a line from each repository to **You**, **Agents** or the repository it waits on. |
 | **Roadmap** | Every repository's Now / Next / Later / Blocked on one screen. |
 | **Board** | Every open issue, by who can move it: waiting on you, ready for an agent (by model), behind upstream, epics. **Prompt** copies a brief for a new Claude Code session or Dispatch. |
 | **Links** | Every dependency between repositories and its state. |
@@ -51,6 +52,11 @@ receiving end has kept up.
 - **Back propagation.** When a repository needs another to change, its agent files an
   issue in the other one and lists it under `asks`. Issues that name another repository
   show on the line between them.
+- **Blockers and the ways through.** A repository records what blocks it in
+  `status.blocked`: who it waits on, what it holds up, and the `options` through it. The
+  Atlas adds the blockers it can see for itself — `[Human]` issues, links behind upstream,
+  asks nobody has filed, failing CI, a status nobody has checked for a month — each with a
+  suggested way through.
 - Repositories that can't carry an `atlas.json` (archived, or not attached) are described
   by the Atlas itself in [`data/fallback/`](data/fallback).
 
