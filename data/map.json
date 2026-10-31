@@ -1,6 +1,6 @@
 {
- "generated": "2026-10-31T22:07:38.416Z",
- "hash": "ec67d03d6dc5bfcf",
+ "generated": "2026-10-31T22:09:11.387Z",
+ "hash": "0aa28f19ebbc93e0",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -55,24 +55,613 @@
    "y": 470,
    "size": 1.6,
    "logo": "assets/logos/flood-net.webp",
-   "name": "MegaNet",
+   "name": "Flood-Net",
    "private": false,
    "visible": true,
    "branch": "main",
-   "manifest": null,
-   "manifestSource": "none",
-   "problems": [
-    "No atlas.json in the repository and no fallback in the Atlas."
-   ],
+   "manifest": {
+    "$schema": "https://cdomotor-g.github.io/atlas/schema/atlas.schema.json",
+    "atlas": 1,
+    "id": "flood-net",
+    "repo": "cdomotor-g/MegaNet",
+    "name": "Flood-Net",
+    "tagline": "The engineering register and toolset for the Bureau's Queensland flood-warning radio network: stations, repeaters, health, field work.",
+    "about": "Flood-Net is the register and toolset for the Bureau of Meteorology's Queensland (and neighbouring) flood-warning telemetry network: the field stations, the repeaters that relay them, the base stations and the radio paths between. It is a browser app with no build step, backed by a Supabase Postgres database and a Cloudflare Worker at floodwarning.net, for the people who plan, inspect and keep the network running. It takes readings in from base stations, judges the network's health on a schedule, publishes a daily animated bulletin, and serves public station data to AI agents through a read-only API and MCP server. It is not a flood warning service.",
+    "kind": "web app, Cloudflare Worker and Postgres database",
+    "logo": "assets/logo.webp",
+    "site": "https://floodwarning.net",
+    "docs": {
+     "readme": "README.md",
+     "roadmap": "roadmap/roadmap-113.md",
+     "agents": "CLAUDE.md",
+     "agents-other": "AGENTS.md",
+     "agent-api": "docs/agent-api.md",
+     "database": "db/README.md",
+     "ingest": "docs/ingest-http.md",
+     "base-stations": "docs/base-stations.md",
+     "bulletin": "tools/bulletin/README.md",
+     "design-system": "docs/design-system.md",
+     "tests": "test/README.md"
+    },
+    "version": {
+     "file": "index.html",
+     "pattern": "\\?v=(\\d{8}[a-z]+)",
+     "releases": false
+    },
+    "status": {
+     "phase": "live",
+     "updated": "2026-10-31",
+     "summary": "Live and in daily use (database schema 93): this week added the agent API's changelog and email list, ACMA licences in the API, the Repeaters tab and cuts to database I/O, while account email, compute size and the ACMA download link wait on the owner.",
+     "now": [
+      "Agent API changelog and notify list shipped; emails start once #237's Resend parts are done",
+      "Photo reader: nightly reading of field photos for logger and equipment details",
+      "#243 R2 data archive: one restored-day self-test left, then close",
+      "#217 and #244 transmitter drift and bit-flip sources: gathering live days of carrier data",
+      "#258 flaky Site features 3-D hand-back check in CI"
+     ],
+     "next": [
+      "#252–#254 road routes: avoid closures, inspection runs, routes kept offline (EPIC #250)",
+      "#238 QLDTraffic flood events and road closures on the Stations map",
+      "#216 staff alerts: daily digest email and web push for critical findings",
+      "#232 measure whether one burst heard by two receivers is stored twice",
+      "#187 ACMA transmitters in the 3-D view",
+      "#220 maintenance due list; #228 accessibility follow-ups"
+     ],
+     "later": [
+      "#201 place a field photo by dragging its pin; #205 site exposure outside Queensland",
+      "#247 carrier outages on Station Health (parked until a source is chosen)"
+     ],
+     "blocked": [
+      {
+       "what": "#237 switch accounts on: finish 0062, send email through Resend, Supabase sign-in settings",
+       "on": "human"
+      },
+      {
+       "what": "#255 move the database to Small compute; #256 choose how long receptions are kept",
+       "on": "human"
+      },
+      {
+       "what": "#245 / #248 find ACMA's new register download link; the ACMA layer is stuck on 23 July 2026",
+       "on": "human"
+      },
+      {
+       "what": "#239 Part 2: rewrite git history to remove the old inspection archive (every commit ID changes)",
+       "on": "human"
+      },
+      {
+       "what": "#157 commission the base-station logger at its first site; #207 Sign in with Microsoft",
+       "on": "human"
+      },
+      {
+       "what": "#204 report templates wait on the owner's example reports; #206 on a credential choice",
+       "on": "human"
+      }
+     ]
+    },
+    "components": [
+     {
+      "id": "app-shell",
+      "name": "App shell and offline",
+      "what": "The single page: about 58 tabs in 13 groups, sign-in, the station list's three sources, the service worker; index.html's script order is the contract and every app push bumps the ?v= stamp.",
+      "paths": [
+       "index.html",
+       "core.js",
+       "init.js",
+       "styles.css",
+       "sw.js",
+       "pwa.js",
+       "route.js",
+       "palette.js",
+       "nav-views.js",
+       "home.js",
+       "whats-new.js",
+       "auth.js",
+       "datastore.js",
+       "capabilities.js"
+      ],
+      "url": "https://floodwarning.net",
+      "status": "live"
+     },
+     {
+      "id": "stations-map",
+      "name": "Stations, maps and 3-D",
+      "what": "The Stations tab and its map layers, the station card and editor, the digital twin, path profiles and link budgets, printed radio path maps, Look Around and Nearby.",
+      "paths": [
+       "app.js",
+       "station-editor.js",
+       "map-*.js",
+       "digital-twin.js",
+       "twin-*.js",
+       "site-features.js",
+       "path-profile.js",
+       "link-budget.js",
+       "terrain.js",
+       "station-ar.js",
+       "nearby.js",
+       "network-maps.js",
+       "export.js"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "network-rf",
+      "name": "Network, RF and interference",
+      "what": "ALERT IDs, Repeaters and Repeater Delays; the ACMA register, RF Changes and the Interference Workbench; Reception Map and Bit-Flip Sources; Signal Routes, Network Review, the ALERT2 Transition Plan and the TDMA Planner.",
+      "paths": [
+       "pass-ranges.js",
+       "address-space.js",
+       "repeaters.js",
+       "repeater-delays.js",
+       "delay-plan.js",
+       "rf-changes.js",
+       "workbench.js",
+       "reception.js",
+       "flip-sources.js",
+       "bit-bench.js",
+       "signal-routes.js",
+       "network-review.js",
+       "alert2-plan.js",
+       "tdma-planner.js",
+       "data/acma-*.json",
+       "tools/acma_fetch.py"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "decoders",
+      "name": "Decoders and Serial Monitor",
+      "what": "The ALERT, ALERT2, HFEM and Quansheng codecs, the off-air SDR decoder, and the Serial Monitor whose receiver cards post what they decode, plus the sdr-pi relay for an RTL-SDR on a Pi.",
+      "paths": [
+       "packets.js",
+       "alert-dsp.js",
+       "alert2.js",
+       "quansheng.js",
+       "serial-gps.js",
+       "hfem.js",
+       "bit-flipper.js",
+       "network-view.js",
+       "serial*.js",
+       "rtlsdr.js",
+       "a2-*.js",
+       "sdr-pi.js",
+       "sdr-pi/"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "network-health",
+      "name": "Readings and network health",
+      "what": "Station Health, Backbone, Investigations and Methodology, the Base Stations tab that manages RPi ALERT stations, and the Field Data, Message Log and Plots tabs over the readings; findings are worked out on the server every 15 minutes.",
+      "paths": [
+       "health.js",
+       "health-*.js",
+       "base-stations.js",
+       "backbone.js",
+       "investigations.js",
+       "methodology.js",
+       "message-log.js",
+       "arro-data.js",
+       "plot-lines.js",
+       "tools/health/",
+       ".github/workflows/station-health.yml"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "bulletins",
+      "name": "Network bulletins and voices",
+      "what": "A scheduled Claude session writes a two-minute animated bulletin each weekday morning (and weekly on Mondays), drawn on Station Health and voiced by the Droggies through ElevenLabs.",
+      "paths": [
+       "health-bulletin.js",
+       "tools/bulletin/",
+       "tools/voice/",
+       "data/bulletins/",
+       "assets/presenters/",
+       ".github/workflows/bulletin-voice.yml"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "field-work",
+      "name": "Site visits, surveying and training",
+      "what": "Inspection sheets, site maintenance and inspection history, the Field Camera and Field Photos, level surveys and two-peg tests, field training and the knowledge base.",
+      "paths": [
+       "inspections.js",
+       "maintenance.js",
+       "history.js",
+       "station-inspections.js",
+       "field-photos.js",
+       "field-camera.js",
+       "photo-*.js",
+       "level-*.js",
+       "levelling.js",
+       "two-peg.js",
+       "survey-guide.js",
+       "kb-*.js",
+       "knowledge-base.js",
+       "propagation*.js",
+       "swr-*.js",
+       "pinouts.js"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "worker",
+      "name": "floodwarning.net Worker",
+      "what": "The Cloudflare Worker in front of the app: Access sign-in turned into a database session, the /api/db proxy for networks that block Supabase, photos and the data archive in R2, Ask Claude, bug reports, council cameras, road routes, push and scheduled notifications.",
+      "paths": [
+       "worker/index.js",
+       "worker/photos.js",
+       "worker/archive.js",
+       "worker/briefing.js",
+       "worker/report.js",
+       "worker/cameras.js",
+       "worker/drive.js",
+       "worker/push.js",
+       "worker/notify.js",
+       "wrangler.toml"
+      ],
+      "url": "https://floodwarning.net",
+      "status": "live"
+     },
+     {
+      "id": "agent-api",
+      "name": "Agent API and MCP server",
+      "what": "Read-only public station data for AI agents and scripts: REST at /api/v1 with OpenAPI, MCP at /api/mcp, rate limited, with a changelog and an email list for its changes.",
+      "paths": [
+       "worker/api.js",
+       "worker/acma.js",
+       "worker/changelog.js",
+       "docs/agent-api.md",
+       "docs/api-changelog.json",
+       "api.html",
+       "AGENTS.md",
+       "GEMINI.md",
+       "llms.txt",
+       ".github/copilot-instructions.md",
+       ".cursor/rules/"
+      ],
+      "url": "https://floodwarning.net/api/v1",
+      "status": "live"
+     },
+     {
+      "id": "database",
+      "name": "Postgres schema (Supabase)",
+      "what": "The meganet schema: stations, readings, receptions and their roll-ups, inspections, photos, health findings, ingest tokens and base stations, in 93 numbered migrations applied by the db-migrate workflow; every raw day archived to R2 before it is deleted.",
+      "paths": [
+       "db/migrations/",
+       "db/README.md",
+       "tools/check_*.sql",
+       ".github/workflows/db-migrate.yml",
+       ".github/workflows/archive-r2.yml",
+       "stations.json"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "ingest-adapters",
+      "name": "MQTT bridge and base-station logger",
+      "what": "The MQTT-to-ingest bridge (Fly.io, deployed by a workflow button) and the CRBasic program for a base station's datalogger that posts over HTTPS and publishes over MQTT.",
+      "paths": [
+       "bridge/",
+       "logger/",
+       "docs/ingest-mqtt.md",
+       "docs/mqtt-provisioning.md",
+       "docs/ingest-hfem.md",
+       ".github/workflows/deploy-bridge.yml"
+      ],
+      "status": "beta"
+     },
+     {
+      "id": "automation",
+      "name": "Scheduled jobs, agent skills and data tools",
+      "what": "GitHub workflows (smoke test, ACMA refresh, photo syncs, station snapshot, roadmap sync), the CI doctor and photo reader Claude skills, the weekly security review, the ingest tools and the test suite.",
+      "paths": [
+       ".github/workflows/",
+       ".claude/skills/",
+       "tools/security-scan/",
+       "tools/ingest/",
+       "tools/snapshot_stations_json.py",
+       "test/"
+      ],
+      "status": "live"
+     }
+    ],
+    "provides": [
+     {
+      "id": "agent-api",
+      "name": "Agent API (REST and MCP)",
+      "what": "Read-only public station data: search and stations near a point, a station's record and dossier, readings and the latest reading per station, health findings and silent stations, flood levels, service levels, ACMA licences, catchments, networks, and a changelog of every visible API change.",
+      "component": "agent-api",
+      "paths": [
+       "worker/api.js",
+       "worker/acma.js",
+       "worker/changelog.js",
+       "docs/agent-api.md",
+       "docs/api-changelog.json"
+      ],
+      "url": "https://floodwarning.net/api/v1",
+      "contract": "docs/agent-api.md"
+     },
+     {
+      "id": "https-ingest",
+      "name": "HTTPS ingest for base stations",
+      "what": "PostgREST RPCs a base station calls with its own token: ingest_http (readings, deduplicated on address, time and raw value), report_ingest_point, report_receptions, and asking for a token that an administrator approves; reachable directly or through the floodwarning.net /api/db proxy.",
+      "component": "database",
+      "paths": [
+       "docs/ingest-http.md",
+       "docs/ingest-serial-monitor.md",
+       "db/migrations/0007_ingest_http.sql",
+       "db/migrations/0012_base_station_tokens.sql",
+       "db/migrations/0045_ingest_points.sql",
+       "db/migrations/0047_receptions.sql",
+       "db/migrations/0048_ingest_token_requests.sql",
+       "db/migrations/0052_ingest_seen_when_heard.sql",
+       "worker/index.js"
+      ],
+      "url": "https://floodwarning.net/api/db/rest/v1/rpc/ingest_http",
+      "contract": "docs/ingest-http.md"
+     },
+     {
+      "id": "base-station-checkin",
+      "name": "Base-station check-in",
+      "what": "A base station's minute-by-minute health report (receivers, queue, power, clock, software, spectrum) and the short fixed list of requests the Base Stations tab can leave for it: a setting, a restart, an update, its log, the team's SSH keys.",
+      "component": "network-health",
+      "paths": [
+       "docs/base-stations.md",
+       "db/migrations/0049_base_stations.sql",
+       "db/migrations/0068_base_station_spectrum.sql"
+      ],
+      "contract": "docs/base-stations.md"
+     },
+     {
+      "id": "station-list",
+      "name": "Station list",
+      "what": "Every station with its sensors, ALERT addresses, repeaters and radio details; kept in Postgres (meganet.stations_doc) and exported weekly to stations.json in the same shape.",
+      "component": "database",
+      "paths": [
+       "stations.json",
+       "db/migrations/0002_stations.sql",
+       "db/migrations/0069_stations_doc_cache.sql",
+       "tools/snapshot_stations_json.py"
+      ],
+      "url": "https://raw.githubusercontent.com/cdomotor-g/MegaNet/main/stations.json",
+      "contract": "README.md"
+     },
+     {
+      "id": "alert-dsp",
+      "name": "Off-air ALERT decoder",
+      "what": "Decodes legacy ALERT (Binary, Enhanced iFLOWS, ASCII) from SDR samples, with carrier offset; a port of agmurf/sdr-alert-decoder (MIT), with a real off-air test capture.",
+      "component": "decoders",
+      "paths": [
+       "alert-dsp.js",
+       "test/fixtures/sdr/",
+       "LICENSE"
+      ]
+     },
+     {
+      "id": "quansheng-codec",
+      "name": "Quansheng ALERT radio codec",
+      "what": "The serial codec for the Quansheng UV-K5 V3 / UV-K1 ALERT receiver firmware (schema 2): its records, its console commands and the station table it keeps.",
+      "component": "decoders",
+      "paths": [
+       "quansheng.js"
+      ]
+     },
+     {
+      "id": "alert2-parser",
+      "name": "ALERT2 / ERT-A2 parser",
+      "what": "Reads the ELPRO ERT-A2's RS-232 ASCII lines and USB binary frames by the NHWC specifications, including self-reports.",
+      "component": "decoders",
+      "paths": [
+       "alert2.js"
+      ]
+     },
+     {
+      "id": "serial-gps",
+      "name": "NMEA GPS parser",
+      "what": "NMEA 0183 GGA, RMC and GST sentences from a serial GPS.",
+      "component": "decoders",
+      "paths": [
+       "serial-gps.js"
+      ]
+     },
+     {
+      "id": "packet-formats",
+      "name": "ALERT / ERTS packet formats",
+      "what": "The ALERT / ERTS frame decoder and encoder and its FORMATS table, per the Bureau's ERTS Data Formats specification.",
+      "component": "decoders",
+      "paths": [
+       "packets.js"
+      ]
+     },
+     {
+      "id": "alert2-plan",
+      "name": "ALERT2 transition plan figures",
+      "what": "The planning figures and costs in the ALERT2 Transition Plan (equipment, site audits, licensing per network change).",
+      "component": "network-rf",
+      "paths": [
+       "alert2-plan.js"
+      ]
+     },
+     {
+      "id": "bulletin-voicing",
+      "name": "Bulletin voicing",
+      "what": "How the bulletins read the Droggies' cast (voice, model, direction, sustain, tempo) and the Bulletin voices workflow that voices each bulletin.",
+      "component": "bulletins",
+      "paths": [
+       ".github/workflows/bulletin-voice.yml",
+       "tools/voice/speak.mjs"
+      ]
+     }
+    ],
+    "consumes": [
+     {
+      "id": "droggies-voice-cast",
+      "from": "droggies",
+      "provider": "voice-cast",
+      "into": "bulletins",
+      "what": "Each presenter's voice, read from the Droggies' published site on every Bulletin voices run.",
+      "how": "live",
+      "url": "https://cdomotor-g.github.io/thedroggies/voices/cast.json",
+      "watch": [
+       "voices/cast.json",
+       "schemas/cast.schema.json"
+      ],
+      "since": {
+       "date": "2026-10-25"
+      },
+      "on_change": "A recast needs nothing: the next bulletin is voiced with it (run Actions > Bulletin voices to re-voice old ones). A new or renamed field: update tools/voice/speak.mjs and run cd test && npm run bulletin."
+     },
+     {
+      "id": "droggies-presenters",
+      "from": "droggies",
+      "provider": "character-canon",
+      "into": "bulletins",
+      "what": "The presenters' names, roles and sign-off lines copied into health-bulletin.js ROSTER and tools/bulletin/validate.mjs PRESENTERS, and their portraits cropped into assets/presenters/.",
+      "how": "generated",
+      "watch": [
+       "characters/json/",
+       "characters/art/"
+      ],
+      "since": {
+       "date": "2026-10-31"
+      },
+      "on_change": "Update ROSTER in health-bulletin.js and PRESENTERS in tools/bulletin/validate.mjs, re-crop a changed portrait into assets/presenters/, run cd test && npm run bulletin, and bump the version stamp.",
+      "drift_issue": false
+     },
+     {
+      "id": "rpi-alert-release",
+      "from": "rpi-alert",
+      "provider": "release",
+      "into": "network-health",
+      "what": "The latest RPi ALERT release, shown beside each base station's version on the Base Stations tab (amber when a station is behind).",
+      "how": "release",
+      "url": "https://api.github.com/repos/cdomotor-g/RPi_ALERT/releases/latest",
+      "on_change": "Nothing: the tab asks GitHub every five minutes while open."
+     },
+     {
+      "id": "rpi-alert-sdr-plan",
+      "from": "rpi-alert",
+      "provider": "channel-planner",
+      "into": "network-health",
+      "what": "RPi ALERT's SDR channel plan (each stick's sample-rate windows and usable band), mirrored in base-stations.js WINDOWS and the waterfall's edges, and in sdr-pi.js's channel rules.",
+      "how": "protocol",
+      "watch": [
+       "agent/web/sdr-plan.js"
+      ],
+      "since": {
+       "date": "2026-10-26"
+      },
+      "on_change": "Match WINDOWS in base-stations.js (and sdr-pi.js where the rule is shared) to the new RATES and USABLE; run cd test && npm run basestations && npm run sdrpi; bump the version stamp."
+     },
+     {
+      "id": "rpi-alert-security-review",
+      "from": "rpi-alert",
+      "into": "automation",
+      "what": "The weekly security review reads RPi ALERT's agent and Pi image beside Flood-Net, because the two trust each other through ingest tokens and Base Stations requests.",
+      "how": "reference",
+      "watch": [
+       "agent/",
+       "os/"
+      ],
+      "on_change": "Nothing by hand: the Monday review (tools/security-scan/brief.md) reads it and files findings in flood-net-private."
+     },
+     {
+      "id": "quansheng-serial-protocol",
+      "from": "quansheng-v3",
+      "provider": "serial-protocol",
+      "into": "decoders",
+      "what": "The radio's USB serial protocol (schema 2) and its station-table format, which quansheng.js implements and serial-radio.js builds from the loaded station list; sdr-pi.js follows the same line rules.",
+      "how": "protocol",
+      "watch": [
+       "docs/ALERT_SERIAL.md",
+       "tools/alert/gen_stations.py"
+      ],
+      "since": {
+       "date": "2026-10-01"
+      },
+      "on_change": "Bring quansheng.js (and serial-radio.js / sdr-pi.js where a rule is shared) into line with the changed sections; run cd test && npm run quansheng && npm run sdrpi; bump the version stamp."
+     },
+     {
+      "id": "inspection-archive",
+      "from": "flood-net-private",
+      "provider": "inspection-archive",
+      "into": "automation",
+      "what": "The historical inspection workbook and its derived files, read by the inspection ingest tools from a clone beside this one (tools/ingest/private.py) and loaded into the database.",
+      "how": "live",
+      "watch": [
+       "inspections/"
+      ],
+      "on_change": "Re-run the inspection tools in tools/ingest (survey.py, extract.py, crosswalk.py, remarks.py, load.py) against the clone; their checks run in flood-net-private's own workflow."
+     },
+     {
+      "id": "alert-packets-codec",
+      "from": "alert-packets",
+      "provider": "frame-codec",
+      "into": "decoders",
+      "what": "The ALERT / ERTS packet decoder and encoder, ported once into the ALERT Packets tab (packets.js) and developed here since.",
+      "how": "ported",
+      "watch": [
+       "index.html"
+      ]
+     },
+     {
+      "id": "alert-packets-address-file",
+      "from": "alert-packets",
+      "provider": "address-list",
+      "into": "decoders",
+      "what": "The national ALERT address file and the Bureau's ERTS Data Formats specification, kept byte-for-byte as data/All 2021 Working 2.txt and docs/BOM spec erts_data_formats_doc.pdf.",
+      "how": "vendored",
+      "watch": [
+       "All 2021 Working 2.txt",
+       "BOM spec erts_data_formats_doc.pdf"
+      ],
+      "since": {
+       "date": "2026-10-31"
+      },
+      "on_change": "Copy the changed file over data/All 2021 Working 2.txt (read by packets.js and serial-radio.js) or the PDF in docs/.",
+      "drift_issue": false
+     },
+     {
+      "id": "sort-qld-map-layers",
+      "from": "sort",
+      "provider": "qld-map-layers",
+      "into": "stations-map",
+      "what": "The QLD Globe recipes for the LiDAR contour and survey-mark layers: which ArcGIS services, sublayers resolved by name, and the server-rendered approach (map-contours.js, map-survey.js).",
+      "how": "ported",
+      "watch": [
+       "index.html",
+       "v2/js/map.js"
+      ]
+     }
+    ],
+    "asks": [
+     {
+      "to": "droggies",
+      "what": "Recast Nitto (nitwit) in voices/cast.json with a voice of his own; his current one is too like another Droggie's, so Flood-Net's bulletins bench him until then.",
+      "issue": null,
+      "since": "2026-10-31"
+     }
+    ]
+   },
+   "manifestSource": "repo",
+   "problems": [],
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-10-31T22:04:03Z",
+    "pushed": "2026-10-31T22:08:19Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "990d729",
+     "date": "2026-10-31T22:08:18Z",
+     "msg": "Atlas: describe Flood-Net for the map of all the repos",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/990d729438ed45bfc120a9527e678db38a6e17af"
+    },
     {
      "sha": "f330e75",
      "date": "2026-10-31T22:04:01Z",
@@ -138,12 +727,6 @@
      "date": "2026-10-31T15:15:28Z",
      "msg": "CI doctor: roadmap — #258 Site features 3-D hand-back flake",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/19f41896f42bf7d9f2a12d3a62ac211ad9447193"
-    },
-    {
-     "sha": "70e721c",
-     "date": "2026-10-31T09:49:38Z",
-     "msg": "core.js: DB_SCHEMA_VERSION 93 (0093 applied); the photo reader's suggestions settled; stamp 20261031b",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/70e721c40f046651175d7a5485e0ae4aca3cf4e2"
     }
    ],
    "issues": [
@@ -866,11 +1449,27 @@
    "release": null,
    "ci": [
     {
+     "name": "Atlas",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41246805570",
+     "date": "2026-10-31T22:08:25Z",
+     "event": "push"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "pending",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41246805275",
+     "date": "2026-10-31T22:08:22Z",
+     "event": "push"
+    },
+    {
      "name": "CodeQL",
      "status": "in_progress",
      "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41246470683",
-     "date": "2026-10-31T22:04:17Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41246805237",
+     "date": "2026-10-31T22:08:30Z",
      "event": "push"
     },
     {
@@ -879,14 +1478,6 @@
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41246470647",
      "date": "2026-10-31T22:04:20Z",
-     "event": "push"
-    },
-    {
-     "name": "Web smoke test",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41246470784",
-     "date": "2026-10-31T22:04:31Z",
      "event": "push"
     },
     {
@@ -930,9 +1521,9 @@
      "event": "push"
     }
    ],
-   "version": null,
+   "version": "20261031g",
    "lastCommit": {
-    "date": "2026-10-31T22:04:01Z"
+    "date": "2026-10-31T22:08:18Z"
    }
   },
   {
@@ -1089,24 +1680,446 @@
    "y": 300,
    "size": 1.15,
    "logo": "assets/logos/rpi-alert.svg",
-   "name": "RPi_ALERT",
+   "name": "RPi ALERT",
    "private": false,
    "visible": true,
    "branch": "main",
-   "manifest": null,
-   "manifestSource": "none",
-   "problems": [
-    "No atlas.json in the repository and no fallback in the Atlas."
-   ],
+   "manifest": {
+    "$schema": "https://cdomotor-g.github.io/atlas/schema/atlas.schema.json",
+    "atlas": 1,
+    "id": "rpi-alert",
+    "repo": "cdomotor-g/RPi_ALERT",
+    "name": "RPi ALERT",
+    "tagline": "A Raspberry Pi OS for ALERT flood-warning base stations: hears ALERT and ALERT2, decodes every burst, posts it to Flood-Net.",
+    "about": "Turns a Raspberry Pi into an ALERT and ALERT2 base station. Its Node agent finds RTL-SDR sticks, Quansheng ALERT radios, ELPRO ERT-A2 receivers and a GPS by itself, decodes every burst with Flood-Net's own decoders, keeps readings in a queue on disk and posts them to Flood-Net's ingest. It checks in with Flood-Net's Base Stations tab once a minute, so an administrator can see its health, change its settings and update it from there. A set-up page on GitHub Pages picks the image and writes the SD card's settings, for whoever puts a base station on a site.",
+    "kind": "base-station OS",
+    "logo": "site/icon.svg",
+    "site": "https://cdomotor-g.github.io/RPi_ALERT/",
+    "docs": {
+     "readme": "README.md",
+     "roadmap": "docs/roadmap.md",
+     "agents": "CLAUDE.md",
+     "install": "docs/install.md",
+     "configuration": "docs/configuration.md",
+     "remote_management": "docs/remote-management.md",
+     "access": "docs/access.md",
+     "hardware": "docs/hardware.md",
+     "how_it_works": "docs/how-it-works.md",
+     "bench_test": "docs/bench-test.md",
+     "survey": "docs/survey.md",
+     "release_signing": "docs/release-signing.md",
+     "research": "docs/research.md"
+    },
+    "version": {
+     "file": "agent/package.json",
+     "pattern": "\"version\":\\s*\"([^\"]+)\"",
+     "releases": true
+    },
+    "status": {
+     "phase": "beta",
+     "updated": "2026-10-31",
+     "summary": "Version 0.15.3 is on main (latest release v0.15.2) and runs a live base station on two RTL-SDR sticks; the bench test with a V4 stick, a Quansheng radio and an ERT-A2 has not been done.",
+     "now": [
+      "0.15.x: each stick's narrowest window and its CPU cost, tuned on the live station",
+      "0.15.3 (waterfall window edges hatched) on main, waiting for its release"
+     ],
+     "next": [
+      "Re-sync the vendored decoders: Flood-Net's alert2.js changed on 2026-10-28",
+      "Close #1: the ERT-A2 field fix shipped in 0.14.1",
+      "Headless first run: status file on the boot partition, captive portal on the hotspot",
+      "Dashboard falls back to polling when its event stream fails; reloads after an update",
+      "Show the health it already sends: disk, load, memory, throttling, network in words",
+      "A support bundle: journal, status and settings with secrets taken out",
+      "Confirm actions that can cut you off; Wi-Fi password in a password field",
+      "Set-up page writes the card file's advanced keys and edits an existing one"
+     ],
+     "later": [
+      "ALERT2-only channels skip the legacy decode first, halving their CPU",
+      "A channeliser shared by a stick's channels, built first in Flood-Net's alert-dsp.js",
+      "Updates you can see coming: release notes, roll back, staged fleet roll-out",
+      "Settings backup, and a host id that survives a new SD card",
+      "Read-only root file system; GPS-disciplined time with chrony",
+      "Record the next N seconds; a searchable readings table; listen from a phone",
+      "Upload Flood-Net's station table to a Quansheng radio from the Overview",
+      "Cellular backhaul, UPS HAT status, HTTPS for the web page"
+     ],
+     "blocked": [
+      {
+       "what": "First run on the bench Pi: V2 and V4 sticks, a Quansheng radio, an ERT-A2, power cuts, kiosk, audio jack (docs/bench-test.md)",
+       "on": "human"
+      },
+      {
+       "what": "RTL-SDR Blog V4 confirmed on Trixie's librtlsdr and Bookworm's rtl-sdr-blog build",
+       "on": "human"
+      },
+      {
+       "what": "A second off-air test vector: a good 151.5 MHz ALERT Binary burst captured on the bench",
+       "on": "human"
+      },
+      {
+       "what": "How-it-works and survey docs on a burst heard by two receivers wait for Flood-Net to measure duplicates",
+       "on": "flood-net#232"
+      }
+     ]
+    },
+    "components": [
+     {
+      "id": "agent-core",
+      "name": "Agent daemon and command line",
+      "what": "The rpi-alert daemon and CLI (status, top, setup, request-token, config, remote, access): settings, the SD card's rpi-alert.conf, the clock, the hotspot, the speaker.",
+      "paths": [
+       "agent/bin/",
+       "agent/lib/agent.js",
+       "agent/lib/config.js",
+       "agent/lib/bootconf.js",
+       "agent/lib/state.js",
+       "agent/lib/clock.js",
+       "agent/lib/hotspot.js",
+       "agent/lib/audio.js",
+       "agent/lib/system.js",
+       "agent/package.json"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "sdr",
+      "name": "RTL-SDR receiver",
+      "what": "Several channels per stick, each with its own decoder thread; the window planner, tuning help (ppm, gain, carrier offsets), IQ recordings, and the Pi's own ALERT2 AirLink off-air decoder.",
+      "paths": [
+       "agent/lib/devices/sdr.js",
+       "agent/lib/devices/sdr-worker.js",
+       "agent/lib/devices/sdr-bench.js",
+       "agent/lib/devices/rtl-index.js",
+       "agent/lib/devices/carrier.js",
+       "agent/lib/devices/tune-help.js",
+       "agent/lib/devices/alert2-air.js",
+       "agent/lib/devices/alert2-fec.js",
+       "agent/lib/devices/alert2-readings.js",
+       "agent/web/sdr-plan.js",
+       "agent/lib/recorder.js"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "serial-drivers",
+      "name": "Serial receivers: Quansheng, ERT-A2, GPS",
+      "what": "Finds serial devices by what they send (sniff), then drives Quansheng radios on the v3 or v1 ALERT firmware, ELPRO ERT-A2 receivers and NMEA GPS; reopens them after an unplug.",
+      "paths": [
+       "agent/lib/devices/manager.js",
+       "agent/lib/devices/sniff.js",
+       "agent/lib/devices/quansheng.js",
+       "agent/lib/devices/ert.js",
+       "agent/lib/devices/gps.js",
+       "agent/lib/serial/"
+      ],
+      "status": "beta"
+     },
+     {
+      "id": "vendored-decoders",
+      "name": "Flood-Net's decoders, vendored",
+      "what": "alert-dsp.js, quansheng.js, alert2.js and serial-gps.js copied verbatim from Flood-Net and pinned in SOURCE, so the Pi decodes exactly what the website does.",
+      "paths": [
+       "agent/vendor/meganet/",
+       "agent/lib/meganet-codecs.js",
+       "agent/scripts/sync-meganet.sh"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "flood-net-link",
+      "name": "Flood-Net uplink and queue",
+      "what": "Posts readings, receivers and every frame heard to Flood-Net's ingest with the Pi's own token, from a disk queue that survives power cuts; requests its token; keeps the station register.",
+      "paths": [
+       "agent/lib/meganet.js",
+       "agent/lib/uplink.js",
+       "agent/lib/spool.js",
+       "agent/lib/token-request.js",
+       "agent/lib/stations.js"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "remote",
+      "name": "Remote management and SSH access",
+      "what": "Checks in with Flood-Net's Base Stations tab once a minute and does only the listed verbs it hands back; the alert account's SSH keys from the card, GitHub or Flood-Net's team keys.",
+      "paths": [
+       "agent/lib/remote.js",
+       "agent/lib/access.js",
+       "agent/bin/rpi-alert-access",
+       "os/libexec/rpi-alert-priv",
+       "docs/remote-management.md",
+       "docs/access.md"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "dashboard",
+      "name": "Dashboard and settings page",
+      "what": "The Pi's web page and kiosk: one spectrum and waterfall for every stick, a chart per receiver, a day of history, the Survey page, and every setting.",
+      "paths": [
+       "agent/web/",
+       "agent/lib/web/server.js",
+       "agent/lib/history.js",
+       "agent/lib/survey.js",
+       "agent/lib/web-password.js"
+      ],
+      "url": "http://rpi-alert.local/",
+      "status": "live"
+     },
+     {
+      "id": "os",
+      "name": "OS layer",
+      "what": "install.sh and the one-line bootstrap for an existing Pi; systemd units, udev rules, sudoers, the root helper, the kiosk, the signed-release updater and the boot-partition files.",
+      "paths": [
+       "os/"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "image-build",
+      "name": "Image build and releases",
+      "what": "Builds Raspberry Pi OS Lite images with RPi ALERT installed (arm64, armhf) in a qemu chroot and publishes them, signed, as a GitHub release on a v<version> tag.",
+      "paths": [
+       "build/build-image.sh",
+       ".github/workflows/build-image.yml",
+       "os/libexec/sign-release.js",
+       "os/libexec/verify-release.js",
+       "os/release-signing-key.pem",
+       "docs/release-signing.md"
+      ],
+      "url": "https://github.com/cdomotor-g/RPi_ALERT/releases",
+      "status": "live"
+     },
+     {
+      "id": "setup-site",
+      "name": "Set-up site",
+      "what": "GitHub Pages page that picks the Pi, starts Raspberry Pi Imager with this repository and writes the card's settings file; serves os_list.json from the latest release.",
+      "paths": [
+       "site/",
+       ".github/workflows/pages.yml"
+      ],
+      "url": "https://cdomotor-g.github.io/RPi_ALERT/",
+      "status": "live"
+     },
+     {
+      "id": "tests",
+      "name": "Tests and simulator",
+      "what": "node --test suite with a real off-air burst, protocol vectors, a Flood-Net stand-in, pty receivers and a fake rtl_sdr; simulate.sh runs a base station with no hardware.",
+      "paths": [
+       "agent/test/",
+       "agent/scripts/simulate.sh",
+       ".github/workflows/test.yml"
+      ],
+      "status": "live"
+     }
+    ],
+    "provides": [
+     {
+      "id": "release",
+      "name": "RPi ALERT release",
+      "what": "A GitHub release per v<version> tag: SD-card images, Imager entries and a signed agent-and-OS tarball the Pis' updater installs. Flood-Net's Base Stations tab reads the latest tag to offer 'Install the latest release'.",
+      "component": "image-build",
+      "paths": [
+       "agent/package.json",
+       ".github/workflows/build-image.yml",
+       "os/libexec/rpi-alert-update"
+      ],
+      "url": "https://api.github.com/repos/cdomotor-g/RPi_ALERT/releases/latest",
+      "contract": "docs/release-signing.md"
+     },
+     {
+      "id": "checkin-protocol",
+      "name": "Base-station check-in: heartbeat, status and verbs",
+      "what": "What a Pi sends Flood-Net's base_station_checkin each minute (heartbeat, spectrum rows, whole status, settings without secrets) and the only requests it accepts back: status, log, config.set, device.*, send-now, update.*, agent.restart, reboot, access.sync, recordings.",
+      "component": "remote",
+      "paths": [
+       "agent/lib/remote.js",
+       "agent/lib/config.js",
+       "docs/remote-management.md",
+       "docs/configuration.md"
+      ],
+      "contract": "docs/remote-management.md"
+     },
+     {
+      "id": "channel-planner",
+      "name": "SDR channel planner rules",
+      "what": "How a stick's window and centre are chosen for its channels: the sample rates (RATES), the usable middle 80% (USABLE), clearance from the DC spike and mirror images. Flood-Net's sdr-pi.js and Base Stations waterfall follow the same rules.",
+      "component": "sdr",
+      "paths": [
+       "agent/web/sdr-plan.js"
+      ],
+      "contract": "docs/hardware.md"
+     },
+     {
+      "id": "alert2-airlink-decoder",
+      "name": "ALERT2 AirLink off-air decoder",
+      "what": "Decodes ALERT2 AirLink frames (4800 bps, with FEC) from an SDR channel. Self-contained, and meant to move into Flood-Net beside alert-dsp.js so the website's SDR card hears ALERT2 too.",
+      "component": "sdr",
+      "paths": [
+       "agent/lib/devices/alert2-air.js",
+       "agent/lib/devices/alert2-fec.js"
+      ],
+      "contract": "docs/how-it-works.md"
+     },
+     {
+      "id": "setup-site",
+      "name": "Set-up site and Imager repository",
+      "what": "The page that sets up a new base station and writes its rpi-alert.conf, and os_list.json for rpi-imager --repo, built from the latest release.",
+      "component": "setup-site",
+      "paths": [
+       "site/",
+       ".github/workflows/pages.yml",
+       "os/boot/rpi-alert.conf.example"
+      ],
+      "url": "https://cdomotor-g.github.io/RPi_ALERT/"
+     }
+    ],
+    "consumes": [
+     {
+      "id": "vendored-decoders",
+      "from": "flood-net",
+      "provider": "decoders",
+      "into": "vendored-decoders",
+      "what": "Flood-Net's off-air ALERT decoder, Quansheng serial codec, ERT-A2 ALERT2 parser and NMEA parser, copied verbatim with the off-air test burst.",
+      "how": "vendored",
+      "watch": [
+       "alert-dsp.js",
+       "quansheng.js",
+       "alert2.js",
+       "serial-gps.js",
+       "test/fixtures/sdr/testrig_burst_240k.iq8"
+      ],
+      "since": {
+       "file": "agent/vendor/meganet/SOURCE",
+       "pattern": "commit:\\s+([0-9a-f]{7,40})"
+      },
+      "on_change": "Run agent/scripts/sync-meganet.sh (copies the files from Flood-Net's main and records the commit in SOURCE), then the agent tests: cd agent && node --test test/*.test.js. Follow any changed shape in the drivers (ert.js, quansheng.js, sdr.js), bump agent/package.json and release.",
+      "drift_issue": true
+     },
+     {
+      "id": "ingest",
+      "from": "flood-net",
+      "provider": "https-ingest",
+      "into": "flood-net-link",
+      "what": "Flood-Net's HTTPS ingest: ingest_http (readings), report_ingest_point (receivers), report_receptions (every frame heard) and the token request, as RPCs with the X-Ingest-Token header through floodwarning.net's /api/db proxy, or Supabase directly.",
+      "how": "protocol",
+      "watch": [
+       "docs/ingest-http.md",
+       "docs/ingest-serial-monitor.md",
+       "worker/index.js",
+       "db/migrations/*ingest*",
+       "db/migrations/*reception*"
+      ],
+      "since": {
+       "date": "2026-10-26"
+      },
+      "on_change": "Check agent/lib/meganet.js, uplink.js and token-request.js against the change, update the stand-in agent/test/helpers/meganet-stub.js, then cd agent && node --test test/*.test.js."
+     },
+     {
+      "id": "base-station-checkin",
+      "from": "flood-net",
+      "provider": "base-station-checkin",
+      "into": "remote",
+      "what": "Flood-Net's side of the check-in: the base_station_checkin and base_station_keys RPCs, what they keep (a 16 KB status, a 2 KB heartbeat, spectrum rows) and the config.set patches the Base Stations tab writes.",
+      "how": "protocol",
+      "watch": [
+       "docs/base-stations.md",
+       "db/migrations/*base_station*",
+       "base-stations.js"
+      ],
+      "since": {
+       "date": "2026-10-25"
+      },
+      "on_change": "Check agent/lib/remote.js (verbs, status and heartbeat limits, the config.set guards) and docs/remote-management.md against it, then cd agent && node --test test/*.test.js."
+     },
+     {
+      "id": "station-register",
+      "from": "flood-net",
+      "provider": "station-list",
+      "into": "flood-net-link",
+      "what": "Flood-Net's public station register, fetched daily and kept on disk: names what each address is, and offers a stick's channels from the frequencies stations near the Pi use. The set-up page reads it too.",
+      "how": "live",
+      "url": "https://floodwarning.net/stations.json",
+      "on_change": "If the document's shape changes, update agent/lib/stations.js and site/app.js, then cd agent && node --test test/stations.test.js."
+     },
+     {
+      "id": "quansheng-v3-serial",
+      "from": "quansheng-v3",
+      "provider": "serial-protocol",
+      "into": "serial-drivers",
+      "what": "The ALERT receiver firmware's USB serial interface, schema 2: DEC, BST, STA and EVT lines, DTR, TIME and the console. The line codec is Flood-Net's quansheng.js (vendored); the driver adds DTR toggling, clock setting and one command at a time.",
+      "how": "protocol",
+      "watch": [
+       "docs/ALERT_SERIAL.md",
+       "tools/alert/V2_SPEC.md",
+       "App/app/alert_console.c"
+      ],
+      "since": {
+       "date": "2026-10-06"
+      },
+      "on_change": "A record-format change goes into Flood-Net's quansheng.js first and comes here with agent/scripts/sync-meganet.sh; DTR, clock or console changes go in agent/lib/devices/quansheng.js. Then cd agent && node --test test/*.test.js."
+     },
+     {
+      "id": "quansheng-v1-serial",
+      "from": "quansheng-v1",
+      "provider": "uart-line",
+      "into": "serial-drivers",
+      "what": "The older DP32G030 ALERT firmware's UART line, ALERT,<id>,<value>,<ABF|EIF>,<rssi>,<name> at 38400 over the programming cable: recognised by sniff.js, read by the Quansheng driver's legacy path.",
+      "how": "protocol",
+      "watch": [
+       "app/alert.c",
+       "README.md"
+      ],
+      "since": {
+       "date": "2026-10-06"
+      },
+      "on_change": "Update the LEGACY pattern in agent/lib/devices/quansheng.js and the sniff in agent/lib/devices/sniff.js, then cd agent && node --test test/devices.test.js."
+     }
+    ],
+    "asks": [
+     {
+      "to": "flood-net",
+      "what": "Take the ALERT2 AirLink decoder (agent/lib/devices/alert2-air.js, alert2-fec.js) beside alert-dsp.js, so the website's SDR card hears ALERT2 and the Pi can vendor it back.",
+      "issue": null,
+      "since": "2026-10-19"
+     },
+     {
+      "to": "flood-net",
+      "what": "Map an ALERT2 station's (station, sensor number) to an ALERT id in the register, so self-reporting stations' sensors become readings rather than receptions only.",
+      "issue": null,
+      "since": "2026-10-19"
+     },
+     {
+      "to": "flood-net",
+      "what": "A channeliser shared by a stick's channels (one filter bank per stick) in alert-dsp.js, or at least a lighter first filter, so a Pi can take a fifth channel.",
+      "issue": null,
+      "since": "2026-10-24"
+     },
+     {
+      "to": "flood-net",
+      "what": "Measure whether one burst heard by two receivers is stored twice, so both repositories' docs say the same true thing.",
+      "issue": "cdomotor-g/MegaNet#232",
+      "since": "2026-10-07"
+     }
+    ]
+   },
+   "manifestSource": "repo",
+   "problems": [],
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-10-26T12:14:06Z",
+    "pushed": "2026-10-31T22:08:06Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/RPi_ALERT"
    },
    "commits": [
+    {
+     "sha": "fe7792a",
+     "date": "2026-10-31T22:08:04Z",
+     "msg": "Atlas: describe RPi ALERT for the map of all the repos",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/fe7792a87f87e93dc9557252e48fbac79d7cb0d5"
+    },
     {
      "sha": "d232963",
      "date": "2026-10-26T12:14:04Z",
@@ -1172,15 +2185,27 @@
      "date": "2026-10-21T08:46:58Z",
      "msg": "Legacy carrier: the burst's offset only on readings it carried; vendored alert-dsp.js at MegaNet 92e005d (MegaNet #217)",
      "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/a7ffb56c05a08e3bc6e99399f0c10e391cd74f23"
-    },
-    {
-     "sha": "618d8a1",
-     "date": "2026-10-21T08:26:34Z",
-     "msg": "0.14.0: legacy ALERT carrier offsets to MegaNet, and a repeater's copy kept (MegaNet #217)",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/618d8a12c4b3d2d6f10f3420372a82dd650b5bfd"
     }
    ],
    "issues": [
+    {
+     "n": 2,
+     "raw": "[Standalone] [Sonnet5/Med] Upstream moved: MegaNet changed alert2.js",
+     "structure": "standalone",
+     "parent": null,
+     "model": "Sonnet5",
+     "effort": "Med",
+     "human": false,
+     "title": "Upstream moved: MegaNet changed alert2.js",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/issues/2",
+     "updated": "2026-10-31T22:08:25Z",
+     "created": "2026-10-31T22:08:25Z",
+     "comments": 0,
+     "labels": [],
+     "mentions": [
+      "meganet"
+     ]
+    },
     {
      "n": 1,
      "raw": "[Standalone] [Sonnet5/Med] Take MegaNet's ALERT2 field fix — stop dropping ALERT2 self-reports on the Pi",
@@ -1200,7 +2225,7 @@
      ]
     }
    ],
-   "issueCount": 1,
+   "issueCount": 2,
    "release": {
     "tag": "v0.15.2",
     "date": "2026-10-25T00:33:11Z",
@@ -1209,10 +2234,18 @@
    "ci": [
     {
      "name": "test",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41246787868",
+     "date": "2026-10-31T22:08:19Z",
+     "event": "push"
+    },
+    {
+     "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/40320965024",
-     "date": "2026-10-26T12:16:04Z",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41246788233",
+     "date": "2026-10-31T22:08:29Z",
      "event": "push"
     },
     {
@@ -1232,9 +2265,9 @@
      "event": "workflow_dispatch"
     }
    ],
-   "version": "0.15.2",
+   "version": "0.15.3",
    "lastCommit": {
-    "date": "2026-10-26T12:14:04Z"
+    "date": "2026-10-31T22:08:04Z"
    }
   },
   {
@@ -1884,24 +2917,286 @@
    "size": 1.1,
    "label": "Quansheng V3 firmware",
    "logo": "assets/logos/quansheng-v3.png",
-   "name": "quansheng_alert_v3",
+   "name": "Quansheng ALERT receiver (UV-K5 V3 / UV-K1)",
    "private": false,
    "visible": true,
    "branch": "main",
-   "manifest": null,
-   "manifestSource": "none",
-   "problems": [
-    "No atlas.json in the repository and no fallback in the Atlas."
-   ],
+   "manifest": {
+    "$schema": "https://cdomotor-g.github.io/atlas/schema/atlas.schema.json",
+    "atlas": 1,
+    "id": "quansheng-v3",
+    "repo": "cdomotor-g/quansheng_alert_v3",
+    "name": "Quansheng ALERT receiver (UV-K5 V3 / UV-K1)",
+    "tagline": "ALERT flood-telemetry receiver firmware for the Quansheng UV-K5 V3 and UV-K1, a fork of F4HWN.",
+    "about": "A fork of the F4HWN firmware for the PY32F071 radios that adds an ALERT receiver app: it demodulates the 300-baud bursts on 151.5 MHz in software, decodes them, names the station from a table generated from Flood-Net's station list, logs to SPI flash and talks to a computer over USB-C. Our work is the app (App/app/alert_*), its host tools (tools/alert/, tools/hotflash.py), filters/ and docs/ALERT_SERIAL.md; everything else is upstream F4HWN. People get it through the quansheng_alert_ALL installer, and Flood-Net and RPi ALERT read it over serial.",
+    "kind": "radio firmware (F4HWN fork)",
+    "logo": "tools/alert/screens/v2-list.png",
+    "site": "https://cdomotor-g.github.io/quansheng_alert_ALL/",
+    "docs": {
+     "readme": "README.md",
+     "agents": "CLAUDE.md",
+     "serial": "docs/ALERT_SERIAL.md",
+     "spec": "tools/alert/V2_SPEC.md",
+     "notes": "tools/alert/README.md"
+    },
+    "status": {
+     "phase": "beta",
+     "updated": "2026-10-31",
+     "summary": "Receiver v2 decodes on air (22 of 22 bursts) and ships through quansheng_alert_ALL; no firmware work since 1 October, and its built-in station table is a month behind Flood-Net.",
+     "next": [
+      "Regenerate the built-in station table: Flood-Net now gives 451 sites, not 443",
+      "Record which Flood-Net commit the built-in table was generated from",
+      "Drop A2C's zero status-byte check; Flood-Net reads it as a time offset (cdomotor-g/MegaNet#209)",
+      "Send quansheng_alert_ALL a firmware-updated dispatch after each push to main"
+     ]
+    },
+    "components": [
+     {
+      "id": "alert-app",
+      "name": "ALERT receiver app",
+      "what": "The app behind the ALERT menu entry: burst capture, the screens, settings, speaker and voice, and the CSV records.",
+      "paths": [
+       "App/app/alert.c",
+       "App/app/alert.h",
+       "App/app/alert_int.h",
+       "App/app/alert_ui.c"
+      ],
+      "status": "beta"
+     },
+     {
+      "id": "demodulator",
+      "name": "Software AFSK demodulator",
+      "what": "Reads the receiver audio on PA4 with the ADC and turns 1300/2100 Hz, 300-baud bursts into bits, sampled mid-bit.",
+      "paths": [
+       "App/app/alert_adc.c",
+       "App/app/alert_adc.h"
+      ],
+      "status": "beta"
+     },
+     {
+      "id": "decoder",
+      "name": "Frame decoder",
+      "what": "Finds ABF and EIF frames in the bits (and decodes A2C records) by Flood-Net's packets.js layouts, with the idle gate and CRC-6.",
+      "paths": [
+       "App/app/alert_decode.c",
+       "App/app/alert_decode.h",
+       "tools/alert/test_decode.c"
+      ],
+      "status": "beta"
+     },
+     {
+      "id": "station-table",
+      "name": "Station table",
+      "what": "A built-in table of 443 South-East Queensland sites generated from Flood-Net, plus a fuller table that can be uploaded to SPI flash.",
+      "paths": [
+       "App/app/alert_stations_gen.h",
+       "App/app/alert_stn.c",
+       "App/app/alert_stn.h",
+       "tools/alert/gen_stations.py",
+       "filters/"
+      ],
+      "status": "beta"
+     },
+     {
+      "id": "spi-log",
+      "name": "SPI flash log",
+      "what": "A ring log of every decode in SPI flash, kept clear of the radio's voice clips and read back over USB.",
+      "paths": [
+       "App/app/alert_log.c",
+       "App/app/alert_log.h"
+      ],
+      "status": "beta"
+     },
+     {
+      "id": "console",
+      "name": "USB serial interface",
+      "what": "Text console and records over USB-C (schema 2): HDR, DEC, BST, STA, EVT, settings, log dump, station upload and screen capture.",
+      "paths": [
+       "App/app/alert_console.c",
+       "App/app/alert_console.h",
+       "docs/ALERT_SERIAL.md"
+      ],
+      "status": "beta"
+     },
+     {
+      "id": "host-tools",
+      "name": "Host tools",
+      "what": "alertterm.py (the reference client), hotflash.py for flashing over USB-C, and the capture, simulation and layout checks.",
+      "paths": [
+       "tools/alert/",
+       "tools/hotflash.py"
+      ],
+      "status": "beta"
+     },
+     {
+      "id": "ci",
+      "name": "CI build and checks",
+      "what": "Builds the RescueOps image with ENABLE_ALERT=ON, confirms the app is in it, and runs the decoder, layout and menu-wiring checks.",
+      "paths": [
+       ".github/workflows/main.yml"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "f4hwn-base",
+      "name": "F4HWN base firmware",
+      "what": "Upstream F4HWN Fusion port for the PY32F071 by muzkr and armel (Apache-2.0); the ALERT app hooks into its menu, keys and settings.",
+      "paths": [
+       "App/",
+       "Core/",
+       "Drivers/",
+       "Middlewares/",
+       "CMakeLists.txt",
+       "CMakePresets.json"
+      ],
+      "url": "https://github.com/armel/uv-k1-k5v3-firmware-custom"
+     }
+    ],
+    "provides": [
+     {
+      "id": "firmware",
+      "name": "ALERT firmware source (RescueOps build)",
+      "what": "The source quansheng_alert_ALL compiles every week: cmake --preset RescueOps -DENABLE_ALERT=ON gives build/RescueOps/f4hwn.rescueops.bin.",
+      "component": "alert-app",
+      "paths": [
+       "App/",
+       "Core/",
+       "Drivers/",
+       "Middlewares/",
+       "cmake/",
+       "CMakeLists.txt",
+       "CMakePresets.json",
+       "filters/stations.filter"
+      ],
+      "contract": ".github/workflows/main.yml"
+     },
+     {
+      "id": "serial-protocol",
+      "name": "ALERT serial interface, schema 2",
+      "what": "What the radio sends and accepts on USB-C: line format, records, DTR rule, console commands, screen capture. Flood-Net's quansheng.js and RPi ALERT implement it.",
+      "component": "console",
+      "paths": [
+       "docs/ALERT_SERIAL.md",
+       "tools/alert/V2_SPEC.md",
+       "App/app/alert_console.c",
+       "App/app/alert.c"
+      ],
+      "contract": "docs/ALERT_SERIAL.md"
+     },
+     {
+      "id": "station-blob",
+      "name": "SPI station-table blob",
+      "what": "The ASTB table format uploaded with the console's STN commands (section 8); Flood-Net's Serial Radio tab builds the same blob.",
+      "component": "station-table",
+      "paths": [
+       "docs/ALERT_SERIAL.md",
+       "tools/alert/gen_stations.py",
+       "App/app/alert_stn.c",
+       "App/app/alert_stn.h"
+      ],
+      "contract": "docs/ALERT_SERIAL.md"
+     },
+     {
+      "id": "logging-client",
+      "name": "alertterm.py",
+      "what": "Reference client: live table, log download as CSV, station upload, screenshots, console. The setup guide tells people to run it.",
+      "component": "host-tools",
+      "paths": [
+       "tools/alert/alertterm.py"
+      ],
+      "contract": "docs/ALERT_SERIAL.md"
+     },
+     {
+      "id": "screens",
+      "name": "Screen captures",
+      "what": "PNG captures of the v2 screens taken from the radio over SCREEN; the setup guide shows copies.",
+      "component": "alert-app",
+      "paths": [
+       "tools/alert/screens/"
+      ]
+     }
+    ],
+    "consumes": [
+     {
+      "id": "station-table",
+      "from": "flood-net",
+      "provider": "station-list",
+      "into": "station-table",
+      "what": "Station names, sensor kinds, ALERT addresses and repeater networks for the built-in table.",
+      "how": "generated",
+      "watch": [
+       "stations.json",
+       "data/All 2021 Working 2.txt",
+       "data/ALL_REPEATERS.csv"
+      ],
+      "since": {
+       "date": "2026-09-30"
+      },
+      "on_change": "python3 tools/alert/gen_stations.py --meganet-dir ../MegaNet --filter filters/stations.filter --out App/app/alert_stations_gen.h (8000-byte limit), then build and push. No Flood-Net commit is recorded: the header points at docs/firmware/manifest.json, which this repository does not have.",
+      "drift_issue": false
+     },
+     {
+      "id": "station-upload",
+      "from": "flood-net",
+      "provider": "station-list",
+      "into": "host-tools",
+      "what": "alertterm.py stations-upload reads Flood-Net's station files from main at run time to build the SPI table.",
+      "how": "live",
+      "url": "https://raw.githubusercontent.com/cdomotor-g/MegaNet/main/stations.json",
+      "watch": [
+       "stations.json",
+       "data/All 2021 Working 2.txt",
+       "data/ALL_REPEATERS.csv"
+      ],
+      "on_change": "Nothing to rebuild. If the files' layout changes (sensors, alert_ids, radio_networks), fix the parsers in tools/alert/gen_stations.py."
+     },
+     {
+      "id": "packet-formats",
+      "from": "flood-net",
+      "provider": "packet-formats",
+      "into": "decoder",
+      "what": "The ABF, EIF and A2C bit layouts and the CRC-6, mirrored bit for bit from packets.js FORMATS.",
+      "how": "protocol",
+      "watch": [
+       "packets.js"
+      ],
+      "since": {
+       "date": "2026-10-01"
+      },
+      "on_change": "Compare packets.js FORMATS with App/app/alert_decode.c; mirror any change and add a vector to tools/alert/test_decode.c."
+     },
+     {
+      "id": "setup-site",
+      "from": "quansheng-all",
+      "provider": "setup-site",
+      "what": "The README sends people to the setup guide and to the installer at /flash/?radio=v3.",
+      "how": "reference",
+      "watch": [
+       "docs/index.html",
+       "docs/flash/",
+       "docs/js/installer.js"
+      ],
+      "on_change": "Check the README's links to the guide and the installer still land."
+     }
+    ]
+   },
+   "manifestSource": "repo",
+   "problems": [],
    "gh": {
     "description": "This is a fork of F4HWN firmware https://github.com/armel/uv-k5-firmware-custom by @muzkr and @armel",
     "archived": false,
-    "pushed": "2026-10-20T00:36:25Z",
+    "pushed": "2026-10-31T22:08:15Z",
     "homepage": null,
     "language": "C",
     "url": "https://github.com/cdomotor-g/quansheng_alert_v3"
    },
    "commits": [
+    {
+     "sha": "d779c51",
+     "date": "2026-10-31T22:08:14Z",
+     "msg": "Atlas: describe the V3 ALERT firmware for the map of all the repos",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/commit/d779c517f96226d6ae57b1fd3f81e9760640274f"
+    },
     {
      "sha": "ad166ca",
      "date": "2026-10-20T00:11:32Z",
@@ -1967,12 +3262,6 @@
      "date": "2026-09-30T10:56:17Z",
      "msg": "docs: the receiver works - 22 bursts of 22 through the PA4 audio route",
      "url": "https://github.com/cdomotor-g/quansheng_alert_v3/commit/80529f1aefcdb7e4475a68280e8d47257c2df3a5"
-    },
-    {
-     "sha": "8a9b2ec",
-     "date": "2026-09-30T10:45:57Z",
-     "msg": "fix: the ADC demodulator took every bit on its boundary, not its middle",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/commit/8a9b2ec9e92bf30e771102b8a9cda3d847433b8d"
     }
    ],
    "issues": [],
@@ -1981,16 +3270,24 @@
    "ci": [
     {
      "name": "Build Firmware",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/41246801133",
+     "date": "2026-10-31T22:08:22Z",
+     "event": "push"
+    },
+    {
+     "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/36664302193",
-     "date": "2026-09-30T03:25:42Z",
-     "event": "workflow_dispatch"
+     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/41246801414",
+     "date": "2026-10-31T22:08:34Z",
+     "event": "push"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-10-20T00:11:32Z"
+    "date": "2026-10-31T22:08:14Z"
    }
   },
   {
@@ -2351,24 +3648,299 @@
    "size": 1,
    "label": "Radio setup site",
    "logo": "assets/logos/quansheng-all.jpg",
-   "name": "quansheng_alert_ALL",
+   "name": "ALERT Radio Setup",
    "private": false,
    "visible": true,
    "branch": "main",
-   "manifest": null,
-   "manifestSource": "none",
-   "problems": [
-    "No atlas.json in the repository and no fallback in the Atlas."
-   ],
+   "manifest": {
+    "$schema": "https://cdomotor-g.github.io/atlas/schema/atlas.schema.json",
+    "atlas": 1,
+    "id": "quansheng-all",
+    "repo": "cdomotor-g/quansheng_alert_ALL",
+    "name": "ALERT Radio Setup",
+    "tagline": "Front door for Quansheng ALERT receivers: setup guide, browser installer for both radio families, firmware refreshed weekly.",
+    "about": "The one link to give anyone who wants a Quansheng handheld that decodes ALERT flood telemetry. It has a setup guide (what to buy, which radio you have, every screen, key and setting, logging to a computer), a Chrome/Edge Web Serial installer that backs up and flashes both the UV-K5 V3 / UV-K1 and the older UV-K5, and the firmware itself, rebuilt from source every week. It holds no firmware source of its own.",
+    "kind": "static site + Web Serial installer",
+    "logo": "docs/img/photos/uv-k5-8-angled.jpg",
+    "site": "https://cdomotor-g.github.io/quansheng_alert_ALL/",
+    "docs": {
+     "readme": "README.md",
+     "guide": "docs/index.html",
+     "manifest": "docs/firmware/manifest.json",
+     "photo-credits": "docs/img/photos/credits.json"
+    },
+    "status": {
+     "phase": "live",
+     "updated": "2026-10-31",
+     "summary": "Guide, two-family installer and weekly firmware refresh all shipped on 20 October, but Pages still serves the repository root, so /flash/ links 404.",
+     "next": [
+      "Delete the root index.html forward once Pages serves /docs",
+      "Drop the UV-K5 builds' Experimental badge once a modded radio decodes on air"
+     ],
+     "blocked": [
+      {
+       "what": "Set GitHub Pages to branch main, folder /docs (Settings, Pages); until then /flash/?radio=v3 links 404",
+       "on": "human"
+      }
+     ]
+    },
+    "components": [
+     {
+      "id": "guide",
+      "name": "Setup guide",
+      "what": "One page: what ALERT is, what to buy, how to tell a V3 from a UV-K5, installing, every screen, key and setting, logging, troubleshooting, downloads.",
+      "paths": [
+       "docs/index.html",
+       "docs/js/guide.js",
+       "docs/css/guide.css",
+       "docs/img/",
+       "index.html"
+      ],
+      "url": "https://cdomotor-g.github.io/quansheng_alert_ALL/",
+      "status": "live"
+     },
+     {
+      "id": "installer",
+      "name": "Browser installer",
+      "what": "Wizard that reads the bootloader, refuses firmware for the other chip, backs the radio up, flashes it and checks the result.",
+      "paths": [
+       "docs/flash/",
+       "docs/js/installer.js",
+       "docs/css/flasher.css"
+      ],
+      "url": "https://cdomotor-g.github.io/quansheng_alert_ALL/docs/flash/",
+      "status": "live"
+     },
+     {
+      "id": "protocol",
+      "name": "Bootloader protocol",
+      "what": "Framing, obfuscation, image checks and commands for both bootloaders (2.x and 7.x), checked against serialtool and k5prog vectors.",
+      "paths": [
+       "docs/js/k5protocol.js"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "transport",
+      "name": "Web Serial transport",
+      "what": "Talks to the radio over Web Serial: backup, restore and flash for both families, including the V3's USB-C port that changes id.",
+      "paths": [
+       "docs/js/k5radio.js"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "firmware",
+      "name": "Published firmware",
+      "what": "The V3 build and the UV-K5 builds, with a manifest giving each one's size, sha256, station count and source commit.",
+      "paths": [
+       "docs/firmware/"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "refresh",
+      "name": "Weekly firmware refresh",
+      "what": "Every Monday (or on dispatch) copies the UV-K5 builds, compiles the V3 build reproducibly, rewrites the manifest and commits only real changes.",
+      "paths": [
+       ".github/workflows/refresh-firmware.yml",
+       "tools/build_manifest.py",
+       "tools/check_manifest.py"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "cable",
+      "name": "Cable tools",
+      "what": "A guide to building a two-pin programming cable and k5diag.py, a command-line cable and radio check.",
+      "paths": [
+       "docs/cable/",
+       "docs/tools/k5diag.py"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "tests",
+      "name": "Tests",
+      "what": "Protocol vectors, the whole installer driven against simulated radios of both kinds, the guide page, and the manifest check.",
+      "paths": [
+       "test/",
+       ".github/workflows/test.yml",
+       "package.json"
+      ],
+      "status": "live"
+     }
+    ],
+    "provides": [
+     {
+      "id": "setup-site",
+      "name": "Setup guide and installer",
+      "what": "The one link for setting up a radio; the V3 and UV-K5 firmware READMEs send people here, and to /flash/?radio=v3 or v1.",
+      "component": "guide",
+      "paths": [
+       "docs/index.html",
+       "docs/flash/index.html",
+       "docs/js/installer.js"
+      ],
+      "url": "https://cdomotor-g.github.io/quansheng_alert_ALL/"
+     },
+     {
+      "id": "firmware-builds",
+      "name": "Published firmware and manifest",
+      "what": "Current builds for both families; manifest.json lists each file with its sha256, size, station count and source commit. Served at firmware/manifest.json under the site once Pages serves /docs.",
+      "component": "firmware",
+      "paths": [
+       "docs/firmware/manifest.json",
+       "docs/firmware/v3/",
+       "docs/firmware/v1/"
+      ],
+      "contract": "tools/check_manifest.py"
+     },
+     {
+      "id": "refresh-dispatch",
+      "name": "firmware-updated dispatch",
+      "what": "A repository_dispatch of type firmware-updated rebuilds and republishes straight away instead of waiting for Monday.",
+      "component": "refresh",
+      "paths": [
+       ".github/workflows/refresh-firmware.yml"
+      ]
+     }
+    ],
+    "consumes": [
+     {
+      "id": "v3-firmware",
+      "from": "quansheng-v3",
+      "provider": "firmware",
+      "into": "refresh",
+      "what": "The UV-K5 V3 / UV-K1 ALERT firmware, compiled here (RescueOps, -DENABLE_ALERT=ON) into docs/firmware/v3/.",
+      "how": "built",
+      "watch": [
+       "App/",
+       "Core/",
+       "Drivers/",
+       "Middlewares/",
+       "cmake/",
+       "CMakeLists.txt",
+       "CMakePresets.json",
+       "filters/stations.filter"
+      ],
+      "since": {
+       "file": "docs/firmware/manifest.json",
+       "pattern": "\"repo\":\\s*\"cdomotor-g/quansheng_alert_v3\",\\s*\"commit\":\\s*\"([0-9a-f]+)\""
+      },
+      "on_change": "Nothing by hand, so no drift issue: refresh-firmware.yml rebuilds it every Monday 03:17 UTC and on a firmware-updated dispatch, committing only if the bytes change. To publish sooner: gh workflow run refresh-firmware.yml --ref main -R cdomotor-g/quansheng_alert_ALL.",
+      "drift_issue": false
+     },
+     {
+      "id": "v1-firmware",
+      "from": "quansheng-v1",
+      "provider": "published-builds",
+      "into": "refresh",
+      "what": "The UV-K5 builds quansheng_alert publishes in its docs/firmware/, copied as they are into docs/firmware/v1/.",
+      "how": "vendored",
+      "watch": [
+       "docs/firmware/"
+      ],
+      "since": {
+       "commit": "e922375"
+      },
+      "on_change": "Nothing by hand, so no drift issue: the same weekly refresh copies them. quansheng_alert is archived, so they no longer change.",
+      "drift_issue": false
+     },
+     {
+      "id": "v3-screens",
+      "from": "quansheng-v3",
+      "provider": "screens",
+      "into": "guide",
+      "what": "Screen captures of the V3 receiver, copied into docs/img/screens/ for the guide.",
+      "how": "vendored",
+      "watch": [
+       "tools/alert/screens/"
+      ],
+      "since": {
+       "date": "2026-10-20"
+      },
+      "on_change": "Copy the new or changed PNGs into docs/img/screens/ and check the guide's captions.",
+      "drift_issue": true
+     },
+     {
+      "id": "v3-receiver-docs",
+      "from": "quansheng-v3",
+      "provider": "serial-protocol",
+      "into": "guide",
+      "what": "The guide's account of the V3 receiver: screens, keys, settings, the 443 built-in stations, and logging with alertterm.py.",
+      "how": "reference",
+      "watch": [
+       "tools/alert/V2_SPEC.md",
+       "docs/ALERT_SERIAL.md",
+       "tools/alert/alertterm.py",
+       "App/app/alert_ui.c",
+       "App/app/alert.c",
+       "filters/stations.filter"
+      ],
+      "since": {
+       "date": "2026-10-20"
+      },
+      "on_change": "Re-read the guide's V3 screens, keys, settings and logging sections against the change and update them."
+     },
+     {
+      "id": "v1-installer",
+      "from": "quansheng-v1",
+      "provider": "installer",
+      "into": "installer",
+      "what": "The UV-K5 installer and cable page, extended here to both radio families.",
+      "how": "ported",
+      "watch": [
+       "docs/js/",
+       "docs/cable/"
+      ],
+      "since": {
+       "commit": "e922375"
+      },
+      "on_change": "Nothing: taken once and now independent; quansheng_alert is archived."
+     },
+     {
+      "id": "v1-k5diag",
+      "from": "quansheng-v1",
+      "provider": "installer",
+      "into": "cable",
+      "what": "k5diag.py, the command-line cable and radio check, a verbatim copy.",
+      "how": "vendored",
+      "watch": [
+       "tools/k5diag.py"
+      ],
+      "since": {
+       "commit": "e922375"
+      },
+      "on_change": "Copy tools/k5diag.py over docs/tools/k5diag.py (identical today)."
+     }
+    ],
+    "asks": [
+     {
+      "to": "quansheng-v3",
+      "what": "After a push to main, send quansheng_alert_ALL a firmware-updated repository dispatch (needs a token secret), so a new build is published that day, not the next Monday.",
+      "issue": null,
+      "since": "2026-10-31"
+     }
+    ]
+   },
+   "manifestSource": "repo",
+   "problems": [],
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-10-20T01:19:54Z",
+    "pushed": "2026-10-31T22:08:13Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL"
    },
    "commits": [
+    {
+     "sha": "bc8a46d",
+     "date": "2026-10-31T22:08:12Z",
+     "msg": "Atlas: describe the radio setup site for the map of all the repos",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/commit/bc8a46d645638f5d32f62cf541ca4210bb17ea91"
+    },
     {
      "sha": "5e07830",
      "date": "2026-10-20T01:19:52Z",
@@ -2421,33 +3993,41 @@
    },
    "ci": [
     {
+     "name": "Test the site",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41246798324",
+     "date": "2026-10-31T22:08:20Z",
+     "event": "push"
+    },
+    {
+     "name": "Atlas",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41246798806",
+     "date": "2026-10-31T22:08:27Z",
+     "event": "push"
+    },
+    {
+     "name": "pages build and deployment",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41246796537",
+     "date": "2026-10-31T22:08:20Z",
+     "event": "dynamic"
+    },
+    {
      "name": "Refresh firmware",
      "status": "completed",
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/40265049454",
      "date": "2026-10-26T03:38:58Z",
      "event": "schedule"
-    },
-    {
-     "name": "pages build and deployment",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/39352824068",
-     "date": "2026-10-20T01:20:31Z",
-     "event": "dynamic"
-    },
-    {
-     "name": "Test the site",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/39352824071",
-     "date": "2026-10-20T01:21:05Z",
-     "event": "push"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-10-20T01:19:52Z"
+    "date": "2026-10-31T22:08:12Z"
    }
   },
   {
@@ -2462,20 +4042,282 @@
    "private": false,
    "visible": true,
    "branch": "main",
-   "manifest": null,
-   "manifestSource": "none",
-   "problems": [
-    "No atlas.json in the repository and no fallback in the Atlas."
-   ],
+   "manifest": {
+    "$schema": "https://cdomotor-g.github.io/atlas/schema/atlas.schema.json",
+    "atlas": 1,
+    "id": "open-alert",
+    "repo": "cdomotor-g/open-ALERT",
+    "name": "open-ALERT",
+    "tagline": "A configurator for ALERT and ALERT2 flood-warning sites: say what a site must do, see the hardware that fits, its costs and consequences.",
+    "about": "For anyone planning ALERT or ALERT2 field stations, repeaters or base stations. Each site goes from needs to requirements to hardware picked from a 248-part catalogue (open and closed, Raspberry Pi to industrial), then to a bill of materials, a power budget with battery and panel sized, labour and running costs, and the consequences of the choices. The Network tab adds sites up and checks that what field stations send, repeaters relay and bases receive actually meet. A static page with no server: state lives in the browser and in share links.",
+    "kind": "static web app (configurator)",
+    "logo": "site/icon.svg",
+    "site": "https://cdomotor-g.github.io/open-ALERT/",
+    "docs": {
+     "readme": "README.md",
+     "agents": "CLAUDE.md",
+     "catalogue": "site/data/",
+     "engine": "site/js/engine.js"
+    },
+    "version": {
+     "file": "package.json",
+     "pattern": "\"version\":\\s*\"([^\"]+)\""
+    },
+    "status": {
+     "phase": "beta",
+     "updated": "2026-10-31",
+     "summary": "Published in one push on 17 Oct 2026 and untouched since: it works end to end, but some catalogue entries already lag their sources (it says RPi ALERT 0.11; RPi ALERT is 0.15.x).",
+     "next": [
+      "Bring the RPi ALERT entry to 0.15.x: version, off-air ALERT2 AirLink, cons",
+      "Point the Quansheng V3 entry at quansheng_alert_ALL's browser installer",
+      "Re-check the FW-LAB entry: Flood-Net's runbook says to retire and archive it"
+     ],
+     "later": [
+      "Write the open-ALERT ALERT1 encoder firmware (catalogued as planned)",
+      "Write the open-ALERT store-and-forward repeater on RPi ALERT's receive side",
+      "Re-check quote-only and estimated prices with suppliers"
+     ]
+    },
+    "components": [
+     {
+      "id": "engine",
+      "name": "Rules engine",
+      "what": "Needs → requirements → per-slot fit → supporting parts → power, cost and consequences.",
+      "paths": [
+       "site/js/engine.js"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "catalogue",
+      "name": "Hardware catalogue",
+      "what": "248 parts in six family files, each with price and its source, power, temperature, grade, openness and sources.",
+      "paths": [
+       "site/data/"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "alert-catalogue",
+      "name": "ALERT equipment and software",
+      "what": "ERT-A2, Campbell and HSE units, encoders and base-station software — where the sibling repositories are cited.",
+      "paths": [
+       "site/data/alert.js"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "presets",
+      "name": "Presets and example networks",
+      "what": "22 preset sites and 5 example networks as starting points; buyable ones must meet every must.",
+      "paths": [
+       "site/js/presets.js"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "page",
+      "name": "Configurator page",
+      "what": "Configure, Network, Hardware catalogue and How it works tabs; state in localStorage and share links.",
+      "paths": [
+       "site/index.html",
+       "site/js/ui.js",
+       "site/style.css"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "network",
+      "name": "Network check",
+      "what": "Adds sites up by quantity and checks field stations, repeaters and bases meet on protocol and path.",
+      "paths": [
+       "site/js/engine.js",
+       "site/js/ui.js"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "tests",
+      "name": "Tests",
+      "what": "node --test: every record and reference, every preset, and the sizing, pricing and network rules.",
+      "paths": [
+       "test/engine.test.js",
+       ".github/workflows/test.yml"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "publish",
+      "name": "Publishing",
+      "what": "Deploys site/ to GitHub Pages on every push to main, only if the tests pass.",
+      "paths": [
+       ".github/workflows/pages.yml",
+       "index.html"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "oa-firmware",
+      "name": "open-ALERT encoder and repeater",
+      "what": "An open ALERT1 encoder for a $10 board and a Pi store-and-forward repeater — catalogued, not written.",
+      "status": "planned"
+     }
+    ],
+    "provides": [
+     {
+      "id": "hardware-catalogue",
+      "name": "ALERT hardware catalogue",
+      "what": "Plain-JavaScript records of 248 parts with prices and their sources, power, grades and links, for costing ALERT sites.",
+      "component": "catalogue",
+      "paths": [
+       "site/data/"
+      ],
+      "contract": "README.md"
+     },
+     {
+      "id": "configurator",
+      "name": "open-ALERT configurator",
+      "what": "The page itself, and share links to a configured site or network.",
+      "component": "page",
+      "paths": [
+       "site/js/ui.js"
+      ],
+      "url": "https://cdomotor-g.github.io/open-ALERT/"
+     }
+    ],
+    "consumes": [
+     {
+      "id": "rpi-alert-entry",
+      "from": "rpi-alert",
+      "provider": "release",
+      "into": "alert-catalogue",
+      "what": "RPi ALERT's catalogue entry and notes: version, receivers it reads, protocols, platforms, hardware and clock notes.",
+      "how": "reference",
+      "url": "https://github.com/cdomotor-g/RPi_ALERT",
+      "watch": [
+       "agent/package.json",
+       "README.md",
+       "docs/hardware.md",
+       "docs/how-it-works.md"
+      ],
+      "since": {
+       "version": {
+        "file": "site/data/alert.js",
+        "pattern": "RPi ALERT (\\d+\\.\\d+(?:\\.\\d+)?)"
+       }
+      },
+      "on_change": "Update the rpi-alert record in site/data/alert.js (fw.name version, reads, decodes, grade, cons) and the RPi ALERT notes in compute.js, radio.js and site.js; run npm test.",
+      "drift_issue": true
+     },
+     {
+      "id": "quansheng-v3-entry",
+      "from": "quansheng-v3",
+      "provider": "firmware",
+      "into": "catalogue",
+      "what": "The UV-K5 V3 / UV-K1 receiver entry: how to flash it, its serial interface, its on-air status.",
+      "how": "reference",
+      "url": "https://github.com/cdomotor-g/quansheng_alert_v3",
+      "watch": [
+       "README.md",
+       "docs/ALERT_SERIAL.md"
+      ],
+      "since": {
+       "date": "2026-10-17"
+      },
+      "on_change": "Update quansheng-uv-k5-v3 in site/data/radio.js (fw.note, status, cons); run npm test."
+     },
+     {
+      "id": "quansheng-v1-entry",
+      "from": "quansheng-v1",
+      "provider": "published-builds",
+      "into": "catalogue",
+      "what": "The DP32G030 UV-K5 entry: archived but flashable, read through a K-plug cable at 38,400 baud.",
+      "how": "reference",
+      "url": "https://github.com/cdomotor-g/quansheng_alert",
+      "watch": [
+       "README.md"
+      ],
+      "since": {
+       "date": "2026-10-17"
+      },
+      "on_change": "Update quansheng-uv-k5-dp32 in site/data/radio.js; run npm test."
+     },
+     {
+      "id": "fw-lab-entry",
+      "from": "fw-lab",
+      "provider": "receiver-docs",
+      "into": "alert-catalogue",
+      "what": "The FW-LAB Receiver entry and the GNU Radio lab base preset: SDRs, platforms, MQTT output.",
+      "how": "reference",
+      "url": "https://github.com/cdomotor-g/ALERT1v3",
+      "watch": [
+       "README.md",
+       "docs/PLATFORMS.md",
+       "docs/MQTT.md"
+      ],
+      "since": {
+       "date": "2026-10-17"
+      },
+      "on_change": "Update fwlab-receiver in site/data/alert.js and base-fwlab-x86 in site/js/presets.js (status eol if the repository is archived); run npm test."
+     },
+     {
+      "id": "alert-packets-frames",
+      "from": "alert-packets",
+      "provider": "frame-codec",
+      "into": "alert-catalogue",
+      "what": "ALERT frame formats (ABF, EIF, framing, CRC) cited for the planned open encoder.",
+      "how": "reference",
+      "url": "https://github.com/cdomotor-g/ALERT_PACKETS",
+      "watch": [
+       "index.html",
+       "README.md"
+      ],
+      "since": {
+       "date": "2026-10-17"
+      },
+      "on_change": "Re-check the oa-encoder and diy-minimodem-encoder records in site/data/alert.js."
+     },
+     {
+      "id": "flood-net-refs",
+      "from": "flood-net",
+      "into": "alert-catalogue",
+      "what": "ALERT2 transition plan planning prices, ALERT1 tones and timing, the Serial Monitor entry, and Flood-Net as the destination (HTTPS, MQTT, HFEM, 115E-2-A2 bridge).",
+      "how": "reference",
+      "url": "https://github.com/cdomotor-g/MegaNet",
+      "watch": [
+       "alert2-plan.js",
+       "alert-dsp.js",
+       "docs/ingest-serial-monitor.md",
+       "serial*.js",
+       "docs/elpro115e_mqtt.md",
+       "docs/ingest-http.md",
+       "docs/ingest-mqtt.md",
+       "docs/ingest-hfem.md"
+      ],
+      "since": {
+       "date": "2026-10-17"
+      },
+      "on_change": "Update the PLAN-priced records in site/data/alert.js and site/data/site.js (and usdPerAud in site/js/engine.js), the floodnet-serial-monitor record, and the Flood-Net outputs in engine.js; run npm test."
+     }
+    ]
+   },
+   "manifestSource": "repo",
+   "problems": [],
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-10-17T06:16:25Z",
+    "pushed": "2026-10-31T22:08:09Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/open-ALERT"
    },
    "commits": [
+    {
+     "sha": "a88316f",
+     "date": "2026-10-31T22:08:07Z",
+     "msg": "Atlas: describe open-ALERT for the map of all the repos",
+     "url": "https://github.com/cdomotor-g/open-ALERT/commit/a88316f58c07c2ecf202fc19d158b63c031be941"
+    },
     {
      "sha": "66109e2",
      "date": "2026-10-17T06:16:23Z",
@@ -2495,24 +4337,51 @@
      "url": "https://github.com/cdomotor-g/open-ALERT/commit/bfea3684ac6e2ad55b17a0d3ce1fe50859a5c5b6"
     }
    ],
-   "issues": [],
-   "issueCount": 0,
+   "issues": [
+    {
+     "n": 1,
+     "raw": "[Standalone] [Sonnet5/Med] Upstream moved: RPi_ALERT released 0.15.2 (this repository names 0.11)",
+     "structure": "standalone",
+     "parent": null,
+     "model": "Sonnet5",
+     "effort": "Med",
+     "human": false,
+     "title": "Upstream moved: RPi_ALERT released 0.15.2 (this repository names 0.11)",
+     "url": "https://github.com/cdomotor-g/open-ALERT/issues/1",
+     "updated": "2026-10-31T22:08:27Z",
+     "created": "2026-10-31T22:08:27Z",
+     "comments": 0,
+     "labels": [],
+     "mentions": [
+      "rpi_alert"
+     ]
+    }
+   ],
+   "issueCount": 1,
    "release": null,
    "ci": [
     {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/39009295663",
-     "date": "2026-10-17T06:16:50Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41246791059",
+     "date": "2026-10-31T22:08:39Z",
      "event": "dynamic"
+    },
+    {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41246791974",
+     "date": "2026-10-31T22:08:29Z",
+     "event": "push"
     },
     {
      "name": "test",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/39009296037",
-     "date": "2026-10-17T06:16:40Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41246791746",
+     "date": "2026-10-31T22:08:24Z",
      "event": "push"
     },
     {
@@ -2524,9 +4393,9 @@
      "event": "push"
     }
    ],
-   "version": null,
+   "version": "0.1.0",
    "lastCommit": {
-    "date": "2026-10-17T06:16:23Z"
+    "date": "2026-10-31T22:08:07Z"
    }
   },
   {
@@ -2537,24 +4406,207 @@
    "y": 250,
    "size": 1,
    "logo": "assets/logos/sort.svg",
-   "name": "SoRT",
+   "name": "SoRT Scope Builder",
    "private": false,
    "visible": true,
    "branch": "main",
-   "manifest": null,
-   "manifestSource": "none",
-   "problems": [
-    "No atlas.json in the repository and no fallback in the Atlas."
-   ],
+   "manifest": {
+    "$schema": "https://cdomotor-g.github.io/atlas/schema/atlas.schema.json",
+    "atlas": 1,
+    "id": "sort",
+    "repo": "cdomotor-g/SoRT",
+    "name": "SoRT Scope Builder",
+    "tagline": "Builds SORT Forum remediation scope tables for field stations and copies them straight into Word.",
+    "about": "A single-page tool used at SORT Forums to click through a station's remediation scope — the questions for its station type, a Property Services table and a site map — and paste the finished tables into Word. The questions live in definitions.json in this repository, which is the source of truth: editors change them in the app and Publish to GitHub. A v2 beta runs beside v1: one flowing page that looks the station up in Flood-Net, saves sessions in the browser and puts the map on the page.",
+    "kind": "web app (static, single page)",
+    "site": "https://cdomotor-g.github.io/SoRT/",
+    "docs": {
+     "readme": "README.md",
+     "roadmap": "ROADMAP.md",
+     "agents": "CLAUDE.md",
+     "v2": "v2/README.md",
+     "tests": "tests/README.md",
+     "backups": "backups/README.md"
+    },
+    "status": {
+     "phase": "live",
+     "updated": "2026-10-31",
+     "summary": "v1 is in use at forums; the v2 beta (Flood-Net station lookup, saved sessions, the map on the page with survey marks and bridges) landed today at /SoRT/v2/ and runs beside v1 until it has been through some forums.",
+     "now": [
+      "v2 beta: try it at real forums beside v1",
+      "Property Services: the Check QLD Globe deep-link button (ROADMAP §1, still planned)"
+     ],
+     "next": [
+      "v2 cutover: one commit makes /SoRT/ open v2 and keeps v1 at /SoRT/v1/",
+      "Station picker (ROADMAP §2) — v2's Flood-Net lookup may stand in for stations.json",
+      "Load from repo also reloads stations.json (ROADMAP §3), once §2 exists"
+     ],
+     "later": [
+      "A Dataverse import keyed on v2's permanent question and option codes"
+     ],
+     "blocked": [
+      {
+       "what": "v2 cutover waits on the owner using it at some real forums",
+       "on": "human"
+      }
+     ]
+    },
+    "components": [
+     {
+      "id": "scope-builder",
+      "name": "Scope Builder (v1)",
+      "what": "The live app: pick a station type, fill the rows, Copy table for Word; Manage Tables and Table Map edit the definitions in place.",
+      "paths": [
+       "index.html"
+      ],
+      "url": "https://cdomotor-g.github.io/SoRT/",
+      "status": "live"
+     },
+     {
+      "id": "definitions",
+      "name": "Definitions (v1)",
+      "what": "Every table, row and option, read from GitHub on start; Publish to GitHub commits edits back, so its history is the audit trail and the rollback.",
+      "paths": [
+       "definitions.json"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "property-services",
+      "name": "Property Services table",
+      "what": "A second table copied into Word under the scope, pre-filled from the scope's coordinates and relocation answer, with its own editor tab.",
+      "paths": [
+       "index.html",
+       "definitions.json"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "site-map",
+      "name": "Site Map (v1)",
+      "what": "A modal map of the table's pins over Queensland Government imagery, LiDAR contours, the road reserve and rail, with pin write-back and a picture captured for Word.",
+      "paths": [
+       "index.html"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "v2-app",
+      "name": "Scope Builder v2 (beta)",
+      "what": "One flowing page — forum, station, map, questions, Property Services, follow-ups, preview and Copy for Word — with answers saved in the browser as sessions.",
+      "paths": [
+       "v2/index.html",
+       "v2/app.css",
+       "v2/js/app.js",
+       "v2/js/form.js",
+       "v2/js/rules.js",
+       "v2/js/store.js",
+       "v2/js/word.js",
+       "v2/js/util.js"
+      ],
+      "url": "https://cdomotor-g.github.io/SoRT/v2/",
+      "status": "beta"
+     },
+     {
+      "id": "v2-definitions",
+      "name": "v2 question bank",
+      "what": "One question bank with permanent codes, four station-type templates, and conditions and follow-up rules as data; checked by the page and by a Node tool before use.",
+      "paths": [
+       "v2/definitions.json",
+       "v2/js/schema.js",
+       "v2/tools/check-definitions.mjs",
+       "v2/tools/convert-v1.mjs"
+      ],
+      "status": "beta"
+     },
+     {
+      "id": "floodnet-lookup",
+      "name": "Flood-Net station lookup",
+      "what": "Searches Flood-Net's read-only API and pre-fills name, number, ALERT IDs, frequency, current comms, repeater details and ACMA licences, marked until confirmed.",
+      "paths": [
+       "v2/js/floodnet.js"
+      ],
+      "status": "beta"
+     },
+     {
+      "id": "v2-map",
+      "name": "v2 map",
+      "what": "The map on the page: QLD imagery, contours, road reserve and rail; survey marks from the State's control register and bridges from TMR and QLD Roads and Tracks; Flood-Net stations within 3 km.",
+      "paths": [
+       "v2/js/map.js"
+      ],
+      "status": "beta"
+     },
+     {
+      "id": "tests",
+      "name": "Browser tests",
+      "what": "Playwright regression tests that drive the real v1 page in headless Chromium: map framing, pin write-back, Word geometry, GitHub publishing.",
+      "paths": [
+       "tests/",
+       ".claude/skills/verify/"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "supabase-backup",
+      "name": "Retired Supabase store",
+      "what": "The last dump of the old definitions database and the script that rebuilds definitions.json from it, kept for the record.",
+      "paths": [
+       "backups/"
+      ],
+      "status": "retired"
+     }
+    ],
+    "provides": [
+     {
+      "id": "qld-map-layers",
+      "name": "QLD Globe map layer recipes",
+      "what": "Which Queensland Government ArcGIS services and sublayers draw imagery, LiDAR contours (resolved by name), the road reserve, rail and survey marks, and how they are styled. Flood-Net's contour and survey-mark layers were ported from it.",
+      "component": "site-map",
+      "paths": [
+       "index.html",
+       "v2/js/map.js"
+      ]
+     }
+    ],
+    "consumes": [
+     {
+      "id": "floodnet-api",
+      "from": "flood-net",
+      "provider": "agent-api",
+      "into": "floodnet-lookup",
+      "what": "Flood-Net's public read-only agent API: station search and stations near a point, each station's dossier and record, and the ACMA licences at its site.",
+      "how": "live",
+      "url": "https://floodwarning.net/api/v1",
+      "watch": [
+       "docs/api-changelog.json",
+       "worker/api.js",
+       "worker/acma.js"
+      ],
+      "since": {
+       "date": "2026-10-31"
+      },
+      "on_change": "Read the new docs/api-changelog.json entries; if a route or field SoRT reads changed, update v2/js/floodnet.js, bump v2's ?v= stamp and look up a station on /SoRT/v2/."
+     }
+    ]
+   },
+   "manifestSource": "repo",
+   "problems": [],
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-10-31T21:52:52Z",
+    "pushed": "2026-10-31T22:08:11Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/SoRT"
    },
    "commits": [
+    {
+     "sha": "0a05098",
+     "date": "2026-10-31T22:08:10Z",
+     "msg": "Atlas: describe SoRT for the map of all the repos",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/0a05098f376062058d249a1d2d7aa46098db98c1"
+    },
     {
      "sha": "ef693d4",
      "date": "2026-10-31T21:52:50Z",
@@ -2620,12 +4672,6 @@
      "date": "2026-09-28T04:09:20Z",
      "msg": "Update definitions from SoRT",
      "url": "https://github.com/cdomotor-g/SoRT/commit/a69fbfc41913cbdc45e2e707fcf86b263631e8ed"
-    },
-    {
-     "sha": "51ae438",
-     "date": "2026-09-28T02:57:17Z",
-     "msg": "Publish definitions straight to GitHub and drop Supabase",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/51ae43836a261d7d524b0567e8dbade807e34264"
     }
    ],
    "issues": [],
@@ -2633,17 +4679,25 @@
    "release": null,
    "ci": [
     {
-     "name": "pages build and deployment",
+     "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41245630647",
-     "date": "2026-10-31T21:53:30Z",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41246795766",
+     "date": "2026-10-31T22:08:26Z",
+     "event": "push"
+    },
+    {
+     "name": "pages build and deployment",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41246793649",
+     "date": "2026-10-31T22:08:39Z",
      "event": "dynamic"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-10-31T21:52:50Z"
+    "date": "2026-10-31T22:08:10Z"
    }
   },
   {
@@ -2859,14 +4913,235 @@
    "logo": "assets/logos/droggies.jpg",
    "private": true,
    "pages": "https://cdomotor-g.github.io/thedroggies/",
-   "name": "thedroggies",
+   "name": "The Droggies",
    "visible": false,
    "branch": "main",
-   "manifest": null,
-   "manifestSource": "none",
-   "problems": [
-    "No atlas.json in the repository and no fallback in the Atlas."
-   ],
+   "manifest": {
+    "$schema": "https://cdomotor-g.github.io/atlas/schema/atlas.schema.json",
+    "atlas": 1,
+    "id": "droggies",
+    "repo": "cdomotor-g/thedroggies",
+    "name": "The Droggies",
+    "tagline": "An Australian hydrography edutainment universe: one JSON canon drives a comic, a game, a podcast and an animated show.",
+    "about": "A crew of hydrographers measuring Australia's water, told for laughs but with the hydrography done properly. Character and episode JSONs are the canon, and each medium is generated from the one before it: bios and art, scene illustrations, a digital comic, a choose-your-own-adventure game, a podcast and the animated show. The repository is also the website, a static GitHub Pages site that renders all of it, with an errata loop that pushes corrections back through every medium. Its voice cast is what Flood-Net's network bulletins are said in.",
+    "kind": "content pipeline + static site",
+    "logo": "characters/art/seasoned-hydrographer.png",
+    "site": "https://cdomotor-g.github.io/thedroggies/",
+    "docs": {
+     "readme": "README.md",
+     "agents": "CLAUDE.md",
+     "roadmap": "docs/plan.md",
+     "pipeline": "docs/production-pipeline.md",
+     "style-guide": "docs/style-guide.md",
+     "treatment": "docs/treatment.md",
+     "manuals": "agents/README.md",
+     "voices": "voices/README.md",
+     "errata": "errors/README.md"
+    },
+    "status": {
+     "phase": "building",
+     "updated": "2026-10-31",
+     "summary": "S1E1 \"Magic Smoke\" is half out (bios, scene art, comic part 1 and the game are live; podcast and animation are JSON only), and the voice cast added on 25 Oct already voices Flood-Net's bulletins.",
+     "now": [
+      "M2: S1E1 comic part 2, \"The Masterclass\" — scene art and pages",
+      "M2: HR portrait from the design brief in characters/json/hr.json",
+      "M2: S1E1 podcast script into podcast.json, then audio in the cast's voices"
+     ],
+     "next": [
+      "M2: S1E1 animation shot list, animatic, then the episode",
+      "M3: walk S1E2 \"Gaugings\" through every pipeline step",
+      "M4: CI that validates every JSON and checks every art/src path exists",
+      "M4: workflow-dispatch agent runs that open a PR per pipeline step"
+     ],
+     "later": [
+      "M5: asset generation from workflows, a \"new episode\" trigger chaining steps 1–7",
+      "S1E3–E5 and the future-season topics in the treatment"
+     ],
+     "blocked": [
+      {
+       "what": "Decide how podcast audio and video are hosted (Git LFS or release attachments) before the first audio lands",
+       "on": "human"
+      },
+      {
+       "what": "Every generated image, audio and video is reviewed and moved into the repo by the owner",
+       "on": "human"
+      }
+     ]
+    },
+    "components": [
+     {
+      "id": "canon",
+      "name": "Canon: characters and episodes",
+      "what": "The JSON canon every medium is built from — eight character bios, the season/episode index with per-medium statuses, and each episode's scenes, dialogue and art prompts (pipeline steps 1–2).",
+      "paths": [
+       "characters/json/",
+       "characters/characters.json",
+       "episodes/episodes.json",
+       "episodes/s*/*/episode.json",
+       "docs/treatment.md",
+       "schemas/character.schema.json",
+       "schemas/episode.schema.json",
+       "agents/01-showrunner.md"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "art",
+      "name": "Portraits and scene art",
+      "what": "Character portraits drawn to match the bios (seven of eight; HR pending) and one illustration per scene (steps 2–3), generated outside the repo and landed after review.",
+      "paths": [
+       "characters/art/",
+       "episodes/s*/*/art/",
+       "docs/style-guide.md",
+       "agents/02-character-designer.md",
+       "agents/03-scene-illustrator.md"
+      ],
+      "status": "building"
+     },
+     {
+      "id": "comic",
+      "name": "Digital comic",
+      "what": "comic.json orders the scene art with captions and transcripts, read in the site's comic reader; S1E1 part 1 (nine pages) is out, part 2 is next (step 4).",
+      "paths": [
+       "episodes/s*/*/comic.json",
+       "episodes/s*/*/comic/",
+       "schemas/comic.schema.json",
+       "agents/04-comic-artist.md"
+      ],
+      "status": "building"
+     },
+     {
+      "id": "game",
+      "name": "Choose-your-own-adventure game",
+      "what": "game.json and the site's game engine: S1E1 \"Ninety Seconds\", 15 nodes and six endings, with the comic as its canon path (step 5).",
+      "paths": [
+       "episodes/s*/*/game.json",
+       "episodes/s*/*/game/",
+       "schemas/game.schema.json",
+       "agents/05-game-designer.md"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "podcast",
+      "name": "Narrative podcast",
+      "what": "podcast.json adapts the comic for narrator, cast and sound design; S1E1's definition is published, the script and audio are not yet (step 6).",
+      "paths": [
+       "episodes/s*/*/podcast.json",
+       "episodes/s*/*/podcast/",
+       "schemas/podcast.schema.json",
+       "agents/06-podcast-producer.md"
+      ],
+      "status": "building"
+     },
+     {
+      "id": "animation",
+      "name": "The animated show",
+      "what": "animation.json assembles boards from the comic and the track from the podcast; S1E1's definition is published, no shots or video yet (step 7).",
+      "paths": [
+       "episodes/s*/*/animation.json",
+       "episodes/s*/*/animation/",
+       "schemas/animation.schema.json",
+       "agents/07-animator.md"
+      ],
+      "status": "planned"
+     },
+     {
+      "id": "site",
+      "name": "Website",
+      "what": "The static GitHub Pages site: landing hub, character gallery, episode hubs, a pretty viewer for any repo Markdown or JSON, and the Contribute-an-episode button that drafts an episode.json.",
+      "paths": [
+       "index.html",
+       "viewer.html",
+       "assets/",
+       "characters/index.html",
+       "episodes/index.html",
+       "episodes/s*/*/index.html",
+       ".github/workflows/pages.yml"
+      ],
+      "url": "https://cdomotor-g.github.io/thedroggies/",
+      "status": "live"
+     },
+     {
+      "id": "voices",
+      "name": "Voice cast",
+      "what": "Which ElevenLabs voice says each role, on which model and with what direction, tempo and pronunciation lexicon — nine voices cast by the owner on 25 Oct 2026.",
+      "paths": [
+       "voices/cast.json",
+       "voices/README.md",
+       "schemas/cast.schema.json"
+      ],
+      "url": "https://cdomotor-g.github.io/thedroggies/voices/cast.json",
+      "status": "live"
+     },
+     {
+      "id": "errata",
+      "name": "Errata loop",
+      "what": "The Report-an-error button on every page files a structured report; the error-corrector agent verifies it and pushes the fix through every medium it reached (step 8).",
+      "paths": [
+       "errors/",
+       "assets/js/error-report.js",
+       "schemas/error-report.schema.json",
+       "agents/08-error-corrector.md"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "agents",
+      "name": "Pipeline agent manuals",
+      "what": "One operating manual per pipeline step, with thin Claude Code sub-agents that point at them; the manuals are the single source of truth.",
+      "paths": [
+       "agents/",
+       ".claude/agents/"
+      ],
+      "status": "live"
+     }
+    ],
+    "provides": [
+     {
+      "id": "voice-cast",
+      "name": "Voice cast",
+      "what": "Each role's ElevenLabs voice id, model, direction, sustain, tempo and the pronunciation lexicon. Flood-Net's bulletin voicing fetches it from the published site on every run, so a recast here changes the next bulletin.",
+      "component": "voices",
+      "paths": [
+       "voices/cast.json",
+       "schemas/cast.schema.json"
+      ],
+      "url": "https://cdomotor-g.github.io/thedroggies/voices/cast.json",
+      "contract": "schemas/cast.schema.json"
+     },
+     {
+      "id": "character-canon",
+      "name": "Character canon and portraits",
+      "what": "Who each Droggie is — name, role, catchphrases, pronouns — and their portrait art. Flood-Net's bulletin presenters copy the names and sign-off lines and crop the portraits.",
+      "component": "canon",
+      "paths": [
+       "characters/json/",
+       "characters/art/"
+      ],
+      "contract": "schemas/character.schema.json"
+     }
+    ],
+    "consumes": [
+     {
+      "id": "bulletin-voicing",
+      "from": "flood-net",
+      "into": "voices",
+      "what": "How Flood-Net's bulletin voicing reads the cast (direction, sustain, tempo, lexicon) and the Bulletin voices workflow that re-voices old bulletins, both described in voices/README.md.",
+      "how": "reference",
+      "watch": [
+       ".github/workflows/bulletin-voice.yml",
+       "tools/voice/speak.mjs"
+      ],
+      "since": {
+       "date": "2026-10-25"
+      },
+      "on_change": "Check voices/README.md's recasting steps and its notes on direction, sustain and tempo still match; add any field speak.mjs newly reads to schemas/cast.schema.json."
+     }
+    ]
+   },
+   "manifestSource": "pages",
+   "problems": [],
    "gh": {
     "url": "https://github.com/cdomotor-g/thedroggies"
    },
@@ -3322,6 +5597,238 @@
  ],
  "links": [
   {
+   "id": "droggies-voice-cast",
+   "from": "droggies",
+   "to": "flood-net",
+   "provider": "voice-cast",
+   "into": "bulletins",
+   "what": "Each presenter's voice, read from the Droggies' published site on every Bulletin voices run.",
+   "how": "live",
+   "url": "https://cdomotor-g.github.io/thedroggies/voices/cast.json",
+   "watch": [
+    "voices/cast.json",
+    "schemas/cast.schema.json"
+   ],
+   "since": {
+    "date": "2026-10-25"
+   },
+   "on_change": "A recast needs nothing: the next bulletin is voiced with it (run Actions > Bulletin voices to re-voice old ones). A new or renamed field: update tools/voice/speak.mjs and run cd test && npm run bulletin.",
+   "drift": {
+    "state": "unknown",
+    "note": "The Atlas could not read one end (a private repository, or one its token cannot reach).",
+    "commits": []
+   }
+  },
+  {
+   "id": "droggies-presenters",
+   "from": "droggies",
+   "to": "flood-net",
+   "provider": "character-canon",
+   "into": "bulletins",
+   "what": "The presenters' names, roles and sign-off lines copied into health-bulletin.js ROSTER and tools/bulletin/validate.mjs PRESENTERS, and their portraits cropped into assets/presenters/.",
+   "how": "generated",
+   "watch": [
+    "characters/json/",
+    "characters/art/"
+   ],
+   "since": {
+    "date": "2026-10-31"
+   },
+   "on_change": "Update ROSTER in health-bulletin.js and PRESENTERS in tools/bulletin/validate.mjs, re-crop a changed portrait into assets/presenters/, run cd test && npm run bulletin, and bump the version stamp.",
+   "drift_issue": false,
+   "drift": {
+    "state": "unknown",
+    "note": "The Atlas could not read one end (a private repository, or one its token cannot reach).",
+    "commits": []
+   }
+  },
+  {
+   "id": "rpi-alert-release",
+   "from": "rpi-alert",
+   "to": "flood-net",
+   "provider": "release",
+   "into": "network-health",
+   "what": "The latest RPi ALERT release, shown beside each base station's version on the Base Stations tab (amber when a station is behind).",
+   "how": "release",
+   "url": "https://api.github.com/repos/cdomotor-g/RPi_ALERT/releases/latest",
+   "on_change": "Nothing: the tab asks GitHub every five minutes while open.",
+   "drift": {
+    "state": "untracked",
+    "since": null,
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "No catch-up point recorded."
+   }
+  },
+  {
+   "id": "rpi-alert-sdr-plan",
+   "from": "rpi-alert",
+   "to": "flood-net",
+   "provider": "channel-planner",
+   "into": "network-health",
+   "what": "RPi ALERT's SDR channel plan (each stick's sample-rate windows and usable band), mirrored in base-stations.js WINDOWS and the waterfall's edges, and in sdr-pi.js's channel rules.",
+   "how": "protocol",
+   "watch": [
+    "agent/web/sdr-plan.js"
+   ],
+   "since": {
+    "date": "2026-10-26"
+   },
+   "on_change": "Match WINDOWS in base-stations.js (and sdr-pi.js where the rule is shared) to the new RATES and USABLE; run cd test && npm run basestations && npm run sdrpi; bump the version stamp.",
+   "drift": {
+    "state": "current",
+    "since": {
+     "date": "2026-10-26",
+     "commit": "d23296303ce4befdae4427168f4870f0d9ed884a",
+     "commitDate": "2026-10-26T12:14:04Z"
+    },
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "1 newer commit upstream since it was last reviewed (2026-10-26), none to watched files."
+   }
+  },
+  {
+   "id": "rpi-alert-security-review",
+   "from": "rpi-alert",
+   "to": "flood-net",
+   "into": "automation",
+   "what": "The weekly security review reads RPi ALERT's agent and Pi image beside Flood-Net, because the two trust each other through ingest tokens and Base Stations requests.",
+   "how": "reference",
+   "watch": [
+    "agent/",
+    "os/"
+   ],
+   "on_change": "Nothing by hand: the Monday review (tools/security-scan/brief.md) reads it and files findings in flood-net-private.",
+   "drift": {
+    "state": "untracked",
+    "since": null,
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "No catch-up point recorded."
+   }
+  },
+  {
+   "id": "quansheng-serial-protocol",
+   "from": "quansheng-v3",
+   "to": "flood-net",
+   "provider": "serial-protocol",
+   "into": "decoders",
+   "what": "The radio's USB serial protocol (schema 2) and its station-table format, which quansheng.js implements and serial-radio.js builds from the loaded station list; sdr-pi.js follows the same line rules.",
+   "how": "protocol",
+   "watch": [
+    "docs/ALERT_SERIAL.md",
+    "tools/alert/gen_stations.py"
+   ],
+   "since": {
+    "date": "2026-10-01"
+   },
+   "on_change": "Bring quansheng.js (and serial-radio.js / sdr-pi.js where a rule is shared) into line with the changed sections; run cd test && npm run quansheng && npm run sdrpi; bump the version stamp.",
+   "drift": {
+    "state": "current",
+    "since": {
+     "date": "2026-10-01",
+     "commit": "c53066ab54b3909d5b90cfcdd0132c5510ec35e7",
+     "commitDate": "2026-10-01T00:51:14Z"
+    },
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "3 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+   }
+  },
+  {
+   "id": "inspection-archive",
+   "from": "flood-net-private",
+   "to": "flood-net",
+   "provider": "inspection-archive",
+   "into": "automation",
+   "what": "The historical inspection workbook and its derived files, read by the inspection ingest tools from a clone beside this one (tools/ingest/private.py) and loaded into the database.",
+   "how": "live",
+   "watch": [
+    "inspections/"
+   ],
+   "on_change": "Re-run the inspection tools in tools/ingest (survey.py, extract.py, crosswalk.py, remarks.py, load.py) against the clone; their checks run in flood-net-private's own workflow.",
+   "drift": {
+    "state": "unknown",
+    "note": "The Atlas could not read one end (a private repository, or one its token cannot reach).",
+    "commits": []
+   }
+  },
+  {
+   "id": "alert-packets-codec",
+   "from": "alert-packets",
+   "to": "flood-net",
+   "provider": "frame-codec",
+   "into": "decoders",
+   "what": "The ALERT / ERTS packet decoder and encoder, ported once into the ALERT Packets tab (packets.js) and developed here since.",
+   "how": "ported",
+   "watch": [
+    "index.html"
+   ],
+   "drift": {
+    "state": "untracked",
+    "since": null,
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "No catch-up point recorded."
+   }
+  },
+  {
+   "id": "alert-packets-address-file",
+   "from": "alert-packets",
+   "to": "flood-net",
+   "provider": "address-list",
+   "into": "decoders",
+   "what": "The national ALERT address file and the Bureau's ERTS Data Formats specification, kept byte-for-byte as data/All 2021 Working 2.txt and docs/BOM spec erts_data_formats_doc.pdf.",
+   "how": "vendored",
+   "watch": [
+    "All 2021 Working 2.txt",
+    "BOM spec erts_data_formats_doc.pdf"
+   ],
+   "since": {
+    "date": "2026-10-31"
+   },
+   "on_change": "Copy the changed file over data/All 2021 Working 2.txt (read by packets.js and serial-radio.js) or the PDF in docs/.",
+   "drift_issue": false,
+   "drift": {
+    "state": "current",
+    "since": {
+     "date": "2026-10-31",
+     "commit": "d7820448ab63ddf0c8feaf8f4e06671686faa8f4",
+     "commitDate": "2026-10-13T05:13:59Z"
+    },
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "Up to date with upstream."
+   }
+  },
+  {
+   "id": "sort-qld-map-layers",
+   "from": "sort",
+   "to": "flood-net",
+   "provider": "qld-map-layers",
+   "into": "stations-map",
+   "what": "The QLD Globe recipes for the LiDAR contour and survey-mark layers: which ArcGIS services, sublayers resolved by name, and the server-rendered approach (map-contours.js, map-survey.js).",
+   "how": "ported",
+   "watch": [
+    "index.html",
+    "v2/js/map.js"
+   ],
+   "drift": {
+    "state": "untracked",
+    "since": null,
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "No catch-up point recorded."
+   }
+  },
+  {
    "id": "ingest-tools",
    "from": "flood-net",
    "to": "flood-net-private",
@@ -3374,6 +5881,367 @@
     "state": "unknown",
     "note": "The Atlas could not read one end (a private repository, or one its token cannot reach).",
     "commits": []
+   }
+  },
+  {
+   "id": "vendored-decoders",
+   "from": "flood-net",
+   "to": "rpi-alert",
+   "provider": "decoders",
+   "into": "vendored-decoders",
+   "what": "Flood-Net's off-air ALERT decoder, Quansheng serial codec, ERT-A2 ALERT2 parser and NMEA parser, copied verbatim with the off-air test burst.",
+   "how": "vendored",
+   "watch": [
+    "alert-dsp.js",
+    "quansheng.js",
+    "alert2.js",
+    "serial-gps.js",
+    "test/fixtures/sdr/testrig_burst_240k.iq8"
+   ],
+   "since": {
+    "file": "agent/vendor/meganet/SOURCE",
+    "pattern": "commit:\\s+([0-9a-f]{7,40})"
+   },
+   "on_change": "Run agent/scripts/sync-meganet.sh (copies the files from Flood-Net's main and records the commit in SOURCE), then the agent tests: cd agent && node --test test/*.test.js. Follow any changed shape in the drivers (ert.js, quansheng.js, sdr.js), bump agent/package.json and release.",
+   "drift_issue": true,
+   "drift": {
+    "state": "behind",
+    "since": {
+     "commit": "92e005dae4b654a7465c339e932bf2debd185a64",
+     "commitDate": "2026-10-21T08:43:41Z"
+    },
+    "behind": 1,
+    "commits": [
+     {
+      "sha": "e6f1c4a",
+      "date": "2026-10-23T01:07:20Z",
+      "msg": "ALERT2 tab: \"Where the IDs come from\" — which concentrator heard each legacy address, and whether it misheard it",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/e6f1c4a00513a81122a7534d28c83512f47f0962"
+     }
+    ],
+    "files": [
+     "alert2.js"
+    ],
+    "note": "1 upstream change to watched files since 92e005d."
+   }
+  },
+  {
+   "id": "ingest",
+   "from": "flood-net",
+   "to": "rpi-alert",
+   "provider": "https-ingest",
+   "into": "flood-net-link",
+   "what": "Flood-Net's HTTPS ingest: ingest_http (readings), report_ingest_point (receivers), report_receptions (every frame heard) and the token request, as RPCs with the X-Ingest-Token header through floodwarning.net's /api/db proxy, or Supabase directly.",
+   "how": "protocol",
+   "watch": [
+    "docs/ingest-http.md",
+    "docs/ingest-serial-monitor.md",
+    "worker/index.js",
+    "db/migrations/*ingest*",
+    "db/migrations/*reception*"
+   ],
+   "since": {
+    "date": "2026-10-26"
+   },
+   "on_change": "Check agent/lib/meganet.js, uplink.js and token-request.js against the change, update the stand-in agent/test/helpers/meganet-stub.js, then cd agent && node --test test/*.test.js.",
+   "drift": {
+    "state": "behind",
+    "since": {
+     "date": "2026-10-26",
+     "commit": "d1057d630a7999b5256065b5683b29987666a2bc",
+     "commitDate": "2026-10-26T23:59:22Z"
+    },
+    "behind": 4,
+    "commits": [
+     {
+      "sha": "4276ff8",
+      "date": "2026-10-31T21:58:17Z",
+      "msg": "Station Health: 🌧 Rain ahead — the faults to fix before the rain",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/4276ff801f7e9507d1efa89800cc3696e5ed0545"
+     },
+     {
+      "sha": "652090a",
+      "date": "2026-10-31T21:31:23Z",
+      "msg": "Agent API: its changes as data, and an email when it changes",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/652090aee4aadf7b08844474fb625eaa97513543"
+     },
+     {
+      "sha": "fcd99a4",
+      "date": "2026-10-28T23:16:41Z",
+      "msg": "Route on map: the drive to a station drawn on the Stations map — by road to its access track, then the track (#251, EPIC #250); stamp 202610",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/fcd99a43708f2a3fa6e48595a7f94bf53415b121"
+     },
+     {
+      "sha": "77358f8",
+      "date": "2026-10-27T04:38:37Z",
+      "msg": "Flood & road cameras: the councils' and QLDTraffic's on the Stations map, each picture fetched live, never stored; stamp 20261027m",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/77358f8da1d2ac1485da3aefc5c09d14fdfeb0b6"
+     }
+    ],
+    "files": [
+     "worker/index.js"
+    ],
+    "note": "4 upstream changes to watched files since it was last reviewed (2026-10-26)."
+   }
+  },
+  {
+   "id": "base-station-checkin",
+   "from": "flood-net",
+   "to": "rpi-alert",
+   "provider": "base-station-checkin",
+   "into": "remote",
+   "what": "Flood-Net's side of the check-in: the base_station_checkin and base_station_keys RPCs, what they keep (a 16 KB status, a 2 KB heartbeat, spectrum rows) and the config.set patches the Base Stations tab writes.",
+   "how": "protocol",
+   "watch": [
+    "docs/base-stations.md",
+    "db/migrations/*base_station*",
+    "base-stations.js"
+   ],
+   "since": {
+    "date": "2026-10-25"
+   },
+   "on_change": "Check agent/lib/remote.js (verbs, status and heartbeat limits, the config.set guards) and docs/remote-management.md against it, then cd agent && node --test test/*.test.js.",
+   "drift": {
+    "state": "behind",
+    "since": {
+     "date": "2026-10-25",
+     "commit": "28325c4bc9fbe0bdd23e959f6e388952cf46df52",
+     "commitDate": "2026-10-25T19:51:36Z"
+    },
+    "behind": 2,
+    "commits": [
+     {
+      "sha": "22e6001",
+      "date": "2026-10-26T20:52:49Z",
+      "msg": "Signal: each transmitter's SNR from its own carrier, followed for months, its fall a finding (0083)",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/22e60014050178b3f502e518f0557b31eb5fc8b6"
+     },
+     {
+      "sha": "c51ba07",
+      "date": "2026-10-26T11:52:54Z",
+      "msg": "Base Stations: the waterfall hatches the edge of a stick's window, where a signal just past it folds back in",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/c51ba0742c6808c3f8bf597b8c4866035b95805f"
+     }
+    ],
+    "files": [
+     "docs/base-stations.md",
+     "base-stations.js"
+    ],
+    "note": "2 upstream changes to watched files since it was last reviewed (2026-10-25)."
+   }
+  },
+  {
+   "id": "station-register",
+   "from": "flood-net",
+   "to": "rpi-alert",
+   "provider": "station-list",
+   "into": "flood-net-link",
+   "what": "Flood-Net's public station register, fetched daily and kept on disk: names what each address is, and offers a stick's channels from the frequencies stations near the Pi use. The set-up page reads it too.",
+   "how": "live",
+   "url": "https://floodwarning.net/stations.json",
+   "on_change": "If the document's shape changes, update agent/lib/stations.js and site/app.js, then cd agent && node --test test/stations.test.js.",
+   "drift": {
+    "state": "untracked",
+    "since": null,
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "Read live: always the current version, so watch for breaking changes."
+   }
+  },
+  {
+   "id": "quansheng-v3-serial",
+   "from": "quansheng-v3",
+   "to": "rpi-alert",
+   "provider": "serial-protocol",
+   "into": "serial-drivers",
+   "what": "The ALERT receiver firmware's USB serial interface, schema 2: DEC, BST, STA and EVT lines, DTR, TIME and the console. The line codec is Flood-Net's quansheng.js (vendored); the driver adds DTR toggling, clock setting and one command at a time.",
+   "how": "protocol",
+   "watch": [
+    "docs/ALERT_SERIAL.md",
+    "tools/alert/V2_SPEC.md",
+    "App/app/alert_console.c"
+   ],
+   "since": {
+    "date": "2026-10-06"
+   },
+   "on_change": "A record-format change goes into Flood-Net's quansheng.js first and comes here with agent/scripts/sync-meganet.sh; DTR, clock or console changes go in agent/lib/devices/quansheng.js. Then cd agent && node --test test/*.test.js.",
+   "drift": {
+    "state": "current",
+    "since": {
+     "date": "2026-10-06",
+     "commit": "c53066ab54b3909d5b90cfcdd0132c5510ec35e7",
+     "commitDate": "2026-10-01T00:51:14Z"
+    },
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "3 newer commits upstream since it was last reviewed (2026-10-06), none to watched files."
+   }
+  },
+  {
+   "id": "quansheng-v1-serial",
+   "from": "quansheng-v1",
+   "to": "rpi-alert",
+   "provider": "uart-line",
+   "into": "serial-drivers",
+   "what": "The older DP32G030 ALERT firmware's UART line, ALERT,<id>,<value>,<ABF|EIF>,<rssi>,<name> at 38400 over the programming cable: recognised by sniff.js, read by the Quansheng driver's legacy path.",
+   "how": "protocol",
+   "watch": [
+    "app/alert.c",
+    "README.md"
+   ],
+   "since": {
+    "date": "2026-10-06"
+   },
+   "on_change": "Update the LEGACY pattern in agent/lib/devices/quansheng.js and the sniff in agent/lib/devices/sniff.js, then cd agent && node --test test/devices.test.js.",
+   "drift": {
+    "state": "behind",
+    "since": {
+     "date": "2026-10-06",
+     "commit": "21fc79727c2e75075bb6ecf6be06d8c3ac3cd819",
+     "commitDate": "2026-09-29T19:31:17Z"
+    },
+    "behind": 2,
+    "commits": [
+     {
+      "sha": "26f1f09",
+      "date": "2026-10-20T01:14:52Z",
+      "msg": "feat: decode ALERT the way the V3 port does on air",
+      "url": "https://github.com/cdomotor-g/quansheng_alert/commit/26f1f09cf74209fa210a7c396f232f877f4082a1"
+     },
+     {
+      "sha": "8dd30b1",
+      "date": "2026-10-20T00:11:32Z",
+      "msg": "docs: send new visitors and V3 owners to the quansheng_alert_ALL site",
+      "url": "https://github.com/cdomotor-g/quansheng_alert/commit/8dd30b1ef3c9c3415824fd6a5a8be1dd08caff9d"
+     }
+    ],
+    "files": [
+     "app/alert.c",
+     "README.md"
+    ],
+    "note": "2 upstream changes to watched files since it was last reviewed (2026-10-06)."
+   }
+  },
+  {
+   "id": "station-table",
+   "from": "flood-net",
+   "to": "quansheng-v3",
+   "provider": "station-list",
+   "into": "station-table",
+   "what": "Station names, sensor kinds, ALERT addresses and repeater networks for the built-in table.",
+   "how": "generated",
+   "watch": [
+    "stations.json",
+    "data/All 2021 Working 2.txt",
+    "data/ALL_REPEATERS.csv"
+   ],
+   "since": {
+    "date": "2026-09-30"
+   },
+   "on_change": "python3 tools/alert/gen_stations.py --meganet-dir ../MegaNet --filter filters/stations.filter --out App/app/alert_stations_gen.h (8000-byte limit), then build and push. No Flood-Net commit is recorded: the header points at docs/firmware/manifest.json, which this repository does not have.",
+   "drift_issue": false,
+   "drift": {
+    "state": "behind",
+    "since": {
+     "date": "2026-09-30",
+     "commit": "66608567fb48e86c9b399ca51a391ae0cd41ffdd",
+     "commitDate": "2026-09-30T04:58:36Z"
+    },
+    "behind": 2,
+    "commits": [
+     {
+      "sha": "2181200",
+      "date": "2026-10-23T07:31:31Z",
+      "msg": "📡 FldWarn KMZ, round two: every repeater-document row on its own station, 60 stations added, manual or automatic recorded",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/2181200f67cee87ae63957425038f455d322707a"
+     },
+     {
+      "sha": "687f1dd",
+      "date": "2026-10-23T06:44:51Z",
+      "msg": "📍 The 2024 FldWarn KMZ, checked pin by pin: 309 stations moved, 12 repeaters and 7 base stations from its paths",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/687f1dd50febe8369d39dc44a2e3f68aa65022fd"
+     }
+    ],
+    "files": [
+     "stations.json"
+    ],
+    "note": "2 upstream changes to watched files since it was last reviewed (2026-09-30)."
+   }
+  },
+  {
+   "id": "station-upload",
+   "from": "flood-net",
+   "to": "quansheng-v3",
+   "provider": "station-list",
+   "into": "host-tools",
+   "what": "alertterm.py stations-upload reads Flood-Net's station files from main at run time to build the SPI table.",
+   "how": "live",
+   "url": "https://raw.githubusercontent.com/cdomotor-g/MegaNet/main/stations.json",
+   "watch": [
+    "stations.json",
+    "data/All 2021 Working 2.txt",
+    "data/ALL_REPEATERS.csv"
+   ],
+   "on_change": "Nothing to rebuild. If the files' layout changes (sensors, alert_ids, radio_networks), fix the parsers in tools/alert/gen_stations.py.",
+   "drift": {
+    "state": "untracked",
+    "since": null,
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "Read live: always the current version, so watch for breaking changes."
+   }
+  },
+  {
+   "id": "packet-formats",
+   "from": "flood-net",
+   "to": "quansheng-v3",
+   "provider": "packet-formats",
+   "into": "decoder",
+   "what": "The ABF, EIF and A2C bit layouts and the CRC-6, mirrored bit for bit from packets.js FORMATS.",
+   "how": "protocol",
+   "watch": [
+    "packets.js"
+   ],
+   "since": {
+    "date": "2026-10-01"
+   },
+   "on_change": "Compare packets.js FORMATS with App/app/alert_decode.c; mirror any change and add a vector to tools/alert/test_decode.c.",
+   "drift": {
+    "state": "current",
+    "since": {
+     "date": "2026-10-01",
+     "commit": "2299acc0c89445ce27d78e1999a0f733d457a63e",
+     "commitDate": "2026-10-01T20:05:31Z"
+    },
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "432 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+   }
+  },
+  {
+   "id": "setup-site",
+   "from": "quansheng-all",
+   "to": "quansheng-v3",
+   "provider": "setup-site",
+   "what": "The README sends people to the setup guide and to the installer at /flash/?radio=v3.",
+   "how": "reference",
+   "watch": [
+    "docs/index.html",
+    "docs/flash/",
+    "docs/js/installer.js"
+   ],
+   "on_change": "Check the README's links to the guide and the installer still land.",
+   "drift": {
+    "state": "untracked",
+    "since": null,
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "No catch-up point recorded."
    }
   },
   {
@@ -3447,7 +6315,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "431 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "432 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -3477,7 +6345,484 @@
     "behind": 0,
     "commits": [],
     "files": [],
+    "note": "1 newer commit upstream since it was last reviewed (2026-10-20), none to watched files."
+   }
+  },
+  {
+   "id": "v3-firmware",
+   "from": "quansheng-v3",
+   "to": "quansheng-all",
+   "provider": "firmware",
+   "into": "refresh",
+   "what": "The UV-K5 V3 / UV-K1 ALERT firmware, compiled here (RescueOps, -DENABLE_ALERT=ON) into docs/firmware/v3/.",
+   "how": "built",
+   "watch": [
+    "App/",
+    "Core/",
+    "Drivers/",
+    "Middlewares/",
+    "cmake/",
+    "CMakeLists.txt",
+    "CMakePresets.json",
+    "filters/stations.filter"
+   ],
+   "since": {
+    "file": "docs/firmware/manifest.json",
+    "pattern": "\"repo\":\\s*\"cdomotor-g/quansheng_alert_v3\",\\s*\"commit\":\\s*\"([0-9a-f]+)\""
+   },
+   "on_change": "Nothing by hand, so no drift issue: refresh-firmware.yml rebuilds it every Monday 03:17 UTC and on a firmware-updated dispatch, committing only if the bytes change. To publish sooner: gh workflow run refresh-firmware.yml --ref main -R cdomotor-g/quansheng_alert_ALL.",
+   "drift_issue": false,
+   "drift": {
+    "state": "current",
+    "since": {
+     "commit": "ad166ca",
+     "commitDate": "2026-10-20T00:11:32Z"
+    },
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "1 newer commit upstream since ad166ca, none to watched files."
+   }
+  },
+  {
+   "id": "v1-firmware",
+   "from": "quansheng-v1",
+   "to": "quansheng-all",
+   "provider": "published-builds",
+   "into": "refresh",
+   "what": "The UV-K5 builds quansheng_alert publishes in its docs/firmware/, copied as they are into docs/firmware/v1/.",
+   "how": "vendored",
+   "watch": [
+    "docs/firmware/"
+   ],
+   "since": {
+    "commit": "e922375"
+   },
+   "on_change": "Nothing by hand, so no drift issue: the same weekly refresh copies them. quansheng_alert is archived, so they no longer change.",
+   "drift_issue": false,
+   "drift": {
+    "state": "current",
+    "since": {
+     "commit": "e922375",
+     "commitDate": "2026-10-20T01:17:12Z"
+    },
+    "behind": 0,
+    "commits": [],
+    "files": [],
     "note": "Up to date with upstream."
+   }
+  },
+  {
+   "id": "v3-screens",
+   "from": "quansheng-v3",
+   "to": "quansheng-all",
+   "provider": "screens",
+   "into": "guide",
+   "what": "Screen captures of the V3 receiver, copied into docs/img/screens/ for the guide.",
+   "how": "vendored",
+   "watch": [
+    "tools/alert/screens/"
+   ],
+   "since": {
+    "date": "2026-10-20"
+   },
+   "on_change": "Copy the new or changed PNGs into docs/img/screens/ and check the guide's captions.",
+   "drift_issue": true,
+   "drift": {
+    "state": "current",
+    "since": {
+     "date": "2026-10-20",
+     "commit": "ad166ca93c17cb5765b17d52a49b1c2c7cc6fb44",
+     "commitDate": "2026-10-20T00:11:32Z"
+    },
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "1 newer commit upstream since it was last reviewed (2026-10-20), none to watched files."
+   }
+  },
+  {
+   "id": "v3-receiver-docs",
+   "from": "quansheng-v3",
+   "to": "quansheng-all",
+   "provider": "serial-protocol",
+   "into": "guide",
+   "what": "The guide's account of the V3 receiver: screens, keys, settings, the 443 built-in stations, and logging with alertterm.py.",
+   "how": "reference",
+   "watch": [
+    "tools/alert/V2_SPEC.md",
+    "docs/ALERT_SERIAL.md",
+    "tools/alert/alertterm.py",
+    "App/app/alert_ui.c",
+    "App/app/alert.c",
+    "filters/stations.filter"
+   ],
+   "since": {
+    "date": "2026-10-20"
+   },
+   "on_change": "Re-read the guide's V3 screens, keys, settings and logging sections against the change and update them.",
+   "drift": {
+    "state": "current",
+    "since": {
+     "date": "2026-10-20",
+     "commit": "ad166ca93c17cb5765b17d52a49b1c2c7cc6fb44",
+     "commitDate": "2026-10-20T00:11:32Z"
+    },
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "1 newer commit upstream since it was last reviewed (2026-10-20), none to watched files."
+   }
+  },
+  {
+   "id": "v1-installer",
+   "from": "quansheng-v1",
+   "to": "quansheng-all",
+   "provider": "installer",
+   "into": "installer",
+   "what": "The UV-K5 installer and cable page, extended here to both radio families.",
+   "how": "ported",
+   "watch": [
+    "docs/js/",
+    "docs/cable/"
+   ],
+   "since": {
+    "commit": "e922375"
+   },
+   "on_change": "Nothing: taken once and now independent; quansheng_alert is archived.",
+   "drift": {
+    "state": "current",
+    "since": {
+     "commit": "e922375",
+     "commitDate": "2026-10-20T01:17:12Z"
+    },
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "Up to date with upstream."
+   }
+  },
+  {
+   "id": "v1-k5diag",
+   "from": "quansheng-v1",
+   "to": "quansheng-all",
+   "provider": "installer",
+   "into": "cable",
+   "what": "k5diag.py, the command-line cable and radio check, a verbatim copy.",
+   "how": "vendored",
+   "watch": [
+    "tools/k5diag.py"
+   ],
+   "since": {
+    "commit": "e922375"
+   },
+   "on_change": "Copy tools/k5diag.py over docs/tools/k5diag.py (identical today).",
+   "drift": {
+    "state": "current",
+    "since": {
+     "commit": "e922375",
+     "commitDate": "2026-10-20T01:17:12Z"
+    },
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "Up to date with upstream."
+   }
+  },
+  {
+   "id": "rpi-alert-entry",
+   "from": "rpi-alert",
+   "to": "open-alert",
+   "provider": "release",
+   "into": "alert-catalogue",
+   "what": "RPi ALERT's catalogue entry and notes: version, receivers it reads, protocols, platforms, hardware and clock notes.",
+   "how": "reference",
+   "url": "https://github.com/cdomotor-g/RPi_ALERT",
+   "watch": [
+    "agent/package.json",
+    "README.md",
+    "docs/hardware.md",
+    "docs/how-it-works.md"
+   ],
+   "since": {
+    "version": {
+     "file": "site/data/alert.js",
+     "pattern": "RPi ALERT (\\d+\\.\\d+(?:\\.\\d+)?)"
+    }
+   },
+   "on_change": "Update the rpi-alert record in site/data/alert.js (fw.name version, reads, decodes, grade, cons) and the RPi ALERT notes in compute.js, radio.js and site.js; run npm test.",
+   "drift_issue": true,
+   "drift": {
+    "state": "behind",
+    "since": {
+     "version": "0.11",
+     "latest": "0.15.2",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/releases/tag/v0.15.2"
+    },
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "Says 0.11; the latest release is 0.15.2."
+   }
+  },
+  {
+   "id": "quansheng-v3-entry",
+   "from": "quansheng-v3",
+   "to": "open-alert",
+   "provider": "firmware",
+   "into": "catalogue",
+   "what": "The UV-K5 V3 / UV-K1 receiver entry: how to flash it, its serial interface, its on-air status.",
+   "how": "reference",
+   "url": "https://github.com/cdomotor-g/quansheng_alert_v3",
+   "watch": [
+    "README.md",
+    "docs/ALERT_SERIAL.md"
+   ],
+   "since": {
+    "date": "2026-10-17"
+   },
+   "on_change": "Update quansheng-uv-k5-v3 in site/data/radio.js (fw.note, status, cons); run npm test.",
+   "drift": {
+    "state": "behind",
+    "since": {
+     "date": "2026-10-17",
+     "commit": "fdd3a6add695cf75fcafb145f697967cc75ecec0",
+     "commitDate": "2026-10-13T05:13:30Z"
+    },
+    "behind": 1,
+    "commits": [
+     {
+      "sha": "ad166ca",
+      "date": "2026-10-20T00:11:32Z",
+      "msg": "docs: point people setting up a radio at the quansheng_alert_ALL site",
+      "url": "https://github.com/cdomotor-g/quansheng_alert_v3/commit/ad166ca93c17cb5765b17d52a49b1c2c7cc6fb44"
+     }
+    ],
+    "files": [
+     "README.md"
+    ],
+    "note": "1 upstream change to watched files since it was last reviewed (2026-10-17)."
+   }
+  },
+  {
+   "id": "quansheng-v1-entry",
+   "from": "quansheng-v1",
+   "to": "open-alert",
+   "provider": "published-builds",
+   "into": "catalogue",
+   "what": "The DP32G030 UV-K5 entry: archived but flashable, read through a K-plug cable at 38,400 baud.",
+   "how": "reference",
+   "url": "https://github.com/cdomotor-g/quansheng_alert",
+   "watch": [
+    "README.md"
+   ],
+   "since": {
+    "date": "2026-10-17"
+   },
+   "on_change": "Update quansheng-uv-k5-dp32 in site/data/radio.js; run npm test.",
+   "drift": {
+    "state": "behind",
+    "since": {
+     "date": "2026-10-17",
+     "commit": "06ee796eb2f99b05e724ac02ce56b5514a35f5fc",
+     "commitDate": "2026-10-13T05:13:34Z"
+    },
+    "behind": 2,
+    "commits": [
+     {
+      "sha": "26f1f09",
+      "date": "2026-10-20T01:14:52Z",
+      "msg": "feat: decode ALERT the way the V3 port does on air",
+      "url": "https://github.com/cdomotor-g/quansheng_alert/commit/26f1f09cf74209fa210a7c396f232f877f4082a1"
+     },
+     {
+      "sha": "8dd30b1",
+      "date": "2026-10-20T00:11:32Z",
+      "msg": "docs: send new visitors and V3 owners to the quansheng_alert_ALL site",
+      "url": "https://github.com/cdomotor-g/quansheng_alert/commit/8dd30b1ef3c9c3415824fd6a5a8be1dd08caff9d"
+     }
+    ],
+    "files": [
+     "README.md"
+    ],
+    "note": "2 upstream changes to watched files since it was last reviewed (2026-10-17)."
+   }
+  },
+  {
+   "id": "fw-lab-entry",
+   "from": "fw-lab",
+   "to": "open-alert",
+   "provider": "receiver-docs",
+   "into": "alert-catalogue",
+   "what": "The FW-LAB Receiver entry and the GNU Radio lab base preset: SDRs, platforms, MQTT output.",
+   "how": "reference",
+   "url": "https://github.com/cdomotor-g/ALERT1v3",
+   "watch": [
+    "README.md",
+    "docs/PLATFORMS.md",
+    "docs/MQTT.md"
+   ],
+   "since": {
+    "date": "2026-10-17"
+   },
+   "on_change": "Update fwlab-receiver in site/data/alert.js and base-fwlab-x86 in site/js/presets.js (status eol if the repository is archived); run npm test.",
+   "drift": {
+    "state": "current",
+    "since": {
+     "date": "2026-10-17",
+     "commit": "7db5982bd769167d6610e37949dc417f0ec6c235",
+     "commitDate": "2026-10-13T05:14:05Z"
+    },
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "Up to date with upstream."
+   }
+  },
+  {
+   "id": "alert-packets-frames",
+   "from": "alert-packets",
+   "to": "open-alert",
+   "provider": "frame-codec",
+   "into": "alert-catalogue",
+   "what": "ALERT frame formats (ABF, EIF, framing, CRC) cited for the planned open encoder.",
+   "how": "reference",
+   "url": "https://github.com/cdomotor-g/ALERT_PACKETS",
+   "watch": [
+    "index.html",
+    "README.md"
+   ],
+   "since": {
+    "date": "2026-10-17"
+   },
+   "on_change": "Re-check the oa-encoder and diy-minimodem-encoder records in site/data/alert.js.",
+   "drift": {
+    "state": "current",
+    "since": {
+     "date": "2026-10-17",
+     "commit": "d7820448ab63ddf0c8feaf8f4e06671686faa8f4",
+     "commitDate": "2026-10-13T05:13:59Z"
+    },
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "Up to date with upstream."
+   }
+  },
+  {
+   "id": "flood-net-refs",
+   "from": "flood-net",
+   "to": "open-alert",
+   "into": "alert-catalogue",
+   "what": "ALERT2 transition plan planning prices, ALERT1 tones and timing, the Serial Monitor entry, and Flood-Net as the destination (HTTPS, MQTT, HFEM, 115E-2-A2 bridge).",
+   "how": "reference",
+   "url": "https://github.com/cdomotor-g/MegaNet",
+   "watch": [
+    "alert2-plan.js",
+    "alert-dsp.js",
+    "docs/ingest-serial-monitor.md",
+    "serial*.js",
+    "docs/elpro115e_mqtt.md",
+    "docs/ingest-http.md",
+    "docs/ingest-mqtt.md",
+    "docs/ingest-hfem.md"
+   ],
+   "since": {
+    "date": "2026-10-17"
+   },
+   "on_change": "Update the PLAN-priced records in site/data/alert.js and site/data/site.js (and usdPerAud in site/js/engine.js), the floodnet-serial-monitor record, and the Flood-Net outputs in engine.js; run npm test.",
+   "drift": {
+    "state": "behind",
+    "since": {
+     "date": "2026-10-17",
+     "commit": "7309891c638d1050f0163f19dc8284ef7f54a7ca",
+     "commitDate": "2026-10-17T09:50:24Z"
+    },
+    "behind": 4,
+    "commits": [
+     {
+      "sha": "3180804",
+      "date": "2026-10-23T00:05:58Z",
+      "msg": "Docs and comments: the Supabase project is on Pro now, not the free tier",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/318080415b87904bcbc10b6c60b38efdbc1758c4"
+     },
+     {
+      "sha": "92e005d",
+      "date": "2026-10-21T08:43:41Z",
+      "msg": "Transmitter drift, from review: chained repeaters, strays, per-kind fleets, and readings placed in their own burst (#217)",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/92e005dae4b654a7465c339e932bf2debd185a64"
+     },
+     {
+      "sha": "87f5e01",
+      "date": "2026-10-21T08:19:18Z",
+      "msg": "Transmitter drift for legacy ALERT: each burst put down to its station or its repeater (#217)",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/87f5e01ec8fae13c37b3f96de4e6740b1386958f"
+     },
+     {
+      "sha": "df4c675",
+      "date": "2026-10-21T07:54:51Z",
+      "msg": "🧭 The ALERT2 Transition Plan for the people the owner nominates",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/df4c6754538f685074c692b00f75b23b82652efc"
+     }
+    ],
+    "files": [
+     "alert2-plan.js",
+     "alert-dsp.js",
+     "docs/elpro115e_mqtt.md"
+    ],
+    "note": "4 upstream changes to watched files since it was last reviewed (2026-10-17)."
+   }
+  },
+  {
+   "id": "floodnet-api",
+   "from": "flood-net",
+   "to": "sort",
+   "provider": "agent-api",
+   "into": "floodnet-lookup",
+   "what": "Flood-Net's public read-only agent API: station search and stations near a point, each station's dossier and record, and the ACMA licences at its site.",
+   "how": "live",
+   "url": "https://floodwarning.net/api/v1",
+   "watch": [
+    "docs/api-changelog.json",
+    "worker/api.js",
+    "worker/acma.js"
+   ],
+   "since": {
+    "date": "2026-10-31"
+   },
+   "on_change": "Read the new docs/api-changelog.json entries; if a route or field SoRT reads changed, update v2/js/floodnet.js, bump v2's ?v= stamp and look up a station on /SoRT/v2/.",
+   "drift": {
+    "state": "current",
+    "since": {
+     "date": "2026-10-31",
+     "commit": "990d729438ed45bfc120a9527e678db38a6e17af",
+     "commitDate": "2026-10-31T22:08:18Z"
+    },
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "Up to date with upstream."
+   }
+  },
+  {
+   "id": "bulletin-voicing",
+   "from": "flood-net",
+   "to": "droggies",
+   "into": "voices",
+   "what": "How Flood-Net's bulletin voicing reads the cast (direction, sustain, tempo, lexicon) and the Bulletin voices workflow that re-voices old bulletins, both described in voices/README.md.",
+   "how": "reference",
+   "watch": [
+    ".github/workflows/bulletin-voice.yml",
+    "tools/voice/speak.mjs"
+   ],
+   "since": {
+    "date": "2026-10-25"
+   },
+   "on_change": "Check voices/README.md's recasting steps and its notes on direction, sustain and tempo still match; add any field speak.mjs newly reads to schemas/cast.schema.json.",
+   "drift": {
+    "state": "unknown",
+    "note": "The Atlas could not read one end (a private repository, or one its token cannot reach).",
+    "commits": []
    }
   }
  ],
@@ -3499,10 +6844,67 @@
   {
    "in": "rpi-alert",
    "about": "flood-net",
+   "n": 2,
+   "title": "Upstream moved: MegaNet changed alert2.js",
+   "url": "https://github.com/cdomotor-g/RPi_ALERT/issues/2"
+  },
+  {
+   "in": "rpi-alert",
+   "about": "flood-net",
    "n": 1,
    "title": "Take MegaNet's ALERT2 field fix — stop dropping ALERT2 self-reports on the Pi",
    "url": "https://github.com/cdomotor-g/RPi_ALERT/issues/1"
+  },
+  {
+   "in": "open-alert",
+   "about": "rpi-alert",
+   "n": 1,
+   "title": "Upstream moved: RPi_ALERT released 0.15.2 (this repository names 0.11)",
+   "url": "https://github.com/cdomotor-g/open-ALERT/issues/1"
   }
  ],
- "asks": []
+ "asks": [
+  {
+   "from": "flood-net",
+   "to": "droggies",
+   "what": "Recast Nitto (nitwit) in voices/cast.json with a voice of his own; his current one is too like another Droggie's, so Flood-Net's bulletins bench him until then.",
+   "issue": null,
+   "since": "2026-10-31"
+  },
+  {
+   "from": "rpi-alert",
+   "to": "flood-net",
+   "what": "Take the ALERT2 AirLink decoder (agent/lib/devices/alert2-air.js, alert2-fec.js) beside alert-dsp.js, so the website's SDR card hears ALERT2 and the Pi can vendor it back.",
+   "issue": null,
+   "since": "2026-10-19"
+  },
+  {
+   "from": "rpi-alert",
+   "to": "flood-net",
+   "what": "Map an ALERT2 station's (station, sensor number) to an ALERT id in the register, so self-reporting stations' sensors become readings rather than receptions only.",
+   "issue": null,
+   "since": "2026-10-19"
+  },
+  {
+   "from": "rpi-alert",
+   "to": "flood-net",
+   "what": "A channeliser shared by a stick's channels (one filter bank per stick) in alert-dsp.js, or at least a lighter first filter, so a Pi can take a fifth channel.",
+   "issue": null,
+   "since": "2026-10-24"
+  },
+  {
+   "from": "rpi-alert",
+   "to": "flood-net",
+   "what": "Measure whether one burst heard by two receivers is stored twice, so both repositories' docs say the same true thing.",
+   "issue": "cdomotor-g/MegaNet#232",
+   "since": "2026-10-07"
+  },
+  {
+   "from": "quansheng-all",
+   "to": "quansheng-v3",
+   "what": "After a push to main, send quansheng_alert_ALL a firmware-updated repository dispatch (needs a token secret), so a new build is published that day, not the next Monday.",
+   "issue": null,
+   "since": "2026-10-31"
+  }
+ ]
 }
