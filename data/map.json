@@ -1,6 +1,6 @@
 {
- "generated": "2026-10-31T22:26:50.609Z",
- "hash": "8b9075643a1bbf79",
+ "generated": "2026-11-01T00:05:50.807Z",
+ "hash": "1f05abd1408533f3",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1797,44 +1797,44 @@
    "release": null,
    "ci": [
     {
-     "name": "Atlas",
+     "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41248115362",
-     "date": "2026-10-31T22:25:48Z",
-     "event": "push"
-    },
-    {
-     "name": "Web smoke test",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41248115333",
-     "date": "2026-10-31T22:25:39Z",
-     "event": "push"
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41254801556",
+     "date": "2026-11-01T00:02:30Z",
+     "event": "schedule"
     },
     {
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41247996323",
-     "date": "2026-10-31T22:23:54Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41254409030",
+     "date": "2026-10-31T23:54:01Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41247505718",
-     "date": "2026-10-31T22:17:34Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41253940542",
+     "date": "2026-10-31T23:46:58Z",
      "event": "schedule"
     },
     {
-     "name": "Station health",
+     "name": "Web smoke test",
+     "status": "completed",
+     "conclusion": "failure",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41248115333",
+     "date": "2026-10-31T23:22:32Z",
+     "event": "push"
+    },
+    {
+     "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41247337084",
-     "date": "2026-10-31T22:15:56Z",
-     "event": "schedule"
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41248115362",
+     "date": "2026-10-31T22:25:48Z",
+     "event": "push"
     },
     {
      "name": "CodeQL",
@@ -1859,14 +1859,6 @@
      "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41246352629",
      "date": "2026-10-31T22:02:57Z",
      "event": "workflow_dispatch"
-    },
-    {
-     "name": "Bulletin voices",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41242630697",
-     "date": "2026-10-31T21:14:44Z",
-     "event": "push"
     }
    ],
    "version": "20261031g",
@@ -2749,19 +2741,19 @@
    },
    "ci": [
     {
-     "name": "test",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41248118540",
-     "date": "2026-10-31T22:25:31Z",
-     "event": "push"
-    },
-    {
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41248118757",
      "date": "2026-10-31T22:25:46Z",
+     "event": "push"
+    },
+    {
+     "name": "test",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41248118540",
+     "date": "2026-10-31T22:27:13Z",
      "event": "push"
     },
     {
@@ -3815,10 +3807,10 @@
    "ci": [
     {
      "name": "Build Firmware",
-     "status": "in_progress",
-     "conclusion": null,
+     "status": "completed",
+     "conclusion": "success",
      "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/41248131171",
-     "date": "2026-10-31T22:25:51Z",
+     "date": "2026-10-31T22:26:09Z",
      "event": "push"
     },
     {
@@ -4609,14 +4601,6 @@
    },
    "ci": [
     {
-     "name": "Test the site",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41248126319",
-     "date": "2026-10-31T22:25:37Z",
-     "event": "push"
-    },
-    {
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
@@ -4625,11 +4609,19 @@
      "event": "push"
     },
     {
+     "name": "Test the site",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41248126319",
+     "date": "2026-10-31T22:26:41Z",
+     "event": "push"
+    },
+    {
      "name": "pages build and deployment",
-     "status": "in_progress",
-     "conclusion": null,
+     "status": "completed",
+     "conclusion": "success",
      "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41248125101",
-     "date": "2026-10-31T22:25:58Z",
+     "date": "2026-10-31T22:26:09Z",
      "event": "dynamic"
     },
     {
@@ -4665,7 +4657,7 @@
     "repo": "cdomotor-g/open-ALERT",
     "name": "open-ALERT",
     "tagline": "A configurator for ALERT and ALERT2 flood-warning sites: say what a site must do, see the hardware that fits, its costs and consequences.",
-    "about": "For anyone planning ALERT or ALERT2 field stations, repeaters or base stations. Each site goes from needs to requirements to hardware picked from a 248-part catalogue (open and closed, Raspberry Pi to industrial), then to a bill of materials, a power budget with battery and panel sized, labour and running costs, and the consequences of the choices. The Network tab adds sites up and checks that what field stations send, repeaters relay and bases receive actually meet. A static page with no server: state lives in the browser and in share links.",
+    "about": "For anyone planning ALERT or ALERT2 field stations, repeaters or base stations. Each site goes from needs to requirements to hardware picked from a 250-part catalogue (open and closed, Raspberry Pi to industrial), then to a bill of materials, a power budget with battery and panel sized, labour and running costs, and the consequences of the choices. The Network tab adds sites up and checks that what field stations send, repeaters relay and bases receive actually meet. A static page with no server: state lives in the browser and in share links. The base station builder (build.html) goes deeper on a receiving base running RPi ALERT: how it fits together physically and in the code, which computer keeps up with how many channels, the SDR mounting, a bill with price ranges, lead times and suppliers, and the build steps.",
     "kind": "static web app (configurator)",
     "logo": "site/icon.svg",
     "site": "https://cdomotor-g.github.io/open-ALERT/",
@@ -4681,14 +4673,15 @@
     },
     "status": {
      "phase": "beta",
-     "updated": "2026-10-31",
-     "summary": "Published in one push on 17 Oct 2026 and untouched since: it works end to end, but some catalogue entries already lag their sources (it says RPi ALERT 0.11; RPi ALERT is 0.15.x).",
+     "updated": "2026-11-01",
+     "summary": "Added the base station builder (build.html): system and physical diagrams, a stick planner and CPU model from RPi ALERT's measurements, a bill with price ranges, lead times and where to buy, the build steps, and the custom path off the Raspberry Pi (CM5, Verdin AM62 + Mallow, an M.2 SDR card, a carrier of your own). The RPi ALERT entry is up to 0.15.3.",
      "next": [
-      "Bring the RPi ALERT entry to 0.15.x: version, off-air ALERT2 AirLink, cons",
+      "Check the builder's estimated prices and lead times (marked est.) with suppliers: antennas, coax, arrestors, the mating Bulgin lead",
       "Point the Quansheng V3 entry at quansheng_alert_ALL's browser installer",
       "Re-check the FW-LAB entry: Flood-Net's runbook says to retire and archive it"
      ],
      "later": [
+      "Recalibrate the builder's CPU model once RPi ALERT runs on a CM5 or a Verdin AM62, and when the shared front end or WebAssembly decoder lands",
       "Write the open-ALERT ALERT1 encoder firmware (catalogued as planned)",
       "Write the open-ALERT store-and-forward repeater on RPi ALERT's receive side",
       "Re-check quote-only and estimated prices with suppliers"
@@ -4707,7 +4700,7 @@
      {
       "id": "catalogue",
       "name": "Hardware catalogue",
-      "what": "248 parts in six family files, each with price and its source, power, temperature, grade, openness and sources.",
+      "what": "250 parts in six family files, each with price and its source, power, temperature, grade, openness and sources.",
       "paths": [
        "site/data/"
       ],
@@ -4739,6 +4732,19 @@
        "site/index.html",
        "site/js/ui.js",
        "site/style.css"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "builder",
+      "name": "Base station builder",
+      "what": "build.html: how a receiving base fits together, the stick planner and CPU model, the bill with price ranges, lead times and suppliers, the build steps and the custom path.",
+      "paths": [
+       "site/build.html",
+       "site/build.css",
+       "site/js/builder.js",
+       "site/data/builder.js",
+       "test/builder.test.js"
       ],
       "status": "live"
      },
@@ -4783,7 +4789,7 @@
      {
       "id": "hardware-catalogue",
       "name": "ALERT hardware catalogue",
-      "what": "Plain-JavaScript records of 248 parts with prices and their sources, power, grades and links, for costing ALERT sites.",
+      "what": "Plain-JavaScript records of 250 parts with prices and their sources, power, grades and links, for costing ALERT sites.",
       "component": "catalogue",
       "paths": [
        "site/data/"
@@ -4799,6 +4805,18 @@
        "site/js/ui.js"
       ],
       "url": "https://cdomotor-g.github.io/open-ALERT/"
+     },
+     {
+      "id": "base-station-builder",
+      "name": "Base station builder",
+      "what": "A page for planning and building one ALERT receiving base station on RPi ALERT, from parts to readings in Flood-Net.",
+      "component": "builder",
+      "paths": [
+       "site/build.html",
+       "site/js/builder.js",
+       "site/data/builder.js"
+      ],
+      "url": "https://cdomotor-g.github.io/open-ALERT/build.html"
      }
     ],
     "consumes": [
@@ -4914,6 +4932,27 @@
        "date": "2026-10-17"
       },
       "on_change": "Update the PLAN-priced records in site/data/alert.js and site/data/site.js (and usdPerAud in site/js/engine.js), the floodnet-serial-monitor record, and the Flood-Net outputs in engine.js; run npm test."
+     },
+     {
+      "id": "rpi-alert-decoding-model",
+      "from": "rpi-alert",
+      "provider": "channel-planner",
+      "into": "builder",
+      "what": "The builder's stick windows, channel costs, burst cost and install routes: RPi ALERT's hardware notes, how it works, its installer and its SDR worker.",
+      "how": "reference",
+      "url": "https://github.com/cdomotor-g/RPi_ALERT",
+      "watch": [
+       "docs/hardware.md",
+       "docs/how-it-works.md",
+       "docs/install.md",
+       "os/install.sh",
+       "agent/lib/devices/sdr.js",
+       "agent/lib/devices/sdr-worker.js"
+      ],
+      "since": {
+       "date": "2026-11-01"
+      },
+      "on_change": "Re-check model.windows, chCore240, burstCoreS and kioskCore in site/data/builder.js and the steps() text in site/js/builder.js; run npm test."
      }
     ]
    },
@@ -4922,12 +4961,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-10-31T22:25:34Z",
+    "pushed": "2026-11-01T00:04:40Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/open-ALERT"
    },
    "commits": [
+    {
+     "sha": "d7041c5",
+     "date": "2026-11-01T00:04:39Z",
+     "msg": "Base station builder: how a receiving base fits together, what it costs, how to build it",
+     "url": "https://github.com/cdomotor-g/open-ALERT/commit/d7041c59a8ffe97fff2c4b55fc9a868f3fbb78e2"
+    },
     {
      "sha": "91a05d5",
      "date": "2026-10-31T22:25:32Z",
@@ -4959,65 +5004,46 @@
      "url": "https://github.com/cdomotor-g/open-ALERT/commit/bfea3684ac6e2ad55b17a0d3ce1fe50859a5c5b6"
     }
    ],
-   "issues": [
-    {
-     "n": 1,
-     "raw": "[Standalone] [Sonnet5/Med] Upstream moved: RPi_ALERT released 0.15.2 (this repository names 0.11)",
-     "structure": "standalone",
-     "parent": null,
-     "model": "Sonnet5",
-     "effort": "Med",
-     "human": false,
-     "title": "Upstream moved: RPi_ALERT released 0.15.2 (this repository names 0.11)",
-     "url": "https://github.com/cdomotor-g/open-ALERT/issues/1",
-     "updated": "2026-10-31T22:08:27Z",
-     "created": "2026-10-31T22:08:27Z",
-     "comments": 0,
-     "labels": [],
-     "mentions": [
-      "rpi_alert"
-     ]
-    }
-   ],
-   "issueCount": 1,
+   "issues": [],
+   "issueCount": 0,
    "release": null,
    "ci": [
     {
      "name": "test",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41248127963",
-     "date": "2026-10-31T22:25:47Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41255142607",
+     "date": "2026-11-01T00:04:57Z",
      "event": "push"
-    },
-    {
-     "name": "pages build and deployment",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41248127890",
-     "date": "2026-10-31T22:25:59Z",
-     "event": "dynamic"
     },
     {
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41246791974",
-     "date": "2026-10-31T22:08:29Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41255142897",
+     "date": "2026-11-01T00:05:03Z",
      "event": "push"
     },
     {
      "name": "pages",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/39009217605",
-     "date": "2026-10-17T06:15:35Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41255142654",
+     "date": "2026-11-01T00:05:09Z",
      "event": "push"
+    },
+    {
+     "name": "pages build and deployment",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41255141958",
+     "date": "2026-11-01T00:05:06Z",
+     "event": "dynamic"
     }
    ],
    "version": "0.1.0",
    "lastCommit": {
-    "date": "2026-10-31T22:25:32Z"
+    "date": "2026-11-01T00:04:39Z"
    }
   },
   {
@@ -7274,16 +7300,16 @@
    "on_change": "Update the rpi-alert record in site/data/alert.js (fw.name version, reads, decodes, grade, cons) and the RPi ALERT notes in compute.js, radio.js and site.js; run npm test.",
    "drift_issue": true,
    "drift": {
-    "state": "behind",
+    "state": "current",
     "since": {
-     "version": "0.11",
+     "version": "0.15.3",
      "latest": "0.15.2",
      "url": "https://github.com/cdomotor-g/RPi_ALERT/releases/tag/v0.15.2"
     },
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "Says 0.11; the latest release is 0.15.2."
+    "note": "Says 0.15.3, the latest release."
    }
   },
   {
@@ -7495,6 +7521,40 @@
    }
   },
   {
+   "id": "rpi-alert-decoding-model",
+   "from": "rpi-alert",
+   "to": "open-alert",
+   "provider": "channel-planner",
+   "into": "builder",
+   "what": "The builder's stick windows, channel costs, burst cost and install routes: RPi ALERT's hardware notes, how it works, its installer and its SDR worker.",
+   "how": "reference",
+   "url": "https://github.com/cdomotor-g/RPi_ALERT",
+   "watch": [
+    "docs/hardware.md",
+    "docs/how-it-works.md",
+    "docs/install.md",
+    "os/install.sh",
+    "agent/lib/devices/sdr.js",
+    "agent/lib/devices/sdr-worker.js"
+   ],
+   "since": {
+    "date": "2026-11-01"
+   },
+   "on_change": "Re-check model.windows, chCore240, burstCoreS and kioskCore in site/data/builder.js and the steps() text in site/js/builder.js; run npm test.",
+   "drift": {
+    "state": "current",
+    "since": {
+     "date": "2026-11-01",
+     "commit": "45ddd2a938513138535323bf7a2627a08914d1b6",
+     "commitDate": "2026-10-31T22:25:23Z"
+    },
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "Up to date with upstream."
+   }
+  },
+  {
    "id": "floodnet-api",
    "from": "flood-net",
    "to": "sort",
@@ -7575,13 +7635,6 @@
    "n": 1,
    "title": "Take MegaNet's ALERT2 field fix — stop dropping ALERT2 self-reports on the Pi",
    "url": "https://github.com/cdomotor-g/RPi_ALERT/issues/1"
-  },
-  {
-   "in": "open-alert",
-   "about": "rpi-alert",
-   "n": 1,
-   "title": "Upstream moved: RPi_ALERT released 0.15.2 (this repository names 0.11)",
-   "url": "https://github.com/cdomotor-g/open-ALERT/issues/1"
   }
  ],
  "asks": [
