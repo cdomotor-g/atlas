@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-01T00:49:55.400Z",
- "hash": "c8814c24e5509613",
+ "generated": "2026-11-01T03:08:54.580Z",
+ "hash": "acab81b574e02934",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -90,7 +90,7 @@
     },
     "status": {
      "phase": "live",
-     "updated": "2026-10-31",
+     "updated": "2026-11-01",
      "summary": "Live and in daily use (database schema 93): this week added the agent API's changelog and email list, ACMA licences in the API, the Repeaters tab and cuts to database I/O, while account email, compute size and the ACMA download link wait on the owner.",
      "now": [
       "Agent API changelog and notify list shipped; emails start once #237's Resend parts are done",
@@ -239,7 +239,6 @@
        "holds": [
         "the ACMA layer's licence data (stuck on 23 July 2026)",
         "ACMA licences in the agent API",
-        "#248",
         "each missed month of the register, which ACMA does not keep"
        ],
        "options": [
@@ -250,7 +249,7 @@
          "recommended": true
         },
         {
-         "what": "Paste the copied link in a comment on #245; an agent puts it in ACMA_ZIP_URLS, runs the workflow, closes PR #208, #245 and #248",
+         "what": "Paste the copied link in a comment on #245; an agent puts it in ACMA_ZIP_URLS, runs the workflow, and closes PR #208 and #245",
          "by": "agent",
          "effort": "Low",
          "model": "Sonnet5/Low",
@@ -263,37 +262,6 @@
          "effort": "10 min a week",
          "pros": "works even if the link needs a login",
          "cons": "the workflow uses a release only under 10 days old, so it repeats weekly"
-        }
-       ]
-      },
-      {
-       "id": "acma-refresh",
-       "what": "#248 the weekly ACMA refresh fails: no ACMA download URL works (the same fix as #245)",
-       "on": "human",
-       "kind": "upstream",
-       "since": "2026-10-27",
-       "issue": "#248",
-       "holds": [
-        "the weekly Refresh ACMA RRL data workflow (red since October)"
-       ],
-       "options": [
-        {
-         "what": "Fix it with #245: the current spectra_rrl.zip link first in ACMA_ZIP_URLS, then Actions → Refresh ACMA RRL data → Run workflow, and check it goes green",
-         "by": "human",
-         "effort": "5 min",
-         "recommended": true
-        },
-        {
-         "what": "Close #248 as a duplicate of #245 so the CI doctor reports in one place, and update the roadmap",
-         "by": "agent",
-         "effort": "Low",
-         "model": "Sonnet5/Low",
-         "cons": "the workflow stays red"
-        },
-        {
-         "what": "Stopgap: attach the zip to an acma-data-YYYY-MM-DD release each week until the link is found",
-         "by": "human",
-         "effort": "10 min a week"
         }
        ]
       },
@@ -427,40 +395,6 @@
          "what": "Leave #204 parked: an agent can already draft from the dossier with the prompt in docs/agent-api.md, and nothing else waits on it",
          "by": "human",
          "effort": "none"
-        }
-       ]
-      },
-      {
-       "id": "equipment-credential",
-       "what": "#206 the equipment-proposing agent waits on a credential choice",
-       "on": "agent",
-       "kind": "decision",
-       "since": "2026-09-28",
-       "issue": "#206",
-       "holds": [
-        "equipment proposals from new field photos"
-       ],
-       "options": [
-        {
-         "what": "Close #206 as done by the nightly photo reader: it proposes equipment as agent:photo-reader through record_photo_readings() and propose_equipment() (0090) over the Supabase connector, for the Review panel; check #206's Done-when against it, comment, close, and update the roadmap",
-         "by": "agent",
-         "effort": "Low",
-         "model": "Sonnet5/Low",
-         "pros": "the work already runs every night",
-         "cons": "the owner may still want a narrower credential than the connector",
-         "recommended": true
-        },
-        {
-         "what": "Choose the project's secret key (already an Actions secret for the Dropbox and Drive syncs); an agent builds #206's scheduled job beside field-photos-dropbox.yml",
-         "by": "human",
-         "effort": "5 min",
-         "cons": "duplicates the photo reader"
-        },
-        {
-         "what": "Choose a new role with execute on propose_equipment() only; an agent adds its grants by migration and its rules to tools/check_photo_review.sql",
-         "by": "human",
-         "effort": "5 min",
-         "pros": "the narrowest credential"
         }
        ]
       }
@@ -978,12 +912,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-10-31T22:25:23Z",
+    "pushed": "2026-11-01T03:07:48Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "6ca83cd",
+     "date": "2026-11-01T03:07:45Z",
+     "msg": "Roadmap revision 208: #206 closed, #248 into #245; two ALERT Binary bursts as test vectors",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/6ca83cdeb0f7aeff909a6f8ed14a35425bc16f19"
+    },
     {
      "sha": "40e90da",
      "date": "2026-10-31T22:25:20Z",
@@ -1049,12 +989,6 @@
      "date": "2026-10-31T18:35:37Z",
      "msg": "Bulletin voices: daily/2026-11-01",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/50f68465b0569c3bea167384d7d385125845315e"
-    },
-    {
-     "sha": "bb6d04a",
-     "date": "2026-10-31T18:34:24Z",
-     "msg": "Network Weather: daily bulletin for 2026-11-01 — fair; two Tweed stations quiet, a Gold Coast group quiet at night",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/bb6d04afe1e497e36a0bae63f7396f0f59c17548"
     }
    ],
    "issues": [
@@ -1192,25 +1126,6 @@
      "mentions": []
     },
     {
-     "n": 248,
-     "raw": "[Standalone] [Human] CI doctor: Refresh ACMA RRL data — no ACMA download URL works",
-     "structure": "standalone",
-     "parent": null,
-     "model": null,
-     "effort": null,
-     "human": true,
-     "title": "CI doctor: Refresh ACMA RRL data — no ACMA download URL works",
-     "url": "https://github.com/cdomotor-g/MegaNet/issues/248",
-     "updated": "2026-10-29T00:09:40Z",
-     "created": "2026-10-27T04:25:41Z",
-     "comments": 1,
-     "labels": [],
-     "mentions": [
-      "meganet"
-     ],
-     "excerpt": "Workflow: Refresh ACMA RRL data (.github/workflows/acma-refresh.yml), newest run on main: https://github.com/cdomotor-g/MegaNet/actions/runs/40230634935 (2026-10-25, failure). Error: curl: (22) The requested URL returned error: 404 (cdn.acma.gov.au/rrl-updates/…, cdn.acma.gov.au/offline-rrl/…) curl: (6) Could not resolve host: web.acma.gov.au ##[error]No…"
-    },
-    {
      "n": 247,
      "raw": "[Standalone] [Opus5/Med] Maybe: carrier outages (Telstra, Iridium, Inmarsat BGAN) on Station Health",
      "structure": "standalone",
@@ -1228,15 +1143,15 @@
     },
     {
      "n": 245,
-     "raw": "[Standalone] [Human] Find ACMA's new spectra_rrl.zip link — web.acma.gov.au retired, weekly refresh can't download",
+     "raw": "[Standalone] [Human] Find ACMA's new spectra_rrl.zip link — web.acma.gov.au retired; CI doctor: Refresh ACMA RRL data fails until then",
      "structure": "standalone",
      "parent": null,
      "model": null,
      "effort": null,
      "human": true,
-     "title": "Find ACMA's new spectra_rrl.zip link — web.acma.gov.au retired, weekly refresh can't download",
+     "title": "Find ACMA's new spectra_rrl.zip link — web.acma.gov.au retired; CI doctor: Refresh ACMA RRL data fails until then",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/245",
-     "updated": "2026-10-27T00:09:19Z",
+     "updated": "2026-11-01T03:02:41Z",
      "created": "2026-10-22T01:34:33Z",
      "comments": 2,
      "labels": [],
@@ -1337,9 +1252,9 @@
      "human": true,
      "title": "Switch accounts on: finish 0062, send email through Resend, set Supabase's sign-in settings",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/237",
-     "updated": "2026-10-14T12:52:12Z",
+     "updated": "2026-11-01T03:02:48Z",
      "created": "2026-10-13T04:24:41Z",
-     "comments": 0,
+     "comments": 1,
      "labels": [],
      "mentions": [
       "meganet"
@@ -1424,9 +1339,9 @@
      "human": false,
      "title": "One burst heard by two receivers is probably stored twice — the duplicate key's time is each receiver's arrival time",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/232",
-     "updated": "2026-10-07T11:11:16Z",
+     "updated": "2026-11-01T03:02:55Z",
      "created": "2026-10-07T11:11:16Z",
-     "comments": 0,
+     "comments": 1,
      "labels": [],
      "mentions": []
     },
@@ -1545,24 +1460,6 @@
      "labels": [],
      "mentions": [],
      "excerpt": "Human: the steps need a Microsoft account that can register an app, the Supabase dashboard, and a Bureau machine to test from. Bureau staff have @bom.gov.au Microsoft work accounts. The sign-in panel now shows Sign in with Microsoft above the email box: one click, and no email or code to wait for. The button stays hidden until the Supabase Azure provider…"
-    },
-    {
-     "n": 206,
-     "raw": "[Standalone] [Opus5/Med] An agent that proposes station equipment from new field photos",
-     "structure": "standalone",
-     "parent": null,
-     "model": "Opus5",
-     "effort": "Med",
-     "human": false,
-     "title": "An agent that proposes station equipment from new field photos",
-     "url": "https://github.com/cdomotor-g/MegaNet/issues/206",
-     "updated": "2026-09-28T02:47:38Z",
-     "created": "2026-09-28T02:47:38Z",
-     "comments": 0,
-     "labels": [],
-     "mentions": [
-      "meganet"
-     ]
     },
     {
      "n": 205,
@@ -1763,7 +1660,7 @@
      "human": true,
      "title": "Roadmap — resource allocation & sequencing for all issues",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/113",
-     "updated": "2026-10-31T22:04:16Z",
+     "updated": "2026-11-01T03:08:01Z",
      "created": "2026-08-13T00:13:50Z",
      "comments": 0,
      "labels": [],
@@ -1771,7 +1668,7 @@
       "meganet",
       "rpi_alert"
      ],
-     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1047k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
+     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1050k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
     },
     {
      "n": 66,
@@ -1793,77 +1690,69 @@
      "excerpt": "Follow-up carrying the one unanswered question from #54 (route 2). Everything else on that ticket shipped in #65. Priority: P4. This is a two-minute check that gates whether a larger piece of work is possible at all. Do not start any client code before it is answered. #54 asked for the direct-API route to be investigated and its outcome recorded before…"
     }
    ],
-   "issueCount": 43,
+   "issueCount": 41,
    "release": null,
    "ci": [
+    {
+     "name": "Roadmap sync",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41267907916",
+     "date": "2026-11-01T03:08:05Z",
+     "event": "push"
+    },
+    {
+     "name": "Atlas",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41267908238",
+     "date": "2026-11-01T03:07:54Z",
+     "event": "push"
+    },
+    {
+     "name": "CodeQL",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41267907984",
+     "date": "2026-11-01T03:07:55Z",
+     "event": "push"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41267907930",
+     "date": "2026-11-01T03:07:59Z",
+     "event": "push"
+    },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41258054246",
-     "date": "2026-11-01T00:44:28Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41267720385",
+     "date": "2026-11-01T03:05:10Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41257954363",
-     "date": "2026-11-01T00:43:46Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41267394501",
+     "date": "2026-11-01T03:01:03Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41257801727",
-     "date": "2026-11-01T00:40:57Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41267025800",
+     "date": "2026-11-01T02:54:14Z",
      "event": "schedule"
-    },
-    {
-     "name": "Web smoke test",
-     "status": "completed",
-     "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41248115333",
-     "date": "2026-10-31T23:22:32Z",
-     "event": "push"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41248115362",
-     "date": "2026-10-31T22:25:48Z",
-     "event": "push"
-    },
-    {
-     "name": "CodeQL",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41246805237",
-     "date": "2026-10-31T22:12:41Z",
-     "event": "push"
-    },
-    {
-     "name": "Roadmap sync",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41246470647",
-     "date": "2026-10-31T22:04:20Z",
-     "event": "push"
-    },
-    {
-     "name": "db-migrate",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41246352629",
-     "date": "2026-10-31T22:02:57Z",
-     "event": "workflow_dispatch"
     }
    ],
    "version": "20261031g",
    "lastCommit": {
-    "date": "2026-10-31T22:25:20Z"
+    "date": "2026-11-01T03:07:45Z"
    }
   },
   {
@@ -2089,7 +1978,7 @@
     },
     "status": {
      "phase": "beta",
-     "updated": "2026-10-31",
+     "updated": "2026-11-01",
      "summary": "Version 0.15.3 is on main (latest release v0.15.2) and runs a live base station on two RTL-SDR sticks; the bench test with a V4 stick, a Quansheng radio and an ERT-A2 has not been done.",
      "now": [
       "0.15.x: each stick's narrowest window and its CPU cost, tuned on the live station",
@@ -2199,40 +2088,6 @@
          "effort": "10 min to decide",
          "pros": "tests what will actually be bought",
          "cons": "the V4 already on hand stays unproven"
-        }
-       ]
-      },
-      {
-       "id": "binary-test-vector",
-       "what": "A second off-air test vector: a good 151.5 MHz ALERT Binary burst, for the tests beside the 4078 rig's Enhanced iFLOWS one",
-       "on": "human",
-       "kind": "hardware",
-       "since": "2026-10-02",
-       "holds": [
-        "an off-air test of ALERT Binary, the live networks' format (the only off-air burst in the tests is Enhanced iFLOWS)",
-        "Flood-Net's second SDR regression vector (its docs/serial-sdr.md asks for the same capture)",
-        "checking the planned channeliser and filter changes against a real Binary burst"
-       ],
-       "options": [
-        {
-         "what": "Record it at 18 Bateson, which decodes thousands of ALERT Binary bursts on 151.500: Settings → Recordings, add 151.5, wait for a burst whose .json says it decoded, download its .iq8 and .json from the same card, then take 151.5 off the list. An agent adds the pair to agent/test/fixtures with a codecs test, and to Flood-Net's test/fixtures/sdr.",
-         "by": "human",
-         "effort": "10 min",
-         "pros": "no bench needed; a recording is already the 240 ksps format the 4078 rig's file is in",
-         "recommended": true
-        },
-        {
-         "what": "With the owner's go-ahead, do it all from Flood-Net: a config.set request turning on recordings for 151.5 at 18 Bateson, then recordings and recording.get through the request queue (base_station_verb_check() does not offer those two yet), joining the file from its 43 kB pieces.",
-         "by": "agent",
-         "effort": "an hour",
-         "model": "Sonnet5/Med",
-         "cons": "writes to a live station's settings"
-        },
-        {
-         "what": "Capture it on the bench as bench-test.md §2 step 4 says (rtl_sdr at 960 ksps while a station transmits), during the first bench run.",
-         "by": "human",
-         "effort": "10 min, on the bench",
-         "cons": "waits on the bench run"
         }
        ]
       },
@@ -2616,12 +2471,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-10-31T22:25:25Z",
+    "pushed": "2026-11-01T03:07:50Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/RPi_ALERT"
    },
    "commits": [
+    {
+     "sha": "1d32c6d",
+     "date": "2026-11-01T03:07:48Z",
+     "msg": "Tests: two ALERT Binary bursts off the air, recorded at 18 Bateson",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/1d32c6d519c476f2925222faebcb9aee4745e481"
+    },
     {
      "sha": "45ddd2a",
      "date": "2026-10-31T22:25:23Z",
@@ -2687,12 +2548,6 @@
      "date": "2026-10-21T22:47:09Z",
      "msg": "0.14.2: a sample rate set by hand is kept when the channels fit it; the kiosk a card a row, This Pi at the top",
      "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/296942f3df5909556fda163b37c7bd3585753063"
-    },
-    {
-     "sha": "b4ad8af",
-     "date": "2026-10-21T11:14:20Z",
-     "msg": "0.14.1: the ERT-A2 driver reads MegaNet's NHWC-named alert2.js; vendor/meganet whole at MegaNet 92e005d",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/b4ad8afdea3c2d904a6fafb9d0544495c3999316"
     }
    ],
    "issues": [
@@ -2742,18 +2597,18 @@
    "ci": [
     {
      "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41248118757",
-     "date": "2026-10-31T22:25:46Z",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41267911198",
+     "date": "2026-11-01T03:07:57Z",
      "event": "push"
     },
     {
      "name": "test",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41248118540",
-     "date": "2026-10-31T22:27:13Z",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41267910896",
+     "date": "2026-11-01T03:07:56Z",
      "event": "push"
     },
     {
@@ -2775,7 +2630,7 @@
    ],
    "version": "0.15.3",
    "lastCommit": {
-    "date": "2026-10-31T22:25:23Z"
+    "date": "2026-11-01T03:07:48Z"
    }
   },
   {
@@ -4240,51 +4095,13 @@
     },
     "status": {
      "phase": "live",
-     "updated": "2026-10-31",
-     "summary": "Guide, two-family installer and weekly firmware refresh all shipped on 20 October, but Pages still serves the repository root, so /flash/ links 404.",
+     "updated": "2026-11-01",
+     "summary": "Guide, two-family installer and weekly firmware refresh shipped on 20 October; /flash/ and /cable/ links work again through forwarding pages while Pages still serves the repository root.",
      "next": [
-      "Delete the root index.html forward once Pages serves /docs",
+      "Point Pages at /docs (Settings → Pages → Folder /docs, 2 min); then delete the root forwarders index.html, flash/, cable/ and 404.html",
       "Drop the UV-K5 builds' Experimental badge once a modded radio decodes on air"
      ],
-     "blocked": [
-      {
-       "id": "pages-docs",
-       "what": "Set GitHub Pages to branch main, folder /docs (Settings → Pages); until then /flash/?radio=v3 links 404",
-       "on": "human",
-       "kind": "access",
-       "since": "2026-10-20",
-       "holds": [
-        "quansheng-v1's installer link to /flash/?radio=v3 (archived, so it cannot be changed)",
-        "quansheng-v3's README link to the V3 installer",
-        "open-alert's Quansheng V3 entry pointing at the installer",
-        "deleting the root index.html forward"
-       ],
-       "options": [
-        {
-         "what": "GitHub → cdomotor-g/quansheng_alert_ALL → Settings → Pages → Build and deployment: Source \"Deploy from a branch\", Branch main, Folder /docs → Save. A minute later https://cdomotor-g.github.io/quansheng_alert_ALL/flash/?radio=v3 should open the installer; then an agent deletes the root index.html and points atlas.json's /docs/flash/ link at /flash/.",
-         "by": "human",
-         "effort": "2 min",
-         "pros": "the addresses every repository already uses start working; nothing to keep in step",
-         "recommended": true
-        },
-        {
-         "what": "Without the owner: add forwarding pages at the root for each page people link to (flash/index.html, cable/index.html) that send on to docs/<page>/ keeping ?query and #hash, as the root index.html already does.",
-         "by": "agent",
-         "effort": "20 min",
-         "model": "Sonnet5/Low",
-         "pros": "live today, the archived installer's link included",
-         "cons": "the address bar shows /docs/; dead weight once Pages serves /docs"
-        },
-        {
-         "what": "Move the site from docs/ to the repository root, and point the weekly firmware refresh, tools/build_manifest.py, tools/check_manifest.py and the tests at the new paths, so the root publish serves /flash/ as it is.",
-         "by": "agent",
-         "effort": "an hour",
-         "model": "Sonnet5/Med",
-         "cons": "publishes the README, package.json and tests too; breaks again if Pages is later set to /docs"
-        }
-       ]
-      }
-     ]
+     "blocked": []
     },
     "components": [
      {
@@ -4310,7 +4127,7 @@
        "docs/js/installer.js",
        "docs/css/flasher.css"
       ],
-      "url": "https://cdomotor-g.github.io/quansheng_alert_ALL/docs/flash/",
+      "url": "https://cdomotor-g.github.io/quansheng_alert_ALL/flash/",
       "status": "live"
      },
      {
@@ -4531,12 +4348,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-10-31T22:25:32Z",
+    "pushed": "2026-11-01T02:59:50Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL"
    },
    "commits": [
+    {
+     "sha": "21ab7c5",
+     "date": "2026-11-01T02:59:48Z",
+     "msg": "fix: /flash/ and /cable/ open again while Pages serves the repository root",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/commit/21ab7c5f0b3e97da845c81bb552be190046bf7a7"
+    },
     {
      "sha": "3052df9",
      "date": "2026-10-31T22:25:30Z",
@@ -4604,25 +4427,25 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41248126558",
-     "date": "2026-10-31T22:25:54Z",
-     "event": "push"
-    },
-    {
-     "name": "Test the site",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41248126319",
-     "date": "2026-10-31T22:26:41Z",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41267373295",
+     "date": "2026-11-01T03:00:10Z",
      "event": "push"
     },
     {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41248125101",
-     "date": "2026-10-31T22:26:09Z",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41267372635",
+     "date": "2026-11-01T03:00:34Z",
      "event": "dynamic"
+    },
+    {
+     "name": "Test the site",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41267373074",
+     "date": "2026-11-01T03:01:09Z",
+     "event": "push"
     },
     {
      "name": "Refresh firmware",
@@ -4635,7 +4458,7 @@
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-10-31T22:25:30Z"
+    "date": "2026-11-01T02:59:48Z"
    }
   },
   {
@@ -6466,7 +6289,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "2 newer commits upstream since it was last reviewed (2026-10-26), none to watched files."
+    "note": "3 newer commits upstream since it was last reviewed (2026-10-26), none to watched files."
    }
   },
   {
@@ -6999,7 +6822,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "433 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "434 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7095,7 +6918,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "433 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "434 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7579,8 +7402,8 @@
     "state": "current",
     "since": {
      "date": "2026-11-01",
-     "commit": "45ddd2a938513138535323bf7a2627a08914d1b6",
-     "commitDate": "2026-10-31T22:25:23Z"
+     "commit": "1d32c6d519c476f2925222faebcb9aee4745e481",
+     "commitDate": "2026-11-01T03:07:48Z"
     },
     "behind": 0,
     "commits": [],
@@ -7616,7 +7439,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "Up to date with upstream."
+    "note": "1 newer commit upstream since it was last reviewed (2026-10-31), none to watched files."
    }
   },
   {
