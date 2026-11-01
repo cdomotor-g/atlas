@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-01T06:32:14.670Z",
- "hash": "770d9bcbde4d0dda",
+ "generated": "2026-11-01T09:26:19.824Z",
+ "hash": "621ea22d48979ff8",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -91,7 +91,7 @@
     "status": {
      "phase": "live",
      "updated": "2026-11-01",
-     "summary": "Live and in daily use (database schema 93): this week added the agent API's changelog and email list, ACMA licences in the API, the Repeaters tab and cuts to database I/O, while account email, compute size and the ACMA download link wait on the owner.",
+     "summary": "Live and in daily use (database schema 94): this week added a driving mode that follows a station's route in 3-D, the agent API's changelog and email list, ACMA licences in the API, the Repeaters tab and cuts to database I/O, while account email, compute size and the ACMA download link wait on the owner.",
      "now": [
       "Agent API changelog and notify list shipped; emails start once #237's Resend parts are done",
       "Photo reader: nightly reading of field photos for logger and equipment details",
@@ -912,12 +912,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-01T03:07:48Z",
+    "pushed": "2026-11-01T09:42:45Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "f55dd15",
+     "date": "2026-11-01T08:42:42Z",
+     "msg": "Driving mode: 🚘 Drive and ▶ Preview — a station's route followed in 3-D as it is driven",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/f55dd158b39b4365c7ee51dc981e0790cc4d7cbc"
+    },
     {
      "sha": "6ca83cd",
      "date": "2026-11-01T03:07:45Z",
@@ -983,12 +989,6 @@
      "date": "2026-10-31T19:50:00Z",
      "msg": "Network Weather: daily bulletin on weekdays only",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/dbd84b286cd78209eef2d4143c4487ea92576d15"
-    },
-    {
-     "sha": "50f6846",
-     "date": "2026-10-31T18:35:37Z",
-     "msg": "Bulletin voices: daily/2026-11-01",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/50f68465b0569c3bea167384d7d385125845315e"
     }
    ],
    "issues": [
@@ -1660,7 +1660,7 @@
      "human": true,
      "title": "Roadmap — resource allocation & sequencing for all issues",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/113",
-     "updated": "2026-11-01T03:08:01Z",
+     "updated": "2026-11-01T09:42:57Z",
      "created": "2026-08-13T00:13:50Z",
      "comments": 0,
      "labels": [],
@@ -1668,7 +1668,7 @@
       "meganet",
       "rpi_alert"
      ],
-     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1050k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
+     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1053k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
     },
     {
      "n": 66,
@@ -1694,41 +1694,65 @@
    "release": null,
    "ci": [
     {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41290774870",
+     "date": "2026-11-01T09:54:18Z",
+     "event": "schedule"
+    },
+    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41280685364",
-     "date": "2026-11-01T06:24:19Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41290268645",
+     "date": "2026-11-01T09:46:47Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41280626329",
-     "date": "2026-11-01T06:24:22Z",
-     "event": "schedule"
-    },
-    {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41280475929",
-     "date": "2026-11-01T06:21:11Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41290160706",
+     "date": "2026-11-01T09:46:04Z",
      "event": "schedule"
     },
     {
      "name": "Roadmap sync",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41267907916",
-     "date": "2026-11-01T03:08:05Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41290001917",
+     "date": "2026-11-01T09:43:01Z",
+     "event": "push"
+    },
+    {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41290002269",
+     "date": "2026-11-01T09:43:08Z",
+     "event": "push"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41290001903",
+     "date": "2026-11-01T09:42:56Z",
+     "event": "push"
+    },
+    {
+     "name": "CodeQL",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41290001879",
+     "date": "2026-11-01T09:46:22Z",
      "event": "push"
     }
    ],
-   "version": "20261031g",
+   "version": "20261101a",
    "lastCommit": {
-    "date": "2026-11-01T03:07:45Z"
+    "date": "2026-11-01T08:42:42Z"
    }
   },
   {
@@ -6798,7 +6822,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "434 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "435 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -6894,7 +6918,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "434 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "435 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7415,7 +7439,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "1 newer commit upstream since it was last reviewed (2026-10-31), none to watched files."
+    "note": "2 newer commits upstream since it was last reviewed (2026-10-31), none to watched files."
    }
   },
   {
