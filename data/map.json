@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-01T09:26:19.824Z",
- "hash": "621ea22d48979ff8",
+ "generated": "2026-11-01T12:28:03.152Z",
+ "hash": "deb66b5678996253",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -91,9 +91,11 @@
     "status": {
      "phase": "live",
      "updated": "2026-11-01",
-     "summary": "Live and in daily use (database schema 94): this week added a driving mode that follows a station's route in 3-D, the agent API's changelog and email list, ACMA licences in the API, the Repeaters tab and cuts to database I/O, while account email, compute size and the ACMA download link wait on the owner.",
+     "summary": "Live and in daily use (database schema 95): this week added teams and the tasks handed to them, with the SoRT scope builder's hand-off, a driving mode that follows a station's route in 3-D, the agent API's changelog and email list, ACMA licences and radio paths in the API, the Repeaters tab and cuts to database I/O, while account email, compute size and the ACMA download link wait on the owner.",
      "now": [
+      "Teams and tasks (0095) live: thirteen starter teams with nobody on them yet — an administrator names each team's owners on the Admin tab; SoRT's #tasks= hand-off lands on the Tasks tab for review",
       "Agent API changelog and notify list shipped; emails start once #237's Resend parts are done",
+      "Agent API radio paths to base, for SoRT's Fade Margin question: live, and every saved fade margin stale until the map's layer is swept and saved again",
       "Photo reader: nightly reading of field photos for logger and equipment details",
       "#243 R2 data archive: one restored-day self-test left, then close",
       "#217 and #244 transmitter drift and bit-flip sources: gathering live days of carrier data",
@@ -397,6 +399,33 @@
          "effort": "none"
         }
        ]
+      },
+      {
+       "id": "fade-resweep",
+       "what": "Sweep the Stations map's fade-margin layer and save it again: every saved fade margin predates the field model (itm-p2p/3)",
+       "on": "human",
+       "kind": "access",
+       "since": "2026-10-08",
+       "holds": [
+        "every figure in the agent API's radio paths (/api/v1/stations/{id}/radio-path), all stale until then",
+        "the fade-margin colours on the Stations map",
+        "sort"
+       ],
+       "options": [
+        {
+         "what": "Signed in as an editor: Stations map → Layers → Link colour: By fade margin; leave it to sweep every link, then press Save to the datastore",
+         "by": "human",
+         "effort": "an hour, mostly waiting",
+         "pros": "the map paints again and the API's radio paths turn current, with no change to anything else",
+         "recommended": true
+        },
+        {
+         "what": "Leave it: each radio-path answer already says every figure is stale and why, and gives the station's attenuator tests beside them",
+         "by": "human",
+         "effort": "none",
+         "cons": "SoRT's Fade Margin question has only stale modelled figures and old measurements to go on"
+        }
+       ]
       }
      ]
     },
@@ -510,6 +539,19 @@
       "status": "live"
      },
      {
+      "id": "teams-tasks",
+      "name": "Teams and tasks",
+      "what": "Teams (each hub's staff, Property Services, Radio licensing, the SoRT Forum and the rest) and the tasks handed to them, each at a station with a status, a due date and a thread of notes; a roster seen only by its own people and administrators, a task only by its team, its maker and the people who hand out tasks; and the SoRT scope builder's #tasks= hand-off, reviewed before anything is made.",
+      "paths": [
+       "tasks.js",
+       "admin-teams.js",
+       "db/migrations/0095_teams_and_tasks.sql",
+       "tools/check_teams_and_tasks.sql",
+       "test/tasks.mjs"
+      ],
+      "status": "live"
+     },
+     {
       "id": "bulletins",
       "name": "Network bulletins and voices",
       "what": "A scheduled Claude session writes a two-minute animated bulletin each weekday morning (and weekly on Mondays), drawn on Station Health and voiced by the Droggies through ElevenLabs.",
@@ -574,6 +616,7 @@
        "worker/api.js",
        "worker/acma.js",
        "worker/changelog.js",
+       "worker/radio-path.js",
        "docs/agent-api.md",
        "docs/api-changelog.json",
        "api.html",
@@ -589,7 +632,7 @@
      {
       "id": "database",
       "name": "Postgres schema (Supabase)",
-      "what": "The meganet schema: stations, readings, receptions and their roll-ups, inspections, photos, health findings, ingest tokens and base stations, in 93 numbered migrations applied by the db-migrate workflow; every raw day archived to R2 before it is deleted.",
+      "what": "The meganet schema: stations, readings, receptions and their roll-ups, inspections, photos, health findings, ingest tokens, base stations, teams and tasks, in 95 numbered migrations applied by the db-migrate workflow; every raw day archived to R2 before it is deleted.",
       "paths": [
        "db/migrations/",
        "db/README.md",
@@ -633,12 +676,13 @@
      {
       "id": "agent-api",
       "name": "Agent API (REST and MCP)",
-      "what": "Read-only public station data: search and stations near a point, a station's record and dossier, readings and the latest reading per station, health findings and silent stations, flood levels, service levels, ACMA licences, catchments, networks, and a changelog of every visible API change.",
+      "what": "Read-only public station data: search and stations near a point, a station's record and dossier, readings and the latest reading per station, health findings and silent stations, flood levels, service levels, ACMA licences, a station's radio path to the base stations with the fade margin saved for each hop, catchments, networks, and a changelog of every visible API change.",
       "component": "agent-api",
       "paths": [
        "worker/api.js",
        "worker/acma.js",
        "worker/changelog.js",
+       "worker/radio-path.js",
        "docs/agent-api.md",
        "docs/api-changelog.json"
       ],
@@ -896,6 +940,21 @@
        "index.html",
        "v2/js/map.js"
       ]
+     },
+     {
+      "id": "sort-tasks-handoff",
+      "from": "sort",
+      "provider": "tasks-handoff",
+      "into": "teams-tasks",
+      "what": "The SoRT scope builder's hand-off of a forum's agreed jobs for a station: it opens floodwarning.net/#tasks=<base64url of UTF-8 JSON, v 1>, and the Tasks tab reviews them — each task's team picked by the hub or the team name SoRT gives, de-duplicated by sort:<session>:<ref> — making nothing until somebody who hands out tasks presses Create (tasks.js, parseHandoff).",
+      "how": "protocol",
+      "watch": [
+       "v2/js/tasks.js"
+      ],
+      "since": {
+       "date": "2026-11-01"
+      },
+      "on_change": "Read SoRT's payload as v2/js/tasks.js now writes it and bring tasks.js's parseHandoff() and test/tasks.mjs up to it. A payload with a new v needs a reader of its own beside v 1's, which links already sent still carry."
      }
     ],
     "asks": [
@@ -912,12 +971,36 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-01T09:42:45Z",
+    "pushed": "2026-11-01T12:11:20Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "e255755",
+     "date": "2026-11-01T12:11:18Z",
+     "msg": "DB_SCHEMA_VERSION 95 after db-migrate applied 0095; roadmap revision 211; stamp 20261101d",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/e255755e0d43b742e25ca0a24fd249bf7e00ecf7"
+    },
+    {
+     "sha": "80ba306",
+     "date": "2026-11-01T12:08:59Z",
+     "msg": "✅ Tasks: teams, the jobs handed to them, and SoRT's hand-off — 0095; stamp 20261101c",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/80ba30603d09f8bafd845abe34d88f2962c0c8c5"
+    },
+    {
+     "sha": "36e659e",
+     "date": "2026-11-01T11:58:42Z",
+     "msg": "Agent API: a station's radio path to base, with the fade margins Flood-Net saved",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/36e659e44a1aebe19b8b2dfb88bba2b5d665718b"
+    },
+    {
+     "sha": "1ac5d7f",
+     "date": "2026-11-01T11:39:33Z",
+     "msg": "🔁 Repeaters: a link's ground profile and link budget, under the map; stamp 20261101b",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/1ac5d7f458c896bb4fcb0dfb10ccc086767d1697"
+    },
     {
      "sha": "f55dd15",
      "date": "2026-11-01T08:42:42Z",
@@ -965,30 +1048,6 @@
      "date": "2026-10-31T21:36:36Z",
      "msg": "Network Bulletin: stations quiet at night, and the repeater they share",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/0e9d7ad610571bc837b63bed1352889849c3461b"
-    },
-    {
-     "sha": "652090a",
-     "date": "2026-10-31T21:31:23Z",
-     "msg": "Agent API: its changes as data, and an email when it changes",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/652090aee4aadf7b08844474fb625eaa97513543"
-    },
-    {
-     "sha": "cfbbce4",
-     "date": "2026-10-31T21:15:54Z",
-     "msg": "Agent API: the ACMA licences at a station's site, or at a point",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/cfbbce4170eb7a45825d04bbad0a823fa0879dfc"
-    },
-    {
-     "sha": "7fd32fb",
-     "date": "2026-10-31T21:14:05Z",
-     "msg": "Network Bulletin: plain words, no weather for the network; Nitto benched",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/7fd32fb8e1f1a3868fd928f6a39f67e336a2c5f0"
-    },
-    {
-     "sha": "dbd84b2",
-     "date": "2026-10-31T19:50:00Z",
-     "msg": "Network Weather: daily bulletin on weekdays only",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/dbd84b286cd78209eef2d4143c4487ea92576d15"
     }
    ],
    "issues": [
@@ -1660,7 +1719,7 @@
      "human": true,
      "title": "Roadmap — resource allocation & sequencing for all issues",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/113",
-     "updated": "2026-11-01T09:42:57Z",
+     "updated": "2026-11-01T12:11:32Z",
      "created": "2026-08-13T00:13:50Z",
      "comments": 0,
      "labels": [],
@@ -1668,7 +1727,7 @@
       "meganet",
       "rpi_alert"
      ],
-     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1053k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
+     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1062k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
     },
     {
      "n": 66,
@@ -1697,62 +1756,70 @@
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41290774870",
-     "date": "2026-11-01T09:54:18Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41306536899",
+     "date": "2026-11-01T12:26:57Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41290268645",
-     "date": "2026-11-01T09:46:47Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41306029085",
+     "date": "2026-11-01T12:20:40Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41290160706",
-     "date": "2026-11-01T09:46:04Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41305994656",
+     "date": "2026-11-01T12:21:16Z",
      "event": "schedule"
+    },
+    {
+     "name": "CodeQL",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41305271431",
+     "date": "2026-11-01T12:15:55Z",
+     "event": "push"
     },
     {
      "name": "Roadmap sync",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41290001917",
-     "date": "2026-11-01T09:43:01Z",
-     "event": "push"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41290002269",
-     "date": "2026-11-01T09:43:08Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41305271457",
+     "date": "2026-11-01T12:11:35Z",
      "event": "push"
     },
     {
      "name": "Web smoke test",
      "status": "in_progress",
      "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41290001903",
-     "date": "2026-11-01T09:42:56Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41305271443",
+     "date": "2026-11-01T12:11:36Z",
      "event": "push"
     },
     {
-     "name": "CodeQL",
+     "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41290001879",
-     "date": "2026-11-01T09:46:22Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41305271811",
+     "date": "2026-11-01T12:11:44Z",
      "event": "push"
+    },
+    {
+     "name": "db-migrate",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41305136212",
+     "date": "2026-11-01T12:10:16Z",
+     "event": "workflow_dispatch"
     }
    ],
-   "version": "20261101a",
+   "version": "20261101d",
    "lastCommit": {
-    "date": "2026-11-01T08:42:42Z"
+    "date": "2026-11-01T12:11:18Z"
    }
   },
   {
@@ -4934,19 +5001,17 @@
     },
     "status": {
      "phase": "live",
-     "updated": "2026-10-31",
-     "summary": "v1 is in use at forums; the v2 beta (Flood-Net station lookup, saved sessions, the map on the page with survey marks and bridges) landed today at /SoRT/v2/ and runs beside v1 until it has been through some forums.",
+     "updated": "2026-11-01",
+     "summary": "v1 is in use at forums; the v2 beta at /SoRT/v2/ runs beside it — Flood-Net station lookup (ACMA licences, and the radio path to base with the fade margin Flood-Net saved for each hop), the map on the page (or beside the questions) with survey marks and bridges, saved sessions, the playbook of past sessions, an in-page question editor, a Help guide, and follow-ups handed to Flood-Net's teams as tasks (live since 1 Nov 2026; a SoRT Forum member creates them there).",
      "now": [
-      "v2 beta: try it at real forums beside v1",
-      "Property Services: the Check QLD Globe deep-link button (ROADMAP §1, still planned)"
+      "v2 beta: try it at real forums beside v1"
      ],
      "next": [
       "v2 cutover: one commit makes /SoRT/ open v2 and keeps v1 at /SoRT/v1/",
-      "Station picker (ROADMAP §2) — v2's Flood-Net lookup may stand in for stations.json",
-      "Load from repo also reloads stations.json (ROADMAP §3), once §2 exists"
+      "Playbook: push the five seeded stations once the private repo exists; import more Word reports in batches"
      ],
      "later": [
-      "A Dataverse import keyed on v2's permanent question and option codes"
+      "A Dataverse import keyed on v2's permanent question and option codes (v2/playbook/export_tables.mjs writes the tables)"
      ],
      "blocked": [
       {
@@ -4982,6 +5047,69 @@
          "effort": "10 min to decide",
          "pros": "no wait",
          "cons": "the first real forum on v2 is the test"
+        }
+       ]
+      },
+      {
+       "id": "playbook-repo",
+       "what": "The playbook's private repo cdomotor-g/SoRT-playbook doesn't exist yet; the GitHub integration may not create repositories",
+       "on": "human",
+       "kind": "access",
+       "since": "2026-10-31",
+       "holds": [
+        "Save to playbook, Continue and precedents in v2 (sessions stay in the browser meanwhile)",
+        "the five seeded stations from the Word reports"
+       ],
+       "options": [
+        {
+         "what": "github.com/new → owner cdomotor-g → name SoRT-playbook → Private → Add a README → Create; then edit the SoRT fine-grained token to include it. An agent then pushes the seed.",
+         "by": "human",
+         "effort": "5 min",
+         "recommended": true
+        },
+        {
+         "what": "Keep sessions in the browser and download them as files until the repo exists.",
+         "by": "human",
+         "effort": "none",
+         "cons": "no precedents across people"
+        }
+       ]
+      },
+      {
+       "id": "fade-figures",
+       "what": "v2 shows Flood-Net's radio path with each hop's fade margin, but every saved figure is stale (worked out with Flood-Net's older model, which reads far too low), so it is a rough guide and can't fill in Fade Margin >20 dB yet",
+       "on": "flood-net",
+       "kind": "upstream",
+       "since": "2026-11-01",
+       "holds": [
+        "Fade Margin >20 dB filled in from Flood-Net's figures (built: Yes once a fresh figure on the station's own hop is over 20 dB)",
+        "the radio path's figures read as margins rather than a rough guide"
+       ],
+       "options": [
+        {
+         "what": "On Flood-Net, signed in as an editor: Stations map → Layers → Link colour: By fade margin, let it work through every link, then Save to the datastore (Flood-Net's own fade-resweep blocker). v2 picks the fresh figures up by itself; Refresh from Flood-Net updates a station already open.",
+         "by": "human",
+         "effort": "one sitting; the sweep runs by itself",
+         "recommended": true
+        }
+       ]
+      },
+      {
+       "id": "team-owners",
+       "what": "Tasks SoRT hands over can only be created in Flood-Net by an administrator until its teams have owners and members (all 13 teams are empty)",
+       "on": "human",
+       "kind": "access",
+       "since": "2026-11-01",
+       "holds": [
+        "SoRT Forum members creating the tasks a forum hands over",
+        "hub, Property Services, Radio licensing, OTE and ID teams seeing their tasks"
+       ],
+       "options": [
+        {
+         "what": "Flood-Net → Admin tab → Teams: for SoRT Forum, type the address of an approved account under 'Add somebody', tick 'As an owner', press Add; give each hub team and Property Services, Radio licensing, OTE and ID at least one owner. Owners then add their members on the Tasks tab → My teams.",
+         "by": "human",
+         "effort": "15 min",
+         "recommended": true
         }
        ]
       }
@@ -5091,6 +5219,35 @@
        "backups/"
       ],
       "status": "retired"
+     },
+     {
+      "id": "v2-playbook",
+      "name": "Playbook (v2)",
+      "what": "Every session saved under its station in the private repo cdomotor-g/SoRT-playbook: Continue from a station's earlier session, similar stations as precedents, open follow-ups across stations; the tools import Word reports and export flat tables for Dataverse.",
+      "paths": [
+       "v2/js/playbook.js",
+       "v2/js/github.js",
+       "v2/playbook/"
+      ],
+      "status": "beta"
+     },
+     {
+      "id": "v2-editor",
+      "name": "Edit questions (v2)",
+      "what": "Quick changes to the questions mid-forum: a draft in the browser until Publish to GitHub commits v2/definitions.json.",
+      "paths": [
+       "v2/js/editor.js"
+      ],
+      "status": "beta"
+     },
+     {
+      "id": "v2-tasks",
+      "name": "Tasks for Flood-Net (v2)",
+      "what": "Follow-ups and the forum's own tasks, handed to Flood-Net's Tasks tab for a person who may hand out tasks to check and create.",
+      "paths": [
+       "v2/js/tasks.js"
+      ],
+      "status": "building"
      }
     ],
     "provides": [
@@ -5103,6 +5260,16 @@
        "index.html",
        "v2/js/map.js"
       ]
+     },
+     {
+      "id": "tasks-handoff",
+      "name": "Task hand-off to Flood-Net",
+      "what": "Opens https://floodwarning.net/#tasks=<base64url UTF-8 JSON> with {v:1, source:'sort', session, forum, station:{id, number, name, hub}, tasks:[{ref, title, detail, team:{hub}|{name}, due?}]}; Flood-Net reviews them and files each as source_ref sort:<session>:<ref>.",
+      "component": "v2-tasks",
+      "paths": [
+       "v2/js/tasks.js"
+      ],
+      "url": "https://cdomotor-g.github.io/SoRT/v2/"
      }
     ],
     "consumes": [
@@ -5111,16 +5278,17 @@
       "from": "flood-net",
       "provider": "agent-api",
       "into": "floodnet-lookup",
-      "what": "Flood-Net's public read-only agent API: station search and stations near a point, each station's dossier and record, and the ACMA licences at its site.",
+      "what": "Flood-Net's public read-only agent API: station search and stations near a point, each station's dossier and record, the ACMA licences at its site, and its radio path to base with the fade margin Flood-Net saved for each hop (the dossier's radio_path section).",
       "how": "live",
       "url": "https://floodwarning.net/api/v1",
       "watch": [
        "docs/api-changelog.json",
        "worker/api.js",
-       "worker/acma.js"
+       "worker/acma.js",
+       "worker/radio-path.js"
       ],
       "since": {
-       "date": "2026-10-31"
+       "date": "2026-11-01"
       },
       "on_change": "Read the new docs/api-changelog.json entries; if a route or field SoRT reads changed, update v2/js/floodnet.js, bump v2's ?v= stamp and look up a station on /SoRT/v2/."
      }
@@ -5131,12 +5299,48 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-10-31T22:25:27Z",
+    "pushed": "2026-11-01T12:17:41Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/SoRT"
    },
    "commits": [
+    {
+     "sha": "e7b7e8a",
+     "date": "2026-11-01T12:17:40Z",
+     "msg": "v2: switch tasks on — Flood-Net's receiving screen is live",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/e7b7e8a37596aadb042ff5bb974a53fe09e08919"
+    },
+    {
+     "sha": "a92690b",
+     "date": "2026-11-01T12:13:06Z",
+     "msg": "v2: the radio path to base, with Flood-Net's fade margins",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/a92690b7a7d48109416b7cba235992f11547e41f"
+    },
+    {
+     "sha": "5612c9e",
+     "date": "2026-11-01T11:59:12Z",
+     "msg": "v2: Help guide, map zoom lock, map back to Queensland on a new session",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/5612c9e5e7443771e245d52cae25f25cff2f6132"
+    },
+    {
+     "sha": "138d4df",
+     "date": "2026-11-01T11:40:16Z",
+     "msg": "SoRT v2: map beside the questions by default, the map in the preview",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/138d4df37584387ae6f1fd20ab9d528b94822418"
+    },
+    {
+     "sha": "af78610",
+     "date": "2026-11-01T11:20:05Z",
+     "msg": "Atlas: v2's playbook, editor and task hand-off; what's blocked and on whom",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/af786108013170f56ab666cea12af19d4bb5fa03"
+    },
+    {
+     "sha": "892a755",
+     "date": "2026-11-01T11:18:42Z",
+     "msg": "SoRT v2: tasks for Flood-Net from the forum (switched off until Flood-Net is ready)",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/892a7550ee04e29216c2a0dc46ff4aada996a71b"
+    },
     {
      "sha": "2dce4b7",
      "date": "2026-10-31T22:25:26Z",
@@ -5172,42 +5376,6 @@
      "date": "2026-10-31T21:38:37Z",
      "msg": "SoRT v2 beta, part 3: the playbook, and ACMA licences from Flood-Net",
      "url": "https://github.com/cdomotor-g/SoRT/commit/7406ac92dcdd890770e9dae8938f36fe58cd2b2d"
-    },
-    {
-     "sha": "0c69b44",
-     "date": "2026-10-31T21:23:41Z",
-     "msg": "SoRT v2 beta, part 2: the map on the page, survey marks and bridges",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/0c69b4499efee9643b083e7c64878756f75b19ce"
-    },
-    {
-     "sha": "f5c2032",
-     "date": "2026-10-31T20:56:32Z",
-     "msg": "SoRT v2 beta, part 1: one flowing page, Flood-Net lookup, saved sessions",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/f5c20328a11911033665d7aabcc04bf687f86ec8"
-    },
-    {
-     "sha": "a632672",
-     "date": "2026-10-13T05:13:24Z",
-     "msg": "Ask agents to mark the closing report with a numbered run-summary heading",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/a6326726945d236aa7b5a303a2803f0d3295c8cb"
-    },
-    {
-     "sha": "455a973",
-     "date": "2026-10-07T03:48:31Z",
-     "msg": "Rename the map capture button to \"Capture Map\" and ring it red until used",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/455a973f98a51bf7ca68fe4232ac9d4a5f31f577"
-    },
-    {
-     "sha": "5bd7bea",
-     "date": "2026-10-07T01:34:12Z",
-     "msg": "Add custom comments to the Property Services table",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/5bd7bea926a6481f7dbac2f0f3e6d99509053ce9"
-    },
-    {
-     "sha": "22d98c2",
-     "date": "2026-09-28T06:04:39Z",
-     "msg": "List every location in the Site Map panel, entered or not",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/22d98c25ccaf57a08fa8b53bf5f830eeb8041c84"
     }
    ],
    "issues": [],
@@ -5218,22 +5386,22 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41248122542",
-     "date": "2026-10-31T22:25:41Z",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41305791029",
+     "date": "2026-11-01T12:17:56Z",
      "event": "push"
     },
     {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41248120317",
-     "date": "2026-10-31T22:26:09Z",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41305789822",
+     "date": "2026-11-01T12:19:23Z",
      "event": "dynamic"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-10-31T22:25:26Z"
+    "date": "2026-11-01T12:17:40Z"
    }
   },
   {
@@ -6432,6 +6600,34 @@
    }
   },
   {
+   "id": "sort-tasks-handoff",
+   "from": "sort",
+   "to": "flood-net",
+   "provider": "tasks-handoff",
+   "into": "teams-tasks",
+   "what": "The SoRT scope builder's hand-off of a forum's agreed jobs for a station: it opens floodwarning.net/#tasks=<base64url of UTF-8 JSON, v 1>, and the Tasks tab reviews them — each task's team picked by the hub or the team name SoRT gives, de-duplicated by sort:<session>:<ref> — making nothing until somebody who hands out tasks presses Create (tasks.js, parseHandoff).",
+   "how": "protocol",
+   "watch": [
+    "v2/js/tasks.js"
+   ],
+   "since": {
+    "date": "2026-11-01"
+   },
+   "on_change": "Read SoRT's payload as v2/js/tasks.js now writes it and bring tasks.js's parseHandoff() and test/tasks.mjs up to it. A payload with a new v needs a reader of its own beside v 1's, which links already sent still carry.",
+   "drift": {
+    "state": "current",
+    "since": {
+     "date": "2026-11-01",
+     "commit": "e7b7e8a37596aadb042ff5bb974a53fe09e08919",
+     "commitDate": "2026-11-01T12:17:40Z"
+    },
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "Up to date with upstream."
+   }
+  },
+  {
    "id": "ingest-tools",
    "from": "flood-net",
    "to": "flood-net-private",
@@ -6822,7 +7018,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "435 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "439 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -6918,7 +7114,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "435 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "439 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7417,29 +7613,30 @@
    "to": "sort",
    "provider": "agent-api",
    "into": "floodnet-lookup",
-   "what": "Flood-Net's public read-only agent API: station search and stations near a point, each station's dossier and record, and the ACMA licences at its site.",
+   "what": "Flood-Net's public read-only agent API: station search and stations near a point, each station's dossier and record, the ACMA licences at its site, and its radio path to base with the fade margin Flood-Net saved for each hop (the dossier's radio_path section).",
    "how": "live",
    "url": "https://floodwarning.net/api/v1",
    "watch": [
     "docs/api-changelog.json",
     "worker/api.js",
-    "worker/acma.js"
+    "worker/acma.js",
+    "worker/radio-path.js"
    ],
    "since": {
-    "date": "2026-10-31"
+    "date": "2026-11-01"
    },
    "on_change": "Read the new docs/api-changelog.json entries; if a route or field SoRT reads changed, update v2/js/floodnet.js, bump v2's ?v= stamp and look up a station on /SoRT/v2/.",
    "drift": {
     "state": "current",
     "since": {
-     "date": "2026-10-31",
-     "commit": "40e90da34299b873a7409bad2e7b083c31fe9e4c",
-     "commitDate": "2026-10-31T22:25:20Z"
+     "date": "2026-11-01",
+     "commit": "e255755e0d43b742e25ca0a24fd249bf7e00ecf7",
+     "commitDate": "2026-11-01T12:11:18Z"
     },
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "2 newer commits upstream since it was last reviewed (2026-10-31), none to watched files."
+    "note": "Up to date with upstream."
    }
   },
   {
