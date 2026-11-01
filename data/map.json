@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-01T15:26:43.897Z",
- "hash": "4f71398ef696ab6d",
+ "generated": "2026-11-01T18:27:06.094Z",
+ "hash": "fee6a82b8ff099a1",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -971,12 +971,36 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-01T12:11:20Z",
+    "pushed": "2026-11-01T18:25:54Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "415d70f",
+     "date": "2026-11-01T18:25:52Z",
+     "msg": "Network Bulletin: no daily on Mondays; the panel opens on the newest",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/415d70f2ebbfc64559b252c9c5bef28fbeaee1dc"
+    },
+    {
+     "sha": "1a30e6e",
+     "date": "2026-11-01T18:08:22Z",
+     "msg": "Bulletin voices: weekly/2026-11-02",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/1a30e6e19c58ef52a4262e04644c31c2ba1e57a3"
+    },
+    {
+     "sha": "b664a2a",
+     "date": "2026-11-01T18:07:07Z",
+     "msg": "Network Bulletin: weekly bulletin for 2026-11-02 — 21 stations missed every check, 13 last heard on 152.400",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/b664a2a3aedac1d4514762c3a2096f11a843ebec"
+    },
+    {
+     "sha": "797cc78",
+     "date": "2026-11-01T15:52:00Z",
+     "msg": "CI doctor: Health card, Shell, Exports, Driving mode — a late rain forecast redrew the station panel and dropped the Battery door's focus (n",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/797cc78c54f0fff54cbf1d8a86d66920fb878ecb"
+    },
     {
      "sha": "e255755",
      "date": "2026-11-01T12:11:18Z",
@@ -1024,30 +1048,6 @@
      "date": "2026-10-31T22:08:18Z",
      "msg": "Atlas: describe Flood-Net for the map of all the repos",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/990d729438ed45bfc120a9527e678db38a6e17af"
-    },
-    {
-     "sha": "f330e75",
-     "date": "2026-10-31T22:04:01Z",
-     "msg": "DB_SCHEMA_VERSION 94 after db-migrate applied 0094; roadmap revision 207; stamp 20261031g",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/f330e754966ef2fcc4579d103ce4f620f8d6da8f"
-    },
-    {
-     "sha": "bac5bb6",
-     "date": "2026-10-31T22:02:33Z",
-     "msg": "Quiet findings: an unchanged finding left alone for up to an hour, the base-station check making no tables on a quiet run; 0094",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/bac5bb69da3b436bbf5d03ece13ebba054ede3fe"
-    },
-    {
-     "sha": "4276ff8",
-     "date": "2026-10-31T21:58:17Z",
-     "msg": "Station Health: 🌧 Rain ahead — the faults to fix before the rain",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/4276ff801f7e9507d1efa89800cc3696e5ed0545"
-    },
-    {
-     "sha": "0e9d7ad",
-     "date": "2026-10-31T21:36:36Z",
-     "msg": "Network Bulletin: stations quiet at night, and the repeater they share",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/0e9d7ad610571bc837b63bed1352889849c3461b"
     }
    ],
    "issues": [
@@ -1753,41 +1753,65 @@
    "release": null,
    "ci": [
     {
+     "name": "Web smoke test",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41336584154",
+     "date": "2026-11-01T18:26:06Z",
+     "event": "push"
+    },
+    {
+     "name": "CodeQL",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41336584173",
+     "date": "2026-11-01T18:26:06Z",
+     "event": "push"
+    },
+    {
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41321043781",
-     "date": "2026-11-01T15:24:19Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41336387104",
+     "date": "2026-11-01T18:23:45Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41320398508",
-     "date": "2026-11-01T15:16:52Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41335859009",
+     "date": "2026-11-01T18:17:41Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41320261122",
-     "date": "2026-11-01T15:15:55Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41335759110",
+     "date": "2026-11-01T18:17:12Z",
      "event": "schedule"
     },
     {
-     "name": "Data archive into R2",
+     "name": "Bulletin voices",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41317198611",
-     "date": "2026-11-01T14:39:59Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41334929265",
+     "date": "2026-11-01T18:08:27Z",
+     "event": "push"
+    },
+    {
+     "name": "Field photos into R2",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41325721357",
+     "date": "2026-11-01T16:19:34Z",
      "event": "schedule"
     }
    ],
-   "version": "20261101d",
+   "version": "20261101f",
    "lastCommit": {
-    "date": "2026-11-01T12:11:18Z"
+    "date": "2026-11-01T18:25:52Z"
    }
   },
   {
@@ -6986,7 +7010,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "439 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "443 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7082,7 +7106,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "439 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "443 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7598,8 +7622,8 @@
     "state": "current",
     "since": {
      "date": "2026-11-01",
-     "commit": "e255755e0d43b742e25ca0a24fd249bf7e00ecf7",
-     "commitDate": "2026-11-01T12:11:18Z"
+     "commit": "415d70f2ebbfc64559b252c9c5bef28fbeaee1dc",
+     "commitDate": "2026-11-01T18:25:52Z"
     },
     "behind": 0,
     "commits": [],
