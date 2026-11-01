@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-01T18:27:06.094Z",
- "hash": "fee6a82b8ff099a1",
+ "generated": "2026-11-01T21:26:15.683Z",
+ "hash": "4ef313c44ab7873e",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -98,6 +98,7 @@
       "Agent API radio paths to base, for SoRT's Fade Margin question: live, and every saved fade margin stale until the map's layer is swept and saved again",
       "Photo reader: nightly reading of field photos for logger and equipment details",
       "#243 R2 data archive: one restored-day self-test left, then close",
+      "One ALERT burst heard several ways is one reading (0096, #232 closed): copies within 8 s counted on it",
       "#217 and #244 transmitter drift and bit-flip sources: gathering live days of carrier data",
       "#258 flaky Site features 3-D hand-back check in CI"
      ],
@@ -105,7 +106,6 @@
       "#252–#254 road routes: avoid closures, inspection runs, routes kept offline (EPIC #250)",
       "#238 QLDTraffic flood events and road closures on the Stations map",
       "#216 staff alerts: daily digest email and web push for critical findings",
-      "#232 measure whether one burst heard by two receivers is stored twice",
       "#187 ACMA transmitters in the 3-D view",
       "#220 maintenance due list; #228 accessibility follow-ups"
      ],
@@ -971,12 +971,30 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-01T18:25:54Z",
+    "pushed": "2026-11-01T19:50:17Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "f40b0d6",
+     "date": "2026-11-01T19:50:15Z",
+     "msg": "Message Log CSV: text columns that begin like a formula open as text in a spreadsheet",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/f40b0d6a33620832c31251c2cb30f2ce0a0cdeb3"
+    },
+    {
+     "sha": "b7bb63d",
+     "date": "2026-11-01T19:37:08Z",
+     "msg": "Station Health counts every copy of a reading; schema 96; #232 closed; stamp 20261101g",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/b7bb63d7fd32b6ec4202918fa3f8ec928e567791"
+    },
+    {
+     "sha": "daad33d",
+     "date": "2026-11-01T19:22:08Z",
+     "msg": "0096: one ALERT burst heard several ways is one reading (#232)",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/daad33d080f8bc142a4436b092fa1f22135a1068"
+    },
     {
      "sha": "415d70f",
      "date": "2026-11-01T18:25:52Z",
@@ -1030,24 +1048,6 @@
      "date": "2026-11-01T08:42:42Z",
      "msg": "Driving mode: 🚘 Drive and ▶ Preview — a station's route followed in 3-D as it is driven",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/f55dd158b39b4365c7ee51dc981e0790cc4d7cbc"
-    },
-    {
-     "sha": "6ca83cd",
-     "date": "2026-11-01T03:07:45Z",
-     "msg": "Roadmap revision 208: #206 closed, #248 into #245; two ALERT Binary bursts as test vectors",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/6ca83cdeb0f7aeff909a6f8ed14a35425bc16f19"
-    },
-    {
-     "sha": "40e90da",
-     "date": "2026-10-31T22:25:20Z",
-     "msg": "Atlas: Flood-Net's blockers, what each holds up, and the ways through",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/40e90da34299b873a7409bad2e7b083c31fe9e4c"
-    },
-    {
-     "sha": "990d729",
-     "date": "2026-10-31T22:08:18Z",
-     "msg": "Atlas: describe Flood-Net for the map of all the repos",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/990d729438ed45bfc120a9527e678db38a6e17af"
     }
    ],
    "issues": [
@@ -1389,22 +1389,6 @@
      "excerpt": "Near a repeater or base, a few metres of height, or a few tens of metres of position, change a fade margin more than anything along the path. Admin → 📐 Network Review → The register, before a review → Repeaters and bases against the LiDAR reads the national 5 m LiDAR at every repeater and base and compares it with the register. The LiDAR covers 46 of…"
     },
     {
-     "n": 232,
-     "raw": "[Standalone] [Opus5/High] One burst heard by two receivers is probably stored twice — the duplicate key's time is each receiver's arrival time",
-     "structure": "standalone",
-     "parent": null,
-     "model": "Opus5",
-     "effort": "High",
-     "human": false,
-     "title": "One burst heard by two receivers is probably stored twice — the duplicate key's time is each receiver's arrival time",
-     "url": "https://github.com/cdomotor-g/MegaNet/issues/232",
-     "updated": "2026-11-01T03:02:55Z",
-     "created": "2026-10-07T11:11:16Z",
-     "comments": 1,
-     "labels": [],
-     "mentions": []
-    },
-    {
      "n": 228,
      "raw": "[Standalone] [Sonnet5/Med] Accessibility follow-ups — invalid fields marked, the page behind a dialog inert, and a shortcut sheet",
      "structure": "standalone",
@@ -1719,7 +1703,7 @@
      "human": true,
      "title": "Roadmap — resource allocation & sequencing for all issues",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/113",
-     "updated": "2026-11-01T12:11:32Z",
+     "updated": "2026-11-01T19:37:26Z",
      "created": "2026-08-13T00:13:50Z",
      "comments": 0,
      "labels": [],
@@ -1727,7 +1711,7 @@
       "meganet",
       "rpi_alert"
      ],
-     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1062k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
+     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1065k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
     },
     {
      "n": 66,
@@ -1749,69 +1733,85 @@
      "excerpt": "Follow-up carrying the one unanswered question from #54 (route 2). Everything else on that ticket shipped in #65. Priority: P4. This is a two-minute check that gates whether a larger piece of work is possible at all. Do not start any client code before it is answered. #54 asked for the direct-API route to be investigated and its outcome recorded before…"
     }
    ],
-   "issueCount": 41,
+   "issueCount": 40,
    "release": null,
    "ci": [
-    {
-     "name": "Web smoke test",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41336584154",
-     "date": "2026-11-01T18:26:06Z",
-     "event": "push"
-    },
-    {
-     "name": "CodeQL",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41336584173",
-     "date": "2026-11-01T18:26:06Z",
-     "event": "push"
-    },
     {
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41336387104",
-     "date": "2026-11-01T18:23:45Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41351816952",
+     "date": "2026-11-01T21:24:13Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41335859009",
-     "date": "2026-11-01T18:17:41Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41351206925",
+     "date": "2026-11-01T21:17:09Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41335759110",
-     "date": "2026-11-01T18:17:12Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41351040393",
+     "date": "2026-11-01T21:16:10Z",
      "event": "schedule"
     },
     {
-     "name": "Bulletin voices",
+     "name": "Refresh ACMA RRL data",
+     "status": "completed",
+     "conclusion": "failure",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41346241096",
+     "date": "2026-11-01T20:21:14Z",
+     "event": "schedule"
+    },
+    {
+     "name": "CodeQL",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41334929265",
-     "date": "2026-11-01T18:08:27Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41343752005",
+     "date": "2026-11-01T19:54:30Z",
      "event": "push"
     },
     {
-     "name": "Field photos into R2",
+     "name": "Web smoke test",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41325721357",
-     "date": "2026-11-01T16:19:34Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41343752049",
+     "date": "2026-11-01T20:42:21Z",
+     "event": "push"
+    },
+    {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41343215119",
+     "date": "2026-11-01T19:44:26Z",
      "event": "schedule"
+    },
+    {
+     "name": "Roadmap sync",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41342652456",
+     "date": "2026-11-01T19:37:31Z",
+     "event": "push"
+    },
+    {
+     "name": "db-migrate",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41341440713",
+     "date": "2026-11-01T19:23:11Z",
+     "event": "workflow_dispatch"
     }
    ],
-   "version": "20261101f",
+   "version": "20261101h",
    "lastCommit": {
-    "date": "2026-11-01T18:25:52Z"
+    "date": "2026-11-01T19:50:15Z"
    }
   },
   {
@@ -2149,38 +2149,6 @@
          "cons": "the V4 already on hand stays unproven"
         }
        ]
-      },
-      {
-       "id": "duplicate-docs",
-       "what": "How-it-works and survey docs on a burst heard by two receivers wait for Flood-Net to measure duplicates",
-       "on": "flood-net#232",
-       "kind": "upstream",
-       "since": "2026-10-07",
-       "issue": "cdomotor-g/MegaNet#232",
-       "holds": [
-        "how-it-works.md's \"stored once with both paths\"",
-        "survey.md's \"no two receivers time a burst the same\" (the two docs disagree)"
-       ],
-       "options": [
-        {
-         "what": "Work #232 through in Flood-Net. Its step 1 is now done: a read-only check on 31 October found 2,039 of 69,306 ALERT readings over three days with a twin (same address and value, under 2 s apart) from another channel of 18 Bateson's first stick. Next the window in meganet.ingest() for untimed protocols, db-checks for both cases, and the docs in both repositories.",
-         "by": "agent",
-         "effort": "High",
-         "model": "Opus5/High",
-         "issue": "cdomotor-g/MegaNet#232",
-         "pros": "fixes the duplicates, not only the docs; 0053–0055 are live, so nothing it waits on is left",
-         "cons": "unprioritised on Flood-Net's roadmap until the owner says go",
-         "recommended": true
-        },
-        {
-         "what": "Make the two docs true today: say that a burst decoded on two channels or sticks is stored twice for now, each with its own path, and link #232.",
-         "by": "agent",
-         "effort": "20 min",
-         "model": "Sonnet5/Low",
-         "pros": "the docs stop saying something false",
-         "cons": "they change again when #232 lands"
-        }
-       ]
       }
      ]
     },
@@ -2433,7 +2401,7 @@
        "db/migrations/*reception*"
       ],
       "since": {
-       "date": "2026-10-26"
+       "date": "2026-11-01"
       },
       "on_change": "Check agent/lib/meganet.js, uplink.js and token-request.js against the change, update the stand-in agent/test/helpers/meganet-stub.js, then cd agent && node --test test/*.test.js."
      },
@@ -2516,12 +2484,6 @@
       "what": "A channeliser shared by a stick's channels (one filter bank per stick) in alert-dsp.js, or at least a lighter first filter, so a Pi can take a fifth channel.",
       "issue": null,
       "since": "2026-10-24"
-     },
-     {
-      "to": "flood-net",
-      "what": "Measure whether one burst heard by two receivers is stored twice, so both repositories' docs say the same true thing.",
-      "issue": "cdomotor-g/MegaNet#232",
-      "since": "2026-10-07"
      }
     ]
    },
@@ -2530,12 +2492,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-01T03:07:50Z",
+    "pushed": "2026-11-01T19:36:18Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/RPi_ALERT"
    },
    "commits": [
+    {
+     "sha": "82e126f",
+     "date": "2026-11-01T19:36:16Z",
+     "msg": "Docs: one burst heard by two receivers is one reading (MegaNet 0096, #232)",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/82e126fedf55faa39fa89efa48563a318afd74bf"
+    },
     {
      "sha": "1d32c6d",
      "date": "2026-11-01T03:07:48Z",
@@ -2601,12 +2569,6 @@
      "date": "2026-10-23T19:33:32Z",
      "msg": "0.15.0: a stick's window — the narrowest that holds its channels, or exactly the one set — and what it costs this Pi, shown as channels are ",
      "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/b4aa65c80ab40a44aa54cb8085956f762719a756"
-    },
-    {
-     "sha": "296942f",
-     "date": "2026-10-21T22:47:09Z",
-     "msg": "0.14.2: a sample rate set by hand is kept when the channels fit it; the kiosk a card a row, This Pi at the top",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/296942f3df5909556fda163b37c7bd3585753063"
     }
    ],
    "issues": [
@@ -2658,16 +2620,16 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41267911198",
-     "date": "2026-11-01T03:08:14Z",
-     "event": "push"
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41348211192",
+     "date": "2026-11-01T20:42:38Z",
+     "event": "schedule"
     },
     {
      "name": "test",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41267910896",
-     "date": "2026-11-01T03:09:45Z",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41342576075",
+     "date": "2026-11-01T19:38:06Z",
      "event": "push"
     },
     {
@@ -2689,7 +2651,7 @@
    ],
    "version": "0.15.3",
    "lastCommit": {
-    "date": "2026-11-01T03:07:48Z"
+    "date": "2026-11-01T19:36:16Z"
    }
   },
   {
@@ -4104,8 +4066,8 @@
      "name": "build",
      "status": "completed",
      "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/quansheng_alert/actions/runs/40228782787",
-     "date": "2026-10-25T20:02:14Z",
+     "url": "https://github.com/cdomotor-g/quansheng_alert/actions/runs/41344698669",
+     "date": "2026-11-01T20:02:36Z",
      "event": "schedule"
     },
     {
@@ -5291,12 +5253,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-01T12:17:41Z",
+    "pushed": "2026-11-01T18:27:55Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/SoRT"
    },
    "commits": [
+    {
+     "sha": "74bfe23",
+     "date": "2026-11-01T18:27:53Z",
+     "msg": "v2: entering a station by hand — fixed, and the rest of its details",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/74bfe23d2f8fe40650a2c702ef7a7727c98f2db2"
+    },
     {
      "sha": "e7b7e8a",
      "date": "2026-11-01T12:17:40Z",
@@ -5362,12 +5330,6 @@
      "date": "2026-10-31T21:43:28Z",
      "msg": "SoRT v2 beta, part 4: Edit questions, end-to-end checks, docs",
      "url": "https://github.com/cdomotor-g/SoRT/commit/71b7a0912feb76345a4c283900d6cff06dbedbd2"
-    },
-    {
-     "sha": "7406ac9",
-     "date": "2026-10-31T21:38:37Z",
-     "msg": "SoRT v2 beta, part 3: the playbook, and ACMA licences from Flood-Net",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/7406ac92dcdd890770e9dae8938f36fe58cd2b2d"
     }
    ],
    "issues": [],
@@ -5378,22 +5340,22 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41305791029",
-     "date": "2026-11-01T12:17:56Z",
-     "event": "push"
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41351048780",
+     "date": "2026-11-01T21:15:25Z",
+     "event": "schedule"
     },
     {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41305789822",
-     "date": "2026-11-01T12:19:23Z",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41336754372",
+     "date": "2026-11-01T18:28:36Z",
      "event": "dynamic"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-11-01T12:17:40Z"
+    "date": "2026-11-01T18:27:53Z"
    }
   },
   {
@@ -6449,7 +6411,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "3 newer commits upstream since it was last reviewed (2026-10-26), none to watched files."
+    "note": "4 newer commits upstream since it was last reviewed (2026-10-26), none to watched files."
    }
   },
   {
@@ -6610,8 +6572,8 @@
     "state": "current",
     "since": {
      "date": "2026-11-01",
-     "commit": "e7b7e8a37596aadb042ff5bb974a53fe09e08919",
-     "commitDate": "2026-11-01T12:17:40Z"
+     "commit": "74bfe23d2f8fe40650a2c702ef7a7727c98f2db2",
+     "commitDate": "2026-11-01T18:27:53Z"
     },
     "behind": 0,
     "commits": [],
@@ -6732,47 +6694,20 @@
     "db/migrations/*reception*"
    ],
    "since": {
-    "date": "2026-10-26"
+    "date": "2026-11-01"
    },
    "on_change": "Check agent/lib/meganet.js, uplink.js and token-request.js against the change, update the stand-in agent/test/helpers/meganet-stub.js, then cd agent && node --test test/*.test.js.",
    "drift": {
-    "state": "behind",
+    "state": "current",
     "since": {
-     "date": "2026-10-26",
-     "commit": "d1057d630a7999b5256065b5683b29987666a2bc",
-     "commitDate": "2026-10-26T23:59:22Z"
+     "date": "2026-11-01",
+     "commit": "f40b0d6a33620832c31251c2cb30f2ce0a0cdeb3",
+     "commitDate": "2026-11-01T19:50:15Z"
     },
-    "behind": 4,
-    "commits": [
-     {
-      "sha": "4276ff8",
-      "date": "2026-10-31T21:58:17Z",
-      "msg": "Station Health: 🌧 Rain ahead — the faults to fix before the rain",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/4276ff801f7e9507d1efa89800cc3696e5ed0545"
-     },
-     {
-      "sha": "652090a",
-      "date": "2026-10-31T21:31:23Z",
-      "msg": "Agent API: its changes as data, and an email when it changes",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/652090aee4aadf7b08844474fb625eaa97513543"
-     },
-     {
-      "sha": "fcd99a4",
-      "date": "2026-10-28T23:16:41Z",
-      "msg": "Route on map: the drive to a station drawn on the Stations map — by road to its access track, then the track (#251, EPIC #250); stamp 202610",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/fcd99a43708f2a3fa6e48595a7f94bf53415b121"
-     },
-     {
-      "sha": "77358f8",
-      "date": "2026-10-27T04:38:37Z",
-      "msg": "Flood & road cameras: the councils' and QLDTraffic's on the Stations map, each picture fetched live, never stored; stamp 20261027m",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/77358f8da1d2ac1485da3aefc5c09d14fdfeb0b6"
-     }
-    ],
-    "files": [
-     "worker/index.js"
-    ],
-    "note": "4 upstream changes to watched files since it was last reviewed (2026-10-26)."
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "Up to date with upstream."
    }
   },
   {
@@ -7010,7 +6945,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "443 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "446 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7106,7 +7041,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "443 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "446 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7529,8 +7464,14 @@
      "commit": "7309891c638d1050f0163f19dc8284ef7f54a7ca",
      "commitDate": "2026-10-17T09:50:24Z"
     },
-    "behind": 4,
+    "behind": 5,
     "commits": [
+     {
+      "sha": "daad33d",
+      "date": "2026-11-01T19:22:08Z",
+      "msg": "0096: one ALERT burst heard several ways is one reading (#232)",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/daad33d080f8bc142a4436b092fa1f22135a1068"
+     },
      {
       "sha": "3180804",
       "date": "2026-10-23T00:05:58Z",
@@ -7559,9 +7500,11 @@
     "files": [
      "alert2-plan.js",
      "alert-dsp.js",
-     "docs/elpro115e_mqtt.md"
+     "docs/ingest-serial-monitor.md",
+     "docs/elpro115e_mqtt.md",
+     "docs/ingest-http.md"
     ],
-    "note": "4 upstream changes to watched files since it was last reviewed (2026-10-17)."
+    "note": "5 upstream changes to watched files since it was last reviewed (2026-10-17)."
    }
   },
   {
@@ -7590,8 +7533,8 @@
     "state": "current",
     "since": {
      "date": "2026-11-01",
-     "commit": "1d32c6d519c476f2925222faebcb9aee4745e481",
-     "commitDate": "2026-11-01T03:07:48Z"
+     "commit": "82e126fedf55faa39fa89efa48563a318afd74bf",
+     "commitDate": "2026-11-01T19:36:16Z"
     },
     "behind": 0,
     "commits": [],
@@ -7622,8 +7565,8 @@
     "state": "current",
     "since": {
      "date": "2026-11-01",
-     "commit": "415d70f2ebbfc64559b252c9c5bef28fbeaee1dc",
-     "commitDate": "2026-11-01T18:25:52Z"
+     "commit": "f40b0d6a33620832c31251c2cb30f2ce0a0cdeb3",
+     "commitDate": "2026-11-01T19:50:15Z"
     },
     "behind": 0,
     "commits": [],
@@ -7711,13 +7654,6 @@
    "what": "A channeliser shared by a stick's channels (one filter bank per stick) in alert-dsp.js, or at least a lighter first filter, so a Pi can take a fifth channel.",
    "issue": null,
    "since": "2026-10-24"
-  },
-  {
-   "from": "rpi-alert",
-   "to": "flood-net",
-   "what": "Measure whether one burst heard by two receivers is stored twice, so both repositories' docs say the same true thing.",
-   "issue": "cdomotor-g/MegaNet#232",
-   "since": "2026-10-07"
   },
   {
    "from": "quansheng-all",
