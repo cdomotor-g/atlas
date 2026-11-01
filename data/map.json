@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-01T00:05:50.807Z",
- "hash": "1f05abd1408533f3",
+ "generated": "2026-11-01T00:44:18.482Z",
+ "hash": "2f3f5f99d2d54db2",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1798,26 +1798,26 @@
    "ci": [
     {
      "name": "Station health",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41254801556",
-     "date": "2026-11-01T00:02:30Z",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41257954363",
+     "date": "2026-11-01T00:43:00Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41254409030",
-     "date": "2026-10-31T23:54:01Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41257801727",
+     "date": "2026-11-01T00:40:57Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41253940542",
-     "date": "2026-10-31T23:46:58Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41255607878",
+     "date": "2026-11-01T00:11:03Z",
      "event": "schedule"
     },
     {
@@ -4674,8 +4674,9 @@
     "status": {
      "phase": "beta",
      "updated": "2026-11-01",
-     "summary": "Added the base station builder (build.html): system and physical diagrams, a stick planner and CPU model from RPi ALERT's measurements, a bill with price ranges, lead times and where to buy, the build steps, and the custom path off the Raspberry Pi (CM5, Verdin AM62 + Mallow, an M.2 SDR card, a carrier of your own). The RPi ALERT entry is up to 0.15.3.",
+     "summary": "One menu on every page now (Plan: Sites, Network, Parts · Build: Base station, Mallow trial · Learn: How it works), and a new Mallow trial page: a Verdin AM62 on Mallow beside the Pi 4 running RPi ALERT, on one antenna — what to buy, the steps, and a results sheet with the pass rules. Before that today: the base station builder.",
      "next": [
+      "Feed the trial's AM62 numbers back into the builder's CPU model",
       "Check the builder's estimated prices and lead times (marked est.) with suppliers: antennas, coax, arrestors, the mating Bulgin lead",
       "Point the Quansheng V3 entry at quansheng_alert_ALL's browser installer",
       "Re-check the FW-LAB entry: Flood-Net's runbook says to retire and archive it"
@@ -4685,6 +4686,9 @@
       "Write the open-ALERT ALERT1 encoder firmware (catalogued as planned)",
       "Write the open-ALERT store-and-forward repeater on RPi ALERT's receive side",
       "Re-check quote-only and estimated prices with suppliers"
+     ],
+     "now": [
+      "The Mallow trial: buy the parts, bring the AM62 up on Torizon OS, run RPi ALERT in a container beside the Pi"
      ]
     },
     "components": [
@@ -4727,7 +4731,7 @@
      {
       "id": "page",
       "name": "Configurator page",
-      "what": "Configure, Network, Hardware catalogue and How it works tabs; state in localStorage and share links.",
+      "what": "Configurator: Sites, Network, Parts catalogue and How it works, behind one menu shared by every page; state in localStorage and share links.",
       "paths": [
        "site/index.html",
        "site/js/ui.js",
@@ -4745,6 +4749,17 @@
        "site/js/builder.js",
        "site/data/builder.js",
        "test/builder.test.js"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "trial",
+      "name": "Mallow trial",
+      "what": "trial.html: a Verdin AM62 on Mallow beside a Pi 4 on one antenna — shopping list, steps, CPU estimate and a results sheet with pass rules.",
+      "paths": [
+       "site/trial.html",
+       "site/js/trial.js",
+       "test/trial.test.js"
       ],
       "status": "live"
      },
@@ -4817,6 +4832,17 @@
        "site/data/builder.js"
       ],
       "url": "https://cdomotor-g.github.io/open-ALERT/build.html"
+     },
+     {
+      "id": "mallow-trial",
+      "name": "Mallow trial plan",
+      "what": "What to buy and do to test a Toradex Verdin AM62 on Mallow running RPi ALERT beside a Pi, and how to judge it.",
+      "component": "trial",
+      "paths": [
+       "site/trial.html",
+       "site/js/trial.js"
+      ],
+      "url": "https://cdomotor-g.github.io/open-ALERT/trial.html"
      }
     ],
     "consumes": [
@@ -4938,16 +4964,17 @@
       "from": "rpi-alert",
       "provider": "channel-planner",
       "into": "builder",
-      "what": "The builder's stick windows, channel costs, burst cost and install routes: RPi ALERT's hardware notes, how it works, its installer and its SDR worker.",
+      "what": "The builder's stick windows, channel costs, burst cost and install routes: RPi ALERT's hardware notes, how it works, its installer and its SDR worker. The Mallow trial follows its configuration (receiver ids, channels) the same way.",
       "how": "reference",
       "url": "https://github.com/cdomotor-g/RPi_ALERT",
       "watch": [
+       "agent/lib/devices/sdr-worker.js",
+       "agent/lib/devices/sdr.js",
+       "docs/configuration.md",
        "docs/hardware.md",
        "docs/how-it-works.md",
        "docs/install.md",
-       "os/install.sh",
-       "agent/lib/devices/sdr.js",
-       "agent/lib/devices/sdr-worker.js"
+       "os/install.sh"
       ],
       "since": {
        "date": "2026-11-01"
@@ -4961,12 +4988,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-01T00:04:40Z",
+    "pushed": "2026-11-01T00:43:20Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/open-ALERT"
    },
    "commits": [
+    {
+     "sha": "92fd007",
+     "date": "2026-11-01T00:43:19Z",
+     "msg": "One menu on every page, and a Mallow trial page",
+     "url": "https://github.com/cdomotor-g/open-ALERT/commit/92fd007deef33320c966a55eea2159b52388631b"
+    },
     {
      "sha": "d7041c5",
      "date": "2026-11-01T00:04:39Z",
@@ -5010,40 +5043,40 @@
    "ci": [
     {
      "name": "test",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41255142607",
-     "date": "2026-11-01T00:04:57Z",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41257985422",
+     "date": "2026-11-01T00:43:26Z",
+     "event": "push"
+    },
+    {
+     "name": "pages",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41257985481",
+     "date": "2026-11-01T00:43:29Z",
      "event": "push"
     },
     {
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41255142897",
-     "date": "2026-11-01T00:05:03Z",
-     "event": "push"
-    },
-    {
-     "name": "pages",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41255142654",
-     "date": "2026-11-01T00:05:09Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41257985857",
+     "date": "2026-11-01T00:43:39Z",
      "event": "push"
     },
     {
      "name": "pages build and deployment",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41255141958",
-     "date": "2026-11-01T00:05:06Z",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41257985103",
+     "date": "2026-11-01T00:43:38Z",
      "event": "dynamic"
     }
    ],
    "version": "0.1.0",
    "lastCommit": {
-    "date": "2026-11-01T00:04:39Z"
+    "date": "2026-11-01T00:43:19Z"
    }
   },
   {
@@ -7526,16 +7559,17 @@
    "to": "open-alert",
    "provider": "channel-planner",
    "into": "builder",
-   "what": "The builder's stick windows, channel costs, burst cost and install routes: RPi ALERT's hardware notes, how it works, its installer and its SDR worker.",
+   "what": "The builder's stick windows, channel costs, burst cost and install routes: RPi ALERT's hardware notes, how it works, its installer and its SDR worker. The Mallow trial follows its configuration (receiver ids, channels) the same way.",
    "how": "reference",
    "url": "https://github.com/cdomotor-g/RPi_ALERT",
    "watch": [
+    "agent/lib/devices/sdr-worker.js",
+    "agent/lib/devices/sdr.js",
+    "docs/configuration.md",
     "docs/hardware.md",
     "docs/how-it-works.md",
     "docs/install.md",
-    "os/install.sh",
-    "agent/lib/devices/sdr.js",
-    "agent/lib/devices/sdr-worker.js"
+    "os/install.sh"
    ],
    "since": {
     "date": "2026-11-01"
