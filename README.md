@@ -45,7 +45,7 @@ receiving end has kept up.
   field explained in [`schema/atlas.schema.json`](schema/atlas.schema.json). Links are
   declared by the *consumer* (`consumes`), because the consumer is what breaks.
 - **Forward propagation.** A consumer records where it last caught up with each provider:
-  a pinned commit (`agent/vendor/meganet/SOURCE`), a version (`RPi ALERT 0.11` in a
+  a pinned commit (`agent/vendor/meganet/SOURCE`), a version (`RPi ALERT 0.15.3` in a
   catalogue) or a review date. When the provider changes a watched file after that, the
   link turns **behind**; the consumer's daily `atlas.yml` check opens an issue there with
   the upstream commits and the catch-up step, and closes it once the pin moves.
