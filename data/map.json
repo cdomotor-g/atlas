@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-02T00:45:28.356Z",
- "hash": "2c063d5c49d78bbf",
+ "generated": "2026-11-02T03:29:28.273Z",
+ "hash": "1b46a853125b447e",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -90,7 +90,7 @@
     },
     "status": {
      "phase": "live",
-     "updated": "2026-11-01",
+     "updated": "2026-11-02",
      "summary": "Live and in daily use (database schema 95): this week added teams and the tasks handed to them, with the SoRT scope builder's hand-off, a driving mode that follows a station's route in 3-D, the agent API's changelog and email list, ACMA licences and radio paths in the API, the Repeaters tab and cuts to database I/O, while account email, compute size and the ACMA download link wait on the owner.",
      "now": [
       "Teams and tasks (0095) live: thirteen starter teams with nobody on them yet — an administrator names each team's owners on the Admin tab; SoRT's #tasks= hand-off lands on the Tasks tab for review",
@@ -100,7 +100,8 @@
       "#243 R2 data archive: one restored-day self-test left, then close",
       "One ALERT burst heard several ways is one reading (0096, #232 closed): copies within 8 s counted on it",
       "#217 and #244 transmitter drift and bit-flip sources: gathering live days of carrier data",
-      "#258 flaky Site features 3-D hand-back check in CI"
+      "#258 flaky Site features 3-D hand-back check in CI",
+      "Legacy ALERT over MQTT trial (ELPRO gateway, Alert1 path): the bridge decodes it and drops the gateway's re-sent table, live since 2 Nov with the trial's first hour replayed; the ALERT2 path's timer republishes are now stored once too (0097 cleared a month of them)"
      ],
      "next": [
       "#252–#254 road routes: avoid closures, inspection runs, routes kept offline (EPIC #250)",
@@ -111,7 +112,8 @@
      ],
      "later": [
       "#201 place a field photo by dragging its pin; #205 site exposure outside Queensland",
-      "#247 carrier outages on Station Health (parked until a source is chosen)"
+      "#247 carrier outages on Station Health (parked until a source is chosen)",
+      "#260 fold the ALERT twins stored before 0096 into one reading each (after #243 and #257)"
      ],
      "blocked": [
       {
@@ -971,12 +973,66 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-02T00:01:55Z",
+    "pushed": "2026-11-02T03:18:40Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "99ad091",
+     "date": "2026-11-02T03:18:38Z",
+     "msg": "Bridge: a retained ELPRO message teaches the filter and stores nothing",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/99ad091384c3d3b33544528126a86cc686f83fc3"
+    },
+    {
+     "sha": "7696217",
+     "date": "2026-11-02T03:14:58Z",
+     "msg": "Roadmap revision 213: #260 opened — the ALERT twins stored before 0096",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/76962171e1ee21094cf864e7ed5f0e23eb0c0ebd"
+    },
+    {
+     "sha": "4cd73ca",
+     "date": "2026-11-02T03:10:43Z",
+     "msg": "Bridge: read the legacy table's re-sent part by its shape, not by value",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/4cd73cadfb542ce9d8e1b5fef840e6e926aca589"
+    },
+    {
+     "sha": "3199ab5",
+     "date": "2026-11-02T02:23:03Z",
+     "msg": "ELPRO page: the legacy table bursts stop once every address is in the table",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/3199ab57444c0927941aebec68d4d23592474658"
+    },
+    {
+     "sha": "a298b0e",
+     "date": "2026-11-02T02:10:27Z",
+     "msg": "DB_SCHEMA_VERSION 97 after db-migrate applied 0097; stamp 20261102a",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/a298b0e0170e2458155553efda6cbec52f6f78d4"
+    },
+    {
+     "sha": "a03e68e",
+     "date": "2026-11-02T02:07:35Z",
+     "msg": "0097: one reading per ALERT2 report the ELPRO gateway republished",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/a03e68e70c029698aaa808c4b94c79d82a64abdd"
+    },
+    {
+     "sha": "5298c56",
+     "date": "2026-11-02T01:56:46Z",
+     "msg": "Bridge: store each ALERT2 report once, not every time the gateway republishes it",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/5298c56406534f08078d906a7c57351dcb710702"
+    },
+    {
+     "sha": "63aeb46",
+     "date": "2026-11-02T01:24:37Z",
+     "msg": "Atlas: legacy ALERT over MQTT is live, and the trial's first hour replayed",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/63aeb46db14da7581faf4efb69feb741354f9d1d"
+    },
+    {
+     "sha": "647b62c",
+     "date": "2026-11-02T00:50:48Z",
+     "msg": "Bridge: decode legacy ALERT from the ELPRO gateway's Alert1 path",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/647b62ccaa72f701934fbef85ddce9235405d888"
+    },
     {
      "sha": "bdc509b",
      "date": "2026-11-02T00:01:52Z",
@@ -994,63 +1050,25 @@
      "date": "2026-11-01T19:50:15Z",
      "msg": "Message Log CSV: text columns that begin like a formula open as text in a spreadsheet",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/f40b0d6a33620832c31251c2cb30f2ce0a0cdeb3"
-    },
-    {
-     "sha": "b7bb63d",
-     "date": "2026-11-01T19:37:08Z",
-     "msg": "Station Health counts every copy of a reading; schema 96; #232 closed; stamp 20261101g",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/b7bb63d7fd32b6ec4202918fa3f8ec928e567791"
-    },
-    {
-     "sha": "daad33d",
-     "date": "2026-11-01T19:22:08Z",
-     "msg": "0096: one ALERT burst heard several ways is one reading (#232)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/daad33d080f8bc142a4436b092fa1f22135a1068"
-    },
-    {
-     "sha": "415d70f",
-     "date": "2026-11-01T18:25:52Z",
-     "msg": "Network Bulletin: no daily on Mondays; the panel opens on the newest",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/415d70f2ebbfc64559b252c9c5bef28fbeaee1dc"
-    },
-    {
-     "sha": "1a30e6e",
-     "date": "2026-11-01T18:08:22Z",
-     "msg": "Bulletin voices: weekly/2026-11-02",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/1a30e6e19c58ef52a4262e04644c31c2ba1e57a3"
-    },
-    {
-     "sha": "b664a2a",
-     "date": "2026-11-01T18:07:07Z",
-     "msg": "Network Bulletin: weekly bulletin for 2026-11-02 — 21 stations missed every check, 13 last heard on 152.400",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/b664a2a3aedac1d4514762c3a2096f11a843ebec"
-    },
-    {
-     "sha": "797cc78",
-     "date": "2026-11-01T15:52:00Z",
-     "msg": "CI doctor: Health card, Shell, Exports, Driving mode — a late rain forecast redrew the station panel and dropped the Battery door's focus (n",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/797cc78c54f0fff54cbf1d8a86d66920fb878ecb"
-    },
-    {
-     "sha": "e255755",
-     "date": "2026-11-01T12:11:18Z",
-     "msg": "DB_SCHEMA_VERSION 95 after db-migrate applied 0095; roadmap revision 211; stamp 20261101d",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/e255755e0d43b742e25ca0a24fd249bf7e00ecf7"
-    },
-    {
-     "sha": "80ba306",
-     "date": "2026-11-01T12:08:59Z",
-     "msg": "✅ Tasks: teams, the jobs handed to them, and SoRT's hand-off — 0095; stamp 20261101c",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/80ba30603d09f8bafd845abe34d88f2962c0c8c5"
-    },
-    {
-     "sha": "36e659e",
-     "date": "2026-11-01T11:58:42Z",
-     "msg": "Agent API: a station's radio path to base, with the fade margins Flood-Net saved",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/36e659e44a1aebe19b8b2dfb88bba2b5d665718b"
     }
    ],
    "issues": [
+    {
+     "n": 260,
+     "raw": "[Sub-issue of #240] [Opus5/High] Fold the ALERT twins stored before 0096 into one reading each",
+     "structure": "sub",
+     "parent": 240,
+     "model": "Opus5",
+     "effort": "High",
+     "human": false,
+     "title": "Fold the ALERT twins stored before 0096 into one reading each",
+     "url": "https://github.com/cdomotor-g/MegaNet/issues/260",
+     "updated": "2026-11-02T03:14:28Z",
+     "created": "2026-11-02T03:14:28Z",
+     "comments": 0,
+     "labels": [],
+     "mentions": []
+    },
     {
      "n": 259,
      "raw": "[Standalone] [Opus5/High] Lighter decoder: filter once per carrier guess (−55% per burst, same readings), then filter only around bursts",
@@ -1702,7 +1720,7 @@
      "human": true,
      "title": "Roadmap — resource allocation & sequencing for all issues",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/113",
-     "updated": "2026-11-01T19:37:26Z",
+     "updated": "2026-11-02T03:15:14Z",
      "created": "2026-08-13T00:13:50Z",
      "comments": 0,
      "labels": [],
@@ -1710,56 +1728,88 @@
       "meganet",
       "rpi_alert"
      ],
-     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1065k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
+     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1067k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
     }
    ],
-   "issueCount": 39,
+   "issueCount": 40,
    "release": null,
    "ci": [
+    {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41383256049",
+     "date": "2026-11-02T03:28:07Z",
+     "event": "schedule"
+    },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41368301420",
-     "date": "2026-11-02T00:39:20Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41382568868",
+     "date": "2026-11-02T03:20:38Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
-     "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41368251613",
-     "date": "2026-11-02T00:40:33Z",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41382513043",
+     "date": "2026-11-02T03:21:06Z",
      "event": "schedule"
     },
     {
-     "name": "Field photos from Google Drive",
+     "name": "Deploy the MQTT bridge",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41368080266",
-     "date": "2026-11-02T00:36:53Z",
-     "event": "schedule"
-    },
-    {
-     "name": "Refresh ACMA RRL data",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41364757737",
-     "date": "2026-11-02T00:01:57Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41382390965",
+     "date": "2026-11-02T03:19:44Z",
      "event": "workflow_dispatch"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41382390355",
+     "date": "2026-11-02T03:19:03Z",
+     "event": "push"
     },
     {
      "name": "CodeQL",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41364733431",
-     "date": "2026-11-02T00:02:23Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41382390366",
+     "date": "2026-11-02T03:23:00Z",
      "event": "push"
+    },
+    {
+     "name": "Roadmap sync",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41382046582",
+     "date": "2026-11-02T03:15:17Z",
+     "event": "push"
+    },
+    {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41382047441",
+     "date": "2026-11-02T03:15:24Z",
+     "event": "push"
+    },
+    {
+     "name": "db-migrate",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41376082154",
+     "date": "2026-11-02T02:08:59Z",
+     "event": "workflow_dispatch"
     }
    ],
-   "version": "20261101h",
+   "version": "20261102a",
    "lastCommit": {
-    "date": "2026-11-02T00:01:52Z"
+    "date": "2026-11-02T03:18:38Z"
    }
   },
   {
@@ -4335,12 +4385,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-01T02:59:50Z",
+    "pushed": "2026-11-02T03:24:55Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL"
    },
    "commits": [
+    {
+     "sha": "20bc76f",
+     "date": "2026-11-02T03:24:54Z",
+     "msg": "firmware: refresh (quansheng_alert@e922375, quansheng_alert_v3@988dfe6)",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/commit/20bc76fb55230d6275d0940ef30a2b65177571c0"
+    },
     {
      "sha": "21ab7c5",
      "date": "2026-11-01T02:59:48Z",
@@ -4411,6 +4467,22 @@
    },
    "ci": [
     {
+     "name": "pages build and deployment",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41382974881",
+     "date": "2026-11-02T03:25:36Z",
+     "event": "dynamic"
+    },
+    {
+     "name": "Refresh firmware",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41382925392",
+     "date": "2026-11-02T03:24:59Z",
+     "event": "schedule"
+    },
+    {
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
@@ -4419,33 +4491,17 @@
      "event": "schedule"
     },
     {
-     "name": "pages build and deployment",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41267372635",
-     "date": "2026-11-01T03:00:34Z",
-     "event": "dynamic"
-    },
-    {
      "name": "Test the site",
      "status": "completed",
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41267373074",
      "date": "2026-11-01T03:01:09Z",
      "event": "push"
-    },
-    {
-     "name": "Refresh firmware",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/40265049454",
-     "date": "2026-10-26T03:38:58Z",
-     "event": "schedule"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-11-01T02:59:48Z"
+    "date": "2026-11-02T03:24:54Z"
    }
   },
   {
@@ -6723,7 +6779,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "1 newer commit upstream since it was last reviewed (2026-11-01), none to watched files."
+    "note": "10 newer commits upstream since it was last reviewed (2026-11-01), none to watched files."
    }
   },
   {
@@ -6961,7 +7017,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "448 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "457 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7057,7 +7113,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "448 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "457 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7117,13 +7173,13 @@
    "drift": {
     "state": "current",
     "since": {
-     "commit": "ad166ca",
-     "commitDate": "2026-10-20T00:11:32Z"
+     "commit": "988dfe6",
+     "commitDate": "2026-10-31T22:25:34Z"
     },
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "2 newer commits upstream since ad166ca, none to watched files."
+    "note": "Up to date with upstream."
    }
   },
   {
@@ -7489,8 +7545,32 @@
      "commit": "7309891c638d1050f0163f19dc8284ef7f54a7ca",
      "commitDate": "2026-10-17T09:50:24Z"
     },
-    "behind": 4,
+    "behind": 6,
     "commits": [
+     {
+      "sha": "4cd73ca",
+      "date": "2026-11-02T03:10:43Z",
+      "msg": "Bridge: read the legacy table's re-sent part by its shape, not by value",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/4cd73cadfb542ce9d8e1b5fef840e6e926aca589"
+     },
+     {
+      "sha": "3199ab5",
+      "date": "2026-11-02T02:23:03Z",
+      "msg": "ELPRO page: the legacy table bursts stop once every address is in the table",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/3199ab57444c0927941aebec68d4d23592474658"
+     },
+     {
+      "sha": "5298c56",
+      "date": "2026-11-02T01:56:46Z",
+      "msg": "Bridge: store each ALERT2 report once, not every time the gateway republishes it",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/5298c56406534f08078d906a7c57351dcb710702"
+     },
+     {
+      "sha": "647b62c",
+      "date": "2026-11-02T00:50:48Z",
+      "msg": "Bridge: decode legacy ALERT from the ELPRO gateway's Alert1 path",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/647b62ccaa72f701934fbef85ddce9235405d888"
+     },
      {
       "sha": "daad33d",
       "date": "2026-11-01T19:22:08Z",
@@ -7502,27 +7582,14 @@
       "date": "2026-10-23T00:05:58Z",
       "msg": "Docs and comments: the Supabase project is on Pro now, not the free tier",
       "url": "https://github.com/cdomotor-g/MegaNet/commit/318080415b87904bcbc10b6c60b38efdbc1758c4"
-     },
-     {
-      "sha": "92e005d",
-      "date": "2026-10-21T08:43:41Z",
-      "msg": "Transmitter drift, from review: chained repeaters, strays, per-kind fleets, and readings placed in their own burst (#217)",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/92e005dae4b654a7465c339e932bf2debd185a64"
-     },
-     {
-      "sha": "87f5e01",
-      "date": "2026-10-21T08:19:18Z",
-      "msg": "Transmitter drift for legacy ALERT: each burst put down to its station or its repeater (#217)",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/87f5e01ec8fae13c37b3f96de4e6740b1386958f"
      }
     ],
     "files": [
-     "alert-dsp.js",
      "docs/ingest-serial-monitor.md",
      "docs/elpro115e_mqtt.md",
      "docs/ingest-http.md"
     ],
-    "note": "4 upstream changes to watched files since it was last reviewed (2026-10-17)."
+    "note": "6 upstream changes to watched files since it was last reviewed (2026-10-17)."
    }
   },
   {
@@ -7589,7 +7656,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "1 newer commit upstream since it was last reviewed (2026-11-01), none to watched files."
+    "note": "10 newer commits upstream since it was last reviewed (2026-11-01), none to watched files."
    }
   },
   {
