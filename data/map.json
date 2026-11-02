@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-02T03:38:40.226Z",
- "hash": "66af3adbfe068aa2",
+ "generated": "2026-11-02T06:42:37.985Z",
+ "hash": "b820f7914175b4f8",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -105,7 +105,8 @@
       "One ALERT burst heard several ways is one reading (0096, #232 closed): copies within 8 s counted on it",
       "#217 and #244 transmitter drift and bit-flip sources: gathering live days of carrier data",
       "#258 flaky Site features 3-D hand-back check in CI",
-      "Legacy ALERT over MQTT trial (ELPRO gateway, Alert1 path): the bridge decodes it and drops the gateway's re-sent table, live since 2 Nov with the trial's first hour replayed; the ALERT2 path's timer republishes are now stored once too (0097 cleared a month of them)"
+      "Legacy ALERT over MQTT trial (ELPRO gateway, Alert1 path): the bridge decodes it and drops the gateway's re-sent table, live since 2 Nov with the trial's first hour replayed; the ALERT2 path's timer republishes are now stored once too (0097 cleared a month of them)",
+      "#259 a lighter off-air decoder: part 1 (filter once per carrier guess, the same readings in under half the time) shipped opt-in as `lean`; RPi ALERT compares it with the full decoder in the field before it becomes the default"
      ],
      "next": [
       "#252–#254 road routes: avoid closures, inspection runs, routes kept offline (EPIC #250)",
@@ -977,12 +978,24 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-02T03:18:40Z",
+    "pushed": "2026-11-02T04:24:02Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "5c2db78",
+     "date": "2026-11-02T04:24:00Z",
+     "msg": "Decoder: compare — decode each burst both ways and say if they agree (#259)",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/5c2db78a70813f142625ca87da2e119a110aa61d"
+    },
+    {
+     "sha": "3d05998",
+     "date": "2026-11-02T04:17:41Z",
+     "msg": "Decoder: lean decoding, opt-in beside the full decoder (#259 part 1)",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/3d05998fc525ed08847ddf6cb41534b677b53838"
+    },
     {
      "sha": "99ad091",
      "date": "2026-11-02T03:18:38Z",
@@ -1042,18 +1055,6 @@
      "date": "2026-11-02T00:01:52Z",
      "msg": "Refresh ACMA RRL data (weekly, extract 2026-11-02)",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/bdc509baaa0d42500031192d11ce189fe6c0b39e"
-    },
-    {
-     "sha": "87ab6ed",
-     "date": "2026-11-01T23:59:08Z",
-     "msg": "ACMA refresh: try cdn.acma.gov.au/rrl/spectra_rrl.zip first (#245)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/87ab6ed00b060b13b3c91019f58a6da6d56c129d"
-    },
-    {
-     "sha": "f40b0d6",
-     "date": "2026-11-01T19:50:15Z",
-     "msg": "Message Log CSV: text columns that begin like a formula open as text in a spreadsheet",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/f40b0d6a33620832c31251c2cb30f2ce0a0cdeb3"
     }
    ],
    "issues": [
@@ -1083,9 +1084,9 @@
      "human": false,
      "title": "Lighter decoder: filter once per carrier guess (−55% per burst, same readings), then filter only around bursts",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/259",
-     "updated": "2026-11-02T00:27:35Z",
+     "updated": "2026-11-02T04:17:54Z",
      "created": "2026-11-02T00:27:35Z",
-     "comments": 0,
+     "comments": 1,
      "labels": [],
      "mentions": []
     },
@@ -1724,7 +1725,7 @@
      "human": true,
      "title": "Roadmap — resource allocation & sequencing for all issues",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/113",
-     "updated": "2026-11-02T03:15:14Z",
+     "updated": "2026-11-02T04:24:14Z",
      "created": "2026-08-13T00:13:50Z",
      "comments": 0,
      "labels": [],
@@ -1732,7 +1733,7 @@
       "meganet",
       "rpi_alert"
      ],
-     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1067k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
+     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1069k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
     }
    ],
    "issueCount": 40,
@@ -1742,78 +1743,62 @@
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41383617461",
-     "date": "2026-11-02T03:32:11Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41400602163",
+     "date": "2026-11-02T06:33:04Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41383450981",
-     "date": "2026-11-02T03:31:03Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41400530319",
+     "date": "2026-11-02T06:33:04Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41383256049",
-     "date": "2026-11-02T03:28:07Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41400296993",
+     "date": "2026-11-02T06:30:16Z",
      "event": "schedule"
     },
     {
-     "name": "Deploy the MQTT bridge",
+     "name": "Roadmap sync",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41382390965",
-     "date": "2026-11-02T03:19:44Z",
-     "event": "workflow_dispatch"
-    },
-    {
-     "name": "Web smoke test",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41382390355",
-     "date": "2026-11-02T03:19:03Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41388245947",
+     "date": "2026-11-02T04:24:17Z",
      "event": "push"
     },
     {
      "name": "CodeQL",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41382390366",
-     "date": "2026-11-02T03:23:00Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41388245997",
+     "date": "2026-11-02T04:27:46Z",
      "event": "push"
     },
     {
-     "name": "Roadmap sync",
+     "name": "Web smoke test",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41382046582",
-     "date": "2026-11-02T03:15:17Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41388246036",
+     "date": "2026-11-02T05:38:48Z",
      "event": "push"
     },
     {
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41382047441",
-     "date": "2026-11-02T03:15:24Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41387651086",
+     "date": "2026-11-02T04:18:07Z",
      "event": "push"
-    },
-    {
-     "name": "db-migrate",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41376082154",
-     "date": "2026-11-02T02:08:59Z",
-     "event": "workflow_dispatch"
     }
    ],
-   "version": "20261102a",
+   "version": "20261102c",
    "lastCommit": {
-    "date": "2026-11-02T03:18:38Z"
+    "date": "2026-11-02T04:24:00Z"
    }
   },
   {
@@ -2047,14 +2032,13 @@
     },
     "status": {
      "phase": "beta",
-     "updated": "2026-11-01",
-     "summary": "Version 0.15.3 is on main (latest release v0.15.2) and runs a live base station on two RTL-SDR sticks; the bench test with a V4 stick, a Quansheng radio and an ERT-A2 has not been done.",
+     "updated": "2026-11-02",
+     "summary": "Version 0.16.0 is released (v0.16.0, signed, 2 Nov 2026). It adds the lean decoder beside the full one (Settings → RTL-SDR → Decoder: full, lean or compare; MegaNet #259) and runs a live base station on two RTL-SDR sticks; the bench test with a V4 stick, a Quansheng radio and an ERT-A2 has not been done.",
      "now": [
-      "0.15.x: each stick's narrowest window and its CPU cost, tuned on the live station",
-      "0.15.3 (waterfall window edges hatched) on main, waiting for its release"
+      "v0.16.0 released: the decoder setting (full / lean / compare) — run Compare at 18 Bateson for a week, then make Lean the default",
+      "0.15.x: each stick's narrowest window and its CPU cost, tuned on the live station"
      ],
      "next": [
-      "Re-sync the vendored decoders: Flood-Net's alert2.js changed on 2026-10-28",
       "Close #1: the ERT-A2 field fix shipped in 0.14.1",
       "Headless first run: status file on the boot partition, captive portal on the hotspot",
       "Dashboard falls back to polling when its event stream fails; reloads after an update",
@@ -2065,7 +2049,7 @@
      ],
      "later": [
       "ALERT2-only channels skip the legacy decode first, halving their CPU",
-      "A channeliser shared by a stick's channels, built first in Flood-Net's alert-dsp.js",
+      "A channeliser shared by a stick's channels, filtering each only around bursts (#3; MegaNet #259 part 2)",
       "Updates you can see coming: release notes, roll back, staged fleet roll-out",
       "Settings backup, and a host id that survives a new SD card",
       "Read-only root file system; GPS-disciplined time with chrony",
@@ -2502,12 +2486,36 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-01T19:36:18Z",
+    "pushed": "2026-11-02T05:59:47Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/RPi_ALERT"
    },
    "commits": [
+    {
+     "sha": "2d8aed2",
+     "date": "2026-11-02T05:59:46Z",
+     "msg": "atlas.json: v0.16.0 released",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/2d8aed25e158af88ac578d0552617817e3b6c658"
+    },
+    {
+     "sha": "bb8c6e6",
+     "date": "2026-11-02T05:44:08Z",
+     "msg": "CLAUDE.md: cut a release by starting build-image with its tag",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/bb8c6e68522b89d8133be50dadadee25e1a08d99"
+    },
+    {
+     "sha": "564f508",
+     "date": "2026-11-02T05:43:03Z",
+     "msg": "CLAUDE.md: cut releases by default until v1.0.0",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/564f5082ee6e4a382e4e7333f89047e133e3751b"
+    },
+    {
+     "sha": "175c677",
+     "date": "2026-11-02T04:32:52Z",
+     "msg": "0.16.0: the lean decoder beside the full one — Settings → RTL-SDR → Decoder",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/175c677846f69c4a02ab3911b259a7d115f44271"
+    },
     {
      "sha": "82e126f",
      "date": "2026-11-01T19:36:16Z",
@@ -2555,30 +2563,6 @@
      "date": "2026-10-26T08:49:16Z",
      "msg": "Roadmap: 151.337 on 18 Bateson's waterfall is 151.575 folding round a 240 kHz window's edge",
      "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/0e4796c8e6ceb4b3f3bd6f58e8a610b1a469f852"
-    },
-    {
-     "sha": "8bebb92",
-     "date": "2026-10-25T00:16:36Z",
-     "msg": "0.15.2: a settings patch from MegaNet never changes a stick's frequency correction without saying so",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/8bebb9241b1abe0b13fef62eb9d30d2760d056f6"
-    },
-    {
-     "sha": "b744c95",
-     "date": "2026-10-24T01:16:04Z",
-     "msg": "Roadmap: what 18 Bateson measured — the legacy decode on an ALERT2 link, a wide window's cost split, a strong neighbour's mirror image",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/b744c9523258be4aba82b84705cffa6bd9c55602"
-    },
-    {
-     "sha": "ca63939",
-     "date": "2026-10-24T00:54:14Z",
-     "msg": "0.15.1: the kiosk tints the newest reading instead of flashing it, and draws at most every two seconds",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/ca63939a1a241fc243f865d6a6e157f34a9694d2"
-    },
-    {
-     "sha": "b4aa65c",
-     "date": "2026-10-23T19:33:32Z",
-     "msg": "0.15.0: a stick's window — the narrowest that holds its channels, or exactly the one set — and what it costs this Pi, shown as channels are ",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/b4aa65c80ab40a44aa54cb8085956f762719a756"
     }
    ],
    "issues": [
@@ -2592,27 +2576,9 @@
      "human": false,
      "title": "One worker per stick: take MegaNet's lighter decoder and filter channels only around bursts",
      "url": "https://github.com/cdomotor-g/RPi_ALERT/issues/3",
-     "updated": "2026-11-02T00:27:47Z",
+     "updated": "2026-11-02T04:32:54Z",
      "created": "2026-11-02T00:27:47Z",
-     "comments": 0,
-     "labels": [],
-     "mentions": [
-      "meganet"
-     ]
-    },
-    {
-     "n": 2,
-     "raw": "[Standalone] [Sonnet5/Med] Upstream moved: MegaNet changed alert2.js",
-     "structure": "standalone",
-     "parent": null,
-     "model": "Sonnet5",
-     "effort": "Med",
-     "human": false,
-     "title": "Upstream moved: MegaNet changed alert2.js",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/issues/2",
-     "updated": "2026-10-31T22:08:25Z",
-     "created": "2026-10-31T22:08:25Z",
-     "comments": 0,
+     "comments": 1,
      "labels": [],
      "mentions": [
       "meganet"
@@ -2637,49 +2603,49 @@
      ]
     }
    ],
-   "issueCount": 3,
+   "issueCount": 2,
    "release": {
-    "tag": "v0.15.2",
-    "date": "2026-10-25T00:33:11Z",
-    "url": "https://github.com/cdomotor-g/RPi_ALERT/releases/tag/v0.15.2"
+    "tag": "v0.16.0",
+    "date": "2026-11-02T05:59:02Z",
+    "url": "https://github.com/cdomotor-g/RPi_ALERT/releases/tag/v0.16.0"
    },
    "ci": [
     {
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41348211192",
-     "date": "2026-11-01T20:42:38Z",
-     "event": "schedule"
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41397204943",
+     "date": "2026-11-02T06:00:08Z",
+     "event": "push"
     },
     {
      "name": "test",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41342576075",
-     "date": "2026-11-01T19:38:06Z",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41397204584",
+     "date": "2026-11-02T06:01:40Z",
      "event": "push"
     },
     {
      "name": "pages",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/40147147259",
-     "date": "2026-10-25T00:33:33Z",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41397141744",
+     "date": "2026-11-02T05:59:26Z",
      "event": "workflow_run"
     },
     {
      "name": "build-image",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/40146146923",
-     "date": "2026-10-25T00:33:14Z",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41395734389",
+     "date": "2026-11-02T05:59:04Z",
      "event": "workflow_dispatch"
     }
    ],
-   "version": "0.15.3",
+   "version": "0.16.0",
    "lastCommit": {
-    "date": "2026-11-01T19:36:16Z"
+    "date": "2026-11-02T05:59:46Z"
    }
   },
   {
@@ -4572,7 +4538,7 @@
     "status": {
      "phase": "beta",
      "updated": "2026-11-02",
-     "summary": "The Mallow trial now names exact Toradex parts (module 00761200, Mallow 01611102, heatsink 23111001), rates all six Verdin AM62s against the decoder today and once lighter (the Solos ruled out, the Dual 00741201 for later), and prices everything in Australian dollars at element14 (module A$566, Mallow A$182 inc GST; the trial's parts about A$970–1,260), with Toradex's direct price beside it (the module about A$171, to businesses only). The lighter decoder is measured and asked of Flood-Net and RPi ALERT.",
+     "summary": "The Mallow trial now names exact Toradex parts (module 00761200, Mallow 01611102, heatsink 23111001), rates all six Verdin AM62s against the decoder today and once lighter (the Solos ruled out, the Dual 00741201 for later), and prices everything in Australian dollars at element14 (module A$566, Mallow A$182 inc GST; the trial's parts about A$970–1,260), with Toradex's direct price beside it (the module about A$171, to businesses only). The lighter decoder is measured and asked of Flood-Net and RPi ALERT. RPi ALERT 0.16 has the lean decoder as a setting (and Compare to prove it); the trial runs the Mallow on Lean and the Pi on Compare.",
      "next": [
       "Feed the trial's AM62 numbers back into the builder's CPU model",
       "Check the builder's estimated prices and lead times (marked est.) with suppliers: antennas, coax, arrestors, the mating Bulgin lead",
@@ -4899,7 +4865,7 @@
        "os/install.sh"
       ],
       "since": {
-       "date": "2026-11-01"
+       "date": "2026-11-02"
       },
       "on_change": "Re-check model.windows, chCore240, burstCoreS and kioskCore in site/data/builder.js and the steps() text in site/js/builder.js; run npm test."
      }
@@ -4907,7 +4873,7 @@
     "asks": [
      {
       "to": "flood-net",
-      "what": "A lighter decoder: filter once per carrier guess (measured: a burst in 45% of the time, same readings), then filter channels only around bursts — so an AM62 module, or a busy Pi 4, can keep up.",
+      "what": "A lighter decoder: part 1 (filter once per carrier guess) is in, opt-in as lean, and RPi ALERT 0.16 can compare it in the field; left: make it the default, then filter channels only around bursts — so an AM62 module, or a busy Pi 4, keeps up.",
       "issue": "cdomotor-g/MegaNet#259",
       "since": "2026-11-02"
      },
@@ -4924,12 +4890,24 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-02T00:38:05Z",
+    "pushed": "2026-11-02T05:59:51Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/open-ALERT"
    },
    "commits": [
+    {
+     "sha": "fac925b",
+     "date": "2026-11-02T05:59:50Z",
+     "msg": "Mallow trial: RPi ALERT 0.16.0 is a release now — Check for updates",
+     "url": "https://github.com/cdomotor-g/open-ALERT/commit/fac925bad47ec4f44cd357063b62b7161e387f4e"
+    },
+    {
+     "sha": "39060e8",
+     "date": "2026-11-02T04:34:10Z",
+     "msg": "RPi ALERT 0.16's lean decoder: catalogue, builder and the Mallow trial",
+     "url": "https://github.com/cdomotor-g/open-ALERT/commit/39060e858263c39a9d07dc18094a7246e6f9d3bb"
+    },
     {
      "sha": "c55228c",
      "date": "2026-11-02T00:38:03Z",
@@ -4990,41 +4968,41 @@
    "release": null,
    "ci": [
     {
-     "name": "Atlas",
+     "name": "pages",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41368201925",
-     "date": "2026-11-02T00:38:28Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41397212084",
+     "date": "2026-11-02T06:00:23Z",
      "event": "push"
     },
     {
      "name": "test",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41368201433",
-     "date": "2026-11-02T00:38:22Z",
-     "event": "push"
-    },
-    {
-     "name": "pages",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41368201460",
-     "date": "2026-11-02T00:38:30Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41397212078",
+     "date": "2026-11-02T06:00:09Z",
      "event": "push"
     },
     {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41368200382",
-     "date": "2026-11-02T00:38:29Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41397210445",
+     "date": "2026-11-02T06:00:17Z",
      "event": "dynamic"
+    },
+    {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41389204689",
+     "date": "2026-11-02T04:34:37Z",
+     "event": "push"
     }
    ],
    "version": "0.1.0",
    "lastCommit": {
-    "date": "2026-11-02T00:38:03Z"
+    "date": "2026-11-02T05:59:50Z"
    }
   },
   {
@@ -6539,7 +6517,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "4 newer commits upstream since it was last reviewed (2026-10-26), none to watched files."
+    "note": "8 newer commits upstream since it was last reviewed (2026-10-26), none to watched files."
    }
   },
   {
@@ -6786,24 +6764,15 @@
    "on_change": "Run agent/scripts/sync-meganet.sh (copies the files from Flood-Net's main and records the commit in SOURCE), then the agent tests: cd agent && node --test test/*.test.js. Follow any changed shape in the drivers (ert.js, quansheng.js, sdr.js), bump agent/package.json and release.",
    "drift_issue": true,
    "drift": {
-    "state": "behind",
+    "state": "current",
     "since": {
-     "commit": "92e005dae4b654a7465c339e932bf2debd185a64",
-     "commitDate": "2026-10-21T08:43:41Z"
+     "commit": "5c2db78a70813f142625ca87da2e119a110aa61d",
+     "commitDate": "2026-11-02T04:24:00Z"
     },
-    "behind": 1,
-    "commits": [
-     {
-      "sha": "e6f1c4a",
-      "date": "2026-10-23T01:07:20Z",
-      "msg": "ALERT2 tab: \"Where the IDs come from\" — which concentrator heard each legacy address, and whether it misheard it",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/e6f1c4a00513a81122a7534d28c83512f47f0962"
-     }
-    ],
-    "files": [
-     "alert2.js"
-    ],
-    "note": "1 upstream change to watched files since 92e005d."
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "Up to date with upstream."
    }
   },
   {
@@ -6835,7 +6804,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "10 newer commits upstream since it was last reviewed (2026-11-01), none to watched files."
+    "note": "12 newer commits upstream since it was last reviewed (2026-11-01), none to watched files."
    }
   },
   {
@@ -7073,7 +7042,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "457 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "459 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7169,7 +7138,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "457 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "459 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7409,14 +7378,14 @@
    "drift": {
     "state": "current",
     "since": {
-     "version": "0.15.3",
-     "latest": "0.15.2",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/releases/tag/v0.15.2"
+     "version": "0.16.0",
+     "latest": "0.16.0",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/releases/tag/v0.16.0"
     },
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "Says 0.15.3, the latest release."
+    "note": "Says 0.16.0, the latest release."
    }
   },
   {
@@ -7601,8 +7570,20 @@
      "commit": "7309891c638d1050f0163f19dc8284ef7f54a7ca",
      "commitDate": "2026-10-17T09:50:24Z"
     },
-    "behind": 6,
+    "behind": 8,
     "commits": [
+     {
+      "sha": "5c2db78",
+      "date": "2026-11-02T04:24:00Z",
+      "msg": "Decoder: compare — decode each burst both ways and say if they agree (#259)",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/5c2db78a70813f142625ca87da2e119a110aa61d"
+     },
+     {
+      "sha": "3d05998",
+      "date": "2026-11-02T04:17:41Z",
+      "msg": "Decoder: lean decoding, opt-in beside the full decoder (#259 part 1)",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/3d05998fc525ed08847ddf6cb41534b677b53838"
+     },
      {
       "sha": "4cd73ca",
       "date": "2026-11-02T03:10:43Z",
@@ -7641,11 +7622,12 @@
      }
     ],
     "files": [
+     "alert-dsp.js",
      "docs/ingest-serial-monitor.md",
      "docs/elpro115e_mqtt.md",
      "docs/ingest-http.md"
     ],
-    "note": "6 upstream changes to watched files since it was last reviewed (2026-10-17)."
+    "note": "8 upstream changes to watched files since it was last reviewed (2026-10-17)."
    }
   },
   {
@@ -7667,15 +7649,15 @@
     "os/install.sh"
    ],
    "since": {
-    "date": "2026-11-01"
+    "date": "2026-11-02"
    },
    "on_change": "Re-check model.windows, chCore240, burstCoreS and kioskCore in site/data/builder.js and the steps() text in site/js/builder.js; run npm test.",
    "drift": {
     "state": "current",
     "since": {
-     "date": "2026-11-01",
-     "commit": "82e126fedf55faa39fa89efa48563a318afd74bf",
-     "commitDate": "2026-11-01T19:36:16Z"
+     "date": "2026-11-02",
+     "commit": "2d8aed25e158af88ac578d0552617817e3b6c658",
+     "commitDate": "2026-11-02T05:59:46Z"
     },
     "behind": 0,
     "commits": [],
@@ -7712,7 +7694,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "10 newer commits upstream since it was last reviewed (2026-11-01), none to watched files."
+    "note": "12 newer commits upstream since it was last reviewed (2026-11-01), none to watched files."
    }
   },
   {
@@ -7762,13 +7744,6 @@
   {
    "in": "rpi-alert",
    "about": "flood-net",
-   "n": 2,
-   "title": "Upstream moved: MegaNet changed alert2.js",
-   "url": "https://github.com/cdomotor-g/RPi_ALERT/issues/2"
-  },
-  {
-   "in": "rpi-alert",
-   "about": "flood-net",
    "n": 1,
    "title": "Take MegaNet's ALERT2 field fix — stop dropping ALERT2 self-reports on the Pi",
    "url": "https://github.com/cdomotor-g/RPi_ALERT/issues/1"
@@ -7813,7 +7788,7 @@
   {
    "from": "open-alert",
    "to": "flood-net",
-   "what": "A lighter decoder: filter once per carrier guess (measured: a burst in 45% of the time, same readings), then filter channels only around bursts — so an AM62 module, or a busy Pi 4, can keep up.",
+   "what": "A lighter decoder: part 1 (filter once per carrier guess) is in, opt-in as lean, and RPi ALERT 0.16 can compare it in the field; left: make it the default, then filter channels only around bursts — so an AM62 module, or a busy Pi 4, keeps up.",
    "issue": "cdomotor-g/MegaNet#259",
    "since": "2026-11-02"
   },
