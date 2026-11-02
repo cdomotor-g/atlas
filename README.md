@@ -15,7 +15,7 @@ receiving end has kept up.
 
 | View | What it answers |
 |---|---|
-| **Map** | How does it all fit together? What is behind? Drag to rearrange, scroll or pinch to zoom, click to drill down. |
+| **Map** | How does it all fit together? What is behind? Drag to rearrange, scroll or pinch to zoom (zoom in for each repository's one-line description and the counts on its lines), click to drill down. On a phone held upright the zones stack top to bottom. |
 | **Blockers** | Everything stopping work, in three lanes — only you, an agent can, waiting on another repo — each with what it holds up and the ways through it (who can do each, the effort, the one the repo would pick). **Help me** asks a session to walk you through yours. On the map, the **Blockers** button draws a line from each repository to **You**, **Agents** or the repository it waits on. |
 | **Roadmap** | Every repository's Now / Next / Later / Blocked on one screen. |
 | **Board** | Every open issue, by who can move it: waiting on you, ready for an agent (by model), behind upstream, epics. **Prompt** copies a brief for a new Claude Code session or Dispatch. |

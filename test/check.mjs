@@ -21,6 +21,9 @@ for (const r of reg.repos) {
   check(/^[\w.-]+\/[\w.-]+$/.test(r.repo), `registry ${r.id}: bad repo`);
   check(groups.has(r.group), `registry ${r.id}: unknown group ${r.group}`);
   check(Number.isFinite(r.x) && Number.isFinite(r.y), `registry ${r.id}: x/y missing`);
+  // The upright arrangement is all or nothing: one repository without it and phones
+  // fall back to the wide map.
+  if (reg.repos.some(x => 'tall' in x)) check(Array.isArray(r.tall) && r.tall.length === 2 && r.tall.every(Number.isFinite), `registry ${r.id}: tall [x, y] missing`);
   check(r.logo && existsSync(join(ROOT, r.logo)), `registry ${r.id}: logo ${r.logo} missing`);
 }
 

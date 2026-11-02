@@ -2,7 +2,9 @@
 
 1. **Registry.** Add an entry to `data/registry.json`: an `id` (lowercase, dashes), the
    `repo`, a `group` (zone), `x`/`y` on the map (about 1700 × 1050; drag it on the live
-   map to find a spot, then copy the numbers), `size` (1 is normal), a `logo` in
+   map to find a spot, then copy the numbers), `tall` — `[x, y]` for the map on a phone held
+   upright (about 1000 × 1650, the zones stacked top to bottom; every repository needs one,
+   or phones get the wide map) — `size` (1 is normal), a `logo` in
    `assets/logos/` (add its source to `assets/logos/credits.json`), and `private: true` if
    it is. A private repository with a public Pages site also takes `pages` (its site URL),
    so the Atlas can read its `atlas.json` from there.

@@ -85,8 +85,37 @@ function rich(text, repo) {
 
 // ------------------------------------------------------------------ data
 let D, R = new Map(), L = [], ISSUES = [];
-const layoutKey = 'layout-v1';
-let custom = store.get(layoutKey, {});
+// v2: the map was re-laid out (2026-11-02); a drag saved against the old layout
+// would put one repository back where the new one has another.
+const layoutKey = 'layout-v2';
+let custom = {};
+// Two arrangements: the registry's x/y for a wide window, and its `tall` [x, y] for
+// one held upright (a phone) — the map area more than 1.15 times as tall as it is
+// wide. A drag is kept per arrangement.
+let tall = false;
+const hasTall = () => D.repos.every(r => Array.isArray(r.tall));
+function isTall() {
+  const el = $('#map'), w = el?.clientWidth || innerWidth, h = el?.clientHeight || innerHeight;
+  return h > w * 1.15;
+}
+const layoutStore = () => layoutKey + (tall ? '-tall' : '');
+function place() {
+  tall = hasTall() && isTall();
+  custom = store.get(layoutStore(), {});
+  for (const r of D.repos) {
+    const home = tall ? { x: r.tall[0], y: r.tall[1] } : D.registryPos?.[r.id] || { x: r.x, y: r.y };
+    const pos = custom[r.id] || home;
+    r.x = pos.x; r.y = pos.y;
+  }
+  const reset = $('#btn-reset');
+  if (reset) reset.hidden = !Object.keys(custom).length;
+}
+// Turned from wide to tall or back since the map was drawn: draw it the other way.
+function placeIfTurned() {
+  if (!hasTall() || isTall() === tall) return false;
+  place(); drawAll(); fit(null, false);
+  return true;
+}
 
 function prepare(data) {
   D = data;
@@ -100,9 +129,8 @@ function prepare(data) {
     r.in = []; r.out = [];
     r.humans = (r.issues || []).filter(i => i.human);
     r.ciFail = (r.ci || []).filter(c => c.conclusion === 'failure');
-    const pos = custom[r.id];
-    if (pos) { r.x = pos.x; r.y = pos.y; }
   }
+  place();
   L = (D.links || []).filter(l => R.has(l.from) && R.has(l.to));
   for (const l of L) {
     l.kind = HOW[l.how]?.k || 'reference';
@@ -450,7 +478,7 @@ function drawNodes() {
     if (r.behindIn.length) bubble(-a, -a, 'var(--bad)', '!', `Behind upstream on ${r.behindIn.length} link${r.behindIn.length === 1 ? '' : 's'}: ${r.behindIn.map(l => R.get(l.from).name).join(', ')}`);
     if (r.humans.length) bubble(-a, a, 'var(--human)', r.humans.length, `${r.humans.length} issue${r.humans.length === 1 ? '' : 's'} waiting on you`);
     if (r.ciFail.length) bubble(a, a, 'var(--warn)', '✕', `CI failing: ${r.ciFail.map(c => c.name).join(', ')}`);
-    if (r.private) { const t = svg('text', { class: 'tag', y: -r.r - 8 }, g); t.textContent = '🔒 private'; }
+    if (r.private) { const t = svg('text', { class: 'tag lock', y: -r.r - 8 }, g); t.textContent = '🔒 private'; }
   }
 }
 
@@ -540,7 +568,9 @@ function drawLinks() {
         svg('rect', { class: `badge-bg ${cls}`, x: mx - bw / 2, y: my - 9, width: bw, height: 18, rx: 9 }, g);
         const t = svg('text', { class: 'badge-tx', x: mx, y: my }, g); t.textContent = text;
       };
+      const near = view.k >= 1.25;
       if (it.state === 'behind') badge(`⚠${it.behind || ''}${single ? '' : ' · ' + it.links.length}`, '');
+      else if (!near) { /* the whole map: a bundle's width says how many, the colour says stale */ }
       else if (it.state === 'stale') badge(single ? '?' : `? · ${it.links.length}`, 'stale');
       else if (!single) badge(`${it.links.length}`, 'count');
       else if (view.k >= 1.35) {
@@ -551,10 +581,18 @@ function drawLinks() {
   }
 }
 
+// Level of detail. Zoomed out to the whole map (0), each repository is its name and
+// each line one curve, marked only when it is behind; zoom in for the one-line
+// descriptions, the counts on bundled lines and the citations' "?" (1), and each
+// link's name (2).
 function applyView() {
   gWorld.setAttribute('transform', `translate(${view.x},${view.y}) scale(${view.k})`);
   const lod = view.k >= 1.35 ? 2 : view.k >= 1.25 ? 1 : 0;
-  if (lod !== applyView.lod) { applyView.lod = lod; drawLinks(); applyHighlight(); }
+  if (lod !== applyView.lod) {
+    applyView.lod = lod;
+    const m = $('#map'); m.classList.remove('lod-0', 'lod-1', 'lod-2'); m.classList.add(`lod-${lod}`);
+    drawLinks(); applyHighlight();
+  }
 }
 
 function fit(ids, animate = true) {
@@ -564,8 +602,12 @@ function fit(ids, animate = true) {
   const pad = ids ? 160 : 70;
   const x0 = Math.min(...set.map(r => r.x - r.r)) - pad, x1 = Math.max(...set.map(r => r.x + r.r)) + pad;
   const y0 = Math.min(...set.map(r => r.y - r.r)) - pad, y1 = Math.max(...set.map(r => r.y + r.r)) + pad;
-  const k = Math.min(w / (x1 - x0), h / (y1 - y0), ids ? 1.6 : 1.4);
-  const target = { k, x: w / 2 - k * (x0 + x1) / 2, y: h / 2 - k * (y0 + y1) / 2 };
+  // The buttons float over the map's top edge and the Key over its foot: fit the map
+  // between them (the Key folded; open, it is read over the map).
+  const top = ($('#map-view .map-tools')?.offsetHeight || 0) + 6;
+  const foot = Math.min($('#legend')?.offsetHeight || 0, 60) + 6;
+  const k = Math.min(w / (x1 - x0), (h - top - foot) / (y1 - y0), ids ? 1.6 : 1.4);
+  const target = { k, x: w / 2 - k * (x0 + x1) / 2, y: top + (h - top - foot) / 2 - k * (y0 + y1) / 2 };
   animateTo(target, animate);
 }
 function animateTo(t, animate) {
@@ -646,7 +688,7 @@ function wireMap(el) {
     if (pointers.size < 2) pinch = null;
     el.classList.remove('dragging');
     if (drag && drag.type === 'node' && moved) {
-      custom[drag.r.id] = { x: drag.r.x, y: drag.r.y }; store.set(layoutKey, custom);
+      custom[drag.r.id] = { x: drag.r.x, y: drag.r.y }; store.set(layoutStore(), custom);
       $('#btn-reset').hidden = false;
     }
     if (drag && !moved) click(downTarget || e.target);
@@ -1138,6 +1180,7 @@ function showView(v) {
   if (v === 'activity') renderActivity();
   if (v === 'guide') renderGuide();
   if (v !== 'map') $('#panel').classList.remove('open'); else if (selected) $('#panel').classList.add('open');
+  if (v === 'map' && D) placeIfTurned();
   setHash();
 }
 function setHash() {
@@ -1187,6 +1230,7 @@ function legend() {
     <div class="row">${line('bad')}<span title="${esc(STATE.behind.means)}"><b>behind</b> — upstream moved on</span></div>
     <div class="row">${line('warn', '2 5')}<span title="${esc(STATE.stale.means)}"><b>may be stale</b> — a citation's source changed</span></div>
     <h4>Arrows</h4><div>From the repo that provides to the one that relies on it.</div>
+    <h4>Zoom in</h4><div>for each repo's one-line description, how many links a thick line holds, a citation's <b>?</b> and each link's name. A line <b>behind</b> is marked ⚠ at any zoom.</div>
     <h4>Bubbles</h4><div><span style="color:var(--accent)">●</span> issues <span style="color:var(--human)">●</span> on you <span style="color:var(--bad)">●</span> behind <span style="color:var(--warn)">●</span> CI</div>
     <h4>Ring</h4><div>${Object.entries(PHASE).filter(([k]) => k !== 'maintenance').map(([k, v]) => `<span style="color:${v.color}" title="${esc(v.means)}">● ${k}</span>`).join(' ')}</div>
   </div></details>`;
@@ -1218,9 +1262,8 @@ function wireChrome() {
   const reset = $('#btn-reset');
   reset.hidden = !Object.keys(custom).length;
   reset.addEventListener('click', () => {
-    custom = {}; store.set(layoutKey, custom);
-    for (const r of D.repos) { const o = D.registryPos?.[r.id]; if (o) { r.x = o.x; r.y = o.y; } }
-    reset.hidden = true; drawAll(); fit();
+    store.set(layoutStore(), {});
+    place(); drawAll(); fit();
   });
   $('#btn-theme').addEventListener('click', () => {
     const cur = document.documentElement.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -1238,7 +1281,7 @@ function wireChrome() {
   });
   $('#search').addEventListener('keydown', e => { if (e.key === 'Enter' && current !== 'board') { showView('board'); renderBoard(); } });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') select(null); });
-  window.addEventListener('resize', () => { if (current === 'map') applyView(); });
+  window.addEventListener('resize', () => { if (current === 'map' && !placeIfTurned()) applyView(); });
   window.addEventListener('hashchange', readHash);
 }
 
