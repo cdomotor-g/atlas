@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-02T03:29:28.273Z",
- "hash": "1b46a853125b447e",
+ "generated": "2026-11-02T03:38:40.226Z",
+ "hash": "66af3adbfe068aa2",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -51,8 +51,12 @@
    "id": "flood-net",
    "repo": "cdomotor-g/MegaNet",
    "group": "network",
-   "x": 930,
-   "y": 470,
+   "x": 830,
+   "y": 560,
+   "tall": [
+    250,
+    1080
+   ],
    "size": 1.6,
    "logo": "assets/logos/flood-net.webp",
    "name": "Flood-Net",
@@ -1735,27 +1739,27 @@
    "release": null,
    "ci": [
     {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41383256049",
-     "date": "2026-11-02T03:28:07Z",
-     "event": "schedule"
-    },
-    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41382568868",
-     "date": "2026-11-02T03:20:38Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41383617461",
+     "date": "2026-11-02T03:32:11Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41382513043",
-     "date": "2026-11-02T03:21:06Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41383450981",
+     "date": "2026-11-02T03:31:03Z",
+     "event": "schedule"
+    },
+    {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41383256049",
+     "date": "2026-11-02T03:28:07Z",
      "event": "schedule"
     },
     {
@@ -1816,8 +1820,12 @@
    "id": "flood-net-private",
    "repo": "cdomotor-g/flood-net-private",
    "group": "network",
-   "x": 1010,
-   "y": 820,
+   "x": 870,
+   "y": 780,
+   "tall": [
+    420,
+    930
+   ],
    "size": 0.8,
    "logo": "assets/logos/flood-net-private.svg",
    "private": true,
@@ -1994,8 +2002,12 @@
    "id": "rpi-alert",
    "repo": "cdomotor-g/RPi_ALERT",
    "group": "base",
-   "x": 610,
-   "y": 300,
+   "x": 520,
+   "y": 600,
+   "tall": [
+    370,
+    580
+   ],
    "size": 1.15,
    "logo": "assets/logos/rpi-alert.svg",
    "name": "RPi ALERT",
@@ -2673,9 +2685,13 @@
   {
    "id": "fw-lab",
    "repo": "cdomotor-g/ALERT1v3",
-   "group": "base",
-   "x": 560,
-   "y": 650,
+   "group": "tools",
+   "x": 220,
+   "y": 210,
+   "tall": [
+    860,
+    680
+   ],
    "size": 0.85,
    "logo": "assets/logos/fw-lab.svg",
    "name": "FW-LAB Receiver",
@@ -3341,8 +3357,12 @@
    "id": "quansheng-v3",
    "repo": "cdomotor-g/quansheng_alert_v3",
    "group": "radio",
-   "x": 320,
-   "y": 400,
+   "x": 280,
+   "y": 480,
+   "tall": [
+    240,
+    200
+   ],
    "size": 1.1,
    "label": "Quansheng V3 firmware",
    "logo": "assets/logos/quansheng-v3.png",
@@ -3723,8 +3743,12 @@
    "id": "quansheng-v1",
    "repo": "cdomotor-g/quansheng_alert",
    "group": "radio",
-   "x": 140,
-   "y": 590,
+   "x": 290,
+   "y": 880,
+   "tall": [
+    510,
+    240
+   ],
    "size": 0.85,
    "label": "Quansheng V1 firmware",
    "logo": "assets/logos/quansheng-v1.jpg",
@@ -4104,8 +4128,12 @@
    "id": "quansheng-all",
    "repo": "cdomotor-g/quansheng_alert_ALL",
    "group": "radio",
-   "x": 140,
-   "y": 200,
+   "x": 220,
+   "y": 690,
+   "tall": [
+    710,
+    200
+   ],
    "size": 1,
    "label": "Radio setup site",
    "logo": "assets/logos/quansheng-all.jpg",
@@ -4508,8 +4536,12 @@
    "id": "open-alert",
    "repo": "cdomotor-g/open-ALERT",
    "group": "planning",
-   "x": 930,
-   "y": 110,
+   "x": 780,
+   "y": 70,
+   "tall": [
+    870,
+    970
+   ],
    "size": 1,
    "logo": "assets/logos/open-alert.svg",
    "name": "open-ALERT",
@@ -4999,8 +5031,12 @@
    "id": "sort",
    "repo": "cdomotor-g/SoRT",
    "group": "planning",
-   "x": 1330,
-   "y": 250,
+   "x": 940,
+   "y": 230,
+   "tall": [
+    640,
+    1150
+   ],
    "size": 1,
    "logo": "assets/logos/sort.svg",
    "name": "SoRT Scope Builder",
@@ -5434,8 +5470,12 @@
    "id": "f-tide",
    "repo": "cdomotor-g/F-TIDE",
    "group": "planning",
-   "x": 1580,
-   "y": 140,
+   "x": 1380,
+   "y": 200,
+   "tall": [
+    670,
+    950
+   ],
    "size": 0.8,
    "logo": "assets/logos/f-tide.svg",
    "name": "F-TIDE",
@@ -5637,8 +5677,12 @@
    "id": "droggies",
    "repo": "cdomotor-g/thedroggies",
    "group": "story",
-   "x": 1330,
-   "y": 650,
+   "x": 1220,
+   "y": 570,
+   "tall": [
+    90,
+    1460
+   ],
    "size": 1.1,
    "logo": "assets/logos/droggies.jpg",
    "private": true,
@@ -5953,8 +5997,12 @@
    "id": "alert-packets",
    "repo": "cdomotor-g/ALERT_PACKETS",
    "group": "tools",
-   "x": 300,
-   "y": 880,
+   "x": 560,
+   "y": 90,
+   "tall": [
+    600,
+    620
+   ],
    "size": 0.8,
    "logo": "assets/logos/alert-packets.svg",
    "name": "ALERT_PACKETS",
@@ -6109,8 +6157,12 @@
    "id": "html-serial",
    "repo": "cdomotor-g/HTML-serial",
    "group": "tools",
-   "x": 620,
-   "y": 930,
+   "x": 370,
+   "y": 90,
+   "tall": [
+    780,
+    490
+   ],
    "size": 0.75,
    "logo": "assets/logos/html-serial.svg",
    "name": "HTML-serial",
@@ -6205,8 +6257,12 @@
    "id": "home",
    "repo": "cdomotor-g/home",
    "group": "outside",
-   "x": 1580,
+   "x": 1380,
    "y": 900,
+   "tall": [
+    840,
+    1460
+   ],
    "size": 0.8,
    "logo": "assets/logos/home.svg",
    "name": "Home",
