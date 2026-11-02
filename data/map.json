@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-02T15:27:47.828Z",
- "hash": "91f3e402a367d80d",
+ "generated": "2026-11-02T18:29:15.082Z",
+ "hash": "1eba50df53e1eeaa",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -978,12 +978,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-02T04:24:02Z",
+    "pushed": "2026-11-02T15:35:07Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "e43e7ae",
+     "date": "2026-11-02T15:35:04Z",
+     "msg": "CI doctor: #257 and #258 closed — Data archive and Web smoke test are green on main; roadmap updated",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/e43e7aec8e84643a97e45d6ca7a7c6b214b9c573"
+    },
     {
      "sha": "5c2db78",
      "date": "2026-11-02T04:24:00Z",
@@ -1049,12 +1055,6 @@
      "date": "2026-11-02T00:50:48Z",
      "msg": "Bridge: decode legacy ALERT from the ELPRO gateway's Alert1 path",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/647b62ccaa72f701934fbef85ddce9235405d888"
-    },
-    {
-     "sha": "bdc509b",
-     "date": "2026-11-02T00:01:52Z",
-     "msg": "Refresh ACMA RRL data (weekly, extract 2026-11-02)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/bdc509baaa0d42500031192d11ce189fe6c0b39e"
     }
    ],
    "issues": [
@@ -1089,41 +1089,6 @@
      "comments": 1,
      "labels": [],
      "mentions": []
-    },
-    {
-     "n": 258,
-     "raw": "[Standalone] [Opus5/Med] CI doctor: Site features — leaving 3-D left the flat map at zoom 16 (flaky)",
-     "structure": "standalone",
-     "parent": null,
-     "model": "Opus5",
-     "effort": "Med",
-     "human": false,
-     "title": "CI doctor: Site features — leaving 3-D left the flat map at zoom 16 (flaky)",
-     "url": "https://github.com/cdomotor-g/MegaNet/issues/258",
-     "updated": "2026-10-31T15:15:22Z",
-     "created": "2026-10-31T15:15:22Z",
-     "comments": 0,
-     "labels": [],
-     "mentions": [
-      "meganet"
-     ]
-    },
-    {
-     "n": 257,
-     "raw": "[Standalone] [Human] CI doctor: Data archive into R2 fails — archive_due() times out (57014)",
-     "structure": "standalone",
-     "parent": null,
-     "model": null,
-     "effort": null,
-     "human": true,
-     "title": "CI doctor: Data archive into R2 fails — archive_due() times out (57014)",
-     "url": "https://github.com/cdomotor-g/MegaNet/issues/257",
-     "updated": "2026-10-29T20:09:52Z",
-     "created": "2026-10-29T00:09:29Z",
-     "comments": 1,
-     "labels": [],
-     "mentions": [],
-     "excerpt": "Failing: Data archive into R2 (archive-r2.yml), scheduled run 40708153126 on main (2026-10-28 14:39 UTC), step node archive-to-r2.mjs. Key error: archivedue: 500 {\"code\":\"57014\",...,\"message\":\"canceling statement due to statement timeout\"} What I checked: archivedue() was made cheaper in migration 0074 (counts from daily rollups); schema is at 87 so it…"
     },
     {
      "n": 256,
@@ -1725,7 +1690,7 @@
      "human": true,
      "title": "Roadmap — resource allocation & sequencing for all issues",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/113",
-     "updated": "2026-11-02T04:24:14Z",
+     "updated": "2026-11-02T15:35:22Z",
      "created": "2026-08-13T00:13:50Z",
      "comments": 0,
      "labels": [],
@@ -1736,45 +1701,53 @@
      "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1069k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
     }
    ],
-   "issueCount": 40,
+   "issueCount": 38,
    "release": null,
    "ci": [
     {
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41471428154",
-     "date": "2026-11-02T15:25:32Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41500556226",
+     "date": "2026-11-02T18:26:33Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41470360722",
-     "date": "2026-11-02T15:19:02Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41499512029",
+     "date": "2026-11-02T18:19:58Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41470295346",
-     "date": "2026-11-02T15:19:30Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41499433912",
+     "date": "2026-11-02T18:20:34Z",
      "event": "schedule"
     },
     {
-     "name": "Data archive into R2",
+     "name": "Field photos into R2",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41463792359",
-     "date": "2026-11-02T14:47:53Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41480614832",
+     "date": "2026-11-02T16:21:39Z",
      "event": "schedule"
+    },
+    {
+     "name": "Roadmap sync",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41473024444",
+     "date": "2026-11-02T15:35:26Z",
+     "event": "push"
     }
    ],
    "version": "20261102c",
    "lastCommit": {
-    "date": "2026-11-02T04:24:00Z"
+    "date": "2026-11-02T15:35:04Z"
    }
   },
   {
@@ -6748,7 +6721,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "Up to date with upstream."
+    "note": "1 newer commit upstream since 5c2db78, none to watched files."
    }
   },
   {
@@ -6780,7 +6753,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "12 newer commits upstream since it was last reviewed (2026-11-01), none to watched files."
+    "note": "13 newer commits upstream since it was last reviewed (2026-11-01), none to watched files."
    }
   },
   {
@@ -7018,7 +6991,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "459 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "460 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7114,7 +7087,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "459 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "460 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7670,7 +7643,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "12 newer commits upstream since it was last reviewed (2026-11-01), none to watched files."
+    "note": "13 newer commits upstream since it was last reviewed (2026-11-01), none to watched files."
    }
   },
   {
