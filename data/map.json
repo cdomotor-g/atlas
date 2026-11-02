@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-02T00:29:33.146Z",
- "hash": "2a7163ccb5da88f3",
+ "generated": "2026-11-02T00:45:28.356Z",
+ "hash": "2c063d5c49d78bbf",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1720,16 +1720,24 @@
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41365708055",
-     "date": "2026-11-02T00:10:32Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41368301420",
+     "date": "2026-11-02T00:39:20Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
+     "conclusion": "failure",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41368251613",
+     "date": "2026-11-02T00:40:33Z",
+     "event": "schedule"
+    },
+    {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41364831360",
-     "date": "2026-11-02T00:01:57Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41368080266",
+     "date": "2026-11-02T00:36:53Z",
      "event": "schedule"
     },
     {
@@ -1747,14 +1755,6 @@
      "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41364733431",
      "date": "2026-11-02T00:02:23Z",
      "event": "push"
-    },
-    {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41364298581",
-     "date": "2026-11-01T23:53:45Z",
-     "event": "schedule"
     }
    ],
    "version": "20261101h",
@@ -4484,7 +4484,7 @@
     "status": {
      "phase": "beta",
      "updated": "2026-11-02",
-     "summary": "The Mallow trial now names exact Toradex parts (module 00761200, Mallow 01611102, heatsink 23111001), rates all six Verdin AM62s against the decoder today and once lighter (the Solos ruled out, the Dual 00741201 for later), and says to buy direct from Toradex through the Bureau — distributors charge about three times as much. The lighter decoder is measured and asked of Flood-Net and RPi ALERT.",
+     "summary": "The Mallow trial now names exact Toradex parts (module 00761200, Mallow 01611102, heatsink 23111001), rates all six Verdin AM62s against the decoder today and once lighter (the Solos ruled out, the Dual 00741201 for later), and prices everything in Australian dollars at element14 (module A$566, Mallow A$182 inc GST; the trial's parts about A$970–1,260), with Toradex's direct price beside it (the module about A$171, to businesses only). The lighter decoder is measured and asked of Flood-Net and RPi ALERT.",
      "next": [
       "Feed the trial's AM62 numbers back into the builder's CPU model",
       "Check the builder's estimated prices and lead times (marked est.) with suppliers: antennas, coax, arrestors, the mating Bulgin lead",
@@ -4519,7 +4519,7 @@
         {
          "by": "human",
          "effort": "an hour",
-         "what": "Buy the Mallow from element14 (4759350) now and the module from a distributor at about three times the price"
+         "what": "Buy everything from element14 Australia now: module 4852670 (A$566 inc GST, 5 in UK stock), Mallow 4759350 (A$182); the heatsink from Mouser or DigiKey"
         }
        ]
       }
@@ -4836,12 +4836,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-02T00:28:21Z",
+    "pushed": "2026-11-02T00:38:05Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/open-ALERT"
    },
    "commits": [
+    {
+     "sha": "c55228c",
+     "date": "2026-11-02T00:38:03Z",
+     "msg": "Mallow trial: prices in Australian dollars at element14",
+     "url": "https://github.com/cdomotor-g/open-ALERT/commit/c55228c5e9ef7ac9c0b4e5165137c5e25f0dc163"
+    },
     {
      "sha": "4aa8887",
      "date": "2026-11-02T00:28:19Z",
@@ -4896,41 +4902,41 @@
    "release": null,
    "ci": [
     {
-     "name": "pages",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41367326563",
-     "date": "2026-11-02T00:28:28Z",
-     "event": "push"
-    },
-    {
      "name": "Atlas",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41367327145",
-     "date": "2026-11-02T00:28:27Z",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41368201925",
+     "date": "2026-11-02T00:38:28Z",
      "event": "push"
-    },
-    {
-     "name": "pages build and deployment",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41367325957",
-     "date": "2026-11-02T00:28:39Z",
-     "event": "dynamic"
     },
     {
      "name": "test",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41367326595",
-     "date": "2026-11-02T00:28:39Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41368201433",
+     "date": "2026-11-02T00:38:22Z",
      "event": "push"
+    },
+    {
+     "name": "pages",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41368201460",
+     "date": "2026-11-02T00:38:30Z",
+     "event": "push"
+    },
+    {
+     "name": "pages build and deployment",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41368200382",
+     "date": "2026-11-02T00:38:29Z",
+     "event": "dynamic"
     }
    ],
    "version": "0.1.0",
    "lastCommit": {
-    "date": "2026-11-02T00:28:19Z"
+    "date": "2026-11-02T00:38:03Z"
    }
   },
   {
