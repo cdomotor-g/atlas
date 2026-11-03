@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-03T12:52:55.244Z",
- "hash": "589b42cdf49389f3",
+ "generated": "2026-11-03T15:27:15.956Z",
+ "hash": "706bcf171d9d6110",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -97,7 +97,7 @@
      "updated": "2026-11-03",
      "summary": "Live and in daily use (database schema 95): this week added teams and the tasks handed to them, with the SoRT scope builder's hand-off, a driving mode that follows a station's route in 3-D, the agent API's changelog and email list, ACMA licences and radio paths in the API, the Repeaters tab and cuts to database I/O, while account email, compute size and the ACMA download link wait on the owner.",
      "now": [
-      "Responsiveness pass for a laptop on a Teams call and a phone on one bar: the Stations tab opens in a third of the time on a slow CPU, the repeater delay plan is worked out in a worker, a saved station list is shown after 8 s of a slow download, and datastore reads give up after 30 s without an answer",
+      "Responsiveness pass for a laptop on a Teams call and a phone on one bar: the Stations tab opens in a third of the time on a slow CPU, the repeater delay plan is worked out in a worker, a saved station list is shown after 8 s of a slow download and downloaded only when it has changed (ETag), and the Stations map groups nearby pins into bubbles (worst, average or mix under health and Latency) until zoomed in",
       "Teams and tasks (0095) live: one team has its owner so far — an administrator names each team's owners on the Admin tab; SoRT's #tasks= hand-off lands on the Tasks tab for review",
       "One person, one account (0100): an account keeps a second address — found by a team's owner, where its emails can go, refused a sign-in of its own; the Admin tab's Same person… folds a second account in",
       "Agent API changelog and notify list shipped; emails start once #237's Resend parts are done",
@@ -1031,12 +1031,24 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-03T12:45:00Z",
+    "pushed": "2026-11-03T15:14:20Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "42af655",
+     "date": "2026-11-03T15:14:17Z",
+     "msg": "CI doctor: Exports + Bulletin voices — Videos tab had no export entry, voice step added a missing path; exempt Videos with a reason, add onl",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/42af655ab114f9608f500005e7903c119918cdd3"
+    },
+    {
+     "sha": "a1ba48d",
+     "date": "2026-11-03T14:02:25Z",
+     "msg": "Stations map: nearby pins grouped into bubbles; the tab quicker again",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/a1ba48daa7a8e66bcb29f5d78d8e7b041d7bcefb"
+    },
     {
      "sha": "d3e9b9d",
      "date": "2026-11-03T12:44:57Z",
@@ -1096,18 +1108,6 @@
      "date": "2026-11-03T06:10:13Z",
      "msg": "Station Health: Open in ARRO; bulletin says \"Flood-Net stopped hearing\", 3 Nov corrected",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/6c2eb2437e443241d1d9b95ed9b8e138aae571fc"
-    },
-    {
-     "sha": "6e7ee21",
-     "date": "2026-11-03T04:45:03Z",
-     "msg": "🎬 Videos: its own picture in the looks drawn in pictures",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/6e7ee21cff3c08635f6fdf321617bc26f61cf07c"
-    },
-    {
-     "sha": "bf6adfc",
-     "date": "2026-11-03T04:41:29Z",
-     "msg": "🎬 Videos: the explainer player and its tab (#263)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/bf6adfc2d9aea43868ed4d0256b1784e9de6557a"
     }
    ],
    "issues": [
@@ -1888,27 +1888,59 @@
    "release": null,
    "ci": [
     {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41663478033",
+     "date": "2026-11-03T15:24:06Z",
+     "event": "schedule"
+    },
+    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41638623681",
-     "date": "2026-11-03T12:47:11Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41662289626",
+     "date": "2026-11-03T15:17:19Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41638437676",
-     "date": "2026-11-03T12:46:48Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41662081215",
+     "date": "2026-11-03T15:17:11Z",
      "event": "schedule"
     },
     {
      "name": "Web smoke test",
      "status": "in_progress",
      "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41638336018",
-     "date": "2026-11-03T12:45:46Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41661799881",
+     "date": "2026-11-03T15:14:28Z",
+     "event": "push"
+    },
+    {
+     "name": "CodeQL",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41661799712",
+     "date": "2026-11-03T15:18:13Z",
+     "event": "push"
+    },
+    {
+     "name": "Data archive into R2",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41655576606",
+     "date": "2026-11-03T14:44:13Z",
+     "event": "schedule"
+    },
+    {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41649816708",
+     "date": "2026-11-03T14:03:00Z",
      "event": "push"
     },
     {
@@ -1918,43 +1950,11 @@
      "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41638336158",
      "date": "2026-11-03T12:45:20Z",
      "event": "push"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41638336936",
-     "date": "2026-11-03T12:45:28Z",
-     "event": "push"
-    },
-    {
-     "name": "Bulletin voices",
-     "status": "completed",
-     "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41638336256",
-     "date": "2026-11-03T12:46:04Z",
-     "event": "push"
-    },
-    {
-     "name": "CodeQL",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41638336181",
-     "date": "2026-11-03T12:49:26Z",
-     "event": "push"
-    },
-    {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41637518102",
-     "date": "2026-11-03T12:39:17Z",
-     "event": "schedule"
     }
    ],
-   "version": "20261103v",
+   "version": "20261103x",
    "lastCommit": {
-    "date": "2026-11-03T12:44:57Z"
+    "date": "2026-11-03T15:14:17Z"
    }
   },
   {
@@ -6945,7 +6945,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "5 newer commits upstream since 60c0498, none to watched files."
+    "note": "7 newer commits upstream since 60c0498, none to watched files."
    }
   },
   {
@@ -7242,7 +7242,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "493 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "495 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7332,7 +7332,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "493 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "495 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
