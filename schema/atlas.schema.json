@@ -149,7 +149,7 @@
               },
               "id": {
                 "$ref": "#/$defs/id",
-                "description": "A short id, so another repository's `holds` or a later note can point at it."
+                "description": "A short id, so another repository's `holds` or a later note can point at it. Until the blocker has an issue, the Atlas shows it by this id (its tag, and the end of its address: #blockers/<repo>/<id>), so give every blocker one."
               },
               "kind": {
                 "enum": [

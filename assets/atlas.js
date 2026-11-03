@@ -64,14 +64,14 @@ function toast(msg) {
   const t = $('#toast'); t.textContent = msg; t.style.display = 'block';
   clearTimeout(toastTimer); toastTimer = setTimeout(() => (t.style.display = 'none'), 1800);
 }
-async function copyText(text, btn) {
+async function copyText(text, btn, msg = 'Copied — paste it into a new Claude Code session or Dispatch') {
   try { await navigator.clipboard.writeText(text); }
   catch {
     const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select();
     try { document.execCommand('copy'); } catch { /* nothing more to try */ } ta.remove();
   }
   if (btn) { btn.classList.add('done'); const old = btn.textContent; btn.textContent = 'Copied'; setTimeout(() => { btn.classList.remove('done'); btn.textContent = old; }, 1400); }
-  toast('Copied — paste it into a new Claude Code session or Dispatch');
+  toast(msg);
 }
 
 // "#12" → issue in this repo; "owner/repo#12" → elsewhere; `code` → <code>
@@ -160,7 +160,52 @@ const LANES = [
   { id: 'agent', name: 'An agent can clear', about: 'Nobody has to decide anything: hand one to a session with the prompt.' },
   { id: 'repo', name: 'Waiting on another repo', about: 'Clears when the other repository moves. The options say how to make it move.' },
 ];
-let BLOCKERS = [];
+// What clearing a blocker takes — the columns of "What it takes".
+const NEEDS = [
+  { id: 'decision', name: 'A decision', about: 'Someone has to choose. Usually minutes once the options are in front of you.' },
+  { id: 'access', name: 'Your login or a setting', about: 'An account, a secret or a dashboard setting only you hold.' },
+  { id: 'hardware', name: 'Hardware or a site', about: 'A device, a bench or a site visit.' },
+  { id: 'money', name: 'Money', about: 'Something has to be bought.' },
+  { id: 'time', name: 'Time or real use', about: 'Waits for data to build up, for a date, or for real use.' },
+  { id: 'upstream', name: 'Someone else', about: 'Another repository, or a vendor outside the Atlas.' },
+  { id: 'agent', name: 'Agent work', about: 'An agent can clear it: hand it the prompt.' },
+  { id: 'other', name: 'Something else', about: 'None of the above.' },
+];
+// How big the suggested way through is — the columns of "Quick wins".
+const EFFORT = [
+  { id: 'm5', label: '5 min or less', max: 5 },
+  { id: 'm15', label: 'About 15 min', max: 15 },
+  { id: 'm30', label: 'Half an hour', max: 30 },
+  { id: 'h1', label: 'About an hour', max: 90 },
+  { id: 'half', label: 'Half a day', max: 300 },
+  { id: 'day', label: 'A day or more', max: Infinity },
+  { id: 'none', label: 'Not sized', max: null },
+];
+function minutesOf(e) {
+  const s = String(e || '').toLowerCase().trim(); let m;
+  if (!s) return null;
+  if ((m = s.match(/(\d+)\s*[–-]\s*(\d+)\s*h/))) return (+m[1] + +m[2]) * 30;
+  if ((m = s.match(/(\d+)\s*h(?:ou)?rs?\b/))) return +m[1] * 60;
+  if ((m = s.match(/(\d+)\s*min/))) return +m[1];
+  if (/\b(an|one) hour\b|\bsitting\b/.test(s)) return 60;
+  if (/afternoon|morning|half a day/.test(s)) return 240;
+  if (/\bdays?\b|\bweeks?\b|\bforums?\b|\btrip\b/.test(s)) return 480;
+  if (s === 'low') return 30;
+  if (/^med/.test(s)) return 120;
+  if (s === 'high') return 480;
+  if (/\bnone\b/.test(s)) return 0;
+  return null;
+}
+const effortOf = mins => mins === null ? 'none' : EFFORT.find(x => x.max !== null && mins <= x.max).id;
+// A [Human] issue's title says roughly what it needs.
+function guessKind(t) {
+  if (/^(decide|choose|review|check|spot-check|maybe)\b/i.test(t)) return 'decision';
+  if (/\b(sign[- ]?in|switch(es)? on|settings?|secrets?|dashboard|auth|tokens?|credentials?|accounts?|DNS|rename|passwords?)\b/i.test(t)) return 'access';
+  if (/\b(sites?|bench|hardware|masts?|antennas?|technician|trial|install|commission|field)\b/i.test(t)) return 'hardware';
+  if (/\b(buy|order|pay|spend|purchase)\b/i.test(t)) return 'money';
+  return null;
+}
+let BLOCKERS = [], BLK = new Map();
 const issueNum = ref => { const m = String(ref || '').match(/^#(\d+)$/); return m ? +m[1] : null; };
 function whoOf(on) {
   if (!on || on === 'human') return 'human';
@@ -169,36 +214,56 @@ function whoOf(on) {
   return R.has(id) ? id : 'human';
 }
 const laneOf = b => b.who === 'human' ? 'human' : b.who === 'agent' ? 'agent' : 'repo';
+const needOf = b => b.lane === 'agent' ? 'agent' : b.lane === 'repo' ? 'upstream' : NEEDS.some(n => n.id === b.kind) ? b.kind : 'other';
+
+// Tags: every blocker can be found by one. Its issue when it has one (#237, or MegaNet#239
+// for an issue in another repository); otherwise the Atlas's name for it — its id in
+// status.blocked, or one made from its first words — drawn dashed. The name is also the end
+// of its address (#blockers/rpi-alert/bench-first-run).
+const STOP = new Set('a an and are as at be by for from has have in into is it its of on or the their this to with'.split(' '));
+const slugWords = (s, n = 4) => String(s || '').toLowerCase().replace(/(^|\s)#\d+\b/g, ' ').replace(/['’]s\b/g, '').replace(/[^a-z0-9]+/g, ' ').trim()
+  .split(' ').filter(w => w && !STOP.has(w)).slice(0, n).join('-') || 'blocker';
+// '#12' or 'owner/repo#12' at the start of a string, read from `repo`.
+function issueAt(ref, repo) {
+  const m = String(ref || '').match(/^\s*(?:([\w.-]+\/[\w.-]+))?#(\d+)/);
+  if (!m) return null;
+  const full = m[1] || repo.repo;
+  return { full, n: +m[2], key: `${full.toLowerCase()}#${m[2]}`, local: full.toLowerCase() === repo.repo.toLowerCase() };
+}
+const repoByFull = full => D.repos.find(x => x.repo.toLowerCase() === String(full).toLowerCase());
+const MARK = /Atlas blocker:\s*([a-z0-9][a-z0-9-]*\/[a-z0-9][a-z0-9.-]*)/i;
 
 function buildBlockers() {
   const out = [];
+  // An issue made from a blocker opens with its tag ("Atlas blocker: rpi-alert/bench-first-run"),
+  // so the two meet before anyone puts the number in atlas.json.
+  const marked = new Map();
+  for (const r of D.repos) for (const i of r.issues || []) {
+    const t = i.blocker || String(i.excerpt || '').match(MARK)?.[1];
+    if (t && !marked.has(t.toLowerCase())) marked.set(t.toLowerCase(), { r, i });
+  }
+  const used = new Map();
+  const name = (r, want) => { if (!used.has(r.id)) used.set(r.id, new Set()); const s = used.get(r.id); let n = want, k = 2; while (s.has(n)) n = `${want}-${k++}`; s.add(n); return n; };
+  const covered = new Map(); // repo id → issue numbers its blockers already stand for
+  const cover = (full, n) => { const r = repoByFull(full); if (!r) return; if (!covered.has(r.id)) covered.set(r.id, new Set()); covered.get(r.id).add(n); };
+  const found = (r, slug) => { const f = marked.get(`${r.id}/${slug}`); if (!f) return null; cover(f.r.repo, f.i.n); return f.r === r ? `#${f.i.n}` : `${f.r.repo}#${f.i.n}`; };
+
   for (const r of D.repos) {
-    const declared = r.m.status?.blocked || [];
-    const covered = new Set();
-    declared.forEach((b, i) => {
-      for (const m of `${b.issue || ''} ${b.what}`.matchAll(/(?:^|[^\w/])#(\d+)/g)) covered.add(+m[1]);
-      out.push({ key: `${r.id}:b${i}`, repo: r, what: b.what, on: b.on, who: whoOf(b.on), kind: b.kind || null, since: b.since || null,
-        issue: b.issue || null, holds: b.holds || [], options: b.options || [], source: 'recorded' });
+    (r.m.status?.blocked || []).forEach((b, i) => {
+      for (const m of `${b.issue || ''} ${b.what}`.matchAll(/(?:^|[^\w/])#(\d+)/g)) cover(r.repo, +m[1]);
+      const own = issueAt(b.issue, r);
+      const slug = name(r, b.id || (own?.local ? String(own.n) : slugWords(b.what)));
+      const hit = b.issue ? null : found(r, slug);
+      out.push({ key: `${r.id}:b${i}`, slug, named: !!b.id, repo: r, what: b.what, on: b.on, who: whoOf(b.on), kind: b.kind || null, since: b.since || null,
+        issue: b.issue || hit, found: !!hit, holds: b.holds || [], options: b.options || [], source: 'recorded' });
     });
-    // [Human] issues the repository's status doesn't already cover.
-    for (const i of r.issues || []) {
-      if (!i.human || covered.has(i.n) || /^roadmap\b/i.test(i.title)) continue;
-      const children = (r.issues || []).filter(c => c.structure === 'sub' && c.parent === i.n).map(c => `#${c.n}`);
-      out.push({ key: `${r.id}:i${i.n}`, repo: r, what: `#${i.n} ${i.title}`, on: 'human', who: 'human',
-        kind: /^(decide|choose|review|check|spot-check|maybe)\b/i.test(i.title) ? 'decision' : null,
-        since: i.created?.slice(0, 10), issue: `#${i.n}`, holds: children, source: 'issue', context: i.excerpt || '',
-        options: [
-          { what: `Do what #${i.n} asks; its steps are in the issue.`, by: 'human', recommended: true, issue: `#${i.n}` },
-          { what: `Do every part of #${i.n} that needs no credentials, hardware or decision, and turn the rest into a click-by-click list for the owner in the issue.`, by: 'agent', model: 'Sonnet5/Med', effort: 'Low' },
-        ] });
-    }
     // Something it takes from another repository has moved on.
     for (const l of r.behindIn) {
       const p = R.get(l.from);
       const issue = (r.issues || []).find(i => /^Upstream moved:/i.test(i.title) && i.title.includes(p.repo.split('/')[1]));
       const oldest = (l.drift.commits || []).map(c => c.date).sort()[0];
       const comp = consumerComp(l);
-      out.push({ key: `${r.id}:d:${l.id}`, repo: r, what: `Behind ${p.name}: ${l.what}`, on: 'agent', who: 'agent', kind: 'upstream',
+      out.push({ key: `${r.id}:d:${l.id}`, slug: name(r, `behind-${l.id}`), repo: r, what: `Behind ${p.name}: ${l.what}`, on: 'agent', who: 'agent', kind: 'upstream',
         since: oldest?.slice(0, 10) || null, issue: issue ? `#${issue.n}` : null, link: l.id, source: 'drift',
         holds: [comp ? `${comp.name} matching ${p.name}` : `matching ${p.name}`],
         options: [
@@ -210,27 +275,86 @@ function buildBlockers() {
     for (const a of r.m.asks || []) {
       const t = R.get(a.to);
       if (!t) continue;
-      out.push({ key: `${r.id}:a:${a.to}:${a.what.slice(0, 24)}`, repo: r, what: a.what, on: a.issue || a.to, who: a.to, kind: 'upstream',
-        since: a.since || null, issue: a.issue || null, holds: [], source: 'ask',
-        options: a.issue
-          ? [{ what: `Work ${a.issue} in ${t.name}.`, by: 'agent', model: 'Sonnet5/Med', recommended: true, issue: a.issue }]
+      const slug = name(r, `ask-${slugWords(a.what, 3)}`);
+      const issue = a.issue || found(r, slug);
+      out.push({ key: `${r.id}:a:${a.to}:${a.what.slice(0, 24)}`, slug, repo: r, what: a.what, on: issue || a.to, who: a.to, kind: 'upstream', target: a.to,
+        since: a.since || null, issue: issue || null, found: !a.issue && !!issue, holds: [], source: 'ask',
+        options: issue
+          ? [{ what: `Work ${issue} in ${t.name}.`, by: 'agent', model: 'Sonnet5/Med', recommended: true, issue }]
           : [{ what: `File it as an issue in ${t.repo}, then put the issue in atlas.json's asks.`, by: 'agent', model: 'Sonnet5/Low', effort: '10 min', recommended: true },
              { what: `Make the change in ${t.name} directly, in a session that has both repositories.`, by: 'agent', model: 'Sonnet5/Med' }] });
     }
-    for (const c of r.ciFail) out.push({ key: `${r.id}:ci:${c.name}`, repo: r, what: `CI failing: ${c.name}`, on: 'agent', who: 'agent', kind: null,
+    for (const c of r.ciFail) out.push({ key: `${r.id}:ci:${c.name}`, slug: name(r, `ci-${slugWords(c.name, 3)}`), repo: r, what: `CI failing: ${c.name}`, on: 'agent', who: 'agent', kind: null,
       since: c.date?.slice(0, 10), issue: null, holds: [], source: 'ci', url: c.url,
       options: [{ what: `Read the failing step's log tail and fix it${r.id === 'flood-net' ? ' (or run /ci-doctor)' : ''}.`, by: 'agent', model: 'Sonnet5/Med', recommended: true }] });
-    if (r.manifest && daysSince(r.m.status?.updated) > 30) out.push({ key: `${r.id}:stale`, repo: r, what: `Status not checked since ${r.m.status?.updated}`, on: 'agent', who: 'agent', kind: 'time',
+    if (r.manifest && daysSince(r.m.status?.updated) > 30) out.push({ key: `${r.id}:stale`, slug: name(r, 'status-check'), repo: r, what: `Status not checked since ${r.m.status?.updated}`, on: 'agent', who: 'agent', kind: 'time',
       since: r.m.status?.updated, holds: ['an accurate map'], source: 'stale',
       options: [{ what: 'Re-read the repository and its open issues and refresh status in atlas.json.', by: 'agent', model: 'Sonnet5/Low', recommended: true }] });
   }
+  // [Human] issues the repository's status doesn't already cover.
+  for (const r of D.repos) {
+    const cov = covered.get(r.id) || new Set();
+    for (const i of r.issues || []) {
+      if (!i.human || cov.has(i.n) || /^roadmap\b/i.test(i.title)) continue;
+      const children = (r.issues || []).filter(c => c.structure === 'sub' && c.parent === i.n).map(c => `#${c.n}`);
+      const kind = guessKind(i.title);
+      out.push({ key: `${r.id}:i${i.n}`, slug: name(r, String(i.n)), repo: r, what: `#${i.n} ${i.title}`, on: 'human', who: 'human', kind, kindGuessed: !!kind,
+        since: i.created?.slice(0, 10), issue: `#${i.n}`, holds: children, source: 'issue', context: i.excerpt || '',
+        options: [
+          { what: `Do what #${i.n} asks; its steps are in the issue.`, by: 'human', recommended: true, issue: `#${i.n}` },
+          { what: `Do every part of #${i.n} that needs no credentials, hardware or decision, and turn the rest into a click-by-click list for the owner in the issue.`, by: 'agent', model: 'Sonnet5/Med', effort: 'Low' },
+        ] });
+    }
+  }
+
   for (const b of out) {
+    b.uid = `${b.repo.id}/${b.slug}`;
+    b.iss = b.issue ? issueAt(b.issue, b.repo) : null;
+    b.tag = b.iss ? (b.iss.local ? `#${b.iss.n}` : `${b.iss.full.split('/')[1]}#${b.iss.n}`) : b.slug;
+    // "#237 switch accounts on…" reads "Switch accounts on…" beside the tag #237.
+    const bare = b.iss ? b.what.replace(new RegExp(`^\\s*(?:[\\w.-]+\\/[\\w.-]+)?#${b.iss.n}\\b[:\\s]*`), '') : b.what;
+    b.title = bare === b.what ? b.what : bare.charAt(0).toUpperCase() + bare.slice(1);
     b.lane = laneOf(b);
+    b.need = needOf(b);
     b.age = b.since ? Math.max(0, Math.round(daysSince(b.since))) : null;
-    b.score = b.holds.length * 3 + (b.lane === 'human' ? 1 : 0) + Math.min(b.age || 0, 60) / 20 + (b.source === 'recorded' ? 1 : 0);
+    b.rec = b.options.find(o => o.recommended) || b.options[0] || null;
+    b.mins = minutesOf(b.rec?.effort);
+    b.effort = effortOf(b.mins);
+    b.kids = []; b.parents = []; b.outs = [];
+    // The collector keeps every open issue of a public repository, so one it doesn't have is closed.
+    const ir = b.iss && repoByFull(b.iss.full);
+    b.closed = !!(ir && !ir.private && ir.visible !== false && Array.isArray(ir.issues) && !ir.issues.some(i => i.n === b.iss.n));
+  }
+  // What frees what. A blocker holds another up when its `holds` names the other's issue
+  // ("#255", or "#255 (why)"), or when the other is the same issue seen from another
+  // repository (SoRT waiting on Flood-Net's #235). Everything else it holds is work it frees.
+  const home = new Map();
+  for (const b of out) if (b.iss?.local) { if (!home.has(b.iss.key)) home.set(b.iss.key, []); home.get(b.iss.key).push(b); }
+  const tie = (a, c, note, same = false) => { if (a === c || a.kids.some(k => k.b === c)) return; a.kids.push({ b: c, note: note || '', same }); c.parents.push(a); };
+  for (const a of out) for (const h of a.holds) {
+    const m = String(h).match(/^\s*(?:[\w.-]+\/[\w.-]+)?#\d+\s*(?:\(([^)]*)\))?\s*$/);
+    if (m) {
+      const iss = issueAt(h, a.repo), ts = (home.get(iss.key) || []).filter(t => t !== a);
+      if (ts.length) ts.forEach(t => tie(a, t, m[1]));
+      else a.outs.push({ type: 'issue', iss, note: m[1] || '' });
+    } else if (R.has(h)) {
+      if (!out.some(t => t.repo.id === h && t.iss && a.iss && t.iss.key === a.iss.key)) a.outs.push({ type: 'repo', id: h });
+    } else a.outs.push({ type: 'text', text: String(h) });
+  }
+  for (const c of out) if (c.iss && !c.iss.local) for (const a of home.get(c.iss.key) || []) tie(a, c, `the same issue, seen from ${c.repo.label || c.repo.name}`, true);
+  // How much clearing it frees: what it holds, plus each blocker behind it and what that holds.
+  // The same issue seen from another repository counts for what it holds there, not twice.
+  for (const b of out) {
+    const seen = new Set(), other = new Set();
+    const walk = x => x.kids.forEach(k => { if (k.b !== b && !seen.has(k.b)) { seen.add(k.b); if (!k.same) other.add(k.b); walk(k.b); } });
+    walk(b);
+    b.downstream = [...seen];
+    b.frees = b.outs.length + other.size + b.downstream.reduce((n, x) => n + x.outs.length, 0);
+    b.score = b.frees * 3 + (b.lane === 'human' ? 1 : 0) + Math.min(b.age || 0, 60) / 20 + (b.source === 'recorded' ? 1 : 0);
   }
   out.sort((a, b) => b.score - a.score);
   BLOCKERS = out;
+  BLK = new Map(out.map(b => [b.uid, b]));
   for (const r of D.repos) r.blockers = out.filter(b => b.repo === r);
 }
 
@@ -258,51 +382,222 @@ function optionPrompt(b, o) {
   return [
     `In ${where.repo}: ${o.what}`,
     '',
-    `This is a way through a blocker the Atlas records for ${r.name} (${r.repo}): "${b.what}"${b.since ? `, blocking since ${b.since}` : ''}.`,
+    `This is a way through a blocker the Atlas records for ${r.name} (${r.repo}): "${b.what}"${b.since ? `, blocking since ${b.since}` : ''}. The Atlas's tag for it: ${b.uid}.`,
     b.holds.length ? `It holds up: ${b.holds.join(', ')}.` : '',
     b.issue ? `Tracking issue: ${/\//.test(b.issue) ? b.issue : r.repo + b.issue}` : '',
     o.issue && o.issue !== b.issue ? `This option's issue: ${/\//.test(o.issue) ? o.issue : where.repo + o.issue}` : '',
     '',
     `Read ${where.repo}'s CLAUDE.md first and follow it.${o.model ? ` Recommended: ${o.model.replace('/', ' / ')}.` : ''}`,
-    `When you're done, update status.blocked in ${r.repo}'s atlas.json: remove the blocker if it's cleared, or record what changed and what's left.`,
+    `When you're done, update status.blocked in ${manifestWhere(r)}: remove the blocker if it's cleared, or record what changed and what's left.`,
   ].filter((x, k, a) => x !== '' || a[k - 1] !== '').join('\n');
 }
 function helpPrompt(b, o) {
+  const iss = o.issue ? issueAt(o.issue, b.repo) : b.iss;
   return [
     `Walk me through this, one step at a time, and tell me what to check after each step: ${o.what}`,
     '',
-    `It's to clear a blocker in ${b.repo.name} (${b.repo.repo}): "${b.what}".`,
-    o.issue || b.issue ? `The issue has the details: https://github.com/${b.repo.repo}/issues/${issueNum(o.issue || b.issue) || ''}` : '',
-    'Read the issue and the repository\'s CLAUDE.md first. Never ask me to paste a secret into the chat.',
+    `It's to clear a blocker in ${b.repo.name} (${b.repo.repo}): "${b.what}". The Atlas's tag for it: ${b.uid}.`,
+    iss ? `The issue has the details: https://github.com/${iss.full}/issues/${iss.n}` : '',
+    `Read ${iss ? 'the issue and ' : ''}the repository's CLAUDE.md first. Never ask me to paste a secret into the chat.`,
   ].filter(Boolean).join('\n');
+}
+
+// Where a repository's atlas.json lives: in the repository, or the Atlas's fallback copy.
+const manifestUrl = r => r.manifestSource === 'fallback' ? `https://github.com/${D.owner}/atlas/blob/main/data/fallback/${r.id}.json` : `https://github.com/${r.repo}/blob/${r.branch || 'main'}/atlas.json`;
+const manifestWhere = r => r.manifestSource === 'fallback' ? `${D.owner}/atlas's data/fallback/${r.id}.json` : `${r.repo}'s atlas.json`;
+const manifestLink = r => `<a href="${esc(manifestUrl(r))}" target="_blank" rel="noopener">${r.manifestSource === 'fallback' ? `the Atlas's <code>data/fallback/${esc(r.id)}.json</code>` : `${esc(r.label || r.name)}'s <code>atlas.json</code>`}</a>`;
+
+const cut = (s, n) => { s = String(s || '').replace(/`/g, ''); return s.length > n ? s.slice(0, n - 1).replace(/\s+\S*$/, '') + '…' : s; };
+const ageWords = a => a === null ? '' : a === 0 ? 'today' : a === 1 ? '1 day' : `${a} days`;
+const tagTitle = b => `${b.repo.name}: ${cut(b.title, 240)}\n${b.iss ? `Issue ${b.iss.full}#${b.iss.n}${b.found ? ', found by its tag line' : ''}${b.closed ? ' — closed, so this may be cleared' : ''}.` : 'No issue yet: this is the Atlas’s name for it.'}\nOpen it for what it frees and the ways through.`;
+// A blocker's tag. A button that opens it, or (span) a picture of one inside a bigger button.
+function blkTag(b, { what = 0, span = false } = {}) {
+  const el = span ? 'span' : 'button';
+  return `<${el} class="btag lane-${b.lane}${b.iss ? '' : ' untracked'}"${span ? '' : ` data-blk="${esc(b.uid)}" title="${esc(tagTitle(b))}"`}><img src="${esc(b.repo.logo)}" alt=""><b>${esc(b.tag)}</b>${b.closed ? '<i class="bt-closed">closed</i>' : ''}${what ? `<span class="bt-what">${esc(cut(b.title, what))}</span>` : ''}</${el}>`;
+}
+function closedPrompt(b) {
+  return [
+    `In ${b.repo.repo}: the Atlas lists a blocker whose issue is closed — ${b.iss.full}#${b.iss.n}: "${b.what}". The Atlas's tag for it: ${b.uid}.`,
+    '',
+    `Read the issue and its last comments. If the blocker is cleared, take it out of status.blocked in ${manifestWhere(b.repo)}; if part of it is left, rewrite it to say what is left and point it at an open issue (file one if there is none). Then update anything it \`holds\`.`,
+    '',
+    `Read ${b.repo.repo}'s CLAUDE.md first and follow it. Recommended: Sonnet5 / Low.`,
+  ].join('\n');
+}
+function whoChip(b) {
+  if (b.lane === 'human') return term('Only you', 'Only you can clear this: credentials, hardware, money or a judgment call.', 'human');
+  if (b.lane === 'agent') return term('An agent can clear it', 'Nobody has to decide anything: hand it to a session with the prompt.', 'acc');
+  const on = R.get(b.who);
+  return `<span class="chip waits" title="Clears when ${esc(on.name)} moves">waits on <img src="${esc(on.logo)}" alt="">${esc(on.label || on.name)}</span>`;
+}
+
+function optsHtml(b) {
+  const opts = b.options.length ? b.options : [{ what: 'No way through recorded yet. Ask an agent in this repository to list the options.', by: 'agent', model: 'Sonnet5/Low' }];
+  return `<ol class="opts" aria-label="Ways through">${opts.map(o => `<li class="opt ${o.recommended ? 'rec' : ''}">
+      <div class="opt-head">${byBadge(o)}${o.effort ? `<span class="chip" title="Rough effort">${esc(o.effort)}</span>` : ''}${o.recommended ? '<span class="chip good" title="The option the repository would pick">suggested</span>' : ''}
+        ${o.by === 'human' ? promptBtn(helpPrompt(b, o), 'Help me') : promptBtn(optionPrompt(b, o), 'Prompt')}</div>
+      <div class="opt-what">${rich(o.what, (R.get(o.by) || b.repo).repo)}${o.issue && o.issue !== b.issue ? ` ${rich(o.issue, b.repo.repo)}` : ''}</div>
+      ${o.pros || o.cons ? `<div class="opt-pc">${o.pros ? `<span><b>+</b> ${esc(o.pros)}</span>` : ''}${o.cons ? `<span><b>−</b> ${esc(o.cons)}</span>` : ''}</div>` : ''}
+    </li>`).join('')}</ol>`;
 }
 
 function blockerCard(b, { compact = false } = {}) {
   const r = b.repo;
   const src = { recorded: '', issue: term('from an issue', 'A [Human] issue the repository\'s status does not list yet.'), drift: term('behind upstream', 'Worked out by the Atlas: an upstream change this repository has not caught up with.', 'bad'), ask: term('an ask', 'Something this repository asked of another.', 'warn'), ci: term('CI', 'The latest run of this workflow failed.', 'warn'), stale: term('old status', 'Nobody has checked this repository\'s atlas.json status for a month.', 'warn') }[b.source];
   const on = b.lane === 'repo' ? R.get(b.who) : null;
-  const opts = b.options.length ? b.options : [{ what: 'No way through recorded yet. Ask an agent in this repository to list the options.', by: 'agent', model: 'Sonnet5/Low' }];
   return `<article class="blk lane-${b.lane}" data-key="${esc(b.key)}">
-    <div class="blk-top">${compact ? '' : `<img src="${esc(r.logo)}" alt=""><button class="linkish" data-go-repo="${esc(r.id)}">${esc(r.label || r.name)}</button>`}
+    <div class="blk-top">${blkTag(b)}${compact ? '' : `<button class="linkish" data-go-repo="${esc(r.id)}">${esc(r.label || r.name)}</button>`}
       ${b.kind ? `<span class="chip" title="${esc(KIND[b.kind] || '')}">${esc(b.kind)}</span>` : ''}${src}
-      ${b.age !== null ? `<span class="chip" title="Blocking since ${esc(b.since)}">${b.age === 0 ? 'today' : b.age === 1 ? '1 day' : b.age + ' days'}</span>` : ''}
+      ${b.age !== null ? `<span class="chip" title="Blocking since ${esc(b.since)}">${ageWords(b.age)}</span>` : ''}
       ${on ? `<span class="chip waits" title="Clears when ${esc(on.name)} moves">waits on <img src="${esc(on.logo)}" alt="">${esc(on.label || on.name)}</span>` : ''}</div>
-    <h4 class="blk-what">${rich(b.what, r.repo)}${b.url ? ` <a href="${esc(b.url)}" target="_blank" rel="noopener">log ↗</a>` : ''}${b.link ? ` <button class="linkish" data-go-link="${esc(b.link)}">the link</button>` : ''}</h4>
+    <h4 class="blk-what">${rich(b.title, r.repo)}${b.url ? ` <a href="${esc(b.url)}" target="_blank" rel="noopener">log ↗</a>` : ''}${b.link ? ` <button class="linkish" data-go-link="${esc(b.link)}">the link</button>` : ''}</h4>
     ${b.context ? `<p class="blk-ctx" title="The opening of the issue">${esc(b.context)}</p>` : ''}
+    ${b.parents.length ? `<div class="holds"><span class="holds-l" title="Blockers that have to clear first">Waits for</span>${b.parents.map(p => blkTag(p)).join('')}</div>` : ''}
     ${b.holds.length ? `<div class="holds"><span class="holds-l" title="What clearing this would unblock">Holds up</span>${b.holds.map(h => holdChip(h, r)).join('')}</div>` : ''}
-    <ol class="opts" aria-label="Ways through">${opts.map(o => `<li class="opt ${o.recommended ? 'rec' : ''}">
-      <div class="opt-head">${byBadge(o)}${o.effort ? `<span class="chip" title="Rough effort">${esc(o.effort)}</span>` : ''}${o.recommended ? '<span class="chip good" title="The option the repository would pick">suggested</span>' : ''}
-        ${o.by === 'human' ? promptBtn(helpPrompt(b, o), 'Help me') : promptBtn(optionPrompt(b, o), 'Prompt')}</div>
-      <div class="opt-what">${rich(o.what, (R.get(o.by) || r).repo)}${o.issue && o.issue !== b.issue ? ` ${rich(o.issue, r.repo)}` : ''}</div>
-      ${o.pros || o.cons ? `<div class="opt-pc">${o.pros ? `<span><b>+</b> ${esc(o.pros)}</span>` : ''}${o.cons ? `<span><b>−</b> ${esc(o.cons)}</span>` : ''}</div>` : ''}
-    </li>`).join('')}</ol>
+    ${optsHtml(b)}
   </article>`;
+}
+
+// The one place that says everything about a blocker: what it is, what has to clear first,
+// what it frees, the ways through, and how to give it an issue when it has none.
+function newIssueTitle(b) {
+  return `[Standalone] ${b.lane === 'human' ? '[Human]' : `[${b.rec?.model || 'Sonnet5/Med'}]`} ${cut(b.title, 110)}`;
+}
+const issueHome = b => b.source === 'ask' ? R.get(b.target) : b.lane === 'repo' && R.get(b.who) ? R.get(b.who) : b.repo;
+const pageLink = b => `https://${D.owner}.github.io/atlas/#blockers/${b.uid}`;
+function newIssueUrl(b) {
+  const where = issueHome(b);
+  const opt = (o, k) => `${k + 1}. ${o.recommended ? '**Suggested.** ' : ''}${o.by === 'human' ? 'You' : o.by === 'agent' ? `Agent${o.model ? ` (${o.model})` : ''}` : (R.get(o.by)?.name || o.by)}${o.effort ? `, ${o.effort}` : ''}: ${cut(o.what, 420)}`
+    + (o.pros ? `\n   + ${cut(o.pros, 160)}` : '') + (o.cons ? `\n   − ${cut(o.cons, 160)}` : '');
+  const record = b.source === 'ask' ? `\`issue\` on this ask (\`asks\`) in ${manifestWhere(b.repo)}, as ${where.repo}#N` : `\`issue\` on the blocker \`${b.slug}\` (\`status.blocked\`) in ${manifestWhere(b.repo)}`;
+  let body = [
+    `Atlas blocker: ${b.uid}`, '',
+    `**${where === b.repo ? 'Blocked' : `${b.repo.name} is waiting on`}:** ${b.what}`,
+    b.since ? `**Since:** ${b.since}` : null,
+    b.holds.length ? `\n**Holds up**\n${b.holds.map(h => `- ${h}`).join('\n')}` : null,
+    b.options.length ? `\n**Ways through** (from atlas.json)\n${b.options.map(opt).join('\n')}` : null,
+    '', '---',
+    `From the Atlas: ${pageLink(b)}`,
+    `Once this is filed, put its number in ${record}. Keep the first line: until then the Atlas matches this issue to the blocker by it.`,
+  ].filter(x => x !== null).join('\n');
+  if (body.length > 3600) body = body.slice(0, 3580) + '\n…';
+  return `https://github.com/${where.repo}/issues/new?title=${encodeURIComponent(newIssueTitle(b))}&body=${encodeURIComponent(body)}`;
+}
+function fileIssuePrompt(b) {
+  const where = issueHome(b);
+  return [
+    `In ${where.repo}: file a blocker from the Atlas as an issue, then record the issue on the blocker.`,
+    '',
+    `The blocker (${b.repo.name}, ${b.source === 'ask' ? 'an ask in atlas.json\'s asks' : `status.blocked${b.named ? ` id \`${b.slug}\`` : ''}`}): "${b.what}"${b.since ? `, since ${b.since}` : ''}.`,
+    b.holds.length ? `It holds up: ${b.holds.join('; ')}.` : '',
+    '',
+    `1. Open an issue in ${where.repo} titled like "${newIssueTitle(b)}" (a short plain title is fine). Start its body with the line "Atlas blocker: ${b.uid}", then what is blocked, what it holds up and the ways through as atlas.json lists them${b.lane === 'human' ? ', with the owner\'s part click by click' : ''}.`,
+    `2. Put the new issue in ${b.source === 'ask' ? `\`issue\` on that ask, as ${where.repo}#N,` : '`issue` on that blocker'}${b.source === 'recorded' && !b.named ? ` and give the blocker "id": "${b.slug}"` : ''} in ${manifestWhere(b.repo)}, and push.`,
+    '',
+    `Read ${where.repo}'s CLAUDE.md first and follow it. Recommended: Sonnet5 / Low.`,
+  ].filter((x, k, a) => x !== '' || a[k - 1] !== '').join('\n');
+}
+function trackedHtml(b) {
+  if (b.iss) {
+    const t = repoByFull(b.iss.full), i = (t?.issues || []).find(x => x.n === b.iss.n);
+    return `<p><a href="https://github.com/${esc(b.iss.full)}/issues/${b.iss.n}" target="_blank" rel="noopener"><b>${esc(b.iss.full.split('/')[1])}#${b.iss.n}</b>${i ? ' ' + esc(i.title) : ''} ↗</a></p>
+      ${b.closed ? `<div class="box warn"><b>That issue is closed</b>, but ${esc(b.repo.name)} still lists this as a blocker. It may be cleared: check the issue, then take it out of ${manifestLink(b.repo)} or say what is left.<div class="chips">${promptBtn(closedPrompt(b), 'Prompt: check it')}</div></div>` : ''}
+      ${b.found ? `<p class="muted">Found by the issue's first line (<code>Atlas blocker: ${esc(b.uid)}</code>). Put the number in ${b.source === 'ask' ? '<code>issue</code> on this ask' : '<code>issue</code> on this blocker'} in ${manifestLink(b.repo)} to make it stick.</p>` : ''}`;
+  }
+  if (b.source === 'drift') return `<p>None yet. ${esc(b.repo.name)}'s daily Atlas check opens one by itself (<i>Upstream moved: …</i>) with the upstream commits and how to catch up.</p>`;
+  if (b.source === 'ci') return `<p>None needed: the failing run is the record. <a href="${esc(b.url)}" target="_blank" rel="noopener">Open its log ↗</a></p>`;
+  if (b.source === 'stale') return '<p>None needed: an agent refreshes the status in atlas.json.</p>';
+  const where = issueHome(b);
+  const why = `<p class="muted">Until it has a number, find it by its dashed tag <span class="btag untracked lane-${b.lane} demo"><b>${esc(b.slug)}</b></span>: it is in the search box, on every view, and at the end of this blocker's address.${b.source === 'recorded' && !b.named ? ' The tag is made from its first words: give the blocker an <code>id</code> in atlas.json to keep it fixed.' : ''}</p>`;
+  if (where.gh?.archived) return `<div class="box untracked-box"><b>No issue, and ${esc(where.name)} is archived</b>, so it can't take one.</div>${why}`;
+  return `<div class="box untracked-box"><b>No issue yet.</b> Give it one:
+    <div class="chips"><a class="copy" href="${esc(newIssueUrl(b))}" target="_blank" rel="noopener" title="Opens GitHub's new-issue page in ${esc(where.repo)}, filled in with what it holds up and the ways through">Make the issue on GitHub ↗</a>${promptBtn(fileIssuePrompt(b), 'Prompt: file it for me')}</div>
+    <p class="muted" style="margin:8px 0 0">The issue opens with the line <code>Atlas blocker: ${esc(b.uid)}</code>. ${where.private ? `The Atlas can't read issues in a private repository, so put the number in ${manifestLink(b.repo)} afterwards.` : `Keep it: at its next collect (every three hours) the Atlas links the issue to this blocker by itself, until the number is in ${manifestLink(b.repo)}.`}</p></div>${why}`;
+}
+function sourceHtml(b) {
+  const r = b.repo;
+  if (b.source === 'recorded') return `Recorded in ${manifestLink(r)} under <code>status.blocked</code>${b.named ? `, id <code>${esc(b.slug)}</code>` : ''}.`;
+  if (b.source === 'issue') return `A <code>[Human]</code> issue that ${esc(r.name)}'s atlas.json doesn't list as a blocker yet.`;
+  if (b.source === 'drift') return `Worked out by the Atlas: ${esc(R.get(L.find(l => l.id === b.link)?.from)?.name || 'the provider')} has changed what ${esc(r.name)} takes from it since ${esc(r.name)} last caught up.`;
+  if (b.source === 'ask') return `${esc(r.name)} asked this of ${esc(R.get(b.target).name)} in ${manifestLink(r)} under <code>asks</code>.`;
+  if (b.source === 'ci') return `The latest run of ${esc(r.name)}'s workflow failed.`;
+  return `Nobody has checked ${esc(r.name)}'s status in atlas.json for over a month.`;
+}
+function outHtml(o, b) {
+  if (o.type === 'issue') {
+    const t = repoByFull(o.iss.full), i = (t?.issues || []).find(x => x.n === o.iss.n);
+    return `<a href="https://github.com/${esc(o.iss.full)}/issues/${o.iss.n}" target="_blank" rel="noopener" title="${esc(i?.title || 'Issue')}">${o.iss.local ? '' : esc(o.iss.full.split('/')[1])}#${o.iss.n}</a>${i ? ' ' + esc(cut(i.title, 80)) : ''}${o.note ? ` <span class="muted">(${esc(o.note)})</span>` : ''}`;
+  }
+  if (o.type === 'repo') { const t = R.get(o.id); return `<button class="linkish" data-go-repo="${esc(t.id)}"><img src="${esc(t.logo)}" alt="">${esc(t.label || t.name)}</button>`; }
+  return rich(o.text, b.repo.repo);
+}
+function blockerPanel(b) {
+  if (!b) return `<div class="p-head"><div class="row1"><div><h2>No blocker by that name</h2><div class="sub">It may have been cleared since the link was made.</div></div><button class="icon-btn p-close" aria-label="Close">✕</button></div></div>
+    <div class="p-body"><p>Every blocker there is now is on the Blockers view.</p></div>`;
+  const r = b.repo;
+  const effort = b.rec?.effort ? `<span class="chip" title="Size of the suggested way through">${esc(b.rec.effort)}</span>` : '';
+  return `
+  <div class="p-head"><div class="row1"><img src="${esc(r.logo)}" alt=""><div style="min-width:0"><div class="bp-tag">${blkTag(b, { span: true })}</div><h2 class="bp-title">${rich(b.title, r.repo)}</h2>
+    <div class="sub">${esc(r.name)}${b.since ? ` · blocking since ${esc(b.since)} (${ageWords(b.age)})` : ''}</div></div>
+    <button class="icon-btn p-close" aria-label="Close">✕</button></div>
+    <div class="chips">${whoChip(b)}${b.kind ? `<span class="chip" title="${esc((KIND[b.kind] || '') + (b.kindGuessed ? ' Guessed from the issue title.' : ''))}">${esc(b.kind)}</span>` : ''}${effort}</div></div>
+  <div class="p-body">
+    ${b.context ? `<p class="blk-ctx" title="The opening of the issue">${esc(b.context)}</p>` : ''}
+    <h3>Tracked in</h3>${trackedHtml(b)}
+    ${b.parents.length ? `<h3 title="Blockers that have to clear before this one can">Waits for these first</h3><div class="bp-list">${b.parents.map(p => blkTag(p, { what: 90 })).join('')}</div>` : ''}
+    ${b.kids.length || b.outs.length ? `<h3 title="What clearing it would unblock">Clearing it frees${b.frees ? ` · ${b.frees} thing${b.frees === 1 ? '' : 's'}` : ''}</h3>
+      ${b.kids.length ? `<div class="bp-list">${b.kids.map(k => `${blkTag(k.b, { what: 90 })}${k.note ? `<div class="bp-note">${esc(k.note)}</div>` : ''}`).join('')}</div>` : ''}
+      ${b.outs.length ? `<ul class="bp-outs">${b.outs.map(o => `<li>${outHtml(o, b)}</li>`).join('')}</ul>` : ''}` : ''}
+    <h3>Ways through</h3>${optsHtml(b)}
+    <h3>Where it comes from</h3><p>${sourceHtml(b)}</p>
+    <div class="chips"><button class="copy" data-copy-link="${esc(b.uid)}" title="A link straight to this blocker">Copy a link to it</button>${b.link ? `<button class="copy" data-go-link="${esc(b.link)}">Show the link on the map</button>` : ''}<button class="copy" data-go-repo="${esc(r.id)}">Show ${esc(r.label || r.name)} on the map</button></div>
+  </div>`;
+}
+function openBlocker(uid) { select({ type: 'blocker', uid }); }
+function markSelected() {
+  const uid = selected?.type === 'blocker' ? selected.uid : null;
+  $$('#blockers-view [data-blk]').forEach(e => e.classList.toggle('sel', e.dataset.blk === uid));
 }
 
 function wireCards(el) {
   $$('[data-copy]', el).forEach(b => b.addEventListener('click', e => { e.stopPropagation(); copyText(PROMPTS.get(b.dataset.copy), b); }));
   $$('[data-go-repo]', el).forEach(b => b.addEventListener('click', () => goRepo(b.dataset.goRepo)));
   $$('[data-go-link]', el).forEach(b => b.addEventListener('click', () => { showView('map'); select({ type: 'link', id: b.dataset.goLink }); }));
+  $$('[data-blk]', el).forEach(b => b.addEventListener('click', e => { e.stopPropagation(); openBlocker(b.dataset.blk); }));
+}
+
+// ------------------------------------------------------------------ blockers view
+// Four ways to look at the same blockers: by who can clear them (lanes), by what each frees
+// (chains), by what clearing each takes (a grid of repositories against needs), and by how
+// big the way through is against how much it frees (quick wins).
+const ICON = {
+  lanes: '<svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1" y="2" width="4" height="12" rx="1"/><rect x="6" y="2" width="4" height="9" rx="1"/><rect x="11" y="2" width="4" height="6" rx="1"/></svg>',
+  chains: '<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="3" cy="8" r="2.2"/><circle cx="13" cy="3.5" r="2.2"/><circle cx="13" cy="12.5" r="2.2"/><path d="M5 8h2.5L11 4M7.5 8 11 12" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>',
+  needs: '<svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1" y="1" width="4" height="4" rx="1"/><rect x="6" y="1" width="4" height="4" rx="1" opacity=".4"/><rect x="11" y="1" width="4" height="4" rx="1"/><rect x="1" y="6" width="4" height="4" rx="1" opacity=".4"/><rect x="6" y="6" width="4" height="4" rx="1"/><rect x="11" y="6" width="4" height="4" rx="1" opacity=".4"/><rect x="1" y="11" width="4" height="4" rx="1"/><rect x="6" y="11" width="4" height="4" rx="1" opacity=".4"/><rect x="11" y="11" width="4" height="4" rx="1"/></svg>',
+  quick: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 1v13.5H15" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="5" cy="4.5" r="1.8"/><circle cx="8.5" cy="8" r="1.8"/><circle cx="12.5" cy="11" r="1.8"/><circle cx="5" cy="10" r="1.8" opacity=".4"/></svg>',
+};
+const BMODES = [
+  { id: 'lanes', name: 'Who clears it', tip: 'Three lanes: only you, an agent can, waiting on another repository',
+    about: 'Every blocker as a card, in three lanes by who can clear it, most-freeing first. Each card has its tag, what it holds up and the ways through — <b>Prompt</b> hands an option to a new session; <b>Help me</b> asks one to walk you through yours.' },
+  { id: 'chains', name: 'What frees what', tip: 'Each blocker, then what clearing it frees, left to right',
+    about: 'Read each row left to right: who can clear it, the blocker, then what clearing it frees — another blocker first where there is one (sometimes in another repository), then the work it holds up. Chains, where one blocker stands in front of another, come first.' },
+  { id: 'needs', name: 'What it takes', tip: 'A grid: each repository against what clearing its blockers takes',
+    about: 'Every blocker by what clearing it takes, one row per repository. Read down a column to do them in one go: the decisions you could make in one sitting, the dashboards you would sign in to, what needs the bench.' },
+  { id: 'quick', name: 'Quick wins', tip: 'How big the way through is, against how much it frees',
+    about: 'Across: how big the suggested way through is. Up: how much clearing it frees, counting what the blockers behind it hold up too. Start top left — small jobs that free a lot. Blue tags are agent jobs: your part is handing over the prompt.' },
+];
+let bmode = store.get('bmode', 'lanes');
+if (!BMODES.some(m => m.id === bmode)) bmode = 'lanes';
+const blkMatch = (b, q) => !q || `${b.tag} ${b.uid} ${b.what} ${b.repo.name} ${b.options.map(o => o.what).join(' ')}`.toLowerCase().includes(q);
+
+function blkKey(mode) {
+  return `<div class="bkey" aria-label="Key">
+    <span><i class="sw lane-human"></i>only you</span><span><i class="sw lane-agent"></i>an agent can</span><span><i class="sw lane-repo"></i>waits on another repo</span>
+    <span><span class="btag lane-human demo"><b>#237</b></span> its issue</span>
+    <span><span class="btag lane-human untracked demo"><b>bench-first-run</b></span> no issue yet: the Atlas's name for it</span>
+    ${BLOCKERS.some(b => b.closed) ? `<span><span class="btag lane-human demo"><b>${esc(BLOCKERS.find(b => b.closed).tag)}</b><i class="bt-closed">closed</i></span> its issue is closed: it may be cleared</span>` : ''}
+    ${mode === 'quick' ? '<span><i class="sw win"></i>start here: half an hour or less, frees three or more</span>' : ''}
+    <span class="muted">Click a tag for everything about it. Type one in the search box to find it.</span></div>`;
 }
 
 let blockFilter = { repos: null, lane: null };
@@ -310,22 +605,23 @@ function renderBlockers() {
   const el = $('#blockers-view');
   const withB = D.repos.filter(r => r.blockers.length);
   if (!blockFilter.repos) blockFilter.repos = new Set(withB.map(r => r.id));
-  const q = ($('#search').value || '').toLowerCase();
-  const pick = BLOCKERS.filter(b => blockFilter.repos.has(b.repo.id) && (!q || `${b.what} ${b.repo.name} ${b.options.map(o => o.what).join(' ')}`.toLowerCase().includes(q)));
-  const count = id => pick.filter(b => b.lane === id).length;
-  const holdsMost = [...pick].filter(b => b.holds.length).sort((a, b) => b.holds.length - a.holds.length).slice(0, 3);
-  el.innerHTML = `<div class="page"><h2>Blockers</h2>
-    <p class="intro">Everything stopping work, by who can clear it, with the ways through each one. Repositories record their own in <code>atlas.json</code> (<code>status.blocked</code>); the Atlas adds what it can see for itself: <code>[Human]</code> issues, links behind upstream, asks nobody has filed, failing CI. Each lane is sorted by how much a blocker holds up. <b>Prompt</b> hands an option to a new session; <b>Help me</b> asks one to walk you through yours.</p>
-    <div class="lane-sum">${LANES.map(l => `<button class="lane-pill lane-${l.id}" data-lane="${l.id}" aria-pressed="${blockFilter.lane === l.id}"><b>${count(l.id)}</b> ${esc(l.name.toLowerCase())}</button>`).join('')}<button class="lane-pill" data-lane="" aria-pressed="${!blockFilter.lane}">all <b>${pick.length}</b></button></div>
-    ${holdsMost.length ? `<div class="box most"><b>Clears the most:</b> ${holdsMost.map(b => `<a href="#" data-key="${esc(b.key)}" onclick="return false">${esc(b.repo.label || b.repo.name)} — ${esc(b.what.length > 70 ? b.what.slice(0, 68) + '…' : b.what)}</a> <span class="chip">holds ${b.holds.length}</span>`).join(' · ')}</div>` : ''}
+  const q = ($('#search').value || '').trim().toLowerCase();
+  const all = BLOCKERS.filter(b => blockFilter.repos.has(b.repo.id) && blkMatch(b, q));
+  const pick = all.filter(b => !blockFilter.lane || b.lane === blockFilter.lane);
+  const count = id => all.filter(b => b.lane === id).length;
+  const mode = BMODES.find(m => m.id === bmode) || BMODES[0];
+  const body = mode.id === 'chains' ? chainsHtml(pick) : mode.id === 'needs' ? needsHtml(pick) : mode.id === 'quick' ? quickHtml(pick) : lanesHtml(all);
+  el.innerHTML = `<div class="page bpage"><h2>Blockers</h2>
+    <div class="bmodes" role="tablist" aria-label="Ways to look at the blockers">${BMODES.map(m => `<button role="tab" data-mode="${m.id}" aria-selected="${m.id === mode.id}" title="${esc(m.tip)}">${ICON[m.id]}${esc(m.name)}</button>`).join('')}</div>
+    <p class="intro">${mode.about}</p>
+    ${blkKey(mode.id)}
+    <div class="lane-sum">${LANES.map(l => `<button class="lane-pill lane-${l.id}" data-lane="${l.id}" aria-pressed="${blockFilter.lane === l.id}"><b>${count(l.id)}</b> ${esc(l.name.toLowerCase())}</button>`).join('')}<button class="lane-pill" data-lane="" aria-pressed="${!blockFilter.lane}">all <b>${all.length}</b></button></div>
     <div class="filters">${withB.map(r => `<button data-repo="${esc(r.id)}" aria-pressed="${blockFilter.repos.has(r.id)}"><img src="${esc(r.logo)}" alt="">${esc(r.label || r.name)} <b>${r.blockers.length}</b></button>`).join('')}</div>
-    <div class="lanes">${LANES.filter(l => !blockFilter.lane || blockFilter.lane === l.id).map(l => {
-      const items = pick.filter(b => b.lane === l.id);
-      return `<section class="lane lane-${l.id}"><h3><span>${esc(l.name)}</span><span>${items.length}</span></h3><p class="sub">${esc(l.about)}</p>${items.map(b => blockerCard(b)).join('') || '<div class="empty">Nothing here.</div>'}</section>`;
-    }).join('')}</div></div>`;
+    ${pick.length ? body : '<div class="empty">No blockers match.</div>'}</div>`;
+  $$('.bmodes [data-mode]', el).forEach(b => b.addEventListener('click', () => { bmode = b.dataset.mode; store.set('bmode', bmode); renderBlockers(); setHash(); }));
   $$('.filters button', el).forEach(b => b.addEventListener('click', () => {
-    const id = b.dataset.repo, all = withB.length;
-    if (blockFilter.repos.size === all) blockFilter.repos = new Set([id]);
+    const id = b.dataset.repo, n = withB.length;
+    if (blockFilter.repos.size === n) blockFilter.repos = new Set([id]);
     else if (blockFilter.repos.has(id)) { blockFilter.repos.delete(id); if (!blockFilter.repos.size) blockFilter.repos = new Set(withB.map(r => r.id)); }
     else blockFilter.repos.add(id);
     renderBlockers();
@@ -333,6 +629,76 @@ function renderBlockers() {
   $$('.lane-pill', el).forEach(b => b.addEventListener('click', () => { blockFilter.lane = b.dataset.lane || null; renderBlockers(); }));
   $$('.most [data-key]', el).forEach(a => a.addEventListener('click', () => $(`.blk[data-key="${CSS.escape(a.dataset.key)}"]`, el)?.scrollIntoView({ behavior: 'smooth', block: 'center' })));
   wireCards(el);
+  markSelected();
+}
+
+function lanesHtml(all) {
+  const holdsMost = [...all].filter(b => b.frees).sort((a, b) => b.frees - a.frees).slice(0, 3);
+  return `${holdsMost.length ? `<div class="box most"><b>Clears the most:</b> ${holdsMost.map(b => `${blkTag(b)} <a href="#" data-key="${esc(b.key)}" onclick="return false">${esc(b.repo.label || b.repo.name)} — ${esc(cut(b.title, 70))}</a> <span class="chip">frees ${b.frees}</span>`).join(' · ')}</div>` : ''}
+    <div class="lanes">${LANES.filter(l => !blockFilter.lane || blockFilter.lane === l.id).map(l => {
+      const items = all.filter(b => b.lane === l.id);
+      return `<section class="lane lane-${l.id}"><h3><span>${esc(l.name)}</span><span>${items.length}</span></h3><p class="sub">${esc(l.about)}</p>${items.map(b => blockerCard(b)).join('') || '<div class="empty">Nothing here.</div>'}</section>`;
+    }).join('')}</div>`;
+}
+
+// What frees what: one row per blocker that nothing in view stands in front of, branching to
+// the blockers it holds up and the work it frees.
+function chainsHtml(pick) {
+  const P = new Set(pick);
+  const byFrees = (a, b) => b.frees - a.frees || b.score - a.score;
+  const roots = pick.filter(b => !b.parents.some(p => P.has(p))).sort(byFrees);
+  const reach = new Set(), walk = b => { if (reach.has(b)) return; reach.add(b); b.kids.forEach(k => P.has(k.b) && walk(k.b)); };
+  roots.forEach(walk);
+  for (const b of pick) if (!reach.has(b)) { roots.push(b); walk(b); } // a ring of blockers has no first one
+  const chained = roots.filter(b => b.kids.some(k => P.has(k.b)));
+  const single = roots.filter(b => !chained.includes(b));
+  const row = b => `<div class="crow">${leadHtml(b)}${chainNode(b, P, new Set(), '')}</div>`;
+  return `${chained.length ? `<h3 class="bsec">Chains: clearing one frees the next <span>${chained.length}</span></h3><div class="chains">${chained.map(row).join('')}</div>` : ''}
+    <h3 class="bsec">One step: clearing it frees what is listed <span>${single.length}</span></h3><div class="chains singles">${single.map(row).join('') || '<div class="empty">Nothing here.</div>'}</div>`;
+}
+function leadHtml(b) {
+  if (b.lane === 'repo') { const t = R.get(b.who); return `<div class="clead lane-repo" title="Waits on ${esc(t.name)} to move"><img src="${esc(t.logo)}" alt=""><span>${esc(cut(t.label || t.name, 14))}</span></div>`; }
+  return `<div class="clead lane-${b.lane}" title="${b.lane === 'human' ? 'Only you can clear it' : 'An agent can clear it'}"><span>${b.lane === 'human' ? 'You' : 'Agent'}</span></div>`;
+}
+function chainNode(b, P, seen, note) {
+  seen.add(b);
+  const kids = b.kids.filter(k => P.has(k.b) && !seen.has(k.b));
+  const meta = [b.rec?.effort ? `<span title="Size of the suggested way through">${esc(b.rec.effort)}</span>` : '', b.age !== null ? `<span title="Blocking since ${esc(b.since)}">${ageWords(b.age)}</span>` : ''].filter(Boolean).join(' · ');
+  const node = `<button class="cnode lane-${b.lane}" data-blk="${esc(b.uid)}" title="${esc(tagTitle(b))}">${blkTag(b, { span: true })}<span class="cn-what">${esc(cut(b.title, 120))}</span>${note ? `<span class="cn-note">${esc(note)}</span>` : ''}${meta ? `<span class="cn-meta">${meta}</span>` : ''}</button>`;
+  const kidHtml = kids.map(k => seen.has(k.b) ? '' : chainNode(k.b, P, seen, k.note)).join('');
+  const outs = b.outs.length ? `<div class="cbranch"><ul class="couts" aria-label="Frees"><li class="cap">frees</li>${b.outs.map(o => `<li>${outHtml(o, b)}</li>`).join('')}</ul></div>` : '';
+  return `<div class="cbranch">${node}${kidHtml || outs ? `<div class="ckids">${kidHtml}${outs}</div>` : ''}</div>`;
+}
+
+// What it takes: repositories down the side, needs across the top.
+function needsHtml(pick) {
+  const cols = NEEDS.filter(n => pick.some(b => b.need === n.id));
+  const rows = D.repos.filter(r => pick.some(b => b.repo === r));
+  const sized = (a, b) => (a.mins ?? 1e6) - (b.mins ?? 1e6) || b.frees - a.frees;
+  const item = b => `<button class="nitem lane-${b.lane}" data-blk="${esc(b.uid)}" title="${esc(tagTitle(b))}">${blkTag(b, { span: true })}<span class="ni-what">${esc(cut(b.title, 90))}</span>${b.rec?.effort ? `<span class="ni-eff">${esc(b.rec.effort)}</span>` : ''}</button>`;
+  const grid = `<div class="needs" style="--cols:${cols.length}" role="table" aria-label="Blockers by repository and what clearing them takes">
+    <div class="nh corner" role="columnheader">Repository</div>${cols.map(n => `<div class="nh" role="columnheader" title="${esc(n.about)}"><b>${esc(n.name)}</b><span>${pick.filter(b => b.need === n.id).length}</span></div>`).join('')}
+    ${rows.map(r => { const mine = pick.filter(b => b.repo === r); return `<div class="nr" role="rowheader"><button class="linkish" data-go-repo="${esc(r.id)}"><img src="${esc(r.logo)}" alt="">${esc(r.label || r.name)}</button><span class="muted">${mine.length} blocker${mine.length === 1 ? '' : 's'}</span></div>${cols.map(n => `<div class="nc" role="cell">${mine.filter(b => b.need === n.id).sort(sized).map(item).join('')}</div>`).join('')}`; }).join('')}
+  </div>`;
+  const list = `<div class="needs-list">${cols.map(n => { const items = pick.filter(b => b.need === n.id).sort(sized); return `<section class="nl"><h4>${esc(n.name)} <span>${items.length}</span></h4><p class="sub">${esc(n.about)}</p>${items.map(item).join('')}</section>`; }).join('')}</div>`;
+  return `<p class="needs-about">${cols.map(n => `<b>${esc(n.name)}</b> — ${esc(n.about.replace(/\.$/, ''))}`).join(' · ')}.</p>${grid}${list}`;
+}
+
+// Quick wins: how big the suggested way through is, against how much clearing it frees.
+function quickHtml(pick) {
+  const top = Math.max(3, ...pick.map(b => b.frees));
+  const ys = Array.from({ length: top + 1 }, (_, k) => top - k);
+  const cells = (y, c) => pick.filter(b => b.effort === c.id && b.frees === y).sort((a, b) => b.score - a.score);
+  const win = (ci, y) => ci <= 2 && y >= 3;
+  const chart = `<div class="qaxis"><span><b>Across →</b> size of the suggested way through</span><span><b>Up ↑</b> how much clearing it frees (the number at the left)</span></div>
+    <div class="qchart" style="--cols:${EFFORT.length}" role="table" aria-label="Blockers by the size of the way through and how much clearing them frees">
+    <div class="qy qx" role="columnheader" title="How much clearing it frees">frees</div>${EFFORT.map(c => `<div class="qx" role="columnheader">${esc(c.label)}</div>`).join('')}
+    ${ys.map(y => `<div class="qy" role="rowheader">${y}</div>${EFFORT.map((c, ci) => `<div class="qc${win(ci, y) ? ' win' : ''}${c.id === 'none' ? ' unsized' : ''}" role="cell">${cells(y, c).map(b => blkTag(b)).join('')}</div>`).join('')}`).join('')}
+  </div>`;
+  const list = `<div class="qlist">${EFFORT.map(c => { const items = pick.filter(b => b.effort === c.id).sort((a, b) => b.frees - a.frees); return items.length ? `<section class="qrow"><h4>${esc(c.label)} <span>${items.length}</span></h4><div class="qrow-items">${items.map(b => `<span class="qitem">${blkTag(b)}<span class="qfr" title="What clearing it frees">frees ${b.frees}</span></span>`).join('')}</div></section>` : ''; }).join('')}</div>`;
+  const best = pick.filter(b => b.effort !== 'none' && b.frees > 0).sort((a, b) => EFFORT.findIndex(x => x.id === a.effort) - EFFORT.findIndex(x => x.id === b.effort) || b.frees - a.frees).slice(0, 8);
+  const order = best.length ? `<h3 class="bsec">Start with these <span>${best.length}</span></h3><ol class="qbest">${best.map(b => `<li>${blkTag(b)} <span>${esc(cut(b.title, 110))}</span> <span class="chip">${esc(b.rec.effort)}</span> <span class="chip good" title="What clearing it frees">frees ${b.frees}</span></li>`).join('')}</ol>` : '';
+  return chart + list + order;
 }
 
 // The provider end of a link may name a `provides` entry (which names a component) or a component.
@@ -782,7 +1148,8 @@ function applyHighlight() {
     if (kind === 'n') focus = { type: 'repo', id: rest };
     else if (kind === 'l') focus = { type: 'links', ids: rest.split(' ') };
     else { const [id, cid] = rest.split(':'); focus = { type: 'comp', repo: id, id: cid }; }
-  } else if (selected) focus = selected;
+  } else if (selected?.type === 'blocker') { const b = BLK.get(selected.uid); focus = b ? { type: 'repo', id: b.repo.id } : null; }
+  else if (selected) focus = selected;
   $$('.hl', root).forEach(el => el.classList.remove('hl'));
   $$('.node.selected', root).forEach(el => el.classList.remove('selected'));
   if (selected?.type === 'repo') $(`.node[data-id="${selected.id}"]`, root)?.classList.add('selected');
@@ -814,11 +1181,12 @@ function select(s) {
   applyHighlight();
   const panel = $('#panel');
   if (!s) { panel.classList.remove('open'); setHash(); return; }
-  panel.innerHTML = s.type === 'repo' ? repoPanel(R.get(s.id)) : s.type === 'link' ? linkPanel(L.find(l => l.id === s.id)) : s.type === 'pair' ? pairPanel(s.from, s.to) : s.type === 'blocked' ? blockedPanel(s.repo, s.who) : compPanel(R.get(s.repo), s.id);
+  panel.innerHTML = s.type === 'repo' ? repoPanel(R.get(s.id)) : s.type === 'link' ? linkPanel(L.find(l => l.id === s.id)) : s.type === 'pair' ? pairPanel(s.from, s.to) : s.type === 'blocked' ? blockedPanel(s.repo, s.who) : s.type === 'blocker' ? blockerPanel(BLK.get(s.uid)) : compPanel(R.get(s.repo), s.id);
   panel.classList.add('open');
   panel.scrollTop = 0;
   setHash();
   wirePanel(panel);
+  markSelected();
 }
 
 function wirePanel(panel) {
@@ -828,6 +1196,8 @@ function wirePanel(panel) {
   $$('[data-go-comp]', panel).forEach(b => b.addEventListener('click', () => { const [r, c] = b.dataset.goComp.split(':'); expanded.add(r); drawComps(); drawLinks(); select({ type: 'comp', repo: r, id: c }); }));
   $('.p-close', panel)?.addEventListener('click', () => select(null));
   $('[data-expand]', panel)?.addEventListener('click', e => { toggleExpand(e.currentTarget.dataset.expand); select(selected); });
+  $$('[data-blk]', panel).forEach(b => b.addEventListener('click', e => { e.stopPropagation(); openBlocker(b.dataset.blk); }));
+  $$('[data-copy-link]', panel).forEach(b => b.addEventListener('click', () => copyText(`${location.origin}${location.pathname}#blockers/${b.dataset.copyLink}`, b, 'Link copied')));
 }
 
 function goRepo(id) {
@@ -1043,7 +1413,7 @@ function renderRoadmap() {
       rows.push(ul(s.now, 'Now'));
       rows.push(ul(s.next, 'Next'));
       rows.push(ul(s.later, 'Later'));
-      const blocked = r.blockers.filter(b => b.source === 'recorded' || b.source === 'drift').map(b => `${rich(b.what, r.repo)} ${b.lane === 'human' ? term('you', 'Only you can clear this.', 'human') : b.lane === 'agent' ? term('agent', 'An agent can clear this.', 'acc') : `<span class="chip">${esc(R.get(b.who)?.name || b.who)}</span>`}${b.options.length ? ` <button class="chip linkish-chip" data-blockers="${esc(r.id)}" title="See the ways through on the Blockers view">${b.options.length} way${b.options.length === 1 ? '' : 's'} through</button>` : ''}`);
+      const blocked = r.blockers.filter(b => b.source === 'recorded' || b.source === 'drift').map(b => `${rich(b.what, r.repo)} ${b.lane === 'human' ? term('you', 'Only you can clear this.', 'human') : b.lane === 'agent' ? term('agent', 'An agent can clear this.', 'acc') : `<span class="chip">${esc(R.get(b.who)?.name || b.who)}</span>`}${b.options.length ? ` <button class="chip linkish-chip" data-blk-open="${esc(b.uid)}" title="Open this blocker: what it frees and the ways through">${b.options.length} way${b.options.length === 1 ? '' : 's'} through</button>` : ''}`);
       rows.push(`<div data-col="Blocked / behind">${blocked.length ? `<ul>${blocked.map(x => `<li>${x}</li>`).join('')}</ul>` : ''}</div>`);
     }
   }
@@ -1051,7 +1421,7 @@ function renderRoadmap() {
     <p class="intro">Every repository's Now / Next / Later, from the <code>status</code> in its own <code>atlas.json</code>. Each repository keeps its own detailed roadmap (linked in its panel); this is the one-screen summary they feed. Blocked items marked <span class="chip human">you</span> wait on you.</p>
     <div class="road"><div class="hd">Repository</div><div class="hd">Now</div><div class="hd">Next</div><div class="hd">Later</div><div class="hd">Blocked / behind</div>${rows.join('')}</div></div>`;
   $$('[data-go-repo]', el).forEach(b => b.addEventListener('click', () => goRepo(b.dataset.goRepo)));
-  $$('[data-blockers]', el).forEach(b => b.addEventListener('click', e => { e.stopPropagation(); blockFilter = { repos: new Set([b.dataset.blockers]), lane: null }; showView('blockers'); }));
+  $$('[data-blk-open]', el).forEach(b => b.addEventListener('click', e => { e.stopPropagation(); selected = { type: 'blocker', uid: b.dataset.blkOpen }; showView('blockers'); select(selected); }));
 }
 
 // ------------------------------------------------------------------ board view
@@ -1152,6 +1522,16 @@ function renderGuide() {
   </div>
   <h3>Blockers</h3>
   <p>Press <b>Blockers</b> on the map to see what is stopping work: a line from each repository to <b>You</b>, to <b>Agents</b>, or to the repository it waits on, as thick as the number of blockers on it. Click a line, or open the <b>Blockers</b> view, for each blocker, what it holds up, and the ways through it, each marked with who can do it, the effort and the one the repository would pick. Repositories record blockers and options in <code>status.blocked</code>; the Atlas adds <code>[Human]</code> issues, links behind upstream, asks nobody has filed and failing CI by itself.</p>
+  <p>The Blockers view shows them four ways:</p>
+  <ul>
+    <li><b>Who clears it</b> — a card for each, in three lanes: only you, an agent can, waiting on another repository.</li>
+    <li><b>What frees what</b> — each blocker as a row read left to right: who can clear it, the blocker, then what clearing it frees. Where one blocker stands in front of another (its issue is in the other's <code>holds</code>, or it is the same issue seen from a second repository) the row branches into a chain.</li>
+    <li><b>What it takes</b> — a grid of repositories against what clearing each blocker takes: a decision, your login or a setting, hardware or a site, money, time, someone else, or agent work. Read down a column to clear several in one sitting.</li>
+    <li><b>Quick wins</b> — how big the suggested way through is, against how much clearing it frees. Start top left.</li>
+  </ul>
+  <h4>Tags: how to find a blocker</h4>
+  <p>Every blocker has a tag. When it has an issue the tag is the issue number (<code>#237</code>, or <code>MegaNet#239</code> for an issue in another repository). When it has none, the tag is the Atlas's name for it, drawn <b>dashed</b>: the <code>id</code> it has in <code>status.blocked</code> (<code>bench-first-run</code>), or a name made from its first words. A tag marked <b>closed</b> points at an issue that has been closed, so the blocker may be cleared. Click any tag for one page with everything about the blocker: what it is, what has to clear first, what it frees, the ways through, and where it is recorded. Type a tag in the search box (Enter opens it), or link straight to one: <code>#blockers/rpi-alert/bench-first-run</code>.</p>
+  <p>A blocker with no issue has <b>Make the issue on GitHub</b> in its page: it opens GitHub's new-issue form in the right repository, filled in with what it holds up and the ways through, starting with the line <code>Atlas blocker: rpi-alert/bench-first-run</code>. Keep that line: at its next collect the Atlas links the issue to the blocker by it, and the dashed tag becomes the issue number. Then put the number in <code>issue</code> on the blocker in atlas.json (or hand that to an agent with <b>Prompt: file it for me</b>).</p>
   <h3>Reading the map</h3>
   <ul>
     <li><b>Arrows</b> point from the repository that provides to the one that relies on it — the way a change travels.</li>
@@ -1179,17 +1559,34 @@ function showView(v) {
   if (v === 'links') renderLinks();
   if (v === 'activity') renderActivity();
   if (v === 'guide') renderGuide();
-  if (v !== 'map') $('#panel').classList.remove('open'); else if (selected) $('#panel').classList.add('open');
+  $('#panel').classList.toggle('open', !!selected && (v === 'map' || (v === 'blockers' && selected.type === 'blocker')));
   if (v === 'map' && D) placeIfTurned();
   setHash();
 }
 function setHash() {
-  const sel = current === 'map' && selected && selected.type !== 'blocked' ? '/' + (selected.type === 'comp' ? `${selected.repo}.${selected.id}` : selected.type === 'link' ? 'link:' + selected.id : selected.type === 'pair' ? `pair:${selected.from}>${selected.to}` : selected.id) : '';
+  if (current === 'blockers') {
+    const h = `#blockers/${bmode}${selected?.type === 'blocker' ? '/' + selected.uid : ''}`;
+    if (location.hash !== h) history.replaceState(null, '', h);
+    return;
+  }
+  const sel = current === 'map' && selected && selected.type !== 'blocked' && selected.type !== 'blocker' ? '/' + (selected.type === 'comp' ? `${selected.repo}.${selected.id}` : selected.type === 'link' ? 'link:' + selected.id : selected.type === 'pair' ? `pair:${selected.from}>${selected.to}` : selected.id) : '';
   const h = '#' + current + sel;
   if (location.hash !== h) history.replaceState(null, '', h);
 }
 function readHash() {
-  const [v, rest] = location.hash.replace(/^#/, '').split('/');
+  const parts = location.hash.replace(/^#/, '').split('/').map(x => { try { return decodeURIComponent(x); } catch { return x; } });
+  const [v, rest] = parts;
+  if (v === 'blockers') {
+    // #blockers, #blockers/chains, #blockers/rpi-alert/bench-first-run, #blockers/chains/flood-net/237
+    let k = 1;
+    if (BMODES.some(m => m.id === parts[1])) { bmode = parts[1]; store.set('bmode', bmode); k = 2; }
+    const uid = parts.slice(k).join('/');
+    if (uid) selected = { type: 'blocker', uid };
+    else if (selected?.type === 'blocker') selected = null;
+    showView('blockers');
+    if (uid) select(selected);
+    return;
+  }
   showView(v || 'map');
   if (v === 'map' && rest) {
     if (rest.startsWith('link:')) select({ type: 'link', id: rest.slice(5) });
@@ -1279,7 +1676,16 @@ function wireChrome() {
       || D.repos.find(r => r.comps.some(c => `${c.name} ${c.what}`.toLowerCase().includes(q)));
     if (hit) { showView('map'); goRepo(hit.id); }
   });
-  $('#search').addEventListener('keydown', e => { if (e.key === 'Enter' && current !== 'board') { showView('board'); renderBoard(); } });
+  $('#search').addEventListener('keydown', e => {
+    if (e.key !== 'Enter') return;
+    if (current === 'blockers') {
+      const q = $('#search').value.trim().toLowerCase();
+      const hit = q && (BLOCKERS.find(b => b.tag.toLowerCase() === q || b.slug === q || b.uid === q) || BLOCKERS.find(b => blkMatch(b, q)));
+      if (hit) openBlocker(hit.uid);
+      return;
+    }
+    if (current !== 'board') { showView('board'); renderBoard(); }
+  });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') select(null); });
   window.addEventListener('resize', () => { if (current === 'map' && !placeIfTurned()) applyView(); });
   window.addEventListener('hashchange', readHash);

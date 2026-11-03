@@ -12,7 +12,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
-import { ROOT, github, validate, crossCheck, parseTitle, drift, slimCommit } from './lib.mjs';
+import { ROOT, github, validate, crossCheck, parseTitle, drift, slimCommit, blockerMark } from './lib.mjs';
 
 const token = process.env.ATLAS_TOKEN || process.env.GITHUB_TOKEN || '';
 const gh = github(token);
@@ -117,10 +117,12 @@ async function collectRepo(r) {
     out.issues = issues.map(i => {
       const t = parseTitle(i.title);
       const mentions = [...new Set([...(i.body || '').matchAll(/cdomotor-g\/([A-Za-z0-9_.-]+)/gi)].map(m => m[1].toLowerCase()))];
+      const blocker = blockerMark(i.body);
       return {
         n: i.number, raw: i.title, ...t, url: i.html_url, updated: i.updated_at, created: i.created_at,
         comments: i.comments, labels: i.labels.map(l => l.name), mentions,
         ...(t.human ? { excerpt: excerpt(i.body) } : {}),
+        ...(blocker ? { blocker } : {}),
       };
     });
     if (runs?.workflow_runs) {

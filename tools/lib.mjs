@@ -139,6 +139,14 @@ export function parseTitle(raw) {
   return out;
 }
 
+// The Atlas's tag for a blocker, from the line an issue made on the Blockers view opens
+// with ("Atlas blocker: rpi-alert/bench-first-run"), so the issue and the blocker meet
+// without anyone editing atlas.json first.
+export function blockerMark(body) {
+  const m = String(body || '').match(/^\s*Atlas blocker:\s*([a-z0-9][a-z0-9-]*\/[a-z0-9][a-z0-9.-]*)\s*$/im);
+  return m ? m[1].toLowerCase() : null;
+}
+
 // ---------------------------------------------------------------- watch paths
 
 export function watchMatches(watch, file) {

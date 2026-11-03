@@ -6,7 +6,7 @@
 import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { execFileSync } from 'node:child_process';
-import { ROOT, validate, crossCheck, parseTitle, watchMatches } from '../tools/lib.mjs';
+import { ROOT, validate, crossCheck, parseTitle, watchMatches, blockerMark } from '../tools/lib.mjs';
 
 const fails = [];
 const check = (ok, msg) => { if (!ok) fails.push(msg); };
@@ -58,6 +58,9 @@ check(watchMatches(['db/migrations/*ingest*'], 'db/migrations/0010_ingest_http.s
 check(!watchMatches(['db/migrations/*ingest*'], 'db/migrations/0011_other.sql'), 'watch: glob miss');
 check(watchMatches(['agent/vendor/'], 'agent/vendor/meganet/SOURCE'), 'watch: directory');
 check(watchMatches(['serial*.js'], 'serial-gps.js') && !watchMatches(['serial*.js'], 'docs/serial-gps.js'), 'watch: root glob');
+check(blockerMark('Atlas blocker: rpi-alert/bench-first-run\n\n**Blocked:** …') === 'rpi-alert/bench-first-run', 'blockerMark: first line');
+check(blockerMark('Some text\r\nAtlas blocker: Flood-Net/237\r\n') === 'flood-net/237', 'blockerMark: later line, CRLF, case');
+check(blockerMark('See the Atlas blocker: rpi-alert/x in the notes') === null, 'blockerMark: only a line of its own');
 
 if (fails.length) { console.error(`✗ ${fails.length} problem${fails.length === 1 ? '' : 's'}:\n- ${fails.join('\n- ')}`); process.exit(1); }
-console.log(`✓ registry (${reg.repos.length}), fallbacks, scripts, page links, parsers`);
+console.log(`✓ registry (${reg.repos.length}), fallbacks, scripts, page links, parsers, blocker tags`);
