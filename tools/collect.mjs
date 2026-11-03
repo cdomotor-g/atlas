@@ -121,7 +121,7 @@ async function collectRepo(r) {
       return {
         n: i.number, raw: i.title, ...t, url: i.html_url, updated: i.updated_at, created: i.created_at,
         comments: i.comments, labels: i.labels.map(l => l.name), mentions,
-        ...(t.human ? { excerpt: excerpt(i.body) } : {}),
+        ...(t.human || t.computer ? { excerpt: excerpt(i.body) } : {}),
         ...(blocker ? { blocker } : {}),
       };
     });

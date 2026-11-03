@@ -70,6 +70,8 @@ check(v3.entry === 'station-table' && v3.from === 'flood-net' && v3.to === 'quan
 const t = parseTitle('[Sub-issue of #42] [Sonnet5/Med] Fix flaky login test');
 check(t.structure === 'sub' && t.parent === 42 && t.model === 'Sonnet5' && t.effort === 'Med' && t.title === 'Fix flaky login test', 'parseTitle: sub-issue');
 check(parseTitle('[Standalone] [Human] Confirm CORS').human === true, 'parseTitle: human');
+{ const c = parseTitle('[Standalone] [Human] [Computer] Switch on the Azure provider'); check(c.human && c.computer && c.title === 'Switch on the Azure provider', 'parseTitle: computer'); }
+check(parseTitle('[Human] Fit the capacitor').computer === false, 'parseTitle: human, not computer');
 check(parseTitle('[Epic] Big thing').structure === 'epic', 'parseTitle: epic');
 check(parseTitle('No tags here').title === 'No tags here', 'parseTitle: untagged');
 check(watchMatches(['db/migrations/*ingest*'], 'db/migrations/0010_ingest_http.sql'), 'watch: glob');

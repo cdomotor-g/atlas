@@ -25,7 +25,7 @@
       {
         "id": "retirement",
         "what": "Retirement steps in Flood-Net's runbook (docs/floodwarning-net.md) are owner dashboard actions",
-        "on": "human",
+        "on": "computer",
         "kind": "access",
         "since": "2026-09-10",
         "holds": [
@@ -34,12 +34,19 @@
         ],
         "options": [
           {
+            "what": "On the owner's computer, signed in as them: work through the runbook's steps in order — copy any S3 archive bucket it used, remove fwlab.floodwarning.net's DNS record and Access app and any tunnel or load balancer left, leave unknown DNS alone, add the README line saying floodwarning.net moved to Flood-Net, then archive this repository — asking before each deletion; the owner cancels anything paid",
+            "by": "computer",
+            "effort": "an hour, owner present",
+            "pros": "clears it in one sitting; the owner approves rather than clicks",
+            "cons": "the owner has to be at the computer to say yes",
+            "recommended": true
+          },
+          {
             "what": "Open a [Standalone] [Human] issue on Flood-Net with click-by-click steps from the runbook and this repository's docs: copy any S3 archive bucket it used, remove fwlab.floodwarning.net's DNS record and Access app and any tunnel or load balancer left, cancel what bills, then archive this repository; and add it to Flood-Net's roadmap",
             "by": "agent",
             "effort": "Med",
             "model": "Sonnet5/Med",
-            "pros": "nothing tracks this today",
-            "recommended": true
+            "pros": "nothing tracks this today"
           },
           {
             "what": "Add the README line saying floodwarning.net moved to Flood-Net, then Settings → Archive this repository",

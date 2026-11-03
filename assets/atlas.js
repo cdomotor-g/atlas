@@ -127,6 +127,7 @@ function prepare(data) {
     r.r = 44 * (r.size || 1);
     r.comps = (m.components || []).map(c => ({ ...c, repo: r.id }));
     r.in = []; r.out = [];
+    for (const i of r.issues || []) if (i.computer) i.human = true; // [Computer]: an agent on the owner's computer does it, so it waits on them too
     r.humans = (r.issues || []).filter(i => i.human);
     r.ciFail = (r.ci || []).filter(c => c.conclusion === 'failure');
   }
@@ -152,22 +153,28 @@ function prepare(data) {
 // ways through it: the repository's own options, or a suggested one.
 const KIND = {
   decision: 'Someone has to choose.',
-  access: 'Needs an account, a secret or a setting only the owner holds.',
+  access: 'Needs an account, a secret or a setting behind the owner\'s sign-in. An agent on their computer can do it signed in as them.',
   hardware: 'Needs a device, a bench or a site visit.',
   money: 'Needs spending.',
   upstream: 'Waits on another repository or a vendor.',
   time: 'Waits for data to build up, or for a date.',
   other: '',
 };
+// "On your computer": a Claude session at the owner's own computer, signed in as them — Claude
+// in Chrome (or the Claude app's browser) for websites and dashboards, computer use for desktop
+// apps, Claude Code in a folder shared through Remote Control for a shell. What needs only the
+// owner's sign-in goes there; what needs their hands, money or say stays "Only you".
+const ON_COMPUTER = 'An agent at your computer, signed in as you: Claude in Chrome for websites and dashboards, computer use for desktop apps. You approve each site and app and type any password; it asks before anything that spends, deletes or can\'t be undone.';
 const LANES = [
-  { id: 'human', name: 'Only you', about: 'Credentials, hardware, money or a judgment call. The options say what an agent can take off your plate first.' },
+  { id: 'human', name: 'Only you', about: 'Hardware, money or a judgment call: what an agent can\'t do even signed in as you. The options say what one can take off your plate first.' },
+  { id: 'computer', name: 'On your computer', about: 'Behind your sign-in, not your judgment: a dashboard, a setting, an account page. Do it for me copies a brief for a Claude session on your computer (Dispatch, or the desktop app with Claude in Chrome); it works signed in as you while you approve.' },
   { id: 'agent', name: 'An agent can clear', about: 'Nobody has to decide anything: hand one to a session with the prompt.' },
   { id: 'repo', name: 'Waiting on another repo', about: 'Clears when the other repository moves. The options say how to make it move.' },
 ];
 // What clearing a blocker takes — the columns of "What it takes".
 const NEEDS = [
   { id: 'decision', name: 'A decision', about: 'Someone has to choose. Usually minutes once the options are in front of you.' },
-  { id: 'access', name: 'Your login or a setting', about: 'An account, a secret or a dashboard setting only you hold.' },
+  { id: 'access', name: 'Your sign-in', about: 'An account, a secret or a dashboard setting behind your sign-in. An agent on your computer can do it as you.' },
   { id: 'hardware', name: 'Hardware or a site', about: 'A device, a bench or a site visit.' },
   { id: 'money', name: 'Money', about: 'Something has to be bought.' },
   { id: 'time', name: 'Time or real use', about: 'Waits for data to build up, for a date, or for real use.' },
@@ -202,23 +209,35 @@ function minutesOf(e) {
 }
 const effortOf = mins => mins === null ? 'none' : EFFORT.find(x => x.max !== null && mins <= x.max).id;
 // A [Human] issue's title says roughly what it needs.
+const HANDS = /\b(sites?|bench|hardware|masts?|antennas?|technician|trial|install|commission|field)\b/i;
+const MONEY = /\b(buy|order|pay|spend|purchase)\b/i;
 function guessKind(t) {
   if (/^(decide|choose|review|check|spot-check|maybe)\b/i.test(t)) return 'decision';
   if (/\b(sign[- ]?in|switch(es)? on|settings?|secrets?|dashboard|auth|tokens?|credentials?|accounts?|DNS|rename|passwords?)\b/i.test(t)) return 'access';
-  if (/\b(sites?|bench|hardware|masts?|antennas?|technician|trial|install|commission|field)\b/i.test(t)) return 'hardware';
-  if (/\b(buy|order|pay|spend|purchase)\b/i.test(t)) return 'money';
+  if (HANDS.test(t)) return 'hardware';
+  if (MONEY.test(t)) return 'money';
   return null;
 }
 let BLOCKERS = [], BLK = new Map();
 const issueNum = ref => { const m = String(ref || '').match(/^#(\d+)$/); return m ? +m[1] : null; };
 function whoOf(on) {
   if (!on || on === 'human') return 'human';
-  if (on === 'agent') return 'agent';
+  if (on === 'agent' || on === 'computer') return on;
   const id = on.split('#')[0];
   return R.has(id) ? id : 'human';
 }
-const laneOf = b => b.who === 'human' ? 'human' : b.who === 'agent' ? 'agent' : 'repo';
-const needOf = b => b.lane === 'agent' ? 'agent' : b.lane === 'repo' ? 'upstream' : NEEDS.some(n => n.id === b.kind) ? b.kind : 'other';
+const laneOf = b => ['human', 'computer', 'agent'].includes(b.who) ? b.who : 'repo';
+const needOf = b => b.lane === 'agent' ? 'agent' : b.lane === 'repo' ? 'upstream' : NEEDS.some(n => n.id === b.kind) ? b.kind : b.lane === 'computer' ? 'access' : 'other';
+// Who a [Human] issue waits on: the blocker that stands for it if there is one, else its own
+// tags — [Computer], or a title about a sign-in, a setting or a dashboard (and not hardware,
+// a site, another person or money as well), is for your computer.
+const asYou = i => !!i.computer || (guessKind(i.title) === 'access' && !HANDS.test(i.title) && !MONEY.test(i.title));
+function issueLane(r, i) {
+  const key = `${r.repo.toLowerCase()}#${i.n}`;
+  const b = BLOCKERS.find(x => x.iss?.key === key && (x.lane === 'human' || x.lane === 'computer'));
+  return b ? b.lane : asYou(i) ? 'computer' : 'human';
+}
+const issueBlocker = (r, i) => BLOCKERS.find(x => x.iss?.key === `${r.repo.toLowerCase()}#${i.n}` && x.lane === 'computer');
 
 // Tags: every blocker can be found by one. Its issue when it has one (#237, or MegaNet#239
 // for an issue in another repository); otherwise the Atlas's name for it — its id in
@@ -304,13 +323,17 @@ function buildBlockers() {
     for (const i of r.issues || []) {
       if (!i.human || cov.has(i.n) || /^roadmap\b/i.test(i.title)) continue;
       const children = (r.issues || []).filter(c => c.structure === 'sub' && c.parent === i.n).map(c => `#${c.n}`);
-      const kind = guessKind(i.title);
-      out.push({ key: `${r.id}:i${i.n}`, slug: name(r, String(i.n)), repo: r, what: `#${i.n} ${i.title}`, on: 'human', who: 'human', kind, kindGuessed: !!kind,
+      const mine = asYou(i);
+      let kind = guessKind(i.title) || (i.computer ? 'access' : null);
+      if (kind === 'access' && !mine) kind = HANDS.test(i.title) ? 'hardware' : 'money'; // a login, but hands or money too
+      out.push({ key: `${r.id}:i${i.n}`, slug: name(r, String(i.n)), repo: r, what: `#${i.n} ${i.title}`, on: 'human', who: mine ? 'computer' : 'human', kind, kindGuessed: !!kind && !i.computer, tagged: !!i.computer,
         since: i.created?.slice(0, 10), issue: `#${i.n}`, holds: children, source: 'issue', context: i.excerpt || '',
-        options: [
-          { what: `Do what #${i.n} asks; its steps are in the issue.`, by: 'human', recommended: true, issue: `#${i.n}` },
-          { what: `Do every part of #${i.n} that needs no credentials, hardware or decision, and turn the rest into a click-by-click list for the owner in the issue.`, by: 'agent', model: 'Sonnet5/Med', effort: 'Low' },
-        ] });
+        options: mine
+          ? [{ what: `Do what #${i.n} asks, signed in as me, from the steps in the issue; tick each one off there as it's done.`, by: 'computer', recommended: true, issue: `#${i.n}` },
+             { what: `Do it yourself from the steps in #${i.n}.`, by: 'human', issue: `#${i.n}` }]
+          : [{ what: `Do what #${i.n} asks; its steps are in the issue.`, by: 'human', recommended: true, issue: `#${i.n}` },
+             { what: `Do every part of #${i.n} that needs no hardware, money or decision — signed in as me where it needs a login — and leave what's left for me as a short list in the issue.`, by: 'computer', effort: 'Low' }],
+      });
     }
   }
 
@@ -321,6 +344,9 @@ function buildBlockers() {
     // "#237 switch accounts on…" reads "Switch accounts on…" beside the tag #237.
     const bare = b.iss ? b.what.replace(new RegExp(`^\\s*(?:[\\w.-]+\\/[\\w.-]+)?#${b.iss.n}\\b[:\\s]*`), '') : b.what;
     b.title = bare === b.what ? b.what : bare.charAt(0).toUpperCase() + bare.slice(1);
+    // A blocker recorded on the owner that needs only their sign-in (kind access) goes to an
+    // agent on their computer: the login is what it borrows.
+    if (b.source === 'recorded' && b.who === 'human' && b.kind === 'access') { b.who = 'computer'; b.reframed = true; }
     b.lane = laneOf(b);
     b.need = needOf(b);
     b.age = b.since ? Math.max(0, Math.round(daysSince(b.since))) : null;
@@ -357,7 +383,7 @@ function buildBlockers() {
     walk(b);
     b.downstream = [...seen];
     b.frees = b.outs.length + other.size + b.downstream.reduce((n, x) => n + x.outs.length, 0);
-    b.score = b.frees * 3 + (b.lane === 'human' ? 1 : 0) + Math.min(b.age || 0, 60) / 20 + (b.source === 'recorded' ? 1 : 0);
+    b.score = b.frees * 3 + (b.lane === 'human' || b.lane === 'computer' ? 1 : 0) +Math.min(b.age || 0, 60) / 20 + (b.source === 'recorded' ? 1 : 0);
   }
   out.sort((a, b) => b.score - a.score);
   BLOCKERS = out;
@@ -378,7 +404,8 @@ function holdChip(h, repo) {
 }
 
 function byBadge(o) {
-  if (o.by === 'human') return `<span class="by by-human" title="Only you can do this">You</span>`;
+  if (o.by === 'human') return `<span class="by by-human" title="You do this yourself">You</span>`;
+  if (o.by === 'computer') return `<span class="by by-computer" title="${esc(ON_COMPUTER)}">Your computer</span>`;
   if (o.by === 'agent') return `<span class="by by-agent" title="An agent can do this${o.model ? ': ' + esc(o.model) + ' recommended' : ''}">Agent${o.model ? ` · ${esc(o.model)}` : ''}</span>`;
   const t = R.get(o.by);
   return t ? `<span class="by by-repo" title="Done in ${esc(t.name)}"><img src="${esc(t.logo)}" alt="">${esc(t.label || t.name)}</span>` : `<span class="by">${esc(o.by)}</span>`;
@@ -407,7 +434,29 @@ function helpPrompt(b, o) {
     `It's to clear a blocker in ${b.repo.name} (${b.repo.repo}): "${b.what}". The Atlas's tag for it: ${b.uid}.`,
     iss ? `The issue has the details: https://github.com/${iss.full}/issues/${iss.n}` : '',
     `Read ${iss ? 'the issue and ' : ''}the repository's CLAUDE.md first. Never ask me to paste a secret into the chat.`,
+    `If you can use my computer (Claude in Chrome for websites, computer use for apps), do the steps that only need me signed in yourself while I watch, and walk me through only what needs my hands, my money or my say.`,
   ].filter(Boolean).join('\n');
+}
+// For a Claude session at the owner's computer (Dispatch, or the desktop app with Claude in
+// Chrome): it does the steps signed in as them, within the rules the owner would set.
+function computerPrompt(b, o) {
+  const iss = o.issue ? issueAt(o.issue, b.repo) : b.iss;
+  return [
+    `On my computer, signed in as me: ${o.what}`,
+    '',
+    `It clears a blocker in ${b.repo.name} (${b.repo.repo}): "${b.what}". The Atlas's tag for it: ${b.uid}.`,
+    b.holds.length ? `It holds up: ${b.holds.join(', ')}.` : '',
+    iss ? `The issue has the steps: https://github.com/${iss.full}/issues/${iss.n} — read it first, and the repository's CLAUDE.md.` : `Read the repository's CLAUDE.md first: https://github.com/${b.repo.repo}`,
+    '',
+    'How to work:',
+    '- Websites and dashboards in my browser, where I am already signed in (Claude in Chrome, or the Claude app\'s own browser). Desktop apps with computer use. Anything that needs a shell here, in a Claude Code session in a folder I share through Remote Control.',
+    '- Ask me for access to each site or app before you use it. When a page asks for a password or a two-factor code, stop and let me type it.',
+    '- Never write a secret (a key, token or password) into the chat, a file, an issue or a commit.',
+    '- Ask me before anything that deletes, publishes, sends a message as me or can\'t be undone, and before any choice the steps leave open. I place orders and payments myself: get them ready and hand them to me.',
+    '- After each step, check that it took (reload, read the setting back), and tick it off in the issue.',
+    '',
+    `When it's done, comment on the issue with what you did and what's left, and update status.blocked in ${manifestWhere(b.repo)} (or ask a coding session to): take the blocker out if it's cleared, or say what's left.`,
+  ].filter((x, k, a) => x !== '' || a[k - 1] !== '').join('\n');
 }
 
 // Behind upstream: what changed, since when. The link records where the consumer last caught
@@ -465,7 +514,8 @@ function closedPrompt(b) {
   ].join('\n');
 }
 function whoChip(b) {
-  if (b.lane === 'human') return term('Only you', 'Only you can clear this: credentials, hardware, money or a judgment call.', 'human');
+  if (b.lane === 'human') return term('Only you', 'Only you can clear this: hardware, money or a judgment call — what an agent can\'t do even signed in as you.', 'human');
+  if (b.lane === 'computer') return term('On your computer', ON_COMPUTER, 'computer');
   if (b.lane === 'agent') return term('An agent can clear it', 'Nobody has to decide anything: hand it to a session with the prompt.', 'acc');
   const on = R.get(b.who);
   return `<span class="chip waits" title="Clears when ${esc(on.name)} moves">waits on <img src="${esc(on.logo)}" alt="">${esc(on.label || on.name)}</span>`;
@@ -473,9 +523,13 @@ function whoChip(b) {
 
 function optsHtml(b) {
   const opts = b.options.length ? b.options : [{ what: 'No way through recorded yet. Ask an agent in this repository to list the options.', by: 'agent', model: 'Sonnet5/Low' }];
+  // A step of yours in a blocker that needs only your sign-in can go to an agent on your computer too.
+  const btns = o => o.by === 'computer' ? doItBtn(b, o)
+    : o.by === 'human' ? `${b.lane === 'computer' ? doItBtn(b, o) : ''}${promptBtn(helpPrompt(b, o), 'Help me')}`
+    : promptBtn(optionPrompt(b, o), 'Prompt');
   return `<ol class="opts" aria-label="Ways through">${opts.map(o => `<li class="opt ${o.recommended ? 'rec' : ''}">
       <div class="opt-head">${byBadge(o)}${o.effort ? `<span class="chip" title="Rough effort">${esc(o.effort)}</span>` : ''}${o.recommended ? '<span class="chip good" title="The option the repository would pick">suggested</span>' : ''}
-        ${o.by === 'human' ? promptBtn(helpPrompt(b, o), 'Help me') : promptBtn(optionPrompt(b, o), 'Prompt')}</div>
+        ${btns(o)}</div>
       <div class="opt-what">${rich(o.what, (R.get(o.by) || b.repo).repo)}${o.issue && o.issue !== b.issue ? ` ${rich(o.issue, b.repo.repo)}` : ''}</div>
       ${o.pros || o.cons ? `<div class="opt-pc">${o.pros ? `<span><b>+</b> ${esc(o.pros)}</span>` : ''}${o.cons ? `<span><b>−</b> ${esc(o.cons)}</span>` : ''}</div>` : ''}
     </li>`).join('')}</ol>`;
@@ -502,13 +556,13 @@ function blockerCard(b, { compact = false } = {}) {
 // The one place that says everything about a blocker: what it is, what has to clear first,
 // what it frees, the ways through, and how to give it an issue when it has none.
 function newIssueTitle(b) {
-  return `[Standalone] ${b.lane === 'human' ? '[Human]' : `[${b.rec?.model || 'Sonnet5/Med'}]`} ${cut(b.title, 110)}`;
+  return `[Standalone] ${b.lane === 'human' ? '[Human]' : b.lane === 'computer' ? '[Human] [Computer]' : `[${b.rec?.model || 'Sonnet5/Med'}]`} ${cut(b.title, 110)}`;
 }
 const issueHome = b => b.source === 'ask' ? R.get(b.target) : b.lane === 'repo' && R.get(b.who) ? R.get(b.who) : b.repo;
 const pageLink = b => `https://${D.owner}.github.io/atlas/#blockers/${b.uid}`;
 function newIssueUrl(b) {
   const where = issueHome(b);
-  const opt = (o, k) => `${k + 1}. ${o.recommended ? '**Suggested.** ' : ''}${o.by === 'human' ? 'You' : o.by === 'agent' ? `Agent${o.model ? ` (${o.model})` : ''}` : (R.get(o.by)?.name || o.by)}${o.effort ? `, ${o.effort}` : ''}: ${cut(o.what, 420)}`
+  const opt = (o, k) => `${k + 1}. ${o.recommended ? '**Suggested.** ' : ''}${o.by === 'human' ? 'You' : o.by === 'computer' ? 'An agent on your computer, signed in as you' : o.by === 'agent' ? `Agent${o.model ? ` (${o.model})` : ''}` : (R.get(o.by)?.name || o.by)}${o.effort ? `, ${o.effort}` : ''}: ${cut(o.what, 420)}`
     + (o.pros ? `\n   + ${cut(o.pros, 160)}` : '') + (o.cons ? `\n   − ${cut(o.cons, 160)}` : '');
   const record = b.source === 'ask' ? `\`issue\` on this ask (\`asks\`) in ${manifestWhere(b.repo)}, as ${where.repo}#N` : `\`issue\` on the blocker \`${b.slug}\` (\`status.blocked\`) in ${manifestWhere(b.repo)}`;
   let body = [
@@ -535,7 +589,7 @@ function fileIssuePrompt(b) {
     `The blocker (${b.repo.name}, ${b.source === 'ask' ? 'an ask in atlas.json\'s asks' : `status.blocked${b.named ? ` id \`${b.slug}\`` : ''}`}): "${b.what}"${b.since ? `, since ${b.since}` : ''}.`,
     b.holds.length ? `It holds up: ${b.holds.join('; ')}.` : '',
     '',
-    `1. Open an issue in ${where.repo} titled like "${newIssueTitle(b)}" (a short plain title is fine). Start its body with the line "Atlas blocker: ${b.uid}", then what is blocked, what it holds up and the ways through as atlas.json lists them${b.lane === 'human' ? ', with the owner\'s part click by click' : ''}.`,
+    `1. Open an issue in ${where.repo} titled like "${newIssueTitle(b)}" (a short plain title is fine). Start its body with the line "Atlas blocker: ${b.uid}", then what is blocked, what it holds up and the ways through as atlas.json lists them${b.lane === 'human' ? ', with the owner\'s part click by click' : b.lane === 'computer' ? ', with the signed-in steps click by click so an agent on the owner\'s computer can follow them' : ''}.`,
     `2. Put the new issue in ${b.source === 'ask' ? `\`issue\` on that ask, as ${where.repo}#N,` : '`issue` on that blocker'}${b.source === 'recorded' && !b.named ? ` and give the blocker "id": "${b.slug}"` : ''} in ${manifestWhere(b.repo)}, and push.`,
     '',
     `Read ${where.repo}'s CLAUDE.md first and follow it. Recommended: Sonnet5 / Low.`,
@@ -561,8 +615,8 @@ function trackedHtml(b) {
 }
 function sourceHtml(b) {
   const r = b.repo;
-  if (b.source === 'recorded') return `Recorded in ${manifestLink(r)} under <code>status.blocked</code>${b.named ? `, id <code>${esc(b.slug)}</code>` : ''}.`;
-  if (b.source === 'issue') return `A <code>[Human]</code> issue that ${esc(r.name)}'s atlas.json doesn't list as a blocker yet.`;
+  if (b.source === 'recorded') return `Recorded in ${manifestLink(r)} under <code>status.blocked</code>${b.named ? `, id <code>${esc(b.slug)}</code>` : ''}.${b.reframed ? ` It is on <code>"human"</code> there, but what it needs is your sign-in (<code>access</code>), so the Atlas puts it with an agent on your computer. Write <code>"on": "computer"</code> to say so in the file, or another kind if it needs more of you.` : ''}`;
+  if (b.source === 'issue') return `A <code>[Human]</code> issue that ${esc(r.name)}'s atlas.json doesn't list as a blocker yet.${b.lane === 'computer' ? ` ${b.tagged ? 'Its title is tagged <code>[Computer]</code>' : 'Its title is about a sign-in, a setting or a dashboard'}, so the Atlas puts it with an agent on your computer.` : ''}`;
   if (b.source === 'drift') return `Worked out by the Atlas from <code>${esc(b.lk.entry)}</code> under <code>consumes</code> in ${manifestLink(r)}: ${esc(R.get(b.lk.from).name)} has changed a file it watches since ${esc(r.name)} last caught up.`;
   if (b.source === 'ask') return `${esc(r.name)} asked this of ${esc(R.get(b.target).name)} in ${manifestLink(r)} under <code>asks</code>.`;
   if (b.source === 'ci') return `The latest run of ${esc(r.name)}'s workflow failed.`;
@@ -624,14 +678,14 @@ const ICON = {
   quick: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 1v13.5H15" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="5" cy="4.5" r="1.8"/><circle cx="8.5" cy="8" r="1.8"/><circle cx="12.5" cy="11" r="1.8"/><circle cx="5" cy="10" r="1.8" opacity=".4"/></svg>',
 };
 const BMODES = [
-  { id: 'lanes', name: 'Who clears it', tip: 'Three lanes: only you, an agent can, waiting on another repository',
-    about: 'Every blocker as a card, in three lanes by who can clear it, most-freeing first. Each card has its tag, what it holds up and the ways through — <b>Prompt</b> hands an option to a new session; <b>Help me</b> asks one to walk you through yours.' },
+  { id: 'lanes', name: 'Who clears it', tip: 'Four lanes: only you, on your computer, an agent can, waiting on another repository',
+    about: 'Every blocker as a card, in four lanes by who can clear it, most-freeing first. Each card has its tag, what it holds up and the ways through — <b>Prompt</b> hands an option to a new session; <b>Do it for me</b> hands one to a Claude session on your computer, which does it signed in as you; <b>Help me</b> asks one to walk you through yours.' },
   { id: 'chains', name: 'What frees what', tip: 'Each blocker, then what clearing it frees, left to right',
     about: 'Read each row left to right: who can clear it, the blocker, then what clearing it frees — another blocker first where there is one (sometimes in another repository), then the work it holds up. Chains, where one blocker stands in front of another, come first.' },
   { id: 'needs', name: 'What it takes', tip: 'A grid: each repository against what clearing its blockers takes',
-    about: 'Every blocker by what clearing it takes, one row per repository. Read down a column to do them in one go: the decisions you could make in one sitting, the dashboards you would sign in to, what needs the bench.' },
+    about: 'Every blocker by what clearing it takes, one row per repository. Read down a column to do them in one go: the decisions you could make in one sitting, the sign-ins one session on your computer could work through, what needs the bench.' },
   { id: 'quick', name: 'Quick wins', tip: 'How big the way through is, against how much it frees',
-    about: 'Across: how big the suggested way through is. Up: how much clearing it frees, counting what the blockers behind it hold up too. Start top left — small jobs that free a lot. Blue tags are agent jobs: your part is handing over the prompt.' },
+    about: 'Across: how big the suggested way through is. Up: how much clearing it frees, counting what the blockers behind it hold up too. Start top left — small jobs that free a lot. Blue tags are agent jobs and indigo ones are for an agent on your computer: your part is handing over the prompt.' },
 ];
 let bmode = store.get('bmode', 'lanes');
 if (!BMODES.some(m => m.id === bmode)) bmode = 'lanes';
@@ -639,7 +693,7 @@ const blkMatch = (b, q) => !q || `${b.tag} ${b.uid} ${b.what} ${b.repo.name} ${b
 
 function blkKey(mode) {
   return `<div class="bkey" aria-label="Key">
-    <span><i class="sw lane-human"></i>only you</span><span><i class="sw lane-agent"></i>an agent can</span><span><i class="sw lane-repo"></i>waits on another repo</span>
+    <span><i class="sw lane-human"></i>only you</span><span title="${esc(ON_COMPUTER)}"><i class="sw lane-computer"></i>on your computer: an agent, signed in as you</span><span><i class="sw lane-agent"></i>an agent can</span><span><i class="sw lane-repo"></i>waits on another repo</span>
     <span><span class="btag lane-human demo"><b>#237</b></span> its issue</span>
     <span><span class="btag lane-human untracked demo"><b>bench-first-run</b></span> no issue yet: the Atlas's name for it</span>
     ${BLOCKERS.some(b => b.closed) ? `<span><span class="btag lane-human demo"><b>${esc(BLOCKERS.find(b => b.closed).tag)}</b><i class="bt-closed">closed</i></span> its issue is closed: it may be cleared</span>` : ''}
@@ -705,7 +759,8 @@ function chainsHtml(pick) {
 }
 function leadHtml(b) {
   if (b.lane === 'repo') { const t = R.get(b.who); return `<div class="clead lane-repo" title="Waits on ${esc(t.name)} to move"><img src="${esc(t.logo)}" alt=""><span>${esc(cut(t.label || t.name, 14))}</span></div>`; }
-  return `<div class="clead lane-${b.lane}" title="${b.lane === 'human' ? 'Only you can clear it' : 'An agent can clear it'}"><span>${b.lane === 'human' ? 'You' : 'Agent'}</span></div>`;
+  const [tip, word] = { human: ['Only you can clear it', 'You'], computer: ['An agent on your computer can clear it, signed in as you', 'Your computer'], agent: ['An agent can clear it', 'Agent'] }[b.lane];
+  return `<div class="clead lane-${b.lane}" title="${tip}"><span>${word}</span></div>`;
 }
 function chainNode(b, P, seen, note) {
   seen.add(b);
@@ -767,11 +822,11 @@ const expanded = new Set(store.get('expanded', []));
 let selected = null; // { type: 'repo'|'link'|'comp', id }
 let gWorld, gZones, gLinks, gNodes, gComps, gBlock;
 let showBlockers = store.get('blockers', false);
-// Where "You" and "Agents" stand on the map when blockers are shown: below everything.
+// Where "You", "Your computer" and "Agents" stand on the map when blockers are shown: below everything.
 function actors() {
   const xs = D.repos.map(r => r.x), maxY = Math.max(...D.repos.map(r => r.y + r.r));
   const mid = (Math.min(...xs) + Math.max(...xs)) / 2;
-  return { human: { x: mid - 210, y: maxY + 170, r: 46, name: 'You' }, agent: { x: mid + 210, y: maxY + 170, r: 46, name: 'Agents' } };
+  return { human: { x: mid - 260, y: maxY + 170, r: 46, name: 'You' }, computer: { x: mid, y: maxY + 170, r: 46, name: 'Your computer' }, agent: { x: mid + 260, y: maxY + 170, r: 46, name: 'Agents' } };
 }
 
 function buildMap() {
@@ -785,7 +840,7 @@ function buildMap() {
     const m = svg('marker', { id: `arrow-${k}`, viewBox: '0 0 10 10', refX: 8.5, refY: 5, markerWidth: 7, markerHeight: 7, orient: 'auto-start-reverse' }, defs);
     svg('path', { d: 'M0,1 L9,5 L0,9 z', style: `fill: var(--${k === 'behind' ? 'bad' : k === 'stale' ? 'warn' : 'k-' + k})` }, m);
   }
-  for (const [k, v] of [['human', 'human'], ['agent', 'accent'], ['repo', 'bad']]) {
+  for (const [k, v] of [['human', 'human'], ['computer', 'computer'], ['agent', 'accent'], ['repo', 'bad']]) {
     const m = svg('marker', { id: `arrow-b-${k}`, viewBox: '0 0 10 10', refX: 8.5, refY: 5, markerWidth: 5, markerHeight: 5, orient: 'auto' }, defs);
     svg('path', { d: 'M0,1 L9,5 L0,9 z', style: `fill: var(--${v})` }, m);
   }
@@ -810,8 +865,8 @@ function drawAll() {
   drawZones(); drawNodes(); drawComps(); drawLinks(); drawBlockers(); applyView(); applyHighlight();
 }
 
-// One line per repository and per whoever can clear its blockers: to You, to Agents, or
-// to the repository it waits on. Thickness is how many; the badge says how many.
+// One line per repository and per whoever can clear its blockers: to You, to Your computer
+// (an agent there, signed in as you), to Agents, or to the repository it waits on. Thickness is how many; the badge says how many.
 function drawBlockers() {
   gBlock.innerHTML = '';
   $('#map').classList.toggle('show-blockers', showBlockers);
@@ -824,14 +879,14 @@ function drawBlockers() {
     groups.get(key).list.push(b);
   }
   for (const g of groups.values()) {
-    const a = g.repo, tgt = g.who === 'human' ? A.human : g.who === 'agent' ? A.agent : R.get(g.who);
+    const a = g.repo, tgt = A[g.who] || R.get(g.who);
     if (!tgt) continue;
     const dx = tgt.x - a.x, dy = tgt.y - a.y, dist = Math.hypot(dx, dy) || 1;
     const cx = (a.x + tgt.x) / 2 - dy / dist * dist * 0.12, cy = (a.y + tgt.y) / 2 + dx / dist * dist * 0.12;
     const t1 = Math.hypot(cx - a.x, cy - a.y) || 1, t2 = Math.hypot(tgt.x - cx, tgt.y - cy) || 1;
     const sx = a.x + (cx - a.x) / t1 * (a.r + 4), sy = a.y + (cy - a.y) / t1 * (a.r + 4);
     const ex = tgt.x - (tgt.x - cx) / t2 * (tgt.r + 8), ey = tgt.y - (tgt.y - cy) / t2 * (tgt.r + 8);
-    const lane = g.who === 'human' ? 'human' : g.who === 'agent' ? 'agent' : 'repo';
+    const lane = A[g.who] ? g.who : 'repo';
     const el = svg('g', { class: `bline lane-${lane}`, 'data-repo': a.id, 'data-who': g.who }, gBlock);
     const d = `M${sx.toFixed(1)},${sy.toFixed(1)} Q${cx.toFixed(1)},${cy.toFixed(1)} ${ex.toFixed(1)},${ey.toFixed(1)}`;
     svg('path', { class: 'vis', d, style: `stroke-width:${Math.min(2 + g.list.length * 0.8, 9)}px`, 'marker-end': `url(#arrow-b-${lane})` }, el);
@@ -845,6 +900,7 @@ function drawBlockers() {
     const g = svg('g', { class: `actor actor-${id}`, 'data-lane': id, transform: `translate(${p.x},${p.y})`, tabindex: 0, role: 'button', 'aria-label': `${p.name}: ${n} blockers` }, gBlock);
     svg('circle', { r: p.r }, g);
     if (id === 'human') { svg('circle', { class: 'glyph', cx: 0, cy: -11, r: 10 }, g); svg('path', { class: 'glyph', d: 'M-20,22 C-20,4 20,4 20,22 Z' }, g); }
+    else if (id === 'computer') { svg('rect', { class: 'glyph', x: -19, y: -19, width: 38, height: 26, rx: 4 }, g); svg('rect', { class: 'glyph-eye', x: -15, y: -15, width: 30, height: 18, rx: 2 }, g); svg('path', { class: 'glyph', d: 'M-25,10 L25,10 L21,17 L-21,17 Z' }, g); svg('circle', { class: 'glyph', cx: 0, cy: -9, r: 3.6 }, g); svg('path', { class: 'glyph', d: 'M-7,1 C-7,-5 7,-5 7,1 Z' }, g); }
     else { svg('rect', { class: 'glyph', x: -17, y: -15, width: 34, height: 28, rx: 7 }, g); svg('circle', { class: 'glyph-eye', cx: -7, cy: -2, r: 4 }, g); svg('circle', { class: 'glyph-eye', cx: 7, cy: -2, r: 4 }, g); svg('path', { class: 'glyph', d: 'M-2,-15 L-2,-22 L2,-22 L2,-15 Z' }, g); }
     const name = svg('text', { class: 'name', y: p.r + 19 }, g); name.textContent = p.name;
     const sub = svg('text', { class: 'tag', y: p.r + 33 }, g); sub.textContent = `${n} blocker${n === 1 ? '' : 's'} to clear`;
@@ -1154,7 +1210,8 @@ function hover(e) {
   const bline = t.closest?.('.bline'), actor = t.closest?.('.actor');
   if (bline || actor) {
     const list = bline ? BLOCKERS.filter(b => b.repo.id === bline.dataset.repo && b.who === bline.dataset.who) : BLOCKERS.filter(b => b.lane === actor.dataset.lane);
-    const head = bline ? `${esc(R.get(bline.dataset.repo).name)} → ${esc(bline.dataset.who === 'human' ? 'you' : bline.dataset.who === 'agent' ? 'an agent' : R.get(bline.dataset.who).name)}` : esc(actor.dataset.lane === 'human' ? 'Waiting on you' : 'An agent can clear');
+    const WHO = { human: 'you', computer: 'an agent on your computer', agent: 'an agent' }, HEAD = { human: 'Waiting on you', computer: 'An agent on your computer can clear, signed in as you', agent: 'An agent can clear' };
+    const head = bline ? `${esc(R.get(bline.dataset.repo).name)} → ${esc(WHO[bline.dataset.who] || R.get(bline.dataset.who).name)}` : esc(HEAD[actor.dataset.lane]);
     showTip(e, `<b>${head} · ${list.length}</b><ul style="margin:4px 0 0;padding-left:16px">${list.slice(0, 6).map(b => `<li>${esc(b.what.length > 70 ? b.what.slice(0, 68) + '…' : b.what)}</li>`).join('')}${list.length > 6 ? `<li class="muted">and ${list.length - 6} more</li>` : ''}</ul><span class="muted">Click for the ways through.</span>`);
     return;
   }
@@ -1256,10 +1313,11 @@ function goRepo(id) {
 
 const PROMPTS = new Map();
 let promptSeq = 0;
-function promptBtn(text, label = 'Copy prompt') {
+function promptBtn(text, label = 'Copy prompt', title = 'Copies a ready-made brief for a new Claude Code session (or Dispatch), so an agent can pick this up cold.', cls = '') {
   const id = 'p' + (++promptSeq); PROMPTS.set(id, text);
-  return `<button class="copy" data-copy="${id}" title="Copies a ready-made brief for a new Claude Code session (or Dispatch), so an agent can pick this up cold.">${label}</button>`;
+  return `<button class="copy${cls ? ' ' + cls : ''}" data-copy="${id}" title="${esc(title)}">${label}</button>`;
 }
+const doItBtn = (b, o) => promptBtn(computerPrompt(b, o), 'Do it for me', 'Copies a brief for a Claude session on your computer (Dispatch, or the desktop app with Claude in Chrome). It does this signed in as you; you approve each site, type any password, and say yes before anything that spends, deletes or can\'t be undone.', 'copy-computer');
 
 function issuePrompt(r, i) {
   const s = r.m.status || {};
@@ -1286,14 +1344,17 @@ function switchPrompt(r) {
   if (s.next?.length) lines.push('', 'Next:', ...s.next.map(x => `- ${x}`));
   if (s.blocked?.length) lines.push('', 'Blocked:', ...s.blocked.map(b => `- ${b.what} (on ${b.on})`));
   if (r.behindIn.length) lines.push('', 'Behind upstream:', ...r.behindIn.map(l => `- ${R.get(l.from).name}: ${l.what} — ${l.drift.note} ${l.on_change ? 'To catch up: ' + l.on_change : ''}`));
-  if (r.humans.length) lines.push('', 'Waiting on me:', ...r.humans.map(i => `- #${i.n} ${i.title}`));
+  const mine = r.humans.filter(i => issueLane(r, i) === 'human'), asMe = r.humans.filter(i => issueLane(r, i) === 'computer');
+  if (mine.length) lines.push('', 'Waiting on me:', ...mine.map(i => `- #${i.n} ${i.title}`));
+  if (asMe.length) lines.push('', 'Behind my sign-in (if you can use my computer, do these signed in as me, with me approving):', ...asMe.map(i => `- #${i.n} ${i.title}`));
   lines.push('', `Read CLAUDE.md, then the open issues, and tell me in five lines what you'd do first. Repository: https://github.com/${r.repo}`);
   return lines.join('\n');
 }
 
 function issueRow(r, i, showRepo) {
   const tags = [];
-  if (i.human) tags.push(term('Human', 'Needs you: credentials, physical access or a judgment call an agent cannot make.', 'human'));
+  const lane = i.human ? issueLane(r, i) : null;
+  if (i.human) tags.push(lane === 'computer' ? term('Your computer', ON_COMPUTER, 'computer') : term('Human', 'Tagged [Human]: it needs you. What only needs your sign-in an agent on your computer can do as you; hardware, money and judgment calls stay yours.', 'human'));
   if (i.model) tags.push(`<span class="chip model" title="The model and effort recommended for an agent picking this up.">${esc(i.model)}/${esc(i.effort)}</span>`);
   if (i.structure === 'epic') tags.push(term('Epic', 'A larger issue that groups sub-issues.', 'acc'));
   if (i.structure === 'sub') tags.push(`<span class="chip" title="Part of a larger epic.">of #${i.parent}</span>`);
@@ -1301,7 +1362,7 @@ function issueRow(r, i, showRepo) {
   return `<div class="issue">
     <span class="n">${showRepo ? `<img src="${esc(r.logo)}" alt="" style="width:16px;height:16px;border-radius:4px;vertical-align:-3px"> ` : ''}#${i.n}</span>
     <div class="t"><a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.title)}</a><div class="meta">${tags.join('')}</div></div>
-    ${i.human ? '' : promptBtn(issuePrompt(r, i), 'Prompt')}
+    ${!i.human ? promptBtn(issuePrompt(r, i), 'Prompt') : lane === 'computer' && issueBlocker(r, i) ? doItBtn(issueBlocker(r, i), issueBlocker(r, i).options.find(o => o.by === 'computer') || issueBlocker(r, i).rec) : ''}
   </div>`;
 }
 
@@ -1326,7 +1387,8 @@ function repoPanel(r) {
   };
   const issues = r.issues || [];
   const groups = [
-    ['Waiting on you', issues.filter(i => i.human)],
+    ['Waiting on you', issues.filter(i => i.human && issueLane(r, i) === 'human')],
+    ['On your computer', issues.filter(i => i.human && issueLane(r, i) === 'computer')],
     ['Ready for an agent', issues.filter(i => !i.human && i.model && i.structure !== 'epic')],
     ['Epics', issues.filter(i => i.structure === 'epic')],
     ['Untagged', issues.filter(i => !i.human && !i.model && i.structure !== 'epic')],
@@ -1410,7 +1472,7 @@ function linkPanel(l) {
 
 function blockedPanel(repoId, who) {
   const r = R.get(repoId), list = BLOCKERS.filter(b => b.repo.id === repoId && b.who === who);
-  const whoName = who === 'human' ? 'you' : who === 'agent' ? 'an agent' : R.get(who)?.name;
+  const whoName = who === 'human' ? 'you' : who === 'computer' ? 'an agent on your computer' : who === 'agent' ? 'an agent' : R.get(who)?.name;
   return `
   <div class="p-head"><div class="row1"><img src="${esc(r.logo)}" alt=""><div><h2>${esc(r.name)}</h2><div class="sub">${list.length} blocker${list.length === 1 ? '' : 's'} waiting on ${esc(whoName)}</div></div>
     <button class="icon-btn p-close" aria-label="Close">✕</button></div></div>
@@ -1460,12 +1522,12 @@ function renderRoadmap() {
       rows.push(ul(s.now, 'Now'));
       rows.push(ul(s.next, 'Next'));
       rows.push(ul(s.later, 'Later'));
-      const blocked = r.blockers.filter(b => b.source === 'recorded' || b.source === 'drift').map(b => `${rich(b.what, r.repo)} ${b.lane === 'human' ? term('you', 'Only you can clear this.', 'human') : b.lane === 'agent' ? term('agent', 'An agent can clear this.', 'acc') : `<span class="chip">${esc(R.get(b.who)?.name || b.who)}</span>`}${b.options.length ? ` <button class="chip linkish-chip" data-blk-open="${esc(b.uid)}" title="Open this blocker: what it frees and the ways through">${b.options.length} way${b.options.length === 1 ? '' : 's'} through</button>` : ''}`);
+      const blocked = r.blockers.filter(b => b.source === 'recorded' || b.source === 'drift').map(b => `${rich(b.what, r.repo)} ${b.lane === 'human' ? term('you', 'Only you can clear this.', 'human') : b.lane === 'computer' ? term('your computer', ON_COMPUTER, 'computer') : b.lane === 'agent' ? term('agent', 'An agent can clear this.', 'acc') : `<span class="chip">${esc(R.get(b.who)?.name || b.who)}</span>`}${b.options.length ? ` <button class="chip linkish-chip" data-blk-open="${esc(b.uid)}" title="Open this blocker: what it frees and the ways through">${b.options.length} way${b.options.length === 1 ? '' : 's'} through</button>` : ''}`);
       rows.push(`<div data-col="Blocked / behind">${blocked.length ? `<ul>${blocked.map(x => `<li>${x}</li>`).join('')}</ul>` : ''}</div>`);
     }
   }
   el.innerHTML = `<div class="page"><h2>Roadmap</h2>
-    <p class="intro">Every repository's Now / Next / Later, from the <code>status</code> in its own <code>atlas.json</code>. Each repository keeps its own detailed roadmap (linked in its panel); this is the one-screen summary they feed. Blocked items marked <span class="chip human">you</span> wait on you.</p>
+    <p class="intro">Every repository's Now / Next / Later, from the <code>status</code> in its own <code>atlas.json</code>. Each repository keeps its own detailed roadmap (linked in its panel); this is the one-screen summary they feed. Blocked items marked <span class="chip human">you</span> wait on you; <span class="chip computer" title="${esc(ON_COMPUTER)}">your computer</span> ones only need your sign-in, so an agent on your computer can do them as you.</p>
     <div class="road"><div class="hd">Repository</div><div class="hd">Now</div><div class="hd">Next</div><div class="hd">Later</div><div class="hd">Blocked / behind</div>${rows.join('')}</div></div>`;
   $$('[data-go-repo]', el).forEach(b => b.addEventListener('click', () => goRepo(b.dataset.goRepo)));
   $$('[data-blk-open]', el).forEach(b => b.addEventListener('click', e => { e.stopPropagation(); selected = { type: 'blocker', uid: b.dataset.blkOpen }; showView('blockers'); select(selected); }));
@@ -1479,32 +1541,40 @@ function renderBoard() {
   if (!boardRepos) boardRepos = new Set(withIssues.map(r => r.id));
   const q = ($('#search').value || '').toLowerCase();
   const pick = ISSUES.filter(i => boardRepos.has(i.repo.id) && (!q || `${i.title} ${i.repo.name} #${i.n}`.toLowerCase().includes(q)));
-  const humanBlocked = D.repos.flatMap(r => (r.m.status?.blocked || []).filter(b => b.on === 'human').map(b => ({ r, b })));
+  // Blockers a repository records on you that no issue stands for, split the same way as the issues.
+  const fromStatus = lane => BLOCKERS.filter(b => b.source === 'recorded' && b.lane === lane && boardRepos.has(b.repo.id) && !(b.iss && ISSUES.some(i => i.human && `${i.repo.repo.toLowerCase()}#${i.n}` === b.iss.key)));
+  const statusCard = b => `<div class="card"><div class="top"><img src="${esc(b.repo.logo)}" alt="">${esc(b.repo.name)} · from its status</div><div class="t">${rich(b.what, b.repo.repo)}</div>${b.lane === 'computer' ? `<div class="meta">${doItBtn(b, b.options.find(o => o.by === 'computer') || b.rec || { what: b.what, by: 'computer' })}</div>` : ''}</div>`;
+  const humanBlocked = fromStatus('human'), computerBlocked = fromStatus('computer');
   const drifting = L.filter(l => ['behind', 'stale'].includes(stateOf(l)));
   const card = i => {
     const tags = [];
-    if (i.human) tags.push(term('Human', 'Needs you.', 'human'));
+    const lane = i.human ? issueLane(i.repo, i) : null, ib = lane === 'computer' ? issueBlocker(i.repo, i) : null;
+    if (i.human) tags.push(lane === 'computer' ? term('Your computer', ON_COMPUTER, 'computer') : term('Human', 'Needs you: hardware, money or a judgment call.', 'human'));
     if (i.model) tags.push(`<span class="chip model" title="Recommended model / effort">${esc(i.model)}/${esc(i.effort)}</span>`);
     if (i.structure === 'epic') tags.push(term('Epic', 'Groups sub-issues.', 'acc'));
     if (i.structure === 'sub') tags.push(`<span class="chip">of #${i.parent}</span>`);
     tags.push(`<span class="chip">${esc(ago(i.updated))}</span>`);
     return `<div class="card"><div class="top"><img src="${esc(i.repo.logo)}" alt="">${esc(i.repo.name)} · #${i.n}</div>
       <div class="t"><a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.title)}</a></div>
-      <div class="meta">${tags.join('')}${i.human ? '' : promptBtn(issuePrompt(i.repo, i), 'Prompt')}</div></div>`;
+      <div class="meta">${tags.join('')}${!i.human ? promptBtn(issuePrompt(i.repo, i), 'Prompt') : ib ? doItBtn(ib, ib.options.find(o => o.by === 'computer') || ib.rec) : ''}</div></div>`;
   };
   const byModel = {};
   for (const i of pick.filter(i => !i.human && i.model && i.structure !== 'epic')) (byModel[i.model] ||= []).push(i);
   const effortRank = { Low: 0, Med: 1, High: 2, XHigh: 3, Max: 4 };
-  const human = pick.filter(i => i.human);
+  const human = pick.filter(i => i.human && issueLane(i.repo, i) === 'human'), asYouNow = pick.filter(i => i.human && issueLane(i.repo, i) === 'computer');
   const untagged = pick.filter(i => !i.human && !i.model && i.structure !== 'epic');
   const epics = pick.filter(i => i.structure === 'epic');
   el.innerHTML = `<div class="page"><h2>Board</h2>
-    <p class="intro">Every open issue across the repositories, sorted by who can move it. Tags come from issue titles (<code>[Human]</code>, <code>[Sonnet5/Med]</code>, <code>[Epic]</code>…). <b>Prompt</b> copies a ready brief for a new Claude Code session or Dispatch.</p>
+    <p class="intro">Every open issue across the repositories, sorted by who can move it. Tags come from issue titles (<code>[Human]</code>, <code>[Computer]</code>, <code>[Sonnet5/Med]</code>, <code>[Epic]</code>…). <b>Prompt</b> copies a ready brief for a new Claude Code session or Dispatch; <b>Do it for me</b> copies one for a Claude session on your computer, which works signed in as you.</p>
     <div class="filters">${withIssues.map(r => `<button data-repo="${esc(r.id)}" aria-pressed="${boardRepos.has(r.id)}"><img src="${esc(r.logo)}" alt="">${esc(r.name)} <b>${r.issues.length}</b></button>`).join('')}</div>
     <div class="board">
-      <div class="col"><h3><span>👤 Waiting on you</span><span>${human.length + humanBlocked.length}</span></h3><div class="sub">Only you can move these.</div>
+      <div class="col"><h3 title="${esc(ON_COMPUTER)}"><span>💻 On your computer</span><span>${asYouNow.length + computerBlocked.length}</span></h3><div class="sub">Only your sign-in: an agent on your computer can do these as you. <b>Do it for me</b> copies its brief.</div>
+        ${asYouNow.map(card).join('')}
+        ${computerBlocked.map(statusCard).join('')}
+        ${!asYouNow.length && !computerBlocked.length ? '<div class="empty">Nothing.</div>' : ''}
+        <h3 style="margin-top:16px"><span>👤 Waiting on you</span><span>${human.length + humanBlocked.length}</span></h3><div class="sub">Only you can move these: hardware, money or a judgment call.</div>
         ${human.map(card).join('')}
-        ${humanBlocked.map(({ r, b }) => `<div class="card"><div class="top"><img src="${esc(r.logo)}" alt="">${esc(r.name)} · from its status</div><div class="t">${rich(b.what, r.repo)}</div></div>`).join('')}
+        ${humanBlocked.map(statusCard).join('')}
         ${!human.length && !humanBlocked.length ? '<div class="empty">Nothing. Nice.</div>' : ''}</div>
       <div class="col"><h3><span>🤖 Ready for an agent</span><span>${Object.values(byModel).flat().length}</span></h3><div class="sub">Grouped by the recommended model.</div>
         ${Object.entries(byModel).sort((a, b) => b[1].length - a[1].length).map(([m, items]) => `<h3 style="margin-top:10px"><span class="chip model">${esc(m)}</span><span>${items.length}</span></h3>${items.sort((a, b) => (effortRank[a.effort] ?? 9) - (effortRank[b.effort] ?? 9)).map(card).join('')}`).join('') || '<div class="empty">None tagged.</div>'}</div>
@@ -1568,14 +1638,16 @@ function renderGuide() {
     <div class="box"><h4>4 · Back: asks travel upstream</h4>When a repo needs another to change, its agent files an issue in the other repo (or records it under <code>asks</code> until it can). Issues that name another repo show on the line between the two.</div>
   </div>
   <h3>Blockers</h3>
-  <p>Press <b>Blockers</b> on the map to see what is stopping work: a line from each repository to <b>You</b>, to <b>Agents</b>, or to the repository it waits on, as thick as the number of blockers on it. Click a line, or open the <b>Blockers</b> view, for each blocker, what it holds up, and the ways through it, each marked with who can do it, the effort and the one the repository would pick. Repositories record blockers and options in <code>status.blocked</code>; the Atlas adds <code>[Human]</code> issues, links behind upstream, asks nobody has filed and failing CI by itself.</p>
+  <p>Press <b>Blockers</b> on the map to see what is stopping work: a line from each repository to <b>You</b>, to <b>Your computer</b>, to <b>Agents</b>, or to the repository it waits on, as thick as the number of blockers on it. Click a line, or open the <b>Blockers</b> view, for each blocker, what it holds up, and the ways through it, each marked with who can do it, the effort and the one the repository would pick. Repositories record blockers and options in <code>status.blocked</code>; the Atlas adds <code>[Human]</code> issues, links behind upstream, asks nobody has filed and failing CI by itself.</p>
   <p>The Blockers view shows them four ways:</p>
   <ul>
-    <li><b>Who clears it</b> — a card for each, in three lanes: only you, an agent can, waiting on another repository.</li>
+    <li><b>Who clears it</b> — a card for each, in four lanes: only you, on your computer, an agent can, waiting on another repository.</li>
     <li><b>What frees what</b> — each blocker as a row read left to right: who can clear it, the blocker, then what clearing it frees. Where one blocker stands in front of another (its issue is in the other's <code>holds</code>, or it is the same issue seen from a second repository) the row branches into a chain.</li>
-    <li><b>What it takes</b> — a grid of repositories against what clearing each blocker takes: a decision, your login or a setting, hardware or a site, money, time, someone else, or agent work. Read down a column to clear several in one sitting.</li>
+    <li><b>What it takes</b> — a grid of repositories against what clearing each blocker takes: a decision, your sign-in, hardware or a site, money, time, someone else, or agent work. Read down a column to clear several in one sitting.</li>
     <li><b>Quick wins</b> — how big the suggested way through is, against how much clearing it frees. Start top left.</li>
   </ul>
+  <h4>You, your computer, or an agent</h4>
+  <p><b>Only you</b> is what needs your hands, your money or your say: the bench, a site visit, an order, a decision. <b>On your computer</b> is what needs only your sign-in — a dashboard, a setting, an account page, a repository to create. A Claude session at your computer does it signed in as you: Claude in Chrome (or the Claude app's own browser) for websites, computer use for desktop apps, Claude Code in a folder you share through Remote Control for a shell. <b>Do it for me</b> copies its brief: paste it into Dispatch, or a Claude desktop session with Claude in Chrome. You approve each site and app, type any password or two-factor code, and say yes before anything that deletes, publishes or can't be undone; orders and payments stay yours. A blocker a repository records on you with kind <code>access</code> goes here by itself, as does a <code>[Human]</code> issue tagged <code>[Computer]</code> or whose title is about a sign-in, a setting or a dashboard. <b>An agent can clear</b> is what any session can do from anywhere.</p>
   <h4>Tags: how to find a blocker</h4>
   <p>Every blocker has a tag. When it has an issue the tag is the issue number (<code>#237</code>, or <code>MegaNet#239</code> for an issue in another repository). When it has none, the tag is the Atlas's name for it, drawn <b>dashed</b>: the <code>id</code> it has in <code>status.blocked</code> (<code>bench-first-run</code>), or a name made from its first words. A tag marked <b>closed</b> points at an issue that has been closed, so the blocker may be cleared. A blocker marked <b>behind upstream</b> has no issue behind it: open <b>Why it's behind</b> on it for when its repository last caught up and the upstream commits since, which are the cause. Click any tag for one page with everything about the blocker: what it is, what has to clear first, what it frees, the ways through, and where it is recorded. Type a tag in the search box (Enter opens it), or link straight to one: <code>#blockers/rpi-alert/bench-first-run</code>.</p>
   <p>A blocker with no issue has <b>Make the issue on GitHub</b> in its page: it opens GitHub's new-issue form in the right repository, filled in with what it holds up and the ways through, starting with the line <code>Atlas blocker: rpi-alert/bench-first-run</code>. Keep that line: at its next collect the Atlas links the issue to the blocker by it, and the dashed tag becomes the issue number. Then put the number in <code>issue</code> on the blocker in atlas.json (or hand that to an agent with <b>Prompt: file it for me</b>).</p>
@@ -1654,7 +1726,8 @@ function renderStrip() {
   $('#strip').innerHTML = [
     `<span class="stat muted" title="Repositories on the map"><b>${D.repos.length}</b> repos · <b>${L.length}</b> links</span>`,
     `<button class="stat" data-go="board"><b>${issues}</b> open issues</button>`,
-    `<button class="stat human" data-go="blockers" data-lane="human" title="Blockers only you can clear: recorded ones and [Human] issues"><b>${BLOCKERS.filter(b => b.lane === 'human').length}</b> waiting on you</button>`,
+    `<button class="stat human" data-go="blockers" data-lane="human" title="Blockers only you can clear — hardware, money or a judgment call: recorded ones and [Human] issues"><b>${BLOCKERS.filter(b => b.lane === 'human').length}</b> waiting on you</button>`,
+    `<button class="stat computer" data-go="blockers" data-lane="computer" title="Blockers that need only your sign-in. ${esc(ON_COMPUTER)}"><b>${BLOCKERS.filter(b => b.lane === 'computer').length}</b> on your computer</button>`,
     `<button class="stat" data-go="blockers" title="Everything stopping work, with the ways through"><b>${BLOCKERS.length}</b> blockers</button>`,
     `<button class="stat ${behind ? 'bad' : ''}" data-go="links" title="Links where the provider has moved on since the consumer last caught up"><b>${behind}</b> behind upstream</button>`,
     stale ? `<button class="stat warn" data-go="links" title="Citations whose source has changed since they were last reviewed"><b>${stale}</b> may be stale</button>` : '',

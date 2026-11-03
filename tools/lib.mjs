@@ -118,9 +118,11 @@ export function crossCheck(manifest, knownIds) {
 // ---------------------------------------------------------------- issue titles
 
 // "[Sub-issue of #42] [Sonnet5/Med] Fix flaky test" →
-// { structure: 'sub', parent: 42, model: 'Sonnet5', effort: 'Med', human: false, title: 'Fix flaky test' }
+// { structure: 'sub', parent: 42, model: 'Sonnet5', effort: 'Med', human: false, computer: false, title: 'Fix flaky test' }
+// [Human] waits on the owner; [Computer] says an agent at the owner's computer can do it,
+// signed in as them (a dashboard, a setting, an account page).
 export function parseTitle(raw) {
-  const out = { structure: null, parent: null, model: null, effort: null, human: false, title: raw };
+  const out = { structure: null, parent: null, model: null, effort: null, human: false, computer: false, title: raw };
   let rest = raw;
   for (;;) {
     const m = rest.match(/^\s*\[([^\]]+)\]\s*/);
@@ -131,6 +133,7 @@ export function parseTitle(raw) {
     else if (/^epic$/i.test(tag)) out.structure = 'epic';
     else if ((t = tag.match(/^sub-?issue of #(\d+)$/i))) { out.structure = 'sub'; out.parent = +t[1]; }
     else if (/^human$/i.test(tag)) out.human = true;
+    else if (/^computer$/i.test(tag)) out.computer = true;
     else if ((t = tag.match(/^([A-Za-z]+[0-9.]*)\s*\/\s*(Low|Med|Medium|High|XHigh|Max)$/i))) { out.model = t[1]; out.effort = t[2].replace(/^medium$/i, 'Med'); }
     else break;
     rest = rest.slice(m[0].length);

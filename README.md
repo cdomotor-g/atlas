@@ -16,9 +16,9 @@ receiving end has kept up.
 | View | What it answers |
 |---|---|
 | **Map** | How does it all fit together? What is behind? Drag to rearrange, scroll or pinch to zoom (zoom in for each repository's one-line description and the counts on its lines), click to drill down. On a phone held upright the zones stack top to bottom. |
-| **Blockers** | Everything stopping work, four ways: **Who clears it** (three lanes — only you, an agent can, waiting on another repo), **What frees what** (each blocker read left to right to what clearing it frees, chains first), **What it takes** (repositories against needs: a decision, a login, hardware, money, time, someone else, agent work) and **Quick wins** (size of the way through against how much it frees). Every blocker has a tag — its issue number, or a dashed name when it has none — that opens one page with what it holds up and the ways through (who can do each, the effort, the one the repo would pick); **Make the issue on GitHub** gives an untracked one a number. **Help me** asks a session to walk you through yours. On the map, the **Blockers** button draws a line from each repository to **You**, **Agents** or the repository it waits on. |
+| **Blockers** | Everything stopping work, four ways: **Who clears it** (four lanes — only you, on your computer, an agent can, waiting on another repo), **What frees what** (each blocker read left to right to what clearing it frees, chains first), **What it takes** (repositories against needs: a decision, your sign-in, hardware, money, time, someone else, agent work) and **Quick wins** (size of the way through against how much it frees). Every blocker has a tag — its issue number, or a dashed name when it has none — that opens one page with what it holds up and the ways through (who can do each, the effort, the one the repo would pick); **Make the issue on GitHub** gives an untracked one a number. **Do it for me** hands a step behind your sign-in to a Claude session on your computer; **Help me** asks a session to walk you through yours. On the map, the **Blockers** button draws a line from each repository to **You**, **Your computer**, **Agents** or the repository it waits on. |
 | **Roadmap** | Every repository's Now / Next / Later / Blocked on one screen. |
-| **Board** | Every open issue, by who can move it: waiting on you, ready for an agent (by model), behind upstream, epics. **Prompt** copies a brief for a new Claude Code session or Dispatch. |
+| **Board** | Every open issue, by who can move it: on your computer, waiting on you, ready for an agent (by model), behind upstream, epics. **Prompt** copies a brief for a new Claude Code session or Dispatch; **Do it for me**, one for a Claude session on your computer. |
 | **Links** | Every dependency between repositories and its state. |
 | **Activity** | The latest commits everywhere, newest first. |
 
@@ -57,6 +57,14 @@ receiving end has kept up.
   Atlas adds the blockers it can see for itself — `[Human]` issues, links behind upstream,
   asks nobody has filed, failing CI, a status nobody has checked for a month — each with a
   suggested way through.
+- **You, your computer, or an agent.** A blocker waits on `human` when it needs the owner's
+  hands, money or say (the bench, an order, a decision), and on `computer` when it needs only
+  their sign-in (a dashboard, a setting, an account page). A Claude session at the owner's
+  computer clears those signed in as them — Claude in Chrome for websites, computer use for
+  desktop apps, Claude Code in a folder shared through Remote Control for a shell — while the
+  owner approves, types passwords and makes any payment. The Atlas also puts a `human` blocker
+  of kind `access`, and a `[Human]` issue tagged `[Computer]` or about a sign-in, with your
+  computer.
 - **Blocker tags.** Each blocker is found by its issue number, or — until it has one — by
   its `id` in `status.blocked` (`rpi-alert/bench-first-run`, also its address:
   `#blockers/rpi-alert/bench-first-run`). An issue made from the Blockers view starts with

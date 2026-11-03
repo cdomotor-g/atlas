@@ -20,6 +20,7 @@ project code — only the map page, the collector that builds `data/map.json`, t
 - Public repository: nothing private goes in — no landholder details, site codes, secrets, private issue text. For private repositories the collector keeps counts, never titles or commit messages; keep it that way.
 - Plain words in anything a person reads; give a word that means something particular here its meaning on hover (`title`), and list the meanings where a finger can read them too (the key, *How it works*).
 - The Flood-Net app is **Flood-Net** in anything a person reads; its repository is `cdomotor-g/MegaNet`.
+- Who clears what: `human` only for what needs my hands, money or say (hardware, a site, an order, a decision). What needs only my sign-in (a dashboard, a setting, an account page, GitHub settings) is `computer`: a Claude session at my computer does it signed in as me (Claude in Chrome for websites, computer use for apps, Claude Code through Remote Control for a shell) while I approve. Write blockers, options and issue tags that way (`[Human] [Computer]`), and keep the page's words saying the same.
 
 ## Git workflow
 - Push straight to `main` after a patch. No pull requests, no branches unless asked. `git pull --rebase origin main` first: the *Collect* workflow commits `data/map.json` to `main` too.
@@ -35,4 +36,5 @@ project code — only the map page, the collector that builds `data/map.json`, t
 - The run number counts the summaries in this chat: the first one is Run 1, and each later one is one more than the last marker already in the conversation. A new chat starts again at Run 1.
 - Everything above the marker is working notes; everything below it is the report. Use the marker once per reply, only at the start of that closing report, and put nothing after the report but the report.
 - Under it, use these bold labels in this order, leaving out any that would be empty: **What changed**, **Checks run**, **What you need to do**, **Open questions**.
+- Under **What you need to do**, list only what needs my hands, money or say. A step that needs only my sign-in: do it yourself if this session can use my computer; otherwise put it under its own line, *For a session on your computer*, as a brief I can paste into Dispatch.
 - Short replies that are only an answer (no work done) don't need the marker and don't use up a run number.

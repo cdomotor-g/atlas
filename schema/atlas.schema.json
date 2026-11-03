@@ -145,7 +145,7 @@
               },
               "on": {
                 "type": "string",
-                "description": "Who or what it waits on: \"human\" (only the owner can clear it), \"agent\" (an agent could clear it, nobody has yet), another Atlas id, or an issue as id#123."
+                "description": "Who or what it waits on: \"human\" (only the owner can clear it: hardware, money or a judgment call), \"computer\" (an agent at the owner's computer can clear it signed in as them — a dashboard, a setting, an account page, a repository to create; the owner approves and types any password), \"agent\" (an agent could clear it from anywhere, nobody has yet), another Atlas id, or an issue as id#123. Before writing \"human\", ask whether all it needs is the owner's sign-in: then it is \"computer\". The Atlas shows a \"human\" blocker of kind access with \"computer\" too."
               },
               "id": {
                 "$ref": "#/$defs/id",
@@ -161,7 +161,7 @@
                   "time",
                   "other"
                 ],
-                "description": "decision: someone has to choose. access: an account, a secret, a setting only the owner holds. hardware: needs a device, a site or a bench. money: needs spending. upstream: waits on another repository or vendor. time: waits for data to accumulate or a date."
+                "description": "decision: someone has to choose. access: an account, a secret or a setting behind the owner's sign-in — an agent at their computer can do it signed in as them, so it goes on \"computer\". hardware: needs a device, a site or a bench. money: needs spending. upstream: waits on another repository or vendor. time: waits for data to accumulate or a date."
               },
               "since": {
                 "type": "string",
@@ -196,7 +196,7 @@
                     },
                     "by": {
                       "type": "string",
-                      "description": "Who can do it: \"human\", \"agent\", or another Atlas id."
+                      "description": "Who can do it: \"human\" (the owner, by hand), \"computer\" (an agent at the owner's computer, signed in as them: Claude in Chrome for websites, computer use for desktop apps, Claude Code in a folder shared through Remote Control), \"agent\" (any session, from anywhere), or another Atlas id."
                     },
                     "effort": {
                       "type": "string",
@@ -225,7 +225,7 @@
               }
             }
           },
-          "description": "What is stopping work, what it holds up, and the ways through it. The Atlas draws each one on the map (to you, to an agent, or to the repository it waits on) and lists them in its Blockers view, most-holding first."
+          "description": "What is stopping work, what it holds up, and the ways through it. The Atlas draws each one on the map (to you, to your computer, to an agent, or to the repository it waits on) and lists them in its Blockers view, most-holding first."
         }
       }
     },
