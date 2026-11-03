@@ -169,6 +169,13 @@ const cmpVersion = (a, b) => {
   return 0;
 };
 
+// One line on the map: a consumer's `consumes` entry, with its drift. Entry ids are only
+// unique within one atlas.json (two consumers can both have a `station-table`), so the
+// link's `id` is `<consumer>:<entry id>`, and `entry` keeps the entry's own id, the one a
+// person reads. The entry is spread first so it can't overwrite either.
+export const linkFor = (consumerId, entry, drift) =>
+  ({ ...entry, id: `${consumerId}:${entry.id}`, entry: entry.id, from: entry.from, to: consumerId, drift });
+
 // Where `consumer` stands against `provider` for one `consumes` entry.
 // Returns { state, since, behind, commits[], files[], note }:
 //   state: current | behind | unknown | untracked

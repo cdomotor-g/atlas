@@ -133,6 +133,10 @@ function prepare(data) {
   place();
   L = (D.links || []).filter(l => R.has(l.from) && R.has(l.to));
   for (const l of L) {
+    // `id` is `<consumer>:<entry id>`, one per line on the map; `entry` is the id the consumer
+    // gave it under `consumes`, the one a person reads. A map.json from before carries only
+    // the entry id, which two consumers can share: make the same pair from it.
+    if (!l.entry) { l.entry = l.id; l.id = `${l.to}:${l.entry}`; }
     l.kind = HOW[l.how]?.k || 'reference';
     R.get(l.from).out.push(l); R.get(l.to).in.push(l);
   }
@@ -263,9 +267,10 @@ function buildBlockers() {
       const issue = (r.issues || []).find(i => /^Upstream moved:/i.test(i.title) && i.title.includes(p.repo.split('/')[1]));
       const oldest = (l.drift.commits || []).map(c => c.date).sort()[0];
       const comp = consumerComp(l);
-      // A short name for what it takes: the provider's `provides` name, its part, or the link's id.
-      const given = (p.m.provides || []).find(x => x.id === l.provider)?.name || providerComp(l)?.name || l.id;
-      out.push({ key: `${r.id}:d:${l.id}`, slug: name(r, `behind-${l.id}`), repo: r, what: `Behind ${p.name}: ${given}`, on: 'agent', who: 'agent', kind: 'upstream',
+      // A short name for what it takes: the provider's `provides` name, its part, or the entry's id.
+      const given = (p.m.provides || []).find(x => x.id === l.provider)?.name || providerComp(l)?.name || l.entry;
+      // The tag stays behind-<entry id> (rpi-alert/behind-quansheng-v1-serial): issues and links already carry it.
+      out.push({ key: `${r.id}:d:${l.entry}`, slug: name(r, `behind-${l.entry}`), repo: r, what: `Behind ${p.name}: ${given}`, on: 'agent', who: 'agent', kind: 'upstream',
         since: oldest?.slice(0, 10) || null, issue: issue ? `#${issue.n}` : null, link: l.id, lk: l, source: 'drift',
         holds: [`${comp ? comp.name : r.name}, in step with ${p.name} again`],
         options: [
@@ -434,7 +439,7 @@ function driftHtml(b, { compact = false } = {}) {
     ${how ? `<p>${term(how.label, how.means)} <span class="muted">${esc(how.means)}</span></p>` : ''}
     <p>${esc(r.name)} last caught up${c.when ? ` on <b>${esc(c.when)}</b>` : ''}${c.at ? ` (at ${pin})` : ''}. Since then <b>${n} commit${n === 1 ? '' : 's'}</b> there changed ${(d.files || []).length ? `${d.files.map(f => `<code>${esc(f)}</code>`).join(', ')}, which it watches` : 'what it watches'}:</p>
     ${commits}
-    <p class="muted">No issue is behind this: those commits are the cause. It clears when ${esc(r.name)} has looked at them, done what they need (the ways through below), and moved its catch-up point for <code>${esc(l.id)}</code> in ${manifestLink(r)}.</p>`;
+    <p class="muted">No issue is behind this: those commits are the cause. It clears when ${esc(r.name)} has looked at them, done what they need (the ways through below), and moved its catch-up point for <code>${esc(l.entry)}</code> in ${manifestLink(r)}.</p>`;
 }
 
 // Where a repository's atlas.json lives: in the repository, or the Atlas's fallback copy.
@@ -516,7 +521,7 @@ function newIssueUrl(b) {
     '', '---',
     `From the Atlas: ${pageLink(b)}`,
     b.source === 'drift'
-      ? `It clears when the catch-up point for \`${b.lk.id}\` (\`consumes\`) moves in ${manifestWhere(b.repo)}: close this issue then. Keep the first line: the Atlas matches this issue to the blocker by it.`
+      ? `It clears when the catch-up point for \`${b.lk.entry}\` (\`consumes\`) moves in ${manifestWhere(b.repo)}: close this issue then. Keep the first line: the Atlas matches this issue to the blocker by it.`
       : `Once this is filed, put its number in ${record}. Keep the first line: until then the Atlas matches this issue to the blocker by it.`,
   ].filter(x => x !== null).join('\n');
   if (body.length > 3600) body = body.slice(0, 3580) + '\n…';
@@ -547,7 +552,7 @@ function trackedHtml(b) {
   if (b.source === 'ci') return `<p>None needed: the failing run is the record. <a href="${esc(b.url)}" target="_blank" rel="noopener">Open its log ↗</a></p>`;
   if (b.source === 'stale') return '<p>None needed: an agent refreshes the status in atlas.json.</p>';
   const where = issueHome(b);
-  const lead = b.source === 'drift' ? `<p>None, and none will open by itself: the daily Atlas check only keeps an issue for a link marked <code>drift_issue: true</code>, and <code>${esc(b.lk.id)}</code> isn't, in ${manifestLink(b.repo)}. The commits above are the cause.</p>` : '';
+  const lead = b.source === 'drift' ? `<p>None, and none will open by itself: the daily Atlas check only keeps an issue for a link marked <code>drift_issue: true</code>, and <code>${esc(b.lk.entry)}</code> isn't, in ${manifestLink(b.repo)}. The commits above are the cause.</p>` : '';
   const why = `<p class="muted">Until it has a number, find it by its dashed tag <span class="btag untracked lane-${b.lane} demo"><b>${esc(b.slug)}</b></span>: it is in the search box, on every view, and at the end of this blocker's address.${b.source === 'recorded' && !b.named ? ' The tag is made from its first words: give the blocker an <code>id</code> in atlas.json to keep it fixed.' : ''}</p>`;
   if (where.gh?.archived) return `${lead}<div class="box untracked-box"><b>No issue, and ${esc(where.name)} is archived</b>, so it can't take one.</div>${why}`;
   return `${lead}<div class="box untracked-box"><b>No issue yet.</b> Give it one:
@@ -558,7 +563,7 @@ function sourceHtml(b) {
   const r = b.repo;
   if (b.source === 'recorded') return `Recorded in ${manifestLink(r)} under <code>status.blocked</code>${b.named ? `, id <code>${esc(b.slug)}</code>` : ''}.`;
   if (b.source === 'issue') return `A <code>[Human]</code> issue that ${esc(r.name)}'s atlas.json doesn't list as a blocker yet.`;
-  if (b.source === 'drift') return `Worked out by the Atlas from <code>${esc(b.lk.id)}</code> under <code>consumes</code> in ${manifestLink(r)}: ${esc(R.get(b.lk.from).name)} has changed a file it watches since ${esc(r.name)} last caught up.`;
+  if (b.source === 'drift') return `Worked out by the Atlas from <code>${esc(b.lk.entry)}</code> under <code>consumes</code> in ${manifestLink(r)}: ${esc(R.get(b.lk.from).name)} has changed a file it watches since ${esc(r.name)} last caught up.`;
   if (b.source === 'ask') return `${esc(r.name)} asked this of ${esc(R.get(b.target).name)} in ${manifestLink(r)} under <code>asks</code>.`;
   if (b.source === 'ci') return `The latest run of ${esc(r.name)}'s workflow failed.`;
   return `Nobody has checked ${esc(r.name)}'s status in atlas.json for over a month.`;
@@ -1631,7 +1636,9 @@ function readHash() {
   }
   showView(v || 'map');
   if (v === 'map' && rest) {
-    if (rest.startsWith('link:')) select({ type: 'link', id: rest.slice(5) });
+    // #map/link:rpi-alert:quansheng-v1-serial; an older address names only the entry
+    // (#map/link:station-table): take the first link with that entry, as it always did.
+    if (rest.startsWith('link:')) { const id = rest.slice(5); select({ type: 'link', id: L.some(l => l.id === id) ? id : L.find(l => l.entry === id)?.id || id }); }
     else if (rest.startsWith('pair:')) { const [f, t] = rest.slice(5).split('>'); select({ type: 'pair', from: f, to: t }); }
     else if (rest.includes('.')) { const [r, c] = rest.split('.'); if (R.has(r)) { expanded.add(r); drawComps(); drawLinks(); select({ type: 'comp', repo: r, id: c }); } }
     else if (R.has(rest)) goRepo(rest);

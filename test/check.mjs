@@ -2,11 +2,12 @@
 // The Atlas's own checks — about a second, no dependencies, no network:
 //   node test/check.mjs
 // registry entries are complete and their logos exist; every fallback file is a valid
-// atlas.json; the page's scripts parse; map.json (when present) only names known ids.
+// atlas.json; the page's scripts parse; map.json (when present) only names known ids and
+// gives every link its own id.
 import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { execFileSync } from 'node:child_process';
-import { ROOT, validate, crossCheck, parseTitle, watchMatches, blockerMark } from '../tools/lib.mjs';
+import { ROOT, validate, crossCheck, parseTitle, watchMatches, blockerMark, linkFor } from '../tools/lib.mjs';
 
 const fails = [];
 const check = (ok, msg) => { if (!ok) fails.push(msg); };
@@ -46,7 +47,24 @@ for (const [, src] of html.matchAll(/(?:src|href)="([^"#:]+)"/g)) check(existsSy
 if (existsSync(join(ROOT, 'data/map.json'))) {
   const map = json('data/map.json');
   for (const l of map.links) check(ids.has(l.from) && ids.has(l.to), `map.json: link ${l.id} names an unknown repo`);
+  // Each link's id is `<consumer>:<entry id>`, so the page finds the right one. A map.json
+  // written before links carried `entry` has only entry ids, which repeat: the next collect
+  // rewrites it (and the page makes the same ids from it meanwhile).
+  if (map.links.every(l => 'entry' in l)) {
+    const seen = new Set();
+    for (const l of map.links) {
+      check(l.id === `${l.to}:${l.entry}`, `map.json: link ${l.id} should be ${l.to}:${l.entry}`);
+      check(!seen.has(l.id), `map.json: link id ${l.id} is used twice`);
+      seen.add(l.id);
+    }
+  }
 }
+
+// Two consumers with the same `consumes` entry id get links of their own.
+const entry = { id: 'station-table', from: 'flood-net', what: 'x', how: 'copy' };
+const [v3, v1] = [linkFor('quansheng-v3', entry, {}), linkFor('quansheng-v1', entry, {})];
+check(v3.id === 'quansheng-v3:station-table' && v1.id === 'quansheng-v1:station-table', 'linkFor: id is <consumer>:<entry id>');
+check(v3.entry === 'station-table' && v3.from === 'flood-net' && v3.to === 'quansheng-v3' && v3.what === 'x', 'linkFor: keeps the entry');
 
 // The title parser and the watch matcher, on the cases that matter.
 const t = parseTitle('[Sub-issue of #42] [Sonnet5/Med] Fix flaky login test');
@@ -63,4 +81,4 @@ check(blockerMark('Some text\r\nAtlas blocker: Flood-Net/237\r\n') === 'flood-ne
 check(blockerMark('See the Atlas blocker: rpi-alert/x in the notes') === null, 'blockerMark: only a line of its own');
 
 if (fails.length) { console.error(`✗ ${fails.length} problem${fails.length === 1 ? '' : 's'}:\n- ${fails.join('\n- ')}`); process.exit(1); }
-console.log(`✓ registry (${reg.repos.length}), fallbacks, scripts, page links, parsers, blocker tags`);
+console.log(`✓ registry (${reg.repos.length}), fallbacks, scripts, page links, link ids, parsers, blocker tags`);

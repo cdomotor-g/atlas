@@ -12,7 +12,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
-import { ROOT, github, validate, crossCheck, parseTitle, drift, slimCommit, blockerMark } from './lib.mjs';
+import { ROOT, github, validate, crossCheck, parseTitle, drift, slimCommit, blockerMark, linkFor } from './lib.mjs';
 
 const token = process.env.ATLAS_TOKEN || process.env.GITHUB_TOKEN || '';
 const gh = github(token);
@@ -151,7 +151,8 @@ const repos = [];
 for (const r of registry.repos) repos.push(await collectRepo(r));
 const byId = new Map(repos.map(r => [r.id, r]));
 
-// Links: one per `consumes` entry, with drift worked out against the provider.
+// Links: one per `consumes` entry, with drift worked out against the provider. A link's
+// id is `<consumer>:<entry id>`; `entry` is the entry's own id (see linkFor in lib.mjs).
 const links = [];
 for (const consumer of repos) {
   for (const c of consumer.manifest?.consumes || []) {
@@ -163,7 +164,7 @@ for (const consumer of repos) {
           readConsumerFile: localDir ? async p => { const f = localPath(consumer, p); return f ? readFileSync(f, 'utf8') : gh.file(consumer.repo, p, consumer.branch); } : undefined })
       : { state: 'unknown', note: 'The Atlas could not read one end (a private repository, or one its token cannot reach).' };
     if (provider.private || consumer.private) d.commits = (d.commits || []).map(x => ({ sha: x.sha, date: x.date, msg: provider.private ? '(private)' : x.msg, url: provider.private ? null : x.url }));
-    links.push({ id: `${consumer.id}:${c.id}`, from: c.from, to: consumer.id, ...c, drift: d });
+    links.push(linkFor(consumer.id, c, d));
   }
 }
 
