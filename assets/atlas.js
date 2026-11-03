@@ -263,9 +263,11 @@ function buildBlockers() {
       const issue = (r.issues || []).find(i => /^Upstream moved:/i.test(i.title) && i.title.includes(p.repo.split('/')[1]));
       const oldest = (l.drift.commits || []).map(c => c.date).sort()[0];
       const comp = consumerComp(l);
-      out.push({ key: `${r.id}:d:${l.id}`, slug: name(r, `behind-${l.id}`), repo: r, what: `Behind ${p.name}: ${l.what}`, on: 'agent', who: 'agent', kind: 'upstream',
-        since: oldest?.slice(0, 10) || null, issue: issue ? `#${issue.n}` : null, link: l.id, source: 'drift',
-        holds: [comp ? `${comp.name} matching ${p.name}` : `matching ${p.name}`],
+      // A short name for what it takes: the provider's `provides` name, its part, or the link's id.
+      const given = (p.m.provides || []).find(x => x.id === l.provider)?.name || providerComp(l)?.name || l.id;
+      out.push({ key: `${r.id}:d:${l.id}`, slug: name(r, `behind-${l.id}`), repo: r, what: `Behind ${p.name}: ${given}`, on: 'agent', who: 'agent', kind: 'upstream',
+        since: oldest?.slice(0, 10) || null, issue: issue ? `#${issue.n}` : null, link: l.id, lk: l, source: 'drift',
+        holds: [`${comp ? comp.name : r.name}, in step with ${p.name} again`],
         options: [
           { what: l.on_change || `Bring it in line with ${p.name}, then move the pin in atlas.json.`, by: 'agent', model: 'Sonnet5/Med', recommended: true, issue: issue ? `#${issue.n}` : undefined },
           { what: `Check whether the upstream change matters here at all; if not, move the pin and say why in the commit.`, by: 'agent', model: 'Sonnet5/Low', effort: 'Low' },
@@ -386,6 +388,7 @@ function optionPrompt(b, o) {
     b.holds.length ? `It holds up: ${b.holds.join(', ')}.` : '',
     b.issue ? `Tracking issue: ${/\//.test(b.issue) ? b.issue : r.repo + b.issue}` : '',
     o.issue && o.issue !== b.issue ? `This option's issue: ${/\//.test(o.issue) ? o.issue : where.repo + o.issue}` : '',
+    b.lk ? driftText(b) : '',
     '',
     `Read ${where.repo}'s CLAUDE.md first and follow it.${o.model ? ` Recommended: ${o.model.replace('/', ' / ')}.` : ''}`,
     `When you're done, update status.blocked in ${manifestWhere(r)}: remove the blocker if it's cleared, or record what changed and what's left.`,
@@ -400,6 +403,38 @@ function helpPrompt(b, o) {
     iss ? `The issue has the details: https://github.com/${iss.full}/issues/${iss.n}` : '',
     `Read ${iss ? 'the issue and ' : ''}the repository's CLAUDE.md first. Never ask me to paste a secret into the chat.`,
   ].filter(Boolean).join('\n');
+}
+
+// Behind upstream: what changed, since when. The link records where the consumer last caught
+// up (a review date, a pinned commit or a version); the drift check lists the provider's
+// commits since then that touched the files the consumer watches.
+const day = iso => { const d = new Date(iso); return isNaN(d) ? String(iso) : d.toLocaleDateString(undefined, { day: 'numeric', month: 'short', ...(d.getFullYear() !== new Date().getFullYear() ? { year: 'numeric' } : {}) }); };
+function caughtUp(l) {
+  const s = l.drift?.since || l.since || {};
+  const at = s.commit ? `commit ${String(s.commit).slice(0, 7)}${s.commitDate ? ` of ${day(s.commitDate)}` : ''}` : s.version ? `version ${s.version}` : '';
+  return { when: s.date ? day(s.date) : s.commitDate ? day(s.commitDate) : null, at, commit: s.commit || null };
+}
+function driftText(b) {
+  const l = b.lk, d = l.drift || {}, p = R.get(l.from), c = caughtUp(l), cs = d.commits || [];
+  return [
+    `Why it's behind: ${b.repo.name} last caught up with ${p.name}${c.when ? ` on ${c.when}` : ''}${c.at ? ` (at ${p.name}'s ${c.at})` : ''}. Since then ${d.behind || cs.length} commit${(d.behind || cs.length) === 1 ? '' : 's'} there changed what it watches${(d.files || []).length ? ` (${d.files.join(', ')})` : ''}:`,
+    ...cs.map(x => `- ${x.sha} ${x.date?.slice(0, 10) || ''} ${x.msg}${x.url ? ` ${x.url}` : ''}`),
+  ].join('\n');
+}
+function driftHtml(b, { compact = false } = {}) {
+  const l = b.lk; if (!l) return '';
+  const d = l.drift || {}, p = R.get(l.from), r = b.repo, c = caughtUp(l), cs = d.commits || [];
+  const n = d.behind || cs.length, how = HOW[l.how];
+  const commits = cs.length ? `<ul class="why-commits">${cs.map(x => `<li>${x.url ? `<a href="${esc(x.url)}" target="_blank" rel="noopener"><code>${esc(x.sha)}</code></a>` : `<code>${esc(x.sha)}</code>`} <span class="muted">${esc(day(x.date))}</span> ${esc(x.msg)}</li>`).join('')}${n > cs.length ? `<li class="muted">…and ${n - cs.length} more</li>` : ''}</ul>` : '';
+  const files = (d.files || []).length ? ` to ${d.files.map(f => `<code>${esc(f)}</code>`).join(', ')}` : '';
+  const line = `<b>${n} commit${n === 1 ? '' : 's'}</b> in ${esc(p.name)}${files} since ${esc(r.name)} last caught up${c.when ? ` on ${esc(c.when)}` : ''}.`;
+  if (compact) return `<details class="blk-why"><summary><b>Why it's behind:</b> ${line}</summary>${commits}</details>`;
+  const pin = c.commit && /^[0-9a-f]{7,40}$/i.test(c.commit) ? `<a href="https://github.com/${esc(p.repo)}/commit/${esc(c.commit)}" target="_blank" rel="noopener">${esc(c.at)}</a>` : esc(c.at);
+  return `<p>${esc(r.name)} takes this from ${esc(p.name)}: ${esc(l.what)}</p>
+    ${how ? `<p>${term(how.label, how.means)} <span class="muted">${esc(how.means)}</span></p>` : ''}
+    <p>${esc(r.name)} last caught up${c.when ? ` on <b>${esc(c.when)}</b>` : ''}${c.at ? ` (at ${pin})` : ''}. Since then <b>${n} commit${n === 1 ? '' : 's'}</b> there changed ${(d.files || []).length ? `${d.files.map(f => `<code>${esc(f)}</code>`).join(', ')}, which it watches` : 'what it watches'}:</p>
+    ${commits}
+    <p class="muted">No issue is behind this: those commits are the cause. It clears when ${esc(r.name)} has looked at them, done what they need (the ways through below), and moved its catch-up point for <code>${esc(l.id)}</code> in ${manifestLink(r)}.</p>`;
 }
 
 // Where a repository's atlas.json lives: in the repository, or the Atlas's fallback copy.
@@ -443,14 +478,15 @@ function optsHtml(b) {
 
 function blockerCard(b, { compact = false } = {}) {
   const r = b.repo;
-  const src = { recorded: '', issue: term('from an issue', 'A [Human] issue the repository\'s status does not list yet.'), drift: term('behind upstream', 'Worked out by the Atlas: an upstream change this repository has not caught up with.', 'bad'), ask: term('an ask', 'Something this repository asked of another.', 'warn'), ci: term('CI', 'The latest run of this workflow failed.', 'warn'), stale: term('old status', 'Nobody has checked this repository\'s atlas.json status for a month.', 'warn') }[b.source];
+  const src = { recorded: '', issue: term('from an issue', 'A [Human] issue the repository\'s status does not list yet.'), drift: term('behind upstream', 'Worked out by the Atlas: the other repository has changed something this one copies or follows, since this one last caught up. Open "Why it\'s behind" for the commits.', 'bad'), ask: term('an ask', 'Something this repository asked of another.', 'warn'), ci: term('CI', 'The latest run of this workflow failed.', 'warn'), stale: term('old status', 'Nobody has checked this repository\'s atlas.json status for a month.', 'warn') }[b.source];
   const on = b.lane === 'repo' ? R.get(b.who) : null;
   return `<article class="blk lane-${b.lane}" data-key="${esc(b.key)}">
     <div class="blk-top">${blkTag(b)}${compact ? '' : `<button class="linkish" data-go-repo="${esc(r.id)}">${esc(r.label || r.name)}</button>`}
       ${b.kind ? `<span class="chip" title="${esc(KIND[b.kind] || '')}">${esc(b.kind)}</span>` : ''}${src}
       ${b.age !== null ? `<span class="chip" title="Blocking since ${esc(b.since)}">${ageWords(b.age)}</span>` : ''}
       ${on ? `<span class="chip waits" title="Clears when ${esc(on.name)} moves">waits on <img src="${esc(on.logo)}" alt="">${esc(on.label || on.name)}</span>` : ''}</div>
-    <h4 class="blk-what">${rich(b.title, r.repo)}${b.url ? ` <a href="${esc(b.url)}" target="_blank" rel="noopener">log ↗</a>` : ''}${b.link ? ` <button class="linkish" data-go-link="${esc(b.link)}">the link</button>` : ''}</h4>
+    <h4 class="blk-what">${rich(b.title, r.repo)}${b.url ? ` <a href="${esc(b.url)}" target="_blank" rel="noopener">log ↗</a>` : ''}</h4>
+    ${b.lk ? driftHtml(b, { compact: true }) : ''}
     ${b.context ? `<p class="blk-ctx" title="The opening of the issue">${esc(b.context)}</p>` : ''}
     ${b.parents.length ? `<div class="holds"><span class="holds-l" title="Blockers that have to clear first">Waits for</span>${b.parents.map(p => blkTag(p)).join('')}</div>` : ''}
     ${b.holds.length ? `<div class="holds"><span class="holds-l" title="What clearing this would unblock">Holds up</span>${b.holds.map(h => holdChip(h, r)).join('')}</div>` : ''}
@@ -475,10 +511,13 @@ function newIssueUrl(b) {
     `**${where === b.repo ? 'Blocked' : `${b.repo.name} is waiting on`}:** ${b.what}`,
     b.since ? `**Since:** ${b.since}` : null,
     b.holds.length ? `\n**Holds up**\n${b.holds.map(h => `- ${h}`).join('\n')}` : null,
+    b.lk ? `\n**Upstream commits since it last caught up**\n${(b.lk.drift?.commits || []).map(x => `- ${x.url ? `[${x.sha}](${x.url})` : x.sha} ${x.date?.slice(0, 10) || ''} ${x.msg}`).join('\n')}` : null,
     b.options.length ? `\n**Ways through** (from atlas.json)\n${b.options.map(opt).join('\n')}` : null,
     '', '---',
     `From the Atlas: ${pageLink(b)}`,
-    `Once this is filed, put its number in ${record}. Keep the first line: until then the Atlas matches this issue to the blocker by it.`,
+    b.source === 'drift'
+      ? `It clears when the catch-up point for \`${b.lk.id}\` (\`consumes\`) moves in ${manifestWhere(b.repo)}: close this issue then. Keep the first line: the Atlas matches this issue to the blocker by it.`
+      : `Once this is filed, put its number in ${record}. Keep the first line: until then the Atlas matches this issue to the blocker by it.`,
   ].filter(x => x !== null).join('\n');
   if (body.length > 3600) body = body.slice(0, 3580) + '\n…';
   return `https://github.com/${where.repo}/issues/new?title=${encodeURIComponent(newIssueTitle(b))}&body=${encodeURIComponent(body)}`;
@@ -504,13 +543,14 @@ function trackedHtml(b) {
       ${b.closed ? `<div class="box warn"><b>That issue is closed</b>, but ${esc(b.repo.name)} still lists this as a blocker. It may be cleared: check the issue, then take it out of ${manifestLink(b.repo)} or say what is left.<div class="chips">${promptBtn(closedPrompt(b), 'Prompt: check it')}</div></div>` : ''}
       ${b.found ? `<p class="muted">Found by the issue's first line (<code>Atlas blocker: ${esc(b.uid)}</code>). Put the number in ${b.source === 'ask' ? '<code>issue</code> on this ask' : '<code>issue</code> on this blocker'} in ${manifestLink(b.repo)} to make it stick.</p>` : ''}`;
   }
-  if (b.source === 'drift') return `<p>None yet. ${esc(b.repo.name)}'s daily Atlas check opens one by itself (<i>Upstream moved: …</i>) with the upstream commits and how to catch up.</p>`;
+  if (b.source === 'drift' && b.lk?.drift_issue) return `<p>None yet. ${esc(b.repo.name)}'s daily Atlas check opens one by itself at its next run (<i>Upstream moved: …</i>), with the upstream commits and how to catch up.</p>`;
   if (b.source === 'ci') return `<p>None needed: the failing run is the record. <a href="${esc(b.url)}" target="_blank" rel="noopener">Open its log ↗</a></p>`;
   if (b.source === 'stale') return '<p>None needed: an agent refreshes the status in atlas.json.</p>';
   const where = issueHome(b);
+  const lead = b.source === 'drift' ? `<p>None, and none will open by itself: the daily Atlas check only keeps an issue for a link marked <code>drift_issue: true</code>, and <code>${esc(b.lk.id)}</code> isn't, in ${manifestLink(b.repo)}. The commits above are the cause.</p>` : '';
   const why = `<p class="muted">Until it has a number, find it by its dashed tag <span class="btag untracked lane-${b.lane} demo"><b>${esc(b.slug)}</b></span>: it is in the search box, on every view, and at the end of this blocker's address.${b.source === 'recorded' && !b.named ? ' The tag is made from its first words: give the blocker an <code>id</code> in atlas.json to keep it fixed.' : ''}</p>`;
-  if (where.gh?.archived) return `<div class="box untracked-box"><b>No issue, and ${esc(where.name)} is archived</b>, so it can't take one.</div>${why}`;
-  return `<div class="box untracked-box"><b>No issue yet.</b> Give it one:
+  if (where.gh?.archived) return `${lead}<div class="box untracked-box"><b>No issue, and ${esc(where.name)} is archived</b>, so it can't take one.</div>${why}`;
+  return `${lead}<div class="box untracked-box"><b>No issue yet.</b> Give it one:
     <div class="chips"><a class="copy" href="${esc(newIssueUrl(b))}" target="_blank" rel="noopener" title="Opens GitHub's new-issue page in ${esc(where.repo)}, filled in with what it holds up and the ways through">Make the issue on GitHub ↗</a>${promptBtn(fileIssuePrompt(b), 'Prompt: file it for me')}</div>
     <p class="muted" style="margin:8px 0 0">The issue opens with the line <code>Atlas blocker: ${esc(b.uid)}</code>. ${where.private ? `The Atlas can't read issues in a private repository, so put the number in ${manifestLink(b.repo)} afterwards.` : `Keep it: at its next collect (every three hours) the Atlas links the issue to this blocker by itself, until the number is in ${manifestLink(b.repo)}.`}</p></div>${why}`;
 }
@@ -518,7 +558,7 @@ function sourceHtml(b) {
   const r = b.repo;
   if (b.source === 'recorded') return `Recorded in ${manifestLink(r)} under <code>status.blocked</code>${b.named ? `, id <code>${esc(b.slug)}</code>` : ''}.`;
   if (b.source === 'issue') return `A <code>[Human]</code> issue that ${esc(r.name)}'s atlas.json doesn't list as a blocker yet.`;
-  if (b.source === 'drift') return `Worked out by the Atlas: ${esc(R.get(L.find(l => l.id === b.link)?.from)?.name || 'the provider')} has changed what ${esc(r.name)} takes from it since ${esc(r.name)} last caught up.`;
+  if (b.source === 'drift') return `Worked out by the Atlas from <code>${esc(b.lk.id)}</code> under <code>consumes</code> in ${manifestLink(r)}: ${esc(R.get(b.lk.from).name)} has changed a file it watches since ${esc(r.name)} last caught up.`;
   if (b.source === 'ask') return `${esc(r.name)} asked this of ${esc(R.get(b.target).name)} in ${manifestLink(r)} under <code>asks</code>.`;
   if (b.source === 'ci') return `The latest run of ${esc(r.name)}'s workflow failed.`;
   return `Nobody has checked ${esc(r.name)}'s status in atlas.json for over a month.`;
@@ -542,7 +582,9 @@ function blockerPanel(b) {
     <button class="icon-btn p-close" aria-label="Close">✕</button></div>
     <div class="chips">${whoChip(b)}${b.kind ? `<span class="chip" title="${esc((KIND[b.kind] || '') + (b.kindGuessed ? ' Guessed from the issue title.' : ''))}">${esc(b.kind)}</span>` : ''}${effort}</div></div>
   <div class="p-body">
+    ${b.title.length > 150 ? `<p class="bp-full">${rich(b.title, r.repo)}</p>` : ''}
     ${b.context ? `<p class="blk-ctx" title="The opening of the issue">${esc(b.context)}</p>` : ''}
+    ${b.lk ? `<h3>Why it's behind</h3>${driftHtml(b)}` : ''}
     <h3>Tracked in</h3>${trackedHtml(b)}
     ${b.parents.length ? `<h3 title="Blockers that have to clear before this one can">Waits for these first</h3><div class="bp-list">${b.parents.map(p => blkTag(p, { what: 90 })).join('')}</div>` : ''}
     ${b.kids.length || b.outs.length ? `<h3 title="What clearing it would unblock">Clearing it frees${b.frees ? ` · ${b.frees} thing${b.frees === 1 ? '' : 's'}` : ''}</h3>
@@ -1530,7 +1572,7 @@ function renderGuide() {
     <li><b>Quick wins</b> — how big the suggested way through is, against how much clearing it frees. Start top left.</li>
   </ul>
   <h4>Tags: how to find a blocker</h4>
-  <p>Every blocker has a tag. When it has an issue the tag is the issue number (<code>#237</code>, or <code>MegaNet#239</code> for an issue in another repository). When it has none, the tag is the Atlas's name for it, drawn <b>dashed</b>: the <code>id</code> it has in <code>status.blocked</code> (<code>bench-first-run</code>), or a name made from its first words. A tag marked <b>closed</b> points at an issue that has been closed, so the blocker may be cleared. Click any tag for one page with everything about the blocker: what it is, what has to clear first, what it frees, the ways through, and where it is recorded. Type a tag in the search box (Enter opens it), or link straight to one: <code>#blockers/rpi-alert/bench-first-run</code>.</p>
+  <p>Every blocker has a tag. When it has an issue the tag is the issue number (<code>#237</code>, or <code>MegaNet#239</code> for an issue in another repository). When it has none, the tag is the Atlas's name for it, drawn <b>dashed</b>: the <code>id</code> it has in <code>status.blocked</code> (<code>bench-first-run</code>), or a name made from its first words. A tag marked <b>closed</b> points at an issue that has been closed, so the blocker may be cleared. A blocker marked <b>behind upstream</b> has no issue behind it: open <b>Why it's behind</b> on it for when its repository last caught up and the upstream commits since, which are the cause. Click any tag for one page with everything about the blocker: what it is, what has to clear first, what it frees, the ways through, and where it is recorded. Type a tag in the search box (Enter opens it), or link straight to one: <code>#blockers/rpi-alert/bench-first-run</code>.</p>
   <p>A blocker with no issue has <b>Make the issue on GitHub</b> in its page: it opens GitHub's new-issue form in the right repository, filled in with what it holds up and the ways through, starting with the line <code>Atlas blocker: rpi-alert/bench-first-run</code>. Keep that line: at its next collect the Atlas links the issue to the blocker by it, and the dashed tag becomes the issue number. Then put the number in <code>issue</code> on the blocker in atlas.json (or hand that to an agent with <b>Prompt: file it for me</b>).</p>
   <h3>Reading the map</h3>
   <ul>

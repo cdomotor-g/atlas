@@ -544,3 +544,18 @@ button.btag:hover { background: color-mix(in srgb, var(--lc) 22%, var(--panel));
 .bt-closed { font-style: normal; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .4px; color: var(--warn); }
 .qaxis { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; }
 @container bpage (max-width: 900px) { .needs-about { display: none; } }
+/* behind upstream: the commits that cause it */
+.blk-why { margin: 4px 0 6px; font-size: 12.5px; color: var(--ink-2); background: color-mix(in srgb, var(--bad) 7%, var(--panel)); border-radius: 8px; padding: 5px 8px; }
+.blk-why summary { cursor: pointer; overflow-wrap: anywhere; }
+.blk-why summary b:first-child { color: var(--bad); }
+.why-commits { list-style: none; margin: 6px 0 4px; padding: 0; font-size: 12.5px; }
+.why-commits li { padding: 3px 0; border-top: 1px dashed var(--line); overflow-wrap: anywhere; }
+.why-commits li:first-child { border-top: 0; }
+.why-commits code { font-size: 11.5px; }
+/* a long blocker title would fill a phone's bottom sheet: clamp it there, and give it in full below */
+.bp-full { display: none; font-weight: 600; overflow-wrap: anywhere; }
+@media (max-width: 760px) {
+  #panel .bp-title { font-size: 16px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  #panel .bp-full { display: block; }
+  #panel .p-head > .row1 > img { width: 40px; height: 40px; }
+}
