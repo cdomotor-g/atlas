@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-03T18:28:04.477Z",
- "hash": "32ad5ecdcb8073ce",
+ "generated": "2026-11-03T19:42:45.187Z",
+ "hash": "04b8eee95de08576",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1031,12 +1031,30 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-03T15:14:20Z",
+    "pushed": "2026-11-03T18:50:35Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "08b979f",
+     "date": "2026-11-03T18:50:14Z",
+     "msg": "Council cameras: the weekly refresh — 604 cameras from 49 councils",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/08b979f04c632fa19614f691fdaef131bb46f678"
+    },
+    {
+     "sha": "5083178",
+     "date": "2026-11-03T18:39:46Z",
+     "msg": "Bulletin voices: daily/2026-11-03, daily/2026-11-04",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/50831782d5d8fcdc8a3c3b4ea58626a3cb9dc121"
+    },
+    {
+     "sha": "893b05c",
+     "date": "2026-11-03T18:36:45Z",
+     "msg": "Network Bulletin: daily bulletin for 2026-11-04 — receiver stick 2 thinned out since Tuesday noon; correction on the Tallai lead",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/893b05c954926a8caa8e7cf783f93e834b36bacb"
+    },
     {
      "sha": "42af655",
      "date": "2026-11-03T15:14:17Z",
@@ -1090,24 +1108,6 @@
      "date": "2026-11-03T11:11:43Z",
      "msg": "Light decoding, a lighter watch, and a leaner pipeline for the Pi (#259)",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/262979233c8e73a5704c0135ee92852853e11936"
-    },
-    {
-     "sha": "6a08502",
-     "date": "2026-11-03T11:01:49Z",
-     "msg": "The station list is downloaded only when it has changed (ETag, 304)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/6a0850254b1734248a4e66365f20724dba5a5c56"
-    },
-    {
-     "sha": "0f6c46f",
-     "date": "2026-11-03T06:15:07Z",
-     "msg": "Responsiveness: a laptop on a Teams call, a phone on one bar",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/0f6c46fbdc8d6e43b322c50f1f2b4b35552acf37"
-    },
-    {
-     "sha": "6c2eb24",
-     "date": "2026-11-03T06:10:13Z",
-     "msg": "Station Health: Open in ARRO; bulletin says \"Flood-Net stopped hearing\", 3 Nov corrected",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/6c2eb2437e443241d1d9b95ed9b8e138aae571fc"
     }
    ],
    "issues": [
@@ -1891,38 +1891,46 @@
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41693652446",
-     "date": "2026-11-03T18:25:30Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41705197465",
+     "date": "2026-11-03T19:38:55Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41692594000",
-     "date": "2026-11-03T18:18:57Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41704166642",
+     "date": "2026-11-03T19:32:23Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41692462830",
-     "date": "2026-11-03T18:19:16Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41703939513",
+     "date": "2026-11-03T19:32:07Z",
      "event": "schedule"
     },
     {
-     "name": "Field photos into R2",
+     "name": "Refresh council cameras",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41673171806",
-     "date": "2026-11-03T16:20:54Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41697165779",
+     "date": "2026-11-03T18:50:39Z",
      "event": "schedule"
+    },
+    {
+     "name": "Bulletin voices",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41695570160",
+     "date": "2026-11-03T18:40:13Z",
+     "event": "push"
     }
    ],
    "version": "20261103x",
    "lastCommit": {
-    "date": "2026-11-03T15:14:17Z"
+    "date": "2026-11-03T18:50:14Z"
    }
   },
   {
@@ -6913,7 +6921,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "7 newer commits upstream since 60c0498, none to watched files."
+    "note": "10 newer commits upstream since 60c0498, none to watched files."
    }
   },
   {
@@ -7140,25 +7148,16 @@
    "on_change": "python3 tools/alert/gen_stations.py --meganet-dir ../MegaNet --filter filters/stations.filter --out App/app/alert_stations_gen.h (8000-byte limit), then build and push. No Flood-Net commit is recorded: the header points at docs/firmware/manifest.json, which this repository does not have.",
    "drift_issue": false,
    "drift": {
-    "state": "behind",
+    "state": "current",
     "since": {
      "date": "2026-09-30",
      "commit": "66608567fb48e86c9b399ca51a391ae0cd41ffdd",
      "commitDate": "2026-09-30T04:58:36Z"
     },
-    "behind": 1,
-    "commits": [
-     {
-      "sha": "2181200",
-      "date": "2026-10-23T07:31:31Z",
-      "msg": "📡 FldWarn KMZ, round two: every repeater-document row on its own station, 60 stations added, manual or automatic recorded",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/2181200f67cee87ae63957425038f455d322707a"
-     }
-    ],
-    "files": [
-     "stations.json"
-    ],
-    "note": "1 upstream change to watched files since it was last reviewed (2026-09-30)."
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "506 newer commits upstream since it was last reviewed (2026-09-30), none to watched files."
    }
   },
   {
@@ -7210,7 +7209,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "495 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "498 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7255,24 +7254,15 @@
    "on_change": "Nothing can run while the repository is archived: its weekly build has stopped. To refresh, unarchive it and run build.yml, which regenerates the table and republishes both builds.",
    "drift_issue": false,
    "drift": {
-    "state": "behind",
+    "state": "current",
     "since": {
      "commit": "6ef4965",
      "commitDate": "2026-10-19T23:36:05Z"
     },
-    "behind": 1,
-    "commits": [
-     {
-      "sha": "2181200",
-      "date": "2026-10-23T07:31:31Z",
-      "msg": "📡 FldWarn KMZ, round two: every repeater-document row on its own station, 60 stations added, manual or automatic recorded",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/2181200f67cee87ae63957425038f455d322707a"
-     }
-    ],
-    "files": [
-     "stations.json"
-    ],
-    "note": "1 upstream change to watched files since 6ef4965."
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "331 newer commits upstream since 6ef4965, none to watched files."
    }
   },
   {
@@ -7300,7 +7290,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "495 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "498 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
