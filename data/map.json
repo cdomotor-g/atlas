@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-03T19:42:45.187Z",
- "hash": "04b8eee95de08576",
+ "generated": "2026-11-03T20:17:55.070Z",
+ "hash": "ac9505d21d1ade0a",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1888,27 +1888,35 @@
    "release": null,
    "ci": [
     {
+     "name": "Station health",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41710997439",
+     "date": "2026-11-03T20:16:15Z",
+     "event": "schedule"
+    },
+    {
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41705197465",
-     "date": "2026-11-03T19:38:55Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41710661447",
+     "date": "2026-11-03T20:14:14Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41704166642",
-     "date": "2026-11-03T19:32:23Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41709045462",
+     "date": "2026-11-03T20:03:50Z",
      "event": "schedule"
     },
     {
-     "name": "Station health",
+     "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41703939513",
-     "date": "2026-11-03T19:32:07Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41705958466",
+     "date": "2026-11-03T19:44:14Z",
      "event": "schedule"
     },
     {
@@ -5101,8 +5109,25 @@
      "url": "https://github.com/cdomotor-g/open-ALERT/commit/66109e246183e3c359521be1a31438b49f6bc8fe"
     }
    ],
-   "issues": [],
-   "issueCount": 0,
+   "issues": [
+    {
+     "n": 2,
+     "raw": "[Standalone] [Sonnet5/Low] Give every blocker in atlas.json an id",
+     "structure": "standalone",
+     "parent": null,
+     "model": "Sonnet5",
+     "effort": "Low",
+     "human": false,
+     "title": "Give every blocker in atlas.json an id",
+     "url": "https://github.com/cdomotor-g/open-ALERT/issues/2",
+     "updated": "2026-11-03T19:43:30Z",
+     "created": "2026-11-03T19:43:30Z",
+     "comments": 0,
+     "labels": [],
+     "mentions": []
+    }
+   ],
+   "issueCount": 1,
    "release": null,
    "ci": [
     {
@@ -6568,9 +6593,8 @@
  ],
  "links": [
   {
-   "id": "droggies-voice-cast",
+   "id": "flood-net:droggies-voice-cast",
    "from": "droggies",
-   "to": "flood-net",
    "provider": "voice-cast",
    "into": "bulletins",
    "what": "Each presenter's voice, read from the Droggies' published site on every Bulletin voices run.",
@@ -6584,6 +6608,8 @@
     "date": "2026-10-25"
    },
    "on_change": "A recast needs nothing: the next bulletin is voiced with it (run Actions > Bulletin voices to re-voice old ones). A new or renamed field: update tools/voice/speak.mjs and run cd test && npm run bulletin.",
+   "entry": "droggies-voice-cast",
+   "to": "flood-net",
    "drift": {
     "state": "unknown",
     "note": "The Atlas could not read one end (a private repository, or one its token cannot reach).",
@@ -6591,9 +6617,8 @@
    }
   },
   {
-   "id": "droggies-presenters",
+   "id": "flood-net:droggies-presenters",
    "from": "droggies",
-   "to": "flood-net",
    "provider": "character-canon",
    "into": "bulletins",
    "what": "The presenters' names, roles and sign-off lines copied into health-bulletin.js ROSTER and tools/bulletin/validate.mjs PRESENTERS, and their portraits cropped into assets/presenters/.",
@@ -6607,6 +6632,8 @@
    },
    "on_change": "Update ROSTER in health-bulletin.js and PRESENTERS in tools/bulletin/validate.mjs, re-crop a changed portrait into assets/presenters/, run cd test && npm run bulletin, and bump the version stamp.",
    "drift_issue": false,
+   "entry": "droggies-presenters",
+   "to": "flood-net",
    "drift": {
     "state": "unknown",
     "note": "The Atlas could not read one end (a private repository, or one its token cannot reach).",
@@ -6614,15 +6641,16 @@
    }
   },
   {
-   "id": "rpi-alert-release",
+   "id": "flood-net:rpi-alert-release",
    "from": "rpi-alert",
-   "to": "flood-net",
    "provider": "release",
    "into": "network-health",
    "what": "The latest RPi ALERT release, shown beside each base station's version on the Base Stations tab (amber when a station is behind).",
    "how": "release",
    "url": "https://api.github.com/repos/cdomotor-g/RPi_ALERT/releases/latest",
    "on_change": "Nothing: the tab asks GitHub every five minutes while open.",
+   "entry": "rpi-alert-release",
+   "to": "flood-net",
    "drift": {
     "state": "untracked",
     "since": null,
@@ -6633,9 +6661,8 @@
    }
   },
   {
-   "id": "rpi-alert-sdr-plan",
+   "id": "flood-net:rpi-alert-sdr-plan",
    "from": "rpi-alert",
-   "to": "flood-net",
    "provider": "channel-planner",
    "into": "network-health",
    "what": "RPi ALERT's SDR channel plan (each stick's sample-rate windows and usable band), mirrored in base-stations.js WINDOWS and the waterfall's edges, and in sdr-pi.js's channel rules.",
@@ -6647,6 +6674,8 @@
     "date": "2026-10-26"
    },
    "on_change": "Match WINDOWS in base-stations.js (and sdr-pi.js where the rule is shared) to the new RATES and USABLE; run cd test && npm run basestations && npm run sdrpi; bump the version stamp.",
+   "entry": "rpi-alert-sdr-plan",
+   "to": "flood-net",
    "drift": {
     "state": "current",
     "since": {
@@ -6661,9 +6690,8 @@
    }
   },
   {
-   "id": "rpi-alert-security-review",
+   "id": "flood-net:rpi-alert-security-review",
    "from": "rpi-alert",
-   "to": "flood-net",
    "into": "automation",
    "what": "The weekly security review reads RPi ALERT's agent and Pi image beside Flood-Net, because the two trust each other through ingest tokens and Base Stations requests.",
    "how": "reference",
@@ -6672,6 +6700,8 @@
     "os/"
    ],
    "on_change": "Nothing by hand: the Monday review (tools/security-scan/brief.md) reads it and files findings in flood-net-private.",
+   "entry": "rpi-alert-security-review",
+   "to": "flood-net",
    "drift": {
     "state": "untracked",
     "since": null,
@@ -6682,9 +6712,8 @@
    }
   },
   {
-   "id": "quansheng-serial-protocol",
+   "id": "flood-net:quansheng-serial-protocol",
    "from": "quansheng-v3",
-   "to": "flood-net",
    "provider": "serial-protocol",
    "into": "decoders",
    "what": "The radio's USB serial protocol (schema 2) and its station-table format, which quansheng.js implements and serial-radio.js builds from the loaded station list; sdr-pi.js follows the same line rules.",
@@ -6697,6 +6726,8 @@
     "date": "2026-10-01"
    },
    "on_change": "Bring quansheng.js (and serial-radio.js / sdr-pi.js where a rule is shared) into line with the changed sections; run cd test && npm run quansheng && npm run sdrpi; bump the version stamp.",
+   "entry": "quansheng-serial-protocol",
+   "to": "flood-net",
    "drift": {
     "state": "current",
     "since": {
@@ -6711,9 +6742,8 @@
    }
   },
   {
-   "id": "inspection-archive",
+   "id": "flood-net:inspection-archive",
    "from": "flood-net-private",
-   "to": "flood-net",
    "provider": "inspection-archive",
    "into": "automation",
    "what": "The historical inspection workbook and its derived files, read by the inspection ingest tools from a clone beside this one (tools/ingest/private.py) and loaded into the database.",
@@ -6722,6 +6752,8 @@
     "inspections/"
    ],
    "on_change": "Re-run the inspection tools in tools/ingest (survey.py, extract.py, crosswalk.py, remarks.py, load.py) against the clone; their checks run in flood-net-private's own workflow.",
+   "entry": "inspection-archive",
+   "to": "flood-net",
    "drift": {
     "state": "unknown",
     "note": "The Atlas could not read one end (a private repository, or one its token cannot reach).",
@@ -6729,9 +6761,8 @@
    }
   },
   {
-   "id": "alert-packets-codec",
+   "id": "flood-net:alert-packets-codec",
    "from": "alert-packets",
-   "to": "flood-net",
    "provider": "frame-codec",
    "into": "decoders",
    "what": "The ALERT / ERTS packet decoder and encoder, ported once into the ALERT Packets tab (packets.js) and developed here since.",
@@ -6739,6 +6770,8 @@
    "watch": [
     "index.html"
    ],
+   "entry": "alert-packets-codec",
+   "to": "flood-net",
    "drift": {
     "state": "untracked",
     "since": null,
@@ -6749,9 +6782,8 @@
    }
   },
   {
-   "id": "alert-packets-address-file",
+   "id": "flood-net:alert-packets-address-file",
    "from": "alert-packets",
-   "to": "flood-net",
    "provider": "address-list",
    "into": "decoders",
    "what": "The national ALERT address file and the Bureau's ERTS Data Formats specification, kept byte-for-byte as data/All 2021 Working 2.txt and docs/BOM spec erts_data_formats_doc.pdf.",
@@ -6765,6 +6797,8 @@
    },
    "on_change": "Copy the changed file over data/All 2021 Working 2.txt (read by packets.js and serial-radio.js) or the PDF in docs/.",
    "drift_issue": false,
+   "entry": "alert-packets-address-file",
+   "to": "flood-net",
    "drift": {
     "state": "current",
     "since": {
@@ -6779,9 +6813,8 @@
    }
   },
   {
-   "id": "sort-qld-map-layers",
+   "id": "flood-net:sort-qld-map-layers",
    "from": "sort",
-   "to": "flood-net",
    "provider": "qld-map-layers",
    "into": "stations-map",
    "what": "The QLD Globe recipes for the LiDAR contour and survey-mark layers: which ArcGIS services, sublayers resolved by name, and the server-rendered approach (map-contours.js, map-survey.js).",
@@ -6790,6 +6823,8 @@
     "index.html",
     "v2/js/map.js"
    ],
+   "entry": "sort-qld-map-layers",
+   "to": "flood-net",
    "drift": {
     "state": "untracked",
     "since": null,
@@ -6800,9 +6835,8 @@
    }
   },
   {
-   "id": "sort-tasks-handoff",
+   "id": "flood-net:sort-tasks-handoff",
    "from": "sort",
-   "to": "flood-net",
    "provider": "tasks-handoff",
    "into": "teams-tasks",
    "what": "The SoRT scope builder's hand-off of a forum's agreed jobs for a station: it opens floodwarning.net/#tasks=<base64url of UTF-8 JSON, v 1>, and the Tasks tab reviews them — each task's team picked by the hub or the team name SoRT gives, de-duplicated by sort:<session>:<ref> — making nothing until somebody who hands out tasks presses Create (tasks.js, parseHandoff).",
@@ -6814,6 +6848,8 @@
     "date": "2026-11-01"
    },
    "on_change": "Read SoRT's payload as v2/js/tasks.js now writes it and bring tasks.js's parseHandoff() and test/tasks.mjs up to it. A payload with a new v needs a reader of its own beside v 1's, which links already sent still carry.",
+   "entry": "sort-tasks-handoff",
+   "to": "flood-net",
    "drift": {
     "state": "behind",
     "since": {
@@ -6837,9 +6873,8 @@
    }
   },
   {
-   "id": "ingest-tools",
+   "id": "flood-net-private:ingest-tools",
    "from": "flood-net",
-   "to": "flood-net-private",
    "provider": "ingest-adapters",
    "into": "archive-checks",
    "what": "Flood-Net's ingest tools and checks, checked out beside the archive at run time.",
@@ -6848,6 +6883,8 @@
     "tools/ingest/"
    ],
    "on_change": "Nothing to copy: the next run uses them. If a check fails, fix the tool in Flood-Net or the data here.",
+   "entry": "ingest-tools",
+   "to": "flood-net-private",
    "drift": {
     "state": "unknown",
     "note": "The Atlas could not read one end (a private repository, or one its token cannot reach).",
@@ -6855,9 +6892,8 @@
    }
   },
   {
-   "id": "stations",
+   "id": "flood-net-private:stations",
    "from": "flood-net",
-   "to": "flood-net-private",
    "provider": "station-list",
    "into": "inspections",
    "what": "Flood-Net's stations.json on main, which the daily workflow re-derives the station crosswalk against.",
@@ -6866,6 +6902,8 @@
     "stations.json"
    ],
    "on_change": "Nothing by hand: the daily run re-derives the crosswalk; look at it if the run fails.",
+   "entry": "stations",
+   "to": "flood-net-private",
    "drift": {
     "state": "unknown",
     "note": "The Atlas could not read one end (a private repository, or one its token cannot reach).",
@@ -6873,9 +6911,8 @@
    }
   },
   {
-   "id": "security-brief",
+   "id": "flood-net-private:security-brief",
    "from": "flood-net",
-   "to": "flood-net-private",
    "provider": "automation",
    "into": "security",
    "what": "The weekly security review's brief: the security-scan label, one finding per issue, the scan-log entry format.",
@@ -6885,6 +6922,8 @@
     "tools/security-scan/README.md"
    ],
    "on_change": "Keep security/scan-log.md and the security-scan issues in the shape the brief describes.",
+   "entry": "security-brief",
+   "to": "flood-net-private",
    "drift": {
     "state": "unknown",
     "note": "The Atlas could not read one end (a private repository, or one its token cannot reach).",
@@ -6892,9 +6931,8 @@
    }
   },
   {
-   "id": "vendored-decoders",
+   "id": "rpi-alert:vendored-decoders",
    "from": "flood-net",
-   "to": "rpi-alert",
    "provider": "decoders",
    "into": "vendored-decoders",
    "what": "Flood-Net's off-air ALERT decoder, Quansheng serial codec, ERT-A2 ALERT2 parser and NMEA parser, copied verbatim with the off-air test burst.",
@@ -6912,6 +6950,8 @@
    },
    "on_change": "Run agent/scripts/sync-meganet.sh (copies the files from Flood-Net's main and records the commit in SOURCE), then the agent tests: cd agent && node --test test/*.test.js. Follow any changed shape in the drivers (ert.js, quansheng.js, sdr.js), bump agent/package.json and release.",
    "drift_issue": true,
+   "entry": "vendored-decoders",
+   "to": "rpi-alert",
    "drift": {
     "state": "current",
     "since": {
@@ -6925,9 +6965,8 @@
    }
   },
   {
-   "id": "ingest",
+   "id": "rpi-alert:ingest",
    "from": "flood-net",
-   "to": "rpi-alert",
    "provider": "https-ingest",
    "into": "flood-net-link",
    "what": "Flood-Net's HTTPS ingest: ingest_http (readings), report_ingest_point (receivers), report_receptions (every frame heard) and the token request, as RPCs with the X-Ingest-Token header through floodwarning.net's /api/db proxy, or Supabase directly.",
@@ -6943,6 +6982,8 @@
     "date": "2026-11-01"
    },
    "on_change": "Check agent/lib/meganet.js, uplink.js and token-request.js against the change, update the stand-in agent/test/helpers/meganet-stub.js, then cd agent && node --test test/*.test.js.",
+   "entry": "ingest",
+   "to": "rpi-alert",
    "drift": {
     "state": "behind",
     "since": {
@@ -6966,9 +7007,8 @@
    }
   },
   {
-   "id": "base-station-checkin",
+   "id": "rpi-alert:base-station-checkin",
    "from": "flood-net",
-   "to": "rpi-alert",
    "provider": "base-station-checkin",
    "into": "remote",
    "what": "Flood-Net's side of the check-in: the base_station_checkin and base_station_keys RPCs, what they keep (a 16 KB status, a 2 KB heartbeat, spectrum rows) and the config.set patches the Base Stations tab writes.",
@@ -6982,6 +7022,8 @@
     "date": "2026-10-25"
    },
    "on_change": "Check agent/lib/remote.js (verbs, status and heartbeat limits, the config.set guards) and docs/remote-management.md against it, then cd agent && node --test test/*.test.js.",
+   "entry": "base-station-checkin",
+   "to": "rpi-alert",
    "drift": {
     "state": "behind",
     "since": {
@@ -7036,15 +7078,16 @@
    }
   },
   {
-   "id": "station-register",
+   "id": "rpi-alert:station-register",
    "from": "flood-net",
-   "to": "rpi-alert",
    "provider": "station-list",
    "into": "flood-net-link",
    "what": "Flood-Net's public station register, fetched daily and kept on disk: names what each address is, and offers a stick's channels from the frequencies stations near the Pi use. The set-up page reads it too.",
    "how": "live",
    "url": "https://floodwarning.net/stations.json",
    "on_change": "If the document's shape changes, update agent/lib/stations.js and site/app.js, then cd agent && node --test test/stations.test.js.",
+   "entry": "station-register",
+   "to": "rpi-alert",
    "drift": {
     "state": "untracked",
     "since": null,
@@ -7055,9 +7098,8 @@
    }
   },
   {
-   "id": "quansheng-v3-serial",
+   "id": "rpi-alert:quansheng-v3-serial",
    "from": "quansheng-v3",
-   "to": "rpi-alert",
    "provider": "serial-protocol",
    "into": "serial-drivers",
    "what": "The ALERT receiver firmware's USB serial interface, schema 2: DEC, BST, STA and EVT lines, DTR, TIME and the console. The line codec is Flood-Net's quansheng.js (vendored); the driver adds DTR toggling, clock setting and one command at a time.",
@@ -7071,6 +7113,8 @@
     "date": "2026-10-06"
    },
    "on_change": "A record-format change goes into Flood-Net's quansheng.js first and comes here with agent/scripts/sync-meganet.sh; DTR, clock or console changes go in agent/lib/devices/quansheng.js. Then cd agent && node --test test/*.test.js.",
+   "entry": "quansheng-v3-serial",
+   "to": "rpi-alert",
    "drift": {
     "state": "current",
     "since": {
@@ -7085,9 +7129,8 @@
    }
   },
   {
-   "id": "quansheng-v1-serial",
+   "id": "rpi-alert:quansheng-v1-serial",
    "from": "quansheng-v1",
-   "to": "rpi-alert",
    "provider": "uart-line",
    "into": "serial-drivers",
    "what": "The older DP32G030 ALERT firmware's UART line, ALERT,<id>,<value>,<ABF|EIF>,<rssi>,<name> at 38400 over the programming cable: recognised by sniff.js, read by the Quansheng driver's legacy path.",
@@ -7100,6 +7143,8 @@
     "date": "2026-10-06"
    },
    "on_change": "Update the LEGACY pattern in agent/lib/devices/quansheng.js and the sniff in agent/lib/devices/sniff.js, then cd agent && node --test test/devices.test.js.",
+   "entry": "quansheng-v1-serial",
+   "to": "rpi-alert",
    "drift": {
     "state": "behind",
     "since": {
@@ -7130,9 +7175,8 @@
    }
   },
   {
-   "id": "station-table",
+   "id": "quansheng-v3:station-table",
    "from": "flood-net",
-   "to": "quansheng-v3",
    "provider": "station-list",
    "into": "station-table",
    "what": "Station names, sensor kinds, ALERT addresses and repeater networks for the built-in table.",
@@ -7147,6 +7191,8 @@
    },
    "on_change": "python3 tools/alert/gen_stations.py --meganet-dir ../MegaNet --filter filters/stations.filter --out App/app/alert_stations_gen.h (8000-byte limit), then build and push. No Flood-Net commit is recorded: the header points at docs/firmware/manifest.json, which this repository does not have.",
    "drift_issue": false,
+   "entry": "station-table",
+   "to": "quansheng-v3",
    "drift": {
     "state": "current",
     "since": {
@@ -7161,9 +7207,8 @@
    }
   },
   {
-   "id": "station-upload",
+   "id": "quansheng-v3:station-upload",
    "from": "flood-net",
-   "to": "quansheng-v3",
    "provider": "station-list",
    "into": "host-tools",
    "what": "alertterm.py stations-upload reads Flood-Net's station files from main at run time to build the SPI table.",
@@ -7175,6 +7220,8 @@
     "data/ALL_REPEATERS.csv"
    ],
    "on_change": "Nothing to rebuild. If the files' layout changes (sensors, alert_ids, radio_networks), fix the parsers in tools/alert/gen_stations.py.",
+   "entry": "station-upload",
+   "to": "quansheng-v3",
    "drift": {
     "state": "untracked",
     "since": null,
@@ -7185,9 +7232,8 @@
    }
   },
   {
-   "id": "packet-formats",
+   "id": "quansheng-v3:packet-formats",
    "from": "flood-net",
-   "to": "quansheng-v3",
    "provider": "packet-formats",
    "into": "decoder",
    "what": "The ABF, EIF and A2C bit layouts and the CRC-6, mirrored bit for bit from packets.js FORMATS.",
@@ -7199,6 +7245,8 @@
     "date": "2026-10-01"
    },
    "on_change": "Compare packets.js FORMATS with App/app/alert_decode.c; mirror any change and add a vector to tools/alert/test_decode.c.",
+   "entry": "packet-formats",
+   "to": "quansheng-v3",
    "drift": {
     "state": "current",
     "since": {
@@ -7213,9 +7261,8 @@
    }
   },
   {
-   "id": "setup-site",
+   "id": "quansheng-v3:setup-site",
    "from": "quansheng-all",
-   "to": "quansheng-v3",
    "provider": "setup-site",
    "what": "The README sends people to the setup guide and to the installer at /flash/?radio=v3.",
    "how": "reference",
@@ -7225,6 +7272,8 @@
     "docs/js/installer.js"
    ],
    "on_change": "Check the README's links to the guide and the installer still land.",
+   "entry": "setup-site",
+   "to": "quansheng-v3",
    "drift": {
     "state": "untracked",
     "since": null,
@@ -7235,9 +7284,8 @@
    }
   },
   {
-   "id": "station-table",
+   "id": "quansheng-v1:station-table",
    "from": "flood-net",
-   "to": "quansheng-v1",
    "provider": "station-list",
    "into": "station-table",
    "what": "Station names, sensor kinds, ALERT addresses and repeater networks for the built-in table.",
@@ -7253,6 +7301,8 @@
    },
    "on_change": "Nothing can run while the repository is archived: its weekly build has stopped. To refresh, unarchive it and run build.yml, which regenerates the table and republishes both builds.",
    "drift_issue": false,
+   "entry": "station-table",
+   "to": "quansheng-v1",
    "drift": {
     "state": "current",
     "since": {
@@ -7266,9 +7316,8 @@
    }
   },
   {
-   "id": "packet-formats",
+   "id": "quansheng-v1:packet-formats",
    "from": "flood-net",
-   "to": "quansheng-v1",
    "provider": "packet-formats",
    "into": "decoder",
    "what": "The ABF and EIF bit layouts and CRC-6, a straight port of packets.js.",
@@ -7280,6 +7329,8 @@
     "date": "2026-10-01"
    },
    "on_change": "Nothing while archived.",
+   "entry": "packet-formats",
+   "to": "quansheng-v1",
    "drift": {
     "state": "current",
     "since": {
@@ -7294,9 +7345,8 @@
    }
   },
   {
-   "id": "v3-decoder",
+   "id": "quansheng-v1:v3-decoder",
    "from": "quansheng-v3",
-   "to": "quansheng-v1",
    "provider": "decoder",
    "into": "decoder",
    "what": "The V3's on-air-proven demodulator and decoder, brought over in October 2026 (alert_decode.c verbatim).",
@@ -7310,6 +7360,8 @@
     "date": "2026-10-20"
    },
    "on_change": "Nothing while archived; a revived fork would copy alert_decode.c across again.",
+   "entry": "v3-decoder",
+   "to": "quansheng-v1",
    "drift": {
     "state": "current",
     "since": {
@@ -7324,9 +7376,8 @@
    }
   },
   {
-   "id": "v3-firmware",
+   "id": "quansheng-all:v3-firmware",
    "from": "quansheng-v3",
-   "to": "quansheng-all",
    "provider": "firmware",
    "into": "refresh",
    "what": "The UV-K5 V3 / UV-K1 ALERT firmware, compiled here (RescueOps, -DENABLE_ALERT=ON) into docs/firmware/v3/.",
@@ -7347,6 +7398,8 @@
    },
    "on_change": "Nothing by hand, so no drift issue: refresh-firmware.yml rebuilds it every Monday 03:17 UTC and on a firmware-updated dispatch, committing only if the bytes change. To publish sooner: gh workflow run refresh-firmware.yml --ref main -R cdomotor-g/quansheng_alert_ALL.",
    "drift_issue": false,
+   "entry": "v3-firmware",
+   "to": "quansheng-all",
    "drift": {
     "state": "current",
     "since": {
@@ -7360,9 +7413,8 @@
    }
   },
   {
-   "id": "v1-firmware",
+   "id": "quansheng-all:v1-firmware",
    "from": "quansheng-v1",
-   "to": "quansheng-all",
    "provider": "published-builds",
    "into": "refresh",
    "what": "The UV-K5 builds quansheng_alert publishes in its docs/firmware/, copied as they are into docs/firmware/v1/.",
@@ -7375,6 +7427,8 @@
    },
    "on_change": "Nothing by hand, so no drift issue: the same weekly refresh copies them. quansheng_alert is archived, so they no longer change.",
    "drift_issue": false,
+   "entry": "v1-firmware",
+   "to": "quansheng-all",
    "drift": {
     "state": "current",
     "since": {
@@ -7388,9 +7442,8 @@
    }
   },
   {
-   "id": "v3-screens",
+   "id": "quansheng-all:v3-screens",
    "from": "quansheng-v3",
-   "to": "quansheng-all",
    "provider": "screens",
    "into": "guide",
    "what": "Screen captures of the V3 receiver, copied into docs/img/screens/ for the guide.",
@@ -7403,6 +7456,8 @@
    },
    "on_change": "Copy the new or changed PNGs into docs/img/screens/ and check the guide's captions.",
    "drift_issue": true,
+   "entry": "v3-screens",
+   "to": "quansheng-all",
    "drift": {
     "state": "current",
     "since": {
@@ -7417,9 +7472,8 @@
    }
   },
   {
-   "id": "v3-receiver-docs",
+   "id": "quansheng-all:v3-receiver-docs",
    "from": "quansheng-v3",
-   "to": "quansheng-all",
    "provider": "serial-protocol",
    "into": "guide",
    "what": "The guide's account of the V3 receiver: screens, keys, settings, the 443 built-in stations, and logging with alertterm.py.",
@@ -7436,6 +7490,8 @@
     "date": "2026-10-20"
    },
    "on_change": "Re-read the guide's V3 screens, keys, settings and logging sections against the change and update them.",
+   "entry": "v3-receiver-docs",
+   "to": "quansheng-all",
    "drift": {
     "state": "current",
     "since": {
@@ -7450,9 +7506,8 @@
    }
   },
   {
-   "id": "v1-installer",
+   "id": "quansheng-all:v1-installer",
    "from": "quansheng-v1",
-   "to": "quansheng-all",
    "provider": "installer",
    "into": "installer",
    "what": "The UV-K5 installer and cable page, extended here to both radio families.",
@@ -7465,6 +7520,8 @@
     "commit": "e922375"
    },
    "on_change": "Nothing: taken once and now independent; quansheng_alert is archived.",
+   "entry": "v1-installer",
+   "to": "quansheng-all",
    "drift": {
     "state": "current",
     "since": {
@@ -7478,9 +7535,8 @@
    }
   },
   {
-   "id": "v1-k5diag",
+   "id": "quansheng-all:v1-k5diag",
    "from": "quansheng-v1",
-   "to": "quansheng-all",
    "provider": "installer",
    "into": "cable",
    "what": "k5diag.py, the command-line cable and radio check, a verbatim copy.",
@@ -7492,6 +7548,8 @@
     "commit": "e922375"
    },
    "on_change": "Copy tools/k5diag.py over docs/tools/k5diag.py (identical today).",
+   "entry": "v1-k5diag",
+   "to": "quansheng-all",
    "drift": {
     "state": "current",
     "since": {
@@ -7505,9 +7563,8 @@
    }
   },
   {
-   "id": "rpi-alert-entry",
+   "id": "open-alert:rpi-alert-entry",
    "from": "rpi-alert",
-   "to": "open-alert",
    "provider": "release",
    "into": "alert-catalogue",
    "what": "RPi ALERT's catalogue entry and notes: version, receivers it reads, protocols, platforms, hardware and clock notes.",
@@ -7527,6 +7584,8 @@
    },
    "on_change": "Update the rpi-alert record in site/data/alert.js (fw.name version, reads, decodes, grade, cons) and the RPi ALERT notes in compute.js, radio.js and site.js; run npm test.",
    "drift_issue": true,
+   "entry": "rpi-alert-entry",
+   "to": "open-alert",
    "drift": {
     "state": "current",
     "since": {
@@ -7541,9 +7600,8 @@
    }
   },
   {
-   "id": "quansheng-v3-entry",
+   "id": "open-alert:quansheng-v3-entry",
    "from": "quansheng-v3",
-   "to": "open-alert",
    "provider": "firmware",
    "into": "catalogue",
    "what": "The UV-K5 V3 / UV-K1 receiver entry: how to flash it, its serial interface, its on-air status.",
@@ -7557,6 +7615,8 @@
     "date": "2026-10-17"
    },
    "on_change": "Update quansheng-uv-k5-v3 in site/data/radio.js (fw.note, status, cons); run npm test.",
+   "entry": "quansheng-v3-entry",
+   "to": "open-alert",
    "drift": {
     "state": "behind",
     "since": {
@@ -7580,9 +7640,8 @@
    }
   },
   {
-   "id": "quansheng-v1-entry",
+   "id": "open-alert:quansheng-v1-entry",
    "from": "quansheng-v1",
-   "to": "open-alert",
    "provider": "published-builds",
    "into": "catalogue",
    "what": "The DP32G030 UV-K5 entry: archived but flashable, read through a K-plug cable at 38,400 baud.",
@@ -7595,6 +7654,8 @@
     "date": "2026-10-17"
    },
    "on_change": "Update quansheng-uv-k5-dp32 in site/data/radio.js; run npm test.",
+   "entry": "quansheng-v1-entry",
+   "to": "open-alert",
    "drift": {
     "state": "behind",
     "since": {
@@ -7624,9 +7685,8 @@
    }
   },
   {
-   "id": "fw-lab-entry",
+   "id": "open-alert:fw-lab-entry",
    "from": "fw-lab",
-   "to": "open-alert",
    "provider": "receiver-docs",
    "into": "alert-catalogue",
    "what": "The FW-LAB Receiver entry and the GNU Radio lab base preset: SDRs, platforms, MQTT output.",
@@ -7641,6 +7701,8 @@
     "date": "2026-10-17"
    },
    "on_change": "Update fwlab-receiver in site/data/alert.js and base-fwlab-x86 in site/js/presets.js (status eol if the repository is archived); run npm test.",
+   "entry": "fw-lab-entry",
+   "to": "open-alert",
    "drift": {
     "state": "behind",
     "since": {
@@ -7664,9 +7726,8 @@
    }
   },
   {
-   "id": "alert-packets-frames",
+   "id": "open-alert:alert-packets-frames",
    "from": "alert-packets",
-   "to": "open-alert",
    "provider": "frame-codec",
    "into": "alert-catalogue",
    "what": "ALERT frame formats (ABF, EIF, framing, CRC) cited for the planned open encoder.",
@@ -7680,6 +7741,8 @@
     "date": "2026-10-17"
    },
    "on_change": "Re-check the oa-encoder and diy-minimodem-encoder records in site/data/alert.js.",
+   "entry": "alert-packets-frames",
+   "to": "open-alert",
    "drift": {
     "state": "current",
     "since": {
@@ -7694,9 +7757,8 @@
    }
   },
   {
-   "id": "flood-net-refs",
+   "id": "open-alert:flood-net-refs",
    "from": "flood-net",
-   "to": "open-alert",
    "into": "alert-catalogue",
    "what": "ALERT2 transition plan planning prices, ALERT1 tones and timing, the Serial Monitor entry, and Flood-Net as the destination (HTTPS, MQTT, HFEM, 115E-2-A2 bridge).",
    "how": "reference",
@@ -7715,6 +7777,8 @@
     "date": "2026-10-17"
    },
    "on_change": "Update the PLAN-priced records in site/data/alert.js and site/data/site.js (and usdPerAud in site/js/engine.js), the floodnet-serial-monitor record, and the Flood-Net outputs in engine.js; run npm test.",
+   "entry": "flood-net-refs",
+   "to": "open-alert",
    "drift": {
     "state": "behind",
     "since": {
@@ -7801,9 +7865,8 @@
    }
   },
   {
-   "id": "rpi-alert-decoding-model",
+   "id": "open-alert:rpi-alert-decoding-model",
    "from": "rpi-alert",
-   "to": "open-alert",
    "provider": "channel-planner",
    "into": "builder",
    "what": "The builder's stick windows, channel costs, burst cost and install routes: RPi ALERT's hardware notes, how it works, its installer and its SDR worker. The Mallow trial follows its configuration (receiver ids, channels) the same way.",
@@ -7822,6 +7885,8 @@
     "date": "2026-11-03"
    },
    "on_change": "Re-check model.windows, chCore240, burstCoreS and kioskCore in site/data/builder.js and the steps() text in site/js/builder.js; run npm test.",
+   "entry": "rpi-alert-decoding-model",
+   "to": "open-alert",
    "drift": {
     "state": "current",
     "since": {
@@ -7836,9 +7901,8 @@
    }
   },
   {
-   "id": "floodnet-api",
+   "id": "sort:floodnet-api",
    "from": "flood-net",
-   "to": "sort",
    "provider": "agent-api",
    "into": "floodnet-lookup",
    "what": "Flood-Net's public read-only agent API: station search and stations near a point, each station's dossier and record, the ACMA licences at its site, and its radio path to base with the fade margin Flood-Net saved for each hop (the dossier's radio_path section).",
@@ -7854,6 +7918,8 @@
     "date": "2026-11-01"
    },
    "on_change": "Read the new docs/api-changelog.json entries; if a route or field SoRT reads changed, update v2/js/floodnet.js, bump v2's ?v= stamp and look up a station on /SoRT/v2/.",
+   "entry": "floodnet-api",
+   "to": "sort",
    "drift": {
     "state": "behind",
     "since": {
@@ -7884,9 +7950,8 @@
    }
   },
   {
-   "id": "bulletin-voicing",
+   "id": "droggies:bulletin-voicing",
    "from": "flood-net",
-   "to": "droggies",
    "into": "voices",
    "what": "How Flood-Net's bulletin voicing reads the cast (direction, sustain, tempo, lexicon) and the Bulletin voices workflow that re-voices old bulletins, both described in voices/README.md.",
    "how": "reference",
@@ -7898,6 +7963,8 @@
     "date": "2026-10-25"
    },
    "on_change": "Check voices/README.md's recasting steps and its notes on direction, sustain and tempo still match; add any field speak.mjs newly reads to schemas/cast.schema.json.",
+   "entry": "bulletin-voicing",
+   "to": "droggies",
    "drift": {
     "state": "unknown",
     "note": "The Atlas could not read one end (a private repository, or one its token cannot reach).",
