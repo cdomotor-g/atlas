@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-03T06:34:25.762Z",
- "hash": "50b6df6ae4920def",
+ "generated": "2026-11-03T09:27:13.802Z",
+ "hash": "c99acd0d2a90bb04",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1827,36 +1827,28 @@
    "release": null,
    "ci": [
     {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41610783681",
+     "date": "2026-11-03T09:24:53Z",
+     "event": "schedule"
+    },
+    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41589777757",
-     "date": "2026-11-03T06:25:28Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41609967100",
+     "date": "2026-11-03T09:19:00Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41589733028",
-     "date": "2026-11-03T06:25:47Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41609843040",
+     "date": "2026-11-03T09:18:30Z",
      "event": "schedule"
-    },
-    {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41589490975",
-     "date": "2026-11-03T06:22:49Z",
-     "event": "schedule"
-    },
-    {
-     "name": "Web smoke test",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41588728750",
-     "date": "2026-11-03T06:15:38Z",
-     "event": "push"
     },
     {
      "name": "Atlas",
@@ -1864,30 +1856,6 @@
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41588729374",
      "date": "2026-11-03T06:15:44Z",
-     "event": "push"
-    },
-    {
-     "name": "CodeQL",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41588728776",
-     "date": "2026-11-03T06:19:05Z",
-     "event": "push"
-    },
-    {
-     "name": "Bulletin voices",
-     "status": "completed",
-     "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41588204483",
-     "date": "2026-11-03T06:11:13Z",
-     "event": "push"
-    },
-    {
-     "name": "Roadmap sync",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41579666950",
-     "date": "2026-11-03T04:42:41Z",
      "event": "push"
     }
    ],
