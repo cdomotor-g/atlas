@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-03T00:43:55.561Z",
- "hash": "48a6011aa9383f74",
+ "generated": "2026-11-03T03:28:05.285Z",
+ "hash": "bf780b103fdbce87",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -97,7 +97,8 @@
      "updated": "2026-11-03",
      "summary": "Live and in daily use (database schema 95): this week added teams and the tasks handed to them, with the SoRT scope builder's hand-off, a driving mode that follows a station's route in 3-D, the agent API's changelog and email list, ACMA licences and radio paths in the API, the Repeaters tab and cuts to database I/O, while account email, compute size and the ACMA download link wait on the owner.",
      "now": [
-      "Teams and tasks (0095) live: thirteen starter teams with nobody on them yet — an administrator names each team's owners on the Admin tab; SoRT's #tasks= hand-off lands on the Tasks tab for review",
+      "Teams and tasks (0095) live: one team has its owner so far — an administrator names each team's owners on the Admin tab; SoRT's #tasks= hand-off lands on the Tasks tab for review",
+      "One person, one account (0100): an account keeps a second address — found by a team's owner, where its emails can go, refused a sign-in of its own; the Admin tab's Same person… folds a second account in",
       "Agent API changelog and notify list shipped; emails start once #237's Resend parts are done",
       "Agent API radio paths to base, for SoRT's Fade Margin question: live, and every saved fade margin stale until the map's layer is swept and saved again",
       "Photo reader: nightly reading of field photos for logger and equipment details",
@@ -105,7 +106,7 @@
       "One ALERT burst heard several ways is one reading (0096, #232 closed): copies within 8 s counted on it",
       "#217 and #244 transmitter drift and bit-flip sources: gathering live days of carrier data",
       "#258 flaky Site features 3-D hand-back check in CI",
-      "Legacy ALERT over MQTT trial (ELPRO gateway, Alert1 path): the bridge decodes it and drops the gateway's re-sent table, live since 2 Nov with the trial's first hour replayed; the ALERT2 path's timer republishes are now stored once too (0097 cleared a month of them)",
+      "Legacy ALERT over MQTT trial (ELPRO gateway, Alert1 path): the bridge decodes it and drops the gateway's re-sent table, live since 2 Nov with the trial's first hour replayed; ALERT2 relay readings are one per transmission with near-simultaneous copies counted (0098 put back what 0097 had wrongly removed)",
       "#259 a lighter off-air decoder: lean decoding is the live pipeline's default (0.12% of 11,628 live bursts read differently, a third of the time), and the work between bursts is a quarter less; part 2, filtering channels only around bursts, left"
      ],
      "next": [
@@ -431,6 +432,28 @@
          "by": "human",
          "effort": "none",
          "cons": "SoRT's Fade Margin question has only stale modelled figures and old measurements to go on"
+        }
+       ],
+       "issue": "#235"
+      },
+      {
+       "id": "team-owners",
+       "what": "Name an owner for each of the 13 starter teams (all empty since 0095), SoRT Forum first",
+       "on": "human",
+       "kind": "access",
+       "since": "2026-11-01",
+       "issue": "#261",
+       "holds": [
+        "SoRT forum tasks created by anyone but administrators",
+        "each team seeing its own tasks on the Tasks tab",
+        "sort"
+       ],
+       "options": [
+        {
+         "what": "Admin tab → Teams → open the team → Add somebody, by the address of their Flood-Net account → tick As an owner → Add to …; owners then add their members under Tasks → My teams",
+         "by": "human",
+         "effort": "15 min",
+         "recommended": true
         }
        ]
       }
@@ -978,86 +1001,103 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-02T22:38:43Z",
+    "pushed": "2026-11-03T03:25:23Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
     {
-     "sha": "11c1799",
-     "date": "2026-11-02T22:38:40Z",
-     "msg": "Decoder: lean by default, and a quarter less work between bursts (#259)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/11c1799ec5d8f37b54d0fa2654a3f48401e0d4ea"
+     "sha": "a1f14c5",
+     "date": "2026-11-03T03:25:21Z",
+     "msg": "DB_SCHEMA_VERSION 100 after db-migrate applied 0100; stamp 20261103j",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/a1f14c5052b8d62b8ae58ba22a1aba4f55011cc1"
     },
     {
-     "sha": "b45527b",
-     "date": "2026-11-02T18:37:06Z",
-     "msg": "Bulletin voices: daily/2026-11-03",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/b45527bab133a5498e65e7ea70755aff78fd6b20"
+     "sha": "b313bf7",
+     "date": "2026-11-03T03:23:02Z",
+     "msg": "One person, one account: a second address, and Same person… (0100)",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/b313bf7d1fd886f9a0bb14128423534b85eec308"
     },
     {
-     "sha": "c2b07fb",
-     "date": "2026-11-02T18:36:02Z",
-     "msg": "Network Bulletin: daily bulletin for 2026-11-03 — Gold Coast hinterland group quiet overnight behind Tallai",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/c2b07fbae44553c1674ebf62333d68c78fbad7bf"
+     "sha": "c187221",
+     "date": "2026-11-03T03:20:49Z",
+     "msg": "Base Stations: the Pi's Decoder (Lean, Full, Compare) in a station's remote settings",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/c187221f301c42e4de718b2878322d0c8d69c3c8"
     },
     {
-     "sha": "e43e7ae",
-     "date": "2026-11-02T15:35:04Z",
-     "msg": "CI doctor: #257 and #258 closed — Data archive and Web smoke test are green on main; roadmap updated",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/e43e7aec8e84643a97e45d6ca7a7c6b214b9c573"
+     "sha": "6beb40e",
+     "date": "2026-11-03T03:14:32Z",
+     "msg": "Base Stations: taller sparklines in \"Signal across what it hears\"",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/6beb40e22ff5e0585a449ce3fafa9566af141967"
     },
     {
-     "sha": "5c2db78",
-     "date": "2026-11-02T04:24:00Z",
-     "msg": "Decoder: compare — decode each burst both ways and say if they agree (#259)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/5c2db78a70813f142625ca87da2e119a110aa61d"
+     "sha": "f10f0d8",
+     "date": "2026-11-03T03:09:04Z",
+     "msg": "DB_SCHEMA_VERSION 99 after db-migrate applied 0099; stamp 20261103f",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/f10f0d87dfda1ab93e50aab223f2f0775ad6ac92"
     },
     {
-     "sha": "3d05998",
-     "date": "2026-11-02T04:17:41Z",
-     "msg": "Decoder: lean decoding, opt-in beside the full decoder (#259 part 1)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/3d05998fc525ed08847ddf6cb41534b677b53838"
+     "sha": "6b4f730",
+     "date": "2026-11-03T03:07:41Z",
+     "msg": "Admin: say why Users and the allowlist are two lists; fold a token's receivers",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/6b4f730f7cd1660481736cc69bd536f25f9a0f59"
     },
     {
-     "sha": "99ad091",
-     "date": "2026-11-02T03:18:38Z",
-     "msg": "Bridge: a retained ELPRO message teaches the filter and stores nothing",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/99ad091384c3d3b33544528126a86cc686f83fc3"
+     "sha": "0c6817b",
+     "date": "2026-11-03T02:59:50Z",
+     "msg": "Council areas (LGA) layer on the Stations map; overlays on the Repeaters map",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/0c6817bcfc9ff7ef51b8af1055f59111a7ee4ebe"
     },
     {
-     "sha": "7696217",
-     "date": "2026-11-02T03:14:58Z",
-     "msg": "Roadmap revision 213: #260 opened — the ALERT twins stored before 0096",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/76962171e1ee21094cf864e7ed5f0e23eb0c0ebd"
+     "sha": "954cefd",
+     "date": "2026-11-03T02:56:47Z",
+     "msg": "Stamp 20261103c",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/954cefd345de136d54892900e2f84180d795d26c"
     },
     {
-     "sha": "4cd73ca",
-     "date": "2026-11-02T03:10:43Z",
-     "msg": "Bridge: read the legacy table's re-sent part by its shape, not by value",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/4cd73cadfb542ce9d8e1b5fef840e6e926aca589"
+     "sha": "c35e6e3",
+     "date": "2026-11-03T02:56:43Z",
+     "msg": "Admin › Teams: the Add somebody box suggests approved accounts",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/c35e6e327d9c6b43dd946268b4203665dd3a7ab4"
     },
     {
-     "sha": "3199ab5",
-     "date": "2026-11-02T02:23:03Z",
-     "msg": "ELPRO page: the legacy table bursts stop once every address is in the table",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/3199ab57444c0927941aebec68d4d23592474658"
+     "sha": "5385e05",
+     "date": "2026-11-03T02:30:00Z",
+     "msg": "DB_SCHEMA_VERSION 98 after db-migrate applied 0098; stamp 20261103b",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/5385e0564e058649b9f9be24c4ead4689056d52c"
     },
     {
-     "sha": "a298b0e",
-     "date": "2026-11-02T02:10:27Z",
-     "msg": "DB_SCHEMA_VERSION 97 after db-migrate applied 0097; stamp 20261102a",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/a298b0e0170e2458155553efda6cbec52f6f78d4"
+     "sha": "1c8dcea",
+     "date": "2026-11-03T02:01:03Z",
+     "msg": "Roadmap revision 216: #261 opened (team owners); #235 has two more reasons",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/1c8dcea147cdb2300e82e31581eb9f0b069f2e67"
     },
     {
-     "sha": "a03e68e",
-     "date": "2026-11-02T02:07:35Z",
-     "msg": "0097: one reading per ALERT2 report the ELPRO gateway republished",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/a03e68e70c029698aaa808c4b94c79d82a64abdd"
+     "sha": "dd170af",
+     "date": "2026-11-03T01:53:17Z",
+     "msg": "0098: put back the ELPRO ALERT2 readings 0097 removed and the bridge dropped",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/dd170aff3f596bd6b49da930d3257425881b0665"
     }
    ],
    "issues": [
+    {
+     "n": 261,
+     "raw": "[Standalone] [Human] Name an owner for each of the 13 teams, so SoRT forum tasks can be created",
+     "structure": "standalone",
+     "parent": null,
+     "model": null,
+     "effort": null,
+     "human": true,
+     "title": "Name an owner for each of the 13 teams, so SoRT forum tasks can be created",
+     "url": "https://github.com/cdomotor-g/MegaNet/issues/261",
+     "updated": "2026-11-03T02:00:06Z",
+     "created": "2026-11-03T02:00:06Z",
+     "comments": 0,
+     "labels": [],
+     "mentions": [],
+     "excerpt": "Teams and tasks went live at revision 211 (0095). The 13 starter teams exist, and every one is empty: - one team per hub: Adelaide, Brisbane, Cairns, Darwin, Hobart, Melbourne, Perth and Sydney Hub - Property Services, Radio licensing, SoRT Forum, OTE and ID Until a team has people on it: - only administrators see the ✅ Tasks tab - only administrators…"
+    },
     {
      "n": 260,
      "raw": "[Sub-issue of #240] [Opus5/High] Fold the ALERT twins stored before 0096 into one reading each",
@@ -1334,9 +1374,9 @@
      "human": true,
      "title": "Re-sweep the fade-margin map and save it under the 12 dB allowance",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/235",
-     "updated": "2026-10-09T05:16:44Z",
+     "updated": "2026-11-03T02:00:10Z",
      "created": "2026-10-09T05:16:25Z",
-     "comments": 0,
+     "comments": 1,
      "labels": [],
      "mentions": [],
      "excerpt": "The fade-margin colours on the Stations map are computed once and saved to the datastore. Each saved figure is tagged with the settings it was computed under. The default allowance has changed from 16 dB to 12 dB (and earlier, from the land-cover model to the field model). So every saved figure is now stale: each browser recomputes the network the first…"
@@ -1690,7 +1730,7 @@
      "human": true,
      "title": "Roadmap — resource allocation & sequencing for all issues",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/113",
-     "updated": "2026-11-02T22:38:59Z",
+     "updated": "2026-11-03T03:25:37Z",
      "created": "2026-08-13T00:13:50Z",
      "comments": 0,
      "labels": [],
@@ -1698,72 +1738,80 @@
       "meganet",
       "rpi_alert"
      ],
-     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1070k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
+     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1075k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
     }
    ],
-   "issueCount": 38,
+   "issueCount": 39,
    "release": null,
    "ci": [
+    {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41572182513",
+     "date": "2026-11-03T03:26:17Z",
+     "event": "schedule"
+    },
+    {
+     "name": "Roadmap sync",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41572112271",
+     "date": "2026-11-03T03:25:41Z",
+     "event": "push"
+    },
+    {
+     "name": "CodeQL",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41572112226",
+     "date": "2026-11-03T03:26:34Z",
+     "event": "push"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41572112289",
+     "date": "2026-11-03T03:26:48Z",
+     "event": "push"
+    },
+    {
+     "name": "db-migrate",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41571936743",
+     "date": "2026-11-03T03:24:11Z",
+     "event": "workflow_dispatch"
+    },
+    {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41571876774",
+     "date": "2026-11-03T03:23:38Z",
+     "event": "push"
+    },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41554081747",
-     "date": "2026-11-03T00:36:42Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41571445775",
+     "date": "2026-11-03T03:18:54Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41554044211",
-     "date": "2026-11-03T00:36:56Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41571382288",
+     "date": "2026-11-03T03:19:10Z",
      "event": "schedule"
-    },
-    {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41553780109",
-     "date": "2026-11-03T00:34:14Z",
-     "event": "schedule"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41539011279",
-     "date": "2026-11-02T22:39:09Z",
-     "event": "push"
-    },
-    {
-     "name": "Roadmap sync",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41539010771",
-     "date": "2026-11-02T22:41:08Z",
-     "event": "push"
-    },
-    {
-     "name": "CodeQL",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41539010699",
-     "date": "2026-11-02T22:43:03Z",
-     "event": "push"
-    },
-    {
-     "name": "Web smoke test",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41539010730",
-     "date": "2026-11-02T23:51:58Z",
-     "event": "push"
     }
    ],
-   "version": "20261103a",
+   "version": "20261103j",
    "lastCommit": {
-    "date": "2026-11-02T22:38:40Z"
+    "date": "2026-11-03T03:25:21Z"
    }
   },
   {
@@ -5013,7 +5061,7 @@
     },
     "status": {
      "phase": "live",
-     "updated": "2026-11-01",
+     "updated": "2026-11-03",
      "summary": "v1 is in use at forums; the v2 beta at /SoRT/v2/ runs beside it — Flood-Net station lookup (ACMA licences, and the radio path to base with the fade margin Flood-Net saved for each hop), the map on the page (or beside the questions) with survey marks and bridges, saved sessions, the playbook of past sessions, an in-page question editor, a Help guide, and follow-ups handed to Flood-Net's teams as tasks (live since 1 Nov 2026; a SoRT Forum member creates them there).",
      "now": [
       "v2 beta: try it at real forums beside v1"
@@ -5104,7 +5152,8 @@
          "effort": "one sitting; the sweep runs by itself",
          "recommended": true
         }
-       ]
+       ],
+       "issue": "cdomotor-g/MegaNet#235"
       },
       {
        "id": "team-owners",
@@ -5123,7 +5172,8 @@
          "effort": "15 min",
          "recommended": true
         }
-       ]
+       ],
+       "issue": "cdomotor-g/MegaNet#261"
       }
      ]
     },
@@ -5311,12 +5361,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-01T18:27:55Z",
+    "pushed": "2026-11-03T02:05:52Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/SoRT"
    },
    "commits": [
+    {
+     "sha": "2f27754",
+     "date": "2026-11-03T02:05:49Z",
+     "msg": "Local TBM: on hand goes in the table, otherwise a desktop task in Word",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/2f27754809d1ebc2de80929dd167bb3f2e2f0692"
+    },
     {
      "sha": "74bfe23",
      "date": "2026-11-01T18:27:53Z",
@@ -5382,12 +5438,6 @@
      "date": "2026-10-31T21:50:54Z",
      "msg": "SoRT v2: map beside or above the questions; station on every heading",
      "url": "https://github.com/cdomotor-g/SoRT/commit/591443ebaf55d750ed7393810127a674647d1021"
-    },
-    {
-     "sha": "71b7a09",
-     "date": "2026-10-31T21:43:28Z",
-     "msg": "SoRT v2 beta, part 4: Edit questions, end-to-end checks, docs",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/71b7a0912feb76345a4c283900d6cff06dbedbd2"
     }
    ],
    "issues": [],
@@ -5398,22 +5448,22 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41526629457",
-     "date": "2026-11-02T21:15:24Z",
-     "event": "schedule"
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41563958576",
+     "date": "2026-11-03T02:06:15Z",
+     "event": "push"
     },
     {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41336754372",
-     "date": "2026-11-01T18:28:36Z",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41563956768",
+     "date": "2026-11-03T02:06:31Z",
      "event": "dynamic"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-11-01T18:27:53Z"
+    "date": "2026-11-03T02:05:49Z"
    }
   },
   {
@@ -6647,16 +6697,25 @@
    },
    "on_change": "Read SoRT's payload as v2/js/tasks.js now writes it and bring tasks.js's parseHandoff() and test/tasks.mjs up to it. A payload with a new v needs a reader of its own beside v 1's, which links already sent still carry.",
    "drift": {
-    "state": "current",
+    "state": "behind",
     "since": {
      "date": "2026-11-01",
      "commit": "74bfe23d2f8fe40650a2c702ef7a7727c98f2db2",
      "commitDate": "2026-11-01T18:27:53Z"
     },
-    "behind": 0,
-    "commits": [],
-    "files": [],
-    "note": "Up to date with upstream."
+    "behind": 1,
+    "commits": [
+     {
+      "sha": "2f27754",
+      "date": "2026-11-03T02:05:49Z",
+      "msg": "Local TBM: on hand goes in the table, otherwise a desktop task in Word",
+      "url": "https://github.com/cdomotor-g/SoRT/commit/2f27754809d1ebc2de80929dd167bb3f2e2f0692"
+     }
+    ],
+    "files": [
+     "v2/js/tasks.js"
+    ],
+    "note": "1 upstream change to watched files since it was last reviewed (2026-11-01)."
    }
   },
   {
@@ -6744,7 +6803,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "Up to date with upstream."
+    "note": "13 newer commits upstream since 11c1799, none to watched files."
    }
   },
   {
@@ -6776,7 +6835,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "16 newer commits upstream since it was last reviewed (2026-11-01), none to watched files."
+    "note": "29 newer commits upstream since it was last reviewed (2026-11-01), none to watched files."
    }
   },
   {
@@ -6803,8 +6862,20 @@
      "commit": "28325c4bc9fbe0bdd23e959f6e388952cf46df52",
      "commitDate": "2026-10-25T19:51:36Z"
     },
-    "behind": 2,
+    "behind": 4,
     "commits": [
+     {
+      "sha": "c187221",
+      "date": "2026-11-03T03:20:49Z",
+      "msg": "Base Stations: the Pi's Decoder (Lean, Full, Compare) in a station's remote settings",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/c187221f301c42e4de718b2878322d0c8d69c3c8"
+     },
+     {
+      "sha": "6beb40e",
+      "date": "2026-11-03T03:14:32Z",
+      "msg": "Base Stations: taller sparklines in \"Signal across what it hears\"",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/6beb40e22ff5e0585a449ce3fafa9566af141967"
+     },
      {
       "sha": "22e6001",
       "date": "2026-10-26T20:52:49Z",
@@ -6822,7 +6893,7 @@
      "docs/base-stations.md",
      "base-stations.js"
     ],
-    "note": "2 upstream changes to watched files since it was last reviewed (2026-10-25)."
+    "note": "4 upstream changes to watched files since it was last reviewed (2026-10-25)."
    }
   },
   {
@@ -7014,7 +7085,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "463 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "476 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7110,7 +7181,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "463 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "476 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7545,6 +7616,12 @@
     "behind": 9,
     "commits": [
      {
+      "sha": "dd170af",
+      "date": "2026-11-03T01:53:17Z",
+      "msg": "0098: put back the ELPRO ALERT2 readings 0097 removed and the bridge dropped",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/dd170aff3f596bd6b49da930d3257425881b0665"
+     },
+     {
       "sha": "11c1799",
       "date": "2026-11-02T22:38:40Z",
       "msg": "Decoder: lean by default, and a quarter less work between bursts (#259)",
@@ -7591,12 +7668,6 @@
       "date": "2026-11-01T19:22:08Z",
       "msg": "0096: one ALERT burst heard several ways is one reading (#232)",
       "url": "https://github.com/cdomotor-g/MegaNet/commit/daad33d080f8bc142a4436b092fa1f22135a1068"
-     },
-     {
-      "sha": "3180804",
-      "date": "2026-10-23T00:05:58Z",
-      "msg": "Docs and comments: the Supabase project is on Pro now, not the free tier",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/318080415b87904bcbc10b6c60b38efdbc1758c4"
      }
     ],
     "files": [
@@ -7672,7 +7743,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "16 newer commits upstream since it was last reviewed (2026-11-01), none to watched files."
+    "note": "29 newer commits upstream since it was last reviewed (2026-11-01), none to watched files."
    }
   },
   {
