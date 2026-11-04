@@ -9,6 +9,7 @@ import { join } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { ROOT, validate, crossCheck, parseTitle, watchMatches, blockerMark, linkFor } from '../tools/lib.mjs';
 import { canonical, apply } from '../tools/run-summary.mjs';
+import { brief, waiting, datesIn } from '../tools/brief.mjs';
 
 const fails = [];
 const check = (ok, msg) => { if (!ok) fails.push(msg); };
@@ -38,7 +39,7 @@ for (const f of existsSync(join(ROOT, 'data/fallback')) ? readdirSync(join(ROOT,
   check(ids.has(m.id), `fallback ${f}: ${m.id} is not in the registry`);
 }
 
-for (const f of ['assets/atlas.js', 'tools/lib.mjs', 'tools/collect.mjs', 'tools/drift.mjs', 'tools/build-standalone.mjs', 'tools/run-summary.mjs']) {
+for (const f of ['assets/atlas.js', 'tools/lib.mjs', 'tools/collect.mjs', 'tools/drift.mjs', 'tools/build-standalone.mjs', 'tools/run-summary.mjs', 'tools/brief.mjs']) {
   try { execFileSync(process.execPath, ['--check', join(ROOT, f)], { stdio: 'pipe' }); }
   catch (e) { fails.push(`${f}: ${e.stderr.toString().split('\n').slice(0, 4).join(' ')}`); }
 }
@@ -97,5 +98,27 @@ check(blockerMark('See the Atlas blocker: rpi-alert/x in the notes') === null, '
   check(apply('# X\n', block) === `# X\n\n${block}\n`, 'run-summary: adds the block to a file without one');
 }
 
+// The weekday brief (tools/brief.mjs): dates read from words, a closed issue and agent work left
+// out, one issue seen from two repositories counted once, and short enough for a phone.
+{
+  check(datesIn('renew on 25 Nov; stuck on the 23 July 2026 extract; 1 Decision; 31 Feb', '2026-11-05').join() === '2026-11-25,2026-07-23', 'brief: dates in words');
+  check(datesIn('due 10 Jan', '2026-11-05').join() === '2027-01-10', 'brief: a date with no year is the next one');
+  const map = { owner: 'o', repos: [
+    { id: 'a', name: 'A', repo: 'o/a', issues: [{ n: 1, title: 'Choose 30 or 90 days', human: true, created: '2026-11-04T01:00:00Z' }, { n: 2, title: 'Pay it', human: false }],
+      manifest: { status: { blocked: [
+        { id: 'pay', what: '#2 pay before 9 Nov', on: 'human', kind: 'money', since: '2026-10-01', issue: '#2', options: [{ what: 'Pay', by: 'human', effort: '5 min', recommended: true }] },
+        { id: 'gone', what: '#9 Done already', on: 'human', issue: '#9' },
+        { id: 'bot', what: 'Agent work', on: 'agent' }] } } },
+    { id: 'b', name: 'B', repo: 'o/b', manifest: { status: { blocked: [{ id: 'same', what: 'Waits on A', on: 'human', issue: 'o/a#2' }] } } }] };
+  const w = waiting(map);
+  check(w.length === 2 && w.some(x => x.tag === '#1') && w.some(x => x.tag === '#2' && x.repo === 'A'), 'brief: what waits on you, each once');
+  const out = brief(map, '2026-11-05');
+  check(out === '📅 Mon 9 Nov: A #2 Pay before 9 Nov\n🆕 A #1 Choose 30 or 90 days\n👉 2 in all (2 for you, 0 at your computer): https://o.github.io/atlas/#blockers', `brief: picks and order, got ${JSON.stringify(out)}`);
+  if (existsSync(join(ROOT, 'data/map.json'))) {
+    const real = brief(json('data/map.json'), '2026-11-05');
+    check(real.length <= 600 && real.split('\n').length <= 9, `brief: ${real.length} characters, ${real.split('\n').length} lines on today's map`);
+  }
+}
+
 if (fails.length) { console.error(`✗ ${fails.length} problem${fails.length === 1 ? '' : 's'}:\n- ${fails.join('\n- ')}`); process.exit(1); }
-console.log(`✓ registry (${reg.repos.length}), fallbacks, scripts, page links, link ids, parsers, blocker tags, run summary`);
+console.log(`✓ registry (${reg.repos.length}), fallbacks, scripts, page links, link ids, parsers, blocker tags, run summary, brief`);

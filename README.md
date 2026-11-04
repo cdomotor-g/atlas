@@ -85,6 +85,7 @@ receiving end has kept up.
 | `schema/atlas.schema.json` | The `atlas.json` format. |
 | `tools/collect.mjs` | Builds `data/map.json`. `.github/workflows/collect.yml` runs it every three hours. |
 | `tools/drift.mjs`, `.github/workflows/drift.yml` | The check every repository runs on itself (a reusable workflow). |
+| `tools/brief.mjs` | The weekday push to the owner's phone: what is waiting on the owner and worth doing soon ([`docs/brief.md`](docs/brief.md)). |
 | `tools/build-standalone.mjs` | One self-contained HTML file with everything inlined (`dist/atlas.html`). |
 | `assets/logos/` | Logos and pictures; `credits.json` says where each came from. |
 | `test/check.mjs` | The Atlas's own checks (`node test/check.mjs`, about a second). |
