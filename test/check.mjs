@@ -114,6 +114,7 @@ check(blockerMark('See the Atlas blocker: rpi-alert/x in the notes') === null, '
   check(w.length === 2 && w.some(x => x.tag === '#1') && w.some(x => x.tag === '#2' && x.repo === 'A'), 'brief: what waits on you, each once');
   const out = brief(map, '2026-11-05');
   check(out === '📅 Mon 9 Nov: A #2 Pay before 9 Nov\n🆕 A #1 Choose 30 or 90 days\n👉 2 in all (2 for you, 0 at your computer): https://o.github.io/atlas/#blockers', `brief: picks and order, got ${JSON.stringify(out)}`);
+  check(brief({ ...map, generated: '2026-11-01T00:00:00Z' }, '2026-11-05').includes('\n⚠️ The map was last refreshed 4 days ago'), 'brief: warns when the map is old');
   if (existsSync(join(ROOT, 'data/map.json'))) {
     const real = brief(json('data/map.json'), '2026-11-05');
     check(real.length <= 600 && real.split('\n').length <= 9, `brief: ${real.length} characters, ${real.split('\n').length} lines on today's map`);

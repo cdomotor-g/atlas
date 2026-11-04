@@ -24,6 +24,8 @@ issue seen from two repositories counts once. Dates are in Queensland time (UTC+
 - ⏳ one more of the rest, in turn, oldest first, a different one each weekday, so nothing sits
   forgotten;
 - 👉 how many in all, and the link to the *Blockers* view.
+- ⚠️ a warning above that when the map is two days old or more (the *Collect* workflow has
+  stopped refreshing it).
 
 At most 600 characters. When it is too long, lines come off the bottom first. Change the rules in
 `tools/brief.mjs`, and this list with them. `node test/check.mjs` checks the picks.

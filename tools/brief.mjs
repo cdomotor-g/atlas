@@ -132,7 +132,10 @@ export function brief(map, today = todayHere()) {
   if (rest.length) { const x = rest[weekdayNumber(today) % rest.length]; add(x, `⏳ ${x.since ? `Waiting ${ageWords(between(x.since, today))}: ` : ''}`); }
 
   const you = all.filter(x => x.who === 'human').length, pc = all.length - you;
-  const foot = `👉 ${all.length} in all (${you} for you, ${pc} at your computer): https://${map.owner || 'cdomotor-g'}.github.io/atlas/#blockers`;
+  let foot = `👉 ${all.length} in all (${you} for you, ${pc} at your computer): https://${map.owner || 'cdomotor-g'}.github.io/atlas/#blockers`;
+  // The Collect workflow refreshes the map every three hours: a map two days old means it has stopped.
+  const made = String(map.generated || '').slice(0, 10);
+  if (made && between(made, today) >= 2) foot = `⚠️ The map was last refreshed ${ageWords(between(made, today))} ago, so this may be out of date.\n${foot}`;
   while (lines.length > 1 && [...lines, foot].join('\n').length > 600) lines.pop();
   return [...lines, foot].join('\n');
 }
