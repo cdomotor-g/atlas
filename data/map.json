@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-04T20:12:59.772Z",
- "hash": "e2244de5309c35ab",
+ "generated": "2026-11-04T21:27:10.729Z",
+ "hash": "013364d43dcb10ca",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1062,7 +1062,7 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-04T15:25:07Z",
+    "pushed": "2026-11-04T20:11:42Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
@@ -1988,28 +1988,36 @@
    "release": null,
    "ci": [
     {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41915738143",
+     "date": "2026-11-04T21:24:11Z",
+     "event": "schedule"
+    },
+    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41902984962",
-     "date": "2026-11-04T20:04:05Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41914617067",
+     "date": "2026-11-04T21:17:08Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41902340867",
-     "date": "2026-11-04T20:01:02Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41914323034",
+     "date": "2026-11-04T21:16:16Z",
      "event": "schedule"
     },
     {
-     "name": "Field photos from Google Drive",
+     "name": "Web smoke test",
      "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41901438080",
-     "date": "2026-11-04T19:54:28Z",
-     "event": "schedule"
+     "conclusion": "failure",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41904252252",
+     "date": "2026-11-04T21:08:47Z",
+     "event": "push"
     },
     {
      "name": "Atlas",
@@ -2840,9 +2848,17 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41714942080",
-     "date": "2026-11-03T20:42:29Z",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41909056493",
+     "date": "2026-11-04T20:42:24Z",
      "event": "schedule"
+    },
+    {
+     "name": "test",
+     "status": "completed",
+     "conclusion": "failure",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41904257982",
+     "date": "2026-11-04T20:14:09Z",
+     "event": "push"
     },
     {
      "name": "pages",
@@ -2851,14 +2867,6 @@
      "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41629389971",
      "date": "2026-11-03T11:40:46Z",
      "event": "workflow_run"
-    },
-    {
-     "name": "test",
-     "status": "completed",
-     "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41627288693",
-     "date": "2026-11-03T11:26:54Z",
-     "event": "push"
     },
     {
      "name": "build-image",
@@ -3859,12 +3867,18 @@
    "gh": {
     "description": "This is a fork of F4HWN firmware https://github.com/armel/uv-k5-firmware-custom by @muzkr and @armel",
     "archived": false,
-    "pushed": "2026-10-31T22:25:36Z",
+    "pushed": "2026-11-04T20:12:10Z",
     "homepage": null,
     "language": "C",
     "url": "https://github.com/cdomotor-g/quansheng_alert_v3"
    },
    "commits": [
+    {
+     "sha": "3fcba33",
+     "date": "2026-11-04T20:12:08Z",
+     "msg": "Run summary: the same closing report as every other repository",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/commit/3fcba33b35349277621cb69dee593ccf92fe76e0"
+    },
     {
      "sha": "988dfe6",
      "date": "2026-10-31T22:25:34Z",
@@ -3930,12 +3944,6 @@
      "date": "2026-09-30T22:21:15Z",
      "msg": "v2 phase A: remove the FSK sweep, split the ALERT app into modules",
      "url": "https://github.com/cdomotor-g/quansheng_alert_v3/commit/9f17f4f1a7dab7c5472b20c39b7a0e5e4c0c67ef"
-    },
-    {
-     "sha": "45499b4",
-     "date": "2026-09-30T21:48:36Z",
-     "msg": "spec: ALERT receiver v2 - screen, CSV, speaker, log, console",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/commit/45499b43a0bb271161701e975a813c4595082640"
     }
    ],
    "issues": [],
@@ -3943,25 +3951,25 @@
    "release": null,
    "ci": [
     {
+     "name": "Build Firmware",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/41904331343",
+     "date": "2026-11-04T20:12:43Z",
+     "event": "push"
+    },
+    {
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/41726321902",
      "date": "2026-11-03T21:57:11Z",
      "event": "schedule"
-    },
-    {
-     "name": "Build Firmware",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/41248131171",
-     "date": "2026-10-31T22:26:09Z",
-     "event": "push"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-10-31T22:25:34Z"
+    "date": "2026-11-04T20:12:08Z"
    }
   },
   {
@@ -4244,12 +4252,18 @@
    "gh": {
     "description": "Firmware repo for quansheng hand-held radio",
     "archived": false,
-    "pushed": "2026-10-20T01:17:13Z",
+    "pushed": "2026-11-04T20:12:06Z",
     "homepage": null,
     "language": "C",
     "url": "https://github.com/cdomotor-g/quansheng_alert"
    },
    "commits": [
+    {
+     "sha": "9faff69",
+     "date": "2026-11-04T20:12:04Z",
+     "msg": "Run summary: the same closing report as every other repository",
+     "url": "https://github.com/cdomotor-g/quansheng_alert/commit/9faff694213e339dbe1ae7a7340566054f43bb32"
+    },
     {
      "sha": "e922375",
      "date": "2026-10-20T01:17:12Z",
@@ -4315,12 +4329,6 @@
      "date": "2026-09-06T17:47:46Z",
      "msg": "feat: run the whole cable check from the installer's Toolbox",
      "url": "https://github.com/cdomotor-g/quansheng_alert/commit/93e322bbf3bd5ca9925d82d7d652448d9f4caaf0"
-    },
-    {
-     "sha": "f02801d",
-     "date": "2026-09-06T08:48:05Z",
-     "msg": "feat: add serial fault-finding for a radio that \"does not answer\"",
-     "url": "https://github.com/cdomotor-g/quansheng_alert/commit/f02801dbe47c1bb06a08913e26df058da279be01"
     }
    ],
    "issues": [],
@@ -4331,22 +4339,22 @@
      "name": "build",
      "status": "completed",
      "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/quansheng_alert/actions/runs/41344698669",
-     "date": "2026-11-01T20:02:36Z",
-     "event": "schedule"
+     "url": "https://github.com/cdomotor-g/quansheng_alert/actions/runs/41904316663",
+     "date": "2026-11-04T20:13:17Z",
+     "event": "push"
     },
     {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert/actions/runs/39352585520",
-     "date": "2026-10-20T01:17:57Z",
+     "url": "https://github.com/cdomotor-g/quansheng_alert/actions/runs/41904313596",
+     "date": "2026-11-04T20:12:32Z",
      "event": "dynamic"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-10-20T01:17:12Z"
+    "date": "2026-11-04T20:12:04Z"
    }
   },
   {
@@ -4638,12 +4646,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-02T03:24:55Z",
+    "pushed": "2026-11-04T20:12:08Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL"
    },
    "commits": [
+    {
+     "sha": "8a1b487",
+     "date": "2026-11-04T20:12:06Z",
+     "msg": "Run summary: the same closing report as every other repository",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/commit/8a1b48726e37ac2259e037484c8db4952f57a374"
+    },
     {
      "sha": "20bc76f",
      "date": "2026-11-02T03:24:54Z",
@@ -4720,6 +4734,22 @@
    },
    "ci": [
     {
+     "name": "Test the site",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41904323133",
+     "date": "2026-11-04T20:13:25Z",
+     "event": "push"
+    },
+    {
+     "name": "pages build and deployment",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41904321248",
+     "date": "2026-11-04T20:13:23Z",
+     "event": "dynamic"
+    },
+    {
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
@@ -4728,33 +4758,17 @@
      "event": "schedule"
     },
     {
-     "name": "pages build and deployment",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41382974881",
-     "date": "2026-11-02T03:25:36Z",
-     "event": "dynamic"
-    },
-    {
      "name": "Refresh firmware",
      "status": "completed",
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41382925392",
      "date": "2026-11-02T03:24:59Z",
      "event": "schedule"
-    },
-    {
-     "name": "Test the site",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41267373074",
-     "date": "2026-11-01T03:01:09Z",
-     "event": "push"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-11-02T03:24:54Z"
+    "date": "2026-11-04T20:12:06Z"
    }
   },
   {
@@ -5149,12 +5163,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-03T11:25:52Z",
+    "pushed": "2026-11-04T20:12:03Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/open-ALERT"
    },
    "commits": [
+    {
+     "sha": "5563d2e",
+     "date": "2026-11-04T20:12:01Z",
+     "msg": "Run summary: the same closing report as every other repository",
+     "url": "https://github.com/cdomotor-g/open-ALERT/commit/5563d2ec9a9ce0df94d0965481cb3da87f98331d"
+    },
     {
      "sha": "6a70660",
      "date": "2026-11-03T11:25:50Z",
@@ -5220,12 +5240,6 @@
      "date": "2026-10-31T22:08:07Z",
      "msg": "Atlas: describe open-ALERT for the map of all the repos",
      "url": "https://github.com/cdomotor-g/open-ALERT/commit/a88316f58c07c2ecf202fc19d158b63c031be941"
-    },
-    {
-     "sha": "66109e2",
-     "date": "2026-10-17T06:16:23Z",
-     "msg": "fix: open the configurator from the repo root under branch-based Pages",
-     "url": "https://github.com/cdomotor-g/open-ALERT/commit/66109e246183e3c359521be1a31438b49f6bc8fe"
     }
    ],
    "issues": [
@@ -5251,6 +5265,22 @@
    "release": null,
    "ci": [
     {
+     "name": "test",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41904309342",
+     "date": "2026-11-04T20:12:18Z",
+     "event": "push"
+    },
+    {
+     "name": "pages build and deployment",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41904306597",
+     "date": "2026-11-04T20:12:51Z",
+     "event": "dynamic"
+    },
+    {
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
@@ -5265,27 +5295,11 @@
      "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41627457717",
      "date": "2026-11-03T11:26:23Z",
      "event": "push"
-    },
-    {
-     "name": "test",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41627457677",
-     "date": "2026-11-03T11:26:10Z",
-     "event": "push"
-    },
-    {
-     "name": "pages build and deployment",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41627455557",
-     "date": "2026-11-03T11:26:19Z",
-     "event": "dynamic"
     }
    ],
    "version": "0.1.0",
    "lastCommit": {
-    "date": "2026-11-03T11:25:50Z"
+    "date": "2026-11-04T20:12:01Z"
    }
   },
   {
@@ -5680,20 +5694,20 @@
    "release": null,
    "ci": [
     {
-     "name": "pages build and deployment",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41904262302",
-     "date": "2026-11-04T20:11:53Z",
-     "event": "dynamic"
-    },
-    {
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41783771303",
-     "date": "2026-11-04T06:10:39Z",
-     "event": "push"
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41914327751",
+     "date": "2026-11-04T21:15:26Z",
+     "event": "schedule"
+    },
+    {
+     "name": "pages build and deployment",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41904262302",
+     "date": "2026-11-04T20:12:31Z",
+     "event": "dynamic"
     }
    ],
    "version": null,
@@ -5896,10 +5910,10 @@
    "ci": [
     {
      "name": "pages build and deployment",
-     "status": "queued",
-     "conclusion": null,
+     "status": "completed",
+     "conclusion": "success",
      "url": "https://github.com/cdomotor-g/F-TIDE/actions/runs/41904244311",
-     "date": "2026-11-04T20:11:56Z",
+     "date": "2026-11-04T20:12:17Z",
      "event": "dynamic"
     }
    ],
@@ -6382,10 +6396,10 @@
    "ci": [
     {
      "name": "pages build and deployment",
-     "status": "in_progress",
-     "conclusion": null,
+     "status": "completed",
+     "conclusion": "success",
      "url": "https://github.com/cdomotor-g/ALERT_PACKETS/actions/runs/41904233773",
-     "date": "2026-11-04T20:11:45Z",
+     "date": "2026-11-04T20:12:55Z",
      "event": "dynamic"
     }
    ],
@@ -6668,18 +6682,18 @@
    "ci": [
     {
      "name": "Deploy dashboard to GitHub Pages",
-     "status": "queued",
-     "conclusion": null,
+     "status": "completed",
+     "conclusion": "success",
      "url": "https://github.com/cdomotor-g/home/actions/runs/41904297041",
-     "date": "2026-11-04T20:12:04Z",
+     "date": "2026-11-04T20:12:29Z",
      "event": "push"
     },
     {
      "name": "pages build and deployment",
-     "status": "queued",
-     "conclusion": null,
+     "status": "completed",
+     "conclusion": "success",
      "url": "https://github.com/cdomotor-g/home/actions/runs/41904294940",
-     "date": "2026-11-04T20:12:00Z",
+     "date": "2026-11-04T20:12:26Z",
      "event": "dynamic"
     }
    ],
@@ -6836,7 +6850,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "4 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "5 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
