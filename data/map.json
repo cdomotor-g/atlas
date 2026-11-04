@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-04T12:31:09.203Z",
- "hash": "07f7440d7faf2342",
+ "generated": "2026-11-04T15:27:24.952Z",
+ "hash": "9973fdf8238df56d",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1062,12 +1062,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-04T09:18:12Z",
+    "pushed": "2026-11-04T15:25:07Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "89e83fb",
+     "date": "2026-11-04T15:25:04Z",
+     "msg": "CI doctor: Videos tour, Move pin, Council cameras — the tour's ring kept a detached part, the map is narrower so the dragged pin sat off it,",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/89e83fb7cc5d2b60ddb0ac9a918a72e18e5c9bc0"
+    },
     {
      "sha": "7d28970",
      "date": "2026-11-04T09:18:09Z",
@@ -1133,12 +1139,6 @@
      "date": "2026-11-04T06:06:55Z",
      "msg": "SoRT's forum sessions: a store behind the forum passphrase (/api/sort/v1)",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/a9ff5487167e50e5c9da713687fa880fdaa2bdab"
-    },
-    {
-     "sha": "ba895a4",
-     "date": "2026-11-04T06:02:55Z",
-     "msg": "Version stamp 20261104p: the station card in groups, Tabs or List, and its search",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/ba895a4d02ad1b3e33c43d6a276f3148940aa154"
     }
    ],
    "issues": [
@@ -1988,49 +1988,57 @@
    "release": null,
    "ci": [
     {
+     "name": "CodeQL",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41857530567",
+     "date": "2026-11-04T15:25:14Z",
+     "event": "push"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41857530669",
+     "date": "2026-11-04T15:25:22Z",
+     "event": "push"
+    },
+    {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41857354421",
+     "date": "2026-11-04T15:24:18Z",
+     "event": "schedule"
+    },
+    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41828787263",
-     "date": "2026-11-04T12:23:08Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41856302303",
+     "date": "2026-11-04T15:18:17Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41828641086",
-     "date": "2026-11-04T12:22:52Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41856158848",
+     "date": "2026-11-04T15:18:13Z",
      "event": "schedule"
     },
     {
-     "name": "Field photos from Google Drive",
+     "name": "Data archive into R2",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41828281259",
-     "date": "2026-11-04T12:19:38Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41849489926",
+     "date": "2026-11-04T14:39:41Z",
      "event": "schedule"
-    },
-    {
-     "name": "Video MP4s",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41806396244",
-     "date": "2026-11-04T09:18:47Z",
-     "event": "workflow_run"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41806357939",
-     "date": "2026-11-04T09:18:39Z",
-     "event": "push"
     }
    ],
-   "version": "20261104t",
+   "version": "20261104u",
    "lastCommit": {
-    "date": "2026-11-04T09:18:09Z"
+    "date": "2026-11-04T15:25:04Z"
    }
   },
   {
@@ -7061,7 +7069,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "51 newer commits upstream since 60c0498, none to watched files."
+    "note": "52 newer commits upstream since 60c0498, none to watched files."
    }
   },
   {
@@ -7372,7 +7380,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "539 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "540 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7465,7 +7473,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "539 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "540 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -8100,8 +8108,8 @@
     "state": "current",
     "since": {
      "date": "2026-11-04",
-     "commit": "7d2897091ac40522c4fcd5e8c6bae21b3fc2fbf7",
-     "commitDate": "2026-11-04T09:18:09Z"
+     "commit": "89e83fb7cc5d2b60ddb0ac9a918a72e18e5c9bc0",
+     "commitDate": "2026-11-04T15:25:04Z"
     },
     "behind": 0,
     "commits": [],
@@ -8131,8 +8139,8 @@
     "state": "current",
     "since": {
      "date": "2026-11-04",
-     "commit": "7d2897091ac40522c4fcd5e8c6bae21b3fc2fbf7",
-     "commitDate": "2026-11-04T09:18:09Z"
+     "commit": "89e83fb7cc5d2b60ddb0ac9a918a72e18e5c9bc0",
+     "commitDate": "2026-11-04T15:25:04Z"
     },
     "behind": 0,
     "commits": [],
