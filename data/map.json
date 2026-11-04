@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-04T03:28:00.503Z",
- "hash": "da2541675c7fc797",
+ "generated": "2026-11-04T06:34:55.449Z",
+ "hash": "7a2738d1732f8c17",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -97,8 +97,11 @@
      "updated": "2026-11-04",
      "summary": "Live and in daily use (database schema 95): this week added teams and the tasks handed to them, with the SoRT scope builder's hand-off, a driving mode that follows a station's route in 3-D, the agent API's changelog and email list, ACMA licences and radio paths in the API, the Repeaters tab and cuts to database I/O, while account email, compute size and the ACMA download link wait on the owner.",
      "now": [
+      "The station card in groups (station-card-view.js): Overview, then a tab each for Flood, Radio, Site and Kit (Tabs, the first), or a summary with each group a page of its own (List, chosen beside the box and kept per device), Field data, Zoom, Directions and All actions along the foot, and a search box that shows only the groups and rows holding a word, marked",
+      "Hops to base (map-hops.js): Show hops to base on a station card lights the station's routes to the base stations on the Stations map, each hop heard (the public relay week; for editors, the receivers' copies of the last 12 hours) or assumed from the pass ranges and backbone paths",
       "The Bureau's benchmarks (0101): HDB's Benchmark Details report, 777 benchmarks at 519 stations, read by tools/ingest/benchmarks.py and kept in the private repository, loaded on 4 Nov 2026: on a station's card for editors and offered as the primary benchmark in the Level Survey's Datum step, with what each reads on the gauge",
       "Benchmarks for SoRT (benchmarks-for-sort): SoRT's scope builder opens #benchmarks-for-sort=…, a signed-in editor reviews the station's benchmarks and Send to SoRT posts them to the SoRT tab that asked (cdomotor-g.github.io only), or Copy for SoRT without an opener; never through the public API. SoRT's side is being built to the same contract",
+      "SoRT's forum sessions (sort-session-store): the Worker keeps SoRT's forum files at /api/sort/v1 behind one shared forum passphrase (no tokens, no accounts) — a flood sentence the forum can change itself (PUT /passphrase; its hash kept in R2, not the code), typed however — each save conditional on the version last read and each hour's last save copied for putting a bad one right; SoRT uses it live",
       "Responsiveness pass for a laptop on a Teams call and a phone on one bar: the Stations tab opens in a third of the time on a slow CPU, the repeater delay plan is worked out in a worker, a saved station list is shown after 8 s of a slow download and downloaded only when it has changed (ETag), and the Stations map groups nearby pins into bubbles (worst, average or mix under health and Latency) until zoomed in",
       "Teams and tasks (0095) live: one team has its owner so far — an administrator names each team's owners on the Admin tab; SoRT's #tasks= hand-off lands on the Tasks tab for review",
       "One person, one account (0100): an account keeps a second address — found by a team's owner, where its emails can go, refused a sign-in of its own; the Admin tab's Same person… folds a second account in",
@@ -113,6 +116,7 @@
       "#259 a lighter off-air decoder: lean decoding is the live pipeline's default (0.12% of 11,628 live bursts read differently, a third of the time); part 2, BurstWatch, filters a channel only around its bursts (the same readings in every test, a sixth to a twentieth of the work between them), and light decoding (lean: 2) halves a burst's decode again; both in RPi ALERT 0.18–0.19 behind settings, waiting on their checks at the first base station"
      ],
      "next": [
+      "#271 and #272: put Hillcrest's carrier on 151.500 down to Hillcrest, and count a transmitter's corrupted copies over its whole carrier without bursts read two ways (investigation 03)",
       "EPIC #262 explainers: ▶ Show me on the app (the tour over the real app) shipped with #265; its first how-to, find a station and read its card, waits on the owner's OK, then the phone install (#266) and map layers (#267)",
       "#252–#254 road routes: avoid closures, inspection runs, routes kept offline (EPIC #250)",
       "#238 QLDTraffic flood events and road closures on the Stations map",
@@ -128,9 +132,9 @@
      "blocked": [
       {
        "id": "station-card-script",
-       "what": "#265's how-to, find a station and read its card: its words, a draft on the site at ?watch=station-card, are voiced only once the owner has read them and said yes",
-       "on": "human",
-       "kind": "decision",
+       "what": "#265's how-to, find a station and read its card — OK'd by the owner to be voiced, once the station card's new look (another thread's work, due 4 Nov) lands and its screenshots are retaken",
+       "on": "agent",
+       "kind": "other",
        "since": "2026-11-04",
        "issue": "#265",
        "holds": [
@@ -140,16 +144,11 @@
        ],
        "options": [
         {
-         "what": "Watch the silent draft at https://floodwarning.net/?watch=station-card (and ▶ Show me on the app) or read the script on #265, and reply OK or with changes",
-         "by": "human",
-         "effort": "5 min",
-         "recommended": true
-        },
-        {
-         "what": "Ask for changes in plain words on #265; an agent redrafts it (no credits until it is final)",
+         "what": "The scheduled session (Sonnet, from 18:41 Brisbane 4 Nov) checks every two hours for the card's new look, then retakes the card's shots, voices the how-to, records its MP4 and closes #265",
          "by": "agent",
-         "effort": "Low",
-         "model": "Opus5"
+         "effort": "Med",
+         "model": "Sonnet5",
+         "recommended": true
         }
        ]
       },
@@ -646,7 +645,7 @@
      {
       "id": "worker",
       "name": "floodwarning.net Worker",
-      "what": "The Cloudflare Worker in front of the app: Access sign-in turned into a database session, the /api/db proxy for networks that block Supabase, photos and the data archive in R2, Ask Claude, bug reports, council cameras, road routes, push and scheduled notifications.",
+      "what": "The Cloudflare Worker in front of the app: Access sign-in turned into a database session, the /api/db proxy for networks that block Supabase, photos and the data archive in R2, Ask Claude, bug reports, council cameras, road routes, SoRT's forum sessions behind the forum passphrase, push and scheduled notifications.",
       "paths": [
        "worker/index.js",
        "worker/photos.js",
@@ -657,6 +656,7 @@
        "worker/drive.js",
        "worker/push.js",
        "worker/notify.js",
+       "worker/sort.js",
        "wrangler.toml"
       ],
       "url": "https://floodwarning.net",
@@ -730,7 +730,7 @@
      {
       "id": "agent-api",
       "name": "Agent API (REST and MCP)",
-      "what": "Read-only public station data: search and stations near a point, a station's record and dossier, readings and the latest reading per station, health findings and silent stations, flood levels, service levels, ACMA licences, a station's radio path to the base stations with the fade margin saved for each hop, catchments, networks, and a changelog of every visible API change.",
+      "what": "Read-only public station data: search and stations near a point, a station's record and dossier, readings and the latest reading per station, health findings and silent stations, flood levels, a station's benchmarks in numbers (level, datum, what each reads on the gauge), service levels, ACMA licences, a station's radio path to the base stations with the fade margin saved for each hop, catchments, networks, and a changelog of every visible API change.",
       "component": "agent-api",
       "paths": [
        "worker/api.js",
@@ -864,6 +864,18 @@
        "test/sort-benchmarks.mjs"
       ],
       "contract": "sort-benchmarks.js"
+     },
+     {
+      "id": "sort-session-store",
+      "name": "SoRT's forum sessions (the passphrase store)",
+      "what": "A small file store for the SoRT scope builder's forum sessions at https://floodwarning.net/api/sort/v1, behind one shared forum passphrase and no accounts: every request but the preflight carries X-SoRT-Passphrase, accepted when sha256_hex('sort-forum-v1:' + passphrase) is the Worker's hash (SORT_PASS_SHA256 if set, else the constant in worker/sort.js), else 401 {error:'passphrase'}. GET /check is 200 {ok:true}; GET /files/<path> the file's text with its ETag, no-store, or 404 {error:'not found'}; PUT /files/<path> the whole file as JSON, at most 4 MB (413 {error:'too large'}, 400 {error:'not JSON'}), with If-None-Match: * to create or If-Match: \"<etag>\" to replace, else or on a conflict 412 {error:'changed'}, and 200 {etag} with the ETag header. <path> is index.json or stations/[a-z0-9][a-z0-9-]{0,79}.json (else 400 {error:'path'}). CORS for https://cdomotor-g.github.io and https://floodwarning.net only (GET, PUT, OPTIONS; content-type, x-sort-passphrase, if-match, if-none-match; ETag exposed). 120 requests and 10 wrong passphrases a minute per address, then 429 {error:'slow down'}. Kept in R2 under _meganet/sort/files/, with each UTC hour's last save copied to _meganet/sort/history/<path>/<YYYY-MM-DDTHH>Z.json. Not part of the agent API.",
+      "component": "worker",
+      "paths": [
+       "worker/sort.js",
+       "docs/sort-store.md"
+      ],
+      "url": "https://floodwarning.net/api/sort/v1",
+      "contract": "docs/sort-store.md"
      }
     ],
     "consumes": [
@@ -1036,86 +1048,140 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-04T02:59:29Z",
+    "pushed": "2026-11-04T06:27:56Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
     {
-     "sha": "0d5000e",
-     "date": "2026-11-04T02:59:20Z",
-     "msg": "Benchmarks for SoRT: an editor sends a station's marks to the SoRT tab that asked",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/0d5000e7e265ea9f5bc5ae50dcccfa98707dae5f"
+     "sha": "278838d",
+     "date": "2026-11-04T06:27:54Z",
+     "msg": "SoRT store: a sentence passphrase the forum can change itself (hash kept in R2, typed however)",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/278838d372c36de5389c3cc1a3428c74695d6e4d"
     },
     {
-     "sha": "0f85cfe",
-     "date": "2026-11-04T02:46:42Z",
-     "msg": "Carrier fingerprint: call the Channel row Frequency",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/0f85cfe1d8a4eb25dc16af842c42b2830eca353a"
+     "sha": "326231f",
+     "date": "2026-11-04T06:25:08Z",
+     "msg": "Running costs on the Admin tab: every paid service, its plan and its month",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/326231fbf74a7832a59e550a09a267af818e61f2"
     },
     {
-     "sha": "ffbfb23",
-     "date": "2026-11-04T01:50:16Z",
-     "msg": "Atlas: the Bureau's benchmarks are loaded — 777 at 519 stations",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/ffbfb238b7dccc8081abc88e2bb0c6e8ac1ffa5f"
+     "sha": "2691e4a",
+     "date": "2026-11-04T06:08:27Z",
+     "msg": "Station pins on top of the field photos on the Stations map",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/2691e4ade1472068ad8d380379bf633cedc5c508"
     },
     {
-     "sha": "2484aed",
-     "date": "2026-11-04T01:33:23Z",
-     "msg": "DB_SCHEMA_VERSION 101: 0101 applied; the benchmarks' first load waits",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/2484aed748fb6f312e1e2f89aad3b5b24ffacc70"
+     "sha": "a9ff548",
+     "date": "2026-11-04T06:06:55Z",
+     "msg": "SoRT's forum sessions: a store behind the forum passphrase (/api/sort/v1)",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/a9ff5487167e50e5c9da713687fa880fdaa2bdab"
     },
     {
-     "sha": "a575bc1",
-     "date": "2026-11-04T01:27:42Z",
-     "msg": "The Bureau's benchmarks: HDB's Benchmark Details, 777 marks at 519 stations",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/a575bc1dcca9c56e0246e7cdf47cf40b3802b2e7"
+     "sha": "ba895a4",
+     "date": "2026-11-04T06:02:55Z",
+     "msg": "Version stamp 20261104p: the station card in groups, Tabs or List, and its search",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/ba895a4d02ad1b3e33c43d6a276f3148940aa154"
     },
     {
-     "sha": "5524b94",
-     "date": "2026-11-04T00:55:42Z",
-     "msg": "▶ Show me on the app, and the first how-to's draft (#265)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/5524b94fde8820c6a1516b137547f18263c88317"
+     "sha": "4d476c0",
+     "date": "2026-11-04T06:02:48Z",
+     "msg": "Hops test: Show hops to base is under the station card's All actions",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/4d476c06d6180e908c02c56a4729d23eed55fe77"
     },
     {
-     "sha": "cba0952",
-     "date": "2026-11-04T00:54:23Z",
-     "msg": "Investigation 03: Hillcrest (Wine Glass), our busiest relay on 151.500",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/cba09529062d44dcf553d71c8d14e13318e7f7b0"
+     "sha": "8aa3489",
+     "date": "2026-11-04T06:00:45Z",
+     "msg": "Station card: Tabs or List, seven groups, and a search across it",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/8aa3489c6188c1585f4616e69429412c892838bf"
     },
     {
-     "sha": "8c3515c",
-     "date": "2026-11-04T00:49:43Z",
-     "msg": "🎯 Best repeater: which repeater a station — or a new site — should talk to",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/8c3515c8bdf1ecba91b7a4813cf3211a0fee8239"
+     "sha": "ad4c009",
+     "date": "2026-11-04T05:55:04Z",
+     "msg": "Path card: lead with the fade margin; \"Marginal\" line of sight is now \"Partly clear\"",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/ad4c0091e51a96fdb1fb2653daa51bd5a79f73d4"
     },
     {
-     "sha": "66b5030",
-     "date": "2026-11-04T00:39:39Z",
-     "msg": "Roadmap revision 228: #235 closed (fade margins swept); #270 opened (report route token)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/66b5030297d4188b82c77d56779870e40d2a0573"
+     "sha": "3808cfb",
+     "date": "2026-11-04T05:20:34Z",
+     "msg": "Hops to base: a station's routes to the base stations, lit on the map",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/3808cfb4a0623aaea635398176ef843750d87b8a"
     },
     {
-     "sha": "1910f8f",
-     "date": "2026-11-04T00:21:52Z",
-     "msg": "Station names: complete the 112 that Radio Mobile cut at 20 characters",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/1910f8f3355b665b7c1088d044eb5faa843ba9d3"
+     "sha": "ab8a268",
+     "date": "2026-11-04T05:19:07Z",
+     "msg": "DB_SCHEMA_VERSION 102: 0102 applied",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/ab8a2687009c4f1d065fa03a20809a58451201f4"
     },
     {
-     "sha": "ddf0918",
-     "date": "2026-11-04T00:14:53Z",
-     "msg": "Roadmap: SoRT's cutover — watch its v1/index.html for the QLD layer recipes",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/ddf09184e7f4501d5b141f7877b1c5480d9826a7"
+     "sha": "4438a01",
+     "date": "2026-11-04T05:17:56Z",
+     "msg": "Agent API: a station's benchmarks, in numbers (0102)",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/4438a019a9b47510654f31227aee3e26b26ba62c"
     },
     {
-     "sha": "91ee1ea",
-     "date": "2026-11-04T00:12:47Z",
-     "msg": "🎬 Welcome to Flood-Net as an MP4, and the recorder (#268, #264)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/91ee1ea5b1f708cd8f8a59346d66afdcb97b6851"
+     "sha": "a246c55",
+     "date": "2026-11-04T05:15:27Z",
+     "msg": "#265: OK'd to be voiced once the station card's new look lands — a scheduled session does it",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/a246c55c9cd849846d8371b34a29d57ccca990ce"
     }
    ],
    "issues": [
+    {
+     "n": 273,
+     "raw": "[Standalone] [Human] Find what raised our base station's noise floor on 24 October, and what lifted its levels on 2 November",
+     "structure": "standalone",
+     "parent": null,
+     "model": null,
+     "effort": null,
+     "human": true,
+     "computer": false,
+     "title": "Find what raised our base station's noise floor on 24 October, and what lifted its levels on 2 November",
+     "url": "https://github.com/cdomotor-g/MegaNet/issues/273",
+     "updated": "2026-11-04T03:29:32Z",
+     "created": "2026-11-04T03:29:32Z",
+     "comments": 0,
+     "labels": [],
+     "mentions": [],
+     "excerpt": "[Human] — this needs someone who can see the base station and remember what was done to it. Only the person who runs it knows what changed by hand or at the site, and none of that is in the data. Investigation 03 (Hillcrest, Wine Glass) found that on 151.500 MHz the whole channel reached our receiver about 1.8 dB nearer the noise from the evening of 24…"
+    },
+    {
+     "n": 272,
+     "raw": "[Sub-issue of #214] [Opus5/High] Station Health's corrupting-transmitter figures: count the whole carrier, and leave out one burst read two ways",
+     "structure": "sub",
+     "parent": 214,
+     "model": "Opus5",
+     "effort": "High",
+     "human": false,
+     "computer": false,
+     "title": "Station Health's corrupting-transmitter figures: count the whole carrier, and leave out one burst read two ways",
+     "url": "https://github.com/cdomotor-g/MegaNet/issues/272",
+     "updated": "2026-11-04T03:29:03Z",
+     "created": "2026-11-04T03:29:03Z",
+     "comments": 0,
+     "labels": [],
+     "mentions": [
+      "rpi_alert"
+     ]
+    },
+    {
+     "n": 271,
+     "raw": "[Sub-issue of #214] [Opus5/High] Carrier table: give a carrier two overlapping repeaters share to the right one (Hillcrest on 151.500)",
+     "structure": "sub",
+     "parent": 214,
+     "model": "Opus5",
+     "effort": "High",
+     "human": false,
+     "computer": false,
+     "title": "Carrier table: give a carrier two overlapping repeaters share to the right one (Hillcrest on 151.500)",
+     "url": "https://github.com/cdomotor-g/MegaNet/issues/271",
+     "updated": "2026-11-04T03:28:45Z",
+     "created": "2026-11-04T03:28:45Z",
+     "comments": 0,
+     "labels": [],
+     "mentions": []
+    },
     {
      "n": 270,
      "raw": "[Standalone] [Human] Switch on the report route: give the Worker its GitHub token (GITHUB_ISSUES_TOKEN)",
@@ -1185,23 +1251,6 @@
      "updated": "2026-11-03T04:04:48Z",
      "created": "2026-11-03T04:04:48Z",
      "comments": 0,
-     "labels": [],
-     "mentions": []
-    },
-    {
-     "n": 265,
-     "raw": "[Sub-issue of #262] [Opus5/High] How-to: find a station and read its card — and the walkthrough scene every how-to uses",
-     "structure": "sub",
-     "parent": 262,
-     "model": "Opus5",
-     "effort": "High",
-     "human": false,
-     "computer": false,
-     "title": "How-to: find a station and read its card — and the walkthrough scene every how-to uses",
-     "url": "https://github.com/cdomotor-g/MegaNet/issues/265",
-     "updated": "2026-11-04T00:56:03Z",
-     "created": "2026-11-03T04:04:44Z",
-     "comments": 1,
      "labels": [],
      "mentions": []
     },
@@ -1892,7 +1941,7 @@
      "computer": false,
      "title": "Roadmap — resource allocation & sequencing for all issues",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/113",
-     "updated": "2026-11-04T02:59:43Z",
+     "updated": "2026-11-04T06:28:11Z",
      "created": "2026-08-13T00:13:50Z",
      "comments": 1,
      "labels": [],
@@ -1900,80 +1949,80 @@
       "meganet",
       "rpi_alert"
      ],
-     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1100k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
+     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1109k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
     }
    ],
-   "issueCount": 44,
+   "issueCount": 46,
    "release": null,
    "ci": [
     {
-     "name": "Field photos from Google Drive",
+     "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41767102294",
-     "date": "2026-11-04T03:26:12Z",
-     "event": "schedule"
-    },
-    {
-     "name": "Field photos from Dropbox",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41766345113",
-     "date": "2026-11-04T03:19:07Z",
-     "event": "schedule"
-    },
-    {
-     "name": "Station health",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41766148598",
-     "date": "2026-11-04T03:18:07Z",
-     "event": "schedule"
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41785694910",
+     "date": "2026-11-04T06:28:23Z",
+     "event": "push"
     },
     {
      "name": "Roadmap sync",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41764238220",
-     "date": "2026-11-04T02:59:47Z",
-     "event": "push"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41764238750",
-     "date": "2026-11-04T02:59:56Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41785694510",
+     "date": "2026-11-04T06:28:18Z",
      "event": "push"
     },
     {
      "name": "Web smoke test",
      "status": "in_progress",
      "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41764238065",
-     "date": "2026-11-04T03:00:55Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41785694583",
+     "date": "2026-11-04T06:29:11Z",
      "event": "push"
     },
     {
      "name": "CodeQL",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41764238173",
-     "date": "2026-11-04T03:03:21Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41785694509",
+     "date": "2026-11-04T06:33:48Z",
      "event": "push"
+    },
+    {
+     "name": "Field photos from Dropbox",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41785471604",
+     "date": "2026-11-04T06:26:02Z",
+     "event": "schedule"
+    },
+    {
+     "name": "Station health",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41785432173",
+     "date": "2026-11-04T06:26:19Z",
+     "event": "schedule"
+    },
+    {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41785177927",
+     "date": "2026-11-04T06:23:24Z",
+     "event": "schedule"
     },
     {
      "name": "db-migrate",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41754250682",
-     "date": "2026-11-04T01:28:25Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41778393317",
+     "date": "2026-11-04T05:18:22Z",
      "event": "workflow_dispatch"
     }
    ],
-   "version": "20261104g",
+   "version": "20261104r",
    "lastCommit": {
-    "date": "2026-11-04T02:59:20Z"
+    "date": "2026-11-04T06:27:54Z"
    }
   },
   {
@@ -5276,7 +5325,7 @@
     "status": {
      "phase": "live",
      "updated": "2026-11-04",
-     "summary": "v2 is the Scope Builder since 4 Nov 2026 (/SoRT/ opens /SoRT/v2/; v1 kept at /SoRT/v1/): Flood-Net station lookup with corrections of its particulars for the Word tables, ACMA licences, and the radio path to base with fresh fade margins; the map beside the questions (each pane scrolling on its own) with survey marks and bridges; saved sessions, the playbook, an in-page question editor, a Help guide, the local TBM as a desktop task, and follow-ups handed to Flood-Net's teams as tasks.",
+     "summary": "v2 is the Scope Builder since 4 Nov 2026 (/SoRT/ opens /SoRT/v2/; v1 kept at /SoRT/v1/): Flood-Net station lookup with corrections of its particulars for the Word tables, ACMA licences, and the radio path to base with fresh fade margins; the map beside the questions (each pane scrolling on its own) with survey marks and bridges; sessions shared with the whole forum through Flood-Net's server (a forum passphrase, no accounts or tokens), an in-page question editor, a Help guide, the local TBM as a desktop task, and follow-ups handed to Flood-Net's teams as tasks.",
      "now": [
       "v2 at real forums as the default; v1 kept at /SoRT/v1/ in case"
      ],
@@ -5287,43 +5336,6 @@
       "A Dataverse import keyed on v2's permanent question and option codes (v2/playbook/export_tables.mjs writes the tables)"
      ],
      "blocked": [
-      {
-       "id": "shared-sessions",
-       "what": "Sessions shared between people with no setup on each computer: the private playbook repo exists (seeded with five stations) and v2 saves to it by itself, but only from a browser holding a GitHub token, which the owner ruled out for forum computers",
-       "on": "human",
-       "kind": "decision",
-       "since": "2026-11-04",
-       "holds": [
-        "every forum computer seeing the same sessions",
-        "the existing-session warning and Sessions search seeing other computers' sessions",
-        "precedents from other people's sessions"
-       ],
-       "options": [
-        {
-         "what": "Serve SoRT from Flood-Net's own address (floodwarning.net/sort/, Flood-Net's Worker passing through the GitHub Pages copy) and keep sessions in Flood-Net's database: anyone signed in to Flood-Net is signed in to SoRT, no tokens; the Bureau benchmarks become a direct read for editors",
-         "by": "agent",
-         "effort": "High",
-         "model": "Opus5",
-         "recommended": true,
-         "pros": "no setup per computer; one sign-in people already have",
-         "cons": "needs approved Flood-Net accounts; outside sign-ups wait on #237's email"
-        },
-        {
-         "what": "A second Supabase project just for SoRT, with its own sign-in",
-         "by": "agent",
-         "effort": "High",
-         "model": "Opus5",
-         "cons": "a second set of accounts to approve, and its own email sending"
-        },
-        {
-         "what": "No sign-in: a shared forum passphrase typed once per browser, sessions kept by Flood-Net's Worker",
-         "by": "agent",
-         "effort": "Med",
-         "model": "Opus5",
-         "cons": "still a step on each computer; anyone with the passphrase reads every session"
-        }
-       ]
-      },
       {
        "id": "team-owners",
        "what": "Tasks SoRT hands over can only be created in Flood-Net by an administrator until its teams have owners and members (all 13 teams are empty)",
@@ -5474,10 +5486,11 @@
      {
       "id": "v2-playbook",
       "name": "Playbook (v2)",
-      "what": "Every session saved under its station in the private repo cdomotor-g/SoRT-playbook: Continue from a station's earlier session, similar stations as precedents, open follow-ups across stations; the tools import Word reports and export flat tables for Dataverse.",
+      "what": "Every session shared with the forum through Flood-Net's server (the forum passphrase, once per computer): shared by itself a few seconds after a change, listed and searched in Sessions, Open / Start from it / Use as a precedent (orange until checked, then green), and a warning when a station already has sessions. The private repo cdomotor-g/SoRT-playbook holds the five stations it was seeded with.",
       "paths": [
-       "v2/js/playbook.js",
        "v2/js/github.js",
+       "v2/js/playbook.js",
+       "v2/js/store-remote.js",
        "v2/playbook/"
       ],
       "status": "beta"
@@ -5558,6 +5571,23 @@
        "date": "2026-11-04"
       },
       "on_change": "Read Flood-Net's sort-benchmarks.js and its atlas entry; if the request or the message changed, update v2/js/benchmarks.js (clean() and request()) and the e2e 'bureau' stand-in, bump v2's ?v= stamp."
+     },
+     {
+      "id": "floodnet-sort-store",
+      "from": "flood-net",
+      "provider": "sort-session-store",
+      "into": "v2-playbook",
+      "what": "The shared sessions: Flood-Net's Worker keeps SoRT's index.json and stations/<key>.json (ETags, If-Match / If-None-Match) at floodwarning.net/api/sort/v1 for whoever sends the forum passphrase (X-SoRT-Passphrase), typed once per computer. Read and written by v2/js/store-remote.js and v2/js/playbook.js.",
+      "how": "live",
+      "url": "https://floodwarning.net/api/sort/v1",
+      "watch": [
+       "worker/sort.js",
+       "docs/sort-store.md"
+      ],
+      "since": {
+       "date": "2026-11-04"
+      },
+      "on_change": "Read Flood-Net's docs/sort-store.md; if a route, status, header or the passphrase check changed, update v2/js/store-remote.js and the e2e fakeStore, bump v2's ?v= stamp."
      }
     ]
    },
@@ -5566,12 +5596,30 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-04T03:25:21Z",
+    "pushed": "2026-11-04T06:32:18Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/SoRT"
    },
    "commits": [
+    {
+     "sha": "2c5e904",
+     "date": "2026-11-04T06:32:16Z",
+     "msg": "v2: the forum passphrase as a sentence — typed however, changeable from Sessions",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/2c5e904a43615e23d74d9ecf79da7a50fcf37c5e"
+    },
+    {
+     "sha": "b300ef7",
+     "date": "2026-11-04T06:10:22Z",
+     "msg": "atlas.json: sessions shared through Flood-Net's sort-session-store",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/b300ef77e216d7734dffc75a136d0551c2c4303a"
+    },
+    {
+     "sha": "7796e73",
+     "date": "2026-11-04T05:59:24Z",
+     "msg": "v2: shared sessions on Flood-Net's server with a forum passphrase (no tokens)",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/7796e73dffaf9ff3c6a6959c8eacb5488f7ae600"
+    },
     {
      "sha": "acc25bb",
      "date": "2026-11-04T03:25:19Z",
@@ -5625,24 +5673,6 @@
      "date": "2026-11-01T12:13:06Z",
      "msg": "v2: the radio path to base, with Flood-Net's fade margins",
      "url": "https://github.com/cdomotor-g/SoRT/commit/a92690b7a7d48109416b7cba235992f11547e41f"
-    },
-    {
-     "sha": "5612c9e",
-     "date": "2026-11-01T11:59:12Z",
-     "msg": "v2: Help guide, map zoom lock, map back to Queensland on a new session",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/5612c9e5e7443771e245d52cae25f25cff2f6132"
-    },
-    {
-     "sha": "138d4df",
-     "date": "2026-11-01T11:40:16Z",
-     "msg": "SoRT v2: map beside the questions by default, the map in the preview",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/138d4df37584387ae6f1fd20ab9d528b94822418"
-    },
-    {
-     "sha": "af78610",
-     "date": "2026-11-01T11:20:05Z",
-     "msg": "Atlas: v2's playbook, editor and task hand-off; what's blocked and on whom",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/af786108013170f56ab666cea12af19d4bb5fa03"
     }
    ],
    "issues": [],
@@ -5650,25 +5680,25 @@
    "release": null,
    "ci": [
     {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41767027410",
-     "date": "2026-11-04T03:25:37Z",
-     "event": "push"
-    },
-    {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41767025943",
-     "date": "2026-11-04T03:26:00Z",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41786186583",
+     "date": "2026-11-04T06:33:09Z",
      "event": "dynamic"
+    },
+    {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41783771303",
+     "date": "2026-11-04T06:10:39Z",
+     "event": "push"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-11-04T03:25:19Z"
+    "date": "2026-11-04T06:32:16Z"
    }
   },
   {
@@ -7023,7 +7053,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "27 newer commits upstream since 60c0498, none to watched files."
+    "note": "44 newer commits upstream since 60c0498, none to watched files."
    }
   },
   {
@@ -7053,8 +7083,14 @@
      "commit": "87ab6ed00b060b13b3c91019f58a6da6d56c129d",
      "commitDate": "2026-11-01T23:59:08Z"
     },
-    "behind": 1,
+    "behind": 2,
     "commits": [
+     {
+      "sha": "a9ff548",
+      "date": "2026-11-04T06:06:55Z",
+      "msg": "SoRT's forum sessions: a store behind the forum passphrase (/api/sort/v1)",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/a9ff5487167e50e5c9da713687fa880fdaa2bdab"
+     },
      {
       "sha": "6a08502",
       "date": "2026-11-03T11:01:49Z",
@@ -7065,7 +7101,7 @@
     "files": [
      "worker/index.js"
     ],
-    "note": "1 upstream change to watched files since it was last reviewed (2026-11-01)."
+    "note": "2 upstream changes to watched files since it was last reviewed (2026-11-01)."
    }
   },
   {
@@ -7328,7 +7364,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "515 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "532 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7421,7 +7457,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "515 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "532 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -8007,8 +8043,14 @@
      "commit": "87ab6ed00b060b13b3c91019f58a6da6d56c129d",
      "commitDate": "2026-11-01T23:59:08Z"
     },
-    "behind": 2,
+    "behind": 3,
     "commits": [
+     {
+      "sha": "4438a01",
+      "date": "2026-11-04T05:17:56Z",
+      "msg": "Agent API: a station's benchmarks, in numbers (0102)",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/4438a019a9b47510654f31227aee3e26b26ba62c"
+     },
      {
       "sha": "07d5fd3",
       "date": "2026-11-03T12:25:00Z",
@@ -8026,7 +8068,7 @@
      "docs/api-changelog.json",
      "worker/api.js"
     ],
-    "note": "2 upstream changes to watched files since it was last reviewed (2026-11-01)."
+    "note": "3 upstream changes to watched files since it was last reviewed (2026-11-01)."
    }
   },
   {
@@ -8050,8 +8092,39 @@
     "state": "current",
     "since": {
      "date": "2026-11-04",
-     "commit": "0d5000e7e265ea9f5bc5ae50dcccfa98707dae5f",
-     "commitDate": "2026-11-04T02:59:20Z"
+     "commit": "278838d372c36de5389c3cc1a3428c74695d6e4d",
+     "commitDate": "2026-11-04T06:27:54Z"
+    },
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "Up to date with upstream."
+   }
+  },
+  {
+   "id": "sort:floodnet-sort-store",
+   "from": "flood-net",
+   "provider": "sort-session-store",
+   "into": "v2-playbook",
+   "what": "The shared sessions: Flood-Net's Worker keeps SoRT's index.json and stations/<key>.json (ETags, If-Match / If-None-Match) at floodwarning.net/api/sort/v1 for whoever sends the forum passphrase (X-SoRT-Passphrase), typed once per computer. Read and written by v2/js/store-remote.js and v2/js/playbook.js.",
+   "how": "live",
+   "url": "https://floodwarning.net/api/sort/v1",
+   "watch": [
+    "worker/sort.js",
+    "docs/sort-store.md"
+   ],
+   "since": {
+    "date": "2026-11-04"
+   },
+   "on_change": "Read Flood-Net's docs/sort-store.md; if a route, status, header or the passphrase check changed, update v2/js/store-remote.js and the e2e fakeStore, bump v2's ?v= stamp.",
+   "entry": "floodnet-sort-store",
+   "to": "sort",
+   "drift": {
+    "state": "current",
+    "since": {
+     "date": "2026-11-04",
+     "commit": "278838d372c36de5389c3cc1a3428c74695d6e4d",
+     "commitDate": "2026-11-04T06:27:54Z"
     },
     "behind": 0,
     "commits": [],
@@ -8083,6 +8156,13 @@
   }
  ],
  "crossIssues": [
+  {
+   "in": "flood-net",
+   "about": "rpi-alert",
+   "n": 272,
+   "title": "Station Health's corrupting-transmitter figures: count the whole carrier, and leave out one burst read two ways",
+   "url": "https://github.com/cdomotor-g/MegaNet/issues/272"
+  },
   {
    "in": "flood-net",
    "about": "flood-net-private",
