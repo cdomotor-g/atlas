@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-04T21:27:10.729Z",
- "hash": "013364d43dcb10ca",
+ "generated": "2026-11-04T23:57:04.051Z",
+ "hash": "87fb43a72865446d",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1062,12 +1062,30 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-04T20:11:42Z",
+    "pushed": "2026-11-04T23:55:17Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "3c9f848",
+     "date": "2026-11-04T23:55:15Z",
+     "msg": "Station Health: a station out of every receiver's range is never taken as heard",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/3c9f848416e6877c096bc66f4e94dd52b4d01a88"
+    },
+    {
+     "sha": "4d7efbb",
+     "date": "2026-11-04T23:51:44Z",
+     "msg": "Change title to 'Hillcrest pass ranges SUGGESTION'",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/4d7efbbb4a3195204f62665668f72e9545731740"
+    },
+    {
+     "sha": "fb99171",
+     "date": "2026-11-04T23:46:51Z",
+     "msg": "Hillcrest (Wine Glass) pass ranges: assessment and suggested setting",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/fb991716fdd47ea9d6b9b522aa2c3fd7df660584"
+    },
     {
      "sha": "7d0252a",
      "date": "2026-11-04T20:11:40Z",
@@ -1121,24 +1139,6 @@
      "date": "2026-11-04T07:32:41Z",
      "msg": "Running costs: the owner's answers in, and #274 for the ElevenLabs credits",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/d4f8e29520930b3baa9880b4641f5e78ed9ba341"
-    },
-    {
-     "sha": "278838d",
-     "date": "2026-11-04T06:27:54Z",
-     "msg": "SoRT store: a sentence passphrase the forum can change itself (hash kept in R2, typed however)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/278838d372c36de5389c3cc1a3428c74695d6e4d"
-    },
-    {
-     "sha": "326231f",
-     "date": "2026-11-04T06:25:08Z",
-     "msg": "Running costs on the Admin tab: every paid service, its plan and its month",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/326231fbf74a7832a59e550a09a267af818e61f2"
-    },
-    {
-     "sha": "2691e4a",
-     "date": "2026-11-04T06:08:27Z",
-     "msg": "Station pins on top of the field photos on the Stations map",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/2691e4ade1472068ad8d380379bf633cedc5c508"
     }
    ],
    "issues": [
@@ -1988,49 +1988,49 @@
    "release": null,
    "ci": [
     {
+     "name": "CodeQL",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41937442671",
+     "date": "2026-11-04T23:55:24Z",
+     "event": "push"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "pending",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41937442649",
+     "date": "2026-11-04T23:55:21Z",
+     "event": "push"
+    },
+    {
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41915738143",
-     "date": "2026-11-04T21:24:11Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41937265995",
+     "date": "2026-11-04T23:54:02Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41914617067",
-     "date": "2026-11-04T21:17:08Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41936407930",
+     "date": "2026-11-04T23:47:06Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41914323034",
-     "date": "2026-11-04T21:16:16Z",
-     "event": "schedule"
-    },
-    {
-     "name": "Web smoke test",
-     "status": "completed",
-     "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41904252252",
-     "date": "2026-11-04T21:08:47Z",
-     "event": "push"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41899766839",
-     "date": "2026-11-04T19:44:26Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41936176489",
+     "date": "2026-11-04T23:46:12Z",
      "event": "schedule"
     }
    ],
-   "version": "20261104u",
+   "version": "20261104v",
    "lastCommit": {
-    "date": "2026-11-04T20:11:40Z"
+    "date": "2026-11-04T23:55:15Z"
    }
   },
   {
@@ -3951,20 +3951,20 @@
    "release": null,
    "ci": [
     {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/41920786568",
+     "date": "2026-11-04T21:57:14Z",
+     "event": "schedule"
+    },
+    {
      "name": "Build Firmware",
      "status": "completed",
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/41904331343",
      "date": "2026-11-04T20:12:43Z",
      "event": "push"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/41726321902",
-     "date": "2026-11-03T21:57:11Z",
-     "event": "schedule"
     }
    ],
    "version": null,
@@ -4734,6 +4734,14 @@
    },
    "ci": [
     {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41919765543",
+     "date": "2026-11-04T21:50:32Z",
+     "event": "schedule"
+    },
+    {
      "name": "Test the site",
      "status": "completed",
      "conclusion": "success",
@@ -4748,14 +4756,6 @@
      "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41904321248",
      "date": "2026-11-04T20:13:23Z",
      "event": "dynamic"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41725332867",
-     "date": "2026-11-03T21:50:29Z",
-     "event": "schedule"
     },
     {
      "name": "Refresh firmware",
@@ -5265,12 +5265,12 @@
    "release": null,
    "ci": [
     {
-     "name": "test",
+     "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41904309342",
-     "date": "2026-11-04T20:12:18Z",
-     "event": "push"
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41916924656",
+     "date": "2026-11-04T21:32:12Z",
+     "event": "schedule"
     },
     {
      "name": "pages build and deployment",
@@ -5281,12 +5281,12 @@
      "event": "dynamic"
     },
     {
-     "name": "Atlas",
+     "name": "test",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41722593756",
-     "date": "2026-11-03T21:32:21Z",
-     "event": "schedule"
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41904309342",
+     "date": "2026-11-04T20:12:18Z",
+     "event": "push"
     },
     {
      "name": "pages",
@@ -7073,7 +7073,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "53 newer commits upstream since 60c0498, none to watched files."
+    "note": "57 newer commits upstream since 60c0498, none to watched files."
    }
   },
   {
@@ -7378,7 +7378,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "541 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "545 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7471,7 +7471,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "541 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "545 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -8057,8 +8057,14 @@
      "commit": "87ab6ed00b060b13b3c91019f58a6da6d56c129d",
      "commitDate": "2026-11-01T23:59:08Z"
     },
-    "behind": 3,
+    "behind": 4,
     "commits": [
+     {
+      "sha": "3c9f848",
+      "date": "2026-11-04T23:55:15Z",
+      "msg": "Station Health: a station out of every receiver's range is never taken as heard",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/3c9f848416e6877c096bc66f4e94dd52b4d01a88"
+     },
      {
       "sha": "4438a01",
       "date": "2026-11-04T05:17:56Z",
@@ -8082,7 +8088,7 @@
      "docs/api-changelog.json",
      "worker/api.js"
     ],
-    "note": "3 upstream changes to watched files since it was last reviewed (2026-11-01)."
+    "note": "4 upstream changes to watched files since it was last reviewed (2026-11-01)."
    }
   },
   {
@@ -8106,8 +8112,8 @@
     "state": "current",
     "since": {
      "date": "2026-11-04",
-     "commit": "7d0252a78ffd104a64271863f923bd0786ac67d9",
-     "commitDate": "2026-11-04T20:11:40Z"
+     "commit": "65df6ff85c2b22b61aaabb5acd6c1c8b5a3e7afc",
+     "commitDate": "2026-11-04T23:56:13Z"
     },
     "behind": 0,
     "commits": [],
@@ -8137,8 +8143,8 @@
     "state": "current",
     "since": {
      "date": "2026-11-04",
-     "commit": "7d0252a78ffd104a64271863f923bd0786ac67d9",
-     "commitDate": "2026-11-04T20:11:40Z"
+     "commit": "65df6ff85c2b22b61aaabb5acd6c1c8b5a3e7afc",
+     "commitDate": "2026-11-04T23:56:13Z"
     },
     "behind": 0,
     "commits": [],
