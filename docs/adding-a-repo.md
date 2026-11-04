@@ -41,7 +41,8 @@
    (RPi_ALERT's is a good one) and change the id. Say there that a blocker needing only the
    owner's sign-in goes on `"computer"`, not `"human"`, with a way through `"by": "computer"`
    (an agent at the owner's computer does it signed in as them), and that issues like that
-   are titled `[Human] [Computer] …`.
+   are titled `[Human] [Computer] …`. Then add the run summary every repository ends a
+   run with: `node tools/run-summary.mjs <path to its CLAUDE.md>` (`docs/run-summary.md`).
 4. **Workflow.** Copy `.github/workflows/atlas.yml` from RPi_ALERT. Set `issues: false` if
    the repository has issues turned off, or its own rules say who opens issues.
 5. Run `node test/check.mjs` here and push. The next collect (or **Run workflow** on

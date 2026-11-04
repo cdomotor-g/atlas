@@ -8,6 +8,7 @@ import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { ROOT, validate, crossCheck, parseTitle, watchMatches, blockerMark, linkFor } from '../tools/lib.mjs';
+import { canonical, apply } from '../tools/run-summary.mjs';
 
 const fails = [];
 const check = (ok, msg) => { if (!ok) fails.push(msg); };
@@ -37,7 +38,7 @@ for (const f of existsSync(join(ROOT, 'data/fallback')) ? readdirSync(join(ROOT,
   check(ids.has(m.id), `fallback ${f}: ${m.id} is not in the registry`);
 }
 
-for (const f of ['assets/atlas.js', 'tools/lib.mjs', 'tools/collect.mjs', 'tools/drift.mjs', 'tools/build-standalone.mjs']) {
+for (const f of ['assets/atlas.js', 'tools/lib.mjs', 'tools/collect.mjs', 'tools/drift.mjs', 'tools/build-standalone.mjs', 'tools/run-summary.mjs']) {
   try { execFileSync(process.execPath, ['--check', join(ROOT, f)], { stdio: 'pipe' }); }
   catch (e) { fails.push(`${f}: ${e.stderr.toString().split('\n').slice(0, 4).join(' ')}`); }
 }
@@ -82,5 +83,19 @@ check(blockerMark('Atlas blocker: rpi-alert/bench-first-run\n\n**Blocked:** …'
 check(blockerMark('Some text\r\nAtlas blocker: Flood-Net/237\r\n') === 'flood-net/237', 'blockerMark: later line, CRLF, case');
 check(blockerMark('See the Atlas blocker: rpi-alert/x in the notes') === null, 'blockerMark: only a line of its own');
 
+// The run summary every repository carries: the Atlas's own copies match docs/run-summary.md,
+// and the copier replaces an older section in place and leaves a current copy alone.
+{
+  const block = canonical();
+  for (const f of ['CLAUDE.md', 'AGENTS.md']) {
+    const text = readFileSync(join(ROOT, f), 'utf8');
+    check(apply(text, block) === text, `${f}: its run summary differs from docs/run-summary.md (node tools/run-summary.mjs ${f})`);
+  }
+  const old = '# X\n\n## Run summary — mark where it starts\n- old\n  ```\n  ## not a heading\n  ```\n\n## Next\nkept\n';
+  const once = apply(old, block);
+  check(once === `# X\n\n${block}\n\n## Next\nkept\n` && apply(once, block) === once, 'run-summary: replaces an older section in place, once');
+  check(apply('# X\n', block) === `# X\n\n${block}\n`, 'run-summary: adds the block to a file without one');
+}
+
 if (fails.length) { console.error(`✗ ${fails.length} problem${fails.length === 1 ? '' : 's'}:\n- ${fails.join('\n- ')}`); process.exit(1); }
-console.log(`✓ registry (${reg.repos.length}), fallbacks, scripts, page links, link ids, parsers, blocker tags`);
+console.log(`✓ registry (${reg.repos.length}), fallbacks, scripts, page links, link ids, parsers, blocker tags, run summary`);
