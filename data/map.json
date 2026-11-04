@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-03T22:08:29.704Z",
- "hash": "594bd7f31d4022e6",
+ "generated": "2026-11-04T00:42:25.818Z",
+ "hash": "9c7def2509b8c62c",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -101,7 +101,7 @@
       "Teams and tasks (0095) live: one team has its owner so far — an administrator names each team's owners on the Admin tab; SoRT's #tasks= hand-off lands on the Tasks tab for review",
       "One person, one account (0100): an account keeps a second address — found by a team's owner, where its emails can go, refused a sign-in of its own; the Admin tab's Same person… folds a second account in",
       "Agent API changelog and notify list shipped; emails start once #237's Resend parts are done",
-      "Agent API radio paths to base, for SoRT's Fade Margin question: live, with fresh fade margins since the fade-resweep blocker cleared on 4 Nov 2026 (#235: the Stations map's layer swept under the 12 dB field model and saved to the datastore); 15 links are still stale (Save is greyed out for them) and 2 failed to compute, the map still wants a visual check, and #235 stays open to sweep again after #234 and #233",
+      "Agent API radio paths to base, for SoRT's Fade Margin question: live, with fresh fade margins since the fade-resweep blocker cleared on 4 Nov 2026 (#235: the Stations map's layer swept under the 12 dB field model and saved to the datastore); 15 links are still stale (Save is greyed out for them) and 2 failed to compute, the map still wants a visual check; #235 closed — re-sweep after each #234/#233 batch",
       "Photo reader: nightly reading of field photos for logger and equipment details",
       "#243 R2 data archive: one restored-day self-test left, then close",
       "One ALERT burst heard several ways is one reading (0096, #232 closed): copies within 8 s counted on it",
@@ -111,7 +111,7 @@
       "#259 a lighter off-air decoder: lean decoding is the live pipeline's default (0.12% of 11,628 live bursts read differently, a third of the time); part 2, BurstWatch, filters a channel only around its bursts (the same readings in every test, a sixth to a twentieth of the work between them), and light decoding (lean: 2) halves a burst's decode again; both in RPi ALERT 0.18–0.19 behind settings, waiting on their checks at the first base station"
      ],
      "next": [
-      "EPIC #262 explainers: 🎬 Videos shipped (#263); the welcome's second draft (#264) — real screenshots of the app, Turbo for the capabilities and sources — waits on the owner's OK, then voiced and its MP4 made (#268); the station-card how-to (#265) next",
+      "EPIC #262 explainers: the welcome is voiced and has its MP4 (#264, #268); next the station-card how-to with its walkthrough scene (#265), then the phone install (#266) and map layers (#267)",
       "#252–#254 road routes: avoid closures, inspection runs, routes kept offline (EPIC #250)",
       "#238 QLDTraffic flood events and road closures on the Stations map",
       "#216 staff alerts: daily digest email and web push for critical findings",
@@ -125,30 +125,23 @@
      ],
      "blocked": [
       {
-       "id": "welcome-script",
-       "what": "#264 the welcome video: its words, a draft on the site at ?watch=welcome, are voiced only once the owner has read them and said yes",
+       "id": "report-route",
+       "what": "#270 give the Worker its GitHub token (GITHUB_ISSUES_TOKEN) so /api/report files reports itself",
        "on": "human",
-       "kind": "decision",
-       "since": "2026-11-03",
-       "issue": "#264",
+       "kind": "access",
+       "since": "2026-11-04",
+       "issue": "#270",
        "holds": [
-        "#264 voiced (about 840 ElevenLabs credits, once)",
-        "#268 the MP4 of it",
-        "the welcome shown in meetings with its voices"
+        "the 🐞 Report a Bug dialog's Send report (it opens GitHub's pre-filled page meanwhile)",
+        "SoRT's Report to Flood-Net filing corrections with no GitHub account",
+        "sort"
        ],
        "options": [
         {
-         "what": "Watch the silent draft at https://floodwarning.net/?watch=welcome or read the script on #264, and reply OK or with changes",
+         "what": "GitHub → fine-grained token 'Flood-Net bug reports', cdomotor-g/MegaNet only, Issues: Read and write; Cloudflare → meganet Worker → Settings → Variables and Secrets → Secret GITHUB_ISSUES_TOKEN → Deploy; then the dispatch session's test report",
          "by": "human",
          "effort": "5 min",
-         "pros": "an agent then marks it final and the voice workflow says it",
          "recommended": true
-        },
-        {
-         "what": "Ask for changes in plain words on #264; an agent rewrites the draft (no credits spent until it is final)",
-         "by": "agent",
-         "effort": "Low",
-         "model": "Opus5"
         }
        ]
       },
@@ -969,7 +962,7 @@
       "what": "The QLD Globe recipes for the LiDAR contour and survey-mark layers: which ArcGIS services, sublayers resolved by name, and the server-rendered approach (map-contours.js, map-survey.js).",
       "how": "ported",
       "watch": [
-       "index.html",
+       "v1/index.html",
        "v2/js/map.js"
       ]
      },
@@ -1003,12 +996,60 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-03T20:43:16Z",
+    "pushed": "2026-11-04T00:39:43Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "66b5030",
+     "date": "2026-11-04T00:39:39Z",
+     "msg": "Roadmap revision 228: #235 closed (fade margins swept); #270 opened (report route token)",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/66b5030297d4188b82c77d56779870e40d2a0573"
+    },
+    {
+     "sha": "1910f8f",
+     "date": "2026-11-04T00:21:52Z",
+     "msg": "Station names: complete the 112 that Radio Mobile cut at 20 characters",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/1910f8f3355b665b7c1088d044eb5faa843ba9d3"
+    },
+    {
+     "sha": "ddf0918",
+     "date": "2026-11-04T00:14:53Z",
+     "msg": "Roadmap: SoRT's cutover — watch its v1/index.html for the QLD layer recipes",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/ddf09184e7f4501d5b141f7877b1c5480d9826a7"
+    },
+    {
+     "sha": "91ee1ea",
+     "date": "2026-11-04T00:12:47Z",
+     "msg": "🎬 Welcome to Flood-Net as an MP4, and the recorder (#268, #264)",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/91ee1ea5b1f708cd8f8a59346d66afdcb97b6851"
+    },
+    {
+     "sha": "1858f32",
+     "date": "2026-11-03T23:58:06Z",
+     "msg": "Bulletin voices: video welcome",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/1858f32f66b4b50e3886f233129004dc614201bb"
+    },
+    {
+     "sha": "3e91867",
+     "date": "2026-11-03T23:56:46Z",
+     "msg": "🎬 Welcome to Flood-Net: final — the owner's OK, with a watch-this-space ending (#264)",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/3e91867458fa0d69d4733e6809f15436e93ae330"
+    },
+    {
+     "sha": "3d71738",
+     "date": "2026-11-03T23:51:00Z",
+     "msg": "Map bubbles: no overlaps, and a lit bubble's glow goes behind its neighbours",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/3d71738caa8904cde899cbfe1448f8b1aa3cc888"
+    },
+    {
+     "sha": "2222267",
+     "date": "2026-11-03T23:42:06Z",
+     "msg": "Map: ACMA licence pins hidden until somebody turns them on",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/22222675e0e63c54527b62c1c6214513693a4ffc"
+    },
     {
      "sha": "eb90782",
      "date": "2026-11-03T20:43:16Z",
@@ -1032,57 +1073,29 @@
      "date": "2026-11-03T18:36:45Z",
      "msg": "Network Bulletin: daily bulletin for 2026-11-04 — receiver stick 2 thinned out since Tuesday noon; correction on the Tallai lead",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/893b05c954926a8caa8e7cf783f93e834b36bacb"
-    },
-    {
-     "sha": "42af655",
-     "date": "2026-11-03T15:14:17Z",
-     "msg": "CI doctor: Exports + Bulletin voices — Videos tab had no export entry, voice step added a missing path; exempt Videos with a reason, add onl",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/42af655ab114f9608f500005e7903c119918cdd3"
-    },
-    {
-     "sha": "a1ba48d",
-     "date": "2026-11-03T14:02:25Z",
-     "msg": "Stations map: nearby pins grouped into bubbles; the tab quicker again",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/a1ba48daa7a8e66bcb29f5d78d8e7b041d7bcefb"
-    },
-    {
-     "sha": "d3e9b9d",
-     "date": "2026-11-03T12:44:57Z",
-     "msg": "🎬 Welcome, second draft: the app itself, and Turbo for the rest (#264)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/d3e9b9d2b0d580761455ad9409fcd189d4ac750b"
-    },
-    {
-     "sha": "07d5fd3",
-     "date": "2026-11-03T12:25:00Z",
-     "msg": "Station Health: a missed check with the station's rain heard around it is a check lost",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/07d5fd3d542a7c773b171f609b578a1f0a26bb33"
-    },
-    {
-     "sha": "bcd2e91",
-     "date": "2026-11-03T11:26:06Z",
-     "msg": "atlas.json: #259 light decoding",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/bcd2e91fd8e76a1a23e0ebd9be9e2f19e12ba963"
-    },
-    {
-     "sha": "2137521",
-     "date": "2026-11-03T11:22:07Z",
-     "msg": "Not heard, not silent: Station Health and the agent API say what Flood-Net heard (#269)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/213752153a5685672986c4ef42d868ab4ae50978"
-    },
-    {
-     "sha": "25d225c",
-     "date": "2026-11-03T11:16:37Z",
-     "msg": "🎬 Welcome to Flood-Net: the draft, on the site to be read (#264); #268 opened",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/25d225c9057c8d905b1c1fdcab4af81f7dd0b2d8"
-    },
-    {
-     "sha": "60c0498",
-     "date": "2026-11-03T11:11:49Z",
-     "msg": "Stamp 20261103r: light decoding",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/60c049853e4a6e950ec25e3090aacc35178c5120"
     }
    ],
    "issues": [
+    {
+     "n": 270,
+     "raw": "[Standalone] [Human] Switch on the report route: give the Worker its GitHub token (GITHUB_ISSUES_TOKEN)",
+     "structure": "standalone",
+     "parent": null,
+     "model": null,
+     "effort": null,
+     "human": true,
+     "computer": false,
+     "title": "Switch on the report route: give the Worker its GitHub token (GITHUB_ISSUES_TOKEN)",
+     "url": "https://github.com/cdomotor-g/MegaNet/issues/270",
+     "updated": "2026-11-04T00:38:52Z",
+     "created": "2026-11-04T00:38:52Z",
+     "comments": 0,
+     "labels": [],
+     "mentions": [
+      "meganet"
+     ],
+     "excerpt": "/api/report (worker/report.js, docs/bug-reports.md) is deployed and waiting. Without its token it answers {\"ready\": false, \"reason\": \"unconfigured\"}. So for now: - the 🐞 Report a Bug dialog falls back to GitHub's pre-filled New issue page, which needs a GitHub account; - the SoRT scope builder's Report to Flood-Net button falls back the same way. It…"
+    },
     {
      "n": 269,
      "raw": "[Standalone] [Human] Identify ALERT2 concentrator 11762 — the one route Flood-Net hears ~1,650 stations by",
@@ -1100,23 +1113,6 @@
      "labels": [],
      "mentions": [],
      "excerpt": "On 3 Nov 2026 the daily bulletin said eight Gold Coast hinterland stations behind Tallai \"went quiet overnight\". Technicians checked them in ARRO and found their data. They were reporting all along. Everything Flood-Net heard from that group came one way. That includes Tallai's own reports and Molendinar's. The reports arrived as legacy ALERT, re-sent in…"
-    },
-    {
-     "n": 268,
-     "raw": "[Sub-issue of #262] [Opus5/Med] An MP4 of each video — recorded from the player with its voices, for a laptop that can't reach the site or a slide deck",
-     "structure": "sub",
-     "parent": 262,
-     "model": "Opus5",
-     "effort": "Med",
-     "human": false,
-     "computer": false,
-     "title": "An MP4 of each video — recorded from the player with its voices, for a laptop that can't reach the site or a slide deck",
-     "url": "https://github.com/cdomotor-g/MegaNet/issues/268",
-     "updated": "2026-11-03T11:11:57Z",
-     "created": "2026-11-03T11:11:57Z",
-     "comments": 0,
-     "labels": [],
-     "mentions": []
     },
     {
      "n": 267,
@@ -1170,23 +1166,6 @@
      "mentions": []
     },
     {
-     "n": 264,
-     "raw": "[Sub-issue of #262] [Opus5/Med] Welcome to Flood-Net — a 90-second tour of what it does, presented by Graham, for meetings and the site",
-     "structure": "sub",
-     "parent": 262,
-     "model": "Opus5",
-     "effort": "Med",
-     "human": false,
-     "computer": false,
-     "title": "Welcome to Flood-Net — a 90-second tour of what it does, presented by Graham, for meetings and the site",
-     "url": "https://github.com/cdomotor-g/MegaNet/issues/264",
-     "updated": "2026-11-03T12:45:49Z",
-     "created": "2026-11-03T04:04:34Z",
-     "comments": 2,
-     "labels": [],
-     "mentions": []
-    },
-    {
      "n": 262,
      "raw": "[Epic] [Opus5/High] Explainers — a welcome to Flood-Net for meetings, then short how-tos, in the bulletin's player and the Droggies' voices",
      "structure": "epic",
@@ -1197,7 +1176,7 @@
      "computer": false,
      "title": "Explainers — a welcome to Flood-Net for meetings, then short how-tos, in the bulletin's player and the Droggies' voices",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/262",
-     "updated": "2026-11-03T11:15:33Z",
+     "updated": "2026-11-04T00:13:32Z",
      "created": "2026-11-03T04:04:05Z",
      "comments": 0,
      "labels": [],
@@ -1502,24 +1481,6 @@
      "labels": [],
      "mentions": [],
      "excerpt": "Flood-Net counts a field station as \"carried\" by a repeater when one of the station's ALERT addresses falls in the repeater's pass ranges. The Stations map's links, a station's list of carriers, the blast radius and the Network Review all rest on that rule. The register has 1,297 such pairs more than 150 km apart. No VHF hop covers that distance…"
-    },
-    {
-     "n": 235,
-     "raw": "[Standalone] [Human] Re-sweep the fade-margin map and save it under the 12 dB allowance",
-     "structure": "standalone",
-     "parent": null,
-     "model": null,
-     "effort": null,
-     "human": true,
-     "computer": false,
-     "title": "Re-sweep the fade-margin map and save it under the 12 dB allowance",
-     "url": "https://github.com/cdomotor-g/MegaNet/issues/235",
-     "updated": "2026-11-03T20:44:37Z",
-     "created": "2026-10-09T05:16:25Z",
-     "comments": 2,
-     "labels": [],
-     "mentions": [],
-     "excerpt": "The fade-margin colours on the Stations map are computed once and saved to the datastore. Each saved figure is tagged with the settings it was computed under. The default allowance has changed from 16 dB to 12 dB (and earlier, from the land-cover model to the field model). So every saved figure is now stale: each browser recomputes the network the first…"
     },
     {
      "n": 234,
@@ -1891,7 +1852,7 @@
      "computer": false,
      "title": "Roadmap — resource allocation & sequencing for all issues",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/113",
-     "updated": "2026-11-03T20:46:44Z",
+     "updated": "2026-11-04T00:39:58Z",
      "created": "2026-08-13T00:13:50Z",
      "comments": 1,
      "labels": [],
@@ -1899,48 +1860,88 @@
       "meganet",
       "rpi_alert"
      ],
-     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1092k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
+     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1097k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
     }
    ],
-   "issueCount": 46,
+   "issueCount": 44,
    "release": null,
    "ci": [
+    {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41748487105",
+     "date": "2026-11-04T00:40:11Z",
+     "event": "push"
+    },
+    {
+     "name": "Roadmap sync",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41748486703",
+     "date": "2026-11-04T00:40:02Z",
+     "event": "push"
+    },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41727365405",
-     "date": "2026-11-03T22:03:39Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41748038466",
+     "date": "2026-11-04T00:36:10Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41726826050",
-     "date": "2026-11-03T22:00:55Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41747965576",
+     "date": "2026-11-04T00:36:26Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41725924763",
-     "date": "2026-11-03T21:54:03Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41747723414",
+     "date": "2026-11-04T00:33:41Z",
      "event": "schedule"
     },
     {
-     "name": "Atlas",
+     "name": "CodeQL",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41715161975",
-     "date": "2026-11-03T20:45:12Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41746268923",
+     "date": "2026-11-04T00:25:32Z",
+     "event": "push"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41746268773",
+     "date": "2026-11-04T00:22:55Z",
+     "event": "push"
+    },
+    {
+     "name": "Video MP4s",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41745206236",
+     "date": "2026-11-04T00:13:47Z",
+     "event": "workflow_run"
+    },
+    {
+     "name": "Bulletin voices",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41745124561",
+     "date": "2026-11-04T00:13:30Z",
      "event": "push"
     }
    ],
-   "version": "20261103x",
+   "version": "20261104a",
    "lastCommit": {
-    "date": "2026-11-03T20:43:16Z"
+    "date": "2026-11-04T00:39:39Z"
    }
   },
   {
@@ -5242,55 +5243,18 @@
     },
     "status": {
      "phase": "live",
-     "updated": "2026-11-03",
-     "summary": "v1 is in use at forums; the v2 beta at /SoRT/v2/ runs beside it — Flood-Net station lookup (ACMA licences, and the radio path to base with the fade margin Flood-Net saved for each hop), the map on the page (or beside the questions) with survey marks and bridges, saved sessions, the playbook of past sessions, an in-page question editor, a Help guide, and follow-ups handed to Flood-Net's teams as tasks (live since 1 Nov 2026; a SoRT Forum member creates them there).",
+     "updated": "2026-11-04",
+     "summary": "v2 is the Scope Builder since 4 Nov 2026 (/SoRT/ opens /SoRT/v2/; v1 kept at /SoRT/v1/): Flood-Net station lookup with corrections of its particulars for the Word tables, ACMA licences, and the radio path to base with fresh fade margins; the map beside the questions (each pane scrolling on its own) with survey marks and bridges; saved sessions, the playbook, an in-page question editor, a Help guide, the local TBM as a desktop task, and follow-ups handed to Flood-Net's teams as tasks.",
      "now": [
-      "v2 beta: try it at real forums beside v1"
+      "v2 at real forums as the default; v1 kept at /SoRT/v1/ in case"
      ],
      "next": [
-      "v2 cutover: one commit makes /SoRT/ open v2 and keeps v1 at /SoRT/v1/",
       "Playbook: push the five seeded stations once the private repo exists; import more Word reports in batches"
      ],
      "later": [
       "A Dataverse import keyed on v2's permanent question and option codes (v2/playbook/export_tables.mjs writes the tables)"
      ],
      "blocked": [
-      {
-       "id": "v2-forums",
-       "what": "v2 cutover waits on the owner using it at some real forums",
-       "on": "human",
-       "kind": "time",
-       "since": "2026-10-31",
-       "holds": [
-        "v2 at the /SoRT/ address, v1 kept at /SoRT/v1/ (the cutover commit)",
-        "retiring ROADMAP §1–3, which v2 covers",
-        "deciding whether the station picker (ROADMAP §2) is still needed beside v2's Flood-Net lookup"
-       ],
-       "options": [
-        {
-         "what": "Run the next few forums on v2 at /SoRT/v2/ with v1 open in another tab, and note anything wrong as an issue. Then an agent makes the one cutover commit in v2/README.md's Cutover section (Sonnet5/Low, 20 min).",
-         "by": "human",
-         "effort": "the next 2–3 forums",
-         "pros": "the real test, with v1 a tab away",
-         "recommended": true
-        },
-        {
-         "what": "Rehearse a forum before the first real one: drive v2 in a browser through a real station end to end (Flood-Net lookup, map, Property Services, Copy for Word) with the repo's verify skill and v2/tests/e2e.cjs, and compare the Word tables with v1's for the same answers.",
-         "by": "agent",
-         "effort": "an hour",
-         "model": "Sonnet5/Med",
-         "pros": "catches what would break mid-forum",
-         "cons": "no substitute for real use"
-        },
-        {
-         "what": "Cut over now and lean on the rollback: the cutover is one commit, v1 stays at /SoRT/v1/, and reverting the commit puts v1 back.",
-         "by": "human",
-         "effort": "10 min to decide",
-         "pros": "no wait",
-         "cons": "the first real forum on v2 is the test"
-        }
-       ]
-      },
       {
        "id": "playbook-repo",
        "what": "The playbook's private repo cdomotor-g/SoRT-playbook doesn't exist yet; the GitHub integration may not create repositories",
@@ -5317,26 +5281,6 @@
        ]
       },
       {
-       "id": "fade-figures",
-       "what": "v2 shows Flood-Net's radio path with each hop's fade margin, but every saved figure is stale (worked out with Flood-Net's older model, which reads far too low), so it is a rough guide and can't fill in Fade Margin >20 dB yet",
-       "on": "flood-net",
-       "kind": "upstream",
-       "since": "2026-11-01",
-       "holds": [
-        "Fade Margin >20 dB filled in from Flood-Net's figures (built: Yes once a fresh figure on the station's own hop is over 20 dB)",
-        "the radio path's figures read as margins rather than a rough guide"
-       ],
-       "options": [
-        {
-         "what": "On Flood-Net, signed in as an editor: Stations map → Layers → Link colour: By fade margin, let it work through every link, then Save to the datastore (Flood-Net's own fade-resweep blocker). v2 picks the fresh figures up by itself; Refresh from Flood-Net updates a station already open.",
-         "by": "human",
-         "effort": "one sitting; the sweep runs by itself",
-         "recommended": true
-        }
-       ],
-       "issue": "cdomotor-g/MegaNet#235"
-      },
-      {
        "id": "team-owners",
        "what": "Tasks SoRT hands over can only be created in Flood-Net by an administrator until its teams have owners and members (all 13 teams are empty)",
        "on": "human",
@@ -5355,6 +5299,25 @@
         }
        ],
        "issue": "cdomotor-g/MegaNet#261"
+      },
+      {
+       "id": "report-route",
+       "what": "Report to Flood-Net opens GitHub's ready-made issue page (needs a GitHub account) until Flood-Net's /api/report has its token",
+       "on": "human",
+       "kind": "access",
+       "since": "2026-11-04",
+       "issue": "cdomotor-g/MegaNet#270",
+       "holds": [
+        "forum corrections to a station's particulars reaching Flood-Net without a GitHub account"
+       ],
+       "options": [
+        {
+         "what": "Flood-Net #270: a fine-grained GitHub token set as the meganet Worker's GITHUB_ISSUES_TOKEN; SoRT needs no change (cdomotor-g.github.io is already allowed)",
+         "by": "human",
+         "effort": "5 min",
+         "recommended": true
+        }
+       ]
       }
      ]
     },
@@ -5362,11 +5325,11 @@
      {
       "id": "scope-builder",
       "name": "Scope Builder (v1)",
-      "what": "The live app: pick a station type, fill the rows, Copy table for Word; Manage Tables and Table Map edit the definitions in place.",
+      "what": "Version 1, kept as it was at /SoRT/v1/ since the cutover (4 Nov 2026): pick a station type, fill the rows, Copy table for Word; Manage Tables and Table Map edit the definitions in place.",
       "paths": [
-       "index.html"
+       "v1/index.html"
       ],
-      "url": "https://cdomotor-g.github.io/SoRT/",
+      "url": "https://cdomotor-g.github.io/SoRT/v1/",
       "status": "live"
      },
      {
@@ -5383,7 +5346,7 @@
       "name": "Property Services table",
       "what": "A second table copied into Word under the scope, pre-filled from the scope's coordinates and relocation answer, with its own editor tab.",
       "paths": [
-       "index.html",
+       "v1/index.html",
        "definitions.json"
       ],
       "status": "live"
@@ -5393,7 +5356,7 @@
       "name": "Site Map (v1)",
       "what": "A modal map of the table's pins over Queensland Government imagery, LiDAR contours, the road reserve and rail, with pin write-back and a picture captured for Word.",
       "paths": [
-       "index.html"
+       "v1/index.html"
       ],
       "status": "live"
      },
@@ -5411,7 +5374,7 @@
        "v2/js/word.js",
        "v2/js/util.js"
       ],
-      "url": "https://cdomotor-g.github.io/SoRT/v2/",
+      "url": "https://cdomotor-g.github.io/SoRT/",
       "status": "beta"
      },
      {
@@ -5500,7 +5463,7 @@
       "what": "Which Queensland Government ArcGIS services and sublayers draw imagery, LiDAR contours (resolved by name), the road reserve, rail and survey marks, and how they are styled. Flood-Net's contour and survey-mark layers were ported from it.",
       "component": "site-map",
       "paths": [
-       "index.html",
+       "v1/index.html",
        "v2/js/map.js"
       ]
      },
@@ -5542,12 +5505,24 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-03T02:05:52Z",
+    "pushed": "2026-11-04T00:40:16Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/SoRT"
    },
    "commits": [
+    {
+     "sha": "42d1a7b",
+     "date": "2026-11-04T00:40:14Z",
+     "msg": "atlas.json: report-route blocker — Report to Flood-Net files itself once cdomotor-g/MegaNet#270 is done",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/42d1a7b3239434938736f9920f65be664a3071ec"
+    },
+    {
+     "sha": "da2ab83",
+     "date": "2026-11-04T00:14:15Z",
+     "msg": "Cutover: v2 is the Scope Builder; v1 kept at /SoRT/v1/",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/da2ab8334b03d54ab3382ff5190e62410d9f6b7d"
+    },
     {
      "sha": "2f27754",
      "date": "2026-11-03T02:05:49Z",
@@ -5607,18 +5582,6 @@
      "date": "2026-10-31T22:08:10Z",
      "msg": "Atlas: describe SoRT for the map of all the repos",
      "url": "https://github.com/cdomotor-g/SoRT/commit/0a05098f376062058d249a1d2d7aa46098db98c1"
-    },
-    {
-     "sha": "ef693d4",
-     "date": "2026-10-31T21:52:50Z",
-     "msg": "ROADMAP: note that v2 covers its three items",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/ef693d44b1a5300a87c59cc26cbb5006d356826d"
-    },
-    {
-     "sha": "591443e",
-     "date": "2026-10-31T21:50:54Z",
-     "msg": "SoRT v2: map beside or above the questions; station on every heading",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/591443ebaf55d750ed7393810127a674647d1021"
     }
    ],
    "issues": [],
@@ -5629,22 +5592,22 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41720110583",
-     "date": "2026-11-03T21:15:37Z",
-     "event": "schedule"
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41748556223",
+     "date": "2026-11-04T00:40:34Z",
+     "event": "push"
     },
     {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41563956768",
-     "date": "2026-11-03T02:06:31Z",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41748554000",
+     "date": "2026-11-04T00:41:01Z",
      "event": "dynamic"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-11-03T02:05:49Z"
+    "date": "2026-11-04T00:40:14Z"
    }
   },
   {
@@ -6858,7 +6821,7 @@
    "what": "The QLD Globe recipes for the LiDAR contour and survey-mark layers: which ArcGIS services, sublayers resolved by name, and the server-rendered approach (map-contours.js, map-survey.js).",
    "how": "ported",
    "watch": [
-    "index.html",
+    "v1/index.html",
     "v2/js/map.js"
    ],
    "entry": "sort-qld-map-layers",
@@ -6999,7 +6962,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "11 newer commits upstream since 60c0498, none to watched files."
+    "note": "19 newer commits upstream since 60c0498, none to watched files."
    }
   },
   {
@@ -7232,16 +7195,25 @@
    "entry": "station-table",
    "to": "quansheng-v3",
    "drift": {
-    "state": "current",
+    "state": "behind",
     "since": {
      "date": "2026-09-30",
      "commit": "66608567fb48e86c9b399ca51a391ae0cd41ffdd",
      "commitDate": "2026-09-30T04:58:36Z"
     },
-    "behind": 0,
-    "commits": [],
-    "files": [],
-    "note": "507 newer commits upstream since it was last reviewed (2026-09-30), none to watched files."
+    "behind": 1,
+    "commits": [
+     {
+      "sha": "1910f8f",
+      "date": "2026-11-04T00:21:52Z",
+      "msg": "Station names: complete the 112 that Radio Mobile cut at 20 characters",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/1910f8f3355b665b7c1088d044eb5faa843ba9d3"
+     }
+    ],
+    "files": [
+     "stations.json"
+    ],
+    "note": "1 upstream change to watched files since it was last reviewed (2026-09-30)."
    }
   },
   {
@@ -7295,7 +7267,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "499 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "507 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7342,15 +7314,24 @@
    "entry": "station-table",
    "to": "quansheng-v1",
    "drift": {
-    "state": "current",
+    "state": "behind",
     "since": {
      "commit": "6ef4965",
      "commitDate": "2026-10-19T23:36:05Z"
     },
-    "behind": 0,
-    "commits": [],
-    "files": [],
-    "note": "332 newer commits upstream since 6ef4965, none to watched files."
+    "behind": 1,
+    "commits": [
+     {
+      "sha": "1910f8f",
+      "date": "2026-11-04T00:21:52Z",
+      "msg": "Station names: complete the 112 that Radio Mobile cut at 20 characters",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/1910f8f3355b665b7c1088d044eb5faa843ba9d3"
+     }
+    ],
+    "files": [
+     "stations.json"
+    ],
+    "note": "1 upstream change to watched files since 6ef4965."
    }
   },
   {
@@ -7379,7 +7360,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "499 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "507 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
