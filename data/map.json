@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-04T06:34:55.449Z",
- "hash": "7a2738d1732f8c17",
+ "generated": "2026-11-04T09:27:39.853Z",
+ "hash": "0e0cb03ab17caa55",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -117,7 +117,7 @@
      ],
      "next": [
       "#271 and #272: put Hillcrest's carrier on 151.500 down to Hillcrest, and count a transmitter's corrupted copies over its whole carrier without bursts read two ways (investigation 03)",
-      "EPIC #262 explainers: ▶ Show me on the app (the tour over the real app) shipped with #265; its first how-to, find a station and read its card, waits on the owner's OK, then the phone install (#266) and map layers (#267)",
+      "EPIC #262 explainers: the first how-to, find a station and read its card, is voiced and on Videos with ▶ Show me on the app; next the phone install (#266) and map layers (#267), both pickable",
       "#252–#254 road routes: avoid closures, inspection runs, routes kept offline (EPIC #250)",
       "#238 QLDTraffic flood events and road closures on the Stations map",
       "#216 staff alerts: daily digest email and web push for critical findings",
@@ -131,24 +131,38 @@
      ],
      "blocked": [
       {
-       "id": "station-card-script",
-       "what": "#265's how-to, find a station and read its card — OK'd by the owner to be voiced, once the station card's new look (another thread's work, due 4 Nov) lands and its screenshots are retaken",
-       "on": "agent",
-       "kind": "other",
+       "id": "elevenlabs-credits",
+       "what": "#274 ElevenLabs credits run short before they renew on 25 Nov: #265 is now voiced; hold #266's and #267's voicing until after, or Creator for a month",
+       "on": "human",
+       "kind": "money",
        "since": "2026-11-04",
-       "issue": "#265",
+       "issue": "#274",
        "holds": [
-        "#265 voiced (about 400 ElevenLabs credits, once)",
-        "#266",
-        "#267"
+        "the last daily bulletins before 25 Nov voiced",
+        "#266 and #267 voiced this month"
        ],
        "options": [
         {
-         "what": "The scheduled session (Sonnet, from 18:41 Brisbane 4 Nov) checks every two hours for the card's new look, then retakes the card's shots, voices the how-to, records its MP4 and closes #265",
-         "by": "agent",
-         "effort": "Med",
-         "model": "Sonnet5",
+         "what": "Hold #266's and #267's voicing until after 25 Nov (a comment on #274)",
+         "by": "human",
+         "effort": "2 min",
+         "pros": "costs nothing",
+         "cons": "about one daily bulletin around 24–25 Nov plays silent",
          "recommended": true
+        },
+        {
+         "what": "Upgrade the ElevenLabs account to Creator for a month (US$22, 121,000 credits)",
+         "by": "human",
+         "effort": "5 min",
+         "pros": "nothing silent; #266 and #267 can be voiced now",
+         "cons": "US$16 more than Starter for the month"
+        },
+        {
+         "what": "Do nothing: the voices come back when the credits renew",
+         "by": "human",
+         "effort": "0",
+         "pros": "no spend, no step",
+         "cons": "two or three bulletins before 25 Nov play silent"
         }
        ]
       },
@@ -1048,12 +1062,54 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-04T06:27:56Z",
+    "pushed": "2026-11-04T09:18:12Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "7d28970",
+     "date": "2026-11-04T09:18:09Z",
+     "msg": "Roadmap revision 235 and atlas: #265 closed, #266 and #267 pickable",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/7d2897091ac40522c4fcd5e8c6bae21b3fc2fbf7"
+    },
+    {
+     "sha": "ff4ac02",
+     "date": "2026-11-04T09:17:39Z",
+     "msg": "Version stamp 20261104t: What's new, the station how-to",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/ff4ac02cc904abb774c7cf42394d53c3c75a258a"
+    },
+    {
+     "sha": "708a890",
+     "date": "2026-11-04T09:17:17Z",
+     "msg": "What's new: the station how-to on Videos (#265)",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/708a8902984372d95f8991711884061a77a0e931"
+    },
+    {
+     "sha": "b80c4e0",
+     "date": "2026-11-04T09:17:14Z",
+     "msg": "#265: station-card MP4 (recorded by hand; the workflow had not by 20 min)",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/b80c4e012f46d9e927fa7e3093877069570116de"
+    },
+    {
+     "sha": "fa0939d",
+     "date": "2026-11-04T08:54:30Z",
+     "msg": "Bulletin voices: video station-card",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/fa0939dae6a5af03bba0bb8fed4c94eba36a00c0"
+    },
+    {
+     "sha": "bc13b0a",
+     "date": "2026-11-04T08:53:35Z",
+     "msg": "#265: station-card how-to final — shots retaken from the new card look, scene 6 says All actions, welcome MP4 re-recorded",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/bc13b0a4f663c3ff640f5fb0e420c06a6b301117"
+    },
+    {
+     "sha": "d4f8e29",
+     "date": "2026-11-04T07:32:41Z",
+     "msg": "Running costs: the owner's answers in, and #274 for the ElevenLabs credits",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/d4f8e29520930b3baa9880b4641f5e78ed9ba341"
+    },
     {
      "sha": "278838d",
      "date": "2026-11-04T06:27:54Z",
@@ -1083,51 +1139,27 @@
      "date": "2026-11-04T06:02:55Z",
      "msg": "Version stamp 20261104p: the station card in groups, Tabs or List, and its search",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/ba895a4d02ad1b3e33c43d6a276f3148940aa154"
-    },
-    {
-     "sha": "4d476c0",
-     "date": "2026-11-04T06:02:48Z",
-     "msg": "Hops test: Show hops to base is under the station card's All actions",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/4d476c06d6180e908c02c56a4729d23eed55fe77"
-    },
-    {
-     "sha": "8aa3489",
-     "date": "2026-11-04T06:00:45Z",
-     "msg": "Station card: Tabs or List, seven groups, and a search across it",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/8aa3489c6188c1585f4616e69429412c892838bf"
-    },
-    {
-     "sha": "ad4c009",
-     "date": "2026-11-04T05:55:04Z",
-     "msg": "Path card: lead with the fade margin; \"Marginal\" line of sight is now \"Partly clear\"",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/ad4c0091e51a96fdb1fb2653daa51bd5a79f73d4"
-    },
-    {
-     "sha": "3808cfb",
-     "date": "2026-11-04T05:20:34Z",
-     "msg": "Hops to base: a station's routes to the base stations, lit on the map",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/3808cfb4a0623aaea635398176ef843750d87b8a"
-    },
-    {
-     "sha": "ab8a268",
-     "date": "2026-11-04T05:19:07Z",
-     "msg": "DB_SCHEMA_VERSION 102: 0102 applied",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/ab8a2687009c4f1d065fa03a20809a58451201f4"
-    },
-    {
-     "sha": "4438a01",
-     "date": "2026-11-04T05:17:56Z",
-     "msg": "Agent API: a station's benchmarks, in numbers (0102)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/4438a019a9b47510654f31227aee3e26b26ba62c"
-    },
-    {
-     "sha": "a246c55",
-     "date": "2026-11-04T05:15:27Z",
-     "msg": "#265: OK'd to be voiced once the station card's new look lands — a scheduled session does it",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/a246c55c9cd849846d8371b34a29d57ccca990ce"
     }
    ],
    "issues": [
+    {
+     "n": 274,
+     "raw": "[Standalone] [Human] ElevenLabs credits run short before 25 Nov: hold the next video, or upgrade for a month",
+     "structure": "standalone",
+     "parent": null,
+     "model": null,
+     "effort": null,
+     "human": true,
+     "computer": false,
+     "title": "ElevenLabs credits run short before 25 Nov: hold the next video, or upgrade for a month",
+     "url": "https://github.com/cdomotor-g/MegaNet/issues/274",
+     "updated": "2026-11-04T07:32:22Z",
+     "created": "2026-11-04T07:29:19Z",
+     "comments": 0,
+     "labels": [],
+     "mentions": [],
+     "excerpt": "The network bulletins and the 🎬 Videos are voiced through ElevenLabs. The account is on Starter: 40,000 credits this month, renewing 25 Nov 2026. A credit is about one character said. - After the 3 Nov voicing run, 13,268 credits were left (from the run's log: ElevenLabs (starter): this run used 1,618 credits; about 13,268 of 40,000 left this month,…"
+    },
     {
      "n": 273,
      "raw": "[Standalone] [Human] Find what raised our base station's noise floor on 24 October, and what lifted its levels on 2 November",
@@ -1265,7 +1297,7 @@
      "computer": false,
      "title": "Explainers — a welcome to Flood-Net for meetings, then short how-tos, in the bulletin's player and the Droggies' voices",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/262",
-     "updated": "2026-11-04T00:13:32Z",
+     "updated": "2026-11-04T09:18:29Z",
      "created": "2026-11-03T04:04:05Z",
      "comments": 0,
      "labels": [],
@@ -1941,7 +1973,7 @@
      "computer": false,
      "title": "Roadmap — resource allocation & sequencing for all issues",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/113",
-     "updated": "2026-11-04T06:28:11Z",
+     "updated": "2026-11-04T09:18:26Z",
      "created": "2026-08-13T00:13:50Z",
      "comments": 1,
      "labels": [],
@@ -1949,80 +1981,88 @@
       "meganet",
       "rpi_alert"
      ],
-     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1109k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
+     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1112k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
     }
    ],
-   "issueCount": 46,
+   "issueCount": 47,
    "release": null,
    "ci": [
+    {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41807336245",
+     "date": "2026-11-04T09:25:21Z",
+     "event": "schedule"
+    },
+    {
+     "name": "Field photos from Dropbox",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41806415305",
+     "date": "2026-11-04T09:18:45Z",
+     "event": "schedule"
+    },
+    {
+     "name": "Video MP4s",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41806396244",
+     "date": "2026-11-04T09:18:47Z",
+     "event": "workflow_run"
+    },
+    {
+     "name": "Station health",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41806368736",
+     "date": "2026-11-04T09:19:26Z",
+     "event": "schedule"
+    },
     {
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41785694910",
-     "date": "2026-11-04T06:28:23Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41806357939",
+     "date": "2026-11-04T09:18:39Z",
      "event": "push"
     },
     {
      "name": "Roadmap sync",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41785694510",
-     "date": "2026-11-04T06:28:18Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41806357053",
+     "date": "2026-11-04T09:18:30Z",
      "event": "push"
     },
     {
      "name": "Web smoke test",
      "status": "in_progress",
      "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41785694583",
-     "date": "2026-11-04T06:29:11Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41806290948",
+     "date": "2026-11-04T09:17:58Z",
+     "event": "push"
+    },
+    {
+     "name": "Bulletin voices",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41806291152",
+     "date": "2026-11-04T09:18:27Z",
      "event": "push"
     },
     {
      "name": "CodeQL",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41785694509",
-     "date": "2026-11-04T06:33:48Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41806290650",
+     "date": "2026-11-04T09:22:16Z",
      "event": "push"
-    },
-    {
-     "name": "Field photos from Dropbox",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41785471604",
-     "date": "2026-11-04T06:26:02Z",
-     "event": "schedule"
-    },
-    {
-     "name": "Station health",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41785432173",
-     "date": "2026-11-04T06:26:19Z",
-     "event": "schedule"
-    },
-    {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41785177927",
-     "date": "2026-11-04T06:23:24Z",
-     "event": "schedule"
-    },
-    {
-     "name": "db-migrate",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41778393317",
-     "date": "2026-11-04T05:18:22Z",
-     "event": "workflow_dispatch"
     }
    ],
-   "version": "20261104r",
+   "version": "20261104t",
    "lastCommit": {
-    "date": "2026-11-04T06:27:54Z"
+    "date": "2026-11-04T09:18:09Z"
    }
   },
   {
@@ -5596,12 +5636,24 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-04T06:32:18Z",
+    "pushed": "2026-11-04T07:08:17Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/SoRT"
    },
    "commits": [
+    {
+     "sha": "ac18bd5",
+     "date": "2026-11-04T07:08:15Z",
+     "msg": "v2 map: Flood-Net position unticked by default — hidden unless wanted",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/ac18bd5b1d51a61d2652990e07b86b3e0d746f60"
+    },
+    {
+     "sha": "9b8ef43",
+     "date": "2026-11-04T07:05:11Z",
+     "msg": "v2 map: Flood-Net's position says it isn't in the Word picture, and can be hidden",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/9b8ef439a24b54c88a8875645c5bf9915ca7d003"
+    },
     {
      "sha": "2c5e904",
      "date": "2026-11-04T06:32:16Z",
@@ -5661,18 +5713,6 @@
      "date": "2026-11-01T18:27:53Z",
      "msg": "v2: entering a station by hand — fixed, and the rest of its details",
      "url": "https://github.com/cdomotor-g/SoRT/commit/74bfe23d2f8fe40650a2c702ef7a7727c98f2db2"
-    },
-    {
-     "sha": "e7b7e8a",
-     "date": "2026-11-01T12:17:40Z",
-     "msg": "v2: switch tasks on — Flood-Net's receiving screen is live",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/e7b7e8a37596aadb042ff5bb974a53fe09e08919"
-    },
-    {
-     "sha": "a92690b",
-     "date": "2026-11-01T12:13:06Z",
-     "msg": "v2: the radio path to base, with Flood-Net's fade margins",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/a92690b7a7d48109416b7cba235992f11547e41f"
     }
    ],
    "issues": [],
@@ -5683,8 +5723,8 @@
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41786186583",
-     "date": "2026-11-04T06:33:09Z",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41790176957",
+     "date": "2026-11-04T07:08:59Z",
      "event": "dynamic"
     },
     {
@@ -5698,7 +5738,7 @@
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-11-04T06:32:16Z"
+    "date": "2026-11-04T07:08:15Z"
    }
   },
   {
@@ -7053,7 +7093,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "44 newer commits upstream since 60c0498, none to watched files."
+    "note": "51 newer commits upstream since 60c0498, none to watched files."
    }
   },
   {
@@ -7364,7 +7404,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "532 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "539 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7457,7 +7497,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "532 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "539 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -8092,8 +8132,8 @@
     "state": "current",
     "since": {
      "date": "2026-11-04",
-     "commit": "278838d372c36de5389c3cc1a3428c74695d6e4d",
-     "commitDate": "2026-11-04T06:27:54Z"
+     "commit": "7d2897091ac40522c4fcd5e8c6bae21b3fc2fbf7",
+     "commitDate": "2026-11-04T09:18:09Z"
     },
     "behind": 0,
     "commits": [],
@@ -8123,8 +8163,8 @@
     "state": "current",
     "since": {
      "date": "2026-11-04",
-     "commit": "278838d372c36de5389c3cc1a3428c74695d6e4d",
-     "commitDate": "2026-11-04T06:27:54Z"
+     "commit": "7d2897091ac40522c4fcd5e8c6bae21b3fc2fbf7",
+     "commitDate": "2026-11-04T09:18:09Z"
     },
     "behind": 0,
     "commits": [],
