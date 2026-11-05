@@ -8,7 +8,7 @@ import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { ROOT, validate, crossCheck, parseTitle, watchMatches, blockerMark, linkFor } from '../tools/lib.mjs';
-import { canonical, apply } from '../tools/run-summary.mjs';
+import { section, apply, settings, hook, FILES, RAW, LIMIT } from '../tools/shared.mjs';
 import { brief, waiting, datesIn } from '../tools/brief.mjs';
 
 const fails = [];
@@ -39,7 +39,7 @@ for (const f of existsSync(join(ROOT, 'data/fallback')) ? readdirSync(join(ROOT,
   check(ids.has(m.id), `fallback ${f}: ${m.id} is not in the registry`);
 }
 
-for (const f of ['assets/atlas.js', 'tools/lib.mjs', 'tools/collect.mjs', 'tools/drift.mjs', 'tools/build-standalone.mjs', 'tools/run-summary.mjs', 'tools/brief.mjs']) {
+for (const f of ['assets/atlas.js', 'tools/lib.mjs', 'tools/collect.mjs', 'tools/drift.mjs', 'tools/build-standalone.mjs', 'tools/shared.mjs', 'tools/brief.mjs']) {
   try { execFileSync(process.execPath, ['--check', join(ROOT, f)], { stdio: 'pipe' }); }
   catch (e) { fails.push(`${f}: ${e.stderr.toString().split('\n').slice(0, 4).join(' ')}`); }
 }
@@ -84,18 +84,38 @@ check(blockerMark('Atlas blocker: rpi-alert/bench-first-run\n\n**Blocked:** …'
 check(blockerMark('Some text\r\nAtlas blocker: Flood-Net/237\r\n') === 'flood-net/237', 'blockerMark: later line, CRLF, case');
 check(blockerMark('See the Atlas blocker: rpi-alert/x in the notes') === null, 'blockerMark: only a line of its own');
 
-// The run summary every repository carries: the Atlas's own copies match docs/run-summary.md,
-// and the copier replaces an older section in place and leaves a current copy alone.
+// The shared instructions every session in every repository loads (shared/, tools/shared.mjs):
+// each file fits what a start-up hook can hand the agent, the Atlas's own files point at them
+// as the tool writes it, and the tool replaces the old run-summary copies in place, once, and
+// keeps a repository's other settings.
 {
-  const block = canonical();
+  for (const f of Object.values(FILES)) {
+    const t = existsSync(join(ROOT, 'shared', f)) ? readFileSync(join(ROOT, 'shared', f), 'utf8') : '';
+    check(t.length > 500 && t.length < LIMIT, `shared/${f}: ${t.length} characters; it must be under ${LIMIT} (a start-up hook's output past 10,000 reaches the agent only as a preview)`);
+  }
+  const all = readFileSync(join(ROOT, 'shared', FILES.all), 'utf8');
+  check(all.includes('# 🏁 THIS RUN SUMMARY (Run N)') && all.includes('**You asked:**'), 'shared/instructions.md: the run summary is in it');
+  const block = section(false), atlasBlock = section(true);
   for (const f of ['CLAUDE.md', 'AGENTS.md']) {
     const text = readFileSync(join(ROOT, f), 'utf8');
-    check(apply(text, block) === text, `${f}: its run summary differs from docs/run-summary.md (node tools/run-summary.mjs ${f})`);
+    check(apply(text, block) === text, `${f}: its shared section differs from what node tools/shared.mjs . writes`);
   }
+  const own = existsSync(join(ROOT, '.claude/settings.json')) ? readFileSync(join(ROOT, '.claude/settings.json'), 'utf8') : '';
+  check(own && settings(own, false) === own, '.claude/settings.json: not what node tools/shared.mjs . writes');
+  check(atlasBlock.includes(FILES.atlas) && !block.includes(FILES.atlas), 'shared: only a repository on the Atlas is pointed at on-the-atlas.md');
+  check(hook(FILES.all).command.startsWith(`curl -fsS --max-time 15 ${RAW}instructions.md || echo '`) && !hook(FILES.all).command.slice(hook(FILES.all).command.indexOf("echo '") + 6, -1).includes("'"), 'shared: the hook command quotes cleanly');
+  const marked = '# X\n\nintro\n\n<!-- run-summary:start · old -->\n## Run summary\n- old\n<!-- run-summary:end -->\n\n## Next\nkept\n';
+  const once = apply(marked, block);
+  check(once === `# X\n\nintro\n\n${block}\n\n## Next\nkept\n` && apply(once, block) === once, 'shared: replaces the old run-summary block in place, once');
   const old = '# X\n\n## Run summary — mark where it starts\n- old\n  ```\n  ## not a heading\n  ```\n\n## Next\nkept\n';
-  const once = apply(old, block);
-  check(once === `# X\n\n${block}\n\n## Next\nkept\n` && apply(once, block) === once, 'run-summary: replaces an older section in place, once');
-  check(apply('# X\n', block) === `# X\n\n${block}\n`, 'run-summary: adds the block to a file without one');
+  check(apply(old, block) === `# X\n\n${block}\n\n## Next\nkept\n`, 'shared: replaces an older run-summary section');
+  check(apply('# X\n', block) === `# X\n\n${block}\n`, 'shared: adds the section to a file without one');
+  check(apply(apply(marked, block), atlasBlock) === apply(marked, atlasBlock), 'shared: rewrites its own section');
+  const theirs = JSON.stringify({ permissions: { allow: ['x'] }, hooks: { SessionStart: [{ matcher: 'startup', hooks: [{ type: 'command', command: 'echo hi' }] }] } });
+  const merged = settings(theirs, true), m = JSON.parse(merged);
+  check(m.permissions.allow[0] === 'x' && m.hooks.SessionStart.length === 2 && m.hooks.SessionStart[0].hooks[0].command === 'echo hi'
+    && m.hooks.SessionStart[1].hooks.length === 2 && settings(merged, true) === merged, 'shared: settings keep their own hooks and permissions, and the shared hooks go in once');
+  check(JSON.parse(settings(merged, false)).hooks.SessionStart[1].hooks.length === 1, 'shared: a repository off the Atlas loads only instructions.md');
 }
 
 // The weekday brief (tools/brief.mjs): dates read from words, a closed issue and agent work left
@@ -122,4 +142,4 @@ check(blockerMark('See the Atlas blocker: rpi-alert/x in the notes') === null, '
 }
 
 if (fails.length) { console.error(`✗ ${fails.length} problem${fails.length === 1 ? '' : 's'}:\n- ${fails.join('\n- ')}`); process.exit(1); }
-console.log(`✓ registry (${reg.repos.length}), fallbacks, scripts, page links, link ids, parsers, blocker tags, run summary, brief`);
+console.log(`✓ registry (${reg.repos.length}), fallbacks, scripts, page links, link ids, parsers, blocker tags, shared instructions, brief`);

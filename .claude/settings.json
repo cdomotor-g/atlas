@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 20,
+            "command": "curl -fsS --max-time 15 https://raw.githubusercontent.com/cdomotor-g/atlas/main/shared/instructions.md || echo 'Could not download the shared instructions when this session started. Before you reply, read https://github.com/cdomotor-g/atlas/blob/main/shared/instructions.md and follow it.'"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -36,7 +36,7 @@ receiving end has kept up.
    validates atlas.json; when something it copies or follows has moved
    on upstream, opens an issue here with the upstream commits (forward)
 
- CLAUDE.md "Atlas" section
+ shared/on-the-atlas.md (loaded into every session, docs/shared-instructions.md)
    agents tell consumers when they change what others rely on (forward),
    file asks upstream (back), and keep status current
 ```
@@ -85,6 +85,7 @@ receiving end has kept up.
 | `schema/atlas.schema.json` | The `atlas.json` format. |
 | `tools/collect.mjs` | Builds `data/map.json`. `.github/workflows/collect.yml` runs it every three hours. |
 | `tools/drift.mjs`, `.github/workflows/drift.yml` | The check every repository runs on itself (a reusable workflow). |
+| `shared/instructions.md`, `shared/on-the-atlas.md` | The rules every repository shares, loaded into every session in every repository when it starts; `tools/shared.mjs` points a repository at them ([`docs/shared-instructions.md`](docs/shared-instructions.md)). |
 | `tools/brief.mjs` | The weekday push to the owner's phone: what is waiting on the owner and worth doing soon ([`docs/brief.md`](docs/brief.md)). |
 | `tools/build-standalone.mjs` | One self-contained HTML file with everything inlined (`dist/atlas.html`). |
 | `assets/logos/` | Logos and pictures; `credits.json` says where each came from. |

@@ -37,12 +37,13 @@
 
    If the repository can't carry the file (archived, or someone else's), put it in
    `data/fallback/<id>.json` here instead.
-3. **CLAUDE.md.** Copy the "Atlas" section from any repository already on the map
-   (RPi_ALERT's is a good one) and change the id. Say there that a blocker needing only the
-   owner's sign-in goes on `"computer"`, not `"human"`, with a way through `"by": "computer"`
-   (an agent at the owner's computer does it signed in as them), and that issues like that
-   are titled `[Human] [Computer] …`. Then add the run summary every repository ends a
-   run with: `node tools/run-summary.mjs <path to its CLAUDE.md>` (`docs/run-summary.md`).
+3. **CLAUDE.md.** With the `atlas.json` in place, point the repository at the shared
+   instructions: `node tools/shared.mjs <path to its folder>` (`docs/shared-instructions.md`).
+   That gives its `CLAUDE.md` the *Shared instructions* section and its
+   `.claude/settings.json` the start-up hook that loads `shared/instructions.md` and
+   `shared/on-the-atlas.md` (how to work with the map) into every session. Then add a short
+   *Atlas* section of its own: `This repo is **`<id>`** on the Atlas`, and anything particular
+   to it (issues turned off, a pin that moves by itself).
 4. **Workflow.** Copy `.github/workflows/atlas.yml` from RPi_ALERT. Set `issues: false` if
    the repository has issues turned off, or its own rules say who opens issues.
 5. Run `node test/check.mjs` here and push. The next collect (or **Run workflow** on
