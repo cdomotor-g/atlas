@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-05T18:30:26.099Z",
- "hash": "f0fc9c2ab2bc4b85",
+ "generated": "2026-11-05T21:27:10.998Z",
+ "hash": "03d80cf6c1b39891",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -2007,49 +2007,33 @@
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42084405613",
-     "date": "2026-11-05T18:27:36Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42112254623",
+     "date": "2026-11-05T21:23:54Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42083331862",
-     "date": "2026-11-05T18:20:54Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42111194034",
+     "date": "2026-11-05T21:17:04Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42083136734",
-     "date": "2026-11-05T18:20:30Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42110954061",
+     "date": "2026-11-05T21:16:11Z",
      "event": "schedule"
     },
     {
-     "name": "Fade margin re-sweep",
+     "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42064878451",
-     "date": "2026-11-05T16:39:20Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42096638545",
+     "date": "2026-11-05T19:44:06Z",
      "event": "schedule"
-    },
-    {
-     "name": "Field photos into R2",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42063804742",
-     "date": "2026-11-05T16:23:03Z",
-     "event": "schedule"
-    },
-    {
-     "name": "CodeQL",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42053910848",
-     "date": "2026-11-05T15:23:18Z",
-     "event": "push"
     }
    ],
    "version": "20261105zg",
@@ -2869,20 +2853,20 @@
    },
    "ci": [
     {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/42105810879",
+     "date": "2026-11-05T20:42:31Z",
+     "event": "schedule"
+    },
+    {
      "name": "test",
      "status": "completed",
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41961360177",
      "date": "2026-11-05T03:26:26Z",
      "event": "push"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41909056493",
-     "date": "2026-11-04T20:42:24Z",
-     "event": "schedule"
     },
     {
      "name": "pages",
@@ -5749,20 +5733,20 @@
    "release": null,
    "ci": [
     {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/42110952363",
+     "date": "2026-11-05T21:15:42Z",
+     "event": "schedule"
+    },
+    {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41983987013",
      "date": "2026-11-05T06:59:42Z",
      "event": "dynamic"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41982830432",
-     "date": "2026-11-05T06:48:08Z",
-     "event": "push"
     }
    ],
    "version": null,
