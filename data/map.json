@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-05T06:35:20.441Z",
- "hash": "cf80b26bc7801a79",
+ "generated": "2026-11-05T09:28:23.691Z",
+ "hash": "0101af4e8cd6a291",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1078,83 +1078,83 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-05T06:31:24Z",
+    "pushed": "2026-11-05T07:50:10Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
     {
-     "sha": "61ec902",
-     "date": "2026-11-05T06:31:22Z",
-     "msg": "Map mode banner: solid red with white words, and the map framed in red",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/61ec9023f50b568c15ace2ac0fc3ad6df0e69c18"
+     "sha": "687394c",
+     "date": "2026-11-05T07:49:39Z",
+     "msg": "Digital twin card at close zoom: off for everybody until ticked",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/687394c45e84c1c49d76412220ea3632d36077c3"
     },
     {
-     "sha": "8339355",
-     "date": "2026-11-05T06:16:54Z",
-     "msg": "Stations map: a banner names the mode the map is in, with ✕ and Escape to leave",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/8339355638bbf4dc8eaeac8b9a44bc8de991c3cc"
+     "sha": "744e7ae",
+     "date": "2026-11-05T07:43:06Z",
+     "msg": "Busy wheel in the banner's top-right corner while something loads, saves or is worked out",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/744e7ae20c78a1fe064289baf4412af3b99cec2b"
     },
     {
-     "sha": "3bc2525",
-     "date": "2026-11-05T06:15:24Z",
-     "msg": "Station card: each row one line, its long note folded, a band over each heading",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/3bc25256510b6b3290249cab8d5b0e1155222ef5"
+     "sha": "ff785e1",
+     "date": "2026-11-05T07:30:59Z",
+     "msg": "Magnifier: the pins stay in the glass, small, their names faint; a bigger glass",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/ff785e1edccaf405ada59464dd20eb846166c2d0"
     },
     {
-     "sha": "092c563",
-     "date": "2026-11-05T06:08:24Z",
-     "msg": "Picking a station lands at zoom 16, right in to it, not 11",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/092c563f46c636758943081fcf47dac0190290a7"
+     "sha": "54ec8d4",
+     "date": "2026-11-05T07:19:46Z",
+     "msg": "Copy compact copies one picture, so it pastes the same into Teams",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/54ec8d4421520d003164060bff5720db26e67cd7"
     },
     {
-     "sha": "2555ba2",
-     "date": "2026-11-05T05:56:32Z",
-     "msg": "🗒️ Copy compact: smaller again — one-line heading and figures, a bare chart",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/2555ba26ace5f115cdce01754f96bb75dcb1be9a"
+     "sha": "40634a0",
+     "date": "2026-11-05T07:15:33Z",
+     "msg": "Stations map: a magnifier that shows the ground under the pins",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/40634a015de6fb186e922822280c7a17a9f518a2"
     },
     {
-     "sha": "decdc36",
-     "date": "2026-11-05T05:51:43Z",
-     "msg": "Mt Marrow AL as a repeater: Willowbank's addresses, two logger types, the station file",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/decdc369afd07a436e34ddc370f89c0e727c2158"
+     "sha": "e7f11c6",
+     "date": "2026-11-05T07:08:43Z",
+     "msg": "Best repeater: a red ring twice as thick, and a shaded band per result",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/e7f11c6c3b8c6afe456cda91bb8867863e7110bc"
     },
     {
-     "sha": "0414bad",
-     "date": "2026-11-05T05:49:07Z",
-     "msg": "Stations map: a pin takes the click over anything drawn on top of it",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/0414bad189ae675535b8a20da1d34ac14699466b"
+     "sha": "6b8ccb9",
+     "date": "2026-11-05T07:02:18Z",
+     "msg": "Rangeland follows crops; Relocate station checks the land cover under its trees",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/6b8ccb93893c9ec6652cae69101b3ae3566c08ec"
     },
     {
-     "sha": "eeaed53",
-     "date": "2026-11-05T05:42:55Z",
-     "msg": "Stations map: pins and links take clicks again after a card's lines to the bases",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/eeaed53ed4502d04c45164c8054199c042efe4c9"
+     "sha": "b90547c",
+     "date": "2026-11-05T06:45:07Z",
+     "msg": "Crops stand at crop height: the canopy map's paddock noise no longer counts",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/b90547c6588b3ae3b34535778a4ec71e8d27c22f"
     },
     {
-     "sha": "63b2d8d",
-     "date": "2026-11-05T05:16:18Z",
-     "msg": "Repeaters link profile: show the ground a little past both ends too",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/63b2d8d616c7a70f6f995df8292d9e47addfbbd6"
+     "sha": "57c1725",
+     "date": "2026-11-05T06:43:09Z",
+     "msg": "Map mode banner: \"press Enter to finish the line\" while a line is drawn",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/57c1725dccbad7881e08bcfa59c495dd6ec9b1d8"
     },
     {
-     "sha": "aeea6aa",
-     "date": "2026-11-05T05:11:17Z",
-     "msg": "Version stamp to 20261105m: the 4 m mast change shared 20261105l with the commit before it",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/aeea6aa8c6a9ca72eedf1986be72046199b70bd7"
+     "sha": "6b143d3",
+     "date": "2026-11-05T06:40:51Z",
+     "msg": "Version stamp 20261105w",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/6b143d3381b949237a3ea620a9b63fdcd9dc8e49"
     },
     {
-     "sha": "318fd32",
-     "date": "2026-11-05T05:11:02Z",
-     "msg": "Repeaters and bases on a 4 m antenna, not an assumed 10 m mast",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/318fd32d3399e6ac93fb23132caa963a23dd1086"
+     "sha": "fc1ad14",
+     "date": "2026-11-05T06:40:46Z",
+     "msg": "Station card: each Bureau list on its own line",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/fc1ad146d0580316c20b6e1fdfbe16ca512aea19"
     },
     {
-     "sha": "491c4ce",
-     "date": "2026-11-05T05:09:46Z",
-     "msg": "Station card Links: say \"Modelled fade margin, dB\"",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/491c4ce324e548b452518e4bf3e23ee129beb754"
+     "sha": "572f59e",
+     "date": "2026-11-05T06:38:02Z",
+     "msg": "Stations map: names of stations on one spot hang one under the other",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/572f59e8f742bd61087d1a8142644068fe22af83"
     }
    ],
    "issues": [
@@ -2004,57 +2004,49 @@
    "release": null,
    "ci": [
     {
-     "name": "CodeQL",
-     "status": "in_progress",
+     "name": "Field photos from Google Drive",
+     "status": "queued",
      "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41980978913",
-     "date": "2026-11-05T06:31:30Z",
-     "event": "push"
-    },
-    {
-     "name": "Web smoke test",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41980979084",
-     "date": "2026-11-05T06:32:31Z",
-     "event": "push"
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42002298329",
+     "date": "2026-11-05T09:25:47Z",
+     "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41980341035",
-     "date": "2026-11-05T06:25:49Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42001390270",
+     "date": "2026-11-05T09:19:20Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41980302569",
-     "date": "2026-11-05T06:26:26Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42001326474",
+     "date": "2026-11-05T09:19:45Z",
      "event": "schedule"
     },
     {
-     "name": "Field photos from Google Drive",
+     "name": "CodeQL",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41980028172",
-     "date": "2026-11-05T06:23:07Z",
-     "event": "schedule"
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41989963986",
+     "date": "2026-11-05T07:53:32Z",
+     "event": "push"
     },
     {
-     "name": "Fade margin re-sweep",
+     "name": "Web smoke test",
      "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41976562653",
-     "date": "2026-11-05T05:52:07Z",
-     "event": "workflow_dispatch"
+     "conclusion": "failure",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41989963758",
+     "date": "2026-11-05T08:59:08Z",
+     "event": "push"
     }
    ],
-   "version": "20261105u",
+   "version": "20261105zf",
    "lastCommit": {
-    "date": "2026-11-05T06:31:22Z"
+    "date": "2026-11-05T07:49:39Z"
    }
   },
   {
@@ -5363,7 +5355,7 @@
     "status": {
      "phase": "live",
      "updated": "2026-11-05",
-     "summary": "v2 is the Scope Builder since 4 Nov 2026 (/SoRT/ opens /SoRT/v2/; v1 kept at /SoRT/v1/): Flood-Net station lookup with corrections of its particulars for the Word tables, ACMA licences, and the radio path to base with fresh fade margins; the map beside the questions (each pane scrolling on its own) with survey marks and bridges; sessions shared with the whole forum through Flood-Net's server (a forum passphrase, no accounts or tokens), an in-page question editor, a Help guide, the local TBM as a desktop task, and follow-ups handed to Flood-Net's teams as tasks, and on the Water Level table a corrosion category for the infrastructure options (OTE’s three AS 4312 groupings, with the standard’s own table shown beside them), suggested from the site’s distance to the sea on QSpatial’s coastline.",
+     "summary": "v2 is the Scope Builder since 4 Nov 2026 (/SoRT/ opens /SoRT/v2/; v1 kept at /SoRT/v1/): Flood-Net station lookup with corrections of its particulars for the Word tables, ACMA licences, and the radio path to base with fresh fade margins; the map beside the questions (each pane scrolling on its own) with survey marks and bridges; sessions shared with the whole forum through Flood-Net's server (a forum passphrase, no accounts or tokens), an in-page question editor, a Help guide, the local TBM as a desktop task, and follow-ups handed to Flood-Net's teams as tasks, and on the Water Level table a corrosion category for the infrastructure options (OTE’s three AS 4312 groupings, with the standard’s own table shown beside them), suggested from the site’s distance to the sea on QSpatial’s coastline, and an acid sulfate soil flag (Queensland’s soil maps at the site) that asks the contractor for testing.",
      "now": [
       "v2 at real forums as the default; v1 kept at /SoRT/v1/ in case"
      ],
@@ -5642,6 +5634,21 @@
        "date": "2026-11-04"
       },
       "on_change": "Read Flood-Net's docs/sort-store.md; if a route, status, header or the passphrase check changed, update v2/js/store-remote.js and the e2e fakeStore, bump v2's ?v= stamp."
+     },
+     {
+      "id": "floodnet-site-exposure",
+      "from": "flood-net",
+      "provider": "stations-map",
+      "into": "v2-app",
+      "what": "How Flood-Net's Site exposure reads Queensland's acid sulfate soil maps — the layers (1:25 000, 1:50 000 and 1:100 000 maps, the national atlas, the sample sites), the finest that says something first, and its reading of the map codes' words (assLevel) — ported into v2/js/soil.js for the Acid sulfate soil question.",
+      "how": "ported",
+      "watch": [
+       "site-exposure.js"
+      ],
+      "since": {
+       "date": "2026-11-05"
+      },
+      "on_change": "If site-exposure.js changed how it reads the acid sulfate soil maps (its layers, ASS_ORDER or assLevel), bring v2/js/soil.js into step and run node v2/tests/e2e.cjs soil; then move this pin."
      }
     ]
    },
@@ -5650,12 +5657,24 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-05T03:23:12Z",
+    "pushed": "2026-11-05T06:58:48Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/SoRT"
    },
    "commits": [
+    {
+     "sha": "c05370e",
+     "date": "2026-11-05T06:58:30Z",
+     "msg": "v2 Word copy: the map picture is centred, like the tables, in the preview and in Word",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/c05370e82e8b2e1bdaf33eca59696d2bca3297ef"
+    },
+    {
+     "sha": "ca811ba",
+     "date": "2026-11-05T06:47:47Z",
+     "msg": "v2: acid sulfate soil — flag a susceptible site from Queensland's soil maps; the contractor tests and manages it",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/ca811baa124726f4d0ffe21a072eb779ade4b229"
+    },
     {
      "sha": "6f5a7a9",
      "date": "2026-11-05T03:23:11Z",
@@ -5715,18 +5734,6 @@
      "date": "2026-11-04T07:05:11Z",
      "msg": "v2 map: Flood-Net's position says it isn't in the Word picture, and can be hidden",
      "url": "https://github.com/cdomotor-g/SoRT/commit/9b8ef439a24b54c88a8875645c5bf9915ca7d003"
-    },
-    {
-     "sha": "2c5e904",
-     "date": "2026-11-04T06:32:16Z",
-     "msg": "v2: the forum passphrase as a sentence — typed however, changeable from Sessions",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/2c5e904a43615e23d74d9ecf79da7a50fcf37c5e"
-    },
-    {
-     "sha": "b300ef7",
-     "date": "2026-11-04T06:10:22Z",
-     "msg": "atlas.json: sessions shared through Flood-Net's sort-session-store",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/b300ef77e216d7734dffc75a136d0551c2c4303a"
     }
    ],
    "issues": [],
@@ -5737,22 +5744,22 @@
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41961266167",
-     "date": "2026-11-05T03:23:53Z",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41983987013",
+     "date": "2026-11-05T06:59:42Z",
      "event": "dynamic"
     },
     {
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41951882759",
-     "date": "2026-11-05T01:56:54Z",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41982830432",
+     "date": "2026-11-05T06:48:08Z",
      "event": "push"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-11-05T03:23:11Z"
+    "date": "2026-11-05T06:58:30Z"
    }
   },
   {
@@ -7033,8 +7040,14 @@
      "commit": "74bfe23d2f8fe40650a2c702ef7a7727c98f2db2",
      "commitDate": "2026-11-01T18:27:53Z"
     },
-    "behind": 1,
+    "behind": 2,
     "commits": [
+     {
+      "sha": "ca811ba",
+      "date": "2026-11-05T06:47:47Z",
+      "msg": "v2: acid sulfate soil — flag a susceptible site from Queensland's soil maps; the contractor tests and manages it",
+      "url": "https://github.com/cdomotor-g/SoRT/commit/ca811baa124726f4d0ffe21a072eb779ade4b229"
+     },
      {
       "sha": "2f27754",
       "date": "2026-11-03T02:05:49Z",
@@ -7045,7 +7058,7 @@
     "files": [
      "v2/js/tasks.js"
     ],
-    "note": "1 upstream change to watched files since it was last reviewed (2026-11-01)."
+    "note": "2 upstream changes to watched files since it was last reviewed (2026-11-01)."
    }
   },
   {
@@ -7069,8 +7082,8 @@
     "state": "current",
     "since": {
      "date": "2026-11-05",
-     "commit": "6f5a7a9ba2c10f5b48209bb68622b2a83c119b79",
-     "commitDate": "2026-11-05T03:23:11Z"
+     "commit": "c05370e82e8b2e1bdaf33eca59696d2bca3297ef",
+     "commitDate": "2026-11-05T06:58:30Z"
     },
     "behind": 0,
     "commits": [],
@@ -7167,7 +7180,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "87 newer commits upstream since 60c0498, none to watched files."
+    "note": "99 newer commits upstream since 60c0498, none to watched files."
    }
   },
   {
@@ -7483,7 +7496,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "575 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "587 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7594,7 +7607,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "575 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "587 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -8254,7 +8267,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "30 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "42 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8285,7 +8298,36 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "30 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "42 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+   }
+  },
+  {
+   "id": "sort:floodnet-site-exposure",
+   "from": "flood-net",
+   "provider": "stations-map",
+   "into": "v2-app",
+   "what": "How Flood-Net's Site exposure reads Queensland's acid sulfate soil maps — the layers (1:25 000, 1:50 000 and 1:100 000 maps, the national atlas, the sample sites), the finest that says something first, and its reading of the map codes' words (assLevel) — ported into v2/js/soil.js for the Acid sulfate soil question.",
+   "how": "ported",
+   "watch": [
+    "site-exposure.js"
+   ],
+   "since": {
+    "date": "2026-11-05"
+   },
+   "on_change": "If site-exposure.js changed how it reads the acid sulfate soil maps (its layers, ASS_ORDER or assLevel), bring v2/js/soil.js into step and run node v2/tests/e2e.cjs soil; then move this pin.",
+   "entry": "floodnet-site-exposure",
+   "to": "sort",
+   "drift": {
+    "state": "current",
+    "since": {
+     "date": "2026-11-05",
+     "commit": "687394c45e84c1c49d76412220ea3632d36077c3",
+     "commitDate": "2026-11-05T07:49:39Z"
+    },
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "Up to date with upstream."
    }
   },
   {
