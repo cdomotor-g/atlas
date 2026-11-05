@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-05T12:32:16.567Z",
- "hash": "46c15c43872f827f",
+ "generated": "2026-11-05T15:27:29.655Z",
+ "hash": "fc1d23120e2fe502",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1078,12 +1078,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-05T07:50:10Z",
+    "pushed": "2026-11-05T15:20:04Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "d98a1c4",
+     "date": "2026-11-05T15:19:59Z",
+     "msg": "CI doctor: Station Health, Shell, Frequencies, Group plots — checks tied to the register's order and a retired duplicate; one reduced-motion",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/d98a1c47a8359bf253303bdcfe9f2a70853f8963"
+    },
     {
      "sha": "687394c",
      "date": "2026-11-05T07:49:39Z",
@@ -1149,12 +1155,6 @@
      "date": "2026-11-05T06:40:46Z",
      "msg": "Station card: each Bureau list on its own line",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/fc1ad146d0580316c20b6e1fdfbe16ca512aea19"
-    },
-    {
-     "sha": "572f59e",
-     "date": "2026-11-05T06:38:02Z",
-     "msg": "Stations map: names of stations on one spot hang one under the other",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/572f59e8f742bd61087d1a8142644068fe22af83"
     }
    ],
    "issues": [
@@ -2004,33 +2004,57 @@
    "release": null,
    "ci": [
     {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42054598869",
+     "date": "2026-11-05T15:24:14Z",
+     "event": "schedule"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42053910789",
+     "date": "2026-11-05T15:20:12Z",
+     "event": "push"
+    },
+    {
+     "name": "CodeQL",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42053910848",
+     "date": "2026-11-05T15:23:18Z",
+     "event": "push"
+    },
+    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42026723179",
-     "date": "2026-11-05T12:23:38Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42053408519",
+     "date": "2026-11-05T15:17:17Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42026626198",
-     "date": "2026-11-05T12:23:42Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42053334188",
+     "date": "2026-11-05T15:17:44Z",
      "event": "schedule"
     },
     {
-     "name": "Field photos from Google Drive",
+     "name": "Data archive into R2",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42026214670",
-     "date": "2026-11-05T12:20:03Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42047074283",
+     "date": "2026-11-05T14:41:48Z",
      "event": "schedule"
     }
    ],
-   "version": "20261105zf",
+   "version": "20261105zg",
    "lastCommit": {
-    "date": "2026-11-05T07:49:39Z"
+    "date": "2026-11-05T15:19:59Z"
    }
   },
   {
@@ -7156,15 +7180,12 @@
    "entry": "vendored-decoders",
    "to": "rpi-alert",
    "drift": {
-    "state": "current",
-    "since": {
-     "commit": "60c049853e4a6e950ec25e3090aacc35178c5120",
-     "commitDate": "2026-11-03T11:11:49Z"
-    },
+    "state": "unknown",
+    "since": null,
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "99 newer commits upstream since 60c0498, none to watched files."
+    "note": "GET /repos/cdomotor-g/MegaNet/compare/60c049853e4a6e950ec25e3090aacc35178c5120...main → 500 {\"message\":\"Server Error: Sorry, this diff is temporarily unavailabl"
    }
   },
   {
@@ -7234,43 +7255,12 @@
    "entry": "base-station-checkin",
    "to": "rpi-alert",
    "drift": {
-    "state": "behind",
-    "since": {
-     "date": "2026-10-25",
-     "commit": "28325c4bc9fbe0bdd23e959f6e388952cf46df52",
-     "commitDate": "2026-10-25T19:51:36Z"
-    },
-    "behind": 4,
-    "commits": [
-     {
-      "sha": "2629792",
-      "date": "2026-11-03T11:11:43Z",
-      "msg": "Light decoding, a lighter watch, and a leaner pipeline for the Pi (#259)",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/262979233c8e73a5704c0135ee92852853e11936"
-     },
-     {
-      "sha": "ec0c5f3",
-      "date": "2026-11-03T03:31:44Z",
-      "msg": "BurstWatch: filter a channel only around its bursts (#259 part 2)",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/ec0c5f3ce5c03122ab8e3d2a117841ac0f0fe0b0"
-     },
-     {
-      "sha": "c187221",
-      "date": "2026-11-03T03:20:49Z",
-      "msg": "Base Stations: the Pi's Decoder (Lean, Full, Compare) in a station's remote settings",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/c187221f301c42e4de718b2878322d0c8d69c3c8"
-     },
-     {
-      "sha": "6beb40e",
-      "date": "2026-11-03T03:14:32Z",
-      "msg": "Base Stations: taller sparklines in \"Signal across what it hears\"",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/6beb40e22ff5e0585a449ce3fafa9566af141967"
-     }
-    ],
-    "files": [
-     "base-stations.js"
-    ],
-    "note": "4 upstream changes to watched files since it was last reviewed (2026-10-25)."
+    "state": "unknown",
+    "since": null,
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "GET /repos/cdomotor-g/MegaNet/compare/28325c4bc9fbe0bdd23e959f6e388952cf46df52...main → 500 {\"message\":\"Server Error: Sorry, this diff is temporarily unavailabl"
    }
   },
   {
@@ -7390,43 +7380,12 @@
    "entry": "station-table",
    "to": "quansheng-v3",
    "drift": {
-    "state": "behind",
-    "since": {
-     "date": "2026-09-30",
-     "commit": "66608567fb48e86c9b399ca51a391ae0cd41ffdd",
-     "commitDate": "2026-09-30T04:58:36Z"
-    },
-    "behind": 4,
-    "commits": [
-     {
-      "sha": "decdc36",
-      "date": "2026-11-05T05:51:43Z",
-      "msg": "Mt Marrow AL as a repeater: Willowbank's addresses, two logger types, the station file",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/decdc369afd07a436e34ddc370f89c0e727c2158"
-     },
-     {
-      "sha": "518ad0b",
-      "date": "2026-11-05T05:01:24Z",
-      "msg": "Loudoun Br AL was in the register twice: the copy retired, notes on where it stands",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/518ad0b685907527e2f95ea66b8df96f2b76d5af"
-     },
-     {
-      "sha": "5f71bef",
-      "date": "2026-11-05T04:41:26Z",
-      "msg": "Receiver threshold to -110 dBm: the database and the station file",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/5f71bef271aac05d35cf9ade248f9200473acf33"
-     },
-     {
-      "sha": "1910f8f",
-      "date": "2026-11-04T00:21:52Z",
-      "msg": "Station names: complete the 112 that Radio Mobile cut at 20 characters",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/1910f8f3355b665b7c1088d044eb5faa843ba9d3"
-     }
-    ],
-    "files": [
-     "stations.json"
-    ],
-    "note": "4 upstream changes to watched files since it was last reviewed (2026-09-30)."
+    "state": "unknown",
+    "since": null,
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "GET /repos/cdomotor-g/MegaNet/compare/66608567fb48e86c9b399ca51a391ae0cd41ffdd...main → 500 {\"message\":\"Server Error: Sorry, this diff is temporarily unavailabl"
    }
   },
   {
@@ -7471,16 +7430,12 @@
    "entry": "packet-formats",
    "to": "quansheng-v3",
    "drift": {
-    "state": "current",
-    "since": {
-     "date": "2026-10-01",
-     "commit": "2299acc0c89445ce27d78e1999a0f733d457a63e",
-     "commitDate": "2026-10-01T20:05:31Z"
-    },
+    "state": "unknown",
+    "since": null,
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "587 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "GET /repos/cdomotor-g/MegaNet/compare/2299acc0c89445ce27d78e1999a0f733d457a63e...main → 500 {\"message\":\"Server Error: Sorry, this diff is temporarily unavailabl"
    }
   },
   {
@@ -7527,42 +7482,12 @@
    "entry": "station-table",
    "to": "quansheng-v1",
    "drift": {
-    "state": "behind",
-    "since": {
-     "commit": "6ef4965",
-     "commitDate": "2026-10-19T23:36:05Z"
-    },
-    "behind": 4,
-    "commits": [
-     {
-      "sha": "decdc36",
-      "date": "2026-11-05T05:51:43Z",
-      "msg": "Mt Marrow AL as a repeater: Willowbank's addresses, two logger types, the station file",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/decdc369afd07a436e34ddc370f89c0e727c2158"
-     },
-     {
-      "sha": "518ad0b",
-      "date": "2026-11-05T05:01:24Z",
-      "msg": "Loudoun Br AL was in the register twice: the copy retired, notes on where it stands",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/518ad0b685907527e2f95ea66b8df96f2b76d5af"
-     },
-     {
-      "sha": "5f71bef",
-      "date": "2026-11-05T04:41:26Z",
-      "msg": "Receiver threshold to -110 dBm: the database and the station file",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/5f71bef271aac05d35cf9ade248f9200473acf33"
-     },
-     {
-      "sha": "1910f8f",
-      "date": "2026-11-04T00:21:52Z",
-      "msg": "Station names: complete the 112 that Radio Mobile cut at 20 characters",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/1910f8f3355b665b7c1088d044eb5faa843ba9d3"
-     }
-    ],
-    "files": [
-     "stations.json"
-    ],
-    "note": "4 upstream changes to watched files since 6ef4965."
+    "state": "unknown",
+    "since": null,
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "GET /repos/cdomotor-g/MegaNet/compare/6ef4965...main → 500 {\"message\":\"Server Error: Sorry, this diff is temporarily unavailable due to heavy server load.\",\"err"
    }
   },
   {
@@ -7591,7 +7516,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "587 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "588 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -8251,7 +8176,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "42 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "43 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8282,7 +8207,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "42 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "43 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8305,8 +8230,8 @@
     "state": "current",
     "since": {
      "date": "2026-11-05",
-     "commit": "687394c45e84c1c49d76412220ea3632d36077c3",
-     "commitDate": "2026-11-05T07:49:39Z"
+     "commit": "d98a1c47a8359bf253303bdcfe9f2a70853f8963",
+     "commitDate": "2026-11-05T15:19:59Z"
     },
     "behind": 0,
     "commits": [],
