@@ -35,8 +35,9 @@ keeps the old rules.
 
 - Each file stays under 9,500 characters. A hook's output past 10,000 characters reaches the
   agent only as a short preview; `node test/check.mjs` fails a file that grows too long.
-- Whatever is on the Atlas's `main` branch is what every agent is told, from its next session.
-  Only the owner (and the sessions he runs) can push there.
+- Whatever is on the Atlas's `main` branch is what every agent is told, from its next session
+  (GitHub's file server can take about five minutes to hand out a changed file). Only the owner
+  (and the sessions he runs) can push there.
 
 ## Pointing a repository at them
 
