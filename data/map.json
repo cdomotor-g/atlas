@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-05T00:43:24.558Z",
- "hash": "510c5edbef5a61ca",
+ "generated": "2026-11-05T01:45:49.783Z",
+ "hash": "d43fdcf8b21539dd",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1062,12 +1062,24 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-05T00:17:17Z",
+    "pushed": "2026-11-05T01:33:43Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "f977ef8",
+     "date": "2026-11-05T01:33:41Z",
+     "msg": "Admin dashboard: Costs to date, and every tile opens its detail below",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/f977ef8e90a9c862f40924ce4a0c33b5a7100aa4"
+    },
+    {
+     "sha": "a87733f",
+     "date": "2026-11-05T01:04:58Z",
+     "msg": "Run summary: start with what was asked",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/a87733f2cf119b5ec3eaedb98e3ba71477f887d9"
+    },
     {
      "sha": "3cb74e4",
      "date": "2026-11-05T00:17:15Z",
@@ -1127,18 +1139,6 @@
      "date": "2026-11-04T09:17:17Z",
      "msg": "What's new: the station how-to on Videos (#265)",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/708a8902984372d95f8991711884061a77a0e931"
-    },
-    {
-     "sha": "b80c4e0",
-     "date": "2026-11-04T09:17:14Z",
-     "msg": "#265: station-card MP4 (recorded by hand; the workflow had not by 20 min)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/b80c4e012f46d9e927fa7e3093877069570116de"
-    },
-    {
-     "sha": "fa0939d",
-     "date": "2026-11-04T08:54:30Z",
-     "msg": "Bulletin voices: video station-card",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/fa0939dae6a5af03bba0bb8fed4c94eba36a00c0"
     }
    ],
    "issues": [
@@ -1988,49 +1988,49 @@
    "release": null,
    "ci": [
     {
-     "name": "Field photos from Dropbox",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41942656099",
-     "date": "2026-11-05T00:37:12Z",
-     "event": "schedule"
-    },
-    {
-     "name": "Station health",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41942581296",
-     "date": "2026-11-05T00:37:14Z",
-     "event": "schedule"
-    },
-    {
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41942337027",
-     "date": "2026-11-05T00:34:39Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41950167151",
+     "date": "2026-11-05T01:41:10Z",
      "event": "schedule"
     },
     {
      "name": "Web smoke test",
      "status": "in_progress",
      "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41940206726",
-     "date": "2026-11-05T00:17:59Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41949354405",
+     "date": "2026-11-05T01:34:48Z",
      "event": "push"
     },
     {
      "name": "CodeQL",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41937442671",
-     "date": "2026-11-04T23:58:53Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41949354253",
+     "date": "2026-11-05T01:36:51Z",
      "event": "push"
+    },
+    {
+     "name": "Field photos from Dropbox",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41949333539",
+     "date": "2026-11-05T01:33:42Z",
+     "event": "schedule"
+    },
+    {
+     "name": "Station health",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/41948969669",
+     "date": "2026-11-05T01:31:32Z",
+     "event": "schedule"
     }
    ],
-   "version": "20261104v",
+   "version": "20261105a",
    "lastCommit": {
-    "date": "2026-11-05T00:17:15Z"
+    "date": "2026-11-05T01:33:41Z"
    }
   },
   {
@@ -2718,12 +2718,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-04T20:11:44Z",
+    "pushed": "2026-11-05T01:05:47Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/RPi_ALERT"
    },
    "commits": [
+    {
+     "sha": "dbc19cf",
+     "date": "2026-11-05T01:05:45Z",
+     "msg": "Run summary: start with what was asked",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/dbc19cf542d977a5d90bc6561088a7ba5858db6a"
+    },
     {
      "sha": "4ffa24c",
      "date": "2026-11-04T20:11:42Z",
@@ -2789,12 +2795,6 @@
      "date": "2026-10-31T22:25:23Z",
      "msg": "Atlas: RPi ALERT's blockers and the ways through",
      "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/45ddd2a938513138535323bf7a2627a08914d1b6"
-    },
-    {
-     "sha": "fe7792a",
-     "date": "2026-10-31T22:08:04Z",
-     "msg": "Atlas: describe RPi ALERT for the map of all the repos",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/fe7792a87f87e93dc9557252e48fbac79d7cb0d5"
     }
    ],
    "issues": [
@@ -2845,20 +2845,20 @@
    },
    "ci": [
     {
+     "name": "test",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41946123234",
+     "date": "2026-11-05T01:07:49Z",
+     "event": "push"
+    },
+    {
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41909056493",
      "date": "2026-11-04T20:42:24Z",
      "event": "schedule"
-    },
-    {
-     "name": "test",
-     "status": "completed",
-     "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41904257982",
-     "date": "2026-11-04T20:14:09Z",
-     "event": "push"
     },
     {
      "name": "pages",
@@ -2879,7 +2879,7 @@
    ],
    "version": "0.19.0",
    "lastCommit": {
-    "date": "2026-11-04T20:11:42Z"
+    "date": "2026-11-05T01:05:45Z"
    }
   },
   {
@@ -3867,12 +3867,18 @@
    "gh": {
     "description": "This is a fork of F4HWN firmware https://github.com/armel/uv-k5-firmware-custom by @muzkr and @armel",
     "archived": false,
-    "pushed": "2026-11-04T20:12:10Z",
+    "pushed": "2026-11-05T01:05:45Z",
     "homepage": null,
     "language": "C",
     "url": "https://github.com/cdomotor-g/quansheng_alert_v3"
    },
    "commits": [
+    {
+     "sha": "120a7e2",
+     "date": "2026-11-05T01:05:42Z",
+     "msg": "Run summary: start with what was asked",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/commit/120a7e27c4eb9ffddeabf7009a53176b8ab6e18e"
+    },
     {
      "sha": "3fcba33",
      "date": "2026-11-04T20:12:08Z",
@@ -3938,12 +3944,6 @@
      "date": "2026-09-30T22:34:32Z",
      "msg": "fix: alert.c lost ui/ui.h (gRequestDisplayScreen) in the split",
      "url": "https://github.com/cdomotor-g/quansheng_alert_v3/commit/93cebac115e49647e495a25ed4ec3d70ea1b70ee"
-    },
-    {
-     "sha": "9f17f4f",
-     "date": "2026-09-30T22:21:15Z",
-     "msg": "v2 phase A: remove the FSK sweep, split the ALERT app into modules",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/commit/9f17f4f1a7dab7c5472b20c39b7a0e5e4c0c67ef"
     }
    ],
    "issues": [],
@@ -3951,25 +3951,25 @@
    "release": null,
    "ci": [
     {
+     "name": "Build Firmware",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/41946118230",
+     "date": "2026-11-05T01:06:15Z",
+     "event": "push"
+    },
+    {
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/41920786568",
      "date": "2026-11-04T21:57:14Z",
      "event": "schedule"
-    },
-    {
-     "name": "Build Firmware",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/41904331343",
-     "date": "2026-11-04T20:12:43Z",
-     "event": "push"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-11-04T20:12:08Z"
+    "date": "2026-11-05T01:05:42Z"
    }
   },
   {
@@ -4252,12 +4252,18 @@
    "gh": {
     "description": "Firmware repo for quansheng hand-held radio",
     "archived": false,
-    "pushed": "2026-11-04T20:12:06Z",
+    "pushed": "2026-11-05T01:05:40Z",
     "homepage": null,
     "language": "C",
     "url": "https://github.com/cdomotor-g/quansheng_alert"
    },
    "commits": [
+    {
+     "sha": "9217d33",
+     "date": "2026-11-05T01:05:38Z",
+     "msg": "Run summary: start with what was asked",
+     "url": "https://github.com/cdomotor-g/quansheng_alert/commit/9217d33ab2c1cd2b14278a5b18ee55edec85a290"
+    },
     {
      "sha": "9faff69",
      "date": "2026-11-04T20:12:04Z",
@@ -4323,12 +4329,6 @@
      "date": "2026-09-06T23:18:53Z",
      "msg": "fix: accept the radio's 0xFFFF placeholder CRC and the 0x15 hello reply",
      "url": "https://github.com/cdomotor-g/quansheng_alert/commit/6daac9fdaa56cef66f0f7e62bf004a485feb9aa8"
-    },
-    {
-     "sha": "93e322b",
-     "date": "2026-09-06T17:47:46Z",
-     "msg": "feat: run the whole cable check from the installer's Toolbox",
-     "url": "https://github.com/cdomotor-g/quansheng_alert/commit/93e322bbf3bd5ca9925d82d7d652448d9f4caaf0"
     }
    ],
    "issues": [],
@@ -4339,22 +4339,22 @@
      "name": "build",
      "status": "completed",
      "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/quansheng_alert/actions/runs/41904316663",
-     "date": "2026-11-04T20:13:17Z",
+     "url": "https://github.com/cdomotor-g/quansheng_alert/actions/runs/41946108627",
+     "date": "2026-11-05T01:06:57Z",
      "event": "push"
     },
     {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert/actions/runs/41904313596",
-     "date": "2026-11-04T20:12:32Z",
+     "url": "https://github.com/cdomotor-g/quansheng_alert/actions/runs/41946107696",
+     "date": "2026-11-05T01:06:08Z",
      "event": "dynamic"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-11-04T20:12:04Z"
+    "date": "2026-11-05T01:05:38Z"
    }
   },
   {
@@ -4646,12 +4646,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-04T20:12:08Z",
+    "pushed": "2026-11-05T01:05:42Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL"
    },
    "commits": [
+    {
+     "sha": "a2ad3c3",
+     "date": "2026-11-05T01:05:40Z",
+     "msg": "Run summary: start with what was asked",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/commit/a2ad3c32277bfca2be56b44077471e5774207c23"
+    },
     {
      "sha": "8a1b487",
      "date": "2026-11-04T20:12:06Z",
@@ -4717,12 +4723,6 @@
      "date": "2026-10-20T00:36:08Z",
      "msg": "feat: hardware photos, label drawings and a phone-width fix",
      "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/commit/64011f2014bf54d06595a95919715b626571fe9c"
-    },
-    {
-     "sha": "c49b4af",
-     "date": "2026-10-20T00:12:08Z",
-     "msg": "feat: one-page setup guide and a browser installer for both radio families",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/commit/c49b4af0308808c2d4d8c8edd866b6acf1b5e09f"
     }
    ],
    "issues": [],
@@ -4734,28 +4734,28 @@
    },
    "ci": [
     {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41919765543",
-     "date": "2026-11-04T21:50:32Z",
-     "event": "schedule"
-    },
-    {
      "name": "Test the site",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41904323133",
-     "date": "2026-11-04T20:13:25Z",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41946113224",
+     "date": "2026-11-05T01:07:10Z",
      "event": "push"
     },
     {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41904321248",
-     "date": "2026-11-04T20:13:23Z",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41946111783",
+     "date": "2026-11-05T01:06:24Z",
      "event": "dynamic"
+    },
+    {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41919765543",
+     "date": "2026-11-04T21:50:32Z",
+     "event": "schedule"
     },
     {
      "name": "Refresh firmware",
@@ -4768,7 +4768,7 @@
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-11-04T20:12:06Z"
+    "date": "2026-11-05T01:05:40Z"
    }
   },
   {
@@ -5163,12 +5163,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-04T20:12:03Z",
+    "pushed": "2026-11-05T01:05:38Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/open-ALERT"
    },
    "commits": [
+    {
+     "sha": "dc49755",
+     "date": "2026-11-05T01:05:36Z",
+     "msg": "Run summary: start with what was asked",
+     "url": "https://github.com/cdomotor-g/open-ALERT/commit/dc4975540a3ae44246d9e458349e5f800f77521d"
+    },
     {
      "sha": "5563d2e",
      "date": "2026-11-04T20:12:01Z",
@@ -5234,12 +5240,6 @@
      "date": "2026-10-31T22:25:32Z",
      "msg": "Atlas: record blockers with the ways through",
      "url": "https://github.com/cdomotor-g/open-ALERT/commit/91a05d5c847c76cc7ebd34bc0ed6372bc08e9fcb"
-    },
-    {
-     "sha": "a88316f",
-     "date": "2026-10-31T22:08:07Z",
-     "msg": "Atlas: describe open-ALERT for the map of all the repos",
-     "url": "https://github.com/cdomotor-g/open-ALERT/commit/a88316f58c07c2ecf202fc19d158b63c031be941"
     }
    ],
    "issues": [
@@ -5265,28 +5265,28 @@
    "release": null,
    "ci": [
     {
+     "name": "test",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41946104719",
+     "date": "2026-11-05T01:05:53Z",
+     "event": "push"
+    },
+    {
+     "name": "pages build and deployment",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41946103146",
+     "date": "2026-11-05T01:06:07Z",
+     "event": "dynamic"
+    },
+    {
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41916924656",
      "date": "2026-11-04T21:32:12Z",
      "event": "schedule"
-    },
-    {
-     "name": "pages build and deployment",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41904306597",
-     "date": "2026-11-04T20:12:51Z",
-     "event": "dynamic"
-    },
-    {
-     "name": "test",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41904309342",
-     "date": "2026-11-04T20:12:18Z",
-     "event": "push"
     },
     {
      "name": "pages",
@@ -5299,7 +5299,7 @@
    ],
    "version": "0.1.0",
    "lastCommit": {
-    "date": "2026-11-04T20:12:01Z"
+    "date": "2026-11-05T01:05:36Z"
    }
   },
   {
@@ -5339,13 +5339,13 @@
     "status": {
      "phase": "live",
      "updated": "2026-11-05",
-     "summary": "v2 is the Scope Builder since 4 Nov 2026 (/SoRT/ opens /SoRT/v2/; v1 kept at /SoRT/v1/): Flood-Net station lookup with corrections of its particulars for the Word tables, ACMA licences, and the radio path to base with fresh fade margins; the map beside the questions (each pane scrolling on its own) with survey marks and bridges; sessions shared with the whole forum through Flood-Net's server (a forum passphrase, no accounts or tokens), an in-page question editor, a Help guide, the local TBM as a desktop task, and follow-ups handed to Flood-Net's teams as tasks, and on the Water Level table a corrosion category for the infrastructure options (the Bureau engineers’ three AS 4312 groupings), suggested from the site’s distance to the sea on QSpatial’s coastline.",
+     "summary": "v2 is the Scope Builder since 4 Nov 2026 (/SoRT/ opens /SoRT/v2/; v1 kept at /SoRT/v1/): Flood-Net station lookup with corrections of its particulars for the Word tables, ACMA licences, and the radio path to base with fresh fade margins; the map beside the questions (each pane scrolling on its own) with survey marks and bridges; sessions shared with the whole forum through Flood-Net's server (a forum passphrase, no accounts or tokens), an in-page question editor, a Help guide, the local TBM as a desktop task, and follow-ups handed to Flood-Net's teams as tasks, and on the Water Level table a corrosion category for the infrastructure options (OTE’s three AS 4312 groupings, with the standard’s own table shown beside them), suggested from the site’s distance to the sea on QSpatial’s coastline.",
      "now": [
       "v2 at real forums as the default; v1 kept at /SoRT/v1/ in case"
      ],
      "next": [
       "Playbook: push the five seeded stations once the private repo exists; import more Word reports in batches",
-      "Corrosion guide: the engineering department to confirm its distances, which are stricter than AS 4312 Table 4.1 in four places (e.g. 1–10 km from a surf beach is C3 in the table, C4 in the guide)"
+      "Corrosion guide: OTE to confirm that its surf 1–10 km band (C4, where AS 4312 Table 4.1 gives C3) is deliberate; the guide shows both tables and the six bands where OTE is stricter"
      ],
      "later": [
       "A Dataverse import keyed on v2's permanent question and option codes (v2/playbook/export_tables.mjs writes the tables)"
@@ -5614,12 +5614,30 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-05T00:11:50Z",
+    "pushed": "2026-11-05T01:24:27Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/SoRT"
    },
    "commits": [
+    {
+     "sha": "64ec1bc",
+     "date": "2026-11-05T01:24:24Z",
+     "msg": "v2 corrosion: the distance map moves into the guide; Word gets a bold heading and bullets",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/64ec1bcdc0426f3226a5fa6400bb4f85714bd84c"
+    },
+    {
+     "sha": "a9c9583",
+     "date": "2026-11-05T01:05:48Z",
+     "msg": "Run summary: start with what was asked",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/a9c9583f6e82ee06c63fd734f09612bd866468d7"
+    },
+    {
+     "sha": "3937cc8",
+     "date": "2026-11-05T00:56:46Z",
+     "msg": "v2 corrosion guide: AS 4312's own table beside OTE's instruction",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/3937cc8a1da936dd6c5f740521f107967520df94"
+    },
     {
      "sha": "9ef9d66",
      "date": "2026-11-05T00:11:40Z",
@@ -5673,24 +5691,6 @@
      "date": "2026-11-04T03:03:04Z",
      "msg": "v2 benchmarks: take only the opened Flood-Net tab's answer; atlas consumes floodnet-benchmarks",
      "url": "https://github.com/cdomotor-g/SoRT/commit/8eb5d4ea87b68e6e046995f066129e17a4b5fd10"
-    },
-    {
-     "sha": "04be686",
-     "date": "2026-11-04T02:41:14Z",
-     "msg": "v2: the Bureau's benchmarks (HDB) from Flood-Net, told apart from State survey marks",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/04be686720ca08face196093d1a4e8e02210a41f"
-    },
-    {
-     "sha": "42d1a7b",
-     "date": "2026-11-04T00:40:14Z",
-     "msg": "atlas.json: report-route blocker — Report to Flood-Net files itself once cdomotor-g/MegaNet#270 is done",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/42d1a7b3239434938736f9920f65be664a3071ec"
-    },
-    {
-     "sha": "da2ab83",
-     "date": "2026-11-04T00:14:15Z",
-     "msg": "Cutover: v2 is the Scope Builder; v1 kept at /SoRT/v1/",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/da2ab8334b03d54ab3382ff5190e62410d9f6b7d"
     }
    ],
    "issues": [],
@@ -5698,25 +5698,25 @@
    "release": null,
    "ci": [
     {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41939512457",
-     "date": "2026-11-05T00:12:04Z",
-     "event": "push"
-    },
-    {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41939510454",
-     "date": "2026-11-05T00:12:30Z",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41948308651",
+     "date": "2026-11-05T01:25:02Z",
      "event": "dynamic"
+    },
+    {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41945059002",
+     "date": "2026-11-05T00:57:06Z",
+     "event": "push"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-11-05T00:11:40Z"
+    "date": "2026-11-05T01:24:24Z"
    }
   },
   {
@@ -5829,12 +5829,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-04T20:11:40Z",
+    "pushed": "2026-11-05T01:05:23Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/F-TIDE"
    },
    "commits": [
+    {
+     "sha": "8de6967",
+     "date": "2026-11-05T01:05:21Z",
+     "msg": "Run summary: start with what was asked",
+     "url": "https://github.com/cdomotor-g/F-TIDE/commit/8de696750772577c6fc4dd737ce541f4a9f9b435"
+    },
     {
      "sha": "02b1d5f",
      "date": "2026-11-04T20:11:37Z",
@@ -5900,12 +5906,6 @@
      "date": "2026-07-03T02:10:56Z",
      "msg": "Merge pull request #15 from cdomotor-g/claude/clipboard-image-pill-dmkibj",
      "url": "https://github.com/cdomotor-g/F-TIDE/commit/0e0e9afdb697c4dd7ed02f4c2133d3c16a61d656"
-    },
-    {
-     "sha": "44700eb",
-     "date": "2026-07-03T02:01:57Z",
-     "msg": "Add session image pill for clipboard/drag-drop screenshots",
-     "url": "https://github.com/cdomotor-g/F-TIDE/commit/44700ebfde709385cf0f1a98707886ba727639ac"
     }
    ],
    "issues": [],
@@ -5916,14 +5916,14 @@
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/F-TIDE/actions/runs/41904244311",
-     "date": "2026-11-04T20:12:17Z",
+     "url": "https://github.com/cdomotor-g/F-TIDE/actions/runs/41946071328",
+     "date": "2026-11-05T01:05:47Z",
      "event": "dynamic"
     }
    ],
    "version": "57.2",
    "lastCommit": {
-    "date": "2026-11-04T20:11:37Z"
+    "date": "2026-11-05T01:05:21Z"
    }
   },
   {
@@ -6351,12 +6351,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-04T20:11:35Z",
+    "pushed": "2026-11-05T01:05:16Z",
     "homepage": null,
     "language": "HTML",
     "url": "https://github.com/cdomotor-g/ALERT_PACKETS"
    },
    "commits": [
+    {
+     "sha": "3300dc4",
+     "date": "2026-11-05T01:05:14Z",
+     "msg": "Run summary: start with what was asked",
+     "url": "https://github.com/cdomotor-g/ALERT_PACKETS/commit/3300dc4a7dd42a33390d83cb2ac6161b2e9652e1"
+    },
     {
      "sha": "9b9d01f",
      "date": "2026-11-04T20:11:33Z",
@@ -6402,14 +6408,14 @@
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/ALERT_PACKETS/actions/runs/41904233773",
-     "date": "2026-11-04T20:12:55Z",
+     "url": "https://github.com/cdomotor-g/ALERT_PACKETS/actions/runs/41946057951",
+     "date": "2026-11-05T01:05:58Z",
      "event": "dynamic"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-11-04T20:11:33Z"
+    "date": "2026-11-05T01:05:14Z"
    }
   },
   {
@@ -6472,12 +6478,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-10-13T05:14:05Z",
+    "pushed": "2026-11-05T01:05:34Z",
     "homepage": null,
     "language": "HTML",
     "url": "https://github.com/cdomotor-g/HTML-serial"
    },
    "commits": [
+    {
+     "sha": "bb0e158",
+     "date": "2026-11-05T01:05:32Z",
+     "msg": "Run summary: the shared report every repository ends a run with",
+     "url": "https://github.com/cdomotor-g/HTML-serial/commit/bb0e158821933a700d975d85e98a6ce1fadb7c3e"
+    },
     {
      "sha": "e42560d",
      "date": "2026-10-13T05:14:02Z",
@@ -6509,7 +6521,7 @@
    "ci": [],
    "version": null,
    "lastCommit": {
-    "date": "2026-10-13T05:14:02Z"
+    "date": "2026-11-05T01:05:32Z"
    }
   },
   {
@@ -6601,12 +6613,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-04T20:11:58Z",
+    "pushed": "2026-11-05T01:05:29Z",
     "homepage": null,
     "language": "HTML",
     "url": "https://github.com/cdomotor-g/home"
    },
    "commits": [
+    {
+     "sha": "e199e96",
+     "date": "2026-11-05T01:05:27Z",
+     "msg": "Run summary: start with what was asked",
+     "url": "https://github.com/cdomotor-g/home/commit/e199e96ea9588a1c64f1ed9cb08ea1a3f2646aea"
+    },
     {
      "sha": "2f59d1b",
      "date": "2026-11-04T20:11:56Z",
@@ -6672,12 +6690,6 @@
      "date": "2026-07-18T23:12:19Z",
      "msg": "Add numeric value + days-till-empty cards to the carousel",
      "url": "https://github.com/cdomotor-g/home/commit/c9f86be1d64414b60ec68dd4053692bd769abf43"
-    },
-    {
-     "sha": "eef9b74",
-     "date": "2026-07-14T02:13:59Z",
-     "msg": "Merge pull request #11 from cdomotor-g/claude/add-min-max-value-cards-qvhdbb",
-     "url": "https://github.com/cdomotor-g/home/commit/eef9b741a7ebf57a77ac550cac7e8c65b955b7fc"
     }
    ],
    "issues": [],
@@ -6688,22 +6700,22 @@
      "name": "Deploy dashboard to GitHub Pages",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/home/actions/runs/41904297041",
-     "date": "2026-11-04T20:12:29Z",
+     "url": "https://github.com/cdomotor-g/home/actions/runs/41946086840",
+     "date": "2026-11-05T01:05:51Z",
      "event": "push"
     },
     {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/home/actions/runs/41904294940",
-     "date": "2026-11-04T20:12:26Z",
+     "url": "https://github.com/cdomotor-g/home/actions/runs/41946086673",
+     "date": "2026-11-05T01:05:55Z",
      "event": "dynamic"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-11-04T20:11:56Z"
+    "date": "2026-11-05T01:05:27Z"
    }
   }
  ],
@@ -6802,7 +6814,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "12 newer commits upstream since it was last reviewed (2026-10-26), none to watched files."
+    "note": "13 newer commits upstream since it was last reviewed (2026-10-26), none to watched files."
    }
   },
   {
@@ -6854,7 +6866,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "5 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "6 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -6925,7 +6937,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "1 newer commit upstream since it was last reviewed (2026-10-31), none to watched files."
+    "note": "2 newer commits upstream since it was last reviewed (2026-10-31), none to watched files."
    }
   },
   {
@@ -7077,7 +7089,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "58 newer commits upstream since 60c0498, none to watched files."
+    "note": "60 newer commits upstream since 60c0498, none to watched files."
    }
   },
   {
@@ -7241,7 +7253,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "5 newer commits upstream since it was last reviewed (2026-10-06), none to watched files."
+    "note": "6 newer commits upstream since it was last reviewed (2026-10-06), none to watched files."
    }
   },
   {
@@ -7382,7 +7394,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "546 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "548 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7475,7 +7487,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "546 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "548 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7506,7 +7518,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "3 newer commits upstream since it was last reviewed (2026-10-20), none to watched files."
+    "note": "4 newer commits upstream since it was last reviewed (2026-10-20), none to watched files."
    }
   },
   {
@@ -7543,7 +7555,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "1 newer commit upstream since 988dfe6, none to watched files."
+    "note": "2 newer commits upstream since 988dfe6, none to watched files."
    }
   },
   {
@@ -7572,7 +7584,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "1 newer commit upstream since e922375, none to watched files."
+    "note": "2 newer commits upstream since e922375, none to watched files."
    }
   },
   {
@@ -7602,7 +7614,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "3 newer commits upstream since it was last reviewed (2026-10-20), none to watched files."
+    "note": "4 newer commits upstream since it was last reviewed (2026-10-20), none to watched files."
    }
   },
   {
@@ -7636,7 +7648,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "3 newer commits upstream since it was last reviewed (2026-10-20), none to watched files."
+    "note": "4 newer commits upstream since it was last reviewed (2026-10-20), none to watched files."
    }
   },
   {
@@ -7665,7 +7677,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "1 newer commit upstream since e922375, none to watched files."
+    "note": "2 newer commits upstream since e922375, none to watched files."
    }
   },
   {
@@ -7693,7 +7705,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "1 newer commit upstream since e922375, none to watched files."
+    "note": "2 newer commits upstream since e922375, none to watched files."
    }
   },
   {
@@ -7887,7 +7899,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "1 newer commit upstream since it was last reviewed (2026-10-17), none to watched files."
+    "note": "2 newer commits upstream since it was last reviewed (2026-10-17), none to watched files."
    }
   },
   {
@@ -8031,7 +8043,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "1 newer commit upstream since it was last reviewed (2026-11-03), none to watched files."
+    "note": "2 newer commits upstream since it was last reviewed (2026-11-03), none to watched files."
    }
   },
   {
@@ -8122,7 +8134,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "1 newer commit upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "3 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8153,7 +8165,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "1 newer commit upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "3 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
