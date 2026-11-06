@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-05T21:27:10.998Z",
- "hash": "03d80cf6c1b39891",
+ "generated": "2026-11-06T00:42:44.564Z",
+ "hash": "c227e9936ce9970a",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -2004,35 +2004,27 @@
    "release": null,
    "ci": [
     {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42112254623",
-     "date": "2026-11-05T21:23:54Z",
-     "event": "schedule"
-    },
-    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42111194034",
-     "date": "2026-11-05T21:17:04Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42138124036",
+     "date": "2026-11-06T00:37:06Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42110954061",
-     "date": "2026-11-05T21:16:11Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42138016533",
+     "date": "2026-11-06T00:37:00Z",
      "event": "schedule"
     },
     {
-     "name": "Atlas",
+     "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42096638545",
-     "date": "2026-11-05T19:44:06Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42137811059",
+     "date": "2026-11-06T00:34:36Z",
      "event": "schedule"
     }
    ],
@@ -3959,20 +3951,20 @@
    "release": null,
    "ci": [
     {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/42117116022",
+     "date": "2026-11-05T21:56:44Z",
+     "event": "schedule"
+    },
+    {
      "name": "Build Firmware",
      "status": "completed",
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/41961356081",
      "date": "2026-11-05T03:25:23Z",
      "event": "push"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/41920786568",
-     "date": "2026-11-04T21:57:14Z",
-     "event": "schedule"
     }
    ],
    "version": null,
@@ -4742,6 +4734,14 @@
    },
    "ci": [
     {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/42116281395",
+     "date": "2026-11-05T21:51:00Z",
+     "event": "schedule"
+    },
+    {
      "name": "Test the site",
      "status": "completed",
      "conclusion": "success",
@@ -4756,14 +4756,6 @@
      "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41961350529",
      "date": "2026-11-05T03:24:45Z",
      "event": "dynamic"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41919765543",
-     "date": "2026-11-04T21:50:32Z",
-     "event": "schedule"
     },
     {
      "name": "Refresh firmware",
@@ -5273,6 +5265,14 @@
    "release": null,
    "ci": [
     {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42113416406",
+     "date": "2026-11-05T21:31:49Z",
+     "event": "schedule"
+    },
+    {
      "name": "test",
      "status": "completed",
      "conclusion": "success",
@@ -5287,14 +5287,6 @@
      "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41961338727",
      "date": "2026-11-05T03:24:23Z",
      "event": "dynamic"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41916924656",
-     "date": "2026-11-04T21:32:12Z",
-     "event": "schedule"
     },
     {
      "name": "pages",
@@ -5346,8 +5338,8 @@
     },
     "status": {
      "phase": "live",
-     "updated": "2026-11-05",
-     "summary": "v2 is the Scope Builder since 4 Nov 2026 (/SoRT/ opens /SoRT/v2/; v1 kept at /SoRT/v1/): Flood-Net station lookup with corrections of its particulars for the Word tables, ACMA licences, and the radio path to base with fresh fade margins; the map beside the questions (each pane scrolling on its own) with survey marks and bridges; sessions shared with the whole forum through Flood-Net's server (a forum passphrase, no accounts or tokens), an in-page question editor, a Help guide, the local TBM as a desktop task, and follow-ups handed to Flood-Net's teams as tasks, and on the Water Level table a corrosion category for the infrastructure options (OTE’s three AS 4312 groupings, with the standard’s own table shown beside them), suggested from the site’s distance to the sea on QSpatial’s coastline, and an acid sulfate soil flag (Queensland’s soil maps at the site) that asks the contractor for testing.",
+     "updated": "2026-11-06",
+     "summary": "v2 is the Scope Builder since 4 Nov 2026 (/SoRT/ opens /SoRT/v2/; v1 kept at /SoRT/v1/): Flood-Net station lookup with corrections of its particulars for the Word tables, ACMA licences, and the radio path to base with fresh fade margins; the map beside the questions (each pane scrolling on its own) with survey marks and bridges; sessions shared with the whole forum by themselves through Flood-Net's server (no Share button; a forum passphrase, no accounts or tokens), an in-page question editor, a Help guide, the local TBM as a desktop task, and follow-ups handed to Flood-Net's teams as tasks, and on the Water Level table a corrosion category for the infrastructure options (OTE’s three AS 4312 groupings, with the standard’s own table shown beside them), suggested from the site’s distance to the sea on QSpatial’s coastline, and an acid sulfate soil flag (Queensland’s soil maps at the site) that asks the contractor for testing.",
      "now": [
       "v2 at real forums as the default; v1 kept at /SoRT/v1/ in case"
      ],
@@ -5649,12 +5641,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-05T06:58:48Z",
+    "pushed": "2026-11-06T00:29:47Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/SoRT"
    },
    "commits": [
+    {
+     "sha": "f2896ee",
+     "date": "2026-11-06T00:29:11Z",
+     "msg": "v2: sessions are shared with the forum by themselves — no Share button",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/f2896ee70bb73ab53482281acd22c3a3d8f09926"
+    },
     {
      "sha": "c05370e",
      "date": "2026-11-05T06:58:30Z",
@@ -5720,12 +5718,6 @@
      "date": "2026-11-04T07:08:15Z",
      "msg": "v2 map: Flood-Net position unticked by default — hidden unless wanted",
      "url": "https://github.com/cdomotor-g/SoRT/commit/ac18bd5b1d51a61d2652990e07b86b3e0d746f60"
-    },
-    {
-     "sha": "9b8ef43",
-     "date": "2026-11-04T07:05:11Z",
-     "msg": "v2 map: Flood-Net's position says it isn't in the Word picture, and can be hidden",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/9b8ef439a24b54c88a8875645c5bf9915ca7d003"
     }
    ],
    "issues": [],
@@ -5736,22 +5728,22 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/42110952363",
-     "date": "2026-11-05T21:15:42Z",
-     "event": "schedule"
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/42137174781",
+     "date": "2026-11-06T00:29:38Z",
+     "event": "push"
     },
     {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/41983987013",
-     "date": "2026-11-05T06:59:42Z",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/42137173208",
+     "date": "2026-11-06T00:29:58Z",
      "event": "dynamic"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-11-05T06:58:30Z"
+    "date": "2026-11-06T00:29:11Z"
    }
   },
   {
@@ -7080,7 +7072,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "Up to date with upstream."
+    "note": "1 newer commit upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
