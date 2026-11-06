@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-06T12:31:15.050Z",
- "hash": "5a27a725b36cffbd",
+ "generated": "2026-11-06T15:27:13.628Z",
+ "hash": "2501bcd661f0193f",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1078,12 +1078,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-06T10:29:34Z",
+    "pushed": "2026-11-06T15:24:17Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "734f685",
+     "date": "2026-11-06T15:24:14Z",
+     "msg": "CI doctor: Mobile coverage section, Latency — the card folds long notes (4bc9058) and the browser kept the terrain tiles; checks read the fo",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/734f68569933e373bf5350b33bcb3bfb9220ba0f"
+    },
     {
      "sha": "e574ac6",
      "date": "2026-11-06T10:29:17Z",
@@ -1149,12 +1155,6 @@
      "date": "2026-11-05T07:02:18Z",
      "msg": "Rangeland follows crops; Relocate station checks the land cover under its trees",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/6b8ccb93893c9ec6652cae69101b3ae3566c08ec"
-    },
-    {
-     "sha": "b90547c",
-     "date": "2026-11-05T06:45:07Z",
-     "msg": "Crops stand at crop height: the canopy map's paddock noise no longer counts",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/b90547c6588b3ae3b34535778a4ec71e8d27c22f"
     }
    ],
    "issues": [
@@ -2004,49 +2004,57 @@
    "release": null,
    "ci": [
     {
+     "name": "Web smoke test",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42242731871",
+     "date": "2026-11-06T15:24:24Z",
+     "event": "push"
+    },
+    {
+     "name": "CodeQL",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42242731833",
+     "date": "2026-11-06T15:24:24Z",
+     "event": "push"
+    },
+    {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42242689410",
+     "date": "2026-11-06T15:24:12Z",
+     "event": "schedule"
+    },
+    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42217242416",
-     "date": "2026-11-06T12:23:10Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42241623694",
+     "date": "2026-11-06T15:17:21Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42217119917",
-     "date": "2026-11-06T12:22:59Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42241435943",
+     "date": "2026-11-06T15:16:48Z",
      "event": "schedule"
     },
     {
-     "name": "Field photos from Google Drive",
+     "name": "Data archive into R2",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42216829697",
-     "date": "2026-11-06T12:19:56Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42235675093",
+     "date": "2026-11-06T14:40:51Z",
      "event": "schedule"
-    },
-    {
-     "name": "CodeQL",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42203075127",
-     "date": "2026-11-06T10:33:38Z",
-     "event": "push"
-    },
-    {
-     "name": "Web smoke test",
-     "status": "completed",
-     "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42203075145",
-     "date": "2026-11-06T11:28:24Z",
-     "event": "push"
     }
    ],
    "version": "20261106c",
    "lastCommit": {
-    "date": "2026-11-06T10:29:17Z"
+    "date": "2026-11-06T15:24:14Z"
    }
   },
   {
@@ -7196,7 +7204,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "103 newer commits upstream since 60c0498, none to watched files."
+    "note": "104 newer commits upstream since 60c0498, none to watched files."
    }
   },
   {
@@ -7512,7 +7520,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "591 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "592 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7623,7 +7631,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "591 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "592 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -8283,7 +8291,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "46 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "47 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8314,7 +8322,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "46 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "47 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8343,7 +8351,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "3 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "4 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
@@ -8367,8 +8375,8 @@
     "state": "current",
     "since": {
      "date": "2026-11-06",
-     "commit": "e574ac6427f1bf3e7b66a24f4d4f2371216698ba",
-     "commitDate": "2026-11-06T10:29:17Z"
+     "commit": "734f68569933e373bf5350b33bcb3bfb9220ba0f",
+     "commitDate": "2026-11-06T15:24:14Z"
     },
     "behind": 0,
     "commits": [],
