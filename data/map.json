@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-06T09:27:17.288Z",
- "hash": "9d2951b777aedf8a",
+ "generated": "2026-11-06T12:31:15.050Z",
+ "hash": "5a27a725b36cffbd",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1078,12 +1078,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-06T02:15:28Z",
+    "pushed": "2026-11-06T10:29:34Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "e574ac6",
+     "date": "2026-11-06T10:29:17Z",
+     "msg": "Find a place: tap the map to drop pins; ↺ and 🧹 take the pins off again",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/e574ac6427f1bf3e7b66a24f4d4f2371216698ba"
+    },
     {
      "sha": "0b8d5a7",
      "date": "2026-11-06T02:10:38Z",
@@ -1149,12 +1155,6 @@
      "date": "2026-11-05T06:45:07Z",
      "msg": "Crops stand at crop height: the canopy map's paddock noise no longer counts",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/b90547c6588b3ae3b34535778a4ec71e8d27c22f"
-    },
-    {
-     "sha": "57c1725",
-     "date": "2026-11-05T06:43:09Z",
-     "msg": "Map mode banner: \"press Enter to finish the line\" while a line is drawn",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/57c1725dccbad7881e08bcfa59c495dd6ec9b1d8"
     }
    ],
    "issues": [
@@ -2004,33 +2004,49 @@
    "release": null,
    "ci": [
     {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42194861305",
-     "date": "2026-11-06T09:24:58Z",
-     "event": "schedule"
-    },
-    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42194096457",
-     "date": "2026-11-06T09:18:59Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42217242416",
+     "date": "2026-11-06T12:23:10Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42194008988",
-     "date": "2026-11-06T09:19:12Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42217119917",
+     "date": "2026-11-06T12:22:59Z",
      "event": "schedule"
+    },
+    {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42216829697",
+     "date": "2026-11-06T12:19:56Z",
+     "event": "schedule"
+    },
+    {
+     "name": "CodeQL",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42203075127",
+     "date": "2026-11-06T10:33:38Z",
+     "event": "push"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "completed",
+     "conclusion": "failure",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42203075145",
+     "date": "2026-11-06T11:28:24Z",
+     "event": "push"
     }
    ],
-   "version": "20261106b",
+   "version": "20261106c",
    "lastCommit": {
-    "date": "2026-11-06T02:10:38Z"
+    "date": "2026-11-06T10:29:17Z"
    }
   },
   {
@@ -7180,7 +7196,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "102 newer commits upstream since 60c0498, none to watched files."
+    "note": "103 newer commits upstream since 60c0498, none to watched files."
    }
   },
   {
@@ -7496,7 +7512,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "590 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "591 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7607,7 +7623,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "590 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "591 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -8267,7 +8283,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "45 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "46 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8298,7 +8314,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "45 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "46 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8327,7 +8343,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "2 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "3 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
@@ -8351,8 +8367,8 @@
     "state": "current",
     "since": {
      "date": "2026-11-06",
-     "commit": "0b8d5a7da1f154bb8992efdf519dd284cb91b20c",
-     "commitDate": "2026-11-06T02:10:38Z"
+     "commit": "e574ac6427f1bf3e7b66a24f4d4f2371216698ba",
+     "commitDate": "2026-11-06T10:29:17Z"
     },
     "behind": 0,
     "commits": [],
