@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-06T00:42:44.564Z",
- "hash": "c227e9936ce9970a",
+ "generated": "2026-11-06T03:28:04.814Z",
+ "hash": "e86cfffed46c5a9a",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1078,12 +1078,24 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-05T15:20:04Z",
+    "pushed": "2026-11-06T02:15:28Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "0b8d5a7",
+     "date": "2026-11-06T02:10:38Z",
+     "msg": "Find a place keeps numbered pins; 3-D credits under the map; no rings in the sky",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/0b8d5a7da1f154bb8992efdf519dd284cb91b20c"
+    },
+    {
+     "sha": "4bc9058",
+     "date": "2026-11-06T01:01:57Z",
+     "msg": "What is here reads like a station card: the same rows, rules and shaded headings",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/4bc9058ff4594b278e4b06a631dbe29edb6a456e"
+    },
     {
      "sha": "d98a1c4",
      "date": "2026-11-05T15:19:59Z",
@@ -1143,18 +1155,6 @@
      "date": "2026-11-05T06:43:09Z",
      "msg": "Map mode banner: \"press Enter to finish the line\" while a line is drawn",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/57c1725dccbad7881e08bcfa59c495dd6ec9b1d8"
-    },
-    {
-     "sha": "6b143d3",
-     "date": "2026-11-05T06:40:51Z",
-     "msg": "Version stamp 20261105w",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/6b143d3381b949237a3ea620a9b63fdcd9dc8e49"
-    },
-    {
-     "sha": "fc1ad14",
-     "date": "2026-11-05T06:40:46Z",
-     "msg": "Station card: each Bureau list on its own line",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/fc1ad146d0580316c20b6e1fdfbe16ca512aea19"
     }
    ],
    "issues": [
@@ -2004,33 +2004,49 @@
    "release": null,
    "ci": [
     {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42156494513",
+     "date": "2026-11-06T03:25:55Z",
+     "event": "schedule"
+    },
+    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42138124036",
-     "date": "2026-11-06T00:37:06Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42155818220",
+     "date": "2026-11-06T03:19:26Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42138016533",
-     "date": "2026-11-06T00:37:00Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42155721773",
+     "date": "2026-11-06T03:19:23Z",
      "event": "schedule"
     },
     {
-     "name": "Field photos from Google Drive",
+     "name": "CodeQL",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42137811059",
-     "date": "2026-11-06T00:34:36Z",
-     "event": "schedule"
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42149157017",
+     "date": "2026-11-06T02:20:07Z",
+     "event": "push"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "completed",
+     "conclusion": "failure",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42149156924",
+     "date": "2026-11-06T03:24:28Z",
+     "event": "push"
     }
    ],
-   "version": "20261105zg",
+   "version": "20261106b",
    "lastCommit": {
-    "date": "2026-11-05T15:19:59Z"
+    "date": "2026-11-06T02:10:38Z"
    }
   },
   {
@@ -5339,7 +5355,7 @@
     "status": {
      "phase": "live",
      "updated": "2026-11-06",
-     "summary": "v2 is the Scope Builder since 4 Nov 2026 (/SoRT/ opens /SoRT/v2/; v1 kept at /SoRT/v1/): Flood-Net station lookup with corrections of its particulars for the Word tables, ACMA licences, and the radio path to base with fresh fade margins; the map beside the questions (each pane scrolling on its own) with survey marks and bridges; sessions shared with the whole forum by themselves through Flood-Net's server (no Share button; a forum passphrase, no accounts or tokens), an in-page question editor, a Help guide, the local TBM as a desktop task, and follow-ups handed to Flood-Net's teams as tasks, and on the Water Level table a corrosion category for the infrastructure options (OTE’s three AS 4312 groupings, with the standard’s own table shown beside them), suggested from the site’s distance to the sea on QSpatial’s coastline, and an acid sulfate soil flag (Queensland’s soil maps at the site) that asks the contractor for testing.",
+     "summary": "v2 is the Scope Builder since 4 Nov 2026 (/SoRT/ opens /SoRT/v2/; v1 kept at /SoRT/v1/): Flood-Net station lookup with corrections of its particulars for the Word tables, ACMA licences, and the radio path to base with fresh fade margins; the map beside the questions (each pane scrolling on its own) with survey marks and the bridges on it (BR1…, each with who manages it and who to call, tabled in Word), its key under the map in the picture; sessions shared with the whole forum by themselves through Flood-Net's server (no Share button; a forum passphrase, no accounts or tokens), an in-page question editor, a Help guide, the local TBM as a desktop task, and follow-ups handed to Flood-Net's teams as tasks, and on the Water Level table a corrosion category for the infrastructure options (OTE’s three AS 4312 groupings, with the standard’s own table shown beside them), suggested from the site’s distance to the sea on QSpatial’s coastline, and an acid sulfate soil flag (Queensland’s soil maps at the site) that asks the contractor for testing.",
      "now": [
       "v2 at real forums as the default; v1 kept at /SoRT/v1/ in case"
      ],
@@ -5633,6 +5649,22 @@
        "date": "2026-11-05"
       },
       "on_change": "If site-exposure.js changed how it reads the acid sulfate soil maps (its layers, ASS_ORDER or assLevel), bring v2/js/soil.js into step and run node v2/tests/e2e.cjs soil; then move this pin."
+     },
+     {
+      "id": "floodnet-road-owners",
+      "from": "flood-net",
+      "provider": "stations-map",
+      "into": "v2-app",
+      "what": "How Flood-Net's Road & bridge owners works out who manages a bridge — TMR's register of State-controlled bridges merged with Queensland Roads and Tracks' bridges, a bridge not on the register going with the road it carries (Roads and Tracks' road_owner and scr_indicator, in Flood-Net's owner classes), and who to call from QLDTraffic's road lookup — ported into v2/js/map.js for the bridges on the map (BR1…) and the Word bridges table.",
+      "how": "ported",
+      "watch": [
+       "map-road-owners.js",
+       "site-roads.js"
+      ],
+      "since": {
+       "date": "2026-11-06"
+      },
+      "on_change": "If map-road-owners.js changed its bridge sources, its owner classes (OWNER_CODE, classOf) or the road lookup (LOOKUP_URL, digestContacts, pickContact), bring v2/js/map.js's bridges into step and run node v2/tests/e2e.cjs map; then move this pin."
      }
     ]
    },
@@ -5641,12 +5673,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-06T00:29:47Z",
+    "pushed": "2026-11-06T00:46:19Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/SoRT"
    },
    "commits": [
+    {
+     "sha": "5c39cfa",
+     "date": "2026-11-06T00:46:11Z",
+     "msg": "v2 map: bridges are BR1…, Bureau benchmarks BoM-TBM-1…; only bridges on the map; key under the picture; who manages each bridge",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/5c39cfab9efc5709506dd078db367f27ce40e6b8"
+    },
     {
      "sha": "f2896ee",
      "date": "2026-11-06T00:29:11Z",
@@ -5712,12 +5750,6 @@
      "date": "2026-11-04T20:11:45Z",
      "msg": "Run summary: the same closing report as every other repository",
      "url": "https://github.com/cdomotor-g/SoRT/commit/b7f575b14d2c2253b53dfe0e9d9fd28545b6eebc"
-    },
-    {
-     "sha": "ac18bd5",
-     "date": "2026-11-04T07:08:15Z",
-     "msg": "v2 map: Flood-Net position unticked by default — hidden unless wanted",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/ac18bd5b1d51a61d2652990e07b86b3e0d746f60"
     }
    ],
    "issues": [],
@@ -5725,25 +5757,25 @@
    "release": null,
    "ci": [
     {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/42137174781",
-     "date": "2026-11-06T00:29:38Z",
-     "event": "push"
-    },
-    {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/42137173208",
-     "date": "2026-11-06T00:29:58Z",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/42139240547",
+     "date": "2026-11-06T00:47:16Z",
      "event": "dynamic"
+    },
+    {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/42139241749",
+     "date": "2026-11-06T00:46:42Z",
+     "event": "push"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-11-06T00:29:11Z"
+    "date": "2026-11-06T00:46:11Z"
    }
   },
   {
@@ -7072,7 +7104,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "1 newer commit upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "2 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
@@ -7164,7 +7196,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "100 newer commits upstream since 60c0498, none to watched files."
+    "note": "102 newer commits upstream since 60c0498, none to watched files."
    }
   },
   {
@@ -7480,7 +7512,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "588 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "590 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7591,7 +7623,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "588 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "590 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -8251,7 +8283,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "43 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "45 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8282,7 +8314,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "43 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "45 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8307,6 +8339,36 @@
      "date": "2026-11-05",
      "commit": "d98a1c47a8359bf253303bdcfe9f2a70853f8963",
      "commitDate": "2026-11-05T15:19:59Z"
+    },
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "2 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+   }
+  },
+  {
+   "id": "sort:floodnet-road-owners",
+   "from": "flood-net",
+   "provider": "stations-map",
+   "into": "v2-app",
+   "what": "How Flood-Net's Road & bridge owners works out who manages a bridge — TMR's register of State-controlled bridges merged with Queensland Roads and Tracks' bridges, a bridge not on the register going with the road it carries (Roads and Tracks' road_owner and scr_indicator, in Flood-Net's owner classes), and who to call from QLDTraffic's road lookup — ported into v2/js/map.js for the bridges on the map (BR1…) and the Word bridges table.",
+   "how": "ported",
+   "watch": [
+    "map-road-owners.js",
+    "site-roads.js"
+   ],
+   "since": {
+    "date": "2026-11-06"
+   },
+   "on_change": "If map-road-owners.js changed its bridge sources, its owner classes (OWNER_CODE, classOf) or the road lookup (LOOKUP_URL, digestContacts, pickContact), bring v2/js/map.js's bridges into step and run node v2/tests/e2e.cjs map; then move this pin.",
+   "entry": "floodnet-road-owners",
+   "to": "sort",
+   "drift": {
+    "state": "current",
+    "since": {
+     "date": "2026-11-06",
+     "commit": "0b8d5a7da1f154bb8992efdf519dd284cb91b20c",
+     "commitDate": "2026-11-06T02:10:38Z"
     },
     "behind": 0,
     "commits": [],
