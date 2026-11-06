@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-06T18:29:10.929Z",
- "hash": "d0bcb8ae19f899e1",
+ "generated": "2026-11-06T21:26:39.639Z",
+ "hash": "f120478fbe8b4785",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1078,12 +1078,36 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-06T15:24:17Z",
+    "pushed": "2026-11-06T20:58:38Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "2006197",
+     "date": "2026-11-06T20:58:35Z",
+     "msg": "Roadmap: #234 points at the station editor's Radio system list",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/200619742905261dbf95552a5f85568699665146"
+    },
+    {
+     "sha": "ec254d2",
+     "date": "2026-11-06T20:58:00Z",
+     "msg": "Field Station 25W in the app: the station editor picks a radio system by name",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/ec254d263887c2debd8bb33ba1b5f9de9ca19714"
+    },
+    {
+     "sha": "bfaa4d7",
+     "date": "2026-11-06T20:57:02Z",
+     "msg": "Field Station 25W: a third radio system in the database and the station file",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/bfaa4d7fb20bd3da72cdb7462fa4f97b14faca0a"
+    },
+    {
+     "sha": "be441a0",
+     "date": "2026-11-06T20:56:53Z",
+     "msg": "Best repeater: 📋 Copy for a report",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/be441a0cd7b2b841b99d6956434ac5d80475042e"
+    },
     {
      "sha": "734f685",
      "date": "2026-11-06T15:24:14Z",
@@ -1131,30 +1155,6 @@
      "date": "2026-11-05T07:30:59Z",
      "msg": "Magnifier: the pins stay in the glass, small, their names faint; a bigger glass",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/ff785e1edccaf405ada59464dd20eb846166c2d0"
-    },
-    {
-     "sha": "54ec8d4",
-     "date": "2026-11-05T07:19:46Z",
-     "msg": "Copy compact copies one picture, so it pastes the same into Teams",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/54ec8d4421520d003164060bff5720db26e67cd7"
-    },
-    {
-     "sha": "40634a0",
-     "date": "2026-11-05T07:15:33Z",
-     "msg": "Stations map: a magnifier that shows the ground under the pins",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/40634a015de6fb186e922822280c7a17a9f518a2"
-    },
-    {
-     "sha": "e7f11c6",
-     "date": "2026-11-05T07:08:43Z",
-     "msg": "Best repeater: a red ring twice as thick, and a shaded band per result",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/e7f11c6c3b8c6afe456cda91bb8867863e7110bc"
-    },
-    {
-     "sha": "6b8ccb9",
-     "date": "2026-11-05T07:02:18Z",
-     "msg": "Rangeland follows crops; Relocate station checks the land cover under its trees",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/6b8ccb93893c9ec6652cae69101b3ae3566c08ec"
     }
    ],
    "issues": [
@@ -1630,7 +1630,7 @@
      "computer": false,
      "title": "Record the real masts and antennas of the 15 hubs the attenuator tests disagree with",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/234",
-     "updated": "2026-10-09T05:15:59Z",
+     "updated": "2026-11-06T20:58:55Z",
      "created": "2026-10-09T05:15:59Z",
      "comments": 0,
      "labels": [],
@@ -1989,7 +1989,7 @@
      "computer": false,
      "title": "Roadmap — resource allocation & sequencing for all issues",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/113",
-     "updated": "2026-11-05T05:01:44Z",
+     "updated": "2026-11-06T20:58:51Z",
      "created": "2026-08-13T00:13:50Z",
      "comments": 1,
      "labels": [],
@@ -2007,62 +2007,70 @@
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42270784721",
-     "date": "2026-11-06T18:26:59Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42296397373",
+     "date": "2026-11-06T21:24:04Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42269811496",
-     "date": "2026-11-06T18:20:38Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42295457450",
+     "date": "2026-11-06T21:17:23Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42269727229",
-     "date": "2026-11-06T18:20:58Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42295159118",
+     "date": "2026-11-06T21:16:01Z",
      "event": "schedule"
     },
     {
-     "name": "Fade margin re-sweep",
+     "name": "Roadmap sync",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42252446585",
-     "date": "2026-11-06T16:27:35Z",
-     "event": "schedule"
-    },
-    {
-     "name": "Field photos into R2",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42251413504",
-     "date": "2026-11-06T16:20:31Z",
-     "event": "schedule"
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42292839501",
+     "date": "2026-11-06T20:58:56Z",
+     "event": "push"
     },
     {
      "name": "CodeQL",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42242731833",
-     "date": "2026-11-06T15:29:05Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42292761983",
+     "date": "2026-11-06T21:02:17Z",
      "event": "push"
     },
     {
      "name": "Web smoke test",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42292761971",
+     "date": "2026-11-06T20:58:34Z",
+     "event": "push"
+    },
+    {
+     "name": "db-migrate",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42242731871",
-     "date": "2026-11-06T16:34:08Z",
-     "event": "push"
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42292637811",
+     "date": "2026-11-06T20:57:39Z",
+     "event": "workflow_dispatch"
+    },
+    {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42282133223",
+     "date": "2026-11-06T19:43:58Z",
+     "event": "schedule"
     }
    ],
-   "version": "20261106c",
+   "version": "20261106e",
    "lastCommit": {
-    "date": "2026-11-06T15:24:14Z"
+    "date": "2026-11-06T20:58:35Z"
    }
   },
   {
@@ -2880,8 +2888,8 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/42105810879",
-     "date": "2026-11-05T20:42:31Z",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/42290486827",
+     "date": "2026-11-06T20:42:01Z",
      "event": "schedule"
     },
     {
@@ -5773,20 +5781,20 @@
    "release": null,
    "ci": [
     {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/42295205344",
+     "date": "2026-11-06T21:15:47Z",
+     "event": "schedule"
+    },
+    {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/SoRT/actions/runs/42139240547",
      "date": "2026-11-06T00:47:16Z",
      "event": "dynamic"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/42139241749",
-     "date": "2026-11-06T00:46:42Z",
-     "event": "push"
     }
    ],
    "version": null,
@@ -7212,7 +7220,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "104 newer commits upstream since 60c0498, none to watched files."
+    "note": "108 newer commits upstream since 60c0498, none to watched files."
    }
   },
   {
@@ -7444,8 +7452,14 @@
      "commit": "66608567fb48e86c9b399ca51a391ae0cd41ffdd",
      "commitDate": "2026-09-30T04:58:36Z"
     },
-    "behind": 4,
+    "behind": 5,
     "commits": [
+     {
+      "sha": "bfaa4d7",
+      "date": "2026-11-06T20:57:02Z",
+      "msg": "Field Station 25W: a third radio system in the database and the station file",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/bfaa4d7fb20bd3da72cdb7462fa4f97b14faca0a"
+     },
      {
       "sha": "decdc36",
       "date": "2026-11-05T05:51:43Z",
@@ -7474,7 +7488,7 @@
     "files": [
      "stations.json"
     ],
-    "note": "4 upstream changes to watched files since it was last reviewed (2026-09-30)."
+    "note": "5 upstream changes to watched files since it was last reviewed (2026-09-30)."
    }
   },
   {
@@ -7528,7 +7542,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "592 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "597 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7580,8 +7594,14 @@
      "commit": "6ef4965",
      "commitDate": "2026-10-19T23:36:05Z"
     },
-    "behind": 4,
+    "behind": 5,
     "commits": [
+     {
+      "sha": "bfaa4d7",
+      "date": "2026-11-06T20:57:02Z",
+      "msg": "Field Station 25W: a third radio system in the database and the station file",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/bfaa4d7fb20bd3da72cdb7462fa4f97b14faca0a"
+     },
      {
       "sha": "decdc36",
       "date": "2026-11-05T05:51:43Z",
@@ -7610,7 +7630,7 @@
     "files": [
      "stations.json"
     ],
-    "note": "4 upstream changes to watched files since 6ef4965."
+    "note": "5 upstream changes to watched files since 6ef4965."
    }
   },
   {
@@ -7639,7 +7659,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "592 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "597 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -8299,7 +8319,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "47 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "52 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8330,7 +8350,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "47 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "52 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8359,7 +8379,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "4 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "9 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
@@ -8383,8 +8403,8 @@
     "state": "current",
     "since": {
      "date": "2026-11-06",
-     "commit": "734f68569933e373bf5350b33bcb3bfb9220ba0f",
-     "commitDate": "2026-11-06T15:24:14Z"
+     "commit": "d167399ed8f6e27860759a8493ac389044bdaf6b",
+     "commitDate": "2026-11-06T21:25:58Z"
     },
     "behind": 0,
     "commits": [],
