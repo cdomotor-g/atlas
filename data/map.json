@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-07T09:26:34.305Z",
- "hash": "6751a570e4728eca",
+ "generated": "2026-11-07T12:29:32.294Z",
+ "hash": "a59e15cd30a8a870",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -94,9 +94,10 @@
     },
     "status": {
      "phase": "live",
-     "updated": "2026-11-04",
+     "updated": "2026-11-07",
      "summary": "Live and in daily use (database schema 95): this week added teams and the tasks handed to them, with the SoRT scope builder's hand-off, a driving mode that follows a station's route in 3-D, the agent API's changelog and email list, ACMA licences and radio paths in the API, the Repeaters tab and cuts to database I/O, while account email, compute size and the ACMA download link wait on the owner.",
      "now": [
+      "Views on the Stations map (map-views.js): one press sets the map for a job — Overview and Site visit for everyone; Radio paths, Weak links, Backbone and Live traffic for instrument technicians; Rivers & catchments and Rainfall for flood forecasters; Property & easements and Land & tenure for property services — with the radio paths drawn as every path, best path only, bundled into trunks or repeater areas, as lines, flowing dashes or tails with a spotlight, auto-contrast and a Balance slider, saved views of your own, and easements and land tenure on the property boundaries",
       "The station card in groups (station-card-view.js): Overview, then a tab each for Flood, Radio, Site and Kit (Tabs, the first), or a summary with each group a page of its own (List, chosen beside the box and kept per device), Field data, Zoom, Directions and All actions along the foot, and a search box that shows only the groups and rows holding a word, marked",
       "Hops to base (map-hops.js): Show hops to base on a station card lights the station's routes to the base stations on the Stations map, each hop heard (the public relay week; for editors, the receivers' copies of the last 12 hours) or assumed from the pass ranges and backbone paths",
       "The Bureau's benchmarks (0101): HDB's Benchmark Details report, 777 benchmarks at 519 stations, read by tools/ingest/benchmarks.py and kept in the private repository, loaded on 4 Nov 2026: on a station's card for editors and offered as the primary benchmark in the Level Survey's Datum step, with what each reads on the gauge",
@@ -1078,12 +1079,66 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-06T23:04:50Z",
+    "pushed": "2026-11-07T11:02:27Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "1b98da3",
+     "date": "2026-11-07T11:02:25Z",
+     "msg": "Version stamp 20261107e",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/1b98da3781845bb70dc1351e96486cb5ff3d50d9"
+    },
+    {
+     "sha": "4e0ead1",
+     "date": "2026-11-07T11:02:12Z",
+     "msg": "Views as role cards with quick settings; Flow is the default; the backbone glows amber in Flow",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/4e0ead132e8aa6804ed6e261ec3080527521d70b"
+    },
+    {
+     "sha": "3c26199",
+     "date": "2026-11-07T10:29:15Z",
+     "msg": "Busy wheel stays round on a phone: drawn in a square of its own",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/3c261998b38933d10224be460910371aaf8c134d"
+    },
+    {
+     "sha": "83beb5a",
+     "date": "2026-11-07T10:07:29Z",
+     "msg": "Version stamp 20261107c",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/83beb5a73bfdbc44a56261d996d5e61246010e77"
+    },
+    {
+     "sha": "69d1952",
+     "date": "2026-11-07T10:07:24Z",
+     "msg": "Views: the radio paths stand out — lit paths strong, the backbone its own strength, roads muted",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/69d195292df0a75779969210e75d3c78a4961b7c"
+    },
+    {
+     "sha": "0895c02",
+     "date": "2026-11-07T09:50:02Z",
+     "msg": "Version stamp 20261107b",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/0895c02e737836f80eed4e7af1626bf5a34aa5f0"
+    },
+    {
+     "sha": "2e09177",
+     "date": "2026-11-07T09:50:02Z",
+     "msg": "Views: its five map overlays hold one pixel each until their drawing is chosen",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/2e09177741d5bf6d13a3424cf3e22b401f65f603"
+    },
+    {
+     "sha": "6f02a53",
+     "date": "2026-11-07T09:39:41Z",
+     "msg": "Version stamp 20261107a: Views on the Stations map",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/6f02a53f24053a0903eb31574fbc41cccad01161"
+    },
+    {
+     "sha": "4dee12a",
+     "date": "2026-11-07T09:39:34Z",
+     "msg": "Stations map: Views — one press sets the map for a job, and four new ways to draw the radio paths",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/4dee12a9e30f58a0a2149200da21ae9edcd0fdb7"
+    },
     {
      "sha": "d38649d",
      "date": "2026-11-06T23:04:47Z",
@@ -1101,60 +1156,6 @@
      "date": "2026-11-06T21:25:58Z",
      "msg": "Radio link: the path tools laid out like Radio Mobile's window; one report copy; Find a place waits for Enter",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/d167399ed8f6e27860759a8493ac389044bdaf6b"
-    },
-    {
-     "sha": "2006197",
-     "date": "2026-11-06T20:58:35Z",
-     "msg": "Roadmap: #234 points at the station editor's Radio system list",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/200619742905261dbf95552a5f85568699665146"
-    },
-    {
-     "sha": "ec254d2",
-     "date": "2026-11-06T20:58:00Z",
-     "msg": "Field Station 25W in the app: the station editor picks a radio system by name",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/ec254d263887c2debd8bb33ba1b5f9de9ca19714"
-    },
-    {
-     "sha": "bfaa4d7",
-     "date": "2026-11-06T20:57:02Z",
-     "msg": "Field Station 25W: a third radio system in the database and the station file",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/bfaa4d7fb20bd3da72cdb7462fa4f97b14faca0a"
-    },
-    {
-     "sha": "be441a0",
-     "date": "2026-11-06T20:56:53Z",
-     "msg": "Best repeater: 📋 Copy for a report",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/be441a0cd7b2b841b99d6956434ac5d80475042e"
-    },
-    {
-     "sha": "734f685",
-     "date": "2026-11-06T15:24:14Z",
-     "msg": "CI doctor: Mobile coverage section, Latency — the card folds long notes (4bc9058) and the browser kept the terrain tiles; checks read the fo",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/734f68569933e373bf5350b33bcb3bfb9220ba0f"
-    },
-    {
-     "sha": "e574ac6",
-     "date": "2026-11-06T10:29:17Z",
-     "msg": "Find a place: tap the map to drop pins; ↺ and 🧹 take the pins off again",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/e574ac6427f1bf3e7b66a24f4d4f2371216698ba"
-    },
-    {
-     "sha": "0b8d5a7",
-     "date": "2026-11-06T02:10:38Z",
-     "msg": "Find a place keeps numbered pins; 3-D credits under the map; no rings in the sky",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/0b8d5a7da1f154bb8992efdf519dd284cb91b20c"
-    },
-    {
-     "sha": "4bc9058",
-     "date": "2026-11-06T01:01:57Z",
-     "msg": "What is here reads like a station card: the same rows, rules and shaded headings",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/4bc9058ff4594b278e4b06a631dbe29edb6a456e"
-    },
-    {
-     "sha": "d98a1c4",
-     "date": "2026-11-05T15:19:59Z",
-     "msg": "CI doctor: Station Health, Shell, Frequencies, Group plots — checks tied to the register's order and a retired duplicate; one reduced-motion",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/d98a1c47a8359bf253303bdcfe9f2a70853f8963"
     }
    ],
    "issues": [
@@ -2007,30 +2008,46 @@
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42359547886",
-     "date": "2026-11-07T09:23:44Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42372515642",
+     "date": "2026-11-07T12:26:54Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42359043574",
-     "date": "2026-11-07T09:16:42Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42372046040",
+     "date": "2026-11-07T12:20:38Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42358931000",
-     "date": "2026-11-07T09:15:50Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42372005629",
+     "date": "2026-11-07T12:20:51Z",
      "event": "schedule"
+    },
+    {
+     "name": "CodeQL",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42366469361",
+     "date": "2026-11-07T11:07:16Z",
+     "event": "push"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "completed",
+     "conclusion": "failure",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42366469353",
+     "date": "2026-11-07T12:03:26Z",
+     "event": "push"
     }
    ],
-   "version": "20261106h",
+   "version": "20261107e",
    "lastCommit": {
-    "date": "2026-11-06T23:04:47Z"
+    "date": "2026-11-07T11:02:25Z"
    }
   },
   {
@@ -2264,12 +2281,12 @@
     },
     "status": {
      "phase": "beta",
-     "updated": "2026-11-03",
-     "summary": "Version 0.19.0 adds the Light decoder (half of lean's time a burst, with Compare light to prove it) on top of 0.18's filtering only around bursts, now awake a third less: with both a Pi 3 carries a whole site and a one-core Verdin AM62 Solo one or two channels. Both are off by default until their checks at 18 Bateson. It runs a live base station on two RTL-SDR sticks; the bench test with a V4 stick, a Quansheng radio and an ERT-A2 has not been done.",
+     "updated": "2026-11-07",
+     "summary": "Version 0.19.1 shows the Between bursts check's counts, which 0.18–0.19.0 kept but never showed. The check at 18 Bateson found filtering only around bursts misses some of the weakest bursts (on 151.500, ones just over the squelch), so it stays off by default and a Pi 4 keeps Filter every sample; 0.19's Light decoder is still to be checked. It runs a live base station on two RTL-SDR sticks; the bench test with a V4 stick, a Quansheng radio and an ERT-A2 has not been done.",
      "now": [
-      "v0.19.0: Light decoder and Compare light; filtering around bursts a third less awake; 10 MB less a channel",
-      "Next CPU step: Check and Compare light at 18 Bateson, then both the defaults (#3; MegaNet #259)",
-      "v0.18.0: Between bursts — filter only around bursts, or Check both"
+      "v0.19.1: the Between bursts check's counts on the card and in Flood-Net",
+      "Next CPU step: wake the around-bursts watch for the weakest bursts and check again; Check to compare ALERT2 too; Compare light at 18 Bateson (#3; MegaNet #259)",
+      "v0.19.0: Light decoder and Compare light; filtering around bursts a third less awake; 10 MB less a channel"
      ],
      "next": [
       "Close #1: the ERT-A2 field fix shipped in 0.14.1",
@@ -2718,12 +2735,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-05T03:24:05Z",
+    "pushed": "2026-11-07T10:21:26Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/RPi_ALERT"
    },
    "commits": [
+    {
+     "sha": "4f955b8",
+     "date": "2026-11-07T10:04:18Z",
+     "msg": "0.19.1: the Between bursts check's counts reach the card and Flood-Net",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/4f955b8a0c8bf72f397660c8efac330720bc9cd6"
+    },
     {
      "sha": "6932642",
      "date": "2026-11-05T03:24:04Z",
@@ -2789,12 +2812,6 @@
      "date": "2026-11-01T19:36:16Z",
      "msg": "Docs: one burst heard by two receivers is one reading (MegaNet 0096, #232)",
      "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/82e126fedf55faa39fa89efa48563a318afd74bf"
-    },
-    {
-     "sha": "1d32c6d",
-     "date": "2026-11-01T03:07:48Z",
-     "msg": "Tests: two ALERT Binary bursts off the air, recorded at 18 Bateson",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/1d32c6d519c476f2925222faebcb9aee4745e481"
     }
    ],
    "issues": [
@@ -2839,47 +2856,47 @@
    ],
    "issueCount": 2,
    "release": {
-    "tag": "v0.19.0",
-    "date": "2026-11-03T11:40:09Z",
-    "url": "https://github.com/cdomotor-g/RPi_ALERT/releases/tag/v0.19.0"
+    "tag": "v0.19.1",
+    "date": "2026-11-07T10:21:27Z",
+    "url": "https://github.com/cdomotor-g/RPi_ALERT/releases/tag/v0.19.1"
    },
    "ci": [
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/42290486827",
-     "date": "2026-11-06T20:42:01Z",
-     "event": "schedule"
-    },
-    {
-     "name": "test",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41961360177",
-     "date": "2026-11-05T03:26:26Z",
-     "event": "push"
-    },
     {
      "name": "pages",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41629389971",
-     "date": "2026-11-03T11:40:46Z",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/42363617439",
+     "date": "2026-11-07T10:21:52Z",
      "event": "workflow_run"
     },
     {
      "name": "build-image",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/41627288181",
-     "date": "2026-11-03T11:40:13Z",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/42362393919",
+     "date": "2026-11-07T10:21:30Z",
      "event": "workflow_dispatch"
+    },
+    {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/42362380632",
+     "date": "2026-11-07T10:04:48Z",
+     "event": "push"
+    },
+    {
+     "name": "test",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/42362380415",
+     "date": "2026-11-07T10:06:36Z",
+     "event": "push"
     }
    ],
-   "version": "0.19.0",
+   "version": "0.19.1",
    "lastCommit": {
-    "date": "2026-11-05T03:24:04Z"
+    "date": "2026-11-07T10:04:18Z"
    }
   },
   {
@@ -4810,8 +4827,8 @@
     },
     "status": {
      "phase": "beta",
-     "updated": "2026-11-03",
-     "summary": "The builder and the Mallow trial rate every computer on RPi ALERT 0.17's lean decoder and on 0.19's Light decoder filtering only around bursts (built, being checked at the first base station): Flood-Net's four channels on a busy day take about an eighth of the Verdin AM62 Quad (00761200) and a quarter of the Dual (00741201); a Pi 3B+ is now one of its computers, and the one-core Solo a site of one or two channels. Exact Toradex parts, element14 Australia prices with Toradex direct beside them.",
+     "updated": "2026-11-07",
+     "summary": "The builder and the Mallow trial rate every computer on RPi ALERT 0.17's lean decoder and on 0.19's Light decoder filtering only around bursts (built; its first live check missed some of the weakest bursts, so it stays off by default): Flood-Net's four channels on a busy day take about an eighth of the Verdin AM62 Quad (00761200) and a quarter of the Dual (00741201); a Pi 3B+ is now one of its computers, and the one-core Solo a site of one or two channels. Exact Toradex parts, element14 Australia prices with Toradex direct beside them.",
      "next": [
       "Feed the trial's AM62 numbers back into the builder's CPU model",
       "Check the builder's estimated prices and lead times (marked est.) with suppliers: antennas, coax, arrestors, the mating Bulgin lead",
@@ -4819,7 +4836,7 @@
       "Re-check the FW-LAB entry: Flood-Net's runbook says to retire and archive it"
      ],
      "later": [
-      "Recalibrate the builder's CPU model once RPi ALERT runs on a CM5 or a Verdin AM62, and once 0.18's around-bursts check has run at the first base station",
+      "Recalibrate the builder's CPU model once RPi ALERT runs on a CM5 or a Verdin AM62, and once filtering around bursts passes a check at the first base station",
       "Write the open-ALERT ALERT1 encoder firmware (catalogued as planned)",
       "Write the open-ALERT store-and-forward repeater on RPi ALERT's receive side",
       "Re-check quote-only and estimated prices with suppliers"
@@ -5138,7 +5155,7 @@
        "os/install.sh"
       ],
       "since": {
-       "date": "2026-11-03"
+       "date": "2026-11-07"
       },
       "on_change": "Re-check model.windows, chCore240, burstCoreS and kioskCore in site/data/builder.js and the steps() text in site/js/builder.js; run npm test."
      }
@@ -5163,12 +5180,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-05T03:23:54Z",
+    "pushed": "2026-11-07T10:04:29Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/open-ALERT"
    },
    "commits": [
+    {
+     "sha": "3f667da",
+     "date": "2026-11-07T10:04:11Z",
+     "msg": "The builder: RPi ALERT 0.19.1, and what the around-bursts check found",
+     "url": "https://github.com/cdomotor-g/open-ALERT/commit/3f667dac2a62a1e8f5f717f7b25a90d22b44ba0b"
+    },
     {
      "sha": "3e467fc",
      "date": "2026-11-05T03:23:53Z",
@@ -5234,12 +5257,6 @@
      "date": "2026-11-01T00:43:19Z",
      "msg": "One menu on every page, and a Mallow trial page",
      "url": "https://github.com/cdomotor-g/open-ALERT/commit/92fd007deef33320c966a55eea2159b52388631b"
-    },
-    {
-     "sha": "d7041c5",
-     "date": "2026-11-01T00:04:39Z",
-     "msg": "Base station builder: how a receiving base fits together, what it costs, how to build it",
-     "url": "https://github.com/cdomotor-g/open-ALERT/commit/d7041c59a8ffe97fff2c4b55fc9a868f3fbb78e2"
     }
    ],
    "issues": [
@@ -5265,41 +5282,41 @@
    "release": null,
    "ci": [
     {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42297418198",
-     "date": "2026-11-06T21:31:49Z",
-     "event": "schedule"
-    },
-    {
      "name": "test",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41961340025",
-     "date": "2026-11-05T03:24:13Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42362383219",
+     "date": "2026-11-07T10:04:46Z",
+     "event": "push"
+    },
+    {
+     "name": "pages",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42362383267",
+     "date": "2026-11-07T10:04:58Z",
      "event": "push"
     },
     {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41961338727",
-     "date": "2026-11-05T03:24:23Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42362382436",
+     "date": "2026-11-07T10:04:55Z",
      "event": "dynamic"
     },
     {
-     "name": "pages",
+     "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/41627457717",
-     "date": "2026-11-03T11:26:23Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42362383424",
+     "date": "2026-11-07T10:04:50Z",
      "event": "push"
     }
    ],
    "version": "0.1.0",
    "lastCommit": {
-    "date": "2026-11-05T03:23:53Z"
+    "date": "2026-11-07T10:04:11Z"
    }
   },
   {
@@ -6869,7 +6886,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "14 newer commits upstream since it was last reviewed (2026-10-26), none to watched files."
+    "note": "15 newer commits upstream since it was last reviewed (2026-10-26), none to watched files."
    }
   },
   {
@@ -7180,7 +7197,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "111 newer commits upstream since 60c0498, none to watched files."
+    "note": "120 newer commits upstream since 60c0498, none to watched files."
    }
   },
   {
@@ -7502,7 +7519,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "599 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "608 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7619,7 +7636,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "599 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "608 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7867,14 +7884,14 @@
    "drift": {
     "state": "current",
     "since": {
-     "version": "0.19.0",
-     "latest": "0.19.0",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/releases/tag/v0.19.0"
+     "version": "0.19.1",
+     "latest": "0.19.1",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/releases/tag/v0.19.1"
     },
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "Says 0.19.0, the latest release."
+    "note": "Says 0.19.1, the latest release."
    }
   },
   {
@@ -8160,7 +8177,7 @@
     "os/install.sh"
    ],
    "since": {
-    "date": "2026-11-03"
+    "date": "2026-11-07"
    },
    "on_change": "Re-check model.windows, chCore240, burstCoreS and kioskCore in site/data/builder.js and the steps() text in site/js/builder.js; run npm test.",
    "entry": "rpi-alert-decoding-model",
@@ -8168,14 +8185,14 @@
    "drift": {
     "state": "current",
     "since": {
-     "date": "2026-11-03",
-     "commit": "5663e5ed06c11c29568e3e484fafb7576c4bc590",
-     "commitDate": "2026-11-03T11:24:34Z"
+     "date": "2026-11-07",
+     "commit": "4f955b8a0c8bf72f397660c8efac330720bc9cd6",
+     "commitDate": "2026-11-07T10:04:18Z"
     },
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "3 newer commits upstream since it was last reviewed (2026-11-03), none to watched files."
+    "note": "Up to date with upstream."
    }
   },
   {
@@ -8279,7 +8296,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "54 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "63 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8310,7 +8327,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "54 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "63 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8339,7 +8356,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "11 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "20 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
@@ -8369,7 +8386,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "Up to date with upstream."
+    "note": "9 newer commits upstream since it was last reviewed (2026-11-06), none to watched files."
    }
   },
   {
