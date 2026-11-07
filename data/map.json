@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-07T12:29:32.294Z",
- "hash": "a59e15cd30a8a870",
+ "generated": "2026-11-07T15:27:11.110Z",
+ "hash": "4ae10b6a38638d28",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1079,12 +1079,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-07T11:02:27Z",
+    "pushed": "2026-11-07T15:11:15Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "8f888eb",
+     "date": "2026-11-07T15:11:13Z",
+     "msg": "CI doctor: Shell — the busy wheel's button drops its outline for a ring on the wheel (3c26199, on purpose); allowlisted; Station health time",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/8f888eb0d702b4472a8fe2a25f47babdb27f00b4"
+    },
     {
      "sha": "1b98da3",
      "date": "2026-11-07T11:02:25Z",
@@ -1150,15 +1156,26 @@
      "date": "2026-11-06T22:22:18Z",
      "msg": "Radio link: press a TX or RX figure to type your own",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/bb2f90e373139d7765e5831036d4b904cf5d198b"
-    },
-    {
-     "sha": "d167399",
-     "date": "2026-11-06T21:25:58Z",
-     "msg": "Radio link: the path tools laid out like Radio Mobile's window; one report copy; Find a place waits for Enter",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/d167399ed8f6e27860759a8493ac389044bdaf6b"
     }
    ],
    "issues": [
+    {
+     "n": 275,
+     "raw": "[Standalone] [Opus5/Med] CI doctor: Station health run times out reading the readings (statement timeout)",
+     "structure": "standalone",
+     "parent": null,
+     "model": "Opus5",
+     "effort": "Med",
+     "human": false,
+     "computer": false,
+     "title": "CI doctor: Station health run times out reading the readings (statement timeout)",
+     "url": "https://github.com/cdomotor-g/MegaNet/issues/275",
+     "updated": "2026-11-07T15:11:07Z",
+     "created": "2026-11-07T15:11:07Z",
+     "comments": 0,
+     "labels": [],
+     "mentions": []
+    },
     {
      "n": 274,
      "raw": "[Standalone] [Human] ElevenLabs credits run short before 25 Nov: hold the next video, or upgrade for a month",
@@ -1990,7 +2007,7 @@
      "computer": false,
      "title": "Roadmap — resource allocation & sequencing for all issues",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/113",
-     "updated": "2026-11-06T20:58:51Z",
+     "updated": "2026-11-07T15:11:29Z",
      "created": "2026-08-13T00:13:50Z",
      "comments": 1,
      "labels": [],
@@ -2001,53 +2018,69 @@
      "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1118k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
     }
    ],
-   "issueCount": 47,
+   "issueCount": 48,
    "release": null,
    "ci": [
     {
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42372515642",
-     "date": "2026-11-07T12:26:54Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42386193933",
+     "date": "2026-11-07T15:24:07Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42372046040",
-     "date": "2026-11-07T12:20:38Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42385627782",
+     "date": "2026-11-07T15:17:18Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42372005629",
-     "date": "2026-11-07T12:20:51Z",
+     "conclusion": "failure",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42385474323",
+     "date": "2026-11-07T15:15:34Z",
      "event": "schedule"
+    },
+    {
+     "name": "Roadmap sync",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42385154770",
+     "date": "2026-11-07T15:11:34Z",
+     "event": "push"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42385154635",
+     "date": "2026-11-07T15:11:22Z",
+     "event": "push"
     },
     {
      "name": "CodeQL",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42366469361",
-     "date": "2026-11-07T11:07:16Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42385154664",
+     "date": "2026-11-07T15:15:18Z",
      "event": "push"
     },
     {
-     "name": "Web smoke test",
+     "name": "Data archive into R2",
      "status": "completed",
-     "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42366469353",
-     "date": "2026-11-07T12:03:26Z",
-     "event": "push"
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42382525656",
+     "date": "2026-11-07T14:40:31Z",
+     "event": "schedule"
     }
    ],
    "version": "20261107e",
    "lastCommit": {
-    "date": "2026-11-07T11:02:25Z"
+    "date": "2026-11-07T15:11:13Z"
    }
   },
   {
@@ -7197,7 +7230,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "120 newer commits upstream since 60c0498, none to watched files."
+    "note": "121 newer commits upstream since 60c0498, none to watched files."
    }
   },
   {
@@ -7519,7 +7552,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "608 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "609 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7636,7 +7669,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "608 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "609 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -8296,7 +8329,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "63 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "64 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8327,7 +8360,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "63 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "64 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8356,7 +8389,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "20 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "21 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
@@ -8386,7 +8419,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "9 newer commits upstream since it was last reviewed (2026-11-06), none to watched files."
+    "note": "10 newer commits upstream since it was last reviewed (2026-11-06), none to watched files."
    }
   },
   {
