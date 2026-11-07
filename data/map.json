@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-07T00:42:31.063Z",
- "hash": "5f16904d6d428b98",
+ "generated": "2026-11-07T03:27:08.474Z",
+ "hash": "aedcac41299e0e9d",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -2004,44 +2004,28 @@
    "release": null,
    "ci": [
     {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42333891246",
+     "date": "2026-11-07T03:24:54Z",
+     "event": "schedule"
+    },
+    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42319122847",
-     "date": "2026-11-07T00:35:20Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42333305903",
+     "date": "2026-11-07T03:17:20Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42319030601",
-     "date": "2026-11-07T00:35:10Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42333280464",
+     "date": "2026-11-07T03:17:52Z",
      "event": "schedule"
-    },
-    {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42318807459",
-     "date": "2026-11-07T00:32:13Z",
-     "event": "schedule"
-    },
-    {
-     "name": "CodeQL",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42309390370",
-     "date": "2026-11-06T23:10:27Z",
-     "event": "push"
-    },
-    {
-     "name": "Web smoke test",
-     "status": "completed",
-     "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42309390379",
-     "date": "2026-11-07T00:03:56Z",
-     "event": "push"
     }
    ],
    "version": "20261106h",
