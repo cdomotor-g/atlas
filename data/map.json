@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-07T15:27:11.110Z",
- "hash": "4ae10b6a38638d28",
+ "generated": "2026-11-07T18:26:23.977Z",
+ "hash": "c694833543059143",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -2025,56 +2025,40 @@
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42386193933",
-     "date": "2026-11-07T15:24:07Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42401111624",
+     "date": "2026-11-07T18:24:17Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42385627782",
-     "date": "2026-11-07T15:17:18Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42400490620",
+     "date": "2026-11-07T18:16:57Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
-     "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42385474323",
-     "date": "2026-11-07T15:15:34Z",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42400462693",
+     "date": "2026-11-07T18:17:34Z",
      "event": "schedule"
     },
     {
-     "name": "Roadmap sync",
+     "name": "Fade margin re-sweep",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42385154770",
-     "date": "2026-11-07T15:11:34Z",
-     "event": "push"
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42391308765",
+     "date": "2026-11-07T16:27:18Z",
+     "event": "schedule"
     },
     {
-     "name": "Web smoke test",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42385154635",
-     "date": "2026-11-07T15:11:22Z",
-     "event": "push"
-    },
-    {
-     "name": "CodeQL",
+     "name": "Field photos into R2",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42385154664",
-     "date": "2026-11-07T15:15:18Z",
-     "event": "push"
-    },
-    {
-     "name": "Data archive into R2",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42382525656",
-     "date": "2026-11-07T14:40:31Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42390695453",
+     "date": "2026-11-07T16:19:29Z",
      "event": "schedule"
     }
    ],
@@ -4844,7 +4828,7 @@
     "repo": "cdomotor-g/open-ALERT",
     "name": "open-ALERT",
     "tagline": "A configurator for ALERT and ALERT2 flood-warning sites: say what a site must do, see the hardware that fits, its costs and consequences.",
-    "about": "For anyone planning ALERT or ALERT2 field stations, repeaters or base stations. Each site goes from needs to requirements to hardware picked from a 251-part catalogue (open and closed, Raspberry Pi to industrial), then to a bill of materials, a power budget with battery and panel sized, labour and running costs, and the consequences of the choices. The Network tab adds sites up and checks that what field stations send, repeaters relay and bases receive actually meet. A static page with no server: state lives in the browser and in share links. The base station builder (build.html) goes deeper on a receiving base running RPi ALERT: how it fits together physically and in the code, which computer keeps up with how many channels, the SDR mounting, a bill with price ranges, lead times and suppliers, and the build steps.",
+    "about": "For anyone planning ALERT or ALERT2 field stations, repeaters or base stations. Each site goes from needs to requirements to hardware picked from a 252-part catalogue (open and closed, Raspberry Pi to industrial), then to a bill of materials, a power budget with battery and panel sized, labour and running costs, and the consequences of the choices. The Network tab adds sites up and checks that what field stations send, repeaters relay and bases receive actually meet. A static page with no server: state lives in the browser and in share links. The base station builder (build.html) goes deeper on a receiving base running RPi ALERT: how it fits together physically and in the code, which computer keeps up with how many channels, the SDR mounting, a bill with price ranges, lead times and suppliers, and the build steps.",
     "kind": "static web app (configurator)",
     "logo": "site/icon.svg",
     "site": "https://cdomotor-g.github.io/open-ALERT/",
@@ -4861,12 +4845,15 @@
     "status": {
      "phase": "beta",
      "updated": "2026-11-07",
-     "summary": "The builder and the Mallow trial rate every computer on RPi ALERT 0.17's lean decoder and on 0.19's Light decoder filtering only around bursts (built; its first live check missed some of the weakest bursts, so it stays off by default): Flood-Net's four channels on a busy day take about an eighth of the Verdin AM62 Quad (00761200) and a quarter of the Dual (00741201); a Pi 3B+ is now one of its computers, and the one-core Solo a site of one or two channels. Exact Toradex parts, element14 Australia prices with Toradex direct beside them.",
+     "summary": "Prices re-checked in November 2026: each part is what one costs from an Australian shop with it in stock (else the cheapest way to get one, and when), and every bill — configurator, builder, trial — adds each shop's delivery once and clearance on an overseas order over A$1,000. The Pi 5 4 GB is A$249 in stock (A$178 was a back-order price); the RFI COL54 collinear is A$3,218 at Techwave, not the A$650 guessed; the RTL-SDR Blog V4 is end of life, so the V3 is the builder's stick. The builder and the Mallow trial rate every computer on RPi ALERT 0.17 and 0.19, with the Luna SL1680 and the Raspberry Pi range beside the Verdin AM62s.",
      "next": [
       "Feed the trial's AM62 numbers back into the builder's CPU model",
-      "Check the builder's estimated prices and lead times (marked est.) with suppliers: antennas, coax, arrestors, the mating Bulgin lead",
+      "Check what is still marked est. with suppliers: the mating Bulgin lead, the earth kit, the 18 Ah battery, delivery from shops that price it only at checkout",
       "Point the Quansheng V3 entry at quansheng_alert_ALL's browser installer",
-      "Re-check the FW-LAB entry: Flood-Net's runbook says to retire and archive it"
+      "Re-check the FW-LAB entry: Flood-Net's runbook says to retire and archive it",
+      "Replace the Luna SL1680's estimated CPU and power with measurements once Toradex publishes them or someone runs one",
+      "Confirm by hand the prices automated reads couldn't: element14 (the trial's Verdin and Mallow), Toradex direct, Core Electronics and Jaycar",
+      "Choose the builder's default antenna now the RFI COL54 is A$3,218 (the COL17 is A$651 in stock)"
      ],
      "later": [
       "Recalibrate the builder's CPU model once RPi ALERT runs on a CM5 or a Verdin AM62, and once filtering around bursts passes a check at the first base station",
@@ -4915,7 +4902,7 @@
      {
       "id": "catalogue",
       "name": "Hardware catalogue",
-      "what": "251 parts in six family files, each with price and its source, power, temperature, grade, openness and sources.",
+      "what": "252 parts in six family files, each with price and its source, power, temperature, grade, openness and sources.",
       "paths": [
        "site/data/"
       ],
@@ -4966,7 +4953,7 @@
      {
       "id": "trial",
       "name": "Mallow trial",
-      "what": "trial.html: a Verdin AM62 on Mallow beside a Pi 4 on one antenna — shopping list, steps, CPU estimate and a results sheet with pass rules.",
+      "what": "trial.html: a Verdin AM62 on Mallow beside a Pi 4 on one antenna — every AM62 rated beside the Luna SL1680 and the Raspberry Pi range, shopping list, steps, CPU estimate and a results sheet with pass rules.",
       "paths": [
        "site/trial.html",
        "site/js/trial.js",
@@ -5015,7 +5002,7 @@
      {
       "id": "hardware-catalogue",
       "name": "ALERT hardware catalogue",
-      "what": "Plain-JavaScript records of 251 parts with prices and their sources, power, grades and links, for costing ALERT sites.",
+      "what": "Plain-JavaScript records of 252 parts with prices and their sources, power, grades and links, for costing ALERT sites.",
       "component": "catalogue",
       "paths": [
        "site/data/"
@@ -5213,12 +5200,54 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-07T10:04:29Z",
+    "pushed": "2026-11-07T18:06:19Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/open-ALERT"
    },
    "commits": [
+    {
+     "sha": "d0753ae",
+     "date": "2026-11-07T18:06:09Z",
+     "msg": "Power parts re-priced; the V3 is the builder's starting stick",
+     "url": "https://github.com/cdomotor-g/open-ALERT/commit/d0753aefc2787eddd2ff84721b7cf010fe77b899"
+    },
+    {
+     "sha": "f5b30a1",
+     "date": "2026-11-07T17:59:36Z",
+     "msg": "Builder and trial re-priced, with each shop's delivery (work in progress)",
+     "url": "https://github.com/cdomotor-g/open-ALERT/commit/f5b30a18a38d4b704f04bd3db8891b8e35e93fff"
+    },
+    {
+     "sha": "5337814",
+     "date": "2026-11-07T17:53:52Z",
+     "msg": "Sensors and site parts: price review in progress (snapshot)",
+     "url": "https://github.com/cdomotor-g/open-ALERT/commit/5337814c7e3ef830670ea9f9e1ef95269196f74a"
+    },
+    {
+     "sha": "fd53434",
+     "date": "2026-11-07T17:53:40Z",
+     "msg": "Radios and RF re-priced: in stock in Australia, or the maker's own (work in progress)",
+     "url": "https://github.com/cdomotor-g/open-ALERT/commit/fd534344a234bdb814e3625fe30ee0bea119e3d8"
+    },
+    {
+     "sha": "457b978",
+     "date": "2026-11-07T17:52:14Z",
+     "msg": "Computers re-priced: what one costs in stock in Australia now (work in progress)",
+     "url": "https://github.com/cdomotor-g/open-ALERT/commit/457b978e2305df88894bed8d463c58d528a6ee5e"
+    },
+    {
+     "sha": "104b0ea",
+     "date": "2026-11-07T17:32:34Z",
+     "msg": "Delivery in every bill, once a shop (work in progress)",
+     "url": "https://github.com/cdomotor-g/open-ALERT/commit/104b0ea2fe98f6d0c4af539248096f9c52b9af9d"
+    },
+    {
+     "sha": "dd70550",
+     "date": "2026-11-07T17:01:23Z",
+     "msg": "The Luna SL1680 rated beside the Verdin AM62s and the Raspberry Pi range",
+     "url": "https://github.com/cdomotor-g/open-ALERT/commit/dd70550700c4a5a8707dd69849f8c69f6fbd7450"
+    },
     {
      "sha": "3f667da",
      "date": "2026-11-07T10:04:11Z",
@@ -5248,48 +5277,6 @@
      "date": "2026-11-03T11:25:50Z",
      "msg": "RPi ALERT 0.19's Light decoder in the builder and the trial; the Pi 3B+ and the Solo rated",
      "url": "https://github.com/cdomotor-g/open-ALERT/commit/6a7066094106ffd178d40f5eb20362711d5f0905"
-    },
-    {
-     "sha": "28cac07",
-     "date": "2026-11-03T03:51:55Z",
-     "msg": "The builder and the Mallow trial rate RPi ALERT 0.18 filtering only around bursts",
-     "url": "https://github.com/cdomotor-g/open-ALERT/commit/28cac07cb5ac97effb289c30e341e1b091eb29f3"
-    },
-    {
-     "sha": "86e1e0d",
-     "date": "2026-11-02T22:50:48Z",
-     "msg": "RPi ALERT 0.17's lean decoder: the builder and the Mallow trial rate on it",
-     "url": "https://github.com/cdomotor-g/open-ALERT/commit/86e1e0d9383d160f6c90b3e57faa9c98317e17fb"
-    },
-    {
-     "sha": "fac925b",
-     "date": "2026-11-02T05:59:50Z",
-     "msg": "Mallow trial: RPi ALERT 0.16.0 is a release now — Check for updates",
-     "url": "https://github.com/cdomotor-g/open-ALERT/commit/fac925bad47ec4f44cd357063b62b7161e387f4e"
-    },
-    {
-     "sha": "39060e8",
-     "date": "2026-11-02T04:34:10Z",
-     "msg": "RPi ALERT 0.16's lean decoder: catalogue, builder and the Mallow trial",
-     "url": "https://github.com/cdomotor-g/open-ALERT/commit/39060e858263c39a9d07dc18094a7246e6f9d3bb"
-    },
-    {
-     "sha": "c55228c",
-     "date": "2026-11-02T00:38:03Z",
-     "msg": "Mallow trial: prices in Australian dollars at element14",
-     "url": "https://github.com/cdomotor-g/open-ALERT/commit/c55228c5e9ef7ac9c0b4e5165137c5e25f0dc163"
-    },
-    {
-     "sha": "4aa8887",
-     "date": "2026-11-02T00:28:19Z",
-     "msg": "Mallow trial: exact Toradex part numbers, every AM62 rated, the lighter decoder measured",
-     "url": "https://github.com/cdomotor-g/open-ALERT/commit/4aa88875c827bc3777982c32c640502a3be05878"
-    },
-    {
-     "sha": "92fd007",
-     "date": "2026-11-01T00:43:19Z",
-     "msg": "One menu on every page, and a Mallow trial page",
-     "url": "https://github.com/cdomotor-g/open-ALERT/commit/92fd007deef33320c966a55eea2159b52388631b"
     }
    ],
    "issues": [
@@ -5318,38 +5305,38 @@
      "name": "test",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42362383219",
-     "date": "2026-11-07T10:04:46Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42399588159",
+     "date": "2026-11-07T18:06:34Z",
      "event": "push"
     },
     {
      "name": "pages",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42362383267",
-     "date": "2026-11-07T10:04:58Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42399588167",
+     "date": "2026-11-07T18:06:41Z",
+     "event": "push"
+    },
+    {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42399588649",
+     "date": "2026-11-07T18:06:43Z",
      "event": "push"
     },
     {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42362382436",
-     "date": "2026-11-07T10:04:55Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42399587364",
+     "date": "2026-11-07T18:06:47Z",
      "event": "dynamic"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42362383424",
-     "date": "2026-11-07T10:04:50Z",
-     "event": "push"
     }
    ],
    "version": "0.1.0",
    "lastCommit": {
-    "date": "2026-11-07T10:04:11Z"
+    "date": "2026-11-07T18:06:09Z"
    }
   },
   {
