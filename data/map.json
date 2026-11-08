@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-08T20:51:40.970Z",
- "hash": "ea9d53c7df14de05",
+ "generated": "2026-11-08T21:02:05.070Z",
+ "hash": "a3a73b0789654b90",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -46,11 +46,26 @@
    "color": "#9a8a5a"
   }
  ],
+ "triage": {
+  "weights": {
+   "importance": 2,
+   "opportunity": 1,
+   "urgency": 1,
+   "cost": 1
+  },
+  "yourHoursADay": 1,
+  "agentsAtOnce": 2,
+  "agentHoursADay": 6,
+  "yourHour": 60,
+  "agentHour": 5,
+  "unknownPurchase": 50
+ },
  "repos": [
   {
    "id": "flood-net",
    "repo": "cdomotor-g/MegaNet",
    "group": "network",
+   "weight": 5,
    "x": 830,
    "y": 560,
    "tall": [
@@ -1927,27 +1942,27 @@
    "release": null,
    "ci": [
     {
-     "name": "Field photos from Dropbox",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42521849946",
-     "date": "2026-11-08T20:46:58Z",
-     "event": "schedule"
-    },
-    {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42521691698",
-     "date": "2026-11-08T20:45:43Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42522930935",
+     "date": "2026-11-08T21:01:07Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42521211302",
-     "date": "2026-11-08T20:39:17Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42522424781",
+     "date": "2026-11-08T20:53:57Z",
+     "event": "schedule"
+    },
+    {
+     "name": "Field photos from Dropbox",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42521849946",
+     "date": "2026-11-08T20:46:58Z",
      "event": "schedule"
     },
     {
@@ -2016,6 +2031,7 @@
    "id": "flood-net-private",
    "repo": "cdomotor-g/flood-net-private",
    "group": "network",
+   "weight": 4,
    "x": 870,
    "y": 780,
    "tall": [
@@ -2198,6 +2214,7 @@
    "id": "rpi-alert",
    "repo": "cdomotor-g/RPi_ALERT",
    "group": "base",
+   "weight": 4,
    "x": 520,
    "y": 600,
    "tall": [
@@ -2867,6 +2884,7 @@
    "id": "fw-lab",
    "repo": "cdomotor-g/ALERT1v3",
    "group": "tools",
+   "weight": 2,
    "x": 220,
    "y": 210,
    "tall": [
@@ -3571,6 +3589,7 @@
    "id": "quansheng-v3",
    "repo": "cdomotor-g/quansheng_alert_v3",
    "group": "radio",
+   "weight": 4,
    "x": 280,
    "y": 480,
    "tall": [
@@ -3957,6 +3976,7 @@
    "id": "quansheng-v1",
    "repo": "cdomotor-g/quansheng_alert",
    "group": "radio",
+   "weight": 1,
    "x": 290,
    "y": 880,
    "tall": [
@@ -4342,6 +4362,7 @@
    "id": "quansheng-all",
    "repo": "cdomotor-g/quansheng_alert_ALL",
    "group": "radio",
+   "weight": 4,
    "x": 220,
    "y": 690,
    "tall": [
@@ -4756,6 +4777,7 @@
    "id": "open-alert",
    "repo": "cdomotor-g/open-ALERT",
    "group": "planning",
+   "weight": 4,
    "x": 780,
    "y": 70,
    "tall": [
@@ -5290,6 +5312,7 @@
    "id": "sort",
    "repo": "cdomotor-g/SoRT",
    "group": "planning",
+   "weight": 4,
    "x": 940,
    "y": 230,
    "tall": [
@@ -5750,6 +5773,7 @@
    "id": "f-tide",
    "repo": "cdomotor-g/F-TIDE",
    "group": "planning",
+   "weight": 1,
    "x": 1380,
    "y": 200,
    "tall": [
@@ -5957,6 +5981,7 @@
    "id": "droggies",
    "repo": "cdomotor-g/thedroggies",
    "group": "story",
+   "weight": 3,
    "x": 1220,
    "y": 570,
    "tall": [
@@ -6277,6 +6302,7 @@
    "id": "alert-packets",
    "repo": "cdomotor-g/ALERT_PACKETS",
    "group": "tools",
+   "weight": 2,
    "x": 560,
    "y": 90,
    "tall": [
@@ -6455,6 +6481,7 @@
    "id": "html-serial",
    "repo": "cdomotor-g/HTML-serial",
    "group": "tools",
+   "weight": 1,
    "x": 370,
    "y": 90,
    "tall": [
@@ -6567,6 +6594,7 @@
    "id": "home",
    "repo": "cdomotor-g/home",
    "group": "outside",
+   "weight": 3,
    "x": 1380,
    "y": 900,
    "tall": [
