@@ -7,7 +7,8 @@
 import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { execFileSync } from 'node:child_process';
-import { ROOT, validate, crossCheck, parseTitle, watchMatches, blockerMark, linkFor } from '../tools/lib.mjs';
+import { createRequire } from 'node:module';
+import { ROOT, validate, crossCheck, parseTitle, watchMatches, blockerMark, triageMark, linkFor } from '../tools/lib.mjs';
 import { section, apply, settings, hook, FILES, RAW, LIMIT } from '../tools/shared.mjs';
 import { brief, waiting, datesIn } from '../tools/brief.mjs';
 
@@ -28,6 +29,14 @@ for (const r of reg.repos) {
   // fall back to the wide map.
   if (reg.repos.some(x => 'tall' in x)) check(Array.isArray(r.tall) && r.tall.length === 2 && r.tall.every(Number.isFinite), `registry ${r.id}: tall [x, y] missing`);
   check(r.logo && existsSync(join(ROOT, r.logo)), `registry ${r.id}: logo ${r.logo} missing`);
+  // How much it matters now, for the Priorities view: left out, the Atlas guesses.
+  if ('weight' in r) check(Number.isInteger(r.weight) && r.weight >= 1 && r.weight <= 5, `registry ${r.id}: weight must be a whole number from 1 to 5`);
+}
+if ('triage' in reg) {
+  const known = ['weights', 'yourHoursADay', 'agentsAtOnce', 'agentHoursADay', 'yourHour', 'agentHour', 'unknownPurchase'];
+  for (const k of Object.keys(reg.triage)) check(known.includes(k), `registry triage: unknown setting ${k}`);
+  for (const k of known.slice(1)) if (k in reg.triage) check(Number.isFinite(reg.triage[k]) && reg.triage[k] >= 0, `registry triage: ${k} must be a number`);
+  for (const [k, v] of Object.entries(reg.triage.weights || {})) check(['importance', 'opportunity', 'urgency', 'cost'].includes(k) && Number.isFinite(v) && v >= 0, `registry triage: weights.${k}`);
 }
 
 for (const f of existsSync(join(ROOT, 'data/fallback')) ? readdirSync(join(ROOT, 'data/fallback')) : []) {
@@ -39,7 +48,7 @@ for (const f of existsSync(join(ROOT, 'data/fallback')) ? readdirSync(join(ROOT,
   check(ids.has(m.id), `fallback ${f}: ${m.id} is not in the registry`);
 }
 
-for (const f of ['assets/atlas.js', 'tools/lib.mjs', 'tools/collect.mjs', 'tools/drift.mjs', 'tools/build-standalone.mjs', 'tools/shared.mjs', 'tools/brief.mjs']) {
+for (const f of ['assets/atlas.js', 'assets/triage.js', 'tools/lib.mjs', 'tools/collect.mjs', 'tools/drift.mjs', 'tools/build-standalone.mjs', 'tools/shared.mjs', 'tools/brief.mjs']) {
   try { execFileSync(process.execPath, ['--check', join(ROOT, f)], { stdio: 'pipe' }); }
   catch (e) { fails.push(`${f}: ${e.stderr.toString().split('\n').slice(0, 4).join(' ')}`); }
 }
@@ -83,6 +92,37 @@ check(watchMatches(['serial*.js'], 'serial-gps.js') && !watchMatches(['serial*.j
 check(blockerMark('Atlas blocker: rpi-alert/bench-first-run\n\n**Blocked:** …') === 'rpi-alert/bench-first-run', 'blockerMark: first line');
 check(blockerMark('Some text\r\nAtlas blocker: Flood-Net/237\r\n') === 'flood-net/237', 'blockerMark: later line, CRLF, case');
 check(blockerMark('See the Atlas blocker: rpi-alert/x in the notes') === null, 'blockerMark: only a line of its own');
+
+// The Priorities view's sums (assets/triage.js) and the line an issue says how it weighs with.
+{
+  const T = createRequire(import.meta.url)('../assets/triage.js');
+  const tri = triageMark('Recommended: Sonnet5 / Med\nAtlas triage: severity 4 · opens 2 · due 2026-11-25 · effort 2h · cost $1,200\n\nBody');
+  check(JSON.stringify(tri) === JSON.stringify({ severity: 4, opportunity: 2, due: '2026-11-25', effort: '2h', cost: 1200 }), `triageMark: every part, got ${JSON.stringify(tri)}`);
+  check(JSON.stringify(triageMark('**Atlas triage:** cost A$40, severity 5')) === JSON.stringify({ cost: 40, severity: 5 }), 'triageMark: bold, commas, any order');
+  check(triageMark('No line here') === null && triageMark('Atlas triage: whatever') === null, 'triageMark: nothing to read');
+  const s = T.settings({ yourHour: 80, weights: { cost: 0 } }, { agentsAtOnce: 3.4, yourHoursADay: 'x' });
+  check(s.yourHour === 80 && s.weights.cost === 0 && s.weights.importance === 2 && s.agentsAtOnce === 3 && s.yourHoursADay === 1, 'triage: settings layer on the defaults');
+  check(T.deadlineIn('credits run short before 25 Nov; stuck on the 23 July 2026 extract', '2026-11-08') === '2026-11-25', 'triage: a deadline is a date still to come');
+  check(T.severityGuess({ text: 'Stop dropping ALERT2 self-reports' }).v === 4 && T.severityGuess({ text: 'Maybe: carrier outages' }).v === 2
+    && T.severityGuess({ text: 'Finish the privacy clean-up' }).v === 5 && T.severityGuess({ text: 'Place a field photo' }).v === 3
+    && T.severityGuess({ text: 'Maybe', labels: ['bug'] }).v === 4 && T.severityGuess({ source: 'ci' }).v === 4, 'triage: severity from labels, then words');
+  check(T.repoGuess({ phase: 'live', relyOn: 5, cited: 7 }).v === 5 && T.repoGuess({ phase: 'maintenance', relyOn: 0, cited: 0 }).v === 1 && T.repoGuess({ phase: 'beta', relyOn: 1, cited: 2 }).v === 4, 'triage: repository weight guess');
+  check(T.moneyIn('Creator for a month (US$22, 121,000 credits)').amount === 22 && T.moneyIn('A$566 inc GST or A$182').amount === 566 && T.moneyIn('about US$5 a month').monthly && !T.moneyIn('40,000 credits'), 'triage: money in words');
+  check(T.minutesOf('2h') === 120 && T.minutesOf('1–2 hours') === 90 && T.minutesOf('3 days') === 1440 && T.minutesOf('an afternoon') === 240, 'triage: sizes in words');
+  const you = T.costOf({ hours: 0.5, who: 'human' }), bot = T.costOf({ hours: 3, who: 'agent' }), pc = T.costOf({ hours: 1, who: 'computer', money: 10 });
+  check(you.yourHours === 0.5 && you.agentHours === 0 && you.total === 30 && bot.yourHours === 0.25 && bot.total === 30 && pc.yourHours === 0.5 && pc.total === 45, 'triage: cost of your time, agent time and money');
+  // The repository and how bad multiply: bad where it matters little ranks below smaller where it matters most.
+  const lowRepoBad = T.scoreOf({ repo: 1, severity: 5 }), topRepoSmall = T.scoreOf({ repo: 5, severity: 2 });
+  check(lowRepoBad.worth < topRepoSmall.worth && T.scoreOf({ repo: 5, severity: 5, opportunity: 5, urgency: 5 }).worth === 100, 'triage: importance is 0–100, repository times how bad');
+  check(T.scoreOf({ repo: 4, severity: 4, cost: 5 }).best > T.scoreOf({ repo: 4, severity: 4, cost: 500 }).best
+    && T.scoreOf({ repo: 4, severity: 4, cost: 5 }, T.settings({ weights: { cost: 0 } })).best === T.scoreOf({ repo: 4, severity: 4, cost: 500 }, T.settings({ weights: { cost: 0 } })).best, 'triage: best next weighs cost, unless cost counts 0');
+  check(T.urgencyOf({ due: '2026-11-10', today: '2026-11-08', planned: 'now' }).v === 5 && T.urgencyOf({ today: '2026-11-08', waited: 40 }).v === 1 && T.opportunityOf(5, 1) === 5, 'triage: how soon, what it opens up');
+  const a = { who: 'human', yourHours: 2 }, b = { who: 'agent', agentHours: 6, after: [a] }, c = { who: 'agent', agentHours: 3 }, d = { who: 'computer', yourHours: 1 };
+  T.schedule([b, a, c, d], T.DEFAULTS);
+  check(a.start === 0 && a.finish === 2 && b.start === 2 && b.finish === 3 && c.start === 0 && c.finish === 0.5 && d.start === 2 && d.finish === 3, 'triage: the plan in time — yours one after another, agents side by side, waiting first');
+  check(T.ticks(37).join() === '0,10,20,30,40' && T.triageLine({ severity: 4, due: '2026-11-25', hours: 0.25, money: 40 }) === 'Atlas triage: severity 4 · due 2026-11-25 · effort 15 min · cost $40', 'triage: axis steps, the line written back');
+  check(JSON.stringify(triageMark(T.triageLine({ severity: 2, opportunity: 0, due: '2027-01-02', hours: 3, money: 5 }))) === JSON.stringify({ severity: 2, opportunity: 0, due: '2027-01-02', effort: '3h', cost: 5 }), 'triage: the page writes the line the collector reads');
+}
 
 // The shared instructions every session in every repository loads (shared/, tools/shared.mjs):
 // each file fits what a start-up hook can hand the agent, the Atlas's own files point at them
@@ -142,4 +182,4 @@ check(blockerMark('See the Atlas blocker: rpi-alert/x in the notes') === null, '
 }
 
 if (fails.length) { console.error(`✗ ${fails.length} problem${fails.length === 1 ? '' : 's'}:\n- ${fails.join('\n- ')}`); process.exit(1); }
-console.log(`✓ registry (${reg.repos.length}), fallbacks, scripts, page links, link ids, parsers, blocker tags, shared instructions, brief`);
+console.log(`✓ registry (${reg.repos.length}), fallbacks, scripts, page links, link ids, parsers, blocker tags, priorities, shared instructions, brief`);

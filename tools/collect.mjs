@@ -12,7 +12,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
-import { ROOT, github, validate, crossCheck, parseTitle, drift, slimCommit, blockerMark, linkFor } from './lib.mjs';
+import { ROOT, github, validate, crossCheck, parseTitle, drift, slimCommit, blockerMark, triageMark, linkFor } from './lib.mjs';
 
 const token = process.env.ATLAS_TOKEN || process.env.GITHUB_TOKEN || '';
 const gh = github(token);
@@ -60,7 +60,7 @@ function excerpt(body) {
   if (!body) return '';
   const text = body
     .replace(/<!--[\s\S]*?-->/g, '')
-    .split('\n').filter(l => !/^\s*Recommended:/i.test(l) && !/^\s*#{1,6}\s/.test(l) && !/^\s*[-*_]{3,}\s*$/.test(l) && !/^\s*```/.test(l))
+    .split('\n').filter(l => !/^\s*Recommended:/i.test(l) && !/^[\s>*_-]*Atlas triage:/i.test(l) && !/^\s*#{1,6}\s/.test(l) && !/^\s*[-*_]{3,}\s*$/.test(l) && !/^\s*```/.test(l))
     .join(' ')
     .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
     .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
@@ -117,12 +117,13 @@ async function collectRepo(r) {
     out.issues = issues.map(i => {
       const t = parseTitle(i.title);
       const mentions = [...new Set([...(i.body || '').matchAll(/cdomotor-g\/([A-Za-z0-9_.-]+)/gi)].map(m => m[1].toLowerCase()))];
-      const blocker = blockerMark(i.body);
+      const blocker = blockerMark(i.body), triage = triageMark(i.body);
       return {
         n: i.number, raw: i.title, ...t, url: i.html_url, updated: i.updated_at, created: i.created_at,
         comments: i.comments, labels: i.labels.map(l => l.name), mentions,
         ...(t.human || t.computer ? { excerpt: excerpt(i.body) } : {}),
         ...(blocker ? { blocker } : {}),
+        ...(triage ? { triage } : {}),
       };
     });
     if (runs?.workflow_runs) {
@@ -179,7 +180,9 @@ for (const r of repos) for (const i of r.issues) for (const m of i.mentions) {
 const asks = [];
 for (const r of repos) for (const a of r.manifest?.asks || []) asks.push({ from: r.id, ...a });
 
-const body = { owner: registry.owner, groups: registry.groups, repos, links, crossIssues, asks };
+// How the owner wants open work weighed (the Priorities view): repository weights travel with
+// each repository; the rest is the registry's "triage".
+const body = { owner: registry.owner, groups: registry.groups, ...(registry.triage ? { triage: registry.triage } : {}), repos, links, crossIssues, asks };
 const hash = createHash('sha256').update(JSON.stringify(body)).digest('hex').slice(0, 16);
 const path = join(ROOT, 'data/map.json');
 const previous = existsSync(path) ? JSON.parse(readFileSync(path, 'utf8')) : null;

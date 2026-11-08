@@ -144,6 +144,7 @@ function prepare(data) {
   for (const r of D.repos) { r.behindIn = r.in.filter(l => stateOf(l) === 'behind'); r.staleIn = r.in.filter(l => stateOf(l) === 'stale'); }
   ISSUES = D.repos.flatMap(r => (r.issues || []).map(i => ({ ...i, repo: r })));
   buildBlockers();
+  buildItems();
 }
 
 // ------------------------------------------------------------------ blockers
@@ -658,6 +659,8 @@ function openBlocker(uid) { select({ type: 'blocker', uid }); }
 function markSelected() {
   const uid = selected?.type === 'blocker' ? selected.uid : null;
   $$('#blockers-view [data-blk]').forEach(e => e.classList.toggle('sel', e.dataset.blk === uid));
+  const key = selected?.type === 'item' ? selected.key : null;
+  $$('#priorities-view [data-open-item]').forEach(e => e.classList.toggle('sel', e.dataset.openItem === key));
 }
 
 function wireCards(el) {
@@ -1253,6 +1256,7 @@ function applyHighlight() {
     else if (kind === 'l') focus = { type: 'links', ids: rest.split(' ') };
     else { const [id, cid] = rest.split(':'); focus = { type: 'comp', repo: id, id: cid }; }
   } else if (selected?.type === 'blocker') { const b = BLK.get(selected.uid); focus = b ? { type: 'repo', id: b.repo.id } : null; }
+  else if (selected?.type === 'item') { const it = ITEM.get(selected.key); focus = it ? { type: 'repo', id: it.repo.id } : null; }
   else if (selected) focus = selected;
   $$('.hl', root).forEach(el => el.classList.remove('hl'));
   $$('.node.selected', root).forEach(el => el.classList.remove('selected'));
@@ -1285,7 +1289,7 @@ function select(s) {
   applyHighlight();
   const panel = $('#panel');
   if (!s) { panel.classList.remove('open'); setHash(); return; }
-  panel.innerHTML = s.type === 'repo' ? repoPanel(R.get(s.id)) : s.type === 'link' ? linkPanel(L.find(l => l.id === s.id)) : s.type === 'pair' ? pairPanel(s.from, s.to) : s.type === 'blocked' ? blockedPanel(s.repo, s.who) : s.type === 'blocker' ? blockerPanel(BLK.get(s.uid)) : compPanel(R.get(s.repo), s.id);
+  panel.innerHTML = s.type === 'repo' ? repoPanel(R.get(s.id)) : s.type === 'link' ? linkPanel(L.find(l => l.id === s.id)) : s.type === 'pair' ? pairPanel(s.from, s.to) : s.type === 'blocked' ? blockedPanel(s.repo, s.who) : s.type === 'blocker' ? blockerPanel(BLK.get(s.uid)) : s.type === 'item' ? itemPanel(ITEM.get(s.key)) : compPanel(R.get(s.repo), s.id);
   panel.classList.add('open');
   panel.scrollTop = 0;
   setHash();
@@ -1302,6 +1306,7 @@ function wirePanel(panel) {
   $('[data-expand]', panel)?.addEventListener('click', e => { toggleExpand(e.currentTarget.dataset.expand); select(selected); });
   $$('[data-blk]', panel).forEach(b => b.addEventListener('click', e => { e.stopPropagation(); openBlocker(b.dataset.blk); }));
   $$('[data-copy-link]', panel).forEach(b => b.addEventListener('click', () => copyText(`${location.origin}${location.pathname}#blockers/${b.dataset.copyLink}`, b, 'Link copied')));
+  if (selected?.type === 'item') wireItemPanel(panel, ITEM.get(selected.key));
 }
 
 function goRepo(id) {
@@ -1507,6 +1512,578 @@ function compPanel(r, cid) {
   </div>`;
 }
 
+// ------------------------------------------------------------------ priorities
+// Every open issue and blocker in one list, weighed against the others: how much its repository
+// matters, how bad it is if it's left, what doing it opens up and how soon it's needed — against
+// what it costs in your time, agent time and money. assets/triage.js does the sums;
+// docs/priorities.md says how, in words. Each part is the owner's word where they gave one (in
+// this browser, on the issue's "Atlas triage:" line, or a weight in the registry) and the Atlas's
+// guess otherwise; the item's page says which, and how to make a change stick.
+const T = window.AtlasTriage;
+const todayIso = () => { const d = new Date(); return new Date(d.getTime() - d.getTimezoneOffset() * 6e4).toISOString().slice(0, 10); };
+const cap = s => { s = String(s || ''); return s.charAt(0).toUpperCase() + s.slice(1); };
+const FACETS = {
+  repo: { name: 'How much the repository matters', short: 'Repo', means: 'How much this repository matters right now, 1 to 5. The Atlas guesses from its phase and how many repositories rely on it until you set it.' },
+  severity: { name: 'How bad if it’s left', short: 'How bad', means: 'How bad it is if nobody does it, 1 to 5: 5 is broken, unsafe or losing data; 3 is ordinary work; 1 is a nice-to-have. The repository and this count together, multiplied: a bad problem where it matters little can rank below a smaller one where it matters most.' },
+  opportunity: { name: 'What it opens up', short: 'Opens up', means: 'How much other work doing it frees, 0 to 5: what it holds up (counting what the blockers behind it hold up too), and one more when another repository waits on it.' },
+  urgency: { name: 'How soon', short: 'How soon', means: 'How soon it is needed, 0 to 5: a deadline close by counts most (from a date in its words, or one you set); being on its repository’s Now or Next list, and having held work up for a month or more, add to it.' },
+};
+const WHO = {
+  human: { name: 'You', plural: 'you', means: 'You do it: it needs your hands, your money or your say.' },
+  computer: { name: 'Your computer', plural: 'your computer', means: ON_COMPUTER },
+  agent: { name: 'An agent', plural: 'agents', means: 'An agent session can do it from anywhere: hand it the prompt, then check what comes back. A few minutes of your time.' },
+};
+const SRC = {
+  guessed: ['guess', 'The Atlas’s guess from what it can see. Change it on this item’s page, or write it on the issue.'],
+  recorded: ['on the issue', 'From the issue: its “Atlas triage:” line, or a label such as bug or p1.'],
+  set: ['in the registry', 'Set for everyone in the Atlas’s data/registry.json.'],
+  yours: ['yours', 'You set it in this browser. Its page has a button to make it stick for everyone.'],
+};
+const srcChip = src => `<span class="chip src-${src}" title="${esc(SRC[src][1])}">${esc(SRC[src][0])}</span>`;
+const meter = v => `<span class="meter" aria-hidden="true">${[1, 2, 3, 4, 5].map(k => `<i class="${k <= v ? 'on' : ''}"></i>`).join('')}</span>`;
+const fmtH = h => h < 1 ? `${Math.max(5, Math.round(h * 12) * 5)} min` : h < 10 ? `${+h.toFixed(1)} h` : `${Math.round(h)} h`;
+const fmt$ = v => v >= 1000 ? `$${(v / 1000).toFixed(v >= 10000 ? 0 : 1)}k` : `$${Math.round(v)}`;
+const dayAt = n => new Date(Date.now() + n * 864e5);
+// Day n from today (0 = today), as words.
+function dayWords(n) {
+  const k = Math.max(0, Math.floor(n));
+  if (k === 0) return 'today';
+  if (k === 1) return 'tomorrow';
+  return dayAt(k).toLocaleDateString(undefined, k < 7 ? { weekday: 'long' } : { weekday: 'short', day: 'numeric', month: 'short' });
+}
+const doneDay = it => Math.max(0, Math.ceil(it.finish - 1e-6) - 1); // a job that fills today's hours is done today
+const isEpic = i => i.structure === 'epic' || /^epic\b/i.test(i.title);
+const tset = () => T.settings(D.triage, store.get('triage-set', {}));
+
+// How much a repository matters (1–5): yours, else the registry's, else the Atlas's guess (base).
+function repoBase(r) {
+  if (Number.isInteger(r.weight)) return { v: Math.max(1, Math.min(5, r.weight)), why: 'set for everyone in the Atlas’s registry', src: 'set' };
+  const relyOn = new Set(r.out.filter(l => l.kind !== 'reference').map(l => l.to)).size;
+  return { ...T.repoGuess({ phase: r.phase, relyOn, cited: r.out.length }), src: 'guessed' };
+}
+function repoWeight(r) {
+  const mine = store.get('triage-repos', {})[r.id], base = repoBase(r);
+  return Number.isInteger(mine) ? { v: mine, why: 'you set it in this browser', src: 'yours', base } : { ...base, base };
+}
+// "#12" and "owner/repo#12" on each repository's Now and Next lists.
+function plannedRefs() {
+  const m = new Map();
+  for (const r of D.repos) {
+    const s = r.m.status || {};
+    for (const [list, word] of [[s.now, 'now'], [s.next, 'next']]) for (const t of list || []) for (const x of String(t).matchAll(/(?:\b([\w.-]+\/[\w.-]+))?#(\d+)\b/g)) {
+      const key = `${(x[1] || r.repo).toLowerCase()}#${x[2]}`;
+      if (m.get(key) !== 'now') m.set(key, word);
+    }
+  }
+  return m;
+}
+
+let ITEMS = [], ITEM = new Map(), BEST = [];
+// One item per open issue (an epic with open sub-issues is made of them, so it is left out), and
+// one per blocker no open issue stands for. A blocker an issue stands for adds what it frees and
+// its ways through to that issue.
+function buildItems() {
+  if (!T) return;
+  const today = todayIso(), own = store.get('triage-own', {}), plan = plannedRefs();
+  const items = [], byKey = new Map();
+  for (const r of D.repos) for (const i of r.issues || []) {
+    if (/^roadmap\b/i.test(i.title)) continue;
+    if (isEpic(i) && (r.issues || []).some(c => c.structure === 'sub' && c.parent === i.n)) continue;
+    const it = { key: `${r.repo.toLowerCase()}#${i.n}`, type: 'issue', repo: r, i, tag: `#${i.n}`, title: i.title, url: i.url, blockers: [], isEpic: isEpic(i),
+      epic: i.structure === 'sub' ? (r.issues || []).find(e => e.n === i.parent) || null : null };
+    items.push(it); byKey.set(it.key, it);
+  }
+  for (const b of BLOCKERS) {
+    if (b.closed) continue;
+    const home = b.iss && byKey.get(b.iss.key);
+    if (home) { home.blockers.push(b); continue; }
+    const it = { key: `blk:${b.uid}`, type: 'blocker', repo: b.repo, tag: b.tag, title: b.title, url: b.iss ? `https://github.com/${b.iss.full}/issues/${b.iss.n}` : null, blockers: [b] };
+    items.push(it); byKey.set(it.key, it);
+  }
+  for (const it of items) facts(it, today, own[it.key] || {}, plan);
+  // What waits for what: what a blocker holds up starts after it.
+  const ofBlk = new Map();
+  for (const it of items) { it.after = []; for (const b of it.blockers) ofBlk.set(b, it); }
+  const tie = (first, then) => { if (then && then !== first && !then.after.includes(first)) then.after.push(first); };
+  for (const it of items) for (const b of it.blockers) {
+    for (const k of b.kids) tie(it, ofBlk.get(k.b));
+    for (const o of b.outs) if (o.type === 'issue') tie(it, byKey.get(o.iss.key));
+  }
+  ITEMS = items; ITEM = byKey;
+  rank();
+}
+
+// The parts of the weighing for one item, each with where it came from and why.
+function facts(it, today, own, plan) {
+  const r = it.repo, i = it.i || null, bs = it.blockers, tri = i?.triage || {};
+  const main = bs.find(b => b.repo === r) || bs[0] || null, rec = main?.rec || null;
+  it.main = main; it.rec = rec;
+  // Who takes the next step: the suggested way through, else the issue's own tags. A step of
+  // yours in a blocker that needs only your sign-in can go to your computer.
+  let who = i ? (i.human ? issueLane(r, i) : 'agent') : 'agent';
+  if (rec) who = rec.by === 'human' ? (main.lane === 'computer' ? 'computer' : 'human') : rec.by === 'computer' ? 'computer' : 'agent';
+  it.who = who;
+  // Each part: what the issue says or the Atlas guesses (its base), then yours on top.
+  const mine = (k, base) => own[k] !== undefined ? { v: own[k], why: 'you set it', src: 'yours', base } : { ...base, base };
+  const f = {};
+  f.repo = repoWeight(r);
+
+  const words = [it.title, main && main.what !== it.title ? main.what : ''].join(' ');
+  let sev;
+  if (tri.severity) sev = { v: tri.severity, why: 'written on the issue', src: 'recorded' };
+  else {
+    const g = T.severityGuess({ text: words, labels: i?.labels, source: main?.source });
+    sev = { ...g, src: /^labelled/.test(g.why) ? 'recorded' : 'guessed' };
+    if (sev.src === 'guessed' && g.v < 3 && main?.frees) sev = { v: 3, why: 'it holds other work up', src: 'guessed' };
+  }
+  f.severity = mine('severity', sev);
+
+  const frees = Math.max(0, ...bs.map(b => b.frees || 0));
+  const others = [...new Set(bs.filter(b => b.repo !== r).map(b => b.repo))];
+  let opp;
+  if (Number.isFinite(tri.opportunity)) opp = { v: tri.opportunity, why: 'written on the issue', src: 'recorded' };
+  else {
+    const why = [];
+    if (frees) why.push(`clearing it frees ${frees} thing${frees === 1 ? '' : 's'}`);
+    if (others.length) why.push(`${others.map(x => x.label || x.name).join(' and ')} wait${others.length === 1 ? 's' : ''} on it too`);
+    opp = { v: T.opportunityOf(frees, others.length), why: why.join('; ') || 'nothing is recorded as waiting on it', src: 'guessed' };
+  }
+  f.opportunity = mine('opportunity', opp);
+
+  const baseDue = tri.due || T.deadlineIn([it.title, i?.excerpt, main?.what].filter(Boolean).join(' '), today);
+  const due = own.due || baseDue;
+  const dueSrc = own.due ? 'yours' : tri.due ? 'recorded' : baseDue ? 'words' : null;
+  const waited = main && (main.source === 'recorded' || main.frees > 0) ? (main.age || 0) : 0;
+  const u = T.urgencyOf({ due, today, planned: plan.get(it.key) || null, waited });
+  f.urgency = { v: u.v, why: u.why.join('; ') || 'no deadline in its words, and not on a Now or Next list', src: dueSrc === 'yours' ? 'yours' : dueSrc === 'recorded' ? 'recorded' : 'guessed',
+    due, daysLeft: u.daysLeft, dueSrc, baseDue, baseDueSrc: tri.due ? 'recorded' : baseDue ? 'words' : null };
+
+  const tagH = i?.effort && T.TAG_HOURS[i.effort], recModel = rec?.model && T.TAG_HOURS[String(rec.model).split('/')[1]];
+  let hrs;
+  if (tri.effort && T.minutesOf(tri.effort) !== null) hrs = { v: T.minutesOf(tri.effort) / 60, why: `written on the issue: “${tri.effort}”`, src: 'recorded' };
+  else if (rec?.effort && T.minutesOf(rec.effort) !== null) hrs = { v: T.minutesOf(rec.effort) / 60, why: `the suggested way through says “${rec.effort}”`, src: 'guessed' };
+  else if (tagH) hrs = { v: tagH, why: `from its [${i.model}/${i.effort}] tag`, src: 'guessed' };
+  else if (recModel) hrs = { v: recModel, why: `from the suggested way through (${rec.model})`, src: 'guessed' };
+  else {
+    const k = main?.kind;
+    const v = who === 'agent' ? (it.isEpic ? 8 : 1.5) : who === 'computer' ? 0.5 : k === 'decision' || k === 'money' ? 0.25 : k === 'access' ? 0.5 : k === 'hardware' ? 4 : 1;
+    hrs = { v, why: 'no size is written down, so a guess', src: 'guessed' };
+  }
+  hrs.v = Math.max(hrs.v, 1 / 12);
+  f.hours = mine('hours', hrs);
+  f.hours.v = Math.max(f.hours.v, 1 / 12);
+
+  let money;
+  const recText = rec ? [rec.what, rec.pros, rec.cons].filter(Boolean).join(' ') : '';
+  if (Number.isFinite(tri.cost)) money = { v: tri.cost, why: 'written on the issue', src: 'recorded' };
+  else {
+    const m = rec ? T.moneyIn(recText) : T.moneyIn([it.title, i?.excerpt].filter(Boolean).join(' '));
+    if (m) money = { v: m.amount, why: `${rec ? 'the suggested way through' : 'its words'} say “${m.text}”${m.monthly ? ' (one month counted)' : ''}`, src: 'guessed' };
+    else if (T.SPEND.test(rec ? rec.what : it.title)) money = { v: 0, unknown: true, why: 'it means buying something, and no price is written down', src: 'guessed' };
+    else money = { v: 0, why: 'no money in it that the Atlas can see', src: 'guessed' };
+  }
+  f.money = mine('money', money);
+  it.f = f;
+}
+
+const PSORTS = [
+  { id: 'best', name: 'Best next', tip: 'Importance for what it costs: the most good for the least of your time and money', fn: (a, b) => b.s.best - a.s.best },
+  { id: 'worth', name: 'Most important', tip: 'Importance alone, whatever it costs', fn: (a, b) => b.s.worth - a.s.worth || b.s.best - a.s.best },
+  { id: 'soon', name: 'Most urgent', tip: 'How soon it is needed first (the nearest deadline first), then importance', fn: (a, b) => b.f.urgency.v - a.f.urgency.v || (a.f.urgency.daysLeft ?? 1e4) - (b.f.urgency.daysLeft ?? 1e4) || b.s.worth - a.s.worth },
+  { id: 'opens', name: 'Opens up most', tip: 'What frees the most other work first, then best next', fn: (a, b) => b.f.opportunity.v - a.f.opportunity.v || b.s.best - a.s.best },
+  { id: 'cheap', name: 'Cheapest first', tip: 'What costs least first, then importance', fn: (a, b) => a.c.total - b.c.total || b.s.worth - a.s.worth },
+];
+const PMODES = [
+  { id: 'list', name: 'Ranked list', tip: 'Every item in order, with what it weighs and what it costs' },
+  { id: 'chart', name: 'Chart', tip: 'Bars you can switch between when, effort, your time, cost and importance' },
+];
+const DOMAINS = [
+  { id: 'when', name: 'When', tip: 'When each could be done if you work down the list in this order: yours one after another at your hours a day, agents side by side', axis: 'Days from today' },
+  { id: 'effort', name: 'Effort', tip: 'Hours of work, whoever does it', axis: 'Hours of work' },
+  { id: 'yours', name: 'Your time', tip: 'Hours of your own time: doing it yourself, sitting with your computer while an agent does it, or handing it to an agent and checking', axis: 'Hours of your time' },
+  { id: 'cost', name: 'Cost', tip: 'Dollars: your time at what your hour is worth, agent time, and any money it needs', axis: 'Dollars' },
+  { id: 'worth', name: 'Importance', tip: 'Out of 100: the repository and how bad, what it opens up, how soon', axis: 'Importance' },
+];
+const PGROUPS = [{ id: 'none', name: 'One list' }, { id: 'who', name: 'By who' }, { id: 'repo', name: 'By repository' }];
+// How the bars are laid out, per measure: a running total suits hours and dollars, not importance.
+let psort = store.get('psort', 'best'), pmode = store.get('pmode', 'list'), pdomain = store.get('pdomain', 'when'), pgroup = store.get('pgroup', 'none');
+let playouts = { effort: 'line', yours: 'line', cost: 'line', worth: 'zero', ...store.get('playouts', {}) };
+let pwho = null, pall = false;
+if (!PSORTS.some(x => x.id === psort)) psort = 'best';
+if (!PMODES.some(x => x.id === pmode)) pmode = 'list';
+if (!DOMAINS.some(x => x.id === pdomain)) pdomain = 'when';
+
+// Cost and score for each item under the settings in force; BEST is them by best next.
+function rank() {
+  const s = tset();
+  for (const it of ITEMS) {
+    const f = it.f;
+    it.money = f.money.unknown ? s.unknownPurchase : f.money.v;
+    it.c = T.costOf({ hours: f.hours.v, who: it.who, money: it.money }, s);
+    it.yourHours = it.c.yourHours; it.agentHours = it.c.agentHours;
+    it.s = T.scoreOf({ repo: f.repo.v, severity: f.severity.v, opportunity: f.opportunity.v, urgency: f.urgency.v, cost: it.c.total }, s);
+  }
+  BEST = [...ITEMS].sort(PSORTS[0].fn);
+  BEST.forEach((it, k) => { it.bestRank = k + 1; });
+}
+// The items in the order picked, laid out in time in that order.
+function ordered() {
+  const list = [...ITEMS].sort((PSORTS.find(x => x.id === psort) || PSORTS[0]).fn);
+  T.schedule(list, tset());
+  list.forEach((it, k) => { it.rank = k + 1; it.late = it.f.urgency.due && it.f.urgency.daysLeft !== null && doneDay(it) > it.f.urgency.daysLeft; });
+  return list;
+}
+const topPicks = () => {
+  const yours = BEST.find(it => it.who !== 'agent') || null, agent = BEST.find(it => it.who === 'agent') || null;
+  const big = [...ITEMS].sort(PSORTS[1].fn).find(it => it !== yours && it !== agent) || null;
+  return { yours, agent, big };
+};
+
+const itemTag = it => it.type === 'blocker' ? blkTag(it.main, { span: true })
+  : `<span class="btag lane-${it.who}" title="${esc(`${it.repo.repo}#${it.i.n}`)}"><img src="${esc(it.repo.logo)}" alt=""><b>#${it.i.n}</b></span>`;
+const whoTag = it => `<span class="chip who-${it.who}" title="${esc(WHO[it.who].means)}">${esc(WHO[it.who].name)}</span>`;
+function whyShort(it) {
+  const f = it.f, out = [`${it.repo.label || it.repo.name} matters ${f.repo.v}/5`];
+  if (f.severity.v !== 3) out.push(f.severity.why.replace(/ \(“[^”]*”\)$/, ''));
+  if (f.opportunity.v) out.push(f.opportunity.why);
+  if (f.urgency.v) out.push(f.urgency.why);
+  return cap(out.join(' · '));
+}
+const costTitle = it => `About ${fmt$(it.c.total)} in all — ${fmtH(it.c.yourHours)} of your time (${fmt$(it.c.parts.your)})${it.c.agentHours ? `, ${fmtH(it.c.agentHours)} of agent time (${fmt$(it.c.parts.agent)})` : ''}${it.money ? `, ${it.f.money.unknown ? 'a purchase with no price written down, counted as ' : ''}${fmt$(it.money)} to spend` : ''}.`;
+const scoreChips = it => `<span class="chip score" title="Importance, out of 100: how much the repository matters and how bad it is, what it opens up and how soon. Best next weighs it against what it costs.">importance ${Math.round(it.s.worth)}</span><span class="chip" title="${esc(costTitle(it))}">${fmtH(it.c.yourHours)} of yours${it.money ? ` · ${fmt$(it.money)}` : ''}</span>${it.f.urgency.due ? `<span class="chip ${it.f.urgency.daysLeft <= 7 ? 'warn' : ''}" title="${esc(`Due ${it.f.urgency.due}${it.f.urgency.dueSrc === 'words' ? ', from a date in its words' : ''}`)}">due ${esc(day(it.f.urgency.due))}</span>` : ''}`;
+
+// The buttons that get it done: a prompt for an agent, a brief for your computer, or a
+// walk-through for you; the issue; the blocker's own page.
+function actionsHtml(it) {
+  const b = it.main, rec = it.rec, out = [];
+  if (it.i && it.who === 'agent' && !it.i.human) out.push(promptBtn(issuePrompt(it.repo, it.i), 'Prompt'));
+  else if (b && it.who === 'computer') out.push(doItBtn(b, b.options.find(o => o.by === 'computer') || rec || { what: b.what, by: 'computer' }));
+  else if (b && it.who === 'human') out.push(promptBtn(helpPrompt(b, rec || { what: b.what, by: 'human' }), 'Help me', 'Copies a brief for a Claude session to walk you through it, one step at a time.'));
+  else if (b) out.push(promptBtn(optionPrompt(b, rec || { what: b.what, by: 'agent' }), 'Prompt'));
+  else if (it.i) out.push(promptBtn(issuePrompt(it.repo, it.i), 'Prompt'));
+  if (it.url) out.push(`<a class="copy" href="${esc(it.url)}" target="_blank" rel="noopener" title="Open the issue on GitHub">Issue ↗</a>`);
+  if (b) out.push(`<button class="copy" data-blk="${esc(b.uid)}" title="Its page as a blocker: what has to clear first, what it frees, and every way through">As a blocker</button>`);
+  return out.join('');
+}
+
+// The suggested way through, when it says more than the title: what the next step actually is.
+const stepHtml = (it, cls) => it.rec?.what && it.main?.source !== 'issue' && it.rec.what !== it.title
+  ? `<p class="${cls}"><b>${it.who === 'agent' ? 'The agent’s step' : it.who === 'computer' ? 'The step, on your computer' : 'Your step'}:</b> ${rich(cut(it.rec.what, 180), (R.get(it.rec.by) || it.repo).repo)}</p>` : '';
+function picksHtml() {
+  const { yours, agent, big } = topPicks();
+  const card = (it, kick, about) => it ? `<article class="pick who-${it.who}" data-open-item="${esc(it.key)}" tabindex="0" role="button" aria-label="${esc(`${kick}: ${it.title}`)}">
+      <div class="pick-kick" title="${esc(about)}">${esc(kick)}</div>
+      <div class="pick-top">${itemTag(it)}<span class="pick-repo">${esc(it.repo.label || it.repo.name)}</span>${whoTag(it)}</div>
+      <h3 class="pick-what">${esc(cut(it.title, 150))}</h3>
+      ${stepHtml(it, 'pick-step')}
+      <p class="pick-why">${esc(whyShort(it))}</p>
+      <div class="chips">${scoreChips(it)}</div>
+      <div class="chips pick-act">${actionsHtml(it)}</div>
+    </article>` : '';
+  return `<div class="picks">
+    ${card(yours, 'Your next step', 'The best next item that needs you — your hands, money or say, or your sign-in on your computer: the most importance for the least of your time and money.')}
+    ${card(agent, 'Hand to an agent', 'The best next item an agent can do from anywhere. Copy its prompt into a new session; it works while you do yours.')}
+    ${card(big, 'Most important', 'The most important item of the rest, whatever it costs: worth planning time for even when it is not the quickest win.')}
+  </div>`;
+}
+
+function facetMeters(it) {
+  return ['repo', 'severity', 'opportunity', 'urgency'].map(k => {
+    const x = it.f[k];
+    return `<span class="fm" title="${esc(`${FACETS[k].name}: ${x.v} of 5 — ${x.why}${x.src === 'guessed' ? ' (a guess)' : ''}`)}"><small>${esc(FACETS[k].short)}</small>${meter(x.v)}</span>`;
+  }).join('') + `<span class="fm fm-cost" title="${esc(costTitle(it))}"><small>Costs</small><b>${fmt$(it.c.total)}</b></span>`;
+}
+function listHtml(shown) {
+  const rows = pall ? shown : shown.slice(0, 40);
+  return `<ol class="plist">${rows.map(it => `<li class="prow who-${it.who}" data-open-item="${esc(it.key)}" tabindex="0" role="button" aria-label="${esc(`${it.rank}. ${it.title}`)}">
+      <span class="pr-n" title="Its place in this order">${it.rank}</span>
+      <div class="pr-main"><div class="pr-top">${itemTag(it)}<span class="pr-repo">${esc(it.repo.label || it.repo.name)}</span>${whoTag(it)}${it.epic ? `<span class="chip" title="${esc(`Part of the epic #${it.epic.n}: ${it.epic.title}`)}">of #${it.epic.n}</span>` : ''}${it.f.urgency.due ? `<span class="chip ${it.late ? 'bad' : it.f.urgency.daysLeft <= 7 ? 'warn' : ''}" title="${esc(`Due ${it.f.urgency.due}${it.late ? ' — at this pace, in this order, it is done after that' : ''}`)}">due ${esc(day(it.f.urgency.due))}${it.late ? ' ⚠' : ''}</span>` : ''}</div>
+        <div class="pr-what">${esc(cut(it.title, 160))}</div></div>
+      <div class="pr-facets">${facetMeters(it)}</div>
+      <div class="pr-score" title="Importance out of 100, and what it costs in all">${Math.round(it.s.worth)}<small>importance</small></div>
+    </li>`).join('')}</ol>${!pall && shown.length > rows.length ? `<button class="copy more" data-pall>Show all ${shown.length}</button>` : ''}`;
+}
+
+// The bars of one item in one domain, laid end to end.
+function segsOf(it, dom) {
+  if (dom === 'when') return [{ len: it.finish - it.start, cls: `w-${it.who}`, title: `${WHO[it.who].name}: ${it.who === 'agent' ? `${fmtH(it.agentHours)} of agent work` : `${fmtH(it.yourHours)} of your time`}; from ${dayWords(it.start)}, done ${dayWords(doneDay(it))}` }];
+  if (dom === 'effort') return [{ len: it.c.hours, cls: `w-${it.who}`, title: `${fmtH(it.c.hours)} of work (${it.f.hours.why})` }];
+  if (dom === 'yours') return [{ len: it.c.yourHours, cls: `w-${it.who}`, title: `${fmtH(it.c.yourHours)} of your time` }];
+  if (dom === 'cost') return [
+    { len: it.c.parts.your, cls: 'c-your', title: `Your time: ${fmtH(it.c.yourHours)}, ${fmt$(it.c.parts.your)}` },
+    { len: it.c.parts.agent, cls: 'c-agent', title: `Agent time: ${fmtH(it.c.agentHours)}, ${fmt$(it.c.parts.agent)}` },
+    { len: it.c.parts.money, cls: `c-money${it.f.money.unknown ? ' guess' : ''}`, title: `Money: ${fmt$(it.c.parts.money)}${it.f.money.unknown ? ' — no price is written down, so this is the guess for a purchase' : ''}` },
+  ].filter(x => x.len > 0);
+  return [
+    { len: it.s.parts.importance, cls: 'p-imp', title: `The repository and how bad: ${Math.round(it.s.parts.importance)}` },
+    { len: it.s.parts.opportunity, cls: 'p-opp', title: `What it opens up: ${Math.round(it.s.parts.opportunity)}` },
+    { len: it.s.parts.urgency, cls: 'p-urg', title: `How soon: ${Math.round(it.s.parts.urgency)}` },
+  ].filter(x => x.len > 0);
+}
+const valWords = (dom, v) => dom === 'when' ? dayWords(v) : dom === 'cost' ? fmt$(v) : dom === 'worth' ? String(Math.round(v)) : fmtH(v);
+function chartKey(dom) {
+  const sw = (cls, t) => `<span><i class="g-sw ${cls}"></i>${t}</span>`;
+  const who = sw('w-human', 'you') + sw('w-computer', 'your computer') + sw('w-agent', 'an agent');
+  if (dom === 'when') return `${who}<span><i class="g-due demo"></i>its deadline</span><span><i class="g-sw w-human late"></i>done after its deadline</span><span class="muted">You do yours one after another at ${fmtH(tset().yourHoursADay)} a day; ${tset().agentsAtOnce} agent session${tset().agentsAtOnce === 1 ? '' : 's'} work side by side. Something that waits for another starts when that is done.</span>`;
+  if (dom === 'cost') return sw('c-your', 'your time') + sw('c-agent', 'agent time') + sw('c-money', 'money') + sw('c-money guess', 'a purchase with no price written down');
+  if (dom === 'worth') return sw('p-imp', 'the repository and how bad') + sw('p-opp', 'what it opens up') + sw('p-urg', 'how soon');
+  return who;
+}
+function chartHtml(shown) {
+  const d = DOMAINS.find(x => x.id === pdomain) || DOMAINS[0];
+  const rows = pall ? shown : shown.slice(0, 30);
+  const groups = pgroup === 'who' ? ['human', 'computer', 'agent'].map(w => ({ name: WHO[w].name, items: rows.filter(it => it.who === w) }))
+    : pgroup === 'repo' ? D.repos.map(r => ({ name: r.label || r.name, logo: r.logo, items: rows.filter(it => it.repo === r) }))
+    : [{ name: '', items: rows }];
+  const playout = playouts[d.id] || 'line', line = d.id !== 'when' && playout === 'line';
+  let max = 0;
+  for (const g of groups) {
+    let run = 0;
+    for (const it of g.items) {
+      const segs = segsOf(it, d.id), len = segs.reduce((n, x) => n + x.len, 0);
+      it.g = { segs, len, x0: d.id === 'when' ? it.start : line ? run : 0 };
+      if (line) run += len;
+      max = Math.max(max, it.g.x0 + len);
+    }
+    g.total = run || g.items.reduce((n, it) => n + it.g.len, 0);
+  }
+  let marks;
+  if (d.id === 'when') {
+    const span = Math.max(1, Math.ceil(max)), step = [1, 2, 7, 14, 28, 56, 91, 182].find(x => span / x <= 7) || 365;
+    max = Math.ceil(span / step) * step;
+    marks = Array.from({ length: max / step + 1 }, (_, k) => k * step);
+  } else { marks = T.ticks(max, 5); max = marks[marks.length - 1]; }
+  const pct = v => Math.max(0, Math.min(100, v / max * 100)).toFixed(3);
+  const tickLab = v => d.id === 'when' ? (v === 0 ? 'today' : dayAt(v).toLocaleDateString(undefined, { day: 'numeric', month: 'short' })) : d.id === 'cost' ? fmt$(v) : d.id === 'worth' ? String(v) : `${v} h`;
+  const grid = marks.map(v => `<i class="g-tick" style="left:${pct(v)}%"></i>`).join('');
+  const row = it => {
+    const { segs, len, x0 } = it.g;
+    let x = x0;
+    const bars = segs.map(sg => { const h = `<span class="g-seg ${sg.cls}${it.late && d.id === 'when' ? ' late' : ''}" style="left:${pct(x)}%;width:${pct(sg.len)}%" title="${esc(sg.title)}"></span>`; x += sg.len; return h; }).join('');
+    const end = x0 + len, endPct = +pct(end), startPct = +pct(x0);
+    // The value goes after the bar; near the right edge, before it, or inside a long one.
+    const at = endPct <= 70 ? '' : startPct >= 24 ? ' before' : ' inside';
+    const u = it.f.urgency;
+    const due = d.id === 'when' && u.due && u.daysLeft !== null ? (u.daysLeft + 1 <= max
+      ? `<i class="g-due${it.late ? ' late' : ''}" style="left:${pct(Math.max(0, u.daysLeft + 1))}%" title="${esc(`Due ${u.due}${it.late ? ' — done after it at this pace' : ''}`)}"></i>`
+      : `<i class="g-due off" title="${esc(`Due ${u.due}, past the end of this chart`)}"></i>`) : '';
+    const val = d.id === 'when' ? `done ${dayWords(doneDay(it))}` : line ? `${valWords(d.id, len)} → ${valWords(d.id, end)}` : valWords(d.id, len);
+    return `<div class="g-row who-${it.who}" data-open-item="${esc(it.key)}" tabindex="0" role="button" aria-label="${esc(`${it.rank}. ${it.title}: ${val}`)}">
+      <div class="g-lab"><span class="g-n">${it.rank}</span>${itemTag(it)}<span class="g-t" title="${esc(it.title)}">${esc(it.title)}</span></div>
+      <div class="g-track">${grid}${bars}${due}<span class="g-val${at}" style="left:${at === ' before' ? startPct : endPct}%">${esc(val)}</span></div></div>`;
+  };
+  const axis = `<div class="g-row g-axis" aria-hidden="true"><div class="g-lab">${esc(line ? `${d.axis}, running total in this order` : d.axis)}</div><div class="g-track">${marks.map(v => `<span class="g-mark${v === 0 ? ' first' : v === max ? ' last' : ''}" style="left:${pct(v)}%">${esc(tickLab(v))}</span>`).join('')}</div></div>`;
+  const body = groups.filter(g => g.items.length).map(g => `${g.name ? `<div class="g-group">${g.logo ? `<img src="${esc(g.logo)}" alt="">` : ''}<b>${esc(g.name)}</b><span>${g.items.length} · ${esc(d.id === 'when' ? `done ${dayWords(Math.max(...g.items.map(doneDay)))}` : `${valWords(d.id, g.total)} in all`)}</span></div>` : ''}${g.items.map(row).join('')}`).join('');
+  return `<div class="gtools">
+      <div class="seg" role="tablist" aria-label="What the bars measure">${DOMAINS.map(x => `<button role="tab" data-domain="${x.id}" aria-selected="${x.id === d.id}" title="${esc(x.tip)}">${esc(x.name)}</button>`).join('')}</div>
+      <div class="seg" aria-label="How the bars are laid out">${d.id === 'when' ? '<button aria-pressed="true" disabled title="In the When view each bar sits where it would happen">Where it falls in time</button>' : `<button data-layout="line" aria-pressed="${playout === 'line'}" title="Each bar starts where the one before it ends, like a plan: the end of the last is the total">One after another</button><button data-layout="zero" aria-pressed="${playout === 'zero'}" title="Every bar starts at zero, to compare sizes">Side by side</button>`}</div>
+      <div class="seg" aria-label="Group the rows">${PGROUPS.map(x => `<button data-group="${x.id}" aria-pressed="${pgroup === x.id}">${esc(x.name)}</button>`).join('')}</div>
+    </div>
+    <p class="gabout">${esc(d.tip)}. Rows stay in the order above, so switching what the bars measure shows how the same work compares another way. Click a row for its page.</p>
+    <div class="bkey gkey">${chartKey(d.id)}</div>
+    <div class="gantt">${axis}${body || '<div class="empty">Nothing matches.</div>'}</div>
+    ${!pall && shown.length > rows.length ? `<button class="copy more" data-pall>Show all ${shown.length} rows</button>` : ''}`;
+}
+
+// How it's weighed — what counts and how much, how much each repository matters, your time and
+// agents', and what money each costs — changed in this browser, and a prompt to keep the change.
+function weightsHtml() {
+  const s = tset(), mine = store.get('triage-set', {}), mineRepos = store.get('triage-repos', {});
+  const slider = (k, label, means) => `<label class="tw-row" title="${esc(means)}"><span>${esc(label)}</span><input type="range" min="0" max="4" step="0.5" value="${s.weights[k]}" data-weight="${k}" aria-label="${esc(label)}"><b>${s.weights[k]}</b></label>`;
+  const numIn = (k, label, means, step, pre = '', post = '') => `<label class="tw-row" title="${esc(means)}"><span>${esc(label)}</span><span class="tw-num">${pre}<input type="number" min="${T.LIMITS[k][0]}" max="${T.LIMITS[k][1]}" step="${step}" value="${s[k]}" data-set="${k}" aria-label="${esc(label)}">${post}</span></label>`;
+  const repos = D.repos.map(r => { const w = repoWeight(r); return `<label class="tw-repo" title="${esc(cap(w.why))}"><img src="${esc(r.logo)}" alt=""><span>${esc(r.label || r.name)}</span><select data-repo-weight="${esc(r.id)}" aria-label="${esc(`How much ${r.label || r.name} matters`)}">${[1, 2, 3, 4, 5].map(v => `<option value="${v}"${v === w.v ? ' selected' : ''}>${v}</option>`).join('')}</select>${srcChip(w.src)}</label>`; }).join('');
+  const changed = Object.keys(mine).length + Object.keys(mineRepos).length > 0;
+  return `<details class="box tweights" ${store.get('tw-open', false) ? 'open' : ''}><summary><b>How it’s weighed</b> — change what counts${changed ? ' <span class="chip src-yours">changed in this browser</span>' : ''}</summary>
+    <p class="muted">Each change re-ranks everything at once. It stays in this browser; <b>Keep these for everyone</b> copies a prompt that writes it into the Atlas, so it holds on every device and for the weekday brief.</p>
+    <h4>What counts, and how much</h4>
+    ${slider('importance', 'The repository and how bad', 'How much the repository matters, multiplied by how bad it is if it is left. 0 leaves it out.')}
+    ${slider('opportunity', 'What it opens up', 'How much other work doing it frees. 0 leaves it out.')}
+    ${slider('urgency', 'How soon', 'Deadlines, Now and Next lists, and how long it has held work up. 0 leaves it out.')}
+    ${slider('cost', 'What it costs', 'How hard cost holds a thing back in Best next: 0 ignores cost, 1 is even, 2 or more puts cheap things first.')}
+    <h4>How much each repository matters (1–5)</h4><div class="tw-repos">${repos}</div>
+    <h4>Time, for the When chart</h4>
+    ${numIn('yourHoursADay', 'Your hours a day on this', 'Hours of your own time a day for this work, every day of the week.', 0.25, '', ' h')}
+    ${numIn('agentsAtOnce', 'Agent sessions at once', 'How many agent sessions you run side by side.', 1)}
+    ${numIn('agentHoursADay', 'An agent session’s hours a day', 'Hours of work one agent session gets through in a day.', 1, '', ' h')}
+    <h4>Money, for the Cost chart and Best next</h4>
+    ${numIn('yourHour', 'An hour of your time is worth', 'What an hour of your own time is worth to you, in dollars: it is what makes your time count against agent time.', 5, '$')}
+    ${numIn('agentHour', 'An hour of agent time costs', 'What an hour of agent time costs you, in dollars. On a flat Claude plan it is close to 0.', 1, '$')}
+    ${numIn('unknownPurchase', 'A purchase with no price written down', 'What to count for something that means buying, when no price is written down.', 5, '$')}
+    <div class="chips">${changed ? `<button class="copy" data-tw-reset title="Forget the changes made in this browser">Back to the Atlas’s</button>${promptBtn(keepPrompt(), 'Keep these for everyone', 'Copies a prompt for a Claude session to write these weights and settings into the Atlas’s data/registry.json.')}` : '<span class="muted">Nothing changed in this browser.</span>'}</div>
+  </details>`;
+}
+function keepPrompt() {
+  const s = tset();
+  const t = { weights: s.weights, yourHoursADay: s.yourHoursADay, agentsAtOnce: s.agentsAtOnce, agentHoursADay: s.agentHoursADay, yourHour: s.yourHour, agentHour: s.agentHour, unknownPurchase: s.unknownPurchase };
+  return [
+    `In ${D.owner}/atlas: record how I want open work weighed on the Atlas's Priorities view, in data/registry.json.`,
+    '',
+    `1. Give each repository a "weight" — how much it matters now, 1 to 5: ${D.repos.map(r => `${r.id} ${repoWeight(r).v}`).join(', ')}. Keep each repository on its one line.`,
+    `2. Set the top-level "triage" to: ${JSON.stringify(t)}`,
+    '',
+    `Read the Atlas's CLAUDE.md first; docs/priorities.md says what each setting does. Run node test/check.mjs, then push to main.`,
+  ].join('\n');
+}
+function wordsHtml() {
+  return `<details class="box pwords"><summary><b>What the words here mean</b></summary><ul>
+    ${Object.values(FACETS).map(F => `<li><b>${esc(F.name)}</b> — ${esc(F.means)}</li>`).join('')}
+    <li><b>Importance</b> — the four above together, out of 100. The weights in <i>How it’s weighed</i> say how much each counts.</li>
+    <li><b>Effort</b> — hours of work, whoever does it: from the suggested way through, the issue’s <code>[Model/Effort]</code> tag, or a guess.</li>
+    <li><b>Your time</b> — the part of it that is yours: all of it when you do it, about half when an agent at your computer does it while you approve, and ten minutes to half an hour to hand a job to an agent and check it.</li>
+    <li><b>Cost</b> — your time at what your hour is worth, agent time, and any money it needs, in dollars.</li>
+    <li><b>Best next</b> — importance for what it costs: the most good for the least of your time and money. A five-minute decision that frees three jobs beats a week of work that frees none.</li>
+    <li><b>Guess</b>, <b>on the issue</b>, <b>in the registry</b>, <b>yours</b> — where a number came from. The Atlas guesses from titles, labels, dates, money and sizes in the words, and what each blocker holds up. An issue can say for itself with a line of its own in its body: <code>Atlas triage: severity 4 · due 2026-11-25 · effort 2h · cost $40</code>.</li>
+    <li><b>You</b>, <b>Your computer</b>, <b>An agent</b> — who takes the next step: you by hand; an agent at your computer, signed in as you while you approve; or an agent session from anywhere.</li>
+  </ul></details>`;
+}
+
+function renderPriorities() {
+  const el = $('#priorities-view');
+  if (!T) { el.innerHTML = '<div class="page"><h2>Priorities</h2><div class="empty">The weighing script (assets/triage.js) did not load.</div></div>'; return; }
+  const list = ordered();
+  const q = ($('#search').value || '').trim().toLowerCase();
+  const match = it => !q || `${it.tag} ${it.title} ${it.repo.name} ${it.repo.label || ''} ${it.repo.repo}`.toLowerCase().includes(q);
+  const shown = list.filter(it => (!pwho || it.who === pwho) && match(it));
+  const count = w => list.filter(it => it.who === w && match(it)).length;
+  const sort = PSORTS.find(x => x.id === psort) || PSORTS[0];
+  el.innerHTML = `<div class="page ppage"><h2>Priorities</h2>
+    <p class="intro">Every open issue and blocker, weighed: how much its repository matters, how bad it is if it’s left, what doing it opens up and how soon it’s needed — against what it costs in your time, agent time and money. Start with the cards. Every number is the Atlas’s guess until you or the issue says otherwise: click anything for why it ranks where it does, and to change it.</p>
+    ${picksHtml()}
+    <div class="bmodes" role="tablist" aria-label="Ways to look at the priorities">${PMODES.map(m => `<button role="tab" data-pmode="${m.id}" aria-selected="${m.id === pmode}" title="${esc(m.tip)}">${esc(m.name)}</button>`).join('')}</div>
+    <div class="ptools">
+      <div class="seg" aria-label="Order">${PSORTS.map(x => `<button data-sort="${x.id}" aria-pressed="${x.id === sort.id}" title="${esc(x.tip)}">${esc(x.name)}</button>`).join('')}</div>
+      <div class="lane-sum">${['human', 'computer', 'agent'].map(w => `<button class="lane-pill lane-${w}" data-who="${w}" aria-pressed="${pwho === w}" title="${esc(WHO[w].means)}"><b>${count(w)}</b> ${esc(WHO[w].plural)}</button>`).join('')}<button class="lane-pill" data-who="" aria-pressed="${!pwho}">all <b>${list.filter(match).length}</b></button></div>
+    </div>
+    <p class="gabout"><b>${esc(sort.name)}:</b> ${esc(sort.tip)}.</p>
+    ${shown.length ? (pmode === 'chart' ? chartHtml(shown) : listHtml(shown)) : '<div class="empty">Nothing matches.</div>'}
+    ${weightsHtml()}
+    ${wordsHtml()}
+  </div>`;
+  wirePriorities(el);
+  markSelected();
+}
+function rerank() { rank(); renderStrip(); if (current === 'priorities') renderPriorities(); if (selected?.type === 'item') select(selected); }
+function wirePriorities(el) {
+  const redo = () => { renderPriorities(); setHash(); };
+  $$('[data-pmode]', el).forEach(b => b.addEventListener('click', () => { pmode = b.dataset.pmode; store.set('pmode', pmode); redo(); }));
+  $$('[data-sort]', el).forEach(b => b.addEventListener('click', () => { psort = b.dataset.sort; store.set('psort', psort); redo(); }));
+  $$('[data-who]', el).forEach(b => b.addEventListener('click', () => { pwho = b.dataset.who || null; redo(); }));
+  $$('[data-domain]', el).forEach(b => b.addEventListener('click', () => { pdomain = b.dataset.domain; store.set('pdomain', pdomain); redo(); }));
+  $$('[data-layout]', el).forEach(b => b.addEventListener('click', () => { playouts = { ...playouts, [pdomain]: b.dataset.layout }; store.set('playouts', playouts); redo(); }));
+  $$('[data-group]', el).forEach(b => b.addEventListener('click', () => { pgroup = b.dataset.group; store.set('pgroup', pgroup); redo(); }));
+  $$('[data-pall]', el).forEach(b => b.addEventListener('click', () => { pall = true; redo(); }));
+  $$('[data-open-item]', el).forEach(x => {
+    x.addEventListener('click', e => { if (e.target.closest('a, button, select, input')) return; select({ type: 'item', key: x.dataset.openItem }); });
+    x.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && e.target === x) { e.preventDefault(); select({ type: 'item', key: x.dataset.openItem }); } });
+  });
+  const tw = $('.tweights', el);
+  tw?.addEventListener('toggle', () => store.set('tw-open', tw.open));
+  $$('[data-weight]', el).forEach(i => {
+    i.addEventListener('input', () => { i.nextElementSibling.textContent = i.value; });
+    i.addEventListener('change', () => { const m = store.get('triage-set', {}); m.weights = { ...(m.weights || {}), [i.dataset.weight]: +i.value }; store.set('triage-set', m); rerank(); });
+  });
+  $$('[data-set]', el).forEach(i => i.addEventListener('change', () => { if (i.value === '') return; const m = store.get('triage-set', {}); m[i.dataset.set] = +i.value; store.set('triage-set', m); rerank(); }));
+  $$('[data-repo-weight]', el).forEach(i => i.addEventListener('change', () => setRepoWeight(i.dataset.repoWeight, i.value)));
+  $('[data-tw-reset]', el)?.addEventListener('click', () => { store.set('triage-set', {}); store.set('triage-repos', {}); buildItems(); rerank(); });
+  wireCards(el);
+}
+function setRepoWeight(id, v) {
+  const m = store.get('triage-repos', {});
+  if (v === '' || v == null) delete m[id]; else m[id] = +v;
+  store.set('triage-repos', m);
+  buildItems(); rerank();
+}
+
+// One item's page: why it ranks where it does, part by part, each changeable here; what it costs;
+// when it could be done; what it waits for and frees; the buttons that get it done; and how to
+// make a change stick.
+const SEV_OPTS = [[5, '5 — broken, unsafe or losing data'], [4, '4 — something is failing or running out'], [3, '3 — ordinary work'], [2, '2 — a nice-to-have'], [1, '1 — someday']];
+const HOUR_OPTS = [[1 / 12, '5 min'], [0.25, '15 min'], [0.5, '30 min'], [1, '1 hour'], [2, '2 hours'], [4, 'half a day'], [8, 'a day'], [16, 'two days'], [40, 'a week']];
+function itemPanel(it) {
+  if (!it) return `<div class="p-head"><div class="row1"><div><h2>Nothing by that name</h2><div class="sub">It may have been done since the link was made.</div></div><button class="icon-btn p-close" aria-label="Close">✕</button></div></div><div class="p-body"><p>Everything open is on the Priorities view.</p></div>`;
+  const r = it.repo, f = it.f, own = store.get('triage-own', {})[it.key] || {}, s = tset();
+  const opt = (v, label, sel) => `<option value="${v}"${sel ? ' selected' : ''}>${esc(label)}</option>`;
+  const auto = (k, label) => opt('', `${f[k].base.src === 'recorded' ? 'The issue’s' : 'The Atlas’s'}: ${label}`, !(k in own));
+  const facet = (k, ctl) => { const x = f[k], F = FACETS[k]; return `<div class="ipf"><div class="ipf-h"><b title="${esc(F.means)}">${esc(F.name)}</b>${meter(x.v)}<span class="ipf-v">${x.v}<small> of 5</small></span>${srcChip(x.src)}</div><div class="ipf-why">${esc(cap(x.why))}.</div>${ctl}</div>`; };
+  const rb = f.repo.base;
+  const repoCtl = `<label class="ipf-set">Set it <select data-repo-weight="${esc(r.id)}">${opt('', `${rb.src === 'set' ? 'The registry’s' : 'The Atlas’s'}: ${rb.v}`, f.repo.src !== 'yours')}${[5, 4, 3, 2, 1].map(v => opt(v, String(v), f.repo.src === 'yours' && f.repo.v === v)).join('')}</select><span class="muted">for everything in ${esc(r.label || r.name)}</span></label>`;
+  const sevCtl = `<label class="ipf-set">Set it <select data-own="severity">${auto('severity', String(f.severity.base.v))}${SEV_OPTS.map(([v, l]) => opt(v, l, own.severity === v)).join('')}</select></label>`;
+  const oppCtl = `<label class="ipf-set">Set it <select data-own="opportunity">${auto('opportunity', String(f.opportunity.base.v))}${[5, 4, 3, 2, 1, 0].map(v => opt(v, String(v), own.opportunity === v)).join('')}</select></label>`;
+  const u = f.urgency;
+  const dueCtl = `<label class="ipf-set">Deadline <input type="date" data-own="due" value="${esc(own.due || '')}" aria-label="Deadline">${own.due ? '<button class="copy" data-own-clear="due">Clear</button>' : ''}${u.baseDue ? `<span class="muted">${own.due ? 'instead of ' : ''}${esc(day(u.baseDue))}, ${u.baseDueSrc === 'words' ? 'from a date in its words' : 'written on the issue'}</span>` : ''}</label>`;
+  const c = it.c, mb = f.money.base;
+  const hoursCtl = `<label class="ipf-set">Size <select data-own="hours">${auto('hours', fmtH(f.hours.base.v))}${HOUR_OPTS.map(([v, l]) => opt(v, l, own.hours !== undefined && Math.abs(own.hours - v) < 1e-6)).join('')}</select></label>`;
+  const moneyCtl = `<label class="ipf-set">Money <span class="tw-num">$<input type="number" min="0" step="1" data-own="money" value="${'money' in own ? own.money : ''}" placeholder="${Math.round(mb.unknown ? s.unknownPurchase : mb.v)}" aria-label="Money it needs, in dollars"></span>${'money' in own ? '<button class="copy" data-own-clear="money">Clear</button>' : ''}</label>`;
+  const whenText = it.who === 'agent'
+    ? `An agent could start ${dayWords(it.start)} and be done ${dayWords(doneDay(it))}`
+    : `You could start ${dayWords(it.start)} and be done ${dayWords(doneDay(it))}`;
+  const kids = it.blockers.flatMap(b => b.kids.map(k => k.b)).filter((b, k, a) => a.indexOf(b) === k && !it.blockers.includes(b));
+  const outs = it.blockers.flatMap(b => b.outs.map(o => ({ o, b })));
+  const line = T.triageLine({ ...own });
+  const hasOwn = Object.keys(own).length > 0;
+  const sort = PSORTS.find(x => x.id === psort) || PSORTS[0];
+  return `
+  <div class="p-head"><div class="row1"><img src="${esc(r.logo)}" alt=""><div style="min-width:0"><div class="bp-tag">${itemTag(it)}</div><h2 class="bp-title">${esc(it.title)}</h2>
+    <div class="sub">${esc(r.label || r.name)} · #${it.rank} in ${esc(sort.name.toLowerCase())}${psort !== 'best' ? `, #${it.bestRank} in best next` : ''}</div></div>
+    <button class="icon-btn p-close" aria-label="Close">✕</button></div>
+    <div class="chips">${whoTag(it)}${scoreChips(it)}</div></div>
+  <div class="p-body">
+    ${it.title.length > 150 ? `<p class="bp-full">${esc(it.title)}</p>` : ''}
+    ${it.i?.excerpt ? `<p class="blk-ctx" title="The opening of the issue">${esc(it.i.excerpt)}</p>` : ''}
+    ${stepHtml(it, 'ip-step box')}
+    <div class="chips">${actionsHtml(it)}</div>
+    <h3>Why it ranks here</h3>
+    <div class="box ipsum">Importance <b>${Math.round(it.s.worth)}</b> of 100 — the repository and how bad ${Math.round(it.s.parts.importance)}, what it opens up ${Math.round(it.s.parts.opportunity)}, how soon ${Math.round(it.s.parts.urgency)} — for about <b>${fmt$(c.total)}</b>: best-next score ${it.s.best.toFixed(1)}.</div>
+    ${facet('repo', repoCtl)}${facet('severity', sevCtl)}${facet('opportunity', oppCtl)}${facet('urgency', dueCtl)}
+    <h3>What it costs</h3>
+    <ul class="ipc">
+      <li><b>${fmtH(c.hours)}</b> of work — ${esc(f.hours.why)} ${srcChip(f.hours.src)}${hoursCtl}</li>
+      <li><b>${fmtH(c.yourHours)}</b> of your time × $${s.yourHour} an hour = ${fmt$(c.parts.your)} <span class="muted">(${it.who === 'human' ? 'you do it' : it.who === 'computer' ? 'you sit with your computer while an agent does it, approving' : 'to hand it over and check what comes back'})</span></li>
+      ${c.agentHours ? `<li><b>${fmtH(c.agentHours)}</b> of agent time × $${s.agentHour} an hour = ${fmt$(c.parts.agent)}</li>` : ''}
+      <li><b>${fmt$(c.parts.money)}</b> to spend — ${esc(f.money.unknown ? `${f.money.why}: counted as ${fmt$(s.unknownPurchase)}` : f.money.why)} ${srcChip(f.money.src)}${moneyCtl}</li>
+    </ul>
+    <h3>When</h3>
+    <p>${esc(whenText)}, working down the list in ${esc(sort.name.toLowerCase())} order at ${fmtH(s.yourHoursADay)} a day of yours${it.who === 'agent' ? ` and ${s.agentsAtOnce} agent session${s.agentsAtOnce === 1 ? '' : 's'}` : ''}.${u.due ? ` It is due ${esc(day(u.due))}${it.late ? ' — <b class="bad-t">at this pace it is done after that</b>: move it up (set a deadline, or order by Most urgent) or give it more hours' : ''}.` : ''}</p>
+    ${it.after.length ? `<h3 title="What has to be done before this can start">Waits for</h3><ul class="ipl">${it.after.map(a => `<li><button class="linkish" data-open-item="${esc(a.key)}">${itemTag(a)} ${esc(cut(a.title, 90))}</button> <span class="muted">done ${esc(dayWords(doneDay(a)))}</span></li>`).join('')}</ul>` : ''}
+    ${kids.length || outs.length ? `<h3 title="What doing it would unblock">Doing it frees</h3>${kids.length ? `<div class="bp-list">${kids.map(b => blkTag(b, { what: 90 })).join('')}</div>` : ''}${outs.length ? `<ul class="bp-outs">${outs.slice(0, 12).map(({ o, b }) => `<li>${outHtml(o, b)}</li>`).join('')}</ul>` : ''}` : ''}
+    ${it.epic ? `<h3>Part of</h3><p><a href="${esc(it.epic.url)}" target="_blank" rel="noopener">#${it.epic.n} ${esc(it.epic.title)} ↗</a></p>` : ''}
+    <h3>Make it stick</h3>
+    ${hasOwn ? `<p>Your changes are in this browser only. For everyone, put this line in the ${it.i ? 'issue' : 'blocker’s issue'} on a line of its own:</p>
+      <p><code class="tline">${esc(line)}</code></p>
+      <div class="chips"><button class="copy" data-copy-line="${esc(line)}" title="Copies the line, to paste into the issue on GitHub">Copy the line</button>${it.i ? `<a class="copy" href="${esc(it.url)}" target="_blank" rel="noopener" title="Open the issue: use … then Edit to change its body">Edit the issue ↗</a>` : ''}${promptBtn(stickPrompt(it, line), 'Prompt: write it for me', 'Copies a brief for a Claude session to put the line in the issue.')}<button class="copy" data-own-clear="*">Forget my changes</button></div>`
+      : `<p class="muted">These are ${it.type === 'issue' && Object.keys(it.i.triage || {}).length ? 'what the issue says and ' : ''}the Atlas’s guesses. Change any part above to see where it lands; this page then says how to make it stick for everyone. An issue can also say for itself, with a line of its own in its body: <code>Atlas triage: severity 4 · due 2026-11-25 · effort 2h · cost $40</code>.</p>`}
+    <div class="chips"><button class="copy" data-go-repo="${esc(r.id)}">Show ${esc(r.label || r.name)} on the map</button></div>
+  </div>`;
+}
+function stickPrompt(it, line) {
+  if (it.i) return [
+    `In ${it.repo.repo}: put this line in the body of issue #${it.i.n} ("${it.i.title}"), on a line of its own near the top (under the "Recommended:" line, if it has one). If the body already has an "Atlas triage:" line, replace that one. Change nothing else.`,
+    '', line, '', it.url, '',
+    `The Atlas reads it at its next collect (every three hours) and weighs the issue by it on its Priorities view.`,
+  ].join('\n');
+  return [fileIssuePrompt(it.main), '', `In the new issue's body, put this line straight under the "Atlas blocker:" line:`, line].join('\n');
+}
+function wireItemPanel(panel, it) {
+  const setOwn = (k, v) => {
+    const all = store.get('triage-own', {}), mine = { ...(all[it.key] || {}) };
+    if (k === '*') { delete all[it.key]; store.set('triage-own', all); }
+    else {
+      if (v === '' || v == null || (typeof v === 'number' && !Number.isFinite(v))) delete mine[k]; else mine[k] = v;
+      if (Object.keys(mine).length) all[it.key] = mine; else delete all[it.key];
+      store.set('triage-own', all);
+    }
+    buildItems(); rerank();
+  };
+  $$('[data-own]', panel).forEach(i => i.addEventListener('change', () => {
+    const k = i.dataset.own;
+    setOwn(k, k === 'due' ? (/^\d{4}-\d{2}-\d{2}$/.test(i.value) ? i.value : '') : i.value === '' ? '' : +i.value);
+  }));
+  $$('[data-own-clear]', panel).forEach(b => b.addEventListener('click', () => setOwn(b.dataset.ownClear, '')));
+  $$('[data-repo-weight]', panel).forEach(i => i.addEventListener('change', () => setRepoWeight(i.dataset.repoWeight, i.value)));
+  $$('[data-copy-line]', panel).forEach(b => b.addEventListener('click', () => copyText(b.dataset.copyLine, b, 'Copied — paste it into the issue on GitHub')));
+  $$('[data-open-item]', panel).forEach(b => b.addEventListener('click', () => select({ type: 'item', key: b.dataset.openItem })));
+}
+
 // ------------------------------------------------------------------ roadmap view
 function renderRoadmap() {
   const el = $('#roadmap-view');
@@ -1637,6 +2214,15 @@ function renderGuide() {
     <div class="box"><h4>3 · Forward: changes travel downstream</h4>A consumer records where it last caught up (a pinned commit, a version, a review date). When the provider changes a watched file after that, the link turns <b style="color:var(--bad)">behind</b>, and the consumer's daily <code>atlas.yml</code> check opens an issue there with the upstream commits and how to catch up.</div>
     <div class="box"><h4>4 · Back: asks travel upstream</h4>When a repo needs another to change, its agent files an issue in the other repo (or records it under <code>asks</code> until it can). Issues that name another repo show on the line between the two.</div>
   </div>
+  <h3>Priorities: what to work on next</h3>
+  <p>The <b>Priorities</b> view weighs every open issue and blocker against the others, so there is one place to look for what matters most right now. <b>▶ Start here</b>, at the top of every view, is its pick for you.</p>
+  <ul>
+    <li><b>What it weighs.</b> How much its repository matters (1–5) times how bad it is if it's left (1–5) — so a bad problem in a repository that matters little can rank below a smaller one where it matters most — plus what doing it opens up (what it frees, counting the blockers behind it) and how soon it's needed (a deadline in its words, its repository's Now or Next list, how long it has held work up). Together that is its <b>importance</b>, out of 100.</li>
+    <li><b>What it costs.</b> Your time (all of it when you do it; about half when an agent at your computer does it while you approve; minutes to hand a job to an agent and check it), agent time, and any money it needs, in dollars. <b>Best next</b> is importance for what it costs: a five-minute decision that frees three jobs beats a week of work that frees none.</li>
+    <li><b>Three cards</b>: your next step, the best job to hand to an agent while you do it, and the most important of the rest whatever it costs.</li>
+    <li><b>The chart</b> lays the same rows out as bars, measured one of five ways: <b>When</b> (yours one after another at your hours a day, agents side by side, each deadline marked), <b>Effort</b>, <b>Your time</b>, <b>Cost</b> and <b>Importance</b>. <b>One after another</b> starts each bar where the last ended, so the end is the total; <b>Side by side</b> starts them all at zero to compare sizes.</li>
+    <li><b>Guesses, and your word.</b> Every number starts as the Atlas's guess from what it can see: titles, labels, dates and money in the words, sizes in the ways through, what each blocker holds up, and each repository's phase and how many rely on it. Click an item to see why it ranks where it does and to change any part; <b>How it’s weighed</b> changes what counts and how much each repository matters. Changes stay in your browser until you make them stick: an issue can carry a line of its own, <code>Atlas triage: severity 4 · due 2026-11-25 · effort 2h · cost $40</code>, and repository weights and settings go in <code>data/registry.json</code> (each page has a button that copies the prompt).</li>
+  </ul>
   <h3>Blockers</h3>
   <p>Press <b>Blockers</b> on the map to see what is stopping work: a line from each repository to <b>You</b>, to <b>Your computer</b>, to <b>Agents</b>, or to the repository it waits on, as thick as the number of blockers on it. Click a line, or open the <b>Blockers</b> view, for each blocker, what it holds up, and the ways through it, each marked with who can do it, the effort and the one the repository would pick. Repositories record blockers and options in <code>status.blocked</code>; the Atlas adds <code>[Human]</code> issues, links behind upstream, asks nobody has filed and failing CI by itself.</p>
   <p>The Blockers view shows them four ways:</p>
@@ -1665,24 +2251,31 @@ function renderGuide() {
 }
 
 // ------------------------------------------------------------------ chrome
-const VIEWS = ['map', 'blockers', 'roadmap', 'board', 'links', 'activity', 'guide'];
+const VIEWS = ['map', 'priorities', 'blockers', 'roadmap', 'board', 'links', 'activity', 'guide'];
 let current = 'map';
 function showView(v) {
   if (!VIEWS.includes(v)) v = 'map';
   current = v;
   for (const id of VIEWS) $(`#${id}-view`).hidden = id !== v;
   $$('nav.views button').forEach(b => b.setAttribute('aria-selected', b.dataset.view === v));
+  if (v === 'priorities') renderPriorities();
   if (v === 'blockers') renderBlockers();
   if (v === 'roadmap') renderRoadmap();
   if (v === 'board') renderBoard();
   if (v === 'links') renderLinks();
   if (v === 'activity') renderActivity();
   if (v === 'guide') renderGuide();
-  $('#panel').classList.toggle('open', !!selected && (v === 'map' || (v === 'blockers' && selected.type === 'blocker')));
+  $('#panel').classList.toggle('open', !!selected && (v === 'map' || (v === 'blockers' && selected.type === 'blocker') || (v === 'priorities' && (selected.type === 'item' || selected.type === 'blocker'))));
   if (v === 'map' && D) placeIfTurned();
   setHash();
 }
 function setHash() {
+  if (current === 'priorities') {
+    // #priorities/list, #priorities/chart/<item key>: the key's / and # written as %2F and %23
+    const h = `#priorities/${pmode}${selected?.type === 'item' ? '/' + encodeURIComponent(selected.key) : ''}`;
+    if (location.hash !== h) history.replaceState(null, '', h);
+    return;
+  }
   if (current === 'blockers') {
     const h = `#blockers/${bmode}${selected?.type === 'blocker' ? '/' + selected.uid : ''}`;
     if (location.hash !== h) history.replaceState(null, '', h);
@@ -1695,6 +2288,15 @@ function setHash() {
 function readHash() {
   const parts = location.hash.replace(/^#/, '').split('/').map(x => { try { return decodeURIComponent(x); } catch { return x; } });
   const [v, rest] = parts;
+  if (v === 'priorities') {
+    if (PMODES.some(m => m.id === parts[1])) { pmode = parts[1]; store.set('pmode', pmode); }
+    const key = parts.slice(2).join('/');
+    if (key) selected = { type: 'item', key };
+    else if (selected?.type === 'item') selected = null;
+    showView('priorities');
+    if (key) select(selected);
+    return;
+  }
   if (v === 'blockers') {
     // #blockers, #blockers/chains, #blockers/rpi-alert/bench-first-run, #blockers/chains/flood-net/237
     let k = 1;
@@ -1723,7 +2325,9 @@ function renderStrip() {
   const behind = L.filter(l => stateOf(l) === 'behind').length, stale = L.filter(l => stateOf(l) === 'stale').length;
   const ci = D.repos.reduce((n, r) => n + r.ciFail.length, 0);
   const old = D.repos.filter(r => daysSince(r.m.status?.updated) > 30).length;
+  const first = T && topPicks().yours;
   $('#strip').innerHTML = [
+    first ? `<button class="stat start" data-go="priorities" data-item="${esc(first.key)}" title="${esc(`Your best next step, from the Priorities view: ${first.repo.label || first.repo.name} ${first.tag} — ${first.title}. ${whyShort(first)}.`)}">▶ <b>Start here</b> ${esc(first.repo.label || first.repo.name)} ${esc(first.tag)} <span class="start-t">${esc(cut(first.title, 46))}</span></button>` : '',
     `<span class="stat muted" title="Repositories on the map"><b>${D.repos.length}</b> repos · <b>${L.length}</b> links</span>`,
     `<button class="stat" data-go="board"><b>${issues}</b> open issues</button>`,
     `<button class="stat human" data-go="blockers" data-lane="human" title="Blockers only you can clear — hardware, money or a judgment call: recorded ones and [Human] issues"><b>${BLOCKERS.filter(b => b.lane === 'human').length}</b> waiting on you</button>`,
@@ -1735,7 +2339,11 @@ function renderStrip() {
     old ? `<span class="stat warn muted" title="Repositories whose atlas.json status is over a month old"><b>${old}</b> old status</span>` : '',
     `<span class="stat muted" title="${esc(new Date(D.generated).toLocaleString())}">built ${esc(ago(D.generated))}</span>`,
   ].join('');
-  $$('#strip [data-go]').forEach(b => b.addEventListener('click', () => { if (b.dataset.go === 'blockers') blockFilter = { repos: null, lane: b.dataset.lane || null }; showView(b.dataset.go); }));
+  $$('#strip [data-go]').forEach(b => b.addEventListener('click', () => {
+    if (b.dataset.go === 'blockers') blockFilter = { repos: null, lane: b.dataset.lane || null };
+    showView(b.dataset.go);
+    if (b.dataset.item) select({ type: 'item', key: b.dataset.item });
+  }));
 }
 
 function legend() {
@@ -1793,6 +2401,7 @@ function wireChrome() {
     const q = $('#search').value.trim().toLowerCase();
     if (current === 'board') { renderBoard(); return; }
     if (current === 'blockers') { renderBlockers(); return; }
+    if (current === 'priorities') { renderPriorities(); return; }
     if (!q) { select(null); return; }
     const hit = D.repos.find(r => `${r.name} ${r.repo} ${r.m.tagline || ''}`.toLowerCase().includes(q))
       || D.repos.find(r => r.comps.some(c => `${c.name} ${c.what}`.toLowerCase().includes(q)));
@@ -1806,6 +2415,7 @@ function wireChrome() {
       if (hit) openBlocker(hit.uid);
       return;
     }
+    if (current === 'priorities') return;
     if (current !== 'board') { showView('board'); renderBoard(); }
   });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') select(null); });

@@ -17,6 +17,7 @@ const atlasLogo = dataUri('assets/logos/atlas.svg');
 
 let html = read('index.html')
   .replace('<link rel="stylesheet" href="assets/atlas.css">', () => `<style>\n${read('assets/atlas.css')}\n</style>`)
+  .replace('<script src="assets/triage.js"></script>', () => `<script>\n${read('assets/triage.js')}\n</script>`)
   .replace('<script src="assets/atlas.js"></script>', () => `<script>window.ATLAS_DATA = ${JSON.stringify(map).replace(/</g, '\\u003c')};</script>\n<script>\n${read('assets/atlas.js')}\n</script>`)
   .replaceAll('assets/logos/atlas.svg', atlasLogo);
 // --fragment: no doctype/html/head/body, title and styles first — for hosts that wrap

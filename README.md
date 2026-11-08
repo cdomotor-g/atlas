@@ -16,6 +16,7 @@ receiving end has kept up.
 | View | What it answers |
 |---|---|
 | **Map** | How does it all fit together? What is behind? Drag to rearrange, scroll or pinch to zoom (zoom in for each repository's one-line description and the counts on its lines), click to drill down. On a phone held upright the zones stack top to bottom. |
+| **Priorities** | What to work on next: every open issue and blocker weighed — how much its repository matters, how bad it is if it's left, what doing it opens up, how soon it's needed — against what it costs in your time, agent time and money. Three cards say where to start (your next step, a job to hand an agent, the most important of the rest), with a ranked list and a chart whose bars switch between **When** (a plan in time, deadlines marked), **Effort**, **Your time**, **Cost** and **Importance**. Every number is a guess until you change it on the page, on the issue (an `Atlas triage:` line) or in the registry ([`docs/priorities.md`](docs/priorities.md)). **▶ Start here** on every view is its pick for you. |
 | **Blockers** | Everything stopping work, four ways: **Who clears it** (four lanes — only you, on your computer, an agent can, waiting on another repo), **What frees what** (each blocker read left to right to what clearing it frees, chains first), **What it takes** (repositories against needs: a decision, your sign-in, hardware, money, time, someone else, agent work) and **Quick wins** (size of the way through against how much it frees). Every blocker has a tag — its issue number, or a dashed name when it has none — that opens one page with what it holds up and the ways through (who can do each, the effort, the one the repo would pick); **Make the issue on GitHub** gives an untracked one a number. **Do it for me** hands a step behind your sign-in to a Claude session on your computer; **Help me** asks a session to walk you through yours. On the map, the **Blockers** button draws a line from each repository to **You**, **Your computer**, **Agents** or the repository it waits on. |
 | **Roadmap** | Every repository's Now / Next / Later / Blocked on one screen. |
 | **Board** | Every open issue, by who can move it: on your computer, waiting on you, ready for an agent (by model), behind upstream, epics. **Prompt** copies a brief for a new Claude Code session or Dispatch; **Do it for me**, one for a Claude session on your computer. |
@@ -79,7 +80,8 @@ receiving end has kept up.
 | Path | What |
 |---|---|
 | `index.html`, `assets/atlas.js`, `assets/atlas.css` | The page. Plain HTML/CSS/JS, no build, no libraries. |
-| `data/registry.json` | Which repositories are on the map, where each sits, which zone. |
+| `assets/triage.js` | The Priorities view's sums: what each item is worth, what it costs, and a plan in time ([`docs/priorities.md`](docs/priorities.md)). |
+| `data/registry.json` | Which repositories are on the map, where each sits, which zone; optionally how much each matters (`weight`) and how open work is weighed (`triage`). |
 | `data/fallback/*.json` | `atlas.json` for repositories that don't carry their own. |
 | `data/map.json` | What the page draws. Written by `tools/collect.mjs`; don't edit by hand. |
 | `schema/atlas.schema.json` | The `atlas.json` format. |

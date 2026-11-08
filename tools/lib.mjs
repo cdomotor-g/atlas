@@ -150,6 +150,27 @@ export function blockerMark(body) {
   return m ? m[1].toLowerCase() : null;
 }
 
+// How an issue says it weighs, for the Priorities view: a line of its own in its body —
+// "Atlas triage: severity 4 · opens 2 · due 2026-11-25 · effort 2h · cost $40". Every part is
+// optional and they may come in any order, split by ·, comma, semicolon or |. severity is 1–5
+// (how bad if it's left), opens 0–5 (what doing it frees), due a date, effort a size in words,
+// cost dollars. Anything else on the line is ignored.
+export function triageMark(body) {
+  const m = String(body || '').match(/^[\s>*_-]*Atlas triage:[*_\s]*(.+)$/im);
+  if (!m) return null;
+  const out = {};
+  for (const raw of m[1].split(/\s*(?:[·;|]|,(?!\d{3}\b))\s*/)) {
+    const p = raw.replace(/[*_`]/g, '').trim();
+    let x;
+    if ((x = p.match(/^(?:severity|sev|how bad)\s*:?\s*([1-5])\b/i))) out.severity = +x[1];
+    else if ((x = p.match(/^(?:opens(?: up)?|opportunity|frees|value)\s*:?\s*([0-5])\b/i))) out.opportunity = +x[1];
+    else if ((x = p.match(/^(?:due|deadline|by)\s*:?\s*(\d{4}-\d{2}-\d{2})\b/i))) { if (!isNaN(new Date(x[1] + 'T00:00:00Z'))) out.due = x[1]; }
+    else if ((x = p.match(/^(?:effort|size|takes)\s*:?\s*(\S.{0,39})$/i))) out.effort = x[1].trim();
+    else if ((x = p.match(/^(?:cost|money|spend)\s*:?\s*(?:[A-Z]{1,3})?\$?\s*(\d[\d,]*(?:\.\d+)?)\s*(k\b)?/i))) out.cost = Math.round(parseFloat(x[1].replace(/,/g, '')) * (x[2] ? 1000 : 1));
+  }
+  return Object.keys(out).length ? out : null;
+}
+
 // ---------------------------------------------------------------- watch paths
 
 export function watchMatches(watch, file) {

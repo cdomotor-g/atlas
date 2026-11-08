@@ -16,6 +16,7 @@
   </div>
   <nav class="views" aria-label="Views">
     <button data-view="map" aria-selected="true">Map</button>
+    <button data-view="priorities" title="What to work on next: every open issue and blocker, weighed">Priorities</button>
     <button data-view="blockers">Blockers</button>
     <button data-view="roadmap">Roadmap</button>
     <button data-view="board">Board</button>
@@ -44,6 +45,7 @@
     <div class="legend" id="legend"></div>
     <div class="tip" id="tip" role="tooltip"></div>
   </section>
+  <section class="view" id="priorities-view" hidden></section>
   <section class="view" id="blockers-view" hidden></section>
   <section class="view" id="roadmap-view" hidden></section>
   <section class="view" id="board-view" hidden></section>
@@ -53,6 +55,7 @@
   <aside id="panel" aria-label="Details"></aside>
 </main>
 <div class="toast" id="toast" role="status"></div>
+<script src="assets/triage.js"></script>
 <script src="assets/atlas.js"></script>
 </body>
 </html>
