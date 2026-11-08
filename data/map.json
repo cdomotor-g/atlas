@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-08T15:26:41.830Z",
- "hash": "7d403562d9e77e50",
+ "generated": "2026-11-08T18:26:17.982Z",
+ "hash": "8d3224f3657880a7",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -2035,32 +2035,40 @@
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42494594387",
-     "date": "2026-11-08T15:23:55Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42509828021",
+     "date": "2026-11-08T18:24:13Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42494011773",
-     "date": "2026-11-08T15:17:09Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42509235469",
+     "date": "2026-11-08T18:17:24Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42493857840",
-     "date": "2026-11-08T15:16:09Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42509195685",
+     "date": "2026-11-08T18:18:00Z",
      "event": "schedule"
     },
     {
-     "name": "Data archive into R2",
+     "name": "Fade margin re-sweep",
      "status": "completed",
-     "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42490741112",
-     "date": "2026-11-08T14:39:41Z",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42499943011",
+     "date": "2026-11-08T16:27:55Z",
+     "event": "schedule"
+    },
+    {
+     "name": "Field photos into R2",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42499269029",
+     "date": "2026-11-08T16:19:25Z",
      "event": "schedule"
     }
    ],
