@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-08T18:26:17.982Z",
- "hash": "8d3224f3657880a7",
+ "generated": "2026-11-08T20:43:13.735Z",
+ "hash": "0b2f0f8f7cbba042",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -95,7 +95,7 @@
     "status": {
      "phase": "live",
      "updated": "2026-11-08",
-     "summary": "Live and in daily use (database schema 106): this week added teams and the tasks handed to them, with the SoRT scope builder's hand-off, a driving mode that follows a station's route in 3-D, the agent API's changelog and email list, ACMA licences and radio paths in the API, the Repeaters tab and cuts to database I/O, while account email, compute size and the ACMA download link wait on the owner.",
+     "summary": "Live and in daily use (database schema 106): this week added teams and the tasks handed to them, with the SoRT scope builder's hand-off, a driving mode that follows a station's route in 3-D, the agent API's changelog and email list, ACMA licences and radio paths in the API, the Repeaters tab and cuts to database I/O, while account email and the ACMA download link wait on the owner.",
      "now": [
       "Views on the Stations map (map-views.js): one press sets the map for a job — Overview and Site visit for everyone; Radio paths, Weak links, Backbone and Live traffic for instrument technicians; Rivers & catchments and Rainfall for flood forecasters; Property & easements and Land & tenure for property services — with the radio paths drawn as every path, best path only, bundled into trunks or repeater areas, as lines, flowing dashes or tails with a spotlight, auto-contrast and a Balance slider, saved views of your own, and easements and land tenure on the property boundaries",
       "The station card in groups (station-card-view.js): Overview, then a tab each for Flood, Radio, Site and Kit (Tabs, the first), or a summary with each group a page of its own (List, chosen beside the box and kept per device), Field data, Zoom, Directions and All actions along the foot, and a search box that shows only the groups and rows holding a word, marked",
@@ -226,75 +226,6 @@
          "model": "Sonnet5/Low",
          "pros": "the owner's sitting covers only what is left",
          "cons": "clears nothing by itself"
-        }
-       ]
-      },
-      {
-       "id": "compute-size",
-       "what": "#255 move the database off Nano (0.5 GB) — to Small (2 GB), or at least Micro — for the Disk IO budget",
-       "on": "human",
-       "kind": "money",
-       "since": "2026-10-28",
-       "issue": "#255",
-       "holds": [
-        "headroom on Supabase's Disk IO budget (warned 2026-10-28 and again 2026-11-08; base stations' posts time out when it runs out)"
-       ],
-       "options": [
-        {
-         "what": "#255 Part 2 now: choose Small on Compute and Disk in a quiet dry-weather hour (under 2 min offline), and check the Message Log resumes",
-         "by": "human",
-         "effort": "10 min",
-         "pros": "today's 1.46 GB database fits in memory",
-         "cons": "about US$5 a month more than Micro",
-         "recommended": true
-        },
-        {
-         "what": "#255 Part 2 with Micro instead: listed as a free upgrade from Nano on the Pro plan",
-         "by": "human",
-         "effort": "10 min",
-         "pros": "costs nothing; twice the memory and a faster disk baseline",
-         "cons": "1 GB is still smaller than the database"
-        },
-        {
-         "what": "If #256 keeps 90 days, go straight to Medium (4 GB, about US$60 a month) instead of Small",
-         "by": "human",
-         "effort": "10 min",
-         "pros": "one change instead of two within months",
-         "cons": "four times Small's price"
-        }
-       ]
-      },
-      {
-       "id": "reception-days",
-       "what": "#256 choose how long receptions stay in the database: 90 days or 30",
-       "on": "human",
-       "kind": "decision",
-       "since": "2026-10-28",
-       "issue": "#256",
-       "holds": [
-        "#255 (which compute size stays enough)",
-        "#240"
-       ],
-       "options": [
-        {
-         "what": "Reply (b) 30 days on #256; an agent then sets retain_reception_days by a migration, updates EPIC #240's regime line and the roadmap",
-         "by": "human",
-         "effort": "2 min",
-         "pros": "the table levels off near 1 GB at November's ~80,000 receptions a day, and Small stays enough",
-         "cons": "days older than 30 come back only from the R2 archive (#243, its restore test still to run) or the rollups",
-         "recommended": true
-        },
-        {
-         "what": "Reply (a) keep 90 days: nothing changes, and plan on Medium compute within about three months",
-         "by": "human",
-         "effort": "2 min",
-         "pros": "raw receptions stay queryable for a quarter",
-         "cons": "the table nears 3 GB at November's rate"
-        },
-        {
-         "what": "Reply (c) with a number between, such as 45 or 60 days",
-         "by": "human",
-         "effort": "2 min"
         }
        ]
       },
@@ -1072,12 +1003,54 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-08T10:38:54Z",
+    "pushed": "2026-11-08T20:26:50Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "b08aaf6",
+     "date": "2026-11-08T20:26:48Z",
+     "msg": "Roadmap and Atlas: the database is on Micro, #255 closed",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/b08aaf6fcd53ed9da8f4e0f239a4fc7569a799d3"
+    },
+    {
+     "sha": "c904e08",
+     "date": "2026-11-08T20:21:25Z",
+     "msg": "Refresh ACMA RRL data (weekly, extract 2026-11-08)",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/c904e0839dd4694d8f82a1e672893552c0b4db22"
+    },
+    {
+     "sha": "0d93e42",
+     "date": "2026-11-08T20:20:41Z",
+     "msg": "Version stamp 20261108t",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/0d93e42e1a134dde46b53b9d79612701059e285b"
+    },
+    {
+     "sha": "2297da4",
+     "date": "2026-11-08T20:20:31Z",
+     "msg": "Layers: Views and the map controls as two coloured cards; quick settings under the list",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/2297da41c09a34eeff52fe4a253bc0ec030148f1"
+    },
+    {
+     "sha": "b833ce8",
+     "date": "2026-11-08T20:17:03Z",
+     "msg": "Roadmap: #255 needs only the owner's sign-in now (Small chosen)",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/b833ce803a930f0c028051bba3cc045246e6e57b"
+    },
+    {
+     "sha": "b6913f2",
+     "date": "2026-11-08T20:16:10Z",
+     "msg": "Methodology says receptions are kept 30 days; the app expects schema 108",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/b6913f29791d7dae6ed19cf3779c8af3f57e01d8"
+    },
+    {
+     "sha": "9011bba",
+     "date": "2026-11-08T20:10:06Z",
+     "msg": "Receptions kept 30 days in the database instead of 90 (0108, #256)",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/9011bba7251964b08110fba643e38164f5a56150"
+    },
     {
      "sha": "94220cc",
      "date": "2026-11-08T10:38:53Z",
@@ -1107,48 +1080,6 @@
      "date": "2026-11-08T09:46:12Z",
      "msg": "The app expects database schema 106 (0106 applied); version stamp 20261108p",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/eee02d89788a065becc7db21debfa4a736360899"
-    },
-    {
-     "sha": "4827d65",
-     "date": "2026-11-08T09:43:56Z",
-     "msg": "Database disk: readings in arrival order from an index (0106); go easy by hand",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/4827d6545e27441d7ee5bfa88113074e0d6b403b"
-    },
-    {
-     "sha": "cace4f2",
-     "date": "2026-11-08T09:35:39Z",
-     "msg": "Version stamp 20261108o",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/cace4f2ca35a8d42f7a3b880d5aeb4633a2e5491"
-    },
-    {
-     "sha": "3396a45",
-     "date": "2026-11-08T09:35:33Z",
-     "msg": "Property views: what land is under the mouse",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/3396a4531793db7bcfae6afac045b7e968e9cc48"
-    },
-    {
-     "sha": "3b46eed",
-     "date": "2026-11-08T09:35:33Z",
-     "msg": "Twin: trees and buildings stand on the twin's ground (#280)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/3b46eed5b478faa66a8bf7471da39d6b56f0c148"
-    },
-    {
-     "sha": "f131657",
-     "date": "2026-11-08T09:21:01Z",
-     "msg": "Version stamp 20261108n",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/f131657aff4e845201dae77971295641d73db4b9"
-    },
-    {
-     "sha": "077b08c",
-     "date": "2026-11-08T09:20:55Z",
-     "msg": "Share: the address carries the view and the focused repeater",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/077b08c9ed4512bf710bb4e78f297a2e81588cc2"
-    },
-    {
-     "sha": "f52fedb",
-     "date": "2026-11-08T08:45:12Z",
-     "msg": "Version stamp 20261108m",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/f52fedba5a600900d5d2ddcc091f5c05d664f86a"
     }
    ],
    "issues": [
@@ -1400,42 +1331,6 @@
      "mentions": []
     },
     {
-     "n": 256,
-     "raw": "[Sub-issue of #240] [Human] Decide how long receptions stay in the database: 90 days or 30",
-     "structure": "sub",
-     "parent": 240,
-     "model": null,
-     "effort": null,
-     "human": true,
-     "computer": false,
-     "title": "Decide how long receptions stay in the database: 90 days or 30",
-     "url": "https://github.com/cdomotor-g/MegaNet/issues/256",
-     "updated": "2026-11-08T09:46:52Z",
-     "created": "2026-10-28T23:59:18Z",
-     "comments": 1,
-     "labels": [],
-     "mentions": [],
-     "excerpt": "meganet.reception is the biggest table: 362 MB today, about 44,000 receptions a day, and about 22 MB a day including its indexes. EPIC #240 keeps them 90 days (appmeta retainreceptiondays), so the table levels off near 2 GB. That is the whole memory of the Small compute size proposed in #255. Disk reads, and so Supabase's Disk IO budget, grow with…"
-    },
-    {
-     "n": 255,
-     "raw": "[Standalone] [Human] Move the Supabase database to the Small compute size (2 GB) — the Disk IO budget",
-     "structure": "standalone",
-     "parent": null,
-     "model": null,
-     "effort": null,
-     "human": true,
-     "computer": false,
-     "title": "Move the Supabase database to the Small compute size (2 GB) — the Disk IO budget",
-     "url": "https://github.com/cdomotor-g/MegaNet/issues/255",
-     "updated": "2026-11-08T09:46:39Z",
-     "created": "2026-10-28T23:59:05Z",
-     "comments": 3,
-     "labels": [],
-     "mentions": [],
-     "excerpt": "On 2026-10-28 Supabase emailed that the project is using up its Disk IO Budget. Roadmap revision 200 (0087, live since 23:34 UTC on 28 October, which is 09:34 AEST on the 29th) removed the biggest causes. Pages of readings no longer sort on disk, and the hourly roll-ups no longer re-read finished days. 0087's header has the numbers. What is left is size.…"
-    },
-    {
      "n": 254,
      "raw": "[Sub-issue of #250] [Sonnet5/Med] Keep a route on the phone for when there is no signal",
      "structure": "sub",
@@ -1565,7 +1460,7 @@
      "computer": false,
      "title": "Data storage regime — keep everything, tiered: two years of readings, reception rollups forever, raw rows archived to R2",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/240",
-     "updated": "2026-10-21T04:45:22Z",
+     "updated": "2026-11-08T20:16:37Z",
      "created": "2026-10-21T04:44:45Z",
      "comments": 0,
      "labels": [],
@@ -2017,7 +1912,7 @@
      "computer": false,
      "title": "Roadmap — resource allocation & sequencing for all issues",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/113",
-     "updated": "2026-11-08T10:37:02Z",
+     "updated": "2026-11-08T20:27:05Z",
      "created": "2026-08-13T00:13:50Z",
      "comments": 1,
      "labels": [],
@@ -2025,56 +1920,96 @@
       "meganet",
       "rpi_alert"
      ],
-     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1135k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
+     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1138k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
     }
    ],
-   "issueCount": 49,
+   "issueCount": 47,
    "release": null,
    "ci": [
     {
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42509828021",
-     "date": "2026-11-08T18:24:13Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42521211302",
+     "date": "2026-11-08T20:39:17Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42509235469",
-     "date": "2026-11-08T18:17:24Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42520585688",
+     "date": "2026-11-08T20:31:59Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42509195685",
-     "date": "2026-11-08T18:18:00Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42520455456",
+     "date": "2026-11-08T20:31:07Z",
      "event": "schedule"
     },
     {
-     "name": "Fade margin re-sweep",
+     "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42499943011",
-     "date": "2026-11-08T16:27:55Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42520161886",
+     "date": "2026-11-08T20:27:15Z",
+     "event": "push"
+    },
+    {
+     "name": "Roadmap sync",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42520161611",
+     "date": "2026-11-08T20:27:09Z",
+     "event": "push"
+    },
+    {
+     "name": "CodeQL",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42519645481",
+     "date": "2026-11-08T20:24:07Z",
+     "event": "push"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42519645496",
+     "date": "2026-11-08T20:21:10Z",
+     "event": "push"
+    },
+    {
+     "name": "Refresh ACMA RRL data",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42519473872",
+     "date": "2026-11-08T20:21:32Z",
      "event": "schedule"
     },
     {
-     "name": "Field photos into R2",
+     "name": "db-migrate",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42499269029",
-     "date": "2026-11-08T16:19:25Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42518731762",
+     "date": "2026-11-08T20:10:34Z",
+     "event": "workflow_dispatch"
+    },
+    {
+     "name": "Snapshot stations.json from the database",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42513212685",
+     "date": "2026-11-08T19:05:27Z",
      "event": "schedule"
     }
    ],
-   "version": "20261108r",
+   "version": "20261108t",
    "lastCommit": {
-    "date": "2026-11-08T10:38:53Z"
+    "date": "2026-11-08T20:26:48Z"
    }
   },
   {
@@ -2891,6 +2826,14 @@
    },
    "ci": [
     {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/42521400748",
+     "date": "2026-11-08T20:41:48Z",
+     "event": "schedule"
+    },
+    {
      "name": "pages",
      "status": "completed",
      "conclusion": "success",
@@ -2913,14 +2856,6 @@
      "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/42444634880",
      "date": "2026-11-08T04:08:46Z",
      "event": "workflow_dispatch"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/42441890867",
-     "date": "2026-11-08T03:15:05Z",
-     "event": "push"
     }
    ],
    "version": "0.22.1",
@@ -4385,9 +4320,9 @@
      "name": "build",
      "status": "completed",
      "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/quansheng_alert/actions/runs/41961347922",
-     "date": "2026-11-05T03:28:15Z",
-     "event": "push"
+     "url": "https://github.com/cdomotor-g/quansheng_alert/actions/runs/42517950969",
+     "date": "2026-11-08T20:02:41Z",
+     "event": "schedule"
     },
     {
      "name": "pages build and deployment",
@@ -7229,7 +7164,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "20 newer commits upstream since ed3ed3b, none to watched files."
+    "note": "27 newer commits upstream since ed3ed3b, none to watched files."
    }
   },
   {
@@ -7259,8 +7194,14 @@
      "commit": "87ab6ed00b060b13b3c91019f58a6da6d56c129d",
      "commitDate": "2026-11-01T23:59:08Z"
     },
-    "behind": 3,
+    "behind": 4,
     "commits": [
+     {
+      "sha": "9011bba",
+      "date": "2026-11-08T20:10:06Z",
+      "msg": "Receptions kept 30 days in the database instead of 90 (0108, #256)",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/9011bba7251964b08110fba643e38164f5a56150"
+     },
      {
       "sha": "6414905",
       "date": "2026-11-08T01:40:06Z",
@@ -7281,9 +7222,10 @@
      }
     ],
     "files": [
-     "worker/index.js"
+     "worker/index.js",
+     "db/migrations/0108_receptions_30_days.sql"
     ],
-    "note": "3 upstream changes to watched files since it was last reviewed (2026-11-01)."
+    "note": "4 upstream changes to watched files since it was last reviewed (2026-11-01)."
    }
   },
   {
@@ -7582,7 +7524,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "647 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "654 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7699,7 +7641,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "647 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "654 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -8365,7 +8307,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "102 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "109 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8396,7 +8338,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "102 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "109 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8425,7 +8367,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "59 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "66 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
@@ -8455,7 +8397,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "48 newer commits upstream since it was last reviewed (2026-11-06), none to watched files."
+    "note": "55 newer commits upstream since it was last reviewed (2026-11-06), none to watched files."
    }
   },
   {
