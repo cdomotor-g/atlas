@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-08T09:26:24.456Z",
- "hash": "f1792d8f0011359d",
+ "generated": "2026-11-08T12:28:55.738Z",
+ "hash": "9da8acbb6f14c111",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -95,7 +95,7 @@
     "status": {
      "phase": "live",
      "updated": "2026-11-08",
-     "summary": "Live and in daily use (database schema 95): this week added teams and the tasks handed to them, with the SoRT scope builder's hand-off, a driving mode that follows a station's route in 3-D, the agent API's changelog and email list, ACMA licences and radio paths in the API, the Repeaters tab and cuts to database I/O, while account email, compute size and the ACMA download link wait on the owner.",
+     "summary": "Live and in daily use (database schema 106): this week added teams and the tasks handed to them, with the SoRT scope builder's hand-off, a driving mode that follows a station's route in 3-D, the agent API's changelog and email list, ACMA licences and radio paths in the API, the Repeaters tab and cuts to database I/O, while account email, compute size and the ACMA download link wait on the owner.",
      "now": [
       "Views on the Stations map (map-views.js): one press sets the map for a job — Overview and Site visit for everyone; Radio paths, Weak links, Backbone and Live traffic for instrument technicians; Rivers & catchments and Rainfall for flood forecasters; Property & easements and Land & tenure for property services — with the radio paths drawn as every path, best path only, bundled into trunks or repeater areas, as lines, flowing dashes or tails with a spotlight, auto-contrast and a Balance slider, saved views of your own, and easements and land tenure on the property boundaries",
       "The station card in groups (station-card-view.js): Overview, then a tab each for Flood, Radio, Site and Kit (Tabs, the first), or a summary with each group a page of its own (List, chosen beside the box and kept per device), Field data, Zoom, Directions and All actions along the foot, and a search box that shows only the groups and rows holding a word, marked",
@@ -117,7 +117,7 @@
       "#259 a lighter off-air decoder: lean decoding is the live pipeline's default (0.12% of 11,628 live bursts read differently, a third of the time); part 2, BurstWatch, filters a channel only around its bursts (the same readings in every test, a sixth to a twentieth of the work between them), and light decoding (lean: 2) halves a burst's decode again; both in RPi ALERT 0.18–0.19 behind settings, waiting on their checks at the first base station"
      ],
      "next": [
-      "EPIC #276 3-D ground cover: trees, the State's LiDAR buildings and Overture's buildings now stand in the 3-D view close in (#278 closed 8 Nov 2026), and Presenting shipped; next the same in the digital twin (part 2) and Detail modes (#279)",
+      "EPIC #276 3-D ground cover: trees, the State's LiDAR buildings and Overture's buildings stand in the 3-D view (#278) and the digital twin (#280), both closed 8 Nov 2026, and Presenting shipped; next Detail modes (#279) and, later, tree and building heights in line of sight",
       "#271 and #272: put Hillcrest's carrier on 151.500 down to Hillcrest, and count a transmitter's corrupted copies over its whole carrier without bursts read two ways (investigation 03)",
       "EPIC #262 explainers: the first how-to, find a station and read its card, is voiced and on Videos with ▶ Show me on the app; next the phone install (#266) and map layers (#267), both pickable",
       "#252–#254 road routes: avoid closures, inspection runs, routes kept offline (EPIC #250)",
@@ -231,37 +231,29 @@
       },
       {
        "id": "compute-size",
-       "what": "#255 move the database to the Small compute size (2 GB) for the Disk IO budget",
+       "what": "#255 move the database off Nano (0.5 GB) — to Small (2 GB), or at least Micro — for the Disk IO budget",
        "on": "human",
        "kind": "money",
        "since": "2026-10-28",
        "issue": "#255",
        "holds": [
-        "headroom on Supabase's Disk IO budget (warned 2026-10-28)"
+        "headroom on Supabase's Disk IO budget (warned 2026-10-28 and again 2026-11-08; base stations' posts time out when it runs out)"
        ],
        "options": [
         {
-         "what": "#255 Part 1: read the compute size and the Database report's Disk IOPS and Memory charts (last 7 days); then Part 2 if it is Nano, disk activity stayed high after 0087, or memory sits at the top: choose Small on Compute and Disk in a quiet dry-weather hour (under 2 min offline), and check the Message Log resumes",
+         "what": "#255 Part 2 now: choose Small on Compute and Disk in a quiet dry-weather hour (under 2 min offline), and check the Message Log resumes",
          "by": "human",
-         "effort": "15 min",
-         "pros": "the whole 902 MB database fits in memory",
+         "effort": "10 min",
+         "pros": "today's 1.46 GB database fits in memory",
          "cons": "about US$5 a month more than Micro",
          "recommended": true
         },
         {
-         "what": "Read the cache hit ratio and disk reads since 0087–0094 through the Supabase connector (read-only) and post them on #255, so Part 1 becomes a yes or no",
-         "by": "agent",
-         "effort": "Low",
-         "model": "Sonnet5/Low",
-         "pros": "the owner decides from numbers",
-         "cons": "the compute size itself is still a dashboard change"
-        },
-        {
-         "what": "Stay on Micro for now: answer #256 with 30 days so receptions level off near 0.7 GB, and wait for the next Disk IO warning",
+         "what": "#255 Part 2 with Micro instead: listed as a free upgrade from Nano on the Pro plan",
          "by": "human",
-         "effort": "5 min",
-         "pros": "costs nothing",
-         "cons": "the database is already four times the 224 MB of shared buffers"
+         "effort": "10 min",
+         "pros": "costs nothing; twice the memory and a faster disk baseline",
+         "cons": "1 GB is still smaller than the database"
         },
         {
          "what": "If #256 keeps 90 days, go straight to Medium (4 GB, about US$60 a month) instead of Small",
@@ -288,7 +280,7 @@
          "what": "Reply (b) 30 days on #256; an agent then sets retain_reception_days by a migration, updates EPIC #240's regime line and the roadmap",
          "by": "human",
          "effort": "2 min",
-         "pros": "the table levels off near 0.7 GB and Small stays enough",
+         "pros": "the table levels off near 1 GB at November's ~80,000 receptions a day, and Small stays enough",
          "cons": "days older than 30 come back only from the R2 archive (#243, its restore test still to run) or the rollups",
          "recommended": true
         },
@@ -297,7 +289,7 @@
          "by": "human",
          "effort": "2 min",
          "pros": "raw receptions stay queryable for a quarter",
-         "cons": "the table nears 2 GB"
+         "cons": "the table nears 3 GB at November's rate"
         },
         {
          "what": "Reply (c) with a number between, such as 45 or 60 days",
@@ -1080,12 +1072,66 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-08T09:21:03Z",
+    "pushed": "2026-11-08T10:38:54Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "94220cc",
+     "date": "2026-11-08T10:38:53Z",
+     "msg": "The app expects database schema 107 (0107 applied); version stamp 20261108r",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/94220cc074c6694beff8a012e91b35b48adcc0e0"
+    },
+    {
+     "sha": "b901f16",
+     "date": "2026-11-08T10:36:44Z",
+     "msg": "Database disk: raw submissions' statistics from a small sample (0107)",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/b901f16c4a761aef76acd22f2d52a9bff6e94872"
+    },
+    {
+     "sha": "f3a8d66",
+     "date": "2026-11-08T10:10:21Z",
+     "msg": "Version stamp 20261108q",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/f3a8d66612df64b8c1f2137383527e73e0d3e4bc"
+    },
+    {
+     "sha": "1931df4",
+     "date": "2026-11-08T10:10:17Z",
+     "msg": "Links open the 3-D view; a tap shows the property label",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/1931df4d1694ca19044153e76b8c1c2c2b3cd3b4"
+    },
+    {
+     "sha": "eee02d8",
+     "date": "2026-11-08T09:46:12Z",
+     "msg": "The app expects database schema 106 (0106 applied); version stamp 20261108p",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/eee02d89788a065becc7db21debfa4a736360899"
+    },
+    {
+     "sha": "4827d65",
+     "date": "2026-11-08T09:43:56Z",
+     "msg": "Database disk: readings in arrival order from an index (0106); go easy by hand",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/4827d6545e27441d7ee5bfa88113074e0d6b403b"
+    },
+    {
+     "sha": "cace4f2",
+     "date": "2026-11-08T09:35:39Z",
+     "msg": "Version stamp 20261108o",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/cace4f2ca35a8d42f7a3b880d5aeb4633a2e5491"
+    },
+    {
+     "sha": "3396a45",
+     "date": "2026-11-08T09:35:33Z",
+     "msg": "Property views: what land is under the mouse",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/3396a4531793db7bcfae6afac045b7e968e9cc48"
+    },
+    {
+     "sha": "3b46eed",
+     "date": "2026-11-08T09:35:33Z",
+     "msg": "Twin: trees and buildings stand on the twin's ground (#280)",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/3b46eed5b478faa66a8bf7471da39d6b56f0c148"
+    },
     {
      "sha": "f131657",
      "date": "2026-11-08T09:21:01Z",
@@ -1103,80 +1149,9 @@
      "date": "2026-11-08T08:45:12Z",
      "msg": "Version stamp 20261108m",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/f52fedba5a600900d5d2ddcc091f5c05d664f86a"
-    },
-    {
-     "sha": "9cd2f81",
-     "date": "2026-11-08T08:45:07Z",
-     "msg": "Views: only Overview and Backbone switch the backbone on",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/9cd2f8161c95c7a403b187ba12b2cd473ad66093"
-    },
-    {
-     "sha": "5a1aa5b",
-     "date": "2026-11-08T05:44:02Z",
-     "msg": "Version stamp 20261108l",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/5a1aa5b235f907fd24baf8ba2fe598da704692a3"
-    },
-    {
-     "sha": "164cfac",
-     "date": "2026-11-08T05:41:49Z",
-     "msg": "Layers: Find a view or a control, at the top, over Views too",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/164cfac2b3539dc53679e308271b1ad0ac159a98"
-    },
-    {
-     "sha": "b3b9626",
-     "date": "2026-11-08T05:03:21Z",
-     "msg": "Version stamp 20261108k",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/b3b9626c56712b45f4155bcd4cda4537fe7acdda"
-    },
-    {
-     "sha": "eeb8d93",
-     "date": "2026-11-08T05:03:17Z",
-     "msg": "Views: Flow is the starting drawing under Classic too",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/eeb8d9361c79d36aced4d71cdbfa04ba93404818"
-    },
-    {
-     "sha": "9d205cd",
-     "date": "2026-11-08T04:28:46Z",
-     "msg": "Version stamp 20261108j",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/9d205cd74678f93dcc14aba8c003ec2f1b8c9baa"
-    },
-    {
-     "sha": "cf1b97d",
-     "date": "2026-11-08T04:28:33Z",
-     "msg": "3-D: Overture's buildings, Flow's moving dashes, and #278 closed",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/cf1b97de6ffc769e704ab781bb33887b8aa8adfe"
-    },
-    {
-     "sha": "5de3cff",
-     "date": "2026-11-08T03:55:03Z",
-     "msg": "Base Stations: a wider window hears weak bursts a little better — say so",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/5de3cff00576084b655af8383bde6492b878cfeb"
-    },
-    {
-     "sha": "ed3ed3b",
-     "date": "2026-11-08T03:06:56Z",
-     "msg": "Decoder: device rates that are not whole multiples of 240k (288k, 300k)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/ed3ed3bf4d40c6c4dd4038ef069a04de5fee427c"
     }
    ],
    "issues": [
-    {
-     "n": 280,
-     "raw": "[Sub-issue of #276] [Opus5/High] Trees and buildings in the digital twin",
-     "structure": "sub",
-     "parent": 276,
-     "model": "Opus5",
-     "effort": "High",
-     "human": false,
-     "computer": false,
-     "title": "Trees and buildings in the digital twin",
-     "url": "https://github.com/cdomotor-g/MegaNet/issues/280",
-     "updated": "2026-11-08T08:41:28Z",
-     "created": "2026-11-08T08:41:28Z",
-     "comments": 0,
-     "labels": [],
-     "mentions": []
-    },
     {
      "n": 279,
      "raw": "[Sub-issue of #276] [Opus5/Med] Presenting switch for a shared screen, then Detail modes",
@@ -1207,23 +1182,6 @@
      "url": "https://github.com/cdomotor-g/MegaNet/issues/276",
      "updated": "2026-11-08T00:55:02Z",
      "created": "2026-11-08T00:35:47Z",
-     "comments": 0,
-     "labels": [],
-     "mentions": []
-    },
-    {
-     "n": 275,
-     "raw": "[Standalone] [Opus5/Med] CI doctor: Station health run times out reading the readings (statement timeout)",
-     "structure": "standalone",
-     "parent": null,
-     "model": "Opus5",
-     "effort": "Med",
-     "human": false,
-     "computer": false,
-     "title": "CI doctor: Station health run times out reading the readings (statement timeout)",
-     "url": "https://github.com/cdomotor-g/MegaNet/issues/275",
-     "updated": "2026-11-07T15:11:07Z",
-     "created": "2026-11-07T15:11:07Z",
      "comments": 0,
      "labels": [],
      "mentions": []
@@ -1452,9 +1410,9 @@
      "computer": false,
      "title": "Decide how long receptions stay in the database: 90 days or 30",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/256",
-     "updated": "2026-10-28T23:59:18Z",
+     "updated": "2026-11-08T09:46:52Z",
      "created": "2026-10-28T23:59:18Z",
-     "comments": 0,
+     "comments": 1,
      "labels": [],
      "mentions": [],
      "excerpt": "meganet.reception is the biggest table: 362 MB today, about 44,000 receptions a day, and about 22 MB a day including its indexes. EPIC #240 keeps them 90 days (appmeta retainreceptiondays), so the table levels off near 2 GB. That is the whole memory of the Small compute size proposed in #255. Disk reads, and so Supabase's Disk IO budget, grow with…"
@@ -1470,9 +1428,9 @@
      "computer": false,
      "title": "Move the Supabase database to the Small compute size (2 GB) — the Disk IO budget",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/255",
-     "updated": "2026-11-02T00:14:55Z",
+     "updated": "2026-11-08T09:46:39Z",
      "created": "2026-10-28T23:59:05Z",
-     "comments": 2,
+     "comments": 3,
      "labels": [],
      "mentions": [],
      "excerpt": "On 2026-10-28 Supabase emailed that the project is using up its Disk IO Budget. Roadmap revision 200 (0087, live since 23:34 UTC on 28 October, which is 09:34 AEST on the 29th) removed the biggest causes. Pages of readings no longer sort on disk, and the hourly roll-ups no longer re-read finished days. 0087's header has the numbers. What is left is size.…"
@@ -2059,7 +2017,7 @@
      "computer": false,
      "title": "Roadmap — resource allocation & sequencing for all issues",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/113",
-     "updated": "2026-11-08T08:45:31Z",
+     "updated": "2026-11-08T10:37:02Z",
      "created": "2026-08-13T00:13:50Z",
      "comments": 1,
      "labels": [],
@@ -2067,64 +2025,80 @@
       "meganet",
       "rpi_alert"
      ],
-     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1130k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
+     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1135k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
     }
    ],
-   "issueCount": 51,
+   "issueCount": 49,
    "release": null,
    "ci": [
     {
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42466998578",
-     "date": "2026-11-08T09:23:49Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42480297192",
+     "date": "2026-11-08T12:27:01Z",
      "event": "schedule"
-    },
-    {
-     "name": "CodeQL",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42466812350",
-     "date": "2026-11-08T09:21:18Z",
-     "event": "push"
-    },
-    {
-     "name": "Web smoke test",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42466812238",
-     "date": "2026-11-08T09:21:25Z",
-     "event": "push"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42466504467",
-     "date": "2026-11-08T09:16:58Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42479754497",
+     "date": "2026-11-08T12:20:17Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42466376739",
-     "date": "2026-11-08T09:15:55Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42479726376",
+     "date": "2026-11-08T12:20:43Z",
      "event": "schedule"
+    },
+    {
+     "name": "CodeQL",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42472310818",
+     "date": "2026-11-08T10:43:11Z",
+     "event": "push"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "completed",
+     "conclusion": "failure",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42472310768",
+     "date": "2026-11-08T11:54:47Z",
+     "event": "push"
+    },
+    {
+     "name": "db-migrate",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42472174456",
+     "date": "2026-11-08T10:37:14Z",
+     "event": "workflow_dispatch"
+    },
+    {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42472171610",
+     "date": "2026-11-08T10:37:12Z",
+     "event": "push"
     },
     {
      "name": "Roadmap sync",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42464265268",
-     "date": "2026-11-08T08:45:35Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42472171460",
+     "date": "2026-11-08T10:37:06Z",
      "event": "push"
     }
    ],
-   "version": "20261108n",
+   "version": "20261108r",
    "lastCommit": {
-    "date": "2026-11-08T09:21:01Z"
+    "date": "2026-11-08T10:38:53Z"
    }
   },
   {
@@ -7279,7 +7253,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "11 newer commits upstream since ed3ed3b, none to watched files."
+    "note": "20 newer commits upstream since ed3ed3b, none to watched files."
    }
   },
   {
@@ -7632,7 +7606,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "638 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "647 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7749,7 +7723,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "638 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "647 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -8415,7 +8389,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "93 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "102 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8446,7 +8420,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "93 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "102 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8475,7 +8449,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "50 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "59 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
@@ -8505,7 +8479,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "39 newer commits upstream since it was last reviewed (2026-11-06), none to watched files."
+    "note": "48 newer commits upstream since it was last reviewed (2026-11-06), none to watched files."
    }
   },
   {
