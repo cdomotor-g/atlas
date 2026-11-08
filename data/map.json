@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-08T21:02:05.070Z",
- "hash": "a3a73b0789654b90",
+ "generated": "2026-11-08T21:26:40.028Z",
+ "hash": "c65dc77e079b08df",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -148,38 +148,30 @@
      ],
      "blocked": [
       {
-       "id": "elevenlabs-credits",
-       "what": "#274 ElevenLabs credits run short before they renew on 25 Nov: #265 is now voiced; hold #266's and #267's voicing until after, or Creator for a month",
+       "id": "bulletin-voices-paused",
+       "what": "Bulletin voices paused by the owner on 8 Nov 2026 to save ElevenLabs credits (tools/voice/pause.json): new bulletins play silent, their words on screen; #274 closed by it",
        "on": "human",
-       "kind": "money",
-       "since": "2026-11-04",
-       "issue": "#274",
+       "kind": "decision",
+       "since": "2026-11-08",
        "holds": [
-        "the last daily bulletins before 25 Nov voiced",
-        "#266 and #267 voiced this month"
+        "the bulletins voiced",
+        "#266 and #267 voiced"
        ],
        "options": [
         {
-         "what": "Hold #266's and #267's voicing until after 25 Nov (a comment on #274)",
+         "what": "Lift the pause when ready: tell a session, which sets paused to false and voice_from to that day",
          "by": "human",
-         "effort": "2 min",
-         "pros": "costs nothing",
-         "cons": "about one daily bulletin around 24–25 Nov plays silent",
+         "effort": "1 min",
+         "pros": "voices back from that day, with no catch-up spend on the silent ones",
+         "cons": "about 19,000 credits a month on bulletins again (Starter gives 40,000)",
          "recommended": true
         },
         {
-         "what": "Upgrade the ElevenLabs account to Creator for a month (US$22, 121,000 credits)",
-         "by": "human",
-         "effort": "5 min",
-         "pros": "nothing silent; #266 and #267 can be voiced now",
-         "cons": "US$16 more than Starter for the month"
-        },
-        {
-         "what": "Do nothing: the voices come back when the credits renew",
+         "what": "Keep it paused",
          "by": "human",
          "effort": "0",
-         "pros": "no spend, no step",
-         "cons": "two or three bulletins before 25 Nov play silent"
+         "pros": "no ElevenLabs credits go on bulletins",
+         "cons": "the bulletins play silent"
         }
        ]
       },
@@ -561,7 +553,7 @@
      {
       "id": "bulletins",
       "name": "Network bulletins and voices",
-      "what": "A scheduled Claude session writes a two-minute animated bulletin each weekday morning (and weekly on Mondays), drawn on Station Health and voiced by the Droggies through ElevenLabs.",
+      "what": "A scheduled Claude session writes a two-minute animated bulletin each weekday morning (and weekly on Mondays), drawn on Station Health and voiced by the Droggies through ElevenLabs (the voices paused by the owner since 8 Nov 2026, tools/voice/pause.json).",
       "paths": [
        "health-bulletin.js",
        "tools/bulletin/",
@@ -1018,12 +1010,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-08T20:26:50Z",
+    "pushed": "2026-11-08T21:09:50Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "a7fc955",
+     "date": "2026-11-08T21:08:54Z",
+     "msg": "Pause the bulletins' voices to save ElevenLabs credits; #274 closed",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/a7fc955f4f95ff3bfd27c431406138406e4315c5"
+    },
     {
      "sha": "b08aaf6",
      "date": "2026-11-08T20:26:48Z",
@@ -1089,12 +1087,6 @@
      "date": "2026-11-08T10:10:17Z",
      "msg": "Links open the 3-D view; a tap shows the property label",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/1931df4d1694ca19044153e76b8c1c2c2b3cd3b4"
-    },
-    {
-     "sha": "eee02d8",
-     "date": "2026-11-08T09:46:12Z",
-     "msg": "The app expects database schema 106 (0106 applied); version stamp 20261108p",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/eee02d89788a065becc7db21debfa4a736360899"
     }
    ],
    "issues": [
@@ -1131,24 +1123,6 @@
      "comments": 0,
      "labels": [],
      "mentions": []
-    },
-    {
-     "n": 274,
-     "raw": "[Standalone] [Human] ElevenLabs credits run short before 25 Nov: hold the next video, or upgrade for a month",
-     "structure": "standalone",
-     "parent": null,
-     "model": null,
-     "effort": null,
-     "human": true,
-     "computer": false,
-     "title": "ElevenLabs credits run short before 25 Nov: hold the next video, or upgrade for a month",
-     "url": "https://github.com/cdomotor-g/MegaNet/issues/274",
-     "updated": "2026-11-04T07:32:22Z",
-     "created": "2026-11-04T07:29:19Z",
-     "comments": 0,
-     "labels": [],
-     "mentions": [],
-     "excerpt": "The network bulletins and the 🎬 Videos are voiced through ElevenLabs. The account is on Starter: 40,000 credits this month, renewing 25 Nov 2026. A credit is about one character said. - After the 3 Nov voicing run, 13,268 credits were left (from the run's log: ElevenLabs (starter): this run used 1,618 credits; about 13,268 of 40,000 left this month,…"
     },
     {
      "n": 273,
@@ -1927,7 +1901,7 @@
      "computer": false,
      "title": "Roadmap — resource allocation & sequencing for all issues",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/113",
-     "updated": "2026-11-08T20:27:05Z",
+     "updated": "2026-11-08T21:09:12Z",
      "created": "2026-08-13T00:13:50Z",
      "comments": 1,
      "labels": [],
@@ -1935,66 +1909,66 @@
       "meganet",
       "rpi_alert"
      ],
-     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1138k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
+     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1140k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
     }
    ],
-   "issueCount": 47,
+   "issueCount": 46,
    "release": null,
    "ci": [
-    {
-     "name": "Station health",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42522930935",
-     "date": "2026-11-08T21:01:07Z",
-     "event": "schedule"
-    },
     {
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42522424781",
-     "date": "2026-11-08T20:53:57Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42525009356",
+     "date": "2026-11-08T21:24:06Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42521849946",
-     "date": "2026-11-08T20:46:58Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42524382147",
+     "date": "2026-11-08T21:16:44Z",
      "event": "schedule"
     },
     {
-     "name": "Atlas",
+     "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42520161886",
-     "date": "2026-11-08T20:27:15Z",
-     "event": "push"
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42524296113",
+     "date": "2026-11-08T21:16:18Z",
+     "event": "schedule"
     },
     {
      "name": "Roadmap sync",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42520161611",
-     "date": "2026-11-08T20:27:09Z",
-     "event": "push"
-    },
-    {
-     "name": "CodeQL",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42519645481",
-     "date": "2026-11-08T20:24:07Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42523722243",
+     "date": "2026-11-08T21:09:18Z",
      "event": "push"
     },
     {
      "name": "Web smoke test",
      "status": "in_progress",
      "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42519645496",
-     "date": "2026-11-08T20:21:10Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42523722291",
+     "date": "2026-11-08T21:09:20Z",
+     "event": "push"
+    },
+    {
+     "name": "CodeQL",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42523722228",
+     "date": "2026-11-08T21:12:57Z",
+     "event": "push"
+    },
+    {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42523722454",
+     "date": "2026-11-08T21:09:25Z",
      "event": "push"
     },
     {
@@ -2012,19 +1986,11 @@
      "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42518731762",
      "date": "2026-11-08T20:10:34Z",
      "event": "workflow_dispatch"
-    },
-    {
-     "name": "Snapshot stations.json from the database",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42513212685",
-     "date": "2026-11-08T19:05:27Z",
-     "event": "schedule"
     }
    ],
    "version": "20261108t",
    "lastCommit": {
-    "date": "2026-11-08T20:26:48Z"
+    "date": "2026-11-08T21:08:54Z"
    }
   },
   {
@@ -5751,8 +5717,8 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/42414962584",
-     "date": "2026-11-07T21:15:34Z",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/42524310709",
+     "date": "2026-11-08T21:16:07Z",
      "event": "schedule"
     },
     {
@@ -7192,7 +7158,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "27 newer commits upstream since ed3ed3b, none to watched files."
+    "note": "28 newer commits upstream since ed3ed3b, none to watched files."
    }
   },
   {
@@ -7552,7 +7518,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "654 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "655 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7669,7 +7635,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "654 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "655 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -8335,7 +8301,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "109 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "110 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8366,7 +8332,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "109 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "110 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8395,7 +8361,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "66 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "67 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
@@ -8425,7 +8391,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "55 newer commits upstream since it was last reviewed (2026-11-06), none to watched files."
+    "note": "56 newer commits upstream since it was last reviewed (2026-11-06), none to watched files."
    }
   },
   {
