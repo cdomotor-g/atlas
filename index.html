@@ -15,8 +15,8 @@
     <div><h1>Atlas</h1><p>Every repository, where it is up to, and how they connect</p></div>
   </div>
   <nav class="views" aria-label="Views">
-    <button data-view="map" aria-selected="true">Map</button>
-    <button data-view="priorities" title="What to work on next: every open issue and blocker, weighed">Priorities</button>
+    <button data-view="priorities" aria-selected="true" title="What to work on next: every open issue and blocker, weighed">Priorities</button>
+    <button data-view="map">Map</button>
     <button data-view="blockers">Blockers</button>
     <button data-view="roadmap">Roadmap</button>
     <button data-view="board">Board</button>
@@ -31,7 +31,7 @@
 </header>
 <div class="strip" id="strip"></div>
 <main>
-  <section class="view" id="map-view" aria-label="Map">
+  <section class="view" id="map-view" aria-label="Map" hidden>
     <svg id="map" role="img" aria-label="Map of the repositories and the links between them"></svg>
     <div class="map-tools">
       <button class="icon-btn" id="btn-in" title="Zoom in" aria-label="Zoom in">+</button>
@@ -45,7 +45,7 @@
     <div class="legend" id="legend"></div>
     <div class="tip" id="tip" role="tooltip"></div>
   </section>
-  <section class="view" id="priorities-view" hidden></section>
+  <section class="view" id="priorities-view"></section>
   <section class="view" id="blockers-view" hidden></section>
   <section class="view" id="roadmap-view" hidden></section>
   <section class="view" id="board-view" hidden></section>

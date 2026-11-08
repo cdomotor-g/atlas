@@ -6,7 +6,8 @@
 
 **→ <https://cdomotor-g.github.io/atlas/>**
 
-A zoomable map of the Flood-Net family and its neighbours — the Quansheng radio firmware,
+It opens on **Priorities**: what to work on next, with every open issue weighed. Beside it is a
+zoomable map of the Flood-Net family and its neighbours — the Quansheng radio firmware,
 RPi ALERT, Flood-Net itself, open-ALERT, SoRT, the Droggies and the older tools — with a
 line for everything one repository takes from another. Click a repository to see its parts,
 where it is up to, what is waiting on you, its open issues and a ready-made brief for
@@ -15,8 +16,8 @@ receiving end has kept up.
 
 | View | What it answers |
 |---|---|
+| **Priorities** | What to work on next: every open issue and blocker weighed — how much its repository matters, how bad it is if it's left, what doing it opens up, how soon it's needed — against what it costs in your time, agent time and money. Three cards say where to start (your next step, a job to hand an agent, the most important of the rest), with a ranked list and a chart whose bars switch between **When** (a plan in time, deadlines marked), **Effort**, **Your time**, **Cost** and **Importance**. Every number is a guess until you change it on the page, on the issue (an `Atlas triage:` line) or in the registry ([`docs/priorities.md`](docs/priorities.md)). **▶ Start here** on every view, and the first line of the weekday phone message, is its pick for you. The Atlas opens here. |
 | **Map** | How does it all fit together? What is behind? Drag to rearrange, scroll or pinch to zoom (zoom in for each repository's one-line description and the counts on its lines), click to drill down. On a phone held upright the zones stack top to bottom. |
-| **Priorities** | What to work on next: every open issue and blocker weighed — how much its repository matters, how bad it is if it's left, what doing it opens up, how soon it's needed — against what it costs in your time, agent time and money. Three cards say where to start (your next step, a job to hand an agent, the most important of the rest), with a ranked list and a chart whose bars switch between **When** (a plan in time, deadlines marked), **Effort**, **Your time**, **Cost** and **Importance**. Every number is a guess until you change it on the page, on the issue (an `Atlas triage:` line) or in the registry ([`docs/priorities.md`](docs/priorities.md)). **▶ Start here** on every view is its pick for you. |
 | **Blockers** | Everything stopping work, four ways: **Who clears it** (four lanes — only you, on your computer, an agent can, waiting on another repo), **What frees what** (each blocker read left to right to what clearing it frees, chains first), **What it takes** (repositories against needs: a decision, your sign-in, hardware, money, time, someone else, agent work) and **Quick wins** (size of the way through against how much it frees). Every blocker has a tag — its issue number, or a dashed name when it has none — that opens one page with what it holds up and the ways through (who can do each, the effort, the one the repo would pick); **Make the issue on GitHub** gives an untracked one a number. **Do it for me** hands a step behind your sign-in to a Claude session on your computer; **Help me** asks a session to walk you through yours. On the map, the **Blockers** button draws a line from each repository to **You**, **Your computer**, **Agents** or the repository it waits on. |
 | **Roadmap** | Every repository's Now / Next / Later / Blocked on one screen. |
 | **Board** | Every open issue, by who can move it: on your computer, waiting on you, ready for an agent (by model), behind upstream, epics. **Prompt** copies a brief for a new Claude Code session or Dispatch; **Do it for me**, one for a Claude session on your computer. |
@@ -88,7 +89,7 @@ receiving end has kept up.
 | `tools/collect.mjs` | Builds `data/map.json`. `.github/workflows/collect.yml` runs it every three hours. |
 | `tools/drift.mjs`, `.github/workflows/drift.yml` | The check every repository runs on itself (a reusable workflow). |
 | `shared/instructions.md`, `shared/on-the-atlas.md` | The rules every repository shares, loaded into every session in every repository when it starts; `tools/shared.mjs` points a repository at them ([`docs/shared-instructions.md`](docs/shared-instructions.md)). |
-| `tools/brief.mjs` | The weekday push to the owner's phone: what is waiting on the owner and worth doing soon ([`docs/brief.md`](docs/brief.md)). |
+| `tools/brief.mjs` | The weekday push to the owner's phone: the Priorities view's pick first, then what is waiting on the owner and worth doing soon ([`docs/brief.md`](docs/brief.md)). |
 | `tools/build-standalone.mjs` | One self-contained HTML file with everything inlined (`dist/atlas.html`). |
 | `assets/logos/` | Logos and pictures; `credits.json` says where each came from. |
 | `test/check.mjs` | The Atlas's own checks (`node test/check.mjs`, about a second). |

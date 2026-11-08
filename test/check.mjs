@@ -10,7 +10,7 @@ import { execFileSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 import { ROOT, validate, crossCheck, parseTitle, watchMatches, blockerMark, triageMark, linkFor } from '../tools/lib.mjs';
 import { section, apply, settings, hook, FILES, RAW, LIMIT } from '../tools/shared.mjs';
-import { brief, waiting, datesIn } from '../tools/brief.mjs';
+import { brief, waiting, datesIn, startHere } from '../tools/brief.mjs';
 
 const fails = [];
 const check = (ok, msg) => { if (!ok) fails.push(msg); };
@@ -172,10 +172,17 @@ check(blockerMark('See the Atlas blocker: rpi-alert/x in the notes') === null, '
     { id: 'b', name: 'B', repo: 'o/b', manifest: { status: { blocked: [{ id: 'same', what: 'Waits on A', on: 'human', issue: 'o/a#2' }] } } }] };
   const w = waiting(map);
   check(w.length === 2 && w.some(x => x.tag === '#1') && w.some(x => x.tag === '#2' && x.repo === 'A'), 'brief: what waits on you, each once');
-  const out = brief(map, '2026-11-05');
+  const out = brief(map, '2026-11-05', null);
   check(out === '📅 Mon 9 Nov: A #2 Pay before 9 Nov\n🆕 A #1 Choose 30 or 90 days\n👉 2 in all (2 for you, 0 at your computer): https://o.github.io/atlas/#blockers', `brief: picks and order, got ${JSON.stringify(out)}`);
-  check(brief({ ...map, generated: '2026-11-01T00:00:00Z' }, '2026-11-05').includes('\n⚠️ The map was last refreshed 4 days ago'), 'brief: warns when the map is old');
+  // The Priorities view's pick goes first, and isn't said twice.
+  const started = brief(map, '2026-11-05', { key: 'o/a#2', repo: 'A', tag: '#2', title: 'Pay before 9 Nov', yourMinutes: 4 });
+  check(started.split('\n')[0] === '⭐ Start here: A #2 Pay before 9 Nov (5 min)' && !started.includes('📅'), `brief: the start pick first, once, got ${JSON.stringify(started)}`);
+  const pick = startHere(map, '2026-11-05');
+  check(pick && pick.title && pick.key && Number.isFinite(pick.yourMinutes), `brief: the page's own code picks with no page, got ${JSON.stringify(pick)}`);
+  check(brief({ ...map, generated: '2026-11-01T00:00:00Z' }, '2026-11-05', null).includes('\n⚠️ The map was last refreshed 4 days ago'), 'brief: warns when the map is old');
   if (existsSync(join(ROOT, 'data/map.json'))) {
+    const realPick = startHere(json('data/map.json'), '2026-11-05');
+    check(realPick && realPick.title, 'brief: a start pick on today\'s map');
     const real = brief(json('data/map.json'), '2026-11-05');
     check(real.length <= 600 && real.split('\n').length <= 9, `brief: ${real.length} characters, ${real.split('\n').length} lines on today's map`);
   }

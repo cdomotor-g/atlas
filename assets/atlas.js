@@ -1080,6 +1080,7 @@ function fit(ids, animate = true) {
   const foot = Math.min($('#legend')?.offsetHeight || 0, 60) + 6;
   const k = Math.min(w / (x1 - x0), (h - top - foot) / (y1 - y0), ids ? 1.6 : 1.4);
   const target = { k, x: w / 2 - k * (x0 + x1) / 2, y: top + (h - top - foot) / 2 - k * (y0 + y1) / 2 };
+  fit.done = true;
   animateTo(target, animate);
 }
 function animateTo(t, animate) {
@@ -1520,7 +1521,7 @@ function compPanel(r, cid) {
 // this browser, on the issue's "Atlas triage:" line, or a weight in the registry) and the Atlas's
 // guess otherwise; the item's page says which, and how to make a change stick.
 const T = window.AtlasTriage;
-const todayIso = () => { const d = new Date(); return new Date(d.getTime() - d.getTimezoneOffset() * 6e4).toISOString().slice(0, 10); };
+const todayIso = () => { if (window.ATLAS_TODAY) return window.ATLAS_TODAY; const d = new Date(); return new Date(d.getTime() - d.getTimezoneOffset() * 6e4).toISOString().slice(0, 10); };
 const cap = s => { s = String(s || ''); return s.charAt(0).toUpperCase() + s.slice(1); };
 const FACETS = {
   repo: { name: 'How much the repository matters', short: 'Repo', means: 'How much this repository matters right now, 1 to 5. The Atlas guesses from its phase and how many repositories rely on it until you set it.' },
@@ -2215,7 +2216,7 @@ function renderGuide() {
     <div class="box"><h4>4 · Back: asks travel upstream</h4>When a repo needs another to change, its agent files an issue in the other repo (or records it under <code>asks</code> until it can). Issues that name another repo show on the line between the two.</div>
   </div>
   <h3>Priorities: what to work on next</h3>
-  <p>The <b>Priorities</b> view weighs every open issue and blocker against the others, so there is one place to look for what matters most right now. <b>▶ Start here</b>, at the top of every view, is its pick for you.</p>
+  <p>The <b>Priorities</b> view weighs every open issue and blocker against the others, so there is one place to look for what matters most right now. The Atlas opens on it. <b>▶ Start here</b>, at the top of every view, is its pick for you — and the first line of the weekday message to your phone, worked out by the same code.</p>
   <ul>
     <li><b>What it weighs.</b> How much its repository matters (1–5) times how bad it is if it's left (1–5) — so a bad problem in a repository that matters little can rank below a smaller one where it matters most — plus what doing it opens up (what it frees, counting the blockers behind it) and how soon it's needed (a deadline in its words, its repository's Now or Next list, how long it has held work up). Together that is its <b>importance</b>, out of 100.</li>
     <li><b>What it costs.</b> Your time (all of it when you do it; about half when an agent at your computer does it while you approve; minutes to hand a job to an agent and check it), agent time, and any money it needs, in dollars. <b>Best next</b> is importance for what it costs: a five-minute decision that frees three jobs beats a week of work that frees none.</li>
@@ -2254,7 +2255,7 @@ function renderGuide() {
 const VIEWS = ['map', 'priorities', 'blockers', 'roadmap', 'board', 'links', 'activity', 'guide'];
 let current = 'map';
 function showView(v) {
-  if (!VIEWS.includes(v)) v = 'map';
+  if (!VIEWS.includes(v)) v = 'priorities';
   current = v;
   for (const id of VIEWS) $(`#${id}-view`).hidden = id !== v;
   $$('nav.views button').forEach(b => b.setAttribute('aria-selected', b.dataset.view === v));
@@ -2266,7 +2267,8 @@ function showView(v) {
   if (v === 'activity') renderActivity();
   if (v === 'guide') renderGuide();
   $('#panel').classList.toggle('open', !!selected && (v === 'map' || (v === 'blockers' && selected.type === 'blocker') || (v === 'priorities' && (selected.type === 'item' || selected.type === 'blocker'))));
-  if (v === 'map' && D) placeIfTurned();
+  // The page opens on Priorities, with the map hidden: it fits itself the first time it shows.
+  if (v === 'map' && D && !placeIfTurned() && !fit.done) fit(null, false);
   setHash();
 }
 function setHash() {
@@ -2308,7 +2310,7 @@ function readHash() {
     if (uid) select(selected);
     return;
   }
-  showView(v || 'map');
+  showView(v || 'priorities');
   if (v === 'map' && rest) {
     // #map/link:rpi-alert:quansheng-v1-serial; an older address names only the entry
     // (#map/link:station-table): take the first link with that entry, as it always did.
@@ -2428,12 +2430,26 @@ async function load() {
   let data = window.ATLAS_DATA;
   if (!data) {
     try { const res = await fetch('data/map.json', { cache: 'no-cache' }); data = await res.json(); }
-    catch (e) { $('#map-view').innerHTML = `<div class="page"><h2>Could not load the map</h2><p>${esc(e.message)}</p><p>Open this page through a web server (GitHub Pages, or <code>python3 -m http.server</code>), not as a file.</p></div>`; return; }
+    catch (e) { for (const id of VIEWS) $(`#${id}-view`).hidden = id !== 'map'; $('#map-view').innerHTML = `<div class="page"><h2>Could not load the map</h2><p>${esc(e.message)}</p><p>Open this page through a web server (GitHub Pages, or <code>python3 -m http.server</code>), not as a file.</p></div>`; return; }
   }
   data.registryPos = Object.fromEntries(data.repos.map(r => [r.id, { x: r.x, y: r.y }]));
   prepare(data);
   renderStrip(); legend(); wireChrome(); buildMap();
   requestAnimationFrame(() => { fit(null, false); readHash(); });
 }
-load();
+// tools/brief.mjs runs this file with no page (window.ATLAS_HEADLESS) for the Priorities view's
+// pick for the owner — "Your next step", the Start here button — so the phone and the page agree.
+// Only prepare() runs: keep it free of anything that needs a page.
+if (window.ATLAS_HEADLESS) {
+  window.ATLAS_HEADLESS.rank = data => {
+    prepare(data);
+    const it = topPicks().yours, b = it?.main;
+    if (!it) return null;
+    return {
+      key: it.type === 'issue' ? it.key : b?.iss ? b.iss.key : b.uid,
+      repo: it.repo.name, tag: it.type === 'issue' || b?.iss ? it.tag : '', title: it.title, who: it.who,
+      yourMinutes: Math.round(it.c.yourHours * 60), importance: Math.round(it.s.worth), why: whyShort(it),
+    };
+  };
+} else load();
 })();

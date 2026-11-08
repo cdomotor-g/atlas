@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // The Atlas brief: the few things in the repositories that wait on the owner and are worth a
-// nudge today — a date coming up, something new, a quick win, and one more of the rest in turn.
+// nudge today — the Priorities view's pick first, then a date coming up, something new, a quick
+// win, and one more of the rest in turn.
 // A scheduled Claude session sends what it prints to the owner's phone on weekday mornings; docs/brief.md
 // says how and why. Reads data/map.json only; prints the brief; changes nothing.
 //   node tools/brief.mjs                     today, in Queensland
@@ -9,6 +10,7 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { createContext, runInContext } from 'node:vm';
 import { ROOT } from './lib.mjs';
 
 const DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -106,8 +108,28 @@ const lastWeekday = iso => { let d = plus(iso, -1); while ([0, 6].includes(day(d
 // Weekdays since 1970: one step a brief, so "in turn" goes through the whole list.
 const weekdayNumber = iso => { const d = Math.round(day(iso) / 864e5) + 3, wk = Math.floor(d / 7); return wk * 5 + Math.min(d - wk * 7, 4); };
 
-/** The brief, as it is pushed: at most eight lines and 600 characters, then where to see the rest. */
-export function brief(map, today = todayHere()) {
+/** The Priorities view's pick for the owner ("Your next step", the page's ▶ Start here), worked out
+    by the page's own code — assets/triage.js and assets/atlas.js, run here with no page — so the
+    phone and the page name the same thing. It weighs with the registry's settings: a change made
+    only in someone's browser doesn't reach it. Null when it can't be worked out. */
+export function startHere(map, today = todayHere()) {
+  try {
+    const now = Date.parse(`${today}T12:00:00Z`);
+    class Clock extends Date { constructor(...a) { super(...(a.length ? a : [now])); } static now() { return now; } }
+    const page = { ATLAS_TODAY: today, ATLAS_HEADLESS: {}, Date: Clock, innerWidth: 1400, innerHeight: 900,
+      document: { querySelector: () => null, querySelectorAll: () => [] } };
+    page.window = page;
+    const ctx = createContext(page);
+    for (const f of ['assets/triage.js', 'assets/atlas.js']) runInContext(readFileSync(join(ROOT, f), 'utf8'), ctx, { filename: f });
+    const pick = page.ATLAS_HEADLESS.rank(JSON.parse(JSON.stringify(map)));
+    return pick ? JSON.parse(JSON.stringify(pick)) : null;
+  } catch { return null; }
+}
+const minutesWords = m => m < 60 ? `${Math.max(5, Math.round(m / 5) * 5)} min` : `${+(m / 60).toFixed(1)} h`;
+
+/** The brief, as it is pushed: at most eight lines and 600 characters, then where to see the rest.
+    `start` is the Priorities view's pick (startHere), first; null leaves it out. */
+export function brief(map, today = todayHere(), start = startHere(map, today)) {
   const all = waiting(map);
   if (!all.length) return 'Nothing in the repositories is waiting on you.';
   const lines = [], used = new Set();
@@ -116,9 +138,12 @@ export function brief(map, today = todayHere()) {
   const left = () => all.filter(x => !used.has(x.key));
   const line = x => `${x.repo}${x.tag ? ' ' + x.tag : ':'} ${x.title}`;
 
+  // 0. Where to start: the Priorities view's pick for you, with how much of your time it takes.
+  if (start) add(start, '⭐ Start here: ', ` (${minutesWords(start.yourMinutes)})`);
+
   // 1. A date in the next fortnight, soonest first.
   const horizon = plus(today, 14);
-  all.map(x => ({ x, due: datesIn(x.title, today).filter(d => d >= today && d <= horizon).sort()[0] })).filter(o => o.due)
+  left().map(x => ({ x, due: datesIn(x.title, today).filter(d => d >= today && d <= horizon).sort()[0] })).filter(o => o.due)
     .sort((a, b) => a.due.localeCompare(b.due)).slice(0, 2).forEach(o => add(o.x, `📅 ${label(o.due, today)}: `));
   // 2. New on you since the last brief, newest first.
   const since = lastWeekday(today);

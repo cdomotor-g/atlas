@@ -2,7 +2,8 @@
 
 The Atlas's **Priorities** view (`#priorities`) weighs every open issue and blocker in every
 repository against the others, so there is one place to look for what matters most right now.
-**▶ Start here**, at the top of every view, is its pick for the owner. The sums are in
+The Atlas opens on it. **▶ Start here**, at the top of every view, is its pick for the owner, and
+the first line of the weekday phone message ([`brief.md`](brief.md)), worked out by the same code. The sums are in
 [`assets/triage.js`](../assets/triage.js); the page that draws them is `assets/atlas.js`.
 
 ## What gets weighed
