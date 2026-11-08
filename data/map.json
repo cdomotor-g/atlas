@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-08T06:32:06.438Z",
- "hash": "9ec8dfe001b85532",
+ "generated": "2026-11-08T09:26:24.456Z",
+ "hash": "f1792d8f0011359d",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1080,12 +1080,36 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-08T05:44:05Z",
+    "pushed": "2026-11-08T09:21:03Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "f131657",
+     "date": "2026-11-08T09:21:01Z",
+     "msg": "Version stamp 20261108n",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/f131657aff4e845201dae77971295641d73db4b9"
+    },
+    {
+     "sha": "077b08c",
+     "date": "2026-11-08T09:20:55Z",
+     "msg": "Share: the address carries the view and the focused repeater",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/077b08c9ed4512bf710bb4e78f297a2e81588cc2"
+    },
+    {
+     "sha": "f52fedb",
+     "date": "2026-11-08T08:45:12Z",
+     "msg": "Version stamp 20261108m",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/f52fedba5a600900d5d2ddcc091f5c05d664f86a"
+    },
+    {
+     "sha": "9cd2f81",
+     "date": "2026-11-08T08:45:07Z",
+     "msg": "Views: only Overview and Backbone switch the backbone on",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/9cd2f8161c95c7a403b187ba12b2cd473ad66093"
+    },
     {
      "sha": "5a1aa5b",
      "date": "2026-11-08T05:44:02Z",
@@ -1133,33 +1157,26 @@
      "date": "2026-11-08T03:06:56Z",
      "msg": "Decoder: device rates that are not whole multiples of 240k (288k, 300k)",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/ed3ed3bf4d40c6c4dd4038ef069a04de5fee427c"
-    },
-    {
-     "sha": "0caf7b8",
-     "date": "2026-11-08T02:48:44Z",
-     "msg": "Roadmap: #278's building tiles built (3.07 M buildings, 16,547 tiles)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/0caf7b8a15502a69d969b2433ce895499a208190"
-    },
-    {
-     "sha": "a62385c",
-     "date": "2026-11-08T02:41:20Z",
-     "msg": "Version stamp 20261108g",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/a62385c6904165b9f12b4d90c9f5bfb51b15617f"
-    },
-    {
-     "sha": "f4e0d02",
-     "date": "2026-11-08T02:39:43Z",
-     "msg": "Views: Best path cuts the backbone to a tree into the bases",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/f4e0d02aeced7d132f008aa172eb8d024c456378"
-    },
-    {
-     "sha": "f808afd",
-     "date": "2026-11-08T02:07:10Z",
-     "msg": "Version stamp 20261108f",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/f808afdf1c9278ba3ded32a846271bcf4a5ac9e4"
     }
    ],
    "issues": [
+    {
+     "n": 280,
+     "raw": "[Sub-issue of #276] [Opus5/High] Trees and buildings in the digital twin",
+     "structure": "sub",
+     "parent": 276,
+     "model": "Opus5",
+     "effort": "High",
+     "human": false,
+     "computer": false,
+     "title": "Trees and buildings in the digital twin",
+     "url": "https://github.com/cdomotor-g/MegaNet/issues/280",
+     "updated": "2026-11-08T08:41:28Z",
+     "created": "2026-11-08T08:41:28Z",
+     "comments": 0,
+     "labels": [],
+     "mentions": []
+    },
     {
      "n": 279,
      "raw": "[Sub-issue of #276] [Opus5/Med] Presenting switch for a shared screen, then Detail modes",
@@ -2042,7 +2059,7 @@
      "computer": false,
      "title": "Roadmap — resource allocation & sequencing for all issues",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/113",
-     "updated": "2026-11-08T04:30:48Z",
+     "updated": "2026-11-08T08:45:31Z",
      "created": "2026-08-13T00:13:50Z",
      "comments": 1,
      "labels": [],
@@ -2050,72 +2067,64 @@
       "meganet",
       "rpi_alert"
      ],
-     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1129k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
+     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1130k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
     }
    ],
-   "issueCount": 50,
+   "issueCount": 51,
    "release": null,
    "ci": [
+    {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42466998578",
+     "date": "2026-11-08T09:23:49Z",
+     "event": "schedule"
+    },
+    {
+     "name": "CodeQL",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42466812350",
+     "date": "2026-11-08T09:21:18Z",
+     "event": "push"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42466812238",
+     "date": "2026-11-08T09:21:25Z",
+     "event": "push"
+    },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42454526088",
-     "date": "2026-11-08T06:23:17Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42466504467",
+     "date": "2026-11-08T09:16:58Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42454486380",
-     "date": "2026-11-08T06:23:32Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42466376739",
+     "date": "2026-11-08T09:15:55Z",
      "event": "schedule"
-    },
-    {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42454334220",
-     "date": "2026-11-08T06:20:32Z",
-     "event": "schedule"
-    },
-    {
-     "name": "Web smoke test",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42451918729",
-     "date": "2026-11-08T05:44:27Z",
-     "event": "push"
-    },
-    {
-     "name": "CodeQL",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42451918725",
-     "date": "2026-11-08T05:47:54Z",
-     "event": "push"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42447099606",
-     "date": "2026-11-08T04:31:03Z",
-     "event": "push"
     },
     {
      "name": "Roadmap sync",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42447099203",
-     "date": "2026-11-08T04:30:51Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42464265268",
+     "date": "2026-11-08T08:45:35Z",
      "event": "push"
     }
    ],
-   "version": "20261108l",
+   "version": "20261108n",
    "lastCommit": {
-    "date": "2026-11-08T05:44:02Z"
+    "date": "2026-11-08T09:21:01Z"
    }
   },
   {
@@ -7270,7 +7279,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "7 newer commits upstream since ed3ed3b, none to watched files."
+    "note": "11 newer commits upstream since ed3ed3b, none to watched files."
    }
   },
   {
@@ -7623,7 +7632,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "634 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "638 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7740,7 +7749,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "634 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "638 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -8406,7 +8415,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "89 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "93 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8437,7 +8446,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "89 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "93 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8466,7 +8475,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "46 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "50 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
@@ -8496,7 +8505,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "35 newer commits upstream since it was last reviewed (2026-11-06), none to watched files."
+    "note": "39 newer commits upstream since it was last reviewed (2026-11-06), none to watched files."
    }
   },
   {
