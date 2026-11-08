@@ -1,6 +1,7 @@
 {
   "$comment": "Which repositories are on the Atlas, where each sits on the map and which zone it belongs to. Everything else about a repository comes from its own atlas.json (or data/fallback/<id>.json when it has none). x/y are map coordinates for a wide window (the map is about 1700 x 1050); tall is [x, y] for a phone held upright (about 1000 x 1650, the zones stacked top to bottom), and every repository needs both. Laid out on 2026-11-02 by a search that keeps each zone in its place, Flood-Net in the middle, and the lines off other repositories and each other. To add a repository: add an entry here, give it an atlas.json (template in docs/adding-a-repo.md), push. Optional, for the Priorities view (docs/priorities.md): a repository's weight, 1 to 5, says how much it matters now (left out, the Atlas guesses from its phase and what relies on it); a top-level triage object holds how open work is weighed (weights, your hours a day, agent sessions at once, what an hour of yours is worth).",
   "owner": "cdomotor-g",
+  "triage": { "weights": { "importance": 2, "opportunity": 1, "urgency": 1, "cost": 1 }, "yourHoursADay": 1, "agentsAtOnce": 2, "agentHoursADay": 6, "yourHour": 60, "agentHour": 5, "unknownPurchase": 50 },
   "groups": [
     { "id": "radio", "name": "On the radio", "about": "Firmware that turns a cheap Quansheng handheld into an ALERT receiver, and the page that installs it.", "color": "#d98b2b" },
     { "id": "base", "name": "At the base station", "about": "What sits at a base station and listens: receivers that decode the bursts and send readings on.", "color": "#2f9e8f" },
@@ -11,19 +12,19 @@
     { "id": "outside", "name": "Outside the network", "about": "Related in spirit, not wired in.", "color": "#9a8a5a" }
   ],
   "repos": [
-    { "id": "flood-net",            "repo": "cdomotor-g/MegaNet",              "group": "network",  "x": 830,  "y": 560, "tall": [250, 1080], "size": 1.6, "logo": "assets/logos/flood-net.webp" },
-    { "id": "flood-net-private",    "repo": "cdomotor-g/flood-net-private",    "group": "network",  "x": 870,  "y": 780, "tall": [420, 930],  "size": 0.8, "logo": "assets/logos/flood-net-private.svg", "private": true },
-    { "id": "rpi-alert",            "repo": "cdomotor-g/RPi_ALERT",            "group": "base",     "x": 520,  "y": 600, "tall": [370, 580],  "size": 1.15, "logo": "assets/logos/rpi-alert.svg" },
-    { "id": "fw-lab",               "repo": "cdomotor-g/ALERT1v3",             "group": "tools",    "x": 220,  "y": 210, "tall": [860, 680],  "size": 0.85, "logo": "assets/logos/fw-lab.svg" },
-    { "id": "quansheng-v3",         "repo": "cdomotor-g/quansheng_alert_v3",   "group": "radio",    "x": 280,  "y": 480, "tall": [240, 200],  "size": 1.1, "label": "Quansheng V3 firmware", "logo": "assets/logos/quansheng-v3.png" },
-    { "id": "quansheng-v1",         "repo": "cdomotor-g/quansheng_alert",      "group": "radio",    "x": 290,  "y": 880, "tall": [510, 240],  "size": 0.85, "label": "Quansheng V1 firmware", "logo": "assets/logos/quansheng-v1.jpg" },
-    { "id": "quansheng-all",        "repo": "cdomotor-g/quansheng_alert_ALL",  "group": "radio",    "x": 220,  "y": 690, "tall": [710, 200],  "size": 1.0, "label": "Radio setup site", "logo": "assets/logos/quansheng-all.jpg" },
-    { "id": "open-alert",           "repo": "cdomotor-g/open-ALERT",           "group": "planning", "x": 780,  "y": 70,  "tall": [870, 970],  "size": 1.0, "logo": "assets/logos/open-alert.svg" },
-    { "id": "sort",                 "repo": "cdomotor-g/SoRT",                 "group": "planning", "x": 940,  "y": 230, "tall": [640, 1150], "size": 1.0, "logo": "assets/logos/sort.svg" },
-    { "id": "f-tide",               "repo": "cdomotor-g/F-TIDE",               "group": "planning", "x": 1380, "y": 200, "tall": [670, 950],  "size": 0.8, "logo": "assets/logos/f-tide.svg" },
-    { "id": "droggies",             "repo": "cdomotor-g/thedroggies",          "group": "story",    "x": 1220, "y": 570, "tall": [90, 1460],  "size": 1.1, "logo": "assets/logos/droggies.jpg", "private": true, "pages": "https://cdomotor-g.github.io/thedroggies/" },
-    { "id": "alert-packets",        "repo": "cdomotor-g/ALERT_PACKETS",        "group": "tools",    "x": 560,  "y": 90,  "tall": [600, 620],  "size": 0.8, "logo": "assets/logos/alert-packets.svg" },
-    { "id": "html-serial",          "repo": "cdomotor-g/HTML-serial",          "group": "tools",    "x": 370,  "y": 90,  "tall": [780, 490],  "size": 0.75, "logo": "assets/logos/html-serial.svg" },
-    { "id": "home",                 "repo": "cdomotor-g/home",                 "group": "outside",  "x": 1380, "y": 900, "tall": [840, 1460], "size": 0.8, "logo": "assets/logos/home.svg" }
+    { "id": "flood-net",            "repo": "cdomotor-g/MegaNet",              "group": "network", "weight": 5,  "x": 830,  "y": 560, "tall": [250, 1080], "size": 1.6, "logo": "assets/logos/flood-net.webp" },
+    { "id": "flood-net-private",    "repo": "cdomotor-g/flood-net-private",    "group": "network", "weight": 4,  "x": 870,  "y": 780, "tall": [420, 930],  "size": 0.8, "logo": "assets/logos/flood-net-private.svg", "private": true },
+    { "id": "rpi-alert",            "repo": "cdomotor-g/RPi_ALERT",            "group": "base", "weight": 4,     "x": 520,  "y": 600, "tall": [370, 580],  "size": 1.15, "logo": "assets/logos/rpi-alert.svg" },
+    { "id": "fw-lab",               "repo": "cdomotor-g/ALERT1v3",             "group": "tools", "weight": 2,    "x": 220,  "y": 210, "tall": [860, 680],  "size": 0.85, "logo": "assets/logos/fw-lab.svg" },
+    { "id": "quansheng-v3",         "repo": "cdomotor-g/quansheng_alert_v3",   "group": "radio", "weight": 4,    "x": 280,  "y": 480, "tall": [240, 200],  "size": 1.1, "label": "Quansheng V3 firmware", "logo": "assets/logos/quansheng-v3.png" },
+    { "id": "quansheng-v1",         "repo": "cdomotor-g/quansheng_alert",      "group": "radio", "weight": 1,    "x": 290,  "y": 880, "tall": [510, 240],  "size": 0.85, "label": "Quansheng V1 firmware", "logo": "assets/logos/quansheng-v1.jpg" },
+    { "id": "quansheng-all",        "repo": "cdomotor-g/quansheng_alert_ALL",  "group": "radio", "weight": 4,    "x": 220,  "y": 690, "tall": [710, 200],  "size": 1.0, "label": "Radio setup site", "logo": "assets/logos/quansheng-all.jpg" },
+    { "id": "open-alert",           "repo": "cdomotor-g/open-ALERT",           "group": "planning", "weight": 4, "x": 780,  "y": 70,  "tall": [870, 970],  "size": 1.0, "logo": "assets/logos/open-alert.svg" },
+    { "id": "sort",                 "repo": "cdomotor-g/SoRT",                 "group": "planning", "weight": 4, "x": 940,  "y": 230, "tall": [640, 1150], "size": 1.0, "logo": "assets/logos/sort.svg" },
+    { "id": "f-tide",               "repo": "cdomotor-g/F-TIDE",               "group": "planning", "weight": 1, "x": 1380, "y": 200, "tall": [670, 950],  "size": 0.8, "logo": "assets/logos/f-tide.svg" },
+    { "id": "droggies",             "repo": "cdomotor-g/thedroggies",          "group": "story", "weight": 3,    "x": 1220, "y": 570, "tall": [90, 1460],  "size": 1.1, "logo": "assets/logos/droggies.jpg", "private": true, "pages": "https://cdomotor-g.github.io/thedroggies/" },
+    { "id": "alert-packets",        "repo": "cdomotor-g/ALERT_PACKETS",        "group": "tools", "weight": 2,    "x": 560,  "y": 90,  "tall": [600, 620],  "size": 0.8, "logo": "assets/logos/alert-packets.svg" },
+    { "id": "html-serial",          "repo": "cdomotor-g/HTML-serial",          "group": "tools", "weight": 1,    "x": 370,  "y": 90,  "tall": [780, 490],  "size": 0.75, "logo": "assets/logos/html-serial.svg" },
+    { "id": "home",                 "repo": "cdomotor-g/home",                 "group": "outside", "weight": 3,  "x": 1380, "y": 900, "tall": [840, 1460], "size": 0.8, "logo": "assets/logos/home.svg" }
   ]
 }
