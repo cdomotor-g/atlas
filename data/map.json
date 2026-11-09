@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-08T21:26:40.028Z",
- "hash": "c65dc77e079b08df",
+ "generated": "2026-11-09T00:47:08.820Z",
+ "hash": "3292cbfb6467e773",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -109,8 +109,8 @@
     },
     "status": {
      "phase": "live",
-     "updated": "2026-11-08",
-     "summary": "Live and in daily use (database schema 106): this week added teams and the tasks handed to them, with the SoRT scope builder's hand-off, a driving mode that follows a station's route in 3-D, the agent API's changelog and email list, ACMA licences and radio paths in the API, the Repeaters tab and cuts to database I/O, while account email and the ACMA download link wait on the owner.",
+     "updated": "2026-11-09",
+     "summary": "Live and in daily use (database schema 109): this week added teams and the tasks handed to them, with the SoRT scope builder's hand-off, a driving mode that follows a station's route in 3-D, the agent API's changelog and email list, ACMA licences and radio paths in the API, the Repeaters tab and cuts to database I/O, while account email and the ACMA download link wait on the owner.",
      "now": [
       "Views on the Stations map (map-views.js): one press sets the map for a job — Overview and Site visit for everyone; Radio paths, Weak links, Backbone and Live traffic for instrument technicians; Rivers & catchments and Rainfall for flood forecasters; Property & easements and Land & tenure for property services — with the radio paths drawn as every path, best path only, bundled into trunks or repeater areas, as lines, flowing dashes or tails with a spotlight, auto-contrast and a Balance slider, saved views of your own, and easements and land tenure on the property boundaries",
       "The station card in groups (station-card-view.js): Overview, then a tab each for Flood, Radio, Site and Kit (Tabs, the first), or a summary with each group a page of its own (List, chosen beside the box and kept per device), Field data, Zoom, Directions and All actions along the foot, and a search box that shows only the groups and rows holding a word, marked",
@@ -423,6 +423,33 @@
          "by": "human",
          "effort": "15 min",
          "recommended": true
+        }
+       ]
+      },
+      {
+       "id": "behind-the-scenes-keys",
+       "what": "#281 make a read-only Cloudflare API token and, if wanted, a Supabase access token, saved as GitHub secrets, so the Admin tab's Behind the scenes can show what the database cannot see",
+       "on": "computer",
+       "kind": "access",
+       "since": "2026-11-09",
+       "issue": "#281",
+       "holds": [
+        "#282",
+        "Supabase's API errors and advice on the Admin tab",
+        "Cloudflare's Workers and R2 buckets on the Admin tab"
+       ],
+       "options": [
+        {
+         "what": "Follow #281's click-by-click: Cloudflare token (Workers Scripts and R2 Storage, Read), optionally a Supabase access token, then GitHub → Settings → Secrets → CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, SUPABASE_ACCESS_TOKEN",
+         "by": "computer",
+         "effort": "15 min",
+         "recommended": true
+        },
+        {
+         "what": "Skip the Supabase token: #282 brings Supabase's advice in with no key (its open-source checks run in the database) and leaves the API errors as a link",
+         "by": "agent",
+         "effort": "3h",
+         "model": "Sonnet5"
         }
        ]
       }
@@ -1010,86 +1037,132 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-08T21:09:50Z",
+    "pushed": "2026-11-09T00:36:10Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
     {
-     "sha": "a7fc955",
-     "date": "2026-11-08T21:08:54Z",
-     "msg": "Pause the bulletins' voices to save ElevenLabs credits; #274 closed",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/a7fc955f4f95ff3bfd27c431406138406e4315c5"
+     "sha": "488dc9e",
+     "date": "2026-11-09T00:36:08Z",
+     "msg": "Roadmap 249 and Atlas: Behind the scenes; #281 and #282 opened",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/488dc9e3485fe1e2264968a0ccd5adcac2b679bb"
     },
     {
-     "sha": "b08aaf6",
-     "date": "2026-11-08T20:26:48Z",
-     "msg": "Roadmap and Atlas: the database is on Micro, #255 closed",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/b08aaf6fcd53ed9da8f4e0f239a4fc7569a799d3"
+     "sha": "c25beb2",
+     "date": "2026-11-09T00:27:19Z",
+     "msg": "Admin tab: \"Waiting on you\" counts what needs you now",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/c25beb232bd41946ae8bb3e0a21601c3a182abaa"
     },
     {
-     "sha": "c904e08",
-     "date": "2026-11-08T20:21:25Z",
-     "msg": "Refresh ACMA RRL data (weekly, extract 2026-11-08)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/c904e0839dd4694d8f82a1e672893552c0b4db22"
+     "sha": "9720e5a",
+     "date": "2026-11-09T00:27:01Z",
+     "msg": "Links on every station card, upstream only",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/9720e5a69013a6e194db1c471e1b31d616330058"
     },
     {
-     "sha": "0d93e42",
-     "date": "2026-11-08T20:20:41Z",
-     "msg": "Version stamp 20261108t",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/0d93e42e1a134dde46b53b9d79612701059e285b"
+     "sha": "749221d",
+     "date": "2026-11-09T00:26:28Z",
+     "msg": "Admin tab: Behind the scenes — data flow, base stations, jobs, growth",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/749221d41b342646997a6c9f1b50c1cd2bbaa724"
     },
     {
-     "sha": "2297da4",
-     "date": "2026-11-08T20:20:31Z",
-     "msg": "Layers: Views and the map controls as two coloured cards; quick settings under the list",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/2297da41c09a34eeff52fe4a253bc0ec030148f1"
+     "sha": "7b5fa96",
+     "date": "2026-11-09T00:24:41Z",
+     "msg": "Admin tab: a database call for \"Behind the scenes\" (0109)",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/7b5fa96dd9a6fed16cf1b34568a943677727d2c0"
     },
     {
-     "sha": "b833ce8",
-     "date": "2026-11-08T20:17:03Z",
-     "msg": "Roadmap: #255 needs only the owner's sign-in now (Small chosen)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/b833ce803a930f0c028051bba3cc045246e6e57b"
+     "sha": "d65dc41",
+     "date": "2026-11-08T23:40:13Z",
+     "msg": "Radio link: name the datum beside each end's ground height",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/d65dc41f2a7b6f102909d0ac32d0345a4cd0eba2"
     },
     {
-     "sha": "b6913f2",
-     "date": "2026-11-08T20:16:10Z",
-     "msg": "Methodology says receptions are kept 30 days; the app expects schema 108",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/b6913f29791d7dae6ed19cf3779c8af3f57e01d8"
+     "sha": "4e3b079",
+     "date": "2026-11-08T23:29:10Z",
+     "msg": "Security review README: the weekly report is emailed too",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/4e3b079b4c4daf36b0afad4c83bf0e62ee0d18f9"
     },
     {
-     "sha": "9011bba",
-     "date": "2026-11-08T20:10:06Z",
-     "msg": "Receptions kept 30 days in the database instead of 90 (0108, #256)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/9011bba7251964b08110fba643e38164f5a56150"
+     "sha": "d00e810",
+     "date": "2026-11-08T22:41:48Z",
+     "msg": "Security review brief: owner lines that read on their own",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/d00e810251854e6fb419cb6edc3d29586c93b88a"
     },
     {
-     "sha": "94220cc",
-     "date": "2026-11-08T10:38:53Z",
-     "msg": "The app expects database schema 107 (0107 applied); version stamp 20261108r",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/94220cc074c6694beff8a012e91b35b48adcc0e0"
+     "sha": "b1af57f",
+     "date": "2026-11-08T21:59:18Z",
+     "msg": "Security review README: where the weekly report is posted",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/b1af57f92883b62e6aa8c8a89dd921f85ebb338a"
     },
     {
-     "sha": "b901f16",
-     "date": "2026-11-08T10:36:44Z",
-     "msg": "Database disk: raw submissions' statistics from a small sample (0107)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/b901f16c4a761aef76acd22f2d52a9bff6e94872"
+     "sha": "4ffbc6f",
+     "date": "2026-11-08T21:58:27Z",
+     "msg": "Version stamp 20261108u",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/4ffbc6f311cc4c2c42202c12ccfa0fba3f58e80d"
     },
     {
-     "sha": "f3a8d66",
-     "date": "2026-11-08T10:10:21Z",
-     "msg": "Version stamp 20261108q",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/f3a8d66612df64b8c1f2137383527e73e0d3e4bc"
+     "sha": "b394a0d",
+     "date": "2026-11-08T21:58:26Z",
+     "msg": "Text boxes: plain attribute values use esc(), not the script-string escaper",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/b394a0d3b67f2b423acbd4f9a3588de79bfded81"
     },
     {
-     "sha": "1931df4",
-     "date": "2026-11-08T10:10:17Z",
-     "msg": "Links open the 3-D view; a tap shows the property label",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/1931df4d1694ca19044153e76b8c1c2c2b3cd3b4"
+     "sha": "2660688",
+     "date": "2026-11-08T21:58:26Z",
+     "msg": "fade-resweep: give the secret key only to the steps that use it",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/266068889021332dc120ed1dfc9931d951312562"
     }
    ],
    "issues": [
+    {
+     "n": 282,
+     "raw": "[Standalone] [Sonnet5/Med] Behind the scenes: Supabase's API errors and advice, and Cloudflare's Workers and R2, on the Admin tab",
+     "structure": "standalone",
+     "parent": null,
+     "model": "Sonnet5",
+     "effort": "Med",
+     "human": false,
+     "computer": false,
+     "title": "Behind the scenes: Supabase's API errors and advice, and Cloudflare's Workers and R2, on the Admin tab",
+     "url": "https://github.com/cdomotor-g/MegaNet/issues/282",
+     "updated": "2026-11-09T00:35:04Z",
+     "created": "2026-11-09T00:35:04Z",
+     "comments": 0,
+     "labels": [],
+     "mentions": [],
+     "triage": {
+      "severity": 2,
+      "effort": "3h"
+     }
+    },
+    {
+     "n": 281,
+     "raw": "[Standalone] [Human] [Computer] Make read-only Cloudflare and Supabase keys for the Admin tab's Behind the scenes",
+     "structure": "standalone",
+     "parent": null,
+     "model": null,
+     "effort": null,
+     "human": true,
+     "computer": true,
+     "title": "Make read-only Cloudflare and Supabase keys for the Admin tab's Behind the scenes",
+     "url": "https://github.com/cdomotor-g/MegaNet/issues/281",
+     "updated": "2026-11-09T00:35:18Z",
+     "created": "2026-11-09T00:34:46Z",
+     "comments": 0,
+     "labels": [],
+     "mentions": [
+      "meganet"
+     ],
+     "excerpt": "The Admin tab's new Behind the scenes section (0109, commits 7b5fa96 and 749221d) replaced your separate health dashboard. It shows everything the database can see. Four things it can't see are listed under Not on this page yet, each with a link to where to look for now: - errors at the database's front door (requests from the app that failed):…",
+     "triage": {
+      "severity": 2,
+      "effort": "15min",
+      "cost": 0
+     }
+    },
     {
      "n": 279,
      "raw": "[Sub-issue of #276] [Opus5/Med] Presenting switch for a shared screen, then Detail modes",
@@ -1901,7 +1974,7 @@
      "computer": false,
      "title": "Roadmap — resource allocation & sequencing for all issues",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/113",
-     "updated": "2026-11-08T21:09:12Z",
+     "updated": "2026-11-09T00:36:24Z",
      "created": "2026-08-13T00:13:50Z",
      "comments": 1,
      "labels": [],
@@ -1909,88 +1982,80 @@
       "meganet",
       "rpi_alert"
      ],
-     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1140k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
+     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1143k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
     }
    ],
-   "issueCount": 46,
+   "issueCount": 48,
    "release": null,
    "ci": [
-    {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42525009356",
-     "date": "2026-11-08T21:24:06Z",
-     "event": "schedule"
-    },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42524382147",
-     "date": "2026-11-08T21:16:44Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42541425899",
+     "date": "2026-11-09T00:40:13Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42524296113",
-     "date": "2026-11-08T21:16:18Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42541388103",
+     "date": "2026-11-09T00:40:26Z",
      "event": "schedule"
+    },
+    {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42541189981",
+     "date": "2026-11-09T00:37:33Z",
+     "event": "schedule"
+    },
+    {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42541081161",
+     "date": "2026-11-09T00:36:36Z",
+     "event": "push"
     },
     {
      "name": "Roadmap sync",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42523722243",
-     "date": "2026-11-08T21:09:18Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42541080727",
+     "date": "2026-11-09T00:36:27Z",
      "event": "push"
     },
     {
      "name": "Web smoke test",
      "status": "in_progress",
      "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42523722291",
-     "date": "2026-11-08T21:09:20Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42540268342",
+     "date": "2026-11-09T00:27:33Z",
      "event": "push"
     },
     {
      "name": "CodeQL",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42523722228",
-     "date": "2026-11-08T21:12:57Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42540268310",
+     "date": "2026-11-09T00:31:59Z",
      "event": "push"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42523722454",
-     "date": "2026-11-08T21:09:25Z",
-     "event": "push"
-    },
-    {
-     "name": "Refresh ACMA RRL data",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42519473872",
-     "date": "2026-11-08T20:21:32Z",
-     "event": "schedule"
     },
     {
      "name": "db-migrate",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42518731762",
-     "date": "2026-11-08T20:10:34Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42540038195",
+     "date": "2026-11-09T00:25:11Z",
      "event": "workflow_dispatch"
     }
    ],
-   "version": "20261108t",
+   "version": "20261109c",
    "lastCommit": {
-    "date": "2026-11-08T21:08:54Z"
+    "date": "2026-11-09T00:36:08Z"
    }
   },
   {
@@ -2227,12 +2292,12 @@
     "status": {
      "phase": "beta",
      "updated": "2026-11-08",
-     "summary": "Version 0.22.0 adds a 288 kHz window between 240 kHz and 960 kHz (Flood-Net's decoder now resamples a rate that is not a whole multiple of 240 kHz): five channels 75 kHz apart fit in it, at three fifths of 960 kHz's work. Its Overview puts the plots at the top, then the counts and the receivers, every setting folded under its card; readings, bursts, Flood-Net's requests and the log each have a tab. 18 Bateson runs one RTL-SDR stick with five channels; the bench test with a V4 stick, a Quansheng radio and an ERT-A2 has not been done.",
+     "summary": "Version 0.22.2 hardens what root does on the agent's behalf: settings and survey files in the agent's directories are never read or written through a link, the Bluetooth GPS's settings and the update's outcome live in root's own files, a failed update puts back a copy of the version that was running instead of an unsigned download, a release must hold the version its tag names, and the web page, Flood-Net and the card never install an older release. A GPS's time is believed only when plausible and steady. 18 Bateson runs one RTL-SDR stick with five channels; the bench test with a V4 stick, a Quansheng radio and an ERT-A2 has not been done.",
      "now": [
+      "v0.22.2: security fixes — root never follows a link in the agent's directories; signed-only rollback; no automatic downgrade; GPS time bounded",
       "v0.22.0: a 288 kHz window; the Overview's plots at the top",
       "v0.21.0: the web page — settings folded into the Overview's cards, a tab for each kind of log, the last 10 bursts",
       "v0.20.0: a narrowest and a widest window for Automatic, on the Pi and in Flood-Net",
-      "v0.19.1: the Between bursts check's counts on the card and in Flood-Net",
       "Next CPU step: wake the around-bursts watch for the weakest bursts and check again; Check to compare ALERT2 too; Compare light at 18 Bateson (#3; MegaNet #259)"
      ],
      "next": [
@@ -2682,12 +2747,36 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-08T04:08:42Z",
+    "pushed": "2026-11-08T23:59:21Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/RPi_ALERT"
    },
    "commits": [
+    {
+     "sha": "f6efb5b",
+     "date": "2026-11-08T23:44:18Z",
+     "msg": "0.22.2: root never follows the agent's links; a signed-only way back from a failed update; no automatic downgrade; GPS time checked",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/f6efb5ba0fe46e30a50934cef5e0099dbbad361d"
+    },
+    {
+     "sha": "6a1bbb3",
+     "date": "2026-11-08T21:58:43Z",
+     "msg": "Agent: keep the generated web password out of the log",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/6a1bbb3d1c925820c7de4784ecc88243768c728e"
+    },
+    {
+     "sha": "e02b472",
+     "date": "2026-11-08T21:58:43Z",
+     "msg": "install.sh: leave a linked config.json alone instead of changing its target's owner",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/e02b4723d511623cd7641cd4e25af84829655d3b"
+    },
+    {
+     "sha": "7530b96",
+     "date": "2026-11-08T21:58:43Z",
+     "msg": "Updater: read the web port from config.json as plain data, not with require",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/7530b9682228490a2d001ba64461a8b6ca525e0a"
+    },
     {
      "sha": "4934b15",
      "date": "2026-11-08T03:54:29Z",
@@ -2735,30 +2824,6 @@
      "date": "2026-11-04T20:11:42Z",
      "msg": "Run summary: the same closing report as every other repository",
      "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/4ffa24c65b2b06982323ef8cef319e82d24c1c22"
-    },
-    {
-     "sha": "5663e5e",
-     "date": "2026-11-03T11:24:34Z",
-     "msg": "0.19.0: the Light decoder, Compare light, and a leaner decoder per channel",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/5663e5ed06c11c29568e3e484fafb7576c4bc590"
-    },
-    {
-     "sha": "319f7c9",
-     "date": "2026-11-03T03:49:06Z",
-     "msg": "0.18.0: Between bursts — filter each channel only around its bursts, or check both",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/319f7c98a9045cbfe4d94f39b4a4c77b0a7fb993"
-    },
-    {
-     "sha": "56bd949",
-     "date": "2026-11-02T22:48:19Z",
-     "msg": "0.17.0: lean decoding by default, and less work between bursts",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/56bd949f95f4bec6c638fcd9bd73e9f2f9d2fcb6"
-    },
-    {
-     "sha": "2d8aed2",
-     "date": "2026-11-02T05:59:46Z",
-     "msg": "atlas.json: v0.16.0 released",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/2d8aed25e158af88ac578d0552617817e3b6c658"
     }
    ],
    "issues": [
@@ -2803,47 +2868,47 @@
    ],
    "issueCount": 2,
    "release": {
-    "tag": "v0.22.1",
-    "date": "2026-11-08T04:08:42Z",
-    "url": "https://github.com/cdomotor-g/RPi_ALERT/releases/tag/v0.22.1"
+    "tag": "v0.22.2",
+    "date": "2026-11-08T23:59:21Z",
+    "url": "https://github.com/cdomotor-g/RPi_ALERT/releases/tag/v0.22.2"
    },
    "ci": [
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/42521400748",
-     "date": "2026-11-08T20:41:48Z",
-     "event": "schedule"
-    },
     {
      "name": "pages",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/42445605080",
-     "date": "2026-11-08T04:09:08Z",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/42537779275",
+     "date": "2026-11-08T23:59:45Z",
      "event": "workflow_run"
-    },
-    {
-     "name": "test",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/42444634859",
-     "date": "2026-11-08T03:56:55Z",
-     "event": "push"
     },
     {
      "name": "build-image",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/42444634880",
-     "date": "2026-11-08T04:08:46Z",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/42536613769",
+     "date": "2026-11-08T23:59:25Z",
      "event": "workflow_dispatch"
+    },
+    {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/42536606117",
+     "date": "2026-11-08T23:44:41Z",
+     "event": "push"
+    },
+    {
+     "name": "test",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/42536605827",
+     "date": "2026-11-08T23:46:43Z",
+     "event": "push"
     }
    ],
-   "version": "0.22.1",
+   "version": "0.22.2",
    "lastCommit": {
-    "date": "2026-11-08T03:54:29Z"
+    "date": "2026-11-08T23:44:18Z"
    }
   },
   {
@@ -3920,8 +3985,8 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/42418200175",
-     "date": "2026-11-07T21:56:27Z",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/42527656459",
+     "date": "2026-11-08T21:56:27Z",
      "event": "schedule"
     },
     {
@@ -4705,8 +4770,8 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/42417717184",
-     "date": "2026-11-07T21:50:22Z",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/42527199804",
+     "date": "2026-11-08T21:50:49Z",
      "event": "schedule"
     },
     {
@@ -5237,6 +5302,14 @@
    "release": null,
    "ci": [
     {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42525638011",
+     "date": "2026-11-08T21:31:51Z",
+     "event": "schedule"
+    },
+    {
      "name": "pages",
      "status": "completed",
      "conclusion": "success",
@@ -5259,14 +5332,6 @@
      "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42445644058",
      "date": "2026-11-08T04:09:49Z",
      "event": "dynamic"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42428001228",
-     "date": "2026-11-08T00:03:47Z",
-     "event": "push"
     }
    ],
    "version": "0.1.0",
@@ -5985,9 +6050,10 @@
     },
     "status": {
      "phase": "building",
-     "updated": "2026-10-31",
-     "summary": "S1E1 \"Magic Smoke\" is half out (bios, scene art, comic part 1 and the game are live; podcast and animation are JSON only), and the voice cast added on 25 Oct already voices Flood-Net's bulletins.",
+     "updated": "2026-11-08",
+     "summary": "S1E1 \"Magic Smoke\" is half out (bios, scene art, comic part 1 and the game are live; podcast and animation are JSON only), the voice cast already voices Flood-Net's bulletins, and a 74-second animation pilot drawn in code is up for the owner's verdict.",
      "now": [
+      "S1E1 animation pilot: scenes 4–8 drawn and animated in code, voiced by the cast — waiting on the owner's verdict",
       "M2: S1E1 comic part 2, \"The Masterclass\" — scene art and pages",
       "M2: HR portrait from the design brief in characters/json/hr.json",
       "M2: S1E1 podcast script into podcast.json, then audio in the cast's voices"
@@ -6004,6 +6070,47 @@
      ],
      "blocked": [
       {
+       "id": "animation-approach",
+       "what": "Decide whether the show is animated, and its art drawn, in code like the pilot, or stays with the image generator",
+       "on": "human",
+       "kind": "decision",
+       "since": "2026-11-08",
+       "holds": [
+        "M2: S1E1 animation shot list, animatic and episode",
+        "M2: comic part 2 scene art (it could come from the pilot's puppets and sets)"
+       ],
+       "options": [
+        {
+         "what": "Adopt it for the animated show: an agent animates the rest of S1E1 the pilot's way (Alex Chen as a puppet, act two staged from episode.json) and the owner reviews each cut.",
+         "by": "agent",
+         "effort": "a few sessions",
+         "model": "Opus5/High",
+         "pros": "reuses the pilot's engine, puppets and sets; no image generator",
+         "cons": "a flat cartoon look, not the painted look of the comic",
+         "recommended": true
+        },
+        {
+         "what": "Adopt it for the art as well: scene art and comic panels drawn from the same puppets and sets, so every medium shares one look.",
+         "by": "agent",
+         "effort": "a session per episode's art",
+         "model": "Opus5/High",
+         "pros": "one look everywhere; no more image generator",
+         "cons": "comic part 2 would not match part 1 unless part 1 is redrawn"
+        },
+        {
+         "what": "Keep the image generator for stills and use code only for motion: move the painted scene art (camera moves, parallax, smoke, sparks) rather than puppets.",
+         "by": "agent",
+         "effort": "a session",
+         "cons": "characters cannot act or talk"
+        },
+        {
+         "what": "Stop here: animation waits on the comic and the podcast, as planned.",
+         "by": "human",
+         "effort": "none"
+        }
+       ]
+      },
+      {
        "id": "media-hosting",
        "what": "Decide how podcast audio and video are hosted (in the repo, Git LFS or release attachments) before the first audio lands",
        "on": "human",
@@ -6012,6 +6119,7 @@
        "holds": [
         "S1E1 podcast audio (podcast.json audio.src)",
         "S1E1 animatic and animation (animation.json video.src)",
+        "the animation pilot's MP4 (the pilot plays live on its page meanwhile)",
         "M2: S1E1 complete"
        ],
        "options": [
@@ -6149,14 +6257,17 @@
      {
       "id": "animation",
       "name": "The animated show",
-      "what": "animation.json assembles boards from the comic and the track from the podcast; S1E1's definition is published, no shots or video yet (step 7).",
+      "what": "animation.json assembles boards from the comic and the track from the podcast (step 7); S1E1 has a 74-second pilot of scenes 4–8 drawn and animated in code (engine, puppets, sets and effects in assets/anim/), voiced by the cast, playing on its page.",
       "paths": [
        "episodes/s*/*/animation.json",
        "episodes/s*/*/animation/",
        "schemas/animation.schema.json",
-       "agents/07-animator.md"
+       "agents/07-animator.md",
+       "assets/anim/",
+       "tools/animation/",
+       "docs/animation-pilot.md"
       ],
-      "status": "planned"
+      "status": "building"
      },
      {
       "id": "site",
@@ -6841,8 +6952,8 @@
     "state": "current",
     "since": {
      "date": "2026-11-08",
-     "commit": "4934b15cd2181109e3625a814b38f82f553b6df8",
-     "commitDate": "2026-11-08T03:54:29Z"
+     "commit": "f6efb5ba0fe46e30a50934cef5e0099dbbad361d",
+     "commitDate": "2026-11-08T23:44:18Z"
     },
     "behind": 0,
     "commits": [],
@@ -7158,7 +7269,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "28 newer commits upstream since ed3ed3b, none to watched files."
+    "note": "43 newer commits upstream since ed3ed3b, none to watched files."
    }
   },
   {
@@ -7188,8 +7299,14 @@
      "commit": "87ab6ed00b060b13b3c91019f58a6da6d56c129d",
      "commitDate": "2026-11-01T23:59:08Z"
     },
-    "behind": 4,
+    "behind": 5,
     "commits": [
+     {
+      "sha": "05bd80f",
+      "date": "2026-11-08T21:58:26Z",
+      "msg": "Worker: database proxy refuses an encoded slash inside a path segment",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/05bd80ff73ada8e8406b9603f66e9a9dea42a172"
+     },
      {
       "sha": "9011bba",
       "date": "2026-11-08T20:10:06Z",
@@ -7219,7 +7336,7 @@
      "worker/index.js",
      "db/migrations/0108_receptions_30_days.sql"
     ],
-    "note": "4 upstream changes to watched files since it was last reviewed (2026-11-01)."
+    "note": "5 upstream changes to watched files since it was last reviewed (2026-11-01)."
    }
   },
   {
@@ -7247,8 +7364,14 @@
      "commit": "28325c4bc9fbe0bdd23e959f6e388952cf46df52",
      "commitDate": "2026-10-25T19:51:36Z"
     },
-    "behind": 8,
+    "behind": 9,
     "commits": [
+     {
+      "sha": "e18cebe",
+      "date": "2026-11-08T21:58:26Z",
+      "msg": "Base Stations: escape the check percentages a station reports",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/e18cebe0dad8bfe02764f96935e9192f163ccac9"
+     },
      {
       "sha": "5de3cff",
       "date": "2026-11-08T03:55:03Z",
@@ -7302,7 +7425,7 @@
      "docs/base-stations.md",
      "base-stations.js"
     ],
-    "note": "8 upstream changes to watched files since it was last reviewed (2026-10-25)."
+    "note": "9 upstream changes to watched files since it was last reviewed (2026-10-25)."
    }
   },
   {
@@ -7518,7 +7641,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "655 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "670 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7635,7 +7758,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "655 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "670 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7881,16 +8004,16 @@
    "entry": "rpi-alert-entry",
    "to": "open-alert",
    "drift": {
-    "state": "current",
+    "state": "behind",
     "since": {
      "version": "0.22.1",
-     "latest": "0.22.1",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/releases/tag/v0.22.1"
+     "latest": "0.22.2",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/releases/tag/v0.22.2"
     },
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "Says 0.22.1, the latest release."
+    "note": "Says 0.22.1; the latest release is 0.22.2."
    }
   },
   {
@@ -8191,8 +8314,8 @@
     "state": "current",
     "since": {
      "date": "2026-11-08",
-     "commit": "4934b15cd2181109e3625a814b38f82f553b6df8",
-     "commitDate": "2026-11-08T03:54:29Z"
+     "commit": "f6efb5ba0fe46e30a50934cef5e0099dbbad361d",
+     "commitDate": "2026-11-08T23:44:18Z"
     },
     "behind": 0,
     "commits": [],
@@ -8301,7 +8424,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "110 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "125 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8332,7 +8455,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "110 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "125 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8361,7 +8484,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "67 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "82 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
@@ -8391,7 +8514,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "56 newer commits upstream since it was last reviewed (2026-11-06), none to watched files."
+    "note": "71 newer commits upstream since it was last reviewed (2026-11-06), none to watched files."
    }
   },
   {
