@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-09T00:47:08.820Z",
- "hash": "3292cbfb6467e773",
+ "generated": "2026-11-09T03:30:08.585Z",
+ "hash": "41bb01e82915b054",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1989,27 +1989,27 @@
    "release": null,
    "ci": [
     {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42556576359",
+     "date": "2026-11-09T03:28:24Z",
+     "event": "schedule"
+    },
+    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42541425899",
-     "date": "2026-11-09T00:40:13Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42555915243",
+     "date": "2026-11-09T03:21:09Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42541388103",
-     "date": "2026-11-09T00:40:26Z",
-     "event": "schedule"
-    },
-    {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42541189981",
-     "date": "2026-11-09T00:37:33Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42555834342",
+     "date": "2026-11-09T03:20:54Z",
      "event": "schedule"
     },
     {
@@ -2030,10 +2030,10 @@
     },
     {
      "name": "Web smoke test",
-     "status": "in_progress",
-     "conclusion": null,
+     "status": "completed",
+     "conclusion": "failure",
      "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42540268342",
-     "date": "2026-11-09T00:27:33Z",
+     "date": "2026-11-09T01:42:26Z",
      "event": "push"
     },
     {
@@ -2043,14 +2043,6 @@
      "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42540268310",
      "date": "2026-11-09T00:31:59Z",
      "event": "push"
-    },
-    {
-     "name": "db-migrate",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42540038195",
-     "date": "2026-11-09T00:25:11Z",
-     "event": "workflow_dispatch"
     }
    ],
    "version": "20261109c",
@@ -4679,12 +4671,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-05T03:24:01Z",
+    "pushed": "2026-11-09T03:25:20Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL"
    },
    "commits": [
+    {
+     "sha": "1e99b45",
+     "date": "2026-11-09T03:25:19Z",
+     "msg": "firmware: refresh (quansheng_alert@a52700f, quansheng_alert_v3@41ed970)",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/commit/1e99b45c6e742cf5be47bc2a2086c1c4f69c4655"
+    },
     {
      "sha": "a0c0d86",
      "date": "2026-11-05T03:23:59Z",
@@ -4750,12 +4748,6 @@
      "date": "2026-10-20T00:39:19Z",
      "msg": "fix: let the cable page's pin tables scroll on narrow phones",
      "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/commit/4f653e02e7ee6acd361bc5308bb2d9e4a4beaf02"
-    },
-    {
-     "sha": "54ee0cd",
-     "date": "2026-10-20T00:38:06Z",
-     "msg": "firmware: refresh (quansheng_alert@8dd30b1, quansheng_alert_v3@ad166ca)",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/commit/54ee0cdd6eeddeee93351ee9ed9b813a30e05ab1"
     }
    ],
    "issues": [],
@@ -4766,6 +4758,22 @@
     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/releases/tag/release"
    },
    "ci": [
+    {
+     "name": "pages build and deployment",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/42556314050",
+     "date": "2026-11-09T03:26:02Z",
+     "event": "dynamic"
+    },
+    {
+     "name": "Refresh firmware",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/42556240077",
+     "date": "2026-11-09T03:25:24Z",
+     "event": "schedule"
+    },
     {
      "name": "Atlas",
      "status": "completed",
@@ -4781,27 +4789,11 @@
      "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41961351352",
      "date": "2026-11-05T03:25:21Z",
      "event": "push"
-    },
-    {
-     "name": "pages build and deployment",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41961350529",
-     "date": "2026-11-05T03:24:45Z",
-     "event": "dynamic"
-    },
-    {
-     "name": "Refresh firmware",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41382925392",
-     "date": "2026-11-02T03:24:59Z",
-     "event": "schedule"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-11-05T03:23:59Z"
+    "date": "2026-11-09T03:25:19Z"
    }
   },
   {
@@ -7820,13 +7812,13 @@
    "drift": {
     "state": "current",
     "since": {
-     "commit": "988dfe6",
-     "commitDate": "2026-10-31T22:25:34Z"
+     "commit": "41ed970",
+     "commitDate": "2026-11-05T03:24:01Z"
     },
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "3 newer commits upstream since 988dfe6, none to watched files."
+    "note": "Up to date with upstream."
    }
   },
   {
