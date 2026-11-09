@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-09T05:25:21.563Z",
- "hash": "7ebb01c23b9e7930",
+ "generated": "2026-11-09T05:27:24.871Z",
+ "hash": "58eb262339334796",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1037,12 +1037,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-09T05:21:25Z",
+    "pushed": "2026-11-09T05:25:03Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "f836335",
+     "date": "2026-11-09T05:25:01Z",
+     "msg": "Finders: each result a card with a band, and every path's ground drawn small",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/f836335b3b3c151c1d609062009d17aad69a4906"
+    },
     {
      "sha": "d678074",
      "date": "2026-11-09T05:21:22Z",
@@ -1108,12 +1114,6 @@
      "date": "2026-11-08T23:29:10Z",
      "msg": "Security review README: the weekly report is emailed too",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/4e3b079b4c4daf36b0afad4c83bf0e62ee0d18f9"
-    },
-    {
-     "sha": "d00e810",
-     "date": "2026-11-08T22:41:48Z",
-     "msg": "Security review brief: owner lines that read on their own",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/d00e810251854e6fb419cb6edc3d29586c93b88a"
     }
    ],
    "issues": [
@@ -1989,19 +1989,27 @@
    "release": null,
    "ci": [
     {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42567217123",
+     "date": "2026-11-09T05:25:26Z",
+     "event": "schedule"
+    },
+    {
      "name": "CodeQL",
      "status": "in_progress",
      "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42566833664",
-     "date": "2026-11-09T05:21:31Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42567189999",
+     "date": "2026-11-09T05:25:22Z",
      "event": "push"
     },
     {
      "name": "Web smoke test",
      "status": "in_progress",
      "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42566833656",
-     "date": "2026-11-09T05:21:45Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42567189936",
+     "date": "2026-11-09T05:25:24Z",
      "event": "push"
     },
     {
@@ -2021,14 +2029,6 @@
      "event": "schedule"
     },
     {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42566238418",
-     "date": "2026-11-09T05:15:36Z",
-     "event": "schedule"
-    },
-    {
      "name": "Roadmap sync",
      "status": "completed",
      "conclusion": "success",
@@ -2037,9 +2037,9 @@
      "event": "push"
     }
    ],
-   "version": "20261109g",
+   "version": "20261109h",
    "lastCommit": {
-    "date": "2026-11-09T05:21:22Z"
+    "date": "2026-11-09T05:25:01Z"
    }
   },
   {
@@ -7253,7 +7253,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "47 newer commits upstream since ed3ed3b, none to watched files."
+    "note": "48 newer commits upstream since ed3ed3b, none to watched files."
    }
   },
   {
@@ -7625,7 +7625,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "674 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "675 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7742,7 +7742,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "674 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "675 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
