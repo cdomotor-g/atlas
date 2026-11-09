@@ -35,16 +35,38 @@ circles twice, or the job is design, security or something only you understand t
 ## You don't have to choose: let the session size it
 
 Every repository's sessions now **size the job before starting** anything bigger than a small
-fix. You get a card like this:
+fix. The card always has the same layout, so you can read it at a glance:
 
-> **Job:** add 3D roads to the repeater map — big because it touches the map, the data and the print layout.
-> - **A** roads layer only, Sonnet / High, about 2% of your week
-> - **B** roads plus relocation tools, Opus / High, about 8% *(recommended)*
-> - **C** roads now, relocation tools as two roadmap issues
+---
+### 📏 SIZING CARD
+> **Job:** add 3D roads to the repeater map.
 >
-> This session is on Opus / Extra: more than A or C need.
+> Big because it touches the map, the data and the print layout.
 
-Reply with a letter. If you'd already chosen, say so in the first message ("go", "do B") and it
+| | Option | What you get | Model / Effort | Cost |
+|---|---|---|---|---|
+|  | **A** | roads layer only | Sonnet / High | 🟡 ~2% |
+| ⭐ | **B** | roads plus relocation tools | Opus / High | 🔴 ~8% |
+|  | **C** | roads now, relocation tools as two roadmap issues | Sonnet / High | 🟡 ~2% now |
+
+**Pick:** B — the relocation tools reuse the road data, so doing them together saves a second pass.
+**This session:** Opus / Extra · ⬇️ more than B needs: start B in a new session on Opus / High.
+
+Reply A, B or C (or "go" for the ⭐).
+
+---
+
+What the marks mean:
+
+- **⭐** the option the session would pick.
+- **Cost** is a share of your week: 🟢 under 1% · 🟡 1–5% · 🔴 over 5%.
+- **This session:** ✅ right for the pick · ⬇️ more than it needs (you're overpaying) · ⬆️ less
+  than it needs (it may struggle).
+
+The exact layout lives in the *Usage* section of the shared rules, so every repository's
+sessions draw it the same way. If one ever gives you bullet points instead, say "card please".
+
+If you've already chosen, say so in the first message ("go", "do B") and it
 skips the card. A session can't switch its own model, but it can hand the dull parts (reading
 lots of files, mechanical edits) to a cheaper helper, and it will tell you when the next
 session can start on something cheaper.
@@ -124,5 +146,5 @@ Chats and Dispatch don't load the repository rules. To get the sizing card there
 to claude.ai → Settings → Your Claude → Instructions:
 
 ```text
-Before any job bigger than a quick answer or small fix, first reply with a short sizing card: the job in one line and what makes it big; two or three ways to do it, each with the model and effort it needs and a rough cost as a share of my weekly allowance (about US$14 at list price is 1%); and the one you'd pick, marked recommended. Wait for my pick unless I've already said "go". If the work grows past about twice its size, stop at a working point and offer to finish or roadmap the rest.
+Before any job bigger than a quick answer or small fix, reply with only a sizing card and wait for my pick (skip it if I've already said "go"). Always this layout: a horizontal rule; the heading "# 📏 SIZING CARD"; a quote with "Job:" and my ask in ten words, then what makes it big in one sentence; then a table with exactly these columns: (blank for ⭐) | Option | What you get | Model / Effort | Cost — two or three rows lettered A, B, C, ⭐ on the one you'd pick. Model / Effort in the app's words (Haiku, Sonnet, Opus · Low, Medium, High, Extra, Max). Cost as a share of my weekly allowance (about US$14 at list price is 1%), marked 🟢 under 1%, 🟡 1–5%, 🔴 over 5%. Then "Pick:" with a one-line reason, "This session:" with its model / effort and ✅ right, ⬇️ more than needed or ⬆️ less than needed, and last "Reply A, B or C (or "go" for the ⭐)." Never a bullet-point version; no run summary on a card. If the work grows past about twice its size, stop at a working point and show a new card.
 ```

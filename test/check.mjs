@@ -135,6 +135,7 @@ check(blockerMark('See the Atlas blocker: rpi-alert/x in the notes') === null, '
   }
   const all = readFileSync(join(ROOT, 'shared', FILES.all), 'utf8');
   check(all.includes('# 🏁 THIS RUN SUMMARY (Run N)') && all.includes('**You asked:**'), 'shared/instructions.md: the run summary is in it');
+  check(all.includes('# 📏 SIZING CARD') && all.includes('| | Option | What you get | Model / Effort | Cost |'), 'shared/instructions.md: the sizing card layout is in it');
   const block = section(false), atlasBlock = section(true);
   for (const f of ['CLAUDE.md', 'AGENTS.md']) {
     const text = readFileSync(join(ROOT, f), 'utf8');
