@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-09T03:30:08.585Z",
- "hash": "41bb01e82915b054",
+ "generated": "2026-11-09T05:25:21.563Z",
+ "hash": "7ebb01c23b9e7930",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1037,12 +1037,36 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-09T00:36:10Z",
+    "pushed": "2026-11-09T05:21:25Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "d678074",
+     "date": "2026-11-09T05:21:22Z",
+     "msg": "Repeater sites: a Must reach list, and how far each station is",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/d678074628040b9a673ef1ea0e7fd1283275d648"
+    },
+    {
+     "sha": "678e89d",
+     "date": "2026-11-09T05:03:41Z",
+     "msg": "Repeater-to-repeater direction goes by the pass ranges",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/678e89dfecf1ce1ccaf6a061fb6453d841453e86"
+    },
+    {
+     "sha": "1dd3e0d",
+     "date": "2026-11-09T04:52:29Z",
+     "msg": "Moving a repeater: its paths both ways, by the way the readings run",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/1dd3e0d4a3c20221a350f0e9d47f23a7164a87e6"
+    },
+    {
+     "sha": "2baf751",
+     "date": "2026-11-09T03:41:20Z",
+     "msg": "Roads in 3-D, moving a repeater, and links for station bubbles on hover",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/2baf75116934d85809eb5fa157fc61ac81d1d3c6"
+    },
     {
      "sha": "488dc9e",
      "date": "2026-11-09T00:36:08Z",
@@ -1090,30 +1114,6 @@
      "date": "2026-11-08T22:41:48Z",
      "msg": "Security review brief: owner lines that read on their own",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/d00e810251854e6fb419cb6edc3d29586c93b88a"
-    },
-    {
-     "sha": "b1af57f",
-     "date": "2026-11-08T21:59:18Z",
-     "msg": "Security review README: where the weekly report is posted",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/b1af57f92883b62e6aa8c8a89dd921f85ebb338a"
-    },
-    {
-     "sha": "4ffbc6f",
-     "date": "2026-11-08T21:58:27Z",
-     "msg": "Version stamp 20261108u",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/4ffbc6f311cc4c2c42202c12ccfa0fba3f58e80d"
-    },
-    {
-     "sha": "b394a0d",
-     "date": "2026-11-08T21:58:26Z",
-     "msg": "Text boxes: plain attribute values use esc(), not the script-string escaper",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/b394a0d3b67f2b423acbd4f9a3588de79bfded81"
-    },
-    {
-     "sha": "2660688",
-     "date": "2026-11-08T21:58:26Z",
-     "msg": "fade-resweep: give the secret key only to the steps that use it",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/266068889021332dc120ed1dfc9931d951312562"
     }
    ],
    "issues": [
@@ -1974,7 +1974,7 @@
      "computer": false,
      "title": "Roadmap — resource allocation & sequencing for all issues",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/113",
-     "updated": "2026-11-09T00:36:24Z",
+     "updated": "2026-11-09T03:41:36Z",
      "created": "2026-08-13T00:13:50Z",
      "comments": 1,
      "labels": [],
@@ -1989,65 +1989,57 @@
    "release": null,
    "ci": [
     {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42556576359",
-     "date": "2026-11-09T03:28:24Z",
-     "event": "schedule"
+     "name": "CodeQL",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42566833664",
+     "date": "2026-11-09T05:21:31Z",
+     "event": "push"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42566833656",
+     "date": "2026-11-09T05:21:45Z",
+     "event": "push"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42555915243",
-     "date": "2026-11-09T03:21:09Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42566530570",
+     "date": "2026-11-09T05:18:31Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42555834342",
-     "date": "2026-11-09T03:20:54Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42566461988",
+     "date": "2026-11-09T05:18:22Z",
      "event": "schedule"
     },
     {
-     "name": "Atlas",
+     "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42541081161",
-     "date": "2026-11-09T00:36:36Z",
-     "event": "push"
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42566238418",
+     "date": "2026-11-09T05:15:36Z",
+     "event": "schedule"
     },
     {
      "name": "Roadmap sync",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42541080727",
-     "date": "2026-11-09T00:36:27Z",
-     "event": "push"
-    },
-    {
-     "name": "Web smoke test",
-     "status": "completed",
-     "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42540268342",
-     "date": "2026-11-09T01:42:26Z",
-     "event": "push"
-    },
-    {
-     "name": "CodeQL",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42540268310",
-     "date": "2026-11-09T00:31:59Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42557770240",
+     "date": "2026-11-09T03:41:40Z",
      "event": "push"
     }
    ],
-   "version": "20261109c",
+   "version": "20261109g",
    "lastCommit": {
-    "date": "2026-11-09T00:36:08Z"
+    "date": "2026-11-09T05:21:22Z"
    }
   },
   {
@@ -5368,8 +5360,8 @@
     },
     "status": {
      "phase": "live",
-     "updated": "2026-11-06",
-     "summary": "v2 is the Scope Builder since 4 Nov 2026 (/SoRT/ opens /SoRT/v2/; v1 kept at /SoRT/v1/): Flood-Net station lookup with corrections of its particulars for the Word tables, ACMA licences, and the radio path to base with fresh fade margins; the map beside the questions (each pane scrolling on its own) with survey marks and the bridges on it (BR1…, each with who manages it and who to call, tabled in Word), its key under the map in the picture; sessions shared with the whole forum by themselves through Flood-Net's server (no Share button; a forum passphrase, no accounts or tokens), an in-page question editor, a Help guide, the local TBM as a desktop task, and follow-ups handed to Flood-Net's teams as tasks, and on the Water Level table a corrosion category for the infrastructure options (OTE’s three AS 4312 groupings, with the standard’s own table shown beside them), suggested from the site’s distance to the sea on QSpatial’s coastline, and an acid sulfate soil flag (Queensland’s soil maps at the site) that asks the contractor for testing.",
+     "updated": "2026-11-09",
+     "summary": "v2 is the Scope Builder since 4 Nov 2026 (/SoRT/ opens /SoRT/v2/; v1 kept at /SoRT/v1/): Flood-Net station lookup with corrections of its particulars for the Word tables, ACMA licences, and the radio path to base with fresh fade margins; the map beside the questions (each pane scrolling on its own) with survey marks and the bridges on it (BR1…, each with who manages it and who to call, tabled in Word), its key under the map in the picture; sessions shared with the whole forum by themselves through Flood-Net's server (no Share button; a forum passphrase, no accounts or tokens), an in-page question editor, a Help guide, the local TBM as a desktop task, and follow-ups handed to Flood-Net's teams as tasks, and on the Water Level table a corrosion category for the infrastructure options (OTE’s three AS 4312 groupings, with the standard’s own table shown beside them), suggested from the site’s distance to the sea on QSpatial’s coastline, and an acid sulfate soil flag (Queensland’s soil maps at the site) that asks the contractor for testing. Since 9 Nov 2026: shared sessions save again (Cloudflare's weak version tags had been refusing every save after a read), pictures pasted into a question go into Word and are shared, a long relocation gets a close-up of each end beside the map and in Word, the road reserve draws out to 1:100,000, rainfall tables have no survey marks, and 'N to confirm' lists what to check.",
      "now": [
       "v2 at real forums as the default; v1 kept at /SoRT/v1/ in case"
      ],
@@ -5687,12 +5679,36 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-06T00:46:19Z",
+    "pushed": "2026-11-09T05:21:53Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/SoRT"
    },
    "commits": [
+    {
+     "sha": "f2cf4ff",
+     "date": "2026-11-09T05:21:42Z",
+     "msg": "v2 tests: STUB_IMAGERY=1 gives the State's imagery tiles a stand-in; Atlas status for 9 Nov",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/f2cf4ffb0a70f233a3c68ec1d37008e8c733f82d"
+    },
+    {
+     "sha": "10dc17c",
+     "date": "2026-11-09T05:14:59Z",
+     "msg": "v2: pictures on a question — paste a snip with Ctrl+V, and it goes into Word under that row",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/10dc17caec4923fa84eaeb077bf289becbcfc800"
+    },
+    {
+     "sha": "3d45c77",
+     "date": "2026-11-09T05:14:37Z",
+     "msg": "v2: 'N to confirm' lists what to check; rainfall tables have no survey marks; road reserve out to 1:100,000; close-ups for a long relocation",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/3d45c77fe29a343989e7b295290e0215da36a93a"
+    },
+    {
+     "sha": "3617ebd",
+     "date": "2026-11-09T04:50:42Z",
+     "msg": "v2: shared sessions save again — Cloudflare's weak version tags no longer refuse every save",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/3617ebd23bc8dc1c30c0187519314a0204dc14f1"
+    },
     {
      "sha": "5c39cfa",
      "date": "2026-11-06T00:46:11Z",
@@ -5740,30 +5756,6 @@
      "date": "2026-11-05T01:24:24Z",
      "msg": "v2 corrosion: the distance map moves into the guide; Word gets a bold heading and bullets",
      "url": "https://github.com/cdomotor-g/SoRT/commit/64ec1bcdc0426f3226a5fa6400bb4f85714bd84c"
-    },
-    {
-     "sha": "a9c9583",
-     "date": "2026-11-05T01:05:48Z",
-     "msg": "Run summary: start with what was asked",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/a9c9583f6e82ee06c63fd734f09612bd866468d7"
-    },
-    {
-     "sha": "3937cc8",
-     "date": "2026-11-05T00:56:46Z",
-     "msg": "v2 corrosion guide: AS 4312's own table beside OTE's instruction",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/3937cc8a1da936dd6c5f740521f107967520df94"
-    },
-    {
-     "sha": "9ef9d66",
-     "date": "2026-11-05T00:11:40Z",
-     "msg": "v2 Water Level: corrosion categories for the infrastructure options, suggested from the distance to the sea",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/9ef9d665cf42899a507aca56dce2a4b0a669e8a7"
-    },
-    {
-     "sha": "b7f575b",
-     "date": "2026-11-04T20:11:45Z",
-     "msg": "Run summary: the same closing report as every other repository",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/b7f575b14d2c2253b53dfe0e9d9fd28545b6eebc"
     }
    ],
    "issues": [],
@@ -5774,22 +5766,22 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/42524310709",
-     "date": "2026-11-08T21:16:07Z",
-     "event": "schedule"
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/42566881140",
+     "date": "2026-11-09T05:22:15Z",
+     "event": "push"
     },
     {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/42139240547",
-     "date": "2026-11-06T00:47:16Z",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/42566879655",
+     "date": "2026-11-09T05:22:35Z",
      "event": "dynamic"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-11-06T00:46:11Z"
+    "date": "2026-11-09T05:21:42Z"
    }
   },
   {
@@ -7169,7 +7161,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "2 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "6 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
@@ -7261,7 +7253,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "43 newer commits upstream since ed3ed3b, none to watched files."
+    "note": "47 newer commits upstream since ed3ed3b, none to watched files."
    }
   },
   {
@@ -7633,7 +7625,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "670 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "674 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7750,7 +7742,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "670 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "674 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -8416,7 +8408,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "125 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "130 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8447,7 +8439,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "125 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "130 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8476,7 +8468,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "82 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "87 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
@@ -8506,7 +8498,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "71 newer commits upstream since it was last reviewed (2026-11-06), none to watched files."
+    "note": "76 newer commits upstream since it was last reviewed (2026-11-06), none to watched files."
    }
   },
   {
