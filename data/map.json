@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-09T06:43:34.397Z",
- "hash": "7a157178cf8db5df",
+ "generated": "2026-11-09T07:50:20.018Z",
+ "hash": "a075ce3fcdfda7d0",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1992,33 +1992,25 @@
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42573757327",
-     "date": "2026-11-09T06:33:32Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42581491447",
+     "date": "2026-11-09T07:47:08Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42573647565",
-     "date": "2026-11-09T06:33:02Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42581309862",
+     "date": "2026-11-09T07:46:03Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42573389088",
-     "date": "2026-11-09T06:30:07Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42580683349",
+     "date": "2026-11-09T07:39:18Z",
      "event": "schedule"
-    },
-    {
-     "name": "Web smoke test",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42573134421",
-     "date": "2026-11-09T06:27:41Z",
-     "event": "push"
     },
     {
      "name": "CodeQL",
@@ -2026,6 +2018,14 @@
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42573134335",
      "date": "2026-11-09T06:32:51Z",
+     "event": "push"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "completed",
+     "conclusion": "failure",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42573134421",
+     "date": "2026-11-09T07:45:32Z",
      "event": "push"
     }
    ],
@@ -5671,12 +5671,66 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-09T06:35:08Z",
+    "pushed": "2026-11-09T07:46:09Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/SoRT"
    },
    "commits": [
+    {
+     "sha": "6ac4164",
+     "date": "2026-11-09T07:46:08Z",
+     "msg": "Map: fit every location on first framing (page load, refresh, new station) when Auto-fit is on",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/6ac4164a5b2ab972217730deda2172c4b8f264f6"
+    },
+    {
+     "sha": "0d7eb41",
+     "date": "2026-11-09T07:38:54Z",
+     "msg": "Keep an older session's forum date unless it is actually changed, and ask first",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/0d7eb418f4854fd8332c7baaeee2b82a2db953c0"
+    },
+    {
+     "sha": "0746431",
+     "date": "2026-11-09T07:36:57Z",
+     "msg": "Close-ups: one for every pin the others don't show, lettered A, B, C…; two to a row in Word",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/0746431e04df0a91480d66d78f62eab760ee11fa"
+    },
+    {
+     "sha": "014c17d",
+     "date": "2026-11-09T07:27:55Z",
+     "msg": "Map: re-fit every location once a pin change is final (Auto-fit tick box, on by default)",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/014c17df2b2a563d9a0686ac909d55dbfe5bbe1d"
+    },
+    {
+     "sha": "fe3a627",
+     "date": "2026-11-09T07:27:35Z",
+     "msg": "Forum date: a new session takes today's date, not an older session's",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/fe3a627b8c98817b2bd232656d9f39992c0b653b"
+    },
+    {
+     "sha": "540c18c",
+     "date": "2026-11-09T07:21:08Z",
+     "msg": "Say saved/saving instead of shared/sharing for sessions kept on the forum's server",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/540c18c6d5b3912e0b717d328f01fc266fee04b7"
+    },
+    {
+     "sha": "5147206",
+     "date": "2026-11-09T07:14:26Z",
+     "msg": "Don't save any session until a station is picked",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/5147206adbf98fc880eb8edd931be175e77aff0d"
+    },
+    {
+     "sha": "ca761d5",
+     "date": "2026-11-09T07:09:57Z",
+     "msg": "Don't save a session until it has a station or something filled in",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/ca761d5ddc2a2c04f833cb4a1877240f8f343568"
+    },
+    {
+     "sha": "ea95643",
+     "date": "2026-11-09T06:50:57Z",
+     "msg": "Add a Clear all button to the forum attendees box",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/ea95643479486b8e60780f5d6a24ff0d0843dbff"
+    },
     {
      "sha": "0d2fe78",
      "date": "2026-11-09T06:33:23Z",
@@ -5694,60 +5748,6 @@
      "date": "2026-11-09T05:14:59Z",
      "msg": "v2: pictures on a question — paste a snip with Ctrl+V, and it goes into Word under that row",
      "url": "https://github.com/cdomotor-g/SoRT/commit/10dc17caec4923fa84eaeb077bf289becbcfc800"
-    },
-    {
-     "sha": "3d45c77",
-     "date": "2026-11-09T05:14:37Z",
-     "msg": "v2: 'N to confirm' lists what to check; rainfall tables have no survey marks; road reserve out to 1:100,000; close-ups for a long relocation",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/3d45c77fe29a343989e7b295290e0215da36a93a"
-    },
-    {
-     "sha": "3617ebd",
-     "date": "2026-11-09T04:50:42Z",
-     "msg": "v2: shared sessions save again — Cloudflare's weak version tags no longer refuse every save",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/3617ebd23bc8dc1c30c0187519314a0204dc14f1"
-    },
-    {
-     "sha": "5c39cfa",
-     "date": "2026-11-06T00:46:11Z",
-     "msg": "v2 map: bridges are BR1…, Bureau benchmarks BoM-TBM-1…; only bridges on the map; key under the picture; who manages each bridge",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/5c39cfab9efc5709506dd078db367f27ce40e6b8"
-    },
-    {
-     "sha": "f2896ee",
-     "date": "2026-11-06T00:29:11Z",
-     "msg": "v2: sessions are shared with the forum by themselves — no Share button",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/f2896ee70bb73ab53482281acd22c3a3d8f09926"
-    },
-    {
-     "sha": "c05370e",
-     "date": "2026-11-05T06:58:30Z",
-     "msg": "v2 Word copy: the map picture is centred, like the tables, in the preview and in Word",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/c05370e82e8b2e1bdaf33eca59696d2bca3297ef"
-    },
-    {
-     "sha": "ca811ba",
-     "date": "2026-11-05T06:47:47Z",
-     "msg": "v2: acid sulfate soil — flag a susceptible site from Queensland's soil maps; the contractor tests and manages it",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/ca811baa124726f4d0ffe21a072eb779ade4b229"
-    },
-    {
-     "sha": "6f5a7a9",
-     "date": "2026-11-05T03:23:11Z",
-     "msg": "Shared instructions: load them from the Atlas",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/6f5a7a9ba2c10f5b48209bb68622b2a83c119b79"
-    },
-    {
-     "sha": "bad5634",
-     "date": "2026-11-05T03:10:24Z",
-     "msg": "v2 Property Services: the coordinates note stands out in Word and on screen",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/bad5634a7604125b51486d7db2d733da70a619a4"
-    },
-    {
-     "sha": "bb315e4",
-     "date": "2026-11-05T01:56:36Z",
-     "msg": "v2 surf beaches: Coolangatta's and Noosa's north-facing bays are surf; atlas provides corrosion-guide",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/bb315e404c78f762731348955d41d8d9d589970a"
     }
    ],
    "issues": [],
@@ -5755,25 +5755,25 @@
    "release": null,
    "ci": [
     {
+     "name": "pages build and deployment",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/42581404166",
+     "date": "2026-11-09T07:46:53Z",
+     "event": "dynamic"
+    },
+    {
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/SoRT/actions/runs/42573939569",
      "date": "2026-11-09T06:35:37Z",
      "event": "push"
-    },
-    {
-     "name": "pages build and deployment",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/42573938057",
-     "date": "2026-11-09T06:35:52Z",
-     "event": "dynamic"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-11-09T06:33:23Z"
+    "date": "2026-11-09T07:46:08Z"
    }
   },
   {
@@ -7153,7 +7153,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "7 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "16 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
