@@ -66,6 +66,26 @@ just said. The repository itself (its files, issues and commits) is the long-ter
 a fresh session loses less than it feels like. Sessions end long work with a short hand-over to
 paste into the next one.
 
+In Claude Code you can also shrink a session without leaving it:
+
+- **`/compact`** squashes the conversation so far into a short summary and carries on from
+  there. Good mid-feature, when the early back-and-forth no longer matters. You can steer what
+  it keeps: `/compact keep the decisions about the print layout`.
+- **`/clear`** wipes the conversation and starts clean in the same session: the cheapest
+  restart when the next job is different.
+- **`/context`** shows how full the conversation is.
+
+Plain chats on claude.ai have no such command; start a new chat instead.
+
+## The "unpushed commits" nudge
+
+Claude Code on the web checks, after every reply, whether the session's working branch (a
+`claude/…` name it makes up) has commits that aren't online. Your sessions push straight to
+`main`, so that branch never gets pushed and the check fires: "Hook re-prompted Claude …
+Please push these changes". Each nudge makes Claude take another full turn, re-reading the
+whole conversation. The shared rules now tell sessions to switch to `main` before their first
+commit, so the check stays quiet.
+
 ## Budgets for research and overnight runs
 
 You don't need to guess minutes. The budget is a share of your week, and the session estimates

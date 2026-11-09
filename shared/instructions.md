@@ -8,6 +8,7 @@ repository's file wins.
 ## Pushing
 - Push straight to `main` after a patch, without asking: `git pull --rebase origin main` first (other sessions and workflows commit to `main` too), then push. No pull requests, and no branches unless I ask — even where the session was set up to work on a `claude/…` branch.
 - Run the repository's own checks before you push (its `CLAUDE.md` says which).
+- **Work on `main` from the start.** If the session put you on a `claude/…` branch, switch before your first commit: `git fetch origin main && git checkout -B main origin/main`. Otherwise the session's automatic "unpushed commits" check nudges you after every reply, and each nudge costs a whole extra turn. If you end up on a `claude/…` branch anyway, after pushing run `git branch -u origin/main` so the check sees it's pushed. When an automatic check nudges you and nothing needs doing, answer in one line: no run summary.
 
 ## Plain words
 - I'm not a software engineer. In anything a person reads — a page, a message, a doc, an issue, a commit message, a report — prefer the everyday word.
