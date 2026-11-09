@@ -4,7 +4,7 @@ The rules every one of cdomotor-g's repositories shares are written once, here:
 
 | File | Holds | Loaded in |
 |---|---|---|
-| [`shared/instructions.md`](../shared/instructions.md) | Pushing, plain words, private data, who clears what, issue titles, and the run summary every run ends with | every repository |
+| [`shared/instructions.md`](../shared/instructions.md) | Pushing, plain words, private data, who clears what, usage (sizing a job before starting it, which model and effort, when to start fresh), issue titles, and the run summary every run ends with | every repository |
 | [`shared/on-the-atlas.md`](../shared/on-the-atlas.md) | Working with the map: `atlas.json`, telling the repositories that rely on this one, asks, pins, status and blockers | repositories with an `atlas.json` |
 
 Change a rule there and every new session in every repository follows it. There are no

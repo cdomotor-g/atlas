@@ -48,7 +48,7 @@ for (const f of existsSync(join(ROOT, 'data/fallback')) ? readdirSync(join(ROOT,
   check(ids.has(m.id), `fallback ${f}: ${m.id} is not in the registry`);
 }
 
-for (const f of ['assets/atlas.js', 'assets/triage.js', 'tools/lib.mjs', 'tools/collect.mjs', 'tools/drift.mjs', 'tools/build-standalone.mjs', 'tools/shared.mjs', 'tools/brief.mjs']) {
+for (const f of ['assets/atlas.js', 'assets/triage.js', 'tools/lib.mjs', 'tools/collect.mjs', 'tools/drift.mjs', 'tools/build-standalone.mjs', 'tools/shared.mjs', 'tools/brief.mjs', 'tools/usage/snapshot.js']) {
   try { execFileSync(process.execPath, ['--check', join(ROOT, f)], { stdio: 'pipe' }); }
   catch (e) { fails.push(`${f}: ${e.stderr.toString().split('\n').slice(0, 4).join(' ')}`); }
 }

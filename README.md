@@ -89,6 +89,7 @@ receiving end has kept up.
 | `tools/collect.mjs` | Builds `data/map.json`. `.github/workflows/collect.yml` runs it every three hours. |
 | `tools/drift.mjs`, `.github/workflows/drift.yml` | The check every repository runs on itself (a reusable workflow). |
 | `shared/instructions.md`, `shared/on-the-atlas.md` | The rules every repository shares, loaded into every session in every repository when it starts; `tools/shared.mjs` points a repository at them ([`docs/shared-instructions.md`](docs/shared-instructions.md)). |
+| `tools/usage/snapshot.js` | Where the Claude allowance is going: the week used, whether the pace lasts, the costliest sessions. Runs in the owner's signed-in Chrome for the daily *Usage watch* ([`tools/usage/README.md`](tools/usage/README.md); how to spend less: [`docs/usage.md`](docs/usage.md)). |
 | `tools/brief.mjs` | The weekday push to the owner's phone: the Priorities view's pick first, then what is waiting on the owner and worth doing soon ([`docs/brief.md`](docs/brief.md)). |
 | `tools/build-standalone.mjs` | One self-contained HTML file with everything inlined (`dist/atlas.html`). |
 | `assets/logos/` | Logos and pictures; `credits.json` says where each came from. |

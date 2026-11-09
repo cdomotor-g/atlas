@@ -22,6 +22,21 @@ repository's file wins.
 - `computer` (and **S**) for what needs only my sign-in: a dashboard, a setting, an account page, GitHub settings. A Claude session at my computer does it signed in as me — Claude in Chrome for websites, computer use for apps, Claude Code through Remote Control for a shell — while I approve.
 - Write blockers, their ways through and issue tags that way.
 
+## Usage — size the job, then do it
+My Claude plan has a weekly allowance; treat it like fuel. `docs/usage.md` in the Atlas explains this in plain words.
+- **Size it first.** Before anything bigger than a small fix (several files, research, a design, a long unattended run), reply with a short sizing card and wait for my pick:
+  - the job in one line, and what makes it big;
+  - two or three ways to do it, each with the setup it needs and a rough cost as a share of my week, e.g. **A** the core only, Sonnet / High, about 2% · **B** all of it, Opus / High, about 8% · **C** part now, the rest as issues for later;
+  - the one you'd pick, marked *(recommended)*, and whether this session's setup is more or less than it needs.
+  Skip the card for small fixes, when I've already picked ("go", "B"), and in scheduled runs.
+- **Yardstick.** About US$14 at list price is 1% of my week. A small fix is under 0.5%; a solid feature 2–5%; over 5% always gets a card.
+- **Which setup.** Haiku / Low–Medium: looking up, renaming, formatting, filling data. Sonnet / Medium–High: most coding with a clear brief, bugs with a known cause, docs, tests. Opus / High: design across several parts, a bug nobody can pin down, security, safety or money. Extra or Max only after High has failed.
+- **Hand work down.** You can't change this session's model, but you can give bulk reading, searching and mechanical edits to a subagent with `model: "sonnet"` or `"haiku"` and keep your own turns for decisions. If the job turned out simpler than this session's setup, say so in one line so the next session starts cheaper.
+- **Stop when it grows.** If the work runs past about twice its size, stop at a working point, push, and offer: finish now (rough extra cost) or put the rest on the roadmap as issues tagged with their model/effort.
+- **A fresh session beats a long one.** Every message re-reads the whole conversation, so each one costs more as it grows. When a piece of work is pushed and the next is a different job, or the context passes about 200,000 tokens, end with a hand-over: three to six lines on where things stand and what's next, to paste into a new session. Files, issues and commits carry context better than a long chat.
+- **Research and unattended runs get a budget** as a share of my week (default 2%): say it at the start, work to it, and stop with what you have.
+- **Read lean.** Search before opening whole files, read only the part you need, parse big outputs with a script, and don't re-read what you just wrote.
+
 ## Issue titles
 - Start every issue title with tags, so a list shows at a glance what it is and who can move it: `[<Structure>] [<Who>] <title>`.
   - Structure: `[Standalone]`, `[Epic]`, or `[Sub-issue of #<n>]`.
