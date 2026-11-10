@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-10T09:28:35.923Z",
- "hash": "8679ad7e4217b62d",
+ "generated": "2026-11-10T12:31:00.845Z",
+ "hash": "49976992bab06c50",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1037,12 +1037,48 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-10T05:49:54Z",
+    "pushed": "2026-11-10T12:06:41Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "28dc244",
+     "date": "2026-11-10T12:06:39Z",
+     "msg": "Database is at version 111: a base station's spectrum by the hour and its ingest",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/28dc244fe151ccdb9d3dd28b37f57d5b5cce6c24"
+    },
+    {
+     "sha": "ea1deb2",
+     "date": "2026-11-10T12:03:39Z",
+     "msg": "Base Stations: Steady signals and What comes in through each (0111)",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/ea1deb2d928885cc0dd1c3eb0fe062f6eb211488"
+    },
+    {
+     "sha": "65c88d2",
+     "date": "2026-11-10T11:33:13Z",
+     "msg": "Search box (Ctrl K) finds ACMA licences by number, holder, site or frequency",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/65c88d28cd057f0b2f3024ec47a9b02501b71f5f"
+    },
+    {
+     "sha": "63bda59",
+     "date": "2026-11-10T11:31:12Z",
+     "msg": "ACMA licences: 'assumed reach' in plain words, none found by owner; roadmap revision 250 (#283, #284, #285 opened)",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/63bda5908a392461c5a829973febe71cb50ae2c6"
+    },
+    {
+     "sha": "df42cfc",
+     "date": "2026-11-10T09:33:28Z",
+     "msg": "Database is at version 110: editors can add benchmarks",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/df42cfccfd28ee3710283ddf1c00b70f70e0ea69"
+    },
+    {
+     "sha": "96732bc",
+     "date": "2026-11-10T09:30:55Z",
+     "msg": "ACMA licences for our own transmitters, benchmarks on the Flood tab with editor entries, and Clear the selection leaves nothing on",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/96732bc9ae4b382d551d21a892b11c638f880a90"
+    },
     {
      "sha": "6a708a0",
      "date": "2026-11-10T05:49:51Z",
@@ -1078,45 +1114,74 @@
      "date": "2026-11-09T06:19:43Z",
      "msg": "Proposed sites carry the finder's radio, so the profile works out their margin",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/96a47807af62f88b2238bc3c5c1fcaa2a160ee05"
-    },
-    {
-     "sha": "2cfb737",
-     "date": "2026-11-09T06:12:51Z",
-     "msg": "Repeater links check the channel as well as the pass ranges",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/2cfb737dca16d746797746ae23e7e7284c5ce665"
-    },
-    {
-     "sha": "f836335",
-     "date": "2026-11-09T05:25:01Z",
-     "msg": "Finders: each result a card with a band, and every path's ground drawn small",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/f836335b3b3c151c1d609062009d17aad69a4906"
-    },
-    {
-     "sha": "d678074",
-     "date": "2026-11-09T05:21:22Z",
-     "msg": "Repeater sites: a Must reach list, and how far each station is",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/d678074628040b9a673ef1ea0e7fd1283275d648"
-    },
-    {
-     "sha": "678e89d",
-     "date": "2026-11-09T05:03:41Z",
-     "msg": "Repeater-to-repeater direction goes by the pass ranges",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/678e89dfecf1ce1ccaf6a061fb6453d841453e86"
-    },
-    {
-     "sha": "1dd3e0d",
-     "date": "2026-11-09T04:52:29Z",
-     "msg": "Moving a repeater: its paths both ways, by the way the readings run",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/1dd3e0d4a3c20221a350f0e9d47f23a7164a87e6"
-    },
-    {
-     "sha": "2baf751",
-     "date": "2026-11-09T03:41:20Z",
-     "msg": "Roads in 3-D, moving a repeater, and links for station bubbles on hover",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/2baf75116934d85809eb5fa157fc61ac81d1d3c6"
     }
    ],
    "issues": [
+    {
+     "n": 285,
+     "raw": "[Standalone] [Haiku4.5/Low] Private archive: regenerate the benchmarks file after the reader's name removal",
+     "structure": "standalone",
+     "parent": null,
+     "model": "Haiku4.5",
+     "effort": "Low",
+     "human": false,
+     "computer": false,
+     "title": "Private archive: regenerate the benchmarks file after the reader's name removal",
+     "url": "https://github.com/cdomotor-g/MegaNet/issues/285",
+     "updated": "2026-11-10T11:30:26Z",
+     "created": "2026-11-10T11:30:26Z",
+     "comments": 0,
+     "labels": [],
+     "mentions": [
+      "flood-net-private"
+     ],
+     "triage": {
+      "severity": 3,
+      "effort": "15min"
+     }
+    },
+    {
+     "n": 284,
+     "raw": "[Standalone] [Sonnet5/Med] Stations list and exports: a licensing-state column and filter",
+     "structure": "standalone",
+     "parent": null,
+     "model": "Sonnet5",
+     "effort": "Med",
+     "human": false,
+     "computer": false,
+     "title": "Stations list and exports: a licensing-state column and filter",
+     "url": "https://github.com/cdomotor-g/MegaNet/issues/284",
+     "updated": "2026-11-10T11:30:20Z",
+     "created": "2026-11-10T11:30:20Z",
+     "comments": 0,
+     "labels": [],
+     "mentions": [],
+     "triage": {
+      "severity": 2,
+      "effort": "3h"
+     }
+    },
+    {
+     "n": 283,
+     "raw": "[Standalone] [Sonnet5/High] ACMA licences tool: draw land mobile and area-wide licences too",
+     "structure": "standalone",
+     "parent": null,
+     "model": "Sonnet5",
+     "effort": "High",
+     "human": false,
+     "computer": false,
+     "title": "ACMA licences tool: draw land mobile and area-wide licences too",
+     "url": "https://github.com/cdomotor-g/MegaNet/issues/283",
+     "updated": "2026-11-10T11:30:14Z",
+     "created": "2026-11-10T11:30:14Z",
+     "comments": 0,
+     "labels": [],
+     "mentions": [],
+     "triage": {
+      "severity": 2,
+      "effort": "4h"
+     }
+    },
     {
      "n": 282,
      "raw": "[Standalone] [Sonnet5/Med] Behind the scenes: Supabase's API errors and advice, and Cloudflare's Workers and R2, on the Admin tab",
@@ -1974,7 +2039,7 @@
      "computer": false,
      "title": "Roadmap — resource allocation & sequencing for all issues",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/113",
-     "updated": "2026-11-09T03:41:36Z",
+     "updated": "2026-11-10T12:03:55Z",
      "created": "2026-08-13T00:13:50Z",
      "comments": 1,
      "labels": [],
@@ -1982,40 +2047,72 @@
       "meganet",
       "rpi_alert"
      ],
-     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1143k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
+     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1149k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
     }
    ],
-   "issueCount": 48,
+   "issueCount": 51,
    "release": null,
    "ci": [
     {
-     "name": "Field photos from Google Drive",
+     "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42790515905",
-     "date": "2026-11-10T09:25:04Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42815133648",
+     "date": "2026-11-10T12:22:10Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42789608583",
-     "date": "2026-11-10T09:19:15Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42815100216",
+     "date": "2026-11-10T12:22:33Z",
      "event": "schedule"
     },
     {
-     "name": "Field photos from Dropbox",
+     "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42789600386",
-     "date": "2026-11-10T09:18:34Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42814775104",
+     "date": "2026-11-10T12:19:38Z",
      "event": "schedule"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42812970647",
+     "date": "2026-11-10T12:07:01Z",
+     "event": "push"
+    },
+    {
+     "name": "CodeQL",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42812970742",
+     "date": "2026-11-10T12:11:11Z",
+     "event": "push"
+    },
+    {
+     "name": "db-migrate",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42812562519",
+     "date": "2026-11-10T12:04:16Z",
+     "event": "workflow_dispatch"
+    },
+    {
+     "name": "Roadmap sync",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42812552793",
+     "date": "2026-11-10T12:03:57Z",
+     "event": "push"
     }
    ],
-   "version": "20261110a",
+   "version": "20261110g",
    "lastCommit": {
-    "date": "2026-11-10T05:49:51Z"
+    "date": "2026-11-10T12:06:39Z"
    }
   },
   {
@@ -7248,7 +7345,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "55 newer commits upstream since ed3ed3b, none to watched files."
+    "note": "61 newer commits upstream since ed3ed3b, none to watched files."
    }
   },
   {
@@ -7343,8 +7440,14 @@
      "commit": "28325c4bc9fbe0bdd23e959f6e388952cf46df52",
      "commitDate": "2026-10-25T19:51:36Z"
     },
-    "behind": 9,
+    "behind": 10,
     "commits": [
+     {
+      "sha": "ea1deb2",
+      "date": "2026-11-10T12:03:39Z",
+      "msg": "Base Stations: Steady signals and What comes in through each (0111)",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/ea1deb2d928885cc0dd1c3eb0fe062f6eb211488"
+     },
      {
       "sha": "e18cebe",
       "date": "2026-11-08T21:58:26Z",
@@ -7404,7 +7507,7 @@
      "docs/base-stations.md",
      "base-stations.js"
     ],
-    "note": "9 upstream changes to watched files since it was last reviewed (2026-10-25)."
+    "note": "10 upstream changes to watched files since it was last reviewed (2026-10-25)."
    }
   },
   {
@@ -7620,7 +7723,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "682 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "688 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7737,7 +7840,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "682 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "688 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -8409,7 +8512,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "137 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "143 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8440,7 +8543,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "137 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "143 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8469,7 +8572,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "94 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "100 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
@@ -8499,7 +8602,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "83 newer commits upstream since it was last reviewed (2026-11-06), none to watched files."
+    "note": "89 newer commits upstream since it was last reviewed (2026-11-06), none to watched files."
    }
   },
   {
@@ -8526,6 +8629,13 @@
   }
  ],
  "crossIssues": [
+  {
+   "in": "flood-net",
+   "about": "flood-net-private",
+   "n": 285,
+   "title": "Private archive: regenerate the benchmarks file after the reader's name removal",
+   "url": "https://github.com/cdomotor-g/MegaNet/issues/285"
+  },
   {
    "in": "flood-net",
    "about": "rpi-alert",
