@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-10T15:27:41.964Z",
- "hash": "fb21aeb043a6fecd",
+ "generated": "2026-11-10T18:28:46.515Z",
+ "hash": "857c9ff7c046d6f5",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1037,12 +1037,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-10T12:06:41Z",
+    "pushed": "2026-11-10T15:38:59Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "07e289d",
+     "date": "2026-11-10T15:38:55Z",
+     "msg": "CI doctor: Shell — the licence card's script-focus rule hid its ring with an unlisted outline: none; drop it (the browser already hides the ",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/07e289dadabd1001e0ee0715729c5dbc26881852"
+    },
     {
      "sha": "28dc244",
      "date": "2026-11-10T12:06:39Z",
@@ -1108,12 +1114,6 @@
      "date": "2026-11-09T06:21:08Z",
      "msg": "Repeater sites: each path's ground profile in its own row of the table",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/3f1fba6e19e6ef8828df2e0d99aabd66ed1aaf57"
-    },
-    {
-     "sha": "96a4780",
-     "date": "2026-11-09T06:19:43Z",
-     "msg": "Proposed sites carry the finder's radio, so the profile works out their margin",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/96a47807af62f88b2238bc3c5c1fcaa2a160ee05"
     }
    ],
    "issues": [
@@ -2057,38 +2057,62 @@
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42843941287",
-     "date": "2026-11-10T15:24:18Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42874979255",
+     "date": "2026-11-10T18:25:13Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42842722057",
-     "date": "2026-11-10T15:17:09Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42873813705",
+     "date": "2026-11-10T18:18:20Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42842395879",
-     "date": "2026-11-10T15:15:50Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42873653245",
+     "date": "2026-11-10T18:18:12Z",
      "event": "schedule"
     },
     {
-     "name": "Data archive into R2",
+     "name": "Fade margin re-sweep",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42836056295",
-     "date": "2026-11-10T14:39:38Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42854615054",
+     "date": "2026-11-10T16:27:48Z",
      "event": "schedule"
+    },
+    {
+     "name": "Field photos into R2",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42853396117",
+     "date": "2026-11-10T16:19:54Z",
+     "event": "schedule"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "completed",
+     "conclusion": "failure",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42846552812",
+     "date": "2026-11-10T16:55:25Z",
+     "event": "push"
+    },
+    {
+     "name": "CodeQL",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42846553066",
+     "date": "2026-11-10T15:44:14Z",
+     "event": "push"
     }
    ],
-   "version": "20261110g",
+   "version": "20261110h",
    "lastCommit": {
-    "date": "2026-11-10T12:06:39Z"
+    "date": "2026-11-10T15:38:55Z"
    }
   },
   {
@@ -7321,7 +7345,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "61 newer commits upstream since ed3ed3b, none to watched files."
+    "note": "62 newer commits upstream since ed3ed3b, none to watched files."
    }
   },
   {
@@ -7690,12 +7714,16 @@
    "entry": "packet-formats",
    "to": "quansheng-v3",
    "drift": {
-    "state": "unknown",
-    "since": null,
+    "state": "current",
+    "since": {
+     "date": "2026-10-01",
+     "commit": "2299acc0c89445ce27d78e1999a0f733d457a63e",
+     "commitDate": "2026-10-01T20:05:31Z"
+    },
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "GET /repos/cdomotor-g/MegaNet/compare/2299acc0c89445ce27d78e1999a0f733d457a63e...main → 500 {\"message\":\"Server Error: Sorry, this diff is temporarily unavailabl"
+    "note": "689 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7812,7 +7840,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "688 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "689 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -8484,7 +8512,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "143 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "144 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8515,7 +8543,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "143 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "144 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8544,7 +8572,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "100 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "101 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
@@ -8574,7 +8602,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "89 newer commits upstream since it was last reviewed (2026-11-06), none to watched files."
+    "note": "90 newer commits upstream since it was last reviewed (2026-11-06), none to watched files."
    }
   },
   {
