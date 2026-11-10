@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-10T06:34:08.403Z",
- "hash": "80552078c2fd073a",
+ "generated": "2026-11-10T09:28:35.923Z",
+ "hash": "8679ad7e4217b62d",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1989,44 +1989,28 @@
    "release": null,
    "ci": [
     {
-     "name": "Field photos from Dropbox",
+     "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42768327562",
-     "date": "2026-11-10T06:24:51Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42790515905",
+     "date": "2026-11-10T09:25:04Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42768256576",
-     "date": "2026-11-10T06:24:50Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42789608583",
+     "date": "2026-11-10T09:19:15Z",
      "event": "schedule"
     },
     {
-     "name": "Field photos from Google Drive",
+     "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42768025051",
-     "date": "2026-11-10T06:22:10Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42789600386",
+     "date": "2026-11-10T09:18:34Z",
      "event": "schedule"
-    },
-    {
-     "name": "CodeQL",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42764564276",
-     "date": "2026-11-10T05:54:01Z",
-     "event": "push"
-    },
-    {
-     "name": "Web smoke test",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42764564016",
-     "date": "2026-11-10T05:50:00Z",
-     "event": "push"
     }
    ],
    "version": "20261110a",
@@ -5371,8 +5355,8 @@
     },
     "status": {
      "phase": "live",
-     "updated": "2026-11-09",
-     "summary": "v2 is the Scope Builder since 4 Nov 2026 (/SoRT/ opens /SoRT/v2/; v1 kept at /SoRT/v1/): Flood-Net station lookup with corrections of its particulars for the Word tables, ACMA licences, and the radio path to base with fresh fade margins; the map beside the questions (each pane scrolling on its own) with survey marks and the bridges on it (BR1…, each with who manages it and who to call, tabled in Word), its key under the map in the picture; sessions shared with the whole forum by themselves through Flood-Net's server (no Share button; a forum passphrase, no accounts or tokens), an in-page question editor, a Help guide, the local TBM as a desktop task, and follow-ups handed to Flood-Net's teams as tasks, and on the Water Level table a corrosion category for the infrastructure options (OTE’s three AS 4312 groupings, with the standard’s own table shown beside them), suggested from the site’s distance to the sea on QSpatial’s coastline, and an acid sulfate soil flag (Queensland’s soil maps at the site) that asks the contractor for testing. Since 9 Nov 2026: shared sessions save again (Cloudflare's weak version tags had been refusing every save after a read), pictures pasted into a question go into Word and are shared, a long relocation gets a close-up of each end beside the map and in Word, the road reserve draws out to 1:100,000, rainfall tables have no survey marks, 'N to confirm' lists what to check, and the Sessions window is Sessions Management, where a session can be deleted (Delete, then Confirm delete) — from this browser and, if shared, from the forum's shared sessions for everyone.",
+     "updated": "2026-11-10",
+     "summary": "v2 is the Scope Builder since 4 Nov 2026 (/SoRT/ opens /SoRT/v2/; v1 kept at /SoRT/v1/): Flood-Net station lookup with corrections of its particulars for the Word tables, ACMA licences, and the radio path to base with fresh fade margins; the map beside the questions (each pane scrolling on its own) with survey marks and the bridges on it (BR1…, each with who manages it and who to call, tabled in Word), its key under the map in the picture; sessions shared with the whole forum by themselves through Flood-Net's server (no Share button; a forum passphrase, no accounts or tokens), an in-page question editor, a Help guide, the local TBM as a desktop task, and follow-ups handed to Flood-Net's teams as tasks, and on the Water Level table a corrosion category for the infrastructure options (OTE’s three AS 4312 groupings, with the standard’s own table shown beside them), suggested from the site’s distance to the sea on QSpatial’s coastline, and an acid sulfate soil flag (Queensland’s soil maps at the site) that asks the contractor for testing. Since 9 Nov 2026: shared sessions save again (Cloudflare's weak version tags had been refusing every save after a read), pictures pasted into a question go into Word and are shared, a long relocation gets a close-up of each end beside the map and in Word, the road reserve draws out to 1:100,000, rainfall tables have no survey marks, 'N to confirm' lists what to check, and the Sessions window is Sessions Management, where a session can be deleted (Delete, then Confirm delete) — from this browser and, if shared, from the forum's shared sessions for everyone. Since 10 Nov 2026: Sessions Management has two tabs with counts (in this browser / saved to the forum) and a tidy-up of the browser's list; the map mends itself when the imagery comes up grey, goes full screen, and takes the current and new orifice run as drawn lines; the Word preview's rows are clickable (each goes to its question); TX power comes from Flood-Net's radio set-up to be checked.",
      "now": [
       "v2 at real forums as the default; v1 kept at /SoRT/v1/ in case"
      ],
@@ -5690,12 +5674,24 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-09T07:54:58Z",
+    "pushed": "2026-11-10T08:53:56Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/SoRT"
    },
    "commits": [
+    {
+     "sha": "843c6f9",
+     "date": "2026-11-10T08:53:53Z",
+     "msg": "v2: the Orifice run lengths go into the Word scope table",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/843c6f905ff26a13fece09ec4aef258d0d45fc1c"
+    },
+    {
+     "sha": "783726c",
+     "date": "2026-11-10T07:14:58Z",
+     "msg": "v2: sessions in two tabs, a map that mends itself, full-screen map, orifice lines, clickable preview",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/783726c9c1c8c9a0bc04fd8f63e947c75b975805"
+    },
     {
      "sha": "7a48dad",
      "date": "2026-11-09T07:54:57Z",
@@ -5755,18 +5751,6 @@
      "date": "2026-11-09T06:50:57Z",
      "msg": "Add a Clear all button to the forum attendees box",
      "url": "https://github.com/cdomotor-g/SoRT/commit/ea95643479486b8e60780f5d6a24ff0d0843dbff"
-    },
-    {
-     "sha": "0d2fe78",
-     "date": "2026-11-09T06:33:23Z",
-     "msg": "v2: Sessions is now Sessions Management, and a session can be deleted — Delete, then Confirm delete",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/0d2fe78e4a1ea6b03d4373c66dc36997d52f037d"
-    },
-    {
-     "sha": "f2cf4ff",
-     "date": "2026-11-09T05:21:42Z",
-     "msg": "v2 tests: STUB_IMAGERY=1 gives the State's imagery tiles a stand-in; Atlas status for 9 Nov",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/f2cf4ffb0a70f233a3c68ec1d37008e8c733f82d"
     }
    ],
    "issues": [],
@@ -5774,25 +5758,25 @@
    "release": null,
    "ci": [
     {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/42700728982",
-     "date": "2026-11-09T21:15:36Z",
-     "event": "schedule"
-    },
-    {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/42582314683",
-     "date": "2026-11-09T07:55:40Z",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/42786235859",
+     "date": "2026-11-10T08:54:35Z",
      "event": "dynamic"
+    },
+    {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/42773966457",
+     "date": "2026-11-10T07:15:27Z",
+     "event": "push"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-11-09T07:54:57Z"
+    "date": "2026-11-10T08:53:53Z"
    }
   },
   {
@@ -7172,7 +7156,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "17 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "19 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
