@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-10T12:31:00.845Z",
- "hash": "49976992bab06c50",
+ "generated": "2026-11-10T15:27:41.964Z",
+ "hash": "fb21aeb043a6fecd",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -2054,60 +2054,36 @@
    "release": null,
    "ci": [
     {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42843941287",
+     "date": "2026-11-10T15:24:18Z",
+     "event": "schedule"
+    },
+    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42815133648",
-     "date": "2026-11-10T12:22:10Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42842722057",
+     "date": "2026-11-10T15:17:09Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42815100216",
-     "date": "2026-11-10T12:22:33Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42842395879",
+     "date": "2026-11-10T15:15:50Z",
      "event": "schedule"
     },
     {
-     "name": "Field photos from Google Drive",
+     "name": "Data archive into R2",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42814775104",
-     "date": "2026-11-10T12:19:38Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42836056295",
+     "date": "2026-11-10T14:39:38Z",
      "event": "schedule"
-    },
-    {
-     "name": "Web smoke test",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42812970647",
-     "date": "2026-11-10T12:07:01Z",
-     "event": "push"
-    },
-    {
-     "name": "CodeQL",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42812970742",
-     "date": "2026-11-10T12:11:11Z",
-     "event": "push"
-    },
-    {
-     "name": "db-migrate",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42812562519",
-     "date": "2026-11-10T12:04:16Z",
-     "event": "workflow_dispatch"
-    },
-    {
-     "name": "Roadmap sync",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42812552793",
-     "date": "2026-11-10T12:03:57Z",
-     "event": "push"
     }
    ],
    "version": "20261110g",
@@ -7714,16 +7690,12 @@
    "entry": "packet-formats",
    "to": "quansheng-v3",
    "drift": {
-    "state": "current",
-    "since": {
-     "date": "2026-10-01",
-     "commit": "2299acc0c89445ce27d78e1999a0f733d457a63e",
-     "commitDate": "2026-10-01T20:05:31Z"
-    },
+    "state": "unknown",
+    "since": null,
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "688 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "GET /repos/cdomotor-g/MegaNet/compare/2299acc0c89445ce27d78e1999a0f733d457a63e...main → 500 {\"message\":\"Server Error: Sorry, this diff is temporarily unavailabl"
    }
   },
   {
