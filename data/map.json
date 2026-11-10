@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-10T18:28:46.515Z",
- "hash": "857c9ff7c046d6f5",
+ "generated": "2026-11-10T21:27:13.428Z",
+ "hash": "723e25b436da8c7e",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -109,9 +109,10 @@
     },
     "status": {
      "phase": "live",
-     "updated": "2026-11-09",
+     "updated": "2026-11-10",
      "summary": "Live and in daily use (database schema 109): this week added teams and the tasks handed to them, with the SoRT scope builder's hand-off, a driving mode that follows a station's route in 3-D, the agent API's changelog and email list, ACMA licences and radio paths in the API, the Repeaters tab and cuts to database I/O, while account email and the ACMA download link wait on the owner.",
      "now": [
+      "Radio Licensing (kb-licensing.js, licence-docs.js): a Knowledge base lesson on what the transmitters and receivers need by way of an ACMA licence, every rule quoted from its document and opened at the sentence (docs/acma/ keeps RALI FX16, FX19 and the Fixed Licence determination); the 30 km question answered from them — a planning rule, not the law; the ACMA licences tool's fourth state, Beyond a licence's area, for the 203 gauges that report to a licensed repeater from outside its service area; and the label a transmitter at a shared site must carry",
       "Views on the Stations map (map-views.js): one press sets the map for a job — Overview and Site visit for everyone; Radio paths, Weak links, Backbone and Live traffic for instrument technicians; Rivers & catchments and Rainfall for flood forecasters; Property & easements and Land & tenure for property services — with the radio paths drawn as every path, best path only, bundled into trunks or repeater areas, as lines, flowing dashes or tails with a spotlight, auto-contrast and a Balance slider, saved views of your own, and easements and land tenure on the property boundaries",
       "The station card in groups (station-card-view.js): Overview, then a tab each for Flood, Radio, Site and Kit (Tabs, the first), or a summary with each group a page of its own (List, chosen beside the box and kept per device), Field data, Zoom, Directions and All actions along the foot, and a search box that shows only the groups and rows holding a word, marked",
       "Hops to base (map-hops.js): Show hops to base on a station card lights the station's routes to the base stations on the Stations map, each hop heard (the public relay week; for editors, the receivers' copies of the last 12 hours) or assumed from the pass ranges and backbone paths",
@@ -450,6 +451,43 @@
          "by": "agent",
          "effort": "3h",
          "model": "Sonnet5"
+        }
+       ]
+      },
+      {
+       "id": "acma-30km-confirmation",
+       "what": "What a gauge more than 30 km from the licensed repeater it reports to may do is worked out from the law and RALI FX16 (covered by that repeater's licence, unprotected, must not interfere) but not confirmed by ACMA; 203 gauges are in that position and 37 repeaters stand inside another licence's area with no licence at their own site. base stations only receive and need none",
+       "on": "human",
+       "kind": "decision",
+       "since": "2026-11-10",
+       "issue": "#286",
+       "holds": [
+        "licensing decisions for the 203 gauges beyond a licence's area",
+        "whether the 37 repeaters need licences of their own",
+        "#287 only in its wording, not its build"
+       ],
+       "options": [
+        {
+         "what": "Send ACMA's Spectrum Planning Section the question drafted in the Radio Licensing lesson (ACMA's pages, The question to send)",
+         "by": "human",
+         "effort": "10 min",
+         "pros": "a written answer settles it",
+         "cons": "a reply may take weeks",
+         "recommended": true
+        },
+        {
+         "what": "Ask an accredited frequency assigner for their view when the next licence is arranged",
+         "by": "human",
+         "effort": "a phone call",
+         "pros": "practical advice on licensing the nearer repeaters",
+         "cons": "an opinion, not ACMA's answer"
+        },
+        {
+         "what": "Leave it: treat the gauges as covered and unprotected, and act only if interference is reported",
+         "by": "human",
+         "effort": "0",
+         "pros": "nothing to do",
+         "cons": "the reading stays unconfirmed"
         }
        ]
       }
@@ -1037,12 +1075,48 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-10T15:38:59Z",
+    "pushed": "2026-11-10T21:14:34Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "77536c2",
+     "date": "2026-11-10T21:14:32Z",
+     "msg": "Radio Licensing and ACMA licences: the network is shared, not Flood-Net's",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/77536c21e5be3820414072a0b04bbd040ea82afd"
+    },
+    {
+     "sha": "32edfa9",
+     "date": "2026-11-10T20:54:11Z",
+     "msg": "Roadmap revision 253: #286 (ask ACMA about gauges beyond 30 km) and #287 (the transmitter label on the inspection form) opened",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/32edfa9a6d46722da09d376002cae0326fcacb47"
+    },
+    {
+     "sha": "f186bd0",
+     "date": "2026-11-10T20:43:02Z",
+     "msg": "Radio Licensing and ACMA licences: Flood-Net's base stations only receive",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/f186bd0cabee868e870bf0e71e942ddc73e50d38"
+    },
+    {
+     "sha": "0d40a50",
+     "date": "2026-11-10T20:31:56Z",
+     "msg": "Radio Licensing lesson, the licensing documents kept, and ACMA licences brought into line with them",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/0d40a506939bd3b16bf45eedb6cc033916bf33d9"
+    },
+    {
+     "sha": "a5f6e3a",
+     "date": "2026-11-10T18:49:21Z",
+     "msg": "Council cameras: the weekly refresh — 612 cameras from 49 councils",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/a5f6e3a4e01a30ffa6160d36609c969473422d7e"
+    },
+    {
+     "sha": "1de7d33",
+     "date": "2026-11-10T18:36:08Z",
+     "msg": "What one receiver heard: /api/v1/readings/heard, and Heard by on Field Data",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/1de7d3325c692c49a89b11ad92c51f737111fb1b"
+    },
     {
      "sha": "07e289d",
      "date": "2026-11-10T15:38:55Z",
@@ -1078,45 +1152,52 @@
      "date": "2026-11-10T09:33:28Z",
      "msg": "Database is at version 110: editors can add benchmarks",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/df42cfccfd28ee3710283ddf1c00b70f70e0ea69"
-    },
-    {
-     "sha": "96732bc",
-     "date": "2026-11-10T09:30:55Z",
-     "msg": "ACMA licences for our own transmitters, benchmarks on the Flood tab with editor entries, and Clear the selection leaves nothing on",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/96732bc9ae4b382d551d21a892b11c638f880a90"
-    },
-    {
-     "sha": "6a708a0",
-     "date": "2026-11-10T05:49:51Z",
-     "msg": "Stations map: Repeater comparison, Move/New Repeater, one-box Best repeater, profile pins, flood history on the card, hover-notes switch, an",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/6a708a07c71e8a21c912f6daed68cb8c20e4c113"
-    },
-    {
-     "sha": "9b4aba4",
-     "date": "2026-11-09T15:17:49Z",
-     "msg": "CI doctor: Agent API — ACMA licences with no expiry date; treat a missing date as none",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/9b4aba44d6d56553bb43ec8e1338009489e142c2"
-    },
-    {
-     "sha": "acbcec8",
-     "date": "2026-11-09T06:27:24Z",
-     "msg": "Routes to a base check the channel: agent API, Best repeater, Hops to base",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/acbcec8133214782dcd5fe1216b2c89cfd54c001"
-    },
-    {
-     "sha": "b9df8c9",
-     "date": "2026-11-09T06:22:49Z",
-     "msg": "Version stamp 20261109k for the ground profiles in the repeater sites table",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/b9df8c9a835fa4445af1eeeea70bac7b8b852138"
-    },
-    {
-     "sha": "3f1fba6",
-     "date": "2026-11-09T06:21:08Z",
-     "msg": "Repeater sites: each path's ground profile in its own row of the table",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/3f1fba6e19e6ef8828df2e0d99aabd66ed1aaf57"
     }
    ],
    "issues": [
+    {
+     "n": 287,
+     "raw": "[Standalone] [Sonnet5/High] Inspection form: record whether the transmitter's ACMA label is fitted",
+     "structure": "standalone",
+     "parent": null,
+     "model": "Sonnet5",
+     "effort": "High",
+     "human": false,
+     "computer": false,
+     "title": "Inspection form: record whether the transmitter's ACMA label is fitted",
+     "url": "https://github.com/cdomotor-g/MegaNet/issues/287",
+     "updated": "2026-11-10T21:15:08Z",
+     "created": "2026-11-10T20:53:41Z",
+     "comments": 0,
+     "labels": [],
+     "mentions": [],
+     "triage": {
+      "severity": 2,
+      "effort": "1 day"
+     }
+    },
+    {
+     "n": 286,
+     "raw": "[Standalone] [Human] Ask ACMA to confirm what a gauge beyond the 30 km service area may do",
+     "structure": "standalone",
+     "parent": null,
+     "model": null,
+     "effort": null,
+     "human": true,
+     "computer": false,
+     "title": "Ask ACMA to confirm what a gauge beyond the 30 km service area may do",
+     "url": "https://github.com/cdomotor-g/MegaNet/issues/286",
+     "updated": "2026-11-10T21:14:53Z",
+     "created": "2026-11-10T20:53:24Z",
+     "comments": 0,
+     "labels": [],
+     "mentions": [],
+     "excerpt": "Flood-Net's 🪪 Radio Licensing lesson (Knowledge base) answers the 30 km question from the documents themselves: - The law sets no distance. The Radiocommunications Licence Conditions (Fixed Licence) Determination 2025 lists what a remote station (a gauge) must do, and none of it is a distance. ACMA's explanatory statement says a licence's unlisted…",
+     "triage": {
+      "severity": 3,
+      "effort": "10 min"
+     }
+    },
     {
      "n": 285,
      "raw": "[Standalone] [Haiku4.5/Low] Private archive: regenerate the benchmarks file after the reader's name removal",
@@ -2039,7 +2120,7 @@
      "computer": false,
      "title": "Roadmap — resource allocation & sequencing for all issues",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/113",
-     "updated": "2026-11-10T12:03:55Z",
+     "updated": "2026-11-10T20:54:30Z",
      "created": "2026-08-13T00:13:50Z",
      "comments": 1,
      "labels": [],
@@ -2047,72 +2128,72 @@
       "meganet",
       "rpi_alert"
      ],
-     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1149k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
+     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1154k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
     }
    ],
-   "issueCount": 51,
+   "issueCount": 53,
    "release": null,
    "ci": [
     {
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42874979255",
-     "date": "2026-11-10T18:25:13Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42904704726",
+     "date": "2026-11-10T21:24:23Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42873813705",
-     "date": "2026-11-10T18:18:20Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42903435852",
+     "date": "2026-11-10T21:16:43Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42873653245",
-     "date": "2026-11-10T18:18:12Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42903189811",
+     "date": "2026-11-10T21:16:01Z",
      "event": "schedule"
     },
     {
-     "name": "Fade margin re-sweep",
+     "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42854615054",
-     "date": "2026-11-10T16:27:48Z",
-     "event": "schedule"
-    },
-    {
-     "name": "Field photos into R2",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42853396117",
-     "date": "2026-11-10T16:19:54Z",
-     "event": "schedule"
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42903111229",
+     "date": "2026-11-10T21:15:02Z",
+     "event": "push"
     },
     {
      "name": "Web smoke test",
-     "status": "completed",
-     "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42846552812",
-     "date": "2026-11-10T16:55:25Z",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42903110182",
+     "date": "2026-11-10T21:14:58Z",
      "event": "push"
     },
     {
      "name": "CodeQL",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42846553066",
-     "date": "2026-11-10T15:44:14Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42903110408",
+     "date": "2026-11-10T21:18:59Z",
+     "event": "push"
+    },
+    {
+     "name": "Roadmap sync",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42899791793",
+     "date": "2026-11-10T20:54:33Z",
      "event": "push"
     }
    ],
-   "version": "20261110h",
+   "version": "20261110l",
    "lastCommit": {
-    "date": "2026-11-10T15:38:55Z"
+    "date": "2026-11-10T21:14:32Z"
    }
   },
   {
@@ -2934,8 +3015,8 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/42695498740",
-     "date": "2026-11-09T20:42:47Z",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/42897868382",
+     "date": "2026-11-10T20:42:36Z",
      "event": "schedule"
     },
     {
@@ -5855,20 +5936,20 @@
    "release": null,
    "ci": [
     {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/42903233276",
+     "date": "2026-11-10T21:15:43Z",
+     "event": "schedule"
+    },
+    {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/SoRT/actions/runs/42786235859",
      "date": "2026-11-10T08:54:35Z",
      "event": "dynamic"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/42773966457",
-     "date": "2026-11-10T07:15:27Z",
-     "event": "push"
     }
    ],
    "version": null,
@@ -7345,7 +7426,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "62 newer commits upstream since ed3ed3b, none to watched files."
+    "note": "68 newer commits upstream since ed3ed3b, none to watched files."
    }
   },
   {
@@ -7723,7 +7804,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "689 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "695 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7840,7 +7921,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "689 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "695 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -8285,7 +8366,7 @@
      "commit": "7309891c638d1050f0163f19dc8284ef7f54a7ca",
      "commitDate": "2026-10-17T09:50:24Z"
     },
-    "behind": 12,
+    "behind": 11,
     "commits": [
      {
       "sha": "ed3ed3b",
@@ -8352,21 +8433,13 @@
       "date": "2026-11-02T00:50:48Z",
       "msg": "Bridge: decode legacy ALERT from the ELPRO gateway's Alert1 path",
       "url": "https://github.com/cdomotor-g/MegaNet/commit/647b62ccaa72f701934fbef85ddce9235405d888"
-     },
-     {
-      "sha": "daad33d",
-      "date": "2026-11-01T19:22:08Z",
-      "msg": "0096: one ALERT burst heard several ways is one reading (#232)",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/daad33d080f8bc142a4436b092fa1f22135a1068"
      }
     ],
     "files": [
      "alert-dsp.js",
-     "docs/ingest-serial-monitor.md",
-     "docs/elpro115e_mqtt.md",
-     "docs/ingest-http.md"
+     "docs/elpro115e_mqtt.md"
     ],
-    "note": "12 upstream changes to watched files since it was last reviewed (2026-10-17)."
+    "note": "11 upstream changes to watched files since it was last reviewed (2026-10-17)."
    }
   },
   {
@@ -8432,8 +8505,14 @@
      "commit": "87ab6ed00b060b13b3c91019f58a6da6d56c129d",
      "commitDate": "2026-11-01T23:59:08Z"
     },
-    "behind": 7,
+    "behind": 8,
     "commits": [
+     {
+      "sha": "1de7d33",
+      "date": "2026-11-10T18:36:08Z",
+      "msg": "What one receiver heard: /api/v1/readings/heard, and Heard by on Field Data",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/1de7d3325c692c49a89b11ad92c51f737111fb1b"
+     },
      {
       "sha": "acbcec8",
       "date": "2026-11-09T06:27:24Z",
@@ -8482,7 +8561,7 @@
      "worker/api.js",
      "worker/radio-path.js"
     ],
-    "note": "7 upstream changes to watched files since it was last reviewed (2026-11-01)."
+    "note": "8 upstream changes to watched files since it was last reviewed (2026-11-01)."
    }
   },
   {
@@ -8512,7 +8591,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "144 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "150 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8543,7 +8622,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "144 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "150 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8572,7 +8651,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "101 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "107 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
@@ -8602,7 +8681,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "90 newer commits upstream since it was last reviewed (2026-11-06), none to watched files."
+    "note": "96 newer commits upstream since it was last reviewed (2026-11-06), none to watched files."
    }
   },
   {
