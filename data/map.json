@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-09T21:26:42.167Z",
- "hash": "ca8ec42469004156",
+ "generated": "2026-11-10T00:42:33.286Z",
+ "hash": "3d088451ef1ed0c5",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1989,35 +1989,27 @@
    "release": null,
    "ci": [
     {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42702102163",
-     "date": "2026-11-09T21:23:58Z",
-     "event": "schedule"
-    },
-    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42701030132",
-     "date": "2026-11-09T21:17:13Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42729464928",
+     "date": "2026-11-10T00:35:37Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42700726278",
-     "date": "2026-11-09T21:15:52Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42729386203",
+     "date": "2026-11-10T00:35:43Z",
      "event": "schedule"
     },
     {
-     "name": "Atlas",
+     "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42686144607",
-     "date": "2026-11-09T19:44:22Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42729130111",
+     "date": "2026-11-10T00:33:01Z",
      "event": "schedule"
     }
    ],
@@ -3953,8 +3945,8 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/42527656459",
-     "date": "2026-11-08T21:56:27Z",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/42707248122",
+     "date": "2026-11-09T21:57:00Z",
      "event": "schedule"
     },
     {
@@ -4735,6 +4727,14 @@
    },
    "ci": [
     {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/42706283958",
+     "date": "2026-11-09T21:50:46Z",
+     "event": "schedule"
+    },
+    {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
@@ -4748,14 +4748,6 @@
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/42556240077",
      "date": "2026-11-09T03:25:24Z",
-     "event": "schedule"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/42527199804",
-     "date": "2026-11-08T21:50:49Z",
      "event": "schedule"
     },
     {
@@ -5249,6 +5241,25 @@
    ],
    "issues": [
     {
+     "n": 3,
+     "raw": "[Standalone] [Sonnet5/Med] Upstream moved: RPi_ALERT released 0.22.2 (this repository names 0.22.1)",
+     "structure": "standalone",
+     "parent": null,
+     "model": "Sonnet5",
+     "effort": "Med",
+     "human": false,
+     "computer": false,
+     "title": "Upstream moved: RPi_ALERT released 0.22.2 (this repository names 0.22.1)",
+     "url": "https://github.com/cdomotor-g/open-ALERT/issues/3",
+     "updated": "2026-11-09T21:31:59Z",
+     "created": "2026-11-09T21:31:59Z",
+     "comments": 0,
+     "labels": [],
+     "mentions": [
+      "rpi_alert"
+     ]
+    },
+    {
      "n": 2,
      "raw": "[Standalone] [Sonnet5/Low] Give every blocker in atlas.json an id",
      "structure": "standalone",
@@ -5266,15 +5277,15 @@
      "mentions": []
     }
    ],
-   "issueCount": 1,
+   "issueCount": 2,
    "release": null,
    "ci": [
     {
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42525638011",
-     "date": "2026-11-08T21:31:51Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42703320793",
+     "date": "2026-11-09T21:32:03Z",
      "event": "schedule"
     },
     {
@@ -8549,6 +8560,13 @@
    "n": 1,
    "title": "Take MegaNet's ALERT2 field fix — stop dropping ALERT2 self-reports on the Pi",
    "url": "https://github.com/cdomotor-g/RPi_ALERT/issues/1"
+  },
+  {
+   "in": "open-alert",
+   "about": "rpi-alert",
+   "n": 3,
+   "title": "Upstream moved: RPi_ALERT released 0.22.2 (this repository names 0.22.1)",
+   "url": "https://github.com/cdomotor-g/open-ALERT/issues/3"
   }
  ],
  "asks": [
