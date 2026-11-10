@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-10T03:28:10.749Z",
- "hash": "01ae505282f35377",
+ "generated": "2026-11-10T06:34:08.403Z",
+ "hash": "80552078c2fd073a",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1037,12 +1037,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-09T15:17:52Z",
+    "pushed": "2026-11-10T05:49:54Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "6a708a0",
+     "date": "2026-11-10T05:49:51Z",
+     "msg": "Stations map: Repeater comparison, Move/New Repeater, one-box Best repeater, profile pins, flood history on the card, hover-notes switch, an",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/6a708a07c71e8a21c912f6daed68cb8c20e4c113"
+    },
     {
      "sha": "9b4aba4",
      "date": "2026-11-09T15:17:49Z",
@@ -1108,12 +1114,6 @@
      "date": "2026-11-09T03:41:20Z",
      "msg": "Roads in 3-D, moving a repeater, and links for station bubbles on hover",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/2baf75116934d85809eb5fa157fc61ac81d1d3c6"
-    },
-    {
-     "sha": "488dc9e",
-     "date": "2026-11-09T00:36:08Z",
-     "msg": "Roadmap 249 and Atlas: Behind the scenes; #281 and #282 opened",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/488dc9e3485fe1e2264968a0ccd5adcac2b679bb"
     }
    ],
    "issues": [
@@ -1989,33 +1989,49 @@
    "release": null,
    "ci": [
     {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42749382873",
-     "date": "2026-11-10T03:25:52Z",
-     "event": "schedule"
-    },
-    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42748629631",
-     "date": "2026-11-10T03:19:06Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42768327562",
+     "date": "2026-11-10T06:24:51Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42748524069",
-     "date": "2026-11-10T03:18:36Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42768256576",
+     "date": "2026-11-10T06:24:50Z",
      "event": "schedule"
+    },
+    {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42768025051",
+     "date": "2026-11-10T06:22:10Z",
+     "event": "schedule"
+    },
+    {
+     "name": "CodeQL",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42764564276",
+     "date": "2026-11-10T05:54:01Z",
+     "event": "push"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42764564016",
+     "date": "2026-11-10T05:50:00Z",
+     "event": "push"
     }
    ],
-   "version": "20261109l",
+   "version": "20261110a",
    "lastCommit": {
-    "date": "2026-11-09T15:17:49Z"
+    "date": "2026-11-10T05:49:51Z"
    }
   },
   {
@@ -7248,7 +7264,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "54 newer commits upstream since ed3ed3b, none to watched files."
+    "note": "55 newer commits upstream since ed3ed3b, none to watched files."
    }
   },
   {
@@ -7620,7 +7636,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "681 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "682 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -7737,7 +7753,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "681 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "note": "682 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
    }
   },
   {
@@ -8409,7 +8425,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "136 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "137 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8440,7 +8456,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "136 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "137 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8469,7 +8485,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "93 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "94 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
@@ -8499,7 +8515,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "82 newer commits upstream since it was last reviewed (2026-11-06), none to watched files."
+    "note": "83 newer commits upstream since it was last reviewed (2026-11-06), none to watched files."
    }
   },
   {
