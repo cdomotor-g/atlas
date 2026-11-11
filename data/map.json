@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-11T15:27:56.843Z",
- "hash": "d8efeb15ee8b4aeb",
+ "generated": "2026-11-11T18:28:27.562Z",
+ "hash": "1c17c9b8544446c1",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1076,12 +1076,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-11T03:36:15Z",
+    "pushed": "2026-11-11T16:00:28Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "b31d65b",
+     "date": "2026-11-11T16:00:25Z",
+     "msg": "CI doctor: Card handles, 3-D view, twin cadastre, Site features — four red checks; a drag that survives a redraw, and three checks brought b",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/b31d65b7aa020509b704454d7b29af92c625136e"
+    },
     {
      "sha": "ac3e773",
      "date": "2026-11-11T03:36:12Z",
@@ -1147,12 +1153,6 @@
      "date": "2026-11-11T00:07:56Z",
      "msg": "Message Log: a message's bits in colour, as the Bit Bench draws them",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/8f8f9835d07b5cb9e23a2bcf644b3410067c148e"
-    },
-    {
-     "sha": "4262157",
-     "date": "2026-11-10T23:51:08Z",
-     "msg": "Base Stations: the stations nobody has registered, and whose they might be; joint owners under each",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/4262157db0f31ca873def4b0da8374259d9c6561"
     }
    ],
    "issues": [
@@ -2176,38 +2176,62 @@
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43047931062",
-     "date": "2026-11-11T15:23:52Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43077579138",
+     "date": "2026-11-11T18:25:17Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43046771462",
-     "date": "2026-11-11T15:17:01Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43076510618",
+     "date": "2026-11-11T18:18:33Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43046527981",
-     "date": "2026-11-11T15:16:21Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43076355012",
+     "date": "2026-11-11T18:18:09Z",
      "event": "schedule"
     },
     {
-     "name": "Data archive into R2",
+     "name": "Fade margin re-sweep",
+     "status": "completed",
+     "conclusion": "failure",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43058461552",
+     "date": "2026-11-11T16:37:40Z",
+     "event": "schedule"
+    },
+    {
+     "name": "Field photos into R2",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43040316444",
-     "date": "2026-11-11T14:39:43Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43057293804",
+     "date": "2026-11-11T16:20:25Z",
      "event": "schedule"
+    },
+    {
+     "name": "CodeQL",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43053976109",
+     "date": "2026-11-11T16:04:07Z",
+     "event": "push"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "completed",
+     "conclusion": "failure",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43053975942",
+     "date": "2026-11-11T16:22:14Z",
+     "event": "push"
     }
    ],
-   "version": "20261111i",
+   "version": "20261111j",
    "lastCommit": {
-    "date": "2026-11-11T03:36:12Z"
+    "date": "2026-11-11T16:00:25Z"
    }
   },
   {
@@ -7446,7 +7470,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "87 newer commits upstream since ed3ed3b, none to watched files."
+    "note": "88 newer commits upstream since ed3ed3b, none to watched files."
    }
   },
   {
@@ -8421,7 +8445,7 @@
      "commit": "7309891c638d1050f0163f19dc8284ef7f54a7ca",
      "commitDate": "2026-10-17T09:50:24Z"
     },
-    "behind": 4,
+    "behind": 3,
     "commits": [
      {
       "sha": "ed3ed3b",
@@ -8440,19 +8464,12 @@
       "date": "2026-11-03T03:31:44Z",
       "msg": "BurstWatch: filter a channel only around its bursts (#259 part 2)",
       "url": "https://github.com/cdomotor-g/MegaNet/commit/ec0c5f3ce5c03122ab8e3d2a117841ac0f0fe0b0"
-     },
-     {
-      "sha": "dd170af",
-      "date": "2026-11-03T01:53:17Z",
-      "msg": "0098: put back the ELPRO ALERT2 readings 0097 removed and the bridge dropped",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/dd170aff3f596bd6b49da930d3257425881b0665"
      }
     ],
     "files": [
-     "alert-dsp.js",
-     "docs/elpro115e_mqtt.md"
+     "alert-dsp.js"
     ],
-    "note": "4 upstream changes to watched files since it was last reviewed (2026-10-17)."
+    "note": "3 upstream changes to watched files since it was last reviewed (2026-10-17)."
    }
   },
   {
@@ -8626,7 +8643,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "169 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "170 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8657,7 +8674,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "169 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "170 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8686,7 +8703,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "126 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "127 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
