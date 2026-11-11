@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-11T09:27:52.309Z",
- "hash": "6a3ffea59d03d701",
+ "generated": "2026-11-11T12:31:21.240Z",
+ "hash": "ac443c91fb3e5dac",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -2173,27 +2173,27 @@
    "release": null,
    "ci": [
     {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42994998912",
-     "date": "2026-11-11T09:25:13Z",
-     "event": "schedule"
-    },
-    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42993981012",
-     "date": "2026-11-11T09:17:57Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43019863528",
+     "date": "2026-11-11T12:23:14Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42993954725",
-     "date": "2026-11-11T09:18:23Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43019764564",
+     "date": "2026-11-11T12:23:08Z",
+     "event": "schedule"
+    },
+    {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43019430862",
+     "date": "2026-11-11T12:20:14Z",
      "event": "schedule"
     }
    ],
@@ -5350,12 +5350,24 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-11T07:45:50Z",
+    "pushed": "2026-11-11T10:00:41Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/open-ALERT"
    },
    "commits": [
+    {
+     "sha": "de786bf",
+     "date": "2026-11-11T10:00:39Z",
+     "msg": "firmware: benchmark notes and first results; package tests in progress (snapshot)",
+     "url": "https://github.com/cdomotor-g/open-ALERT/commit/de786bf8e1bfea597675729a3bf5a993ffcb8578"
+    },
+    {
+     "sha": "4b12dca",
+     "date": "2026-11-11T09:39:03Z",
+     "msg": "Hardware review: the rest of the research, and the firmware's tests so far (snapshot)",
+     "url": "https://github.com/cdomotor-g/open-ALERT/commit/4b12dca2af738e645806d6ee8029645ff919c1b2"
+    },
     {
      "sha": "57544b4",
      "date": "2026-11-11T07:45:48Z",
@@ -5415,18 +5427,6 @@
      "date": "2026-11-07T17:53:52Z",
      "msg": "Sensors and site parts: price review in progress (snapshot)",
      "url": "https://github.com/cdomotor-g/open-ALERT/commit/5337814c7e3ef830670ea9f9e1ef95269196f74a"
-    },
-    {
-     "sha": "fd53434",
-     "date": "2026-11-07T17:53:40Z",
-     "msg": "Radios and RF re-priced: in stock in Australia, or the maker's own (work in progress)",
-     "url": "https://github.com/cdomotor-g/open-ALERT/commit/fd534344a234bdb814e3625fe30ee0bea119e3d8"
-    },
-    {
-     "sha": "457b978",
-     "date": "2026-11-07T17:52:14Z",
-     "msg": "Computers re-priced: what one costs in stock in Australia now (work in progress)",
-     "url": "https://github.com/cdomotor-g/open-ALERT/commit/457b978e2305df88894bed8d463c58d528a6ee5e"
     }
    ],
    "issues": [
@@ -5471,6 +5471,22 @@
    "release": null,
    "ci": [
     {
+     "name": "test",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42999966597",
+     "date": "2026-11-11T10:00:57Z",
+     "event": "push"
+    },
+    {
+     "name": "pages build and deployment",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42999965802",
+     "date": "2026-11-11T10:01:09Z",
+     "event": "dynamic"
+    },
+    {
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
@@ -5485,27 +5501,11 @@
      "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42981875248",
      "date": "2026-11-11T07:46:17Z",
      "event": "push"
-    },
-    {
-     "name": "pages build and deployment",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42981874176",
-     "date": "2026-11-11T07:46:18Z",
-     "event": "dynamic"
-    },
-    {
-     "name": "test",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42981875274",
-     "date": "2026-11-11T07:46:07Z",
-     "event": "push"
     }
    ],
    "version": "0.1.0",
    "lastCommit": {
-    "date": "2026-11-11T07:45:48Z"
+    "date": "2026-11-11T10:00:39Z"
    }
   },
   {
