@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-11T18:28:27.562Z",
- "hash": "1c17c9b8544446c1",
+ "generated": "2026-11-11T21:27:29.273Z",
+ "hash": "6de27e75db805fcd",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1076,12 +1076,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-11T16:00:28Z",
+    "pushed": "2026-11-11T20:55:45Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "f347d92",
+     "date": "2026-11-11T20:55:42Z",
+     "msg": "Agent API: a station's receptions — every copy the base stations heard, and what sent it",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/f347d92691c07905f09d58cd1c222334e1ba4cf2"
+    },
     {
      "sha": "b31d65b",
      "date": "2026-11-11T16:00:25Z",
@@ -1147,12 +1153,6 @@
      "date": "2026-11-11T00:32:50Z",
      "msg": "Magnifier: the ground's own layers in the glass; property tip: the road and the bridge",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/0ef7388be90c2bc56ea3c46640cb48df7b3001f0"
-    },
-    {
-     "sha": "8f8f983",
-     "date": "2026-11-11T00:07:56Z",
-     "msg": "Message Log: a message's bits in colour, as the Bit Bench draws them",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/8f8f9835d07b5cb9e23a2bcf644b3410067c148e"
     }
    ],
    "issues": [
@@ -2176,62 +2176,62 @@
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43077579138",
-     "date": "2026-11-11T18:25:17Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43102769281",
+     "date": "2026-11-11T21:24:34Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43076510618",
-     "date": "2026-11-11T18:18:33Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43102012582",
+     "date": "2026-11-11T21:19:29Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43076355012",
-     "date": "2026-11-11T18:18:09Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43101875781",
+     "date": "2026-11-11T21:19:17Z",
      "event": "schedule"
     },
     {
-     "name": "Fade margin re-sweep",
-     "status": "completed",
-     "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43058461552",
-     "date": "2026-11-11T16:37:40Z",
-     "event": "schedule"
-    },
-    {
-     "name": "Field photos into R2",
+     "name": "db-migrate",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43057293804",
-     "date": "2026-11-11T16:20:25Z",
-     "event": "schedule"
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43098876264",
+     "date": "2026-11-11T21:03:01Z",
+     "event": "workflow_dispatch"
     },
     {
      "name": "CodeQL",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43053976109",
-     "date": "2026-11-11T16:04:07Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43098869876",
+     "date": "2026-11-11T21:04:38Z",
      "event": "push"
     },
     {
      "name": "Web smoke test",
-     "status": "completed",
-     "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43053975942",
-     "date": "2026-11-11T16:22:14Z",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43098869813",
+     "date": "2026-11-11T21:02:29Z",
      "event": "push"
+    },
+    {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43089830960",
+     "date": "2026-11-11T19:43:50Z",
+     "event": "schedule"
     }
    ],
    "version": "20261111j",
    "lastCommit": {
-    "date": "2026-11-11T16:00:25Z"
+    "date": "2026-11-11T20:55:42Z"
    }
   },
   {
@@ -3051,6 +3051,14 @@
    },
    "ci": [
     {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/43100129503",
+     "date": "2026-11-11T21:06:56Z",
+     "event": "schedule"
+    },
+    {
      "name": "pages",
      "status": "completed",
      "conclusion": "success",
@@ -3073,14 +3081,6 @@
      "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/42925444122",
      "date": "2026-11-10T23:57:02Z",
      "event": "workflow_dispatch"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/42925439772",
-     "date": "2026-11-10T23:41:54Z",
-     "event": "push"
     }
    ],
    "version": "0.23.1",
@@ -5005,7 +5005,7 @@
     "repo": "cdomotor-g/open-ALERT",
     "name": "open-ALERT",
     "tagline": "A configurator for ALERT and ALERT2 flood-warning sites: say what a site must do, see the hardware that fits, its costs and consequences.",
-    "about": "For anyone planning ALERT or ALERT2 field stations, repeaters or base stations. Each site goes from needs to requirements to hardware picked from a 252-part catalogue (open and closed, Raspberry Pi to industrial), then to a bill of materials, a power budget with battery and panel sized, labour and running costs, and the consequences of the choices. The Network tab adds sites up and checks that what field stations send, repeaters relay and bases receive actually meet. A static page with no server: state lives in the browser and in share links. The base station builder (build.html) goes deeper on a receiving base running RPi ALERT: how it fits together physically and in the code, which computer keeps up with how many channels, the SDR mounting, a bill with price ranges, lead times and suppliers, and the build steps.",
+    "about": "For anyone planning ALERT or ALERT2 field stations, repeaters or base stations. Each site goes from needs to requirements to hardware picked from a 263-part catalogue (open and closed, Raspberry Pi to industrial), then to a bill of materials, a power budget with battery and panel sized, labour and running costs, and the consequences of the choices. The Network tab adds sites up and checks that what field stations send, repeaters relay and bases receive actually meet. A static page with no server: state lives in the browser and in share links. The base station builder (build.html) goes deeper on a receiving base running RPi ALERT: how it fits together physically and in the code, which computer keeps up with how many channels, the SDR mounting, a bill with price ranges, lead times and suppliers, and the build steps.",
     "kind": "static web app (configurator)",
     "logo": "site/icon.svg",
     "site": "https://cdomotor-g.github.io/open-ALERT/",
@@ -5084,7 +5084,7 @@
      {
       "id": "catalogue",
       "name": "Hardware catalogue",
-      "what": "252 parts in six family files, each with price and its source, power, temperature, grade, openness and sources.",
+      "what": "263 parts in six family files, each with price and its source, power, temperature, grade, openness and sources.",
       "paths": [
        "site/data/"
       ],
@@ -5184,7 +5184,7 @@
      {
       "id": "hardware-catalogue",
       "name": "ALERT hardware catalogue",
-      "what": "Plain-JavaScript records of 252 parts with prices and their sources, power, grades and links, for costing ALERT sites.",
+      "what": "Plain-JavaScript records of 263 parts with prices and their sources, power, grades and links, for costing ALERT sites.",
       "component": "catalogue",
       "paths": [
        "site/data/"
@@ -5382,12 +5382,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-11T10:00:41Z",
+    "pushed": "2026-11-11T20:10:08Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/open-ALERT"
    },
    "commits": [
+    {
+     "sha": "35f41ec",
+     "date": "2026-11-11T20:10:06Z",
+     "msg": "Builder: processor sums from RPi ALERT's own measurements; the review's computers in the catalogue",
+     "url": "https://github.com/cdomotor-g/open-ALERT/commit/35f41ec5f4fe587e8fee87e24cdee2f3829f5453"
+    },
     {
      "sha": "de786bf",
      "date": "2026-11-11T10:00:39Z",
@@ -5453,12 +5459,6 @@
      "date": "2026-11-07T17:59:36Z",
      "msg": "Builder and trial re-priced, with each shop's delivery (work in progress)",
      "url": "https://github.com/cdomotor-g/open-ALERT/commit/f5b30a18a38d4b704f04bd3db8891b8e35e93fff"
-    },
-    {
-     "sha": "5337814",
-     "date": "2026-11-07T17:53:52Z",
-     "msg": "Sensors and site parts: price review in progress (snapshot)",
-     "url": "https://github.com/cdomotor-g/open-ALERT/commit/5337814c7e3ef830670ea9f9e1ef95269196f74a"
     }
    ],
    "issues": [
@@ -5506,38 +5506,38 @@
      "name": "test",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42999966597",
-     "date": "2026-11-11T10:00:57Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/43093948442",
+     "date": "2026-11-11T20:10:23Z",
      "event": "push"
-    },
-    {
-     "name": "pages build and deployment",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42999965802",
-     "date": "2026-11-11T10:01:09Z",
-     "event": "dynamic"
     },
     {
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42981875674",
-     "date": "2026-11-11T07:46:21Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/43093949220",
+     "date": "2026-11-11T20:10:39Z",
      "event": "push"
     },
     {
      "name": "pages",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42981875248",
-     "date": "2026-11-11T07:46:17Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/43093948562",
+     "date": "2026-11-11T20:10:35Z",
      "event": "push"
+    },
+    {
+     "name": "pages build and deployment",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/43093947044",
+     "date": "2026-11-11T20:10:40Z",
+     "event": "dynamic"
     }
    ],
    "version": "0.1.0",
    "lastCommit": {
-    "date": "2026-11-11T10:00:39Z"
+    "date": "2026-11-11T20:10:06Z"
    }
   },
   {
@@ -5983,8 +5983,8 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/42903233276",
-     "date": "2026-11-10T21:15:43Z",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/43101906004",
+     "date": "2026-11-11T21:18:55Z",
      "event": "schedule"
     },
     {
@@ -7470,7 +7470,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "88 newer commits upstream since ed3ed3b, none to watched files."
+    "note": "89 newer commits upstream since ed3ed3b, none to watched files."
    }
   },
   {
@@ -8551,8 +8551,14 @@
      "commit": "87ab6ed00b060b13b3c91019f58a6da6d56c129d",
      "commitDate": "2026-11-01T23:59:08Z"
     },
-    "behind": 9,
+    "behind": 10,
     "commits": [
+     {
+      "sha": "f347d92",
+      "date": "2026-11-11T20:55:42Z",
+      "msg": "Agent API: a station's receptions — every copy the base stations heard, and what sent it",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/f347d92691c07905f09d58cd1c222334e1ba4cf2"
+     },
      {
       "sha": "bf7ee26",
       "date": "2026-11-11T02:17:31Z",
@@ -8613,7 +8619,7 @@
      "worker/api.js",
      "worker/radio-path.js"
     ],
-    "note": "9 upstream changes to watched files since it was last reviewed (2026-11-01)."
+    "note": "10 upstream changes to watched files since it was last reviewed (2026-11-01)."
    }
   },
   {
@@ -8643,7 +8649,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "170 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "171 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8674,7 +8680,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "170 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "171 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8703,7 +8709,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "127 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "128 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
