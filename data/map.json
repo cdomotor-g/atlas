@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-11T03:29:18.629Z",
- "hash": "069aea499a7239c6",
+ "generated": "2026-11-11T06:34:48.640Z",
+ "hash": "000d7963b5d4630b",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1076,12 +1076,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-11T03:11:27Z",
+    "pushed": "2026-11-11T03:36:15Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "ac3e773",
+     "date": "2026-11-11T03:36:12Z",
+     "msg": "Digital twin: flood peaks near here — every nearby gauge's floods in three datums, against a reference site",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/ac3e773bdb8cd3dd8ceb46a2ac8137472e348894"
+    },
     {
      "sha": "39348e6",
      "date": "2026-11-11T03:11:25Z",
@@ -1147,12 +1153,6 @@
      "date": "2026-11-10T23:51:08Z",
      "msg": "Base Stations: the stations nobody has registered, and whose they might be; joint owners under each",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/4262157db0f31ca873def4b0da8374259d9c6561"
-    },
-    {
-     "sha": "7811581",
-     "date": "2026-11-10T23:45:16Z",
-     "msg": "Database 0114: the stations a base station decodes that the register does not hold",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/7811581a5b2ca359df7375eb6958448bc9445594"
     }
    ],
    "issues": [
@@ -2173,65 +2173,49 @@
    "release": null,
    "ci": [
     {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42952759995",
-     "date": "2026-11-11T03:26:27Z",
-     "event": "schedule"
-    },
-    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42951961807",
-     "date": "2026-11-11T03:19:23Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42972322080",
+     "date": "2026-11-11T06:25:35Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42951865435",
-     "date": "2026-11-11T03:19:23Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42972232163",
+     "date": "2026-11-11T06:25:31Z",
+     "event": "schedule"
+    },
+    {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42971980952",
+     "date": "2026-11-11T06:22:42Z",
      "event": "schedule"
     },
     {
      "name": "Web smoke test",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42951077758",
-     "date": "2026-11-11T03:11:50Z",
+     "status": "completed",
+     "conclusion": "failure",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42953852786",
+     "date": "2026-11-11T04:33:12Z",
      "event": "push"
     },
     {
      "name": "CodeQL",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42951077791",
-     "date": "2026-11-11T03:17:02Z",
-     "event": "push"
-    },
-    {
-     "name": "db-migrate",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42944854943",
-     "date": "2026-11-11T02:16:37Z",
-     "event": "workflow_dispatch"
-    },
-    {
-     "name": "Roadmap sync",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42944411498",
-     "date": "2026-11-11T02:12:50Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42953852768",
+     "date": "2026-11-11T03:41:03Z",
      "event": "push"
     }
    ],
-   "version": "20261111h",
+   "version": "20261111i",
    "lastCommit": {
-    "date": "2026-11-11T03:11:25Z"
+    "date": "2026-11-11T03:36:12Z"
    }
   },
   {
@@ -7465,7 +7449,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "86 newer commits upstream since ed3ed3b, none to watched files."
+    "note": "87 newer commits upstream since ed3ed3b, none to watched files."
    }
   },
   {
@@ -8645,7 +8629,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "168 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "169 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8676,7 +8660,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "168 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "169 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8705,7 +8689,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "125 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "126 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
