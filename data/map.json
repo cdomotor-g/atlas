@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-11T06:34:48.640Z",
- "hash": "000d7963b5d4630b",
+ "generated": "2026-11-11T09:27:52.309Z",
+ "hash": "6a3ffea59d03d701",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -2173,44 +2173,28 @@
    "release": null,
    "ci": [
     {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42994998912",
+     "date": "2026-11-11T09:25:13Z",
+     "event": "schedule"
+    },
+    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42972322080",
-     "date": "2026-11-11T06:25:35Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42993981012",
+     "date": "2026-11-11T09:17:57Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42972232163",
-     "date": "2026-11-11T06:25:31Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42993954725",
+     "date": "2026-11-11T09:18:23Z",
      "event": "schedule"
-    },
-    {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42971980952",
-     "date": "2026-11-11T06:22:42Z",
-     "event": "schedule"
-    },
-    {
-     "name": "Web smoke test",
-     "status": "completed",
-     "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42953852786",
-     "date": "2026-11-11T04:33:12Z",
-     "event": "push"
-    },
-    {
-     "name": "CodeQL",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/42953852768",
-     "date": "2026-11-11T03:41:03Z",
-     "event": "push"
     }
    ],
    "version": "20261111i",
@@ -5005,8 +4989,8 @@
     },
     "status": {
      "phase": "beta",
-     "updated": "2026-11-08",
-     "summary": "Prices re-checked in November 2026: each part is what one costs from an Australian shop with it in stock (else the cheapest way to get one, and when), and every bill — configurator, builder, trial — adds each shop's delivery once and clearance on an overseas order over A$1,000. The Pi 5 4 GB is A$249 in stock (A$178 was a back-order price); the RFI COL54 collinear is A$3,218 at Techwave, not the A$650 guessed; the RTL-SDR Blog V4 is end of life, so the V3 is the builder's stick. The builder and the Mallow trial rate every computer on RPi ALERT 0.17 and 0.19, with the Luna SL1680 and the Raspberry Pi range beside the Verdin AM62s.",
+     "updated": "2026-11-11",
+     "summary": "A review of the Mallow trial (interim, 11 November 2026: docs/hardware-review) found the Verdin AM62's price has roughly tripled, a heatsink on its list that does not fit, a speed figure nobody measured and a software recipe that is hard to get approved — and that RPi ALERT already runs unchanged off a Raspberry Pi. A hardware-neutral firmware layer is started in firmware/ (unfinished). Prices re-checked in November 2026: each part is what one costs from an Australian shop with it in stock (else the cheapest way to get one, and when), and every bill — configurator, builder, trial — adds each shop's delivery once and clearance on an overseas order over A$1,000. The Pi 5 4 GB is A$249 in stock (A$178 was a back-order price); the RFI COL54 collinear is A$3,218 at Techwave, not the A$650 guessed; the RTL-SDR Blog V4 is end of life, so the V3 is the builder's stick. The builder and the Mallow trial rate every computer on RPi ALERT 0.17 and 0.19, with the Luna SL1680 and the Raspberry Pi range beside the Verdin AM62s.",
      "next": [
       "Feed the trial's AM62 numbers back into the builder's CPU model",
       "Check what is still marked est. with suppliers: the mating Bulgin lead, the earth kit, the 18 Ah battery, delivery from shops that price it only at checkout",
@@ -5023,13 +5007,13 @@
       "Re-check quote-only and estimated prices with suppliers"
      ],
      "now": [
-      "The Mallow trial: buy the parts, bring the AM62 up on Torizon OS, run RPi ALERT in a container beside the Pi"
+      "The hardware review: research the remaining computers (small PCs, open-hardware boards, industrial ARM), finish firmware/, then the catalogue, the builder's processor sums and a page to explore it all"
      ],
      "blocked": [
       {
-       "what": "Ordering the trial's module from Toradex direct",
+       "what": "Choosing and ordering the computer to trial beside the Pi",
        "on": "human",
-       "kind": "money",
+       "kind": "decision",
        "since": "2026-11-02",
        "holds": [
         "The Mallow trial"
@@ -5037,8 +5021,13 @@
        "options": [
         {
          "by": "human",
-         "effort": "an hour",
+         "effort": "none",
          "recommended": true,
+         "what": "Hold the order until the hardware review names the computer: the Verdin AM62 Quad now lists at about US$306, and heatsink 23111001 does not fit it (23111101 does)"
+        },
+        {
+         "by": "human",
+         "effort": "an hour",
          "what": "Order 00761200, 01611102 and 23111001 from Toradex's webshop on the Bureau's business account"
         },
         {
@@ -5361,12 +5350,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-08T04:09:22Z",
+    "pushed": "2026-11-11T07:45:50Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/open-ALERT"
    },
    "commits": [
+    {
+     "sha": "57544b4",
+     "date": "2026-11-11T07:45:48Z",
+     "msg": "Hardware review (interim): the Mallow trial re-checked; a firmware layer started",
+     "url": "https://github.com/cdomotor-g/open-ALERT/commit/57544b49750dfcf4338d925a83ea1ec2836d8db9"
+    },
     {
      "sha": "c467016",
      "date": "2026-11-08T04:09:21Z",
@@ -5432,12 +5427,6 @@
      "date": "2026-11-07T17:52:14Z",
      "msg": "Computers re-priced: what one costs in stock in Australia now (work in progress)",
      "url": "https://github.com/cdomotor-g/open-ALERT/commit/457b978e2305df88894bed8d463c58d528a6ee5e"
-    },
-    {
-     "sha": "104b0ea",
-     "date": "2026-11-07T17:32:34Z",
-     "msg": "Delivery in every bill, once a shop (work in progress)",
-     "url": "https://github.com/cdomotor-g/open-ALERT/commit/104b0ea2fe98f6d0c4af539248096f9c52b9af9d"
     }
    ],
    "issues": [
@@ -5452,7 +5441,7 @@
      "computer": false,
      "title": "Upstream moved: RPi_ALERT released 0.22.2 (this repository names 0.22.1)",
      "url": "https://github.com/cdomotor-g/open-ALERT/issues/3",
-     "updated": "2026-11-09T21:31:59Z",
+     "updated": "2026-11-11T07:46:17Z",
      "created": "2026-11-09T21:31:59Z",
      "comments": 0,
      "labels": [],
@@ -5485,38 +5474,38 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42905837718",
-     "date": "2026-11-10T21:31:44Z",
-     "event": "schedule"
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42981875674",
+     "date": "2026-11-11T07:46:21Z",
+     "event": "push"
     },
     {
      "name": "pages",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42445644972",
-     "date": "2026-11-08T04:09:49Z",
-     "event": "push"
-    },
-    {
-     "name": "test",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42445644993",
-     "date": "2026-11-08T04:09:40Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42981875248",
+     "date": "2026-11-11T07:46:17Z",
      "event": "push"
     },
     {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42445644058",
-     "date": "2026-11-08T04:09:49Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42981874176",
+     "date": "2026-11-11T07:46:18Z",
      "event": "dynamic"
+    },
+    {
+     "name": "test",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/42981875274",
+     "date": "2026-11-11T07:46:07Z",
+     "event": "push"
     }
    ],
    "version": "0.1.0",
    "lastCommit": {
-    "date": "2026-11-08T04:09:21Z"
+    "date": "2026-11-11T07:45:48Z"
    }
   },
   {
