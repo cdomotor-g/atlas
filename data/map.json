@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-12T09:28:03.396Z",
- "hash": "09a2a5c9e89cea7d",
+ "generated": "2026-11-12T12:32:37.885Z",
+ "hash": "454a967f83a13fbe",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -596,6 +596,7 @@
        "investigations.js",
        "methodology.js",
        "message-log.js",
+       "telemetry.js",
        "arro-data.js",
        "plot-lines.js",
        "tools/health/",
@@ -1079,12 +1080,30 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-12T09:26:37Z",
+    "pushed": "2026-11-12T11:18:46Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "000c811",
+     "date": "2026-11-12T11:18:44Z",
+     "msg": "0123 applied — the app expects schema 123; stamp 20261112s",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/000c81119c060edb5c849f7ce57447247180bc8b"
+    },
+    {
+     "sha": "6beff69",
+     "date": "2026-11-12T11:17:27Z",
+     "msg": "0123: two calls Postgres refuses with a schema name in front",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/6beff69519b6addf59b7d0bf8bc0f3f5c0dc3f97"
+    },
+    {
+     "sha": "8b79465",
+     "date": "2026-11-12T11:15:34Z",
+     "msg": "📻 Telemetry: what the base stations hear, charted; 0123; stamp 20261112r",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/8b79465d83bdc3d384db4acbedd8255d48397904"
+    },
     {
      "sha": "92f50bb",
      "date": "2026-11-12T09:26:35Z",
@@ -1138,24 +1157,6 @@
      "date": "2026-11-12T05:20:13Z",
      "msg": "Slot table: 0120 applied — the app expects schema 120; On air reads in full, the strip's end labels too",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/7bf11376382cce10ef6c4b07ccc28e749538fbf2"
-    },
-    {
-     "sha": "b6aea39",
-     "date": "2026-11-12T05:17:46Z",
-     "msg": "Digital twin: flood water where the station's pin stands up the bank",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/b6aea3996c11d138d79188d846069dc835e18487"
-    },
-    {
-     "sha": "8510f7b",
-     "date": "2026-11-12T05:16:11Z",
-     "msg": "Stamp 20261112j",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/8510f7b0fe4ea476d34ee1137db75f5648391fd8"
-    },
-    {
-     "sha": "a1362bb",
-     "date": "2026-11-12T05:15:48Z",
-     "msg": "ALERT2 slot table on file: the Mt Glorious slot sheet in the database, on the TDMA Planner and the station card",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/a1362bbe5ad691282260faa1c569f44ed35a668d"
     }
    ],
    "issues": [
@@ -2176,57 +2177,65 @@
    "release": null,
    "ci": [
     {
-     "name": "db-migrate",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43191357774",
-     "date": "2026-11-12T09:26:00Z",
-     "event": "workflow_dispatch"
-    },
-    {
-     "name": "Web smoke test",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43191330813",
-     "date": "2026-11-12T09:25:31Z",
-     "event": "push"
-    },
-    {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43191262164",
-     "date": "2026-11-12T09:25:06Z",
-     "event": "schedule"
-    },
-    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43190293524",
-     "date": "2026-11-12T09:18:36Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43217483538",
+     "date": "2026-11-12T12:23:50Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43190255612",
-     "date": "2026-11-12T09:18:53Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43217361391",
+     "date": "2026-11-12T12:23:47Z",
      "event": "schedule"
+    },
+    {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43216974160",
+     "date": "2026-11-12T12:20:27Z",
+     "event": "schedule"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43208055918",
+     "date": "2026-11-12T11:19:15Z",
+     "event": "push"
     },
     {
      "name": "CodeQL",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43170807776",
-     "date": "2026-11-12T06:54:23Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43208056158",
+     "date": "2026-11-12T11:23:37Z",
+     "event": "push"
+    },
+    {
+     "name": "db-migrate",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43207880301",
+     "date": "2026-11-12T11:18:00Z",
+     "event": "workflow_dispatch"
+    },
+    {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43207610500",
+     "date": "2026-11-12T11:16:12Z",
      "event": "push"
     }
    ],
-   "version": "20261112q",
+   "version": "20261112s",
    "lastCommit": {
-    "date": "2026-11-12T09:26:35Z"
+    "date": "2026-11-12T11:18:44Z"
    }
   },
   {
@@ -7465,7 +7474,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "111 newer commits upstream since ed3ed3b, none to watched files."
+    "note": "114 newer commits upstream since ed3ed3b, none to watched files."
    }
   },
   {
@@ -8516,7 +8525,7 @@
      "commit": "87ab6ed00b060b13b3c91019f58a6da6d56c129d",
      "commitDate": "2026-11-01T23:59:08Z"
     },
-    "behind": 10,
+    "behind": 9,
     "commits": [
      {
       "sha": "f347d92",
@@ -8571,12 +8580,6 @@
       "date": "2026-11-03T12:25:00Z",
       "msg": "Station Health: a missed check with the station's rain heard around it is a check lost",
       "url": "https://github.com/cdomotor-g/MegaNet/commit/07d5fd3d542a7c773b171f609b578a1f0a26bb33"
-     },
-     {
-      "sha": "2137521",
-      "date": "2026-11-03T11:22:07Z",
-      "msg": "Not heard, not silent: Station Health and the agent API say what Flood-Net heard (#269)",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/213752153a5685672986c4ef42d868ab4ae50978"
      }
     ],
     "files": [
@@ -8584,7 +8587,7 @@
      "worker/api.js",
      "worker/radio-path.js"
     ],
-    "note": "10 upstream changes to watched files since it was last reviewed (2026-11-01)."
+    "note": "9 upstream changes to watched files since it was last reviewed (2026-11-01)."
    }
   },
   {
@@ -8614,7 +8617,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "193 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "196 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8645,7 +8648,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "193 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "196 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8674,7 +8677,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "150 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "153 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
