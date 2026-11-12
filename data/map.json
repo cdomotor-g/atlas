@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-12T06:35:14.099Z",
- "hash": "d7155055c628ee28",
+ "generated": "2026-11-12T09:28:03.396Z",
+ "hash": "09a2a5c9e89cea7d",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1079,12 +1079,42 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-12T06:32:13Z",
+    "pushed": "2026-11-12T09:26:37Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "92f50bb",
+     "date": "2026-11-12T09:26:35Z",
+     "msg": "0122 applied — the app expects schema 122; stamp 20261112q",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/92f50bb2dd8130be02e1b1b848e54ee3c8fa32ea"
+    },
+    {
+     "sha": "1ad8c65",
+     "date": "2026-11-12T09:25:23Z",
+     "msg": "0122: Mt Glorious Primary (9511) is Mt Glorious AL-P, Secondary (9601) is AL-B — the owner's call",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/1ad8c65342636ee64dd1decc865d24da83511181"
+    },
+    {
+     "sha": "7ebe49e",
+     "date": "2026-11-12T06:49:09Z",
+     "msg": "Digital twin: floods near by on the 3-D scale; the peaks table coloured and sortable",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/7ebe49e25631955b47164a5302b14209a8b4bbc5"
+    },
+    {
+     "sha": "bc578e2",
+     "date": "2026-11-12T06:39:27Z",
+     "msg": "Stamp 20261112o",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/bc578e21c3d093915cb595bfd93f69f4063c51da"
+    },
+    {
+     "sha": "24d3082",
+     "date": "2026-11-12T06:39:00Z",
+     "msg": "ALERT2 shared IDs: 0121 applied — the app expects schema 121; the ALERT / ALERT2 switch sits at its own width",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/24d3082a7b92dd3d79ce5406df1dbfe35d6c477a"
+    },
     {
      "sha": "ce86144",
      "date": "2026-11-12T06:32:11Z",
@@ -1126,36 +1156,6 @@
      "date": "2026-11-12T05:15:48Z",
      "msg": "ALERT2 slot table on file: the Mt Glorious slot sheet in the database, on the TDMA Planner and the station card",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/a1362bbe5ad691282260faa1c569f44ed35a668d"
-    },
-    {
-     "sha": "ec15ecf",
-     "date": "2026-11-12T04:51:15Z",
-     "msg": "One 18 Bateson: the app expects schema 119; Field Data notes say the rig was merged",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/ec15ecff65e4e2d36ebd82ea7b3ea53fe71b09f5"
-    },
-    {
-     "sha": "d6b4358",
-     "date": "2026-11-12T04:49:57Z",
-     "msg": "Tags on tasks: 0118 applied — the app expects schema 118",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/d6b4358a958774fbdf77f9642a43054f367ad39e"
-    },
-    {
-     "sha": "b08b2a0",
-     "date": "2026-11-12T04:49:20Z",
-     "msg": "One 18 Bateson: fold the workshop test rig into the site",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/b08b2a0d9065e32422f05712b61313e7b02a1469"
-    },
-    {
-     "sha": "bffb427",
-     "date": "2026-11-12T04:48:03Z",
-     "msg": "Tags on tasks: your own words on a task, suggested once used, and Admin › Tags to tidy them (0118)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/bffb4275b6ed1bb37d060442716a9bf885c6d5b9"
-    },
-    {
-     "sha": "c27e08e",
-     "date": "2026-11-12T04:29:07Z",
-     "msg": "Tasks: change a task's team, status, due date or title in its row; one Change this task form",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/c27e08eb35321452f9b42de4b95a7888804fcfc0"
     }
    ],
    "issues": [
@@ -2179,62 +2179,54 @@
      "name": "db-migrate",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43168848647",
-     "date": "2026-11-12T06:32:53Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43191357774",
+     "date": "2026-11-12T09:26:00Z",
      "event": "workflow_dispatch"
     },
     {
      "name": "Web smoke test",
      "status": "in_progress",
      "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43168825237",
-     "date": "2026-11-12T06:32:35Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43191330813",
+     "date": "2026-11-12T09:25:31Z",
      "event": "push"
     },
     {
-     "name": "CodeQL",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43168825076",
-     "date": "2026-11-12T06:32:24Z",
-     "event": "push"
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43191262164",
+     "date": "2026-11-12T09:25:06Z",
+     "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43168108774",
-     "date": "2026-11-12T06:26:11Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43190293524",
+     "date": "2026-11-12T09:18:36Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43168022712",
-     "date": "2026-11-12T06:26:19Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43190255612",
+     "date": "2026-11-12T09:18:53Z",
      "event": "schedule"
     },
     {
-     "name": "Field photos from Google Drive",
+     "name": "CodeQL",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43167741258",
-     "date": "2026-11-12T06:23:05Z",
-     "event": "schedule"
-    },
-    {
-     "name": "Roadmap sync",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43157349253",
-     "date": "2026-11-12T04:50:23Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43170807776",
+     "date": "2026-11-12T06:54:23Z",
      "event": "push"
     }
    ],
-   "version": "20261112n",
+   "version": "20261112q",
    "lastCommit": {
-    "date": "2026-11-12T06:32:11Z"
+    "date": "2026-11-12T09:26:35Z"
    }
   },
   {
@@ -7473,7 +7465,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "106 newer commits upstream since ed3ed3b, none to watched files."
+    "note": "111 newer commits upstream since ed3ed3b, none to watched files."
    }
   },
   {
@@ -7503,7 +7495,7 @@
      "commit": "87ab6ed00b060b13b3c91019f58a6da6d56c129d",
      "commitDate": "2026-11-01T23:59:08Z"
     },
-    "behind": 4,
+    "behind": 3,
     "commits": [
      {
       "sha": "05bd80f",
@@ -7522,18 +7514,12 @@
       "date": "2026-11-04T06:06:55Z",
       "msg": "SoRT's forum sessions: a store behind the forum passphrase (/api/sort/v1)",
       "url": "https://github.com/cdomotor-g/MegaNet/commit/a9ff5487167e50e5c9da713687fa880fdaa2bdab"
-     },
-     {
-      "sha": "6a08502",
-      "date": "2026-11-03T11:01:49Z",
-      "msg": "The station list is downloaded only when it has changed (ETag, 304)",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/6a0850254b1734248a4e66365f20724dba5a5c56"
      }
     ],
     "files": [
      "worker/index.js"
     ],
-    "note": "4 upstream changes to watched files since it was last reviewed (2026-11-01)."
+    "note": "3 upstream changes to watched files since it was last reviewed (2026-11-01)."
    }
   },
   {
@@ -7561,7 +7547,7 @@
      "commit": "28325c4bc9fbe0bdd23e959f6e388952cf46df52",
      "commitDate": "2026-10-25T19:51:36Z"
     },
-    "behind": 11,
+    "behind": 10,
     "commits": [
      {
       "sha": "4262157",
@@ -7622,19 +7608,13 @@
       "date": "2026-11-07T23:11:28Z",
       "msg": "Base Stations: each stick's channels and window limits, and what it decodes now",
       "url": "https://github.com/cdomotor-g/MegaNet/commit/aa9bdca683c8814aed8044e0bef01852364dc33a"
-     },
-     {
-      "sha": "2629792",
-      "date": "2026-11-03T11:11:43Z",
-      "msg": "Light decoding, a lighter watch, and a leaner pipeline for the Pi (#259)",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/262979233c8e73a5704c0135ee92852853e11936"
      }
     ],
     "files": [
      "docs/base-stations.md",
      "base-stations.js"
     ],
-    "note": "11 upstream changes to watched files since it was last reviewed (2026-10-25)."
+    "note": "10 upstream changes to watched files since it was last reviewed (2026-10-25)."
    }
   },
   {
@@ -8442,25 +8422,19 @@
      "commit": "7309891c638d1050f0163f19dc8284ef7f54a7ca",
      "commitDate": "2026-10-17T09:50:24Z"
     },
-    "behind": 2,
+    "behind": 1,
     "commits": [
      {
       "sha": "ed3ed3b",
       "date": "2026-11-08T03:06:56Z",
       "msg": "Decoder: device rates that are not whole multiples of 240k (288k, 300k)",
       "url": "https://github.com/cdomotor-g/MegaNet/commit/ed3ed3bf4d40c6c4dd4038ef069a04de5fee427c"
-     },
-     {
-      "sha": "2629792",
-      "date": "2026-11-03T11:11:43Z",
-      "msg": "Light decoding, a lighter watch, and a leaner pipeline for the Pi (#259)",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/262979233c8e73a5704c0135ee92852853e11936"
      }
     ],
     "files": [
      "alert-dsp.js"
     ],
-    "note": "2 upstream changes to watched files since it was last reviewed (2026-10-17)."
+    "note": "1 upstream change to watched files since it was last reviewed (2026-10-17)."
    }
   },
   {
@@ -8640,7 +8614,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "188 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "193 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8671,7 +8645,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "188 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "193 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8700,7 +8674,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "145 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "150 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
