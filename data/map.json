@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-12T15:27:51.574Z",
- "hash": "553044fe3e8e8b0d",
+ "generated": "2026-11-12T18:29:27.643Z",
+ "hash": "61c945f3e63a67b7",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1080,12 +1080,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-12T11:18:46Z",
+    "pushed": "2026-11-12T15:39:03Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "7c7522c",
+     "date": "2026-11-12T15:39:01Z",
+     "msg": "CI doctor: Videos, Shell, four db checks — four causes; four fixes",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/7c7522c14f176414dec602680f78b98c98049255"
+    },
     {
      "sha": "000c811",
      "date": "2026-11-12T11:18:44Z",
@@ -1151,12 +1157,6 @@
      "date": "2026-11-12T06:31:28Z",
      "msg": "ALERT2 on the ALERT IDs tab; one ALERT2 ID for several stations, told apart by sensor",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/ad97c6a6e4a58a9c6cf70b43c87ca6d79004f440"
-    },
-    {
-     "sha": "7bf1137",
-     "date": "2026-11-12T05:20:13Z",
-     "msg": "Slot table: 0120 applied — the app expects schema 120; On air reads in full, the strip's end labels too",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/7bf11376382cce10ef6c4b07ccc28e749538fbf2"
     }
    ],
    "issues": [
@@ -2180,38 +2180,62 @@
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43247477290",
-     "date": "2026-11-12T15:24:46Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43279788883",
+     "date": "2026-11-12T18:26:13Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43246210868",
-     "date": "2026-11-12T15:17:43Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43278724832",
+     "date": "2026-11-12T18:20:10Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43246104262",
-     "date": "2026-11-12T15:17:47Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43278499611",
+     "date": "2026-11-12T18:19:44Z",
      "event": "schedule"
     },
     {
-     "name": "Data archive into R2",
+     "name": "Fade margin re-sweep",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43239226172",
-     "date": "2026-11-12T14:40:11Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43258872718",
+     "date": "2026-11-12T16:28:17Z",
      "event": "schedule"
+    },
+    {
+     "name": "Field photos into R2",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43257707042",
+     "date": "2026-11-12T16:21:29Z",
+     "event": "schedule"
+    },
+    {
+     "name": "CodeQL",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43250095608",
+     "date": "2026-11-12T15:42:48Z",
+     "event": "push"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "completed",
+     "conclusion": "failure",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43250095641",
+     "date": "2026-11-12T16:40:40Z",
+     "event": "push"
     }
    ],
-   "version": "20261112s",
+   "version": "20261112t",
    "lastCommit": {
-    "date": "2026-11-12T11:18:44Z"
+    "date": "2026-11-12T15:39:01Z"
    }
   },
   {
@@ -7450,7 +7474,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "114 newer commits upstream since ed3ed3b, none to watched files."
+    "note": "115 newer commits upstream since ed3ed3b, none to watched files."
    }
   },
   {
@@ -8501,7 +8525,7 @@
      "commit": "87ab6ed00b060b13b3c91019f58a6da6d56c129d",
      "commitDate": "2026-11-01T23:59:08Z"
     },
-    "behind": 9,
+    "behind": 8,
     "commits": [
      {
       "sha": "f347d92",
@@ -8550,12 +8574,6 @@
       "date": "2026-11-04T05:17:56Z",
       "msg": "Agent API: a station's benchmarks, in numbers (0102)",
       "url": "https://github.com/cdomotor-g/MegaNet/commit/4438a019a9b47510654f31227aee3e26b26ba62c"
-     },
-     {
-      "sha": "07d5fd3",
-      "date": "2026-11-03T12:25:00Z",
-      "msg": "Station Health: a missed check with the station's rain heard around it is a check lost",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/07d5fd3d542a7c773b171f609b578a1f0a26bb33"
      }
     ],
     "files": [
@@ -8563,7 +8581,7 @@
      "worker/api.js",
      "worker/radio-path.js"
     ],
-    "note": "9 upstream changes to watched files since it was last reviewed (2026-11-01)."
+    "note": "8 upstream changes to watched files since it was last reviewed (2026-11-01)."
    }
   },
   {
@@ -8593,7 +8611,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "196 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "197 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8624,7 +8642,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "196 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "197 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8653,7 +8671,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "153 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "154 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
