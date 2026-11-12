@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-12T12:32:37.885Z",
- "hash": "454a967f83a13fbe",
+ "generated": "2026-11-12T15:27:51.574Z",
+ "hash": "553044fe3e8e8b0d",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -2177,60 +2177,36 @@
    "release": null,
    "ci": [
     {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43247477290",
+     "date": "2026-11-12T15:24:46Z",
+     "event": "schedule"
+    },
+    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43217483538",
-     "date": "2026-11-12T12:23:50Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43246210868",
+     "date": "2026-11-12T15:17:43Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43217361391",
-     "date": "2026-11-12T12:23:47Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43246104262",
+     "date": "2026-11-12T15:17:47Z",
      "event": "schedule"
     },
     {
-     "name": "Field photos from Google Drive",
+     "name": "Data archive into R2",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43216974160",
-     "date": "2026-11-12T12:20:27Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43239226172",
+     "date": "2026-11-12T14:40:11Z",
      "event": "schedule"
-    },
-    {
-     "name": "Web smoke test",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43208055918",
-     "date": "2026-11-12T11:19:15Z",
-     "event": "push"
-    },
-    {
-     "name": "CodeQL",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43208056158",
-     "date": "2026-11-12T11:23:37Z",
-     "event": "push"
-    },
-    {
-     "name": "db-migrate",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43207880301",
-     "date": "2026-11-12T11:18:00Z",
-     "event": "workflow_dispatch"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43207610500",
-     "date": "2026-11-12T11:16:12Z",
-     "event": "push"
     }
    ],
    "version": "20261112s",
