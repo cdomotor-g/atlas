@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-12T00:45:20.809Z",
- "hash": "f5f158d21853a013",
+ "generated": "2026-11-12T03:29:08.563Z",
+ "hash": "6c82eef872ac8f33",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1076,12 +1076,24 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-11T20:55:45Z",
+    "pushed": "2026-11-12T03:12:56Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "5dba5a7",
+     "date": "2026-11-12T03:12:54Z",
+     "msg": "3-D: draw access tracks from what the tilted camera sees, not the flat map's shrinking box",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/5dba5a768e1c3a2191c9dbe545e806d80e1f3843"
+    },
+    {
+     "sha": "bd95c6f",
+     "date": "2026-11-12T02:02:09Z",
+     "msg": "Repeater delay: record up to 9999 ms (was 999), and say 'on record' rather than 'suggested' for a saved delay",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/bd95c6fb8c411eb584aa4fcd5ad5799074a17f88"
+    },
     {
      "sha": "f347d92",
      "date": "2026-11-11T20:55:42Z",
@@ -1141,18 +1153,6 @@
      "date": "2026-11-11T01:41:32Z",
      "msg": "Draw & measure: a line's ground and figures in its row, not a jump to Path tools",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/8dd1c4ca9af5f04caff4ccd21b4338ed4601edab"
-    },
-    {
-     "sha": "b48eef1",
-     "date": "2026-11-11T00:47:36Z",
-     "msg": "Field photo viewer: zoom into the photo — − Fit +, wheel, pinch, double click, drag",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/b48eef128af0a201df9bc7a01df9d7387ef710f3"
-    },
-    {
-     "sha": "0ef7388",
-     "date": "2026-11-11T00:32:50Z",
-     "msg": "Magnifier: the ground's own layers in the glass; property tip: the road and the bridge",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/0ef7388be90c2bc56ea3c46640cb48df7b3001f0"
     }
    ],
    "issues": [
@@ -2173,33 +2173,57 @@
    "release": null,
    "ci": [
     {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43148187032",
+     "date": "2026-11-12T03:26:14Z",
+     "event": "schedule"
+    },
+    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43128673672",
-     "date": "2026-11-12T00:37:53Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43147413601",
+     "date": "2026-11-12T03:19:28Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43128603406",
-     "date": "2026-11-12T00:38:13Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43147287061",
+     "date": "2026-11-12T03:19:11Z",
      "event": "schedule"
     },
     {
-     "name": "Field photos from Google Drive",
+     "name": "Web smoke test",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43146675712",
+     "date": "2026-11-12T03:13:24Z",
+     "event": "push"
+    },
+    {
+     "name": "CodeQL",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43128310849",
-     "date": "2026-11-12T00:34:59Z",
-     "event": "schedule"
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43146675618",
+     "date": "2026-11-12T03:16:34Z",
+     "event": "push"
+    },
+    {
+     "name": "db-migrate",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43138572666",
+     "date": "2026-11-12T02:02:41Z",
+     "event": "workflow_dispatch"
     }
    ],
-   "version": "20261111j",
+   "version": "20261112b",
    "lastCommit": {
-    "date": "2026-11-11T20:55:42Z"
+    "date": "2026-11-12T03:12:54Z"
    }
   },
   {
@@ -7438,7 +7462,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "89 newer commits upstream since ed3ed3b, none to watched files."
+    "note": "91 newer commits upstream since ed3ed3b, none to watched files."
    }
   },
   {
@@ -8617,7 +8641,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "171 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "173 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8648,7 +8672,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "171 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "173 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8677,7 +8701,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "128 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "130 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
