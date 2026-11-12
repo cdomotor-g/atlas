@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-12T03:29:08.563Z",
- "hash": "6c82eef872ac8f33",
+ "generated": "2026-11-12T06:35:14.099Z",
+ "hash": "d7155055c628ee28",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -610,8 +610,11 @@
       "paths": [
        "tasks.js",
        "admin-teams.js",
+       "admin-tags.js",
        "db/migrations/0095_teams_and_tasks.sql",
+       "db/migrations/0118_task_tags.sql",
        "tools/check_teams_and_tasks.sql",
+       "tools/check_task_tags.sql",
        "test/tasks.mjs"
       ],
       "status": "live"
@@ -1076,83 +1079,83 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-12T03:12:56Z",
+    "pushed": "2026-11-12T06:32:13Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
     {
-     "sha": "5dba5a7",
-     "date": "2026-11-12T03:12:54Z",
-     "msg": "3-D: draw access tracks from what the tilted camera sees, not the flat map's shrinking box",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/5dba5a768e1c3a2191c9dbe545e806d80e1f3843"
+     "sha": "ce86144",
+     "date": "2026-11-12T06:32:11Z",
+     "msg": "ERT-A2 simulator: the box's a logs in; say when the terminal takes keys",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/ce8614453786d3ce891220e7501a6ba5ad7ef23c"
     },
     {
-     "sha": "bd95c6f",
-     "date": "2026-11-12T02:02:09Z",
-     "msg": "Repeater delay: record up to 9999 ms (was 999), and say 'on record' rather than 'suggested' for a saved delay",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/bd95c6fb8c411eb584aa4fcd5ad5799074a17f88"
+     "sha": "88c2271",
+     "date": "2026-11-12T06:31:46Z",
+     "msg": "Stamp 20261112m",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/88c227167ef7686df2f0826a00878fa382d293e4"
     },
     {
-     "sha": "f347d92",
-     "date": "2026-11-11T20:55:42Z",
-     "msg": "Agent API: a station's receptions — every copy the base stations heard, and what sent it",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/f347d92691c07905f09d58cd1c222334e1ba4cf2"
+     "sha": "ad97c6a",
+     "date": "2026-11-12T06:31:28Z",
+     "msg": "ALERT2 on the ALERT IDs tab; one ALERT2 ID for several stations, told apart by sensor",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/ad97c6a6e4a58a9c6cf70b43c87ca6d79004f440"
     },
     {
-     "sha": "b31d65b",
-     "date": "2026-11-11T16:00:25Z",
-     "msg": "CI doctor: Card handles, 3-D view, twin cadastre, Site features — four red checks; a drag that survives a redraw, and three checks brought b",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/b31d65b7aa020509b704454d7b29af92c625136e"
+     "sha": "7bf1137",
+     "date": "2026-11-12T05:20:13Z",
+     "msg": "Slot table: 0120 applied — the app expects schema 120; On air reads in full, the strip's end labels too",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/7bf11376382cce10ef6c4b07ccc28e749538fbf2"
     },
     {
-     "sha": "ac3e773",
-     "date": "2026-11-11T03:36:12Z",
-     "msg": "Digital twin: flood peaks near here — every nearby gauge's floods in three datums, against a reference site",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/ac3e773bdb8cd3dd8ceb46a2ac8137472e348894"
+     "sha": "b6aea39",
+     "date": "2026-11-12T05:17:46Z",
+     "msg": "Digital twin: flood water where the station's pin stands up the bank",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/b6aea3996c11d138d79188d846069dc835e18487"
     },
     {
-     "sha": "39348e6",
-     "date": "2026-11-11T03:11:25Z",
-     "msg": "Digital twin: ground wider than the square, heights under the pointer in AHD and LGH, measuring",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/39348e6c07bd392b2006cfd63a1f33ae929a1161"
+     "sha": "8510f7b",
+     "date": "2026-11-12T05:16:11Z",
+     "msg": "Stamp 20261112j",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/8510f7b0fe4ea476d34ee1137db75f5648391fd8"
     },
     {
-     "sha": "2b7e4ad",
-     "date": "2026-11-11T03:07:03Z",
-     "msg": "A sign-in the browser keeps: survives a full localStorage, follows other tabs, and says so when the browser will keep nothing",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/2b7e4ad915707b52f213259ec203e511dc0c746b"
+     "sha": "a1362bb",
+     "date": "2026-11-12T05:15:48Z",
+     "msg": "ALERT2 slot table on file: the Mt Glorious slot sheet in the database, on the TDMA Planner and the station card",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/a1362bbe5ad691282260faa1c569f44ed35a668d"
     },
     {
-     "sha": "e36c209",
-     "date": "2026-11-11T02:20:05Z",
-     "msg": "A fade margin between any two points: an end that is not a station is priced as a field station",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/e36c20924ad74e6be6de93b0a98cf0c2e4124589"
+     "sha": "ec15ecf",
+     "date": "2026-11-12T04:51:15Z",
+     "msg": "One 18 Bateson: the app expects schema 119; Field Data notes say the rig was merged",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/ec15ecff65e4e2d36ebd82ea7b3ea53fe71b09f5"
     },
     {
-     "sha": "bf7ee26",
-     "date": "2026-11-11T02:17:31Z",
-     "msg": "Base stations go by name: the API, Field Data and the Message Log",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/bf7ee26cc6b30e5741efd19844703e9d16727037"
+     "sha": "d6b4358",
+     "date": "2026-11-12T04:49:57Z",
+     "msg": "Tags on tasks: 0118 applied — the app expects schema 118",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/d6b4358a958774fbdf77f9642a43054f367ad39e"
     },
     {
-     "sha": "bebd5d3",
-     "date": "2026-11-11T02:16:10Z",
-     "msg": "Base stations by name, for anybody: meganet.base_station_name (0115)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/bebd5d33c52d9ba598cc4779d4ff639d59e2d20a"
+     "sha": "b08b2a0",
+     "date": "2026-11-12T04:49:20Z",
+     "msg": "One 18 Bateson: fold the workshop test rig into the site",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/b08b2a0d9065e32422f05712b61313e7b02a1469"
     },
     {
-     "sha": "94c475d",
-     "date": "2026-11-11T02:12:28Z",
-     "msg": "Roadmap: #289 opened — a finding when a steady signal lands on a decoded channel",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/94c475d74d874bdf0050d58a5133c2fe0879c703"
+     "sha": "bffb427",
+     "date": "2026-11-12T04:48:03Z",
+     "msg": "Tags on tasks: your own words on a task, suggested once used, and Admin › Tags to tidy them (0118)",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/bffb4275b6ed1bb37d060442716a9bf885c6d5b9"
     },
     {
-     "sha": "8dd1c4c",
-     "date": "2026-11-11T01:41:32Z",
-     "msg": "Draw & measure: a line's ground and figures in its row, not a jump to Path tools",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/8dd1c4ca9af5f04caff4ccd21b4338ed4601edab"
+     "sha": "c27e08e",
+     "date": "2026-11-12T04:29:07Z",
+     "msg": "Tasks: change a task's team, status, due date or title in its row; one Change this task form",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/c27e08eb35321452f9b42de4b95a7888804fcfc0"
     }
    ],
    "issues": [
@@ -2158,7 +2161,7 @@
      "computer": false,
      "title": "Roadmap — resource allocation & sequencing for all issues",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/113",
-     "updated": "2026-11-11T02:12:45Z",
+     "updated": "2026-11-12T04:50:18Z",
      "created": "2026-08-13T00:13:50Z",
      "comments": 1,
      "labels": [],
@@ -2166,64 +2169,72 @@
       "meganet",
       "rpi_alert"
      ],
-     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1161k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
+     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1163k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
     }
    ],
    "issueCount": 55,
    "release": null,
    "ci": [
     {
-     "name": "Field photos from Google Drive",
+     "name": "db-migrate",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43148187032",
-     "date": "2026-11-12T03:26:14Z",
-     "event": "schedule"
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43168848647",
+     "date": "2026-11-12T06:32:53Z",
+     "event": "workflow_dispatch"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43168825237",
+     "date": "2026-11-12T06:32:35Z",
+     "event": "push"
+    },
+    {
+     "name": "CodeQL",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43168825076",
+     "date": "2026-11-12T06:32:24Z",
+     "event": "push"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43147413601",
-     "date": "2026-11-12T03:19:28Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43168108774",
+     "date": "2026-11-12T06:26:11Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43147287061",
-     "date": "2026-11-12T03:19:11Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43168022712",
+     "date": "2026-11-12T06:26:19Z",
      "event": "schedule"
     },
     {
-     "name": "Web smoke test",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43146675712",
-     "date": "2026-11-12T03:13:24Z",
-     "event": "push"
-    },
-    {
-     "name": "CodeQL",
+     "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43146675618",
-     "date": "2026-11-12T03:16:34Z",
-     "event": "push"
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43167741258",
+     "date": "2026-11-12T06:23:05Z",
+     "event": "schedule"
     },
     {
-     "name": "db-migrate",
+     "name": "Roadmap sync",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43138572666",
-     "date": "2026-11-12T02:02:41Z",
-     "event": "workflow_dispatch"
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43157349253",
+     "date": "2026-11-12T04:50:23Z",
+     "event": "push"
     }
    ],
-   "version": "20261112b",
+   "version": "20261112n",
    "lastCommit": {
-    "date": "2026-11-12T03:12:54Z"
+    "date": "2026-11-12T06:32:11Z"
    }
   },
   {
@@ -7462,7 +7473,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "91 newer commits upstream since ed3ed3b, none to watched files."
+    "note": "106 newer commits upstream since ed3ed3b, none to watched files."
    }
   },
   {
@@ -7550,7 +7561,7 @@
      "commit": "28325c4bc9fbe0bdd23e959f6e388952cf46df52",
      "commitDate": "2026-10-25T19:51:36Z"
     },
-    "behind": 14,
+    "behind": 11,
     "commits": [
      {
       "sha": "4262157",
@@ -7617,31 +7628,13 @@
       "date": "2026-11-03T11:11:43Z",
       "msg": "Light decoding, a lighter watch, and a leaner pipeline for the Pi (#259)",
       "url": "https://github.com/cdomotor-g/MegaNet/commit/262979233c8e73a5704c0135ee92852853e11936"
-     },
-     {
-      "sha": "ec0c5f3",
-      "date": "2026-11-03T03:31:44Z",
-      "msg": "BurstWatch: filter a channel only around its bursts (#259 part 2)",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/ec0c5f3ce5c03122ab8e3d2a117841ac0f0fe0b0"
-     },
-     {
-      "sha": "c187221",
-      "date": "2026-11-03T03:20:49Z",
-      "msg": "Base Stations: the Pi's Decoder (Lean, Full, Compare) in a station's remote settings",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/c187221f301c42e4de718b2878322d0c8d69c3c8"
-     },
-     {
-      "sha": "6beb40e",
-      "date": "2026-11-03T03:14:32Z",
-      "msg": "Base Stations: taller sparklines in \"Signal across what it hears\"",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/6beb40e22ff5e0585a449ce3fafa9566af141967"
      }
     ],
     "files": [
      "docs/base-stations.md",
      "base-stations.js"
     ],
-    "note": "14 upstream changes to watched files since it was last reviewed (2026-10-25)."
+    "note": "11 upstream changes to watched files since it was last reviewed (2026-10-25)."
    }
   },
   {
@@ -7767,8 +7760,14 @@
      "commit": "66608567fb48e86c9b399ca51a391ae0cd41ffdd",
      "commitDate": "2026-09-30T04:58:36Z"
     },
-    "behind": 5,
+    "behind": 6,
     "commits": [
+     {
+      "sha": "b08b2a0",
+      "date": "2026-11-12T04:49:20Z",
+      "msg": "One 18 Bateson: fold the workshop test rig into the site",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/b08b2a0d9065e32422f05712b61313e7b02a1469"
+     },
      {
       "sha": "bfaa4d7",
       "date": "2026-11-06T20:57:02Z",
@@ -7803,7 +7802,7 @@
     "files": [
      "stations.json"
     ],
-    "note": "5 upstream changes to watched files since it was last reviewed (2026-09-30)."
+    "note": "6 upstream changes to watched files since it was last reviewed (2026-09-30)."
    }
   },
   {
@@ -7918,8 +7917,14 @@
      "commit": "6ef4965",
      "commitDate": "2026-10-19T23:36:05Z"
     },
-    "behind": 5,
+    "behind": 6,
     "commits": [
+     {
+      "sha": "b08b2a0",
+      "date": "2026-11-12T04:49:20Z",
+      "msg": "One 18 Bateson: fold the workshop test rig into the site",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/b08b2a0d9065e32422f05712b61313e7b02a1469"
+     },
      {
       "sha": "bfaa4d7",
       "date": "2026-11-06T20:57:02Z",
@@ -7954,7 +7959,7 @@
     "files": [
      "stations.json"
     ],
-    "note": "5 upstream changes to watched files since 6ef4965."
+    "note": "6 upstream changes to watched files since 6ef4965."
    }
   },
   {
@@ -8437,7 +8442,7 @@
      "commit": "7309891c638d1050f0163f19dc8284ef7f54a7ca",
      "commitDate": "2026-10-17T09:50:24Z"
     },
-    "behind": 3,
+    "behind": 2,
     "commits": [
      {
       "sha": "ed3ed3b",
@@ -8450,18 +8455,12 @@
       "date": "2026-11-03T11:11:43Z",
       "msg": "Light decoding, a lighter watch, and a leaner pipeline for the Pi (#259)",
       "url": "https://github.com/cdomotor-g/MegaNet/commit/262979233c8e73a5704c0135ee92852853e11936"
-     },
-     {
-      "sha": "ec0c5f3",
-      "date": "2026-11-03T03:31:44Z",
-      "msg": "BurstWatch: filter a channel only around its bursts (#259 part 2)",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/ec0c5f3ce5c03122ab8e3d2a117841ac0f0fe0b0"
      }
     ],
     "files": [
      "alert-dsp.js"
     ],
-    "note": "3 upstream changes to watched files since it was last reviewed (2026-10-17)."
+    "note": "2 upstream changes to watched files since it was last reviewed (2026-10-17)."
    }
   },
   {
@@ -8641,7 +8640,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "173 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "188 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8672,7 +8671,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "173 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "188 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8701,7 +8700,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "130 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "145 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
