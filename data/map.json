@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-13T00:45:08.512Z",
- "hash": "9256e6b392310e33",
+ "generated": "2026-11-13T03:30:15.483Z",
+ "hash": "ca4c01c154f99961",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -2177,52 +2177,28 @@
    "release": null,
    "ci": [
     {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43359041079",
+     "date": "2026-11-13T03:27:11Z",
+     "event": "schedule"
+    },
+    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43338576844",
-     "date": "2026-11-13T00:37:58Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43358149110",
+     "date": "2026-11-13T03:19:16Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43338445193",
-     "date": "2026-11-13T00:37:33Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43358033387",
+     "date": "2026-11-13T03:18:48Z",
      "event": "schedule"
-    },
-    {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43338135866",
-     "date": "2026-11-13T00:34:40Z",
-     "event": "schedule"
-    },
-    {
-     "name": "Web smoke test",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43330689702",
-     "date": "2026-11-12T23:39:44Z",
-     "event": "push"
-    },
-    {
-     "name": "CodeQL",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43330689524",
-     "date": "2026-11-12T23:43:44Z",
-     "event": "push"
-    },
-    {
-     "name": "db-migrate",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43328253882",
-     "date": "2026-11-12T23:22:24Z",
-     "event": "workflow_dispatch"
     }
    ],
    "version": "20261112w",
