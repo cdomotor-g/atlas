@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-13T15:27:09.805Z",
- "hash": "2df26d1932890b8c",
+ "generated": "2026-11-13T18:28:03.299Z",
+ "hash": "45320f5e4f940170",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1080,12 +1080,24 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-12T23:39:27Z",
+    "pushed": "2026-11-13T15:35:06Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "06a8b45",
+     "date": "2026-11-13T15:35:03Z",
+     "msg": "Roadmap: #290 opened by CI doctor (3-D view from a file, red in CI only)",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/06a8b450e2d465982e9d156bfa915903219afbc8"
+    },
+    {
+     "sha": "193f6d3",
+     "date": "2026-11-13T15:34:36Z",
+     "msg": "CI doctor: Shell, 3-D view — a second reduced-motion block; the leader probe ran mid draw-in",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/193f6d3410b7fb8b6de8c603d28754033d4fe85d"
+    },
     {
      "sha": "fd08d16",
      "date": "2026-11-12T23:39:24Z",
@@ -1145,21 +1157,30 @@
      "date": "2026-11-12T06:49:09Z",
      "msg": "Digital twin: floods near by on the 3-D scale; the peaks table coloured and sortable",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/7ebe49e25631955b47164a5302b14209a8b4bbc5"
-    },
-    {
-     "sha": "bc578e2",
-     "date": "2026-11-12T06:39:27Z",
-     "msg": "Stamp 20261112o",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/bc578e21c3d093915cb595bfd93f69f4063c51da"
-    },
-    {
-     "sha": "24d3082",
-     "date": "2026-11-12T06:39:00Z",
-     "msg": "ALERT2 shared IDs: 0121 applied — the app expects schema 121; the ALERT / ALERT2 switch sits at its own width",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/24d3082a7b92dd3d79ce5406df1dbfe35d6c477a"
     }
    ],
    "issues": [
+    {
+     "n": 290,
+     "raw": "[Standalone] [Opus5/High] CI doctor: 3-D view — \"opens from a page opened as a file\" red in CI, green locally",
+     "structure": "standalone",
+     "parent": null,
+     "model": "Opus5",
+     "effort": "High",
+     "human": false,
+     "computer": false,
+     "title": "CI doctor: 3-D view — \"opens from a page opened as a file\" red in CI, green locally",
+     "url": "https://github.com/cdomotor-g/MegaNet/issues/290",
+     "updated": "2026-11-13T15:49:55Z",
+     "created": "2026-11-13T15:34:57Z",
+     "comments": 1,
+     "labels": [],
+     "mentions": [],
+     "triage": {
+      "severity": 3,
+      "effort": "2h"
+     }
+    },
     {
      "n": 289,
      "raw": "[Standalone] [Sonnet5/High] Raise a finding when a steady signal lands on a channel a base station decodes",
@@ -2162,7 +2183,7 @@
      "computer": false,
      "title": "Roadmap — resource allocation & sequencing for all issues",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/113",
-     "updated": "2026-11-12T04:50:18Z",
+     "updated": "2026-11-13T15:35:22Z",
      "created": "2026-08-13T00:13:50Z",
      "comments": 1,
      "labels": [],
@@ -2173,45 +2194,77 @@
      "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1163k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
     }
    ],
-   "issueCount": 55,
+   "issueCount": 56,
    "release": null,
    "ci": [
     {
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43452215784",
-     "date": "2026-11-13T15:24:04Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43482427883",
+     "date": "2026-11-13T18:25:10Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43451016486",
-     "date": "2026-11-13T15:17:03Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43481220756",
+     "date": "2026-11-13T18:17:46Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43450765984",
-     "date": "2026-11-13T15:16:12Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43481172958",
+     "date": "2026-11-13T18:18:06Z",
      "event": "schedule"
     },
     {
-     "name": "Data archive into R2",
+     "name": "Fade margin re-sweep",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43444563421",
-     "date": "2026-11-13T14:40:06Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43462831310",
+     "date": "2026-11-13T16:27:50Z",
      "event": "schedule"
+    },
+    {
+     "name": "Field photos into R2",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43461663177",
+     "date": "2026-11-13T16:20:16Z",
+     "event": "schedule"
+    },
+    {
+     "name": "Roadmap sync",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43454081771",
+     "date": "2026-11-13T15:35:27Z",
+     "event": "push"
+    },
+    {
+     "name": "CodeQL",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43454001878",
+     "date": "2026-11-13T15:39:05Z",
+     "event": "push"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "completed",
+     "conclusion": "failure",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43454002065",
+     "date": "2026-11-13T16:31:25Z",
+     "event": "push"
     }
    ],
-   "version": "20261112w",
+   "version": "20261113a",
    "lastCommit": {
-    "date": "2026-11-12T23:39:24Z"
+    "date": "2026-11-13T15:35:03Z"
    }
   },
   {
@@ -7450,7 +7503,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "118 newer commits upstream since ed3ed3b, none to watched files."
+    "note": "120 newer commits upstream since ed3ed3b, none to watched files."
    }
   },
   {
@@ -7996,7 +8049,7 @@
    "entry": "v3-decoder",
    "to": "quansheng-v1",
    "drift": {
-    "state": "current",
+    "state": "unknown",
     "since": {
      "date": "2026-10-20",
      "commit": "ad166ca93c17cb5765b17d52a49b1c2c7cc6fb44",
@@ -8005,7 +8058,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "5 newer commits upstream since it was last reviewed (2026-10-20), none to watched files."
+    "note": "GET /repos/cdomotor-g/quansheng_alert_v3/commits?sha=main&per_page=50&since=2026-10-20T00%3A11%3A32Z&path=App%2Fapp%2Falert_decode.h → 504 {\"message\": \"We could"
    }
   },
   {
@@ -8599,7 +8652,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "200 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "202 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8621,7 +8674,7 @@
    "entry": "floodnet-sort-store",
    "to": "sort",
    "drift": {
-    "state": "current",
+    "state": "unknown",
     "since": {
      "date": "2026-11-04",
      "commit": "65df6ff85c2b22b61aaabb5acd6c1c8b5a3e7afc",
@@ -8630,7 +8683,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "200 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "GET /repos/cdomotor-g/MegaNet/commits?sha=main&per_page=50&since=2026-11-04T23%3A56%3A13Z&path=worker%2Fsort.js → 503 upstream connect error or disconnect/reset"
    }
   },
   {
@@ -8659,7 +8712,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "157 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "159 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
