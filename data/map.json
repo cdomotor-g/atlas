@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-13T18:28:03.299Z",
- "hash": "45320f5e4f940170",
+ "generated": "2026-11-13T21:27:05.844Z",
+ "hash": "65e390fd9502de51",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -2201,65 +2201,33 @@
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43482427883",
-     "date": "2026-11-13T18:25:10Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43510340888",
+     "date": "2026-11-13T21:24:08Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43481220756",
-     "date": "2026-11-13T18:17:46Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43509273735",
+     "date": "2026-11-13T21:17:03Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43481172958",
-     "date": "2026-11-13T18:18:06Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43509023346",
+     "date": "2026-11-13T21:16:19Z",
      "event": "schedule"
     },
     {
-     "name": "Fade margin re-sweep",
+     "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43462831310",
-     "date": "2026-11-13T16:27:50Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43494884290",
+     "date": "2026-11-13T19:44:04Z",
      "event": "schedule"
-    },
-    {
-     "name": "Field photos into R2",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43461663177",
-     "date": "2026-11-13T16:20:16Z",
-     "event": "schedule"
-    },
-    {
-     "name": "Roadmap sync",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43454081771",
-     "date": "2026-11-13T15:35:27Z",
-     "event": "push"
-    },
-    {
-     "name": "CodeQL",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43454001878",
-     "date": "2026-11-13T15:39:05Z",
-     "event": "push"
-    },
-    {
-     "name": "Web smoke test",
-     "status": "completed",
-     "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43454002065",
-     "date": "2026-11-13T16:31:25Z",
-     "event": "push"
     }
    ],
    "version": "20261113a",
@@ -3087,8 +3055,8 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/43302830969",
-     "date": "2026-11-12T20:42:05Z",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/43503937811",
+     "date": "2026-11-13T20:42:19Z",
      "event": "schedule"
     },
     {
@@ -5054,15 +5022,16 @@
     },
     "status": {
      "phase": "beta",
-     "updated": "2026-11-11",
-     "summary": "A review of the Mallow trial (interim, 11 November 2026: docs/hardware-review) found the Verdin AM62's price has roughly tripled, a heatsink on its list that does not fit, a speed figure nobody measured and a software recipe that is hard to get approved — and that RPi ALERT already runs unchanged off a Raspberry Pi. A hardware-neutral firmware layer is started in firmware/ (unfinished). Prices re-checked in November 2026: each part is what one costs from an Australian shop with it in stock (else the cheapest way to get one, and when), and every bill — configurator, builder, trial — adds each shop's delivery once and clearance on an overseas order over A$1,000. The Pi 5 4 GB is A$249 in stock (A$178 was a back-order price); the RFI COL54 collinear is A$3,218 at Techwave, not the A$650 guessed; the RTL-SDR Blog V4 is end of life, so the V3 is the builder's stick. The builder and the Mallow trial rate every computer on RPi ALERT 0.17 and 0.19, with the Luna SL1680 and the Raspberry Pi range beside the Verdin AM62s.",
+     "updated": "2026-11-13",
+     "summary": "The hardware review is finished (11 November 2026: docs/hardware-review, and the Other computers page, site/hardware.html). It says: buy a fanless N150-class PC with a TPM (the OnLogic CL260 for a battery site, the Lenovo ThinkEdge where the brand matters), prove it on the bench with a cheap mini PC first, and keep the Verdin AM62 and the Luna out of the order book. The old Mallow trial was not to be run as written, and its page is now the side-by-side trial, for whichever computer is picked: the Verdin AM62 Quad now lists at US$306 (not US$107), the heatsink on its list does not fit, 'half a Pi 4' was never measured, and Torizon with a privileged container is the hardest stack to get approved. RPi ALERT already runs unchanged off a Raspberry Pi. The builder's processor sums are corrected to RPi ALERT's own measurements, and the catalogue and builder carry the review's computers. A hardware-neutral firmware layer (firmware/: a package for Debian 13 and Ubuntu 24.04, a container and disk images) is started: as at 13 November 2026 the package is built and its own checks pass on Debian 13 and Ubuntu 24.04 with stand-ins for the radio, the container has been tried with stand-ins on one PC only (not on Torizon OS or ARM), the disk images are still being written, nothing has been run with a real radio stick off a Raspberry Pi, and there is no release yet (firmware/README.md is the current word). A draft security pack for IT assessors is in docs/security, with SECURITY.md. Prices re-checked in November 2026: each part is what one costs from an Australian shop with it in stock (else the cheapest way to get one, and when), and every bill — configurator, builder, trial — adds each shop's delivery once and clearance on an overseas order over A$1,000. The Pi 5 4 GB is A$249 in stock (A$178 was a back-order price); the RFI COL54 collinear is A$3,218 at Techwave, not the A$650 guessed; the RTL-SDR Blog V4 is end of life, so the V3 is the builder's stick. The builder and the side-by-side trial rate every computer for the whole computer and for one core, on RPi ALERT's decoders. The review was checked against its sources again on 13 November 2026: the Lenovo ThinkEdge's Ubuntu and Red Hat certification is Lenovo's own statement (Canonical's public list did not show it), nobody has checked that the package installs on Moxa's Secure system, and the configurator now counts channels from the corrected sums (a Pi 4 carries about five with room to spare, a Pi 3B+ two).",
      "next": [
-      "Feed the trial's AM62 numbers back into the builder's CPU model",
+      "Check the review's prices and links by hand in a browser (Core Electronics, PB Tech, element14, Arrow, Toradex direct): the links matter more than the figures",
+      "Ask Lenovo for the ThinkEdge SE10n Gen2's Ubuntu certificate and which release it covers, and what its 0.7 m/s air-flow rating means in a closed cabinet; ask Moxa or its seller whether Moxa Industrial Linux 4 Secure takes Node.js and rtl-sdr from Debian's packages",
+      "Switch on private vulnerability reporting in this repository's and RPi ALERT's settings, and confirm or change the support period in docs/security/support.md",
+      "Review and release the RPi ALERT settings a managed network needs (docs/hardware-review/wip), then move firmware/PIN to that release",
       "Check what is still marked est. with suppliers: the mating Bulgin lead, the earth kit, the 18 Ah battery, delivery from shops that price it only at checkout",
       "Point the Quansheng V3 entry at quansheng_alert_ALL's browser installer",
       "Re-check the FW-LAB entry: Flood-Net's runbook says to retire and archive it",
-      "Replace the Luna SL1680's estimated CPU and power with measurements once Toradex publishes them or someone runs one",
-      "Confirm by hand the prices automated reads couldn't: element14 (the trial's Verdin and Mallow), Toradex direct, Core Electronics and Jaycar",
       "Set GitHub Pages to publish only from GitHub Actions: two jobs publish on every push (pages.yml and the branch build), and each lays the site out differently"
      ],
      "later": [
@@ -5072,7 +5041,8 @@
       "Re-check quote-only and estimated prices with suppliers"
      ],
      "now": [
-      "The hardware review: research the remaining computers (small PCs, open-hardware boards, industrial ARM), finish firmware/, then the catalogue, the builder's processor sums and a page to explore it all"
+      "Run the package on a real computer with a real radio stick, and the benchmark in firmware/bench on a Pi 4 and an N100 or N150 mini PC: nothing has yet been run off a Raspberry Pi, and every speed figure is a stand-in",
+      "Finish firmware/: try the container on Torizon OS and on an ARM computer, the disk images, the automatic build, then a first release"
      ],
      "blocked": [
       {
@@ -5081,24 +5051,19 @@
        "kind": "decision",
        "since": "2026-11-02",
        "holds": [
-        "The Mallow trial"
+        "The side-by-side trial"
        ],
        "options": [
         {
          "by": "human",
-         "effort": "none",
+         "effort": "an hour",
          "recommended": true,
-         "what": "Hold the order until the hardware review names the computer: the Verdin AM62 Quad now lists at about US$306, and heatsink 23111001 does not fit it (23111101 does)"
+         "what": "Order one N100 or N150 mini PC (about A$300) for the bench, then the OnLogic CL260 or a Lenovo ThinkEdge SE10n Gen2 once it has run a real stick: see docs/hardware-review/README.md"
         },
         {
          "by": "human",
-         "effort": "an hour",
-         "what": "Order 00761200, 01611102 and 23111001 from Toradex's webshop on the Bureau's business account"
-        },
-        {
-         "by": "human",
-         "effort": "an hour",
-         "what": "Buy everything from element14 Australia now: module 4852670 (A$566 inc GST, 5 in UK stock), Mallow 4759350 (A$182); the heatsink from Mouser or DigiKey"
+         "effort": "none",
+         "what": "Hold every order until the bench result is in. Leave the Verdin AM62 Quad (US$306 for the module, about US$421 a set, heatsink 23111101 not 23111001) out of the order book"
         }
        ]
       }
@@ -5155,7 +5120,7 @@
      {
       "id": "builder",
       "name": "Base station builder",
-      "what": "build.html: how a receiving base fits together, the stick planner and CPU model, the bill with price ranges, lead times and suppliers, the build steps and the custom path.",
+      "what": "build.html: how a receiving base fits together, the stick planner and CPU model, the bill with price ranges, lead times and suppliers, the build steps, and when a board of your own is worth it.",
       "paths": [
        "site/build.html",
        "site/build.css",
@@ -5167,8 +5132,8 @@
      },
      {
       "id": "trial",
-      "name": "Mallow trial",
-      "what": "trial.html: a Verdin AM62 on Mallow beside a Pi 4 on one antenna — every AM62 rated beside the Luna SL1680 and the Raspberry Pi range, shopping list, steps, CPU estimate and a results sheet with pass rules.",
+      "name": "Side-by-side trial",
+      "what": "trial.html: a computer that is not a Raspberry Pi beside a Pi 4 on one antenna. Pick the computer (the default is an N150 mini PC); the page gives the benchmark to run first, every computer rated for your channels, a shopping list, the steps, and a results sheet with pass rules. It was the Mallow trial (a Verdin AM62 on Mallow) until the hardware review.",
       "paths": [
        "site/trial.html",
        "site/js/trial.js",
@@ -5205,6 +5170,37 @@
        "index.html"
       ],
       "status": "live"
+     },
+     {
+      "id": "hardware-review",
+      "name": "Hardware review",
+      "what": "The review of the old Mallow trial and of which computer, other than a Raspberry Pi, should run a base station: the Other computers page, the README, the comparison tables, and thirteen research reports with three re-checks.",
+      "paths": [
+       "site/hardware.html",
+       "site/data/review.js",
+       "site/js/review.js",
+       "docs/hardware-review/"
+      ],
+      "status": "live"
+     },
+     {
+      "id": "base-package",
+      "name": "Base station package (firmware/)",
+      "what": "RPi ALERT's signed release, unchanged, as a package for Debian 13 and Ubuntu 24.04 (standard and enterprise profiles), with a benchmark. Its own checks pass on Debian 13 and Ubuntu 24.04 with stand-ins for the radio (13 November 2026). The container has been tried with stand-ins for the radio on one PC only (not on Torizon OS or ARM); the disk images are still being written. Not yet run with a real radio stick off a Raspberry Pi; no release yet.",
+      "paths": [
+       "firmware/"
+      ],
+      "status": "beta"
+     },
+     {
+      "id": "security-pack",
+      "name": "Security pack",
+      "what": "What an IT assessor is handed: overview, shared responsibility, controls, a proposed support period, and how to report a flaw. A draft.",
+      "paths": [
+       "docs/security/",
+       "SECURITY.md"
+      ],
+      "status": "beta"
      },
      {
       "id": "oa-firmware",
@@ -5248,8 +5244,8 @@
      },
      {
       "id": "mallow-trial",
-      "name": "Mallow trial plan",
-      "what": "What to buy and do to test a Toradex Verdin AM62 on Mallow running RPi ALERT beside a Pi, and how to judge it.",
+      "name": "Side-by-side trial plan",
+      "what": "What to buy and do to test a computer that is not a Raspberry Pi running RPi ALERT beside a Pi, and how to judge it. (The id is kept from when it was the Mallow trial, so links to it still hold.)",
       "component": "trial",
       "paths": [
        "site/trial.html",
@@ -5377,7 +5373,7 @@
       "from": "rpi-alert",
       "provider": "channel-planner",
       "into": "builder",
-      "what": "The builder's stick windows, channel costs, burst cost and install routes: RPi ALERT's hardware notes, how it works, its installer and its SDR worker. The Mallow trial follows its configuration (receiver ids, channels) the same way.",
+      "what": "The builder's stick windows, channel costs, burst cost and install routes: RPi ALERT's hardware notes, how it works, its installer and its SDR worker. The side-by-side trial follows its configuration (receiver ids, channels) the same way.",
       "how": "reference",
       "url": "https://github.com/cdomotor-g/RPi_ALERT",
       "watch": [
@@ -5390,9 +5386,9 @@
        "os/install.sh"
       ],
       "since": {
-       "date": "2026-11-08"
+       "date": "2026-11-11"
       },
-      "on_change": "Re-check model.windows, chCore240, burstCoreS and kioskCore in site/data/builder.js and the steps() text in site/js/builder.js; run npm test."
+      "on_change": "Re-check model.windows (each window's Pi 4 figure), loadFactor, the decoders' burstS and a2S, a2DecodeS and kioskCore in site/data/builder.js, the channel rule in site/js/engine.js (SDR_CH_CORE) and the steps() text in site/js/builder.js; run npm test."
      }
     ],
     "asks": [
@@ -5415,12 +5411,30 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-11T20:10:08Z",
+    "pushed": "2026-11-13T21:12:57Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/open-ALERT"
    },
    "commits": [
+    {
+     "sha": "27d7a68",
+     "date": "2026-11-13T21:12:54Z",
+     "msg": "firmware: the container, and the disk image in progress (snapshot)",
+     "url": "https://github.com/cdomotor-g/open-ALERT/commit/27d7a68d2c0b25185d9e8f392013b050c09bbe9b"
+    },
+    {
+     "sha": "049a1a5",
+     "date": "2026-11-13T21:12:39Z",
+     "msg": "Other computers: the hardware review as a page to explore; the trial re-aimed; the written review",
+     "url": "https://github.com/cdomotor-g/open-ALERT/commit/049a1a56f609fbf3e38a3d4e301d1a0ce2b1176c"
+    },
+    {
+     "sha": "5708d4a",
+     "date": "2026-11-13T20:02:39Z",
+     "msg": "firmware: the package's tests pass on Debian 13, Ubuntu 24.04 and Debian 12",
+     "url": "https://github.com/cdomotor-g/open-ALERT/commit/5708d4aa2da1d8bbc198f3c8da9d23459c0493e8"
+    },
     {
      "sha": "35f41ec",
      "date": "2026-11-11T20:10:06Z",
@@ -5474,46 +5488,9 @@
      "date": "2026-11-07T23:11:48Z",
      "msg": "Catalogue: RPi ALERT 0.20.0; the builder's window rules re-checked",
      "url": "https://github.com/cdomotor-g/open-ALERT/commit/e4355119b65bdd73710af73f1a39edb3801f02ff"
-    },
-    {
-     "sha": "c626ebf",
-     "date": "2026-11-07T22:54:59Z",
-     "msg": "The builder starts on a unity-gain dipole",
-     "url": "https://github.com/cdomotor-g/open-ALERT/commit/c626ebfd7d2528304d3da53585333ddb71d6c0ea"
-    },
-    {
-     "sha": "d0753ae",
-     "date": "2026-11-07T18:06:09Z",
-     "msg": "Power parts re-priced; the V3 is the builder's starting stick",
-     "url": "https://github.com/cdomotor-g/open-ALERT/commit/d0753aefc2787eddd2ff84721b7cf010fe77b899"
-    },
-    {
-     "sha": "f5b30a1",
-     "date": "2026-11-07T17:59:36Z",
-     "msg": "Builder and trial re-priced, with each shop's delivery (work in progress)",
-     "url": "https://github.com/cdomotor-g/open-ALERT/commit/f5b30a18a38d4b704f04bd3db8891b8e35e93fff"
     }
    ],
    "issues": [
-    {
-     "n": 3,
-     "raw": "[Standalone] [Sonnet5/Med] Upstream moved: RPi_ALERT released 0.22.2 (this repository names 0.22.1)",
-     "structure": "standalone",
-     "parent": null,
-     "model": "Sonnet5",
-     "effort": "Med",
-     "human": false,
-     "computer": false,
-     "title": "Upstream moved: RPi_ALERT released 0.22.2 (this repository names 0.22.1)",
-     "url": "https://github.com/cdomotor-g/open-ALERT/issues/3",
-     "updated": "2026-11-11T07:46:17Z",
-     "created": "2026-11-09T21:31:59Z",
-     "comments": 0,
-     "labels": [],
-     "mentions": [
-      "rpi_alert"
-     ]
-    },
     {
      "n": 2,
      "raw": "[Standalone] [Sonnet5/Low] Give every blocker in atlas.json an id",
@@ -5532,45 +5509,45 @@
      "mentions": []
     }
    ],
-   "issueCount": 2,
+   "issueCount": 1,
    "release": null,
    "ci": [
     {
-     "name": "Atlas",
+     "name": "pages",
      "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/43311026469",
-     "date": "2026-11-12T21:31:34Z",
-     "event": "schedule"
+     "conclusion": "failure",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/43508678697",
+     "date": "2026-11-13T21:13:21Z",
+     "event": "push"
     },
     {
      "name": "test",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/43093948442",
-     "date": "2026-11-11T20:10:23Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/43508678760",
+     "date": "2026-11-13T21:13:23Z",
      "event": "push"
     },
     {
-     "name": "pages",
+     "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/43093948562",
-     "date": "2026-11-11T20:10:35Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/43508679508",
+     "date": "2026-11-13T21:13:27Z",
      "event": "push"
     },
     {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/43093947044",
-     "date": "2026-11-11T20:10:40Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/43508676795",
+     "date": "2026-11-13T21:13:34Z",
      "event": "dynamic"
     }
    ],
    "version": "0.1.0",
    "lastCommit": {
-    "date": "2026-11-11T20:10:06Z"
+    "date": "2026-11-13T21:12:54Z"
    }
   },
   {
@@ -6016,8 +5993,8 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/43308470541",
-     "date": "2026-11-12T21:15:58Z",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/43509028109",
+     "date": "2026-11-13T21:15:41Z",
      "event": "schedule"
     },
     {
@@ -8049,7 +8026,7 @@
    "entry": "v3-decoder",
    "to": "quansheng-v1",
    "drift": {
-    "state": "unknown",
+    "state": "current",
     "since": {
      "date": "2026-10-20",
      "commit": "ad166ca93c17cb5765b17d52a49b1c2c7cc6fb44",
@@ -8058,7 +8035,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "GET /repos/cdomotor-g/quansheng_alert_v3/commits?sha=main&per_page=50&since=2026-10-20T00%3A11%3A32Z&path=App%2Fapp%2Falert_decode.h → 504 {\"message\": \"We could"
+    "note": "5 newer commits upstream since it was last reviewed (2026-10-20), none to watched files."
    }
   },
   {
@@ -8273,16 +8250,16 @@
    "entry": "rpi-alert-entry",
    "to": "open-alert",
    "drift": {
-    "state": "behind",
+    "state": "current",
     "since": {
-     "version": "0.22.1",
+     "version": "0.23.1",
      "latest": "0.23.1",
      "url": "https://github.com/cdomotor-g/RPi_ALERT/releases/tag/v0.23.1"
     },
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "Says 0.22.1; the latest release is 0.23.1."
+    "note": "Says 0.23.1, the latest release."
    }
   },
   {
@@ -8492,7 +8469,7 @@
    "from": "rpi-alert",
    "provider": "channel-planner",
    "into": "builder",
-   "what": "The builder's stick windows, channel costs, burst cost and install routes: RPi ALERT's hardware notes, how it works, its installer and its SDR worker. The Mallow trial follows its configuration (receiver ids, channels) the same way.",
+   "what": "The builder's stick windows, channel costs, burst cost and install routes: RPi ALERT's hardware notes, how it works, its installer and its SDR worker. The side-by-side trial follows its configuration (receiver ids, channels) the same way.",
    "how": "reference",
    "url": "https://github.com/cdomotor-g/RPi_ALERT",
    "watch": [
@@ -8505,38 +8482,22 @@
     "os/install.sh"
    ],
    "since": {
-    "date": "2026-11-08"
+    "date": "2026-11-11"
    },
-   "on_change": "Re-check model.windows, chCore240, burstCoreS and kioskCore in site/data/builder.js and the steps() text in site/js/builder.js; run npm test.",
+   "on_change": "Re-check model.windows (each window's Pi 4 figure), loadFactor, the decoders' burstS and a2S, a2DecodeS and kioskCore in site/data/builder.js, the channel rule in site/js/engine.js (SDR_CH_CORE) and the steps() text in site/js/builder.js; run npm test.",
    "entry": "rpi-alert-decoding-model",
    "to": "open-alert",
    "drift": {
-    "state": "behind",
+    "state": "current",
     "since": {
-     "date": "2026-11-08",
-     "commit": "f6efb5ba0fe46e30a50934cef5e0099dbbad361d",
-     "commitDate": "2026-11-08T23:44:18Z"
+     "date": "2026-11-11",
+     "commit": "37fee8bc3a15a4b6b624bd4ae6ae299610300aae",
+     "commitDate": "2026-11-10T23:46:54Z"
     },
-    "behind": 2,
-    "commits": [
-     {
-      "sha": "56489f1",
-      "date": "2026-11-10T23:41:29Z",
-      "msg": "0.23.1: a slow database is not an outage — the keeper asks before believing it",
-      "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/56489f1f09b776a3495596c0ec24e6cf3d99dcd6"
-     },
-     {
-      "sha": "c28c8d5",
-      "date": "2026-11-10T23:19:20Z",
-      "msg": "0.23.0: a base station that loses touch with MegaNet gets back online by itself",
-      "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/c28c8d5ebc8ab0b362f1f81a9716acc713aa7a36"
-     }
-    ],
-    "files": [
-     "docs/configuration.md",
-     "docs/how-it-works.md"
-    ],
-    "note": "2 upstream changes to watched files since it was last reviewed (2026-11-08)."
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "Up to date with upstream."
    }
   },
   {
@@ -8674,7 +8635,7 @@
    "entry": "floodnet-sort-store",
    "to": "sort",
    "drift": {
-    "state": "unknown",
+    "state": "current",
     "since": {
      "date": "2026-11-04",
      "commit": "65df6ff85c2b22b61aaabb5acd6c1c8b5a3e7afc",
@@ -8683,7 +8644,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "GET /repos/cdomotor-g/MegaNet/commits?sha=main&per_page=50&since=2026-11-04T23%3A56%3A13Z&path=worker%2Fsort.js → 503 upstream connect error or disconnect/reset"
+    "note": "202 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8819,13 +8780,6 @@
    "n": 1,
    "title": "Take MegaNet's ALERT2 field fix — stop dropping ALERT2 self-reports on the Pi",
    "url": "https://github.com/cdomotor-g/RPi_ALERT/issues/1"
-  },
-  {
-   "in": "open-alert",
-   "about": "rpi-alert",
-   "n": 3,
-   "title": "Upstream moved: RPi_ALERT released 0.22.2 (this repository names 0.22.1)",
-   "url": "https://github.com/cdomotor-g/open-ALERT/issues/3"
   }
  ],
  "asks": [
