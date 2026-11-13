@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-12T21:26:37.683Z",
- "hash": "644c78cdef313b07",
+ "generated": "2026-11-13T00:45:08.512Z",
+ "hash": "9256e6b392310e33",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1080,12 +1080,30 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-12T15:39:03Z",
+    "pushed": "2026-11-12T23:39:27Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "fd08d16",
+     "date": "2026-11-12T23:39:24Z",
+     "msg": "Base stations: sort \"Whose it is\" and its opened rows by any heading",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/fd08d16412b323611629df322d59f49344a6df76"
+    },
+    {
+     "sha": "e512983",
+     "date": "2026-11-12T23:22:54Z",
+     "msg": "0124 applied — the app expects schema 124; stamp 20261112v",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/e5129838e5ca78036ee4d2f4e77717443a95f0be"
+    },
+    {
+     "sha": "acf8529",
+     "date": "2026-11-12T23:18:57Z",
+     "msg": "Base stations: open a \"Whose it is\" row into its stations, a bar a day each",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/acf85291f9d82129cdfba9e5383eff42fe359cc4"
+    },
     {
      "sha": "7c7522c",
      "date": "2026-11-12T15:39:01Z",
@@ -1139,24 +1157,6 @@
      "date": "2026-11-12T06:39:00Z",
      "msg": "ALERT2 shared IDs: 0121 applied — the app expects schema 121; the ALERT / ALERT2 switch sits at its own width",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/24d3082a7b92dd3d79ce5406df1dbfe35d6c477a"
-    },
-    {
-     "sha": "ce86144",
-     "date": "2026-11-12T06:32:11Z",
-     "msg": "ERT-A2 simulator: the box's a logs in; say when the terminal takes keys",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/ce8614453786d3ce891220e7501a6ba5ad7ef23c"
-    },
-    {
-     "sha": "88c2271",
-     "date": "2026-11-12T06:31:46Z",
-     "msg": "Stamp 20261112m",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/88c227167ef7686df2f0826a00878fa382d293e4"
-    },
-    {
-     "sha": "ad97c6a",
-     "date": "2026-11-12T06:31:28Z",
-     "msg": "ALERT2 on the ALERT IDs tab; one ALERT2 ID for several stations, told apart by sensor",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/ad97c6a6e4a58a9c6cf70b43c87ca6d79004f440"
     }
    ],
    "issues": [
@@ -2177,41 +2177,57 @@
    "release": null,
    "ci": [
     {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43309824392",
-     "date": "2026-11-12T21:23:49Z",
-     "event": "schedule"
-    },
-    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43308680957",
-     "date": "2026-11-12T21:16:58Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43338576844",
+     "date": "2026-11-13T00:37:58Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43308438566",
-     "date": "2026-11-12T21:16:02Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43338445193",
+     "date": "2026-11-13T00:37:33Z",
      "event": "schedule"
     },
     {
-     "name": "Atlas",
+     "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43293161078",
-     "date": "2026-11-12T19:44:30Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43338135866",
+     "date": "2026-11-13T00:34:40Z",
      "event": "schedule"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43330689702",
+     "date": "2026-11-12T23:39:44Z",
+     "event": "push"
+    },
+    {
+     "name": "CodeQL",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43330689524",
+     "date": "2026-11-12T23:43:44Z",
+     "event": "push"
+    },
+    {
+     "name": "db-migrate",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43328253882",
+     "date": "2026-11-12T23:22:24Z",
+     "event": "workflow_dispatch"
     }
    ],
-   "version": "20261112t",
+   "version": "20261112w",
    "lastCommit": {
-    "date": "2026-11-12T15:39:01Z"
+    "date": "2026-11-12T23:39:24Z"
    }
   },
   {
@@ -4142,8 +4158,8 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/43107422440",
-     "date": "2026-11-11T21:56:37Z",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/43315182259",
+     "date": "2026-11-12T21:56:56Z",
      "event": "schedule"
     },
     {
@@ -4927,8 +4943,8 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/43106562347",
-     "date": "2026-11-11T21:50:43Z",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/43314038242",
+     "date": "2026-11-12T21:49:52Z",
      "event": "schedule"
     },
     {
@@ -5486,8 +5502,8 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/43103775221",
-     "date": "2026-11-11T21:31:47Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/43311026469",
+     "date": "2026-11-12T21:31:34Z",
      "event": "schedule"
     },
     {
@@ -7450,7 +7466,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "115 newer commits upstream since ed3ed3b, none to watched files."
+    "note": "118 newer commits upstream since ed3ed3b, none to watched files."
    }
   },
   {
@@ -7532,8 +7548,20 @@
      "commit": "28325c4bc9fbe0bdd23e959f6e388952cf46df52",
      "commitDate": "2026-10-25T19:51:36Z"
     },
-    "behind": 10,
+    "behind": 12,
     "commits": [
+     {
+      "sha": "fd08d16",
+      "date": "2026-11-12T23:39:24Z",
+      "msg": "Base stations: sort \"Whose it is\" and its opened rows by any heading",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/fd08d16412b323611629df322d59f49344a6df76"
+     },
+     {
+      "sha": "acf8529",
+      "date": "2026-11-12T23:18:57Z",
+      "msg": "Base stations: open a \"Whose it is\" row into its stations, a bar a day each",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/acf85291f9d82129cdfba9e5383eff42fe359cc4"
+     },
      {
       "sha": "4262157",
       "date": "2026-11-10T23:51:08Z",
@@ -7599,7 +7627,7 @@
      "docs/base-stations.md",
      "base-stations.js"
     ],
-    "note": "10 upstream changes to watched files since it was last reviewed (2026-10-25)."
+    "note": "12 upstream changes to watched files since it was last reviewed (2026-10-25)."
    }
   },
   {
@@ -8587,7 +8615,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "197 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "200 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8618,7 +8646,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "197 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "200 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8647,7 +8675,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "154 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "157 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
