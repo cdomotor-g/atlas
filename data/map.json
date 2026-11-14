@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-14T00:41:56.864Z",
- "hash": "465e40a72a696e78",
+ "generated": "2026-11-14T03:28:12.498Z",
+ "hash": "06ed8448e8f0552b",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -2198,27 +2198,27 @@
    "release": null,
    "ci": [
     {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43551529051",
+     "date": "2026-11-14T03:25:16Z",
+     "event": "schedule"
+    },
+    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43535211112",
-     "date": "2026-11-14T00:35:35Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43550924330",
+     "date": "2026-11-14T03:18:21Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43535150531",
-     "date": "2026-11-14T00:35:53Z",
-     "event": "schedule"
-    },
-    {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43534936278",
-     "date": "2026-11-14T00:33:10Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43550827926",
+     "date": "2026-11-14T03:18:11Z",
      "event": "schedule"
     }
    ],
@@ -5513,19 +5513,19 @@
      "event": "schedule"
     },
     {
-     "name": "pages",
-     "status": "completed",
-     "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/43508678697",
-     "date": "2026-11-13T21:13:21Z",
-     "event": "push"
-    },
-    {
      "name": "test",
      "status": "completed",
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/43508678760",
      "date": "2026-11-13T21:13:23Z",
+     "event": "push"
+    },
+    {
+     "name": "pages",
+     "status": "completed",
+     "conclusion": "failure",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/43508678697",
+     "date": "2026-11-13T21:13:21Z",
      "event": "push"
     },
     {
