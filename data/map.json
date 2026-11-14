@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-14T09:26:39.962Z",
- "hash": "f629c29fc882f460",
+ "generated": "2026-11-14T12:28:56.028Z",
+ "hash": "ec064aab3ffb7fe9",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -2201,24 +2201,24 @@
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43580361111",
-     "date": "2026-11-14T09:23:59Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43594845419",
+     "date": "2026-11-14T12:26:44Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43579814191",
-     "date": "2026-11-14T09:17:10Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43594261190",
+     "date": "2026-11-14T12:19:48Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43579722516",
-     "date": "2026-11-14T09:16:39Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43594227439",
+     "date": "2026-11-14T12:20:16Z",
      "event": "schedule"
     }
    ],
@@ -5403,12 +5403,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-13T21:12:57Z",
+    "pushed": "2026-11-14T10:13:56Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/open-ALERT"
    },
    "commits": [
+    {
+     "sha": "611b0d5",
+     "date": "2026-11-14T10:13:54Z",
+     "msg": "Save unfinished firmware image, build file and RPi ALERT 0.24 work as patches (paused)",
+     "url": "https://github.com/cdomotor-g/open-ALERT/commit/611b0d54f16fd76117eb54ee3c599bff7bde1dcf"
+    },
     {
      "sha": "27d7a68",
      "date": "2026-11-13T21:12:54Z",
@@ -5474,12 +5480,6 @@
      "date": "2026-11-07T23:52:16Z",
      "msg": "Catalogue: RPi ALERT 0.21.0",
      "url": "https://github.com/cdomotor-g/open-ALERT/commit/ef77c28dc21cfd19776c4139c670b8e73fc483ae"
-    },
-    {
-     "sha": "e435511",
-     "date": "2026-11-07T23:11:48Z",
-     "msg": "Catalogue: RPi ALERT 0.20.0; the builder's window rules re-checked",
-     "url": "https://github.com/cdomotor-g/open-ALERT/commit/e4355119b65bdd73710af73f1a39edb3801f02ff"
     }
    ],
    "issues": [
@@ -5505,6 +5505,22 @@
    "release": null,
    "ci": [
     {
+     "name": "test",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/43584289392",
+     "date": "2026-11-14T10:14:13Z",
+     "event": "push"
+    },
+    {
+     "name": "pages build and deployment",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/43584288833",
+     "date": "2026-11-14T10:14:22Z",
+     "event": "dynamic"
+    },
+    {
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
@@ -5513,33 +5529,17 @@
      "event": "schedule"
     },
     {
-     "name": "test",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/43508678760",
-     "date": "2026-11-13T21:13:23Z",
-     "event": "push"
-    },
-    {
      "name": "pages",
      "status": "completed",
      "conclusion": "failure",
      "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/43508678697",
      "date": "2026-11-13T21:13:21Z",
      "event": "push"
-    },
-    {
-     "name": "pages build and deployment",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/43508676795",
-     "date": "2026-11-13T21:13:34Z",
-     "event": "dynamic"
     }
    ],
    "version": "0.1.0",
    "lastCommit": {
-    "date": "2026-11-13T21:12:54Z"
+    "date": "2026-11-14T10:13:54Z"
    }
   },
   {
