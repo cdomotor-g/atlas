@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-15T18:27:20.488Z",
- "hash": "f93e566660872e46",
+ "generated": "2026-11-15T21:26:23.384Z",
+ "hash": "42abc66323c63f8c",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1080,12 +1080,48 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-13T15:35:06Z",
+    "pushed": "2026-11-15T20:21:48Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "6df53a6",
+     "date": "2026-11-15T20:21:45Z",
+     "msg": "Refresh ACMA RRL data (weekly, extract 2026-11-15)",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/6df53a61679c97dbeae18541d8b1cf3799271efa"
+    },
+    {
+     "sha": "834ecb2",
+     "date": "2026-11-15T20:01:38Z",
+     "msg": "Version stamp 20261116a",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/834ecb256437206fda8123529613cc4ccba30980"
+    },
+    {
+     "sha": "d80155a",
+     "date": "2026-11-15T19:55:06Z",
+     "msg": "ALERT2 plan: hold a loaded scenario's figures to the card's ranges",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/d80155a503fce32a1bf41e946b9d36139e45f856"
+    },
+    {
+     "sha": "ee2d5c1",
+     "date": "2026-11-15T19:55:06Z",
+     "msg": "CSV downloads: start a cell that would read as a formula with an apostrophe",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/ee2d5c14f8555655dcd1778bfdee5bf7d6395b0a"
+    },
+    {
+     "sha": "74e480f",
+     "date": "2026-11-15T19:55:06Z",
+     "msg": "Pass ranges, ACMA, LPU: write JSON arguments in handlers with esc, not escAttr; syntax check refuses the old form and unescaped tooltip name",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/74e480ff098f4c5894d81c4df9e5b2e7874d8642"
+    },
+    {
+     "sha": "fda487b",
+     "date": "2026-11-15T19:55:06Z",
+     "msg": "Maps: escape station names in tooltips; Signal routes: handler arguments with esc",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/fda487b26dfd4688c81539f8ca02dc3edbd799cc"
+    },
     {
      "sha": "06a8b45",
      "date": "2026-11-13T15:35:03Z",
@@ -1121,42 +1157,6 @@
      "date": "2026-11-12T15:39:01Z",
      "msg": "CI doctor: Videos, Shell, four db checks — four causes; four fixes",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/7c7522c14f176414dec602680f78b98c98049255"
-    },
-    {
-     "sha": "000c811",
-     "date": "2026-11-12T11:18:44Z",
-     "msg": "0123 applied — the app expects schema 123; stamp 20261112s",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/000c81119c060edb5c849f7ce57447247180bc8b"
-    },
-    {
-     "sha": "6beff69",
-     "date": "2026-11-12T11:17:27Z",
-     "msg": "0123: two calls Postgres refuses with a schema name in front",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/6beff69519b6addf59b7d0bf8bc0f3f5c0dc3f97"
-    },
-    {
-     "sha": "8b79465",
-     "date": "2026-11-12T11:15:34Z",
-     "msg": "📻 Telemetry: what the base stations hear, charted; 0123; stamp 20261112r",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/8b79465d83bdc3d384db4acbedd8255d48397904"
-    },
-    {
-     "sha": "92f50bb",
-     "date": "2026-11-12T09:26:35Z",
-     "msg": "0122 applied — the app expects schema 122; stamp 20261112q",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/92f50bb2dd8130be02e1b1b848e54ee3c8fa32ea"
-    },
-    {
-     "sha": "1ad8c65",
-     "date": "2026-11-12T09:25:23Z",
-     "msg": "0122: Mt Glorious Primary (9511) is Mt Glorious AL-P, Secondary (9601) is AL-B — the owner's call",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/1ad8c65342636ee64dd1decc865d24da83511181"
-    },
-    {
-     "sha": "7ebe49e",
-     "date": "2026-11-12T06:49:09Z",
-     "msg": "Digital twin: floods near by on the 3-D scale; the peaks table coloured and sortable",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/7ebe49e25631955b47164a5302b14209a8b4bbc5"
     }
    ],
    "issues": [
@@ -2201,46 +2201,70 @@
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43746602015",
-     "date": "2026-11-15T18:24:42Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43763464908",
+     "date": "2026-11-15T21:24:05Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43745914971",
-     "date": "2026-11-15T18:17:35Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43762802401",
+     "date": "2026-11-15T21:17:03Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43745878477",
-     "date": "2026-11-15T18:17:58Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43762634503",
+     "date": "2026-11-15T21:16:04Z",
      "event": "schedule"
     },
     {
-     "name": "Fade margin re-sweep",
+     "name": "Refresh ACMA RRL data",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43735489367",
-     "date": "2026-11-15T16:27:16Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43757357833",
+     "date": "2026-11-15T20:21:52Z",
      "event": "schedule"
     },
     {
-     "name": "Field photos into R2",
+     "name": "CodeQL",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43734783241",
-     "date": "2026-11-15T16:19:15Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43755706283",
+     "date": "2026-11-15T20:07:00Z",
+     "event": "push"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "completed",
+     "conclusion": "failure",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43755706338",
+     "date": "2026-11-15T21:22:44Z",
+     "event": "push"
+    },
+    {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43754024663",
+     "date": "2026-11-15T19:44:09Z",
+     "event": "schedule"
+    },
+    {
+     "name": "Snapshot stations.json from the database",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43750409702",
+     "date": "2026-11-15T19:05:42Z",
      "event": "schedule"
     }
    ],
-   "version": "20261113a",
+   "version": "20261116a",
    "lastCommit": {
-    "date": "2026-11-13T15:35:03Z"
+    "date": "2026-11-15T20:21:45Z"
    }
   },
   {
@@ -2933,12 +2957,24 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-10T23:56:58Z",
+    "pushed": "2026-11-15T20:01:54Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/RPi_ALERT"
    },
    "commits": [
+    {
+     "sha": "babf94c",
+     "date": "2026-11-15T20:00:13Z",
+     "msg": "Installer: set config.json's owner and mode on the file itself, not through its path",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/babf94cbd5284f32d5b74da9ca6a1f037b3403ef"
+    },
+    {
+     "sha": "a53bc9d",
+     "date": "2026-11-15T20:00:13Z",
+     "msg": "Updater: take the latest release only when its tag is a version number",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/a53bc9df2f6573d527e48436dd5ae71ff6dfd6a5"
+    },
     {
      "sha": "37fee8b",
      "date": "2026-11-10T23:46:54Z",
@@ -2998,18 +3034,6 @@
      "date": "2026-11-08T03:54:29Z",
      "msg": "0.22.1: a wider window hears weak bursts better — say so",
      "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/4934b15cd2181109e3625a814b38f82f553b6df8"
-    },
-    {
-     "sha": "461ec46",
-     "date": "2026-11-08T03:14:39Z",
-     "msg": "0.22.0: a 288 kHz window; the Overview's plots at the top",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/461ec46787a912a643db7099d6f70f982e2411ae"
-    },
-    {
-     "sha": "6ee26c0",
-     "date": "2026-11-07T23:51:53Z",
-     "msg": "0.21.0: the web page — settings folded into the Overview, a tab for each log",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/6ee26c0669996ef1c6953863cba487d2151fb299"
     }
    ],
    "issues": [
@@ -3063,9 +3087,17 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/43638863913",
-     "date": "2026-11-14T20:42:17Z",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/43759484156",
+     "date": "2026-11-15T20:41:51Z",
      "event": "schedule"
+    },
+    {
+     "name": "test",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/43755712816",
+     "date": "2026-11-15T20:04:18Z",
+     "event": "push"
     },
     {
      "name": "pages",
@@ -3074,14 +3106,6 @@
      "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/42927480567",
      "date": "2026-11-10T23:57:25Z",
      "event": "workflow_run"
-    },
-    {
-     "name": "test",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/42926157692",
-     "date": "2026-11-10T23:49:11Z",
-     "event": "push"
     },
     {
      "name": "build-image",
@@ -3094,7 +3118,7 @@
    ],
    "version": "0.23.1",
    "lastCommit": {
-    "date": "2026-11-10T23:46:54Z"
+    "date": "2026-11-15T20:00:13Z"
    }
   },
   {
@@ -4557,8 +4581,8 @@
      "name": "build",
      "status": "completed",
      "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/quansheng_alert/actions/runs/42517950969",
-     "date": "2026-11-08T20:02:41Z",
+     "url": "https://github.com/cdomotor-g/quansheng_alert/actions/runs/43755675402",
+     "date": "2026-11-15T20:02:35Z",
      "event": "schedule"
     },
     {
@@ -6001,8 +6025,8 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/43641868316",
-     "date": "2026-11-14T21:16:07Z",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/43762640096",
+     "date": "2026-11-15T21:15:34Z",
      "event": "schedule"
     },
     {
@@ -7177,7 +7201,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "5 newer commits upstream since it was last reviewed (2026-11-08), none to watched files."
+    "note": "7 newer commits upstream since it was last reviewed (2026-11-08), none to watched files."
    }
   },
   {
@@ -7488,7 +7512,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "120 newer commits upstream since ed3ed3b, none to watched files."
+    "note": "126 newer commits upstream since ed3ed3b, none to watched files."
    }
   },
   {
@@ -8457,8 +8481,14 @@
      "commit": "7309891c638d1050f0163f19dc8284ef7f54a7ca",
      "commitDate": "2026-10-17T09:50:24Z"
     },
-    "behind": 1,
+    "behind": 2,
     "commits": [
+     {
+      "sha": "d80155a",
+      "date": "2026-11-15T19:55:06Z",
+      "msg": "ALERT2 plan: hold a loaded scenario's figures to the card's ranges",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/d80155a503fce32a1bf41e946b9d36139e45f856"
+     },
      {
       "sha": "ed3ed3b",
       "date": "2026-11-08T03:06:56Z",
@@ -8467,9 +8497,10 @@
      }
     ],
     "files": [
+     "alert2-plan.js",
      "alert-dsp.js"
     ],
-    "note": "1 upstream change to watched files since it was last reviewed (2026-10-17)."
+    "note": "2 upstream changes to watched files since it was last reviewed (2026-10-17)."
    }
   },
   {
@@ -8496,16 +8527,25 @@
    "entry": "rpi-alert-decoding-model",
    "to": "open-alert",
    "drift": {
-    "state": "current",
+    "state": "behind",
     "since": {
      "date": "2026-11-11",
      "commit": "37fee8bc3a15a4b6b624bd4ae6ae299610300aae",
      "commitDate": "2026-11-10T23:46:54Z"
     },
-    "behind": 0,
-    "commits": [],
-    "files": [],
-    "note": "Up to date with upstream."
+    "behind": 1,
+    "commits": [
+     {
+      "sha": "babf94c",
+      "date": "2026-11-15T20:00:13Z",
+      "msg": "Installer: set config.json's owner and mode on the file itself, not through its path",
+      "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/babf94cbd5284f32d5b74da9ca6a1f037b3403ef"
+     }
+    ],
+    "files": [
+     "os/install.sh"
+    ],
+    "note": "1 upstream change to watched files since it was last reviewed (2026-11-11)."
    }
   },
   {
@@ -8621,7 +8661,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "202 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "208 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8652,7 +8692,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "202 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "208 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8681,7 +8721,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "159 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "165 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
