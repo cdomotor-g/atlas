@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-16T09:40:00.560Z",
- "hash": "82a7cff0caad8f20",
+ "generated": "2026-11-16T12:40:22.724Z",
+ "hash": "6008caf61acde279",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -2198,27 +2198,27 @@
    "release": null,
    "ci": [
     {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43841507439",
-     "date": "2026-11-16T09:38:19Z",
-     "event": "schedule"
-    },
-    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43839740038",
-     "date": "2026-11-16T09:26:31Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43867394890",
+     "date": "2026-11-16T12:31:56Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43839461189",
-     "date": "2026-11-16T09:25:22Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43867093503",
+     "date": "2026-11-16T12:30:55Z",
+     "event": "schedule"
+    },
+    {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43866629299",
+     "date": "2026-11-16T12:26:49Z",
      "event": "schedule"
     }
    ],
