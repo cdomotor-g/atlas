@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-16T06:52:06.578Z",
- "hash": "227fce5f20f21d3b",
+ "generated": "2026-11-16T09:40:00.560Z",
+ "hash": "82a7cff0caad8f20",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -2198,27 +2198,27 @@
    "release": null,
    "ci": [
     {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43841507439",
+     "date": "2026-11-16T09:38:19Z",
+     "event": "schedule"
+    },
+    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43818195470",
-     "date": "2026-11-16T06:39:03Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43839740038",
+     "date": "2026-11-16T09:26:31Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43818141693",
-     "date": "2026-11-16T06:39:22Z",
-     "event": "schedule"
-    },
-    {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43817909354",
-     "date": "2026-11-16T06:36:35Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/43839461189",
+     "date": "2026-11-16T09:25:22Z",
      "event": "schedule"
     }
    ],
@@ -5898,12 +5898,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-10T08:53:56Z",
+    "pushed": "2026-11-16T07:57:39Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/SoRT"
    },
    "commits": [
+    {
+     "sha": "dc3230b",
+     "date": "2026-11-16T07:57:37Z",
+     "msg": "v2: spelling fixes stick, grey map squares mend themselves, property boundaries on the map",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/dc3230bdba39d5bcad02ab002594388a5bfaa12f"
+    },
     {
      "sha": "843c6f9",
      "date": "2026-11-10T08:53:53Z",
@@ -5969,12 +5975,6 @@
      "date": "2026-11-09T07:09:57Z",
      "msg": "Don't save a session until it has a station or something filled in",
      "url": "https://github.com/cdomotor-g/SoRT/commit/ca761d5ddc2a2c04f833cb4a1877240f8f343568"
-    },
-    {
-     "sha": "ea95643",
-     "date": "2026-11-09T06:50:57Z",
-     "msg": "Add a Clear all button to the forum attendees box",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/ea95643479486b8e60780f5d6a24ff0d0843dbff"
     }
    ],
    "issues": [],
@@ -5982,25 +5982,25 @@
    "release": null,
    "ci": [
     {
+     "name": "pages build and deployment",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/43827497800",
+     "date": "2026-11-16T07:58:17Z",
+     "event": "dynamic"
+    },
+    {
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/SoRT/actions/runs/43762640096",
      "date": "2026-11-15T21:15:34Z",
      "event": "schedule"
-    },
-    {
-     "name": "pages build and deployment",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/42786235859",
-     "date": "2026-11-10T08:54:35Z",
-     "event": "dynamic"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-11-10T08:53:53Z"
+    "date": "2026-11-16T07:57:37Z"
    }
   },
   {
@@ -7380,7 +7380,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "19 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "20 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
