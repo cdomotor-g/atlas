@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-17T18:29:59.033Z",
- "hash": "bd73537a235a5edc",
+ "generated": "2026-11-17T21:27:31.761Z",
+ "hash": "da867b01a501a554",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1080,12 +1080,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-17T15:20:09Z",
+    "pushed": "2026-11-17T18:49:15Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "415c491",
+     "date": "2026-11-17T18:49:14Z",
+     "msg": "Council cameras: the weekly refresh — 602 cameras from 49 councils",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/415c4916f0a95ffde62c8150411690ed63745db4"
+    },
     {
      "sha": "fcd661a",
      "date": "2026-11-17T15:20:05Z",
@@ -1151,12 +1157,6 @@
      "date": "2026-11-15T20:21:45Z",
      "msg": "Refresh ACMA RRL data (weekly, extract 2026-11-15)",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/6df53a61679c97dbeae18541d8b1cf3799271efa"
-    },
-    {
-     "sha": "834ecb2",
-     "date": "2026-11-15T20:01:38Z",
-     "msg": "Version stamp 20261116a",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/834ecb256437206fda8123529613cc4ccba30980"
     }
    ],
    "issues": [
@@ -2252,54 +2252,46 @@
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44147939679",
-     "date": "2026-11-17T18:27:04Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44179409728",
+     "date": "2026-11-17T21:24:09Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44146743390",
-     "date": "2026-11-17T18:20:27Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44178112332",
+     "date": "2026-11-17T21:16:49Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44146555635",
-     "date": "2026-11-17T18:20:06Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44177853892",
+     "date": "2026-11-17T21:16:17Z",
      "event": "schedule"
     },
     {
-     "name": "Fade margin re-sweep",
+     "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44126106768",
-     "date": "2026-11-17T16:29:33Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44161596619",
+     "date": "2026-11-17T19:43:38Z",
      "event": "schedule"
     },
     {
-     "name": "Field photos into R2",
+     "name": "Refresh council cameras",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44124813067",
-     "date": "2026-11-17T16:21:41Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44151606722",
+     "date": "2026-11-17T18:49:19Z",
      "event": "schedule"
-    },
-    {
-     "name": "CodeQL",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44113136460",
-     "date": "2026-11-17T15:24:32Z",
-     "event": "push"
     }
    ],
    "version": "20261117e",
    "lastCommit": {
-    "date": "2026-11-17T15:20:05Z"
+    "date": "2026-11-17T18:49:14Z"
    }
   },
   {
@@ -3122,8 +3114,8 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/43952442869",
-     "date": "2026-11-16T20:42:18Z",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/44171978059",
+     "date": "2026-11-17T20:42:04Z",
      "event": "schedule"
     },
     {
@@ -6057,20 +6049,20 @@
    "release": null,
    "ci": [
     {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/44177877404",
+     "date": "2026-11-17T21:15:58Z",
+     "event": "schedule"
+    },
+    {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/SoRT/actions/runs/44010113736",
      "date": "2026-11-17T03:26:16Z",
      "event": "dynamic"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/43958192072",
-     "date": "2026-11-16T21:15:43Z",
-     "event": "schedule"
     }
    ],
    "version": null,
@@ -7547,7 +7539,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "136 newer commits upstream since ed3ed3b, none to watched files."
+    "note": "137 newer commits upstream since ed3ed3b, none to watched files."
    }
   },
   {
@@ -8690,7 +8682,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "218 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "219 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8721,7 +8713,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "218 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "219 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8750,7 +8742,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "175 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "176 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
