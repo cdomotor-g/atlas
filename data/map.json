@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-17T12:32:16.642Z",
- "hash": "55707a675dd38a77",
+ "generated": "2026-11-17T15:27:11.344Z",
+ "hash": "0d13486af4dbad97",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1080,12 +1080,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-17T05:44:33Z",
+    "pushed": "2026-11-17T15:20:09Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "fcd661a",
+     "date": "2026-11-17T15:20:05Z",
+     "msg": "CI doctor: Map links — the ACMA-only search word 'licence' is now also in the map layers' credit lines; search 'transmitters'",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/fcd661a207c661351efdb142365d04b7dbb42434"
+    },
     {
      "sha": "13f60c3",
      "date": "2026-11-17T05:44:31Z",
@@ -1151,12 +1157,6 @@
      "date": "2026-11-15T20:01:38Z",
      "msg": "Version stamp 20261116a",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/834ecb256437206fda8123529613cc4ccba30980"
-    },
-    {
-     "sha": "d80155a",
-     "date": "2026-11-15T19:55:06Z",
-     "msg": "ALERT2 plan: hold a loaded scenario's figures to the card's ranges",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/d80155a503fce32a1bf41e946b9d36139e45f856"
     }
    ],
    "issues": [
@@ -1222,9 +1222,9 @@
      "computer": false,
      "title": "CI doctor: 3-D view — \"opens from a page opened as a file\" red in CI, green locally",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/290",
-     "updated": "2026-11-16T15:31:04Z",
+     "updated": "2026-11-17T15:20:14Z",
      "created": "2026-11-13T15:34:57Z",
-     "comments": 3,
+     "comments": 4,
      "labels": [],
      "mentions": [],
      "triage": {
@@ -2249,33 +2249,57 @@
    "release": null,
    "ci": [
     {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44113937183",
+     "date": "2026-11-17T15:24:24Z",
+     "event": "schedule"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44113135521",
+     "date": "2026-11-17T15:20:22Z",
+     "event": "push"
+    },
+    {
+     "name": "CodeQL",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44113136460",
+     "date": "2026-11-17T15:24:32Z",
+     "event": "push"
+    },
+    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44082646198",
-     "date": "2026-11-17T12:23:23Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44112748860",
+     "date": "2026-11-17T15:18:20Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44082468573",
-     "date": "2026-11-17T12:23:07Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44112536442",
+     "date": "2026-11-17T15:17:56Z",
      "event": "schedule"
     },
     {
-     "name": "Field photos from Google Drive",
+     "name": "Data archive into R2",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44082137502",
-     "date": "2026-11-17T12:20:07Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44105247169",
+     "date": "2026-11-17T14:40:29Z",
      "event": "schedule"
     }
    ],
    "version": "20261117e",
    "lastCommit": {
-    "date": "2026-11-17T05:44:31Z"
+    "date": "2026-11-17T15:20:05Z"
    }
   },
   {
@@ -7515,15 +7539,12 @@
    "entry": "vendored-decoders",
    "to": "rpi-alert",
    "drift": {
-    "state": "current",
-    "since": {
-     "commit": "ed3ed3bf4d40c6c4dd4038ef069a04de5fee427c",
-     "commitDate": "2026-11-08T03:06:56Z"
-    },
+    "state": "unknown",
+    "since": null,
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "135 newer commits upstream since ed3ed3b, none to watched files."
+    "note": "GET /repos/cdomotor-g/MegaNet/compare/ed3ed3bf4d40c6c4dd4038ef069a04de5fee427c...main → 500 {\"message\":\"Server Error: Sorry, this diff is temporarily unavailabl"
    }
   },
   {
@@ -8666,7 +8687,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "217 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "218 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8697,7 +8718,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "217 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "218 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8726,7 +8747,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "174 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "175 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
