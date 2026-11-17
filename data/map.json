@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-17T03:29:01.891Z",
- "hash": "926cb5a264a0f4cd",
+ "generated": "2026-11-17T06:36:10.221Z",
+ "hash": "3f7b07776c1ed22e",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1080,12 +1080,30 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-17T03:24:34Z",
+    "pushed": "2026-11-17T05:44:33Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "13f60c3",
+     "date": "2026-11-17T05:44:31Z",
+     "msg": "More map layers: water, sewer and drainage pipes (#294)",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/13f60c3d45ac4fddb44d734e75cd100f86aded8f"
+    },
+    {
+     "sha": "1e56e74",
+     "date": "2026-11-17T05:16:05Z",
+     "msg": "More map layers in 3-D and in Views (#296)",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/1e56e745a6826405cb11c9f3bf8ea0cfcd963fd7"
+    },
+    {
+     "sha": "269bc59",
+     "date": "2026-11-17T04:09:58Z",
+     "msg": "More map layers: storm tide gauges and exact weed sightings (#293)",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/269bc59b41d423a2970a5cb21378347e33edd245"
+    },
     {
      "sha": "da54f07",
      "date": "2026-11-17T03:24:32Z",
@@ -1139,40 +1157,22 @@
      "date": "2026-11-15T19:55:06Z",
      "msg": "ALERT2 plan: hold a loaded scenario's figures to the card's ranges",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/d80155a503fce32a1bf41e946b9d36139e45f856"
-    },
-    {
-     "sha": "ee2d5c1",
-     "date": "2026-11-15T19:55:06Z",
-     "msg": "CSV downloads: start a cell that would read as a formula with an apostrophe",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/ee2d5c14f8555655dcd1778bfdee5bf7d6395b0a"
-    },
-    {
-     "sha": "74e480f",
-     "date": "2026-11-15T19:55:06Z",
-     "msg": "Pass ranges, ACMA, LPU: write JSON arguments in handlers with esc, not escAttr; syntax check refuses the old form and unescaped tooltip name",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/74e480ff098f4c5894d81c4df9e5b2e7874d8642"
-    },
-    {
-     "sha": "fda487b",
-     "date": "2026-11-15T19:55:06Z",
-     "msg": "Maps: escape station names in tooltips; Signal routes: handler arguments with esc",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/fda487b26dfd4688c81539f8ca02dc3edbd799cc"
     }
    ],
    "issues": [
     {
-     "n": 296,
-     "raw": "[Sub-issue of #291] [Sonnet5/Med] More map layers in the 3-D view and in Views",
+     "n": 297,
+     "raw": "[Sub-issue of #291] [Sonnet5/Med] A shared view link carries the More map layers that are on",
      "structure": "sub",
      "parent": 291,
      "model": "Sonnet5",
      "effort": "Med",
      "human": false,
      "computer": false,
-     "title": "More map layers in the 3-D view and in Views",
-     "url": "https://github.com/cdomotor-g/MegaNet/issues/296",
-     "updated": "2026-11-17T03:11:29Z",
-     "created": "2026-11-17T03:11:29Z",
+     "title": "A shared view link carries the More map layers that are on",
+     "url": "https://github.com/cdomotor-g/MegaNet/issues/297",
+     "updated": "2026-11-17T05:21:44Z",
+     "created": "2026-11-17T05:21:44Z",
      "comments": 0,
      "labels": [],
      "mentions": []
@@ -1190,40 +1190,6 @@
      "url": "https://github.com/cdomotor-g/MegaNet/issues/295",
      "updated": "2026-11-17T03:11:25Z",
      "created": "2026-11-17T03:11:25Z",
-     "comments": 0,
-     "labels": [],
-     "mentions": []
-    },
-    {
-     "n": 294,
-     "raw": "[Sub-issue of #291] [Sonnet5/Med] Council and water-utility pipe layers",
-     "structure": "sub",
-     "parent": 291,
-     "model": "Sonnet5",
-     "effort": "Med",
-     "human": false,
-     "computer": false,
-     "title": "Council and water-utility pipe layers",
-     "url": "https://github.com/cdomotor-g/MegaNet/issues/294",
-     "updated": "2026-11-17T03:11:21Z",
-     "created": "2026-11-17T03:11:21Z",
-     "comments": 0,
-     "labels": [],
-     "mentions": []
-    },
-    {
-     "n": 293,
-     "raw": "[Sub-issue of #291] [Sonnet5/High] Point data: exact weed sightings, NSW weeds, storm tide gauges",
-     "structure": "sub",
-     "parent": 291,
-     "model": "Sonnet5",
-     "effort": "High",
-     "human": false,
-     "computer": false,
-     "title": "Point data: exact weed sightings, NSW weeds, storm tide gauges",
-     "url": "https://github.com/cdomotor-g/MegaNet/issues/293",
-     "updated": "2026-11-17T03:11:16Z",
-     "created": "2026-11-17T03:11:16Z",
      "comments": 0,
      "labels": [],
      "mentions": []
@@ -2268,7 +2234,7 @@
      "computer": false,
      "title": "Roadmap — resource allocation & sequencing for all issues",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/113",
-     "updated": "2026-11-17T03:23:46Z",
+     "updated": "2026-11-17T05:44:49Z",
      "created": "2026-08-13T00:13:50Z",
      "comments": 1,
      "labels": [],
@@ -2276,72 +2242,64 @@
       "meganet",
       "rpi_alert"
      ],
-     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1168k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
+     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1173k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
     }
    ],
-   "issueCount": 61,
+   "issueCount": 59,
    "release": null,
    "ci": [
-    {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44010263786",
-     "date": "2026-11-17T03:26:54Z",
-     "event": "schedule"
-    },
-    {
-     "name": "Web smoke test",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44009999212",
-     "date": "2026-11-17T03:24:57Z",
-     "event": "push"
-    },
-    {
-     "name": "CodeQL",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44009999325",
-     "date": "2026-11-17T03:24:53Z",
-     "event": "push"
-    },
-    {
-     "name": "Roadmap sync",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44009873579",
-     "date": "2026-11-17T03:23:50Z",
-     "event": "push"
-    },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44009354872",
-     "date": "2026-11-17T03:19:21Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44031225384",
+     "date": "2026-11-17T06:26:37Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44009313315",
-     "date": "2026-11-17T03:19:47Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44031082216",
+     "date": "2026-11-17T06:26:10Z",
      "event": "schedule"
     },
     {
-     "name": "db-migrate",
+     "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44008321984",
-     "date": "2026-11-17T03:11:08Z",
-     "event": "workflow_dispatch"
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44030779222",
+     "date": "2026-11-17T06:22:59Z",
+     "event": "schedule"
+    },
+    {
+     "name": "CodeQL",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44026215113",
+     "date": "2026-11-17T05:48:50Z",
+     "event": "push"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44026215107",
+     "date": "2026-11-17T05:44:42Z",
+     "event": "push"
+    },
+    {
+     "name": "Roadmap sync",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44026215167",
+     "date": "2026-11-17T05:44:53Z",
+     "event": "push"
     }
    ],
-   "version": "20261117b",
+   "version": "20261117e",
    "lastCommit": {
-    "date": "2026-11-17T03:24:32Z"
+    "date": "2026-11-17T05:44:31Z"
    }
   },
   {
@@ -7589,7 +7547,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "132 newer commits upstream since ed3ed3b, none to watched files."
+    "note": "135 newer commits upstream since ed3ed3b, none to watched files."
    }
   },
   {
@@ -8732,7 +8690,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "214 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "217 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8763,7 +8721,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "214 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "217 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8792,7 +8750,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "171 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "174 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
