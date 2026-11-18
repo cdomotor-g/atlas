@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-17T21:27:31.761Z",
- "hash": "da867b01a501a554",
+ "generated": "2026-11-18T00:46:02.044Z",
+ "hash": "b30b21f40f0afb49",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -2249,43 +2249,27 @@
    "release": null,
    "ci": [
     {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44179409728",
-     "date": "2026-11-17T21:24:09Z",
-     "event": "schedule"
-    },
-    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44178112332",
-     "date": "2026-11-17T21:16:49Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44209464001",
+     "date": "2026-11-18T00:38:29Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44177853892",
-     "date": "2026-11-17T21:16:17Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44209307314",
+     "date": "2026-11-18T00:38:01Z",
      "event": "schedule"
     },
     {
-     "name": "Atlas",
+     "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44161596619",
-     "date": "2026-11-17T19:43:38Z",
-     "event": "schedule"
-    },
-    {
-     "name": "Refresh council cameras",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44151606722",
-     "date": "2026-11-17T18:49:19Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44208984553",
+     "date": "2026-11-18T00:35:02Z",
      "event": "schedule"
     }
    ],
@@ -4222,8 +4206,8 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/43965086381",
-     "date": "2026-11-16T21:56:41Z",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/44184940472",
+     "date": "2026-11-17T21:56:22Z",
      "event": "schedule"
     },
     {
@@ -5007,8 +4991,8 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/43963986353",
-     "date": "2026-11-16T21:49:59Z",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/44183828559",
+     "date": "2026-11-17T21:49:52Z",
      "event": "schedule"
     },
     {
@@ -5575,8 +5559,8 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/43960975221",
-     "date": "2026-11-16T21:32:10Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/44180655066",
+     "date": "2026-11-17T21:31:46Z",
      "event": "schedule"
     },
     {
