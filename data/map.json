@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-19T00:45:37.785Z",
- "hash": "2527815d739e73ef",
+ "generated": "2026-11-19T03:30:02.319Z",
+ "hash": "8e054023b120cacb",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -2232,52 +2232,28 @@
    "release": null,
    "ci": [
     {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44451523187",
+     "date": "2026-11-19T03:27:19Z",
+     "event": "schedule"
+    },
+    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44430610381",
-     "date": "2026-11-19T00:38:29Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44450601478",
+     "date": "2026-11-19T03:19:26Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44430428683",
-     "date": "2026-11-19T00:37:40Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44450584489",
+     "date": "2026-11-19T03:20:08Z",
      "event": "schedule"
-    },
-    {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44430142293",
-     "date": "2026-11-19T00:35:04Z",
-     "event": "schedule"
-    },
-    {
-     "name": "CodeQL",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44404476087",
-     "date": "2026-11-18T21:48:23Z",
-     "event": "push"
-    },
-    {
-     "name": "Roadmap sync",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44404476002",
-     "date": "2026-11-18T21:44:17Z",
-     "event": "push"
-    },
-    {
-     "name": "Web smoke test",
-     "status": "completed",
-     "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44404475966",
-     "date": "2026-11-18T22:57:39Z",
-     "event": "push"
     }
    ],
    "version": "20261118a",
@@ -5436,7 +5412,7 @@
        "os/install.sh"
       ],
       "since": {
-       "date": "2026-11-11"
+       "date": "2026-11-19"
       },
       "on_change": "Re-check model.windows (each window's Pi 4 figure), loadFactor, the decoders' burstS and a2S, a2DecodeS and kioskCore in site/data/builder.js, the channel rule in site/js/engine.js (SDR_CH_CORE) and the steps() text in site/js/builder.js; run npm test."
      }
@@ -5461,12 +5437,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-19T00:00:58Z",
+    "pushed": "2026-11-19T02:55:38Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/open-ALERT"
    },
    "commits": [
+    {
+     "sha": "cb8041d",
+     "date": "2026-11-19T02:55:31Z",
+     "msg": "Firmware: move to RPi ALERT 0.24.0 and use its managed-network settings",
+     "url": "https://github.com/cdomotor-g/open-ALERT/commit/cb8041d317663a07fb599aa7f71e83deddba936a"
+    },
     {
      "sha": "10858be",
      "date": "2026-11-19T00:00:56Z",
@@ -5532,12 +5514,6 @@
      "date": "2026-11-08T03:14:52Z",
      "msg": "Catalogue: RPi ALERT 0.22.0",
      "url": "https://github.com/cdomotor-g/open-ALERT/commit/ddb87a689f0a986336156f95cae9d18773b2be43"
-    },
-    {
-     "sha": "33303c7",
-     "date": "2026-11-08T00:03:20Z",
-     "msg": "The site installs as an app, and old addresses work again",
-     "url": "https://github.com/cdomotor-g/open-ALERT/commit/33303c7fa67295983cd07370939a441c9edac56a"
     }
    ],
    "issues": [
@@ -5563,49 +5539,49 @@
    "release": null,
    "ci": [
     {
+     "name": "firmware",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/44451491968",
+     "date": "2026-11-19T03:27:03Z",
+     "event": "workflow_dispatch"
+    },
+    {
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/44425538948",
-     "date": "2026-11-19T00:01:22Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/44447803267",
+     "date": "2026-11-19T02:56:10Z",
      "event": "push"
     },
     {
      "name": "test",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/44425538524",
-     "date": "2026-11-19T00:01:21Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/44447802679",
+     "date": "2026-11-19T02:56:06Z",
      "event": "push"
     },
     {
-     "name": "firmware",
+     "name": "pages",
      "status": "completed",
-     "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/44425538358",
-     "date": "2026-11-19T00:22:38Z",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/44447802775",
+     "date": "2026-11-19T02:56:04Z",
      "event": "push"
     },
     {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/44425537091",
-     "date": "2026-11-19T00:01:27Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/44447801502",
+     "date": "2026-11-19T02:56:13Z",
      "event": "dynamic"
-    },
-    {
-     "name": "pages",
-     "status": "completed",
-     "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/43508678697",
-     "date": "2026-11-13T21:13:21Z",
-     "event": "push"
     }
    ],
    "version": "0.1.0",
    "lastCommit": {
-    "date": "2026-11-19T00:00:56Z"
+    "date": "2026-11-19T02:55:31Z"
    }
   },
   {
@@ -8302,16 +8278,16 @@
    "entry": "rpi-alert-entry",
    "to": "open-alert",
    "drift": {
-    "state": "behind",
+    "state": "current",
     "since": {
-     "version": "0.23.1",
+     "version": "0.24.0",
      "latest": "0.24.0",
      "url": "https://github.com/cdomotor-g/RPi_ALERT/releases/tag/v0.24.0"
     },
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "Says 0.23.1; the latest release is 0.24.0."
+    "note": "Says 0.24.0, the latest release."
    }
   },
   {
@@ -8541,47 +8517,22 @@
     "os/install.sh"
    ],
    "since": {
-    "date": "2026-11-11"
+    "date": "2026-11-19"
    },
    "on_change": "Re-check model.windows (each window's Pi 4 figure), loadFactor, the decoders' burstS and a2S, a2DecodeS and kioskCore in site/data/builder.js, the channel rule in site/js/engine.js (SDR_CH_CORE) and the steps() text in site/js/builder.js; run npm test.",
    "entry": "rpi-alert-decoding-model",
    "to": "open-alert",
    "drift": {
-    "state": "behind",
+    "state": "current",
     "since": {
-     "date": "2026-11-11",
-     "commit": "37fee8bc3a15a4b6b624bd4ae6ae299610300aae",
-     "commitDate": "2026-11-10T23:46:54Z"
+     "date": "2026-11-19",
+     "commit": "9596371bc92e6cb1ee6f9881cce8c08d28dcd3af",
+     "commitDate": "2026-11-18T23:58:50Z"
     },
-    "behind": 3,
-    "commits": [
-     {
-      "sha": "9596371",
-      "date": "2026-11-18T23:58:50Z",
-      "msg": "Docs: what a broken config.json leaves behind, and how slow guessing still gets through",
-      "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/9596371bc92e6cb1ee6f9881cce8c08d28dcd3af"
-     },
-     {
-      "sha": "df995b7",
-      "date": "2026-11-18T10:05:28Z",
-      "msg": "0.24.0: settings for a base station on an organisation's network",
-      "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/df995b73388824f2e333d88e6d9905962c12ceb6"
-     },
-     {
-      "sha": "babf94c",
-      "date": "2026-11-15T20:00:13Z",
-      "msg": "Installer: set config.json's owner and mode on the file itself, not through its path",
-      "url": "https://github.com/cdomotor-g/RPi_ALERT/commit/babf94cbd5284f32d5b74da9ca6a1f037b3403ef"
-     }
-    ],
-    "files": [
-     "docs/configuration.md",
-     "docs/hardware.md",
-     "docs/how-it-works.md",
-     "docs/install.md",
-     "os/install.sh"
-    ],
-    "note": "3 upstream changes to watched files since it was last reviewed (2026-11-11)."
+    "behind": 0,
+    "commits": [],
+    "files": [],
+    "note": "Up to date with upstream."
    }
   },
   {
