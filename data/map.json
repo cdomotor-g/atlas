@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-19T12:32:13.675Z",
- "hash": "7de93b9bd62b0989",
+ "generated": "2026-11-19T15:27:42.231Z",
+ "hash": "29236c05740fb135",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1205,9 +1205,9 @@
      "computer": false,
      "title": "CI doctor: 3-D view — \"opens from a page opened as a file\" red in CI, green locally",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/290",
-     "updated": "2026-11-18T15:10:45Z",
+     "updated": "2026-11-19T15:11:02Z",
      "created": "2026-11-13T15:34:57Z",
-     "comments": 5,
+     "comments": 6,
      "labels": [],
      "mentions": [],
      "triage": {
@@ -2232,27 +2232,35 @@
    "release": null,
    "ci": [
     {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44554453451",
+     "date": "2026-11-19T15:24:44Z",
+     "event": "schedule"
+    },
+    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44523376880",
-     "date": "2026-11-19T12:23:13Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44553186646",
+     "date": "2026-11-19T15:18:04Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44523226699",
-     "date": "2026-11-19T12:22:59Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44552934087",
+     "date": "2026-11-19T15:17:43Z",
      "event": "schedule"
     },
     {
-     "name": "Field photos from Google Drive",
+     "name": "Data archive into R2",
      "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44522804646",
-     "date": "2026-11-19T12:19:34Z",
+     "conclusion": "failure",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44545802288",
+     "date": "2026-11-19T14:39:14Z",
      "event": "schedule"
     }
    ],
