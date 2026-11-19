@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-19T03:30:02.319Z",
- "hash": "8e054023b120cacb",
+ "generated": "2026-11-19T06:36:36.798Z",
+ "hash": "a07d4675560442c9",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -2232,27 +2232,27 @@
    "release": null,
    "ci": [
     {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44451523187",
-     "date": "2026-11-19T03:27:19Z",
-     "event": "schedule"
-    },
-    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44450601478",
-     "date": "2026-11-19T03:19:26Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44472233683",
+     "date": "2026-11-19T06:27:04Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44450584489",
-     "date": "2026-11-19T03:20:08Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44472100089",
+     "date": "2026-11-19T06:26:50Z",
+     "event": "schedule"
+    },
+    {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44471800816",
+     "date": "2026-11-19T06:23:30Z",
      "event": "schedule"
     }
    ],
@@ -5048,13 +5048,14 @@
     },
     "status": {
      "phase": "beta",
-     "updated": "2026-11-13",
-     "summary": "The hardware review is finished (11 November 2026: docs/hardware-review, and the Other computers page, site/hardware.html). It says: buy a fanless N150-class PC with a TPM (the OnLogic CL260 for a battery site, the Lenovo ThinkEdge where the brand matters), prove it on the bench with a cheap mini PC first, and keep the Verdin AM62 and the Luna out of the order book. The old Mallow trial was not to be run as written, and its page is now the side-by-side trial, for whichever computer is picked: the Verdin AM62 Quad now lists at US$306 (not US$107), the heatsink on its list does not fit, 'half a Pi 4' was never measured, and Torizon with a privileged container is the hardest stack to get approved. RPi ALERT already runs unchanged off a Raspberry Pi. The builder's processor sums are corrected to RPi ALERT's own measurements, and the catalogue and builder carry the review's computers. A hardware-neutral firmware layer (firmware/: a package for Debian 13 and Ubuntu 24.04, a container and disk images) is started: as at 13 November 2026 the package is built and its own checks pass on Debian 13 and Ubuntu 24.04 with stand-ins for the radio, the container has been tried with stand-ins on one PC only (not on Torizon OS or ARM), the disk images are still being written, nothing has been run with a real radio stick off a Raspberry Pi, and there is no release yet (firmware/README.md is the current word). A draft security pack for IT assessors is in docs/security, with SECURITY.md. Prices re-checked in November 2026: each part is what one costs from an Australian shop with it in stock (else the cheapest way to get one, and when), and every bill — configurator, builder, trial — adds each shop's delivery once and clearance on an overseas order over A$1,000. The Pi 5 4 GB is A$249 in stock (A$178 was a back-order price); the RFI COL54 collinear is A$3,218 at Techwave, not the A$650 guessed; the RTL-SDR Blog V4 is end of life, so the V3 is the builder's stick. The builder and the side-by-side trial rate every computer for the whole computer and for one core, on RPi ALERT's decoders. The review was checked against its sources again on 13 November 2026: the Lenovo ThinkEdge's Ubuntu and Red Hat certification is Lenovo's own statement (Canonical's public list did not show it), nobody has checked that the package installs on Moxa's Secure system, and the configurator now counts channels from the corrected sums (a Pi 4 carries about five with room to spare, a Pi 3B+ two).",
+     "updated": "2026-11-19",
+     "summary": "The hardware review is finished (11 November 2026: docs/hardware-review, and the Other computers page, site/hardware.html): buy a fanless N150-class PC with a TPM (the OnLogic CL260 for a battery site, the Lenovo ThinkEdge where the brand matters), prove it on the bench with a cheap mini PC first, and keep the Verdin AM62 and the Luna out of the order book; the old Mallow trial's page is now the side-by-side trial, for whichever computer is picked. The firmware layer (firmware/: a package for Debian 13 and Ubuntu 24.04, a container and disk images) carries RPi ALERT 0.24.0 unchanged, and its first release, firmware-0.24.0-oa1, was published on 19 November 2026 as a pre-release, for trying and not yet for a base station in service. Its checks pass on GitHub's PC and ARM computers with stand-ins for the radio, and both disk images start in a virtual machine with Secure Boot on, but nothing has yet been run with a real radio stick off a Raspberry Pi, on a real ARM computer or on Torizon OS (firmware/README.md is the current word). A draft security pack for IT assessors is in docs/security, with SECURITY.md; its support period waits for the owner.",
      "next": [
       "Check the review's prices and links by hand in a browser (Core Electronics, PB Tech, element14, Arrow, Toradex direct): the links matter more than the figures",
       "Ask Lenovo for the ThinkEdge SE10n Gen2's Ubuntu certificate and which release it covers, and what its 0.7 m/s air-flow rating means in a closed cabinet; ask Moxa or its seller whether Moxa Industrial Linux 4 Secure takes Node.js and rtl-sdr from Debian's packages",
       "Switch on private vulnerability reporting in this repository's and RPi ALERT's settings, and confirm or change the support period in docs/security/support.md",
-      "Move firmware/PIN to RPi ALERT 0.24.0, the release with the settings a managed network needs (reviewed twice and being released on 19 November 2026)",
+      "Try the pre-release (firmware-0.24.0-oa1) on a real computer with a real radio stick, beside a Pi, as the side-by-side trial sets out: nothing has yet been run with a real stick off a Raspberry Pi",
+      "Run the benchmark in firmware/bench on a Raspberry Pi 4, the baseline every speed figure is measured against (and on an N100 or N150 mini PC): every speed figure is a stand-in until then",
       "Check what is still marked est. with suppliers: the mating Bulgin lead, the earth kit, the 18 Ah battery, delivery from shops that price it only at checkout",
       "Point the Quansheng V3 entry at quansheng_alert_ALL's browser installer",
       "Re-check the FW-LAB entry: Flood-Net's runbook says to retire and archive it",
@@ -5067,8 +5068,7 @@
       "Re-check quote-only and estimated prices with suppliers"
      ],
      "now": [
-      "Run the package on a real computer with a real radio stick, and the benchmark in firmware/bench on a Pi 4 and an N100 or N150 mini PC: nothing has yet been run off a Raspberry Pi, and every speed figure is a stand-in",
-      "Finish firmware/: try the container on Torizon OS and on an ARM computer, the disk images, the automatic build, then a first release"
+      "Finish firmware/: try the container on Torizon OS and the disk images on a real PC and a real ARM computer, then a release that can be recommended for a base station in service"
      ],
      "blocked": [
       {
@@ -5212,7 +5212,7 @@
      {
       "id": "base-package",
       "name": "Base station package (firmware/)",
-      "what": "RPi ALERT's signed release, unchanged, as a package for Debian 13 and Ubuntu 24.04 (standard and enterprise profiles), with a benchmark. Its own checks pass on Debian 13 and Ubuntu 24.04 with stand-ins for the radio (13 November 2026). The container has been tried with stand-ins for the radio on one PC only (not on Torizon OS or ARM); the disk images are still being written. Not yet run with a real radio stick off a Raspberry Pi; no release yet.",
+      "what": "RPi ALERT's signed release, unchanged, as a package for Debian 13 and Ubuntu 24.04 (standard and enterprise profiles), a container and disk images, with a benchmark. First release: firmware-0.24.0-oa1, a pre-release (19 November 2026). Its checks pass on GitHub's PC and ARM computers with stand-ins for the radio, and the disk images have started only in a virtual machine. Not yet run with a real radio stick off a Raspberry Pi, on a real ARM computer or on Torizon OS.",
       "paths": [
        "firmware/"
       ],
@@ -5437,12 +5437,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-19T02:55:38Z",
+    "pushed": "2026-11-19T04:14:44Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/open-ALERT"
    },
    "commits": [
+    {
+     "sha": "9bf7b9a",
+     "date": "2026-11-19T04:14:42Z",
+     "msg": "Firmware's first pre-release: the site, docs and Atlas say so",
+     "url": "https://github.com/cdomotor-g/open-ALERT/commit/9bf7b9a1b64d175c32f6b9a8de3c7b7e90242574"
+    },
     {
      "sha": "cb8041d",
      "date": "2026-11-19T02:55:31Z",
@@ -5508,12 +5514,6 @@
      "date": "2026-11-08T04:09:21Z",
      "msg": "Catalogue: RPi ALERT 0.22.1",
      "url": "https://github.com/cdomotor-g/open-ALERT/commit/c467016117c6e0304cc9e5a24cff138f6fb6a763"
-    },
-    {
-     "sha": "ddb87a6",
-     "date": "2026-11-08T03:14:52Z",
-     "msg": "Catalogue: RPi ALERT 0.22.0",
-     "url": "https://github.com/cdomotor-g/open-ALERT/commit/ddb87a689f0a986336156f95cae9d18773b2be43"
     }
    ],
    "issues": [
@@ -5539,49 +5539,49 @@
    "release": null,
    "ci": [
     {
-     "name": "firmware",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/44451491968",
-     "date": "2026-11-19T03:27:03Z",
-     "event": "workflow_dispatch"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/44447803267",
-     "date": "2026-11-19T02:56:10Z",
-     "event": "push"
-    },
-    {
      "name": "test",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/44447802679",
-     "date": "2026-11-19T02:56:06Z",
-     "event": "push"
-    },
-    {
-     "name": "pages",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/44447802775",
-     "date": "2026-11-19T02:56:04Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/44456971323",
+     "date": "2026-11-19T04:15:02Z",
      "event": "push"
     },
     {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/44447801502",
-     "date": "2026-11-19T02:56:13Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/44456970609",
+     "date": "2026-11-19T04:15:14Z",
      "event": "dynamic"
+    },
+    {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/44456971884",
+     "date": "2026-11-19T04:15:05Z",
+     "event": "push"
+    },
+    {
+     "name": "pages",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/44456971345",
+     "date": "2026-11-19T04:15:20Z",
+     "event": "push"
+    },
+    {
+     "name": "firmware",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/44456971349",
+     "date": "2026-11-19T04:47:42Z",
+     "event": "push"
     }
    ],
    "version": "0.1.0",
    "lastCommit": {
-    "date": "2026-11-19T02:55:31Z"
+    "date": "2026-11-19T04:14:42Z"
    }
   },
   {
