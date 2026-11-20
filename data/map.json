@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-20T15:26:54.747Z",
- "hash": "31addef75bacca2d",
+ "generated": "2026-11-20T18:30:32.374Z",
+ "hash": "f268b0c93aa855da",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1080,12 +1080,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-20T12:02:52Z",
+    "pushed": "2026-11-20T15:44:31Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "ea51aea",
+     "date": "2026-11-20T15:44:29Z",
+     "msg": "CI doctor: Shell, Tabs, Map controls, Side panel, Land, Repeater finder — a stray 520px breakpoint, a second reduced-motion block, an inline",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/ea51aead8d255f4708b2cee9466f800f8d2981bc"
+    },
     {
      "sha": "762e832",
      "date": "2026-11-20T12:02:49Z",
@@ -1151,12 +1157,6 @@
      "date": "2026-11-17T15:20:05Z",
      "msg": "CI doctor: Map links — the ACMA-only search word 'licence' is now also in the map layers' credit lines; search 'transmitters'",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/fcd661a207c661351efdb142365d04b7dbb42434"
-    },
-    {
-     "sha": "13f60c3",
-     "date": "2026-11-17T05:44:31Z",
-     "msg": "More map layers: water, sewer and drainage pipes (#294)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/13f60c3d45ac4fddb44d734e75cd100f86aded8f"
     }
    ],
    "issues": [
@@ -1205,9 +1205,9 @@
      "computer": false,
      "title": "CI doctor: 3-D view — \"opens from a page opened as a file\" red in CI, green locally",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/290",
-     "updated": "2026-11-19T15:11:02Z",
+     "updated": "2026-11-20T15:44:40Z",
      "created": "2026-11-13T15:34:57Z",
-     "comments": 6,
+     "comments": 7,
      "labels": [],
      "mentions": [],
      "triage": {
@@ -2235,38 +2235,62 @@
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44762914196",
-     "date": "2026-11-20T15:24:27Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44792978592",
+     "date": "2026-11-20T18:27:54Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44761774911",
-     "date": "2026-11-20T15:17:32Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44791727494",
+     "date": "2026-11-20T18:19:56Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44761560500",
-     "date": "2026-11-20T15:17:17Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44791682826",
+     "date": "2026-11-20T18:20:28Z",
      "event": "schedule"
     },
     {
-     "name": "Data archive into R2",
+     "name": "Fade margin re-sweep",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44755423174",
-     "date": "2026-11-20T14:42:05Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44773414128",
+     "date": "2026-11-20T16:27:58Z",
      "event": "schedule"
+    },
+    {
+     "name": "Field photos into R2",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44772160836",
+     "date": "2026-11-20T16:19:22Z",
+     "event": "schedule"
+    },
+    {
+     "name": "CodeQL",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44766313266",
+     "date": "2026-11-20T15:49:07Z",
+     "event": "push"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "completed",
+     "conclusion": "failure",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44766313300",
+     "date": "2026-11-20T16:55:53Z",
+     "event": "push"
     }
    ],
-   "version": "20261120h",
+   "version": "20261120i",
    "lastCommit": {
-    "date": "2026-11-20T12:02:49Z"
+    "date": "2026-11-20T15:44:29Z"
    }
   },
   {
@@ -7532,7 +7556,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "146 newer commits upstream since ed3ed3b, none to watched files."
+    "note": "147 newer commits upstream since ed3ed3b, none to watched files."
    }
   },
   {
@@ -8701,7 +8725,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "228 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "229 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8732,7 +8756,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "228 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "229 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
