@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-19T21:26:48.893Z",
- "hash": "3396315516268555",
+ "generated": "2026-11-20T00:43:36.920Z",
+ "hash": "3bcdaa00e3d668be",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1080,12 +1080,24 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-18T21:43:52Z",
+    "pushed": "2026-11-20T00:32:48Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "bbc2d72",
+     "date": "2026-11-20T00:32:46Z",
+     "msg": "Licence coverage: licensing in the hover, whose licences, Bureau-first",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/bbc2d726ac6bcd63f6ec351eab53744a7abdd313"
+    },
+    {
+     "sha": "ccfde96",
+     "date": "2026-11-20T00:06:07Z",
+     "msg": "Licence coverage: a new technicians' view of where the network is licensed",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/ccfde96b880a7adabbf8d4cea2f5389d593807c3"
+    },
     {
      "sha": "6b87ed5",
      "date": "2026-11-18T21:43:50Z",
@@ -1145,18 +1157,6 @@
      "date": "2026-11-16T23:27:25Z",
      "msg": "Map link cards: shrink to a dot on the line, press to bring back; Shrink all / Show all",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/1905c2fef609953e24b1e6b00e9df7ba0ce0fbba"
-    },
-    {
-     "sha": "c158bea",
-     "date": "2026-11-16T15:30:17Z",
-     "msg": "CI doctor: Fade margin, Map views — re-sweep rows came back in finishing order; the road check counted a lead-in spot",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/c158bea1b2a8182caf1daaa0d7ea53d068705eff"
-    },
-    {
-     "sha": "b6ada92",
-     "date": "2026-11-16T01:32:33Z",
-     "msg": "Stations map: ground height under the pointer, in m AHD",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/b6ada927b3b39932e74ca31a61a63e61558d6984"
     }
    ],
    "issues": [
@@ -2232,41 +2232,49 @@
    "release": null,
    "ci": [
     {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44618310577",
-     "date": "2026-11-19T21:23:45Z",
-     "event": "schedule"
-    },
-    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44617145261",
-     "date": "2026-11-19T21:16:51Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44647048582",
+     "date": "2026-11-20T00:35:22Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44616883707",
-     "date": "2026-11-19T21:16:15Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44646979299",
+     "date": "2026-11-20T00:35:50Z",
      "event": "schedule"
     },
     {
-     "name": "Atlas",
+     "name": "Web smoke test",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44646725487",
+     "date": "2026-11-20T00:33:14Z",
+     "event": "push"
+    },
+    {
+     "name": "CodeQL",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44601295072",
-     "date": "2026-11-19T19:44:11Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44646725556",
+     "date": "2026-11-20T00:37:05Z",
+     "event": "push"
+    },
+    {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44646653733",
+     "date": "2026-11-20T00:32:28Z",
      "event": "schedule"
     }
    ],
-   "version": "20261118a",
+   "version": "20261120b",
    "lastCommit": {
-    "date": "2026-11-18T21:43:50Z"
+    "date": "2026-11-20T00:32:46Z"
    }
   },
   {
@@ -4197,8 +4205,8 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/44406562259",
-     "date": "2026-11-18T21:56:39Z",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/44623745318",
+     "date": "2026-11-19T21:56:45Z",
      "event": "schedule"
     },
     {
@@ -4982,8 +4990,8 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/44405501153",
-     "date": "2026-11-18T21:50:22Z",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/44622758782",
+     "date": "2026-11-19T21:50:40Z",
      "event": "schedule"
     },
     {
@@ -5547,6 +5555,14 @@
    "release": null,
    "ci": [
     {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/44619613521",
+     "date": "2026-11-19T21:31:53Z",
+     "event": "schedule"
+    },
+    {
      "name": "test",
      "status": "completed",
      "conclusion": "success",
@@ -5561,14 +5577,6 @@
      "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/44456970609",
      "date": "2026-11-19T04:15:14Z",
      "event": "dynamic"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/44456971884",
-     "date": "2026-11-19T04:15:05Z",
-     "event": "push"
     },
     {
      "name": "pages",
@@ -7522,7 +7530,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "138 newer commits upstream since ed3ed3b, none to watched files."
+    "note": "140 newer commits upstream since ed3ed3b, none to watched files."
    }
   },
   {
@@ -8662,7 +8670,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "220 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "222 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8693,7 +8701,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "220 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "222 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8722,7 +8730,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "177 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "179 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
