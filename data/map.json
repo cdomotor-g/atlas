@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-20T00:43:36.920Z",
- "hash": "3bcdaa00e3d668be",
+ "generated": "2026-11-20T03:30:41.872Z",
+ "hash": "5b449cded9008ac1",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1080,12 +1080,30 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-20T00:32:48Z",
+    "pushed": "2026-11-20T01:58:15Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "49a9d6e",
+     "date": "2026-11-20T01:58:12Z",
+     "msg": "Hover notes over More map layers: what each layer shows under the pointer",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/49a9d6e94dfbd5158c8d8608b728c2e8af2f85f7"
+    },
+    {
+     "sha": "73bc32d",
+     "date": "2026-11-20T01:33:46Z",
+     "msg": "Field photos: a progress bar for each stage of a drop (open zips, check GPS, read overlay, upload)",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/73bc32df4283568290a44105bd9d707b63f23173"
+    },
+    {
+     "sha": "3e20a91",
+     "date": "2026-11-20T00:52:12Z",
+     "msg": "Before you dig: a new Property view and map tool for site works",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/3e20a91c06aa55facc88cb23037cff807ac5049b"
+    },
     {
      "sha": "bbc2d72",
      "date": "2026-11-20T00:32:46Z",
@@ -1139,24 +1157,6 @@
      "date": "2026-11-17T03:24:32Z",
      "msg": "Stations: set a station's antenna height; mark a station decommissioned",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/da54f07b0aa8f29e390f0af02122708edcabc9ea"
-    },
-    {
-     "sha": "861cbaf",
-     "date": "2026-11-17T03:23:30Z",
-     "msg": "More map layers: power, pipes, floods, land and biosecurity from open data (#291, #292)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/861cbaf2148384a1307036fbb4f5208852db5476"
-    },
-    {
-     "sha": "17eecb8",
-     "date": "2026-11-17T03:10:33Z",
-     "msg": "Stations: a station's own antenna height, and decommissioned (database)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/17eecb83f195f327b242eaef921232746cbc4e69"
-    },
-    {
-     "sha": "1905c2f",
-     "date": "2026-11-16T23:27:25Z",
-     "msg": "Map link cards: shrink to a dot on the line, press to bring back; Shrink all / Show all",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/1905c2fef609953e24b1e6b00e9df7ba0ce0fbba"
     }
    ],
    "issues": [
@@ -2217,7 +2217,7 @@
      "computer": false,
      "title": "Roadmap — resource allocation & sequencing for all issues",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/113",
-     "updated": "2026-11-18T21:44:12Z",
+     "updated": "2026-11-20T01:58:29Z",
      "created": "2026-08-13T00:13:50Z",
      "comments": 1,
      "labels": [],
@@ -2225,56 +2225,64 @@
       "meganet",
       "rpi_alert"
      ],
-     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1173k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
+     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1174k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
     }
    ],
    "issueCount": 58,
    "release": null,
    "ci": [
     {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44667817932",
+     "date": "2026-11-20T03:27:22Z",
+     "event": "schedule"
+    },
+    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44647048582",
-     "date": "2026-11-20T00:35:22Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44666921848",
+     "date": "2026-11-20T03:19:27Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44646979299",
-     "date": "2026-11-20T00:35:50Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44666875808",
+     "date": "2026-11-20T03:20:00Z",
      "event": "schedule"
-    },
-    {
-     "name": "Web smoke test",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44646725487",
-     "date": "2026-11-20T00:33:14Z",
-     "event": "push"
     },
     {
      "name": "CodeQL",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44646725556",
-     "date": "2026-11-20T00:37:05Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44657419145",
+     "date": "2026-11-20T02:02:10Z",
      "event": "push"
     },
     {
-     "name": "Field photos from Google Drive",
+     "name": "Roadmap sync",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44646653733",
-     "date": "2026-11-20T00:32:28Z",
-     "event": "schedule"
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44657419481",
+     "date": "2026-11-20T01:58:32Z",
+     "event": "push"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "completed",
+     "conclusion": "failure",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44657419109",
+     "date": "2026-11-20T03:02:51Z",
+     "event": "push"
     }
    ],
-   "version": "20261120b",
+   "version": "20261120e",
    "lastCommit": {
-    "date": "2026-11-20T00:32:46Z"
+    "date": "2026-11-20T01:58:12Z"
    }
   },
   {
@@ -7530,7 +7538,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "140 newer commits upstream since ed3ed3b, none to watched files."
+    "note": "143 newer commits upstream since ed3ed3b, none to watched files."
    }
   },
   {
@@ -8670,7 +8678,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "222 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "225 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8701,7 +8709,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "222 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "225 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8721,16 +8729,25 @@
    "entry": "floodnet-site-exposure",
    "to": "sort",
    "drift": {
-    "state": "current",
+    "state": "behind",
     "since": {
      "date": "2026-11-05",
      "commit": "d98a1c47a8359bf253303bdcfe9f2a70853f8963",
      "commitDate": "2026-11-05T15:19:59Z"
     },
-    "behind": 0,
-    "commits": [],
-    "files": [],
-    "note": "179 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "behind": 1,
+    "commits": [
+     {
+      "sha": "3e20a91",
+      "date": "2026-11-20T00:52:12Z",
+      "msg": "Before you dig: a new Property view and map tool for site works",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/3e20a91c06aa55facc88cb23037cff807ac5049b"
+     }
+    ],
+    "files": [
+     "site-exposure.js"
+    ],
+    "note": "1 upstream change to watched files since it was last reviewed (2026-11-05)."
    }
   },
   {
