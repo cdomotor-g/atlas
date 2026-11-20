@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-20T03:30:41.872Z",
- "hash": "5b449cded9008ac1",
+ "generated": "2026-11-20T06:35:45.173Z",
+ "hash": "5c84060869197bae",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -2232,52 +2232,28 @@
    "release": null,
    "ci": [
     {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44667817932",
-     "date": "2026-11-20T03:27:22Z",
-     "event": "schedule"
-    },
-    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44666921848",
-     "date": "2026-11-20T03:19:27Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44687781211",
+     "date": "2026-11-20T06:26:20Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44666875808",
-     "date": "2026-11-20T03:20:00Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44687634065",
+     "date": "2026-11-20T06:26:00Z",
      "event": "schedule"
     },
     {
-     "name": "CodeQL",
+     "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44657419145",
-     "date": "2026-11-20T02:02:10Z",
-     "event": "push"
-    },
-    {
-     "name": "Roadmap sync",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44657419481",
-     "date": "2026-11-20T01:58:32Z",
-     "event": "push"
-    },
-    {
-     "name": "Web smoke test",
-     "status": "completed",
-     "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44657419109",
-     "date": "2026-11-20T03:02:51Z",
-     "event": "push"
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44687375754",
+     "date": "2026-11-20T06:22:54Z",
+     "event": "schedule"
     }
    ],
    "version": "20261120e",
@@ -5964,12 +5940,24 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-17T03:25:31Z",
+    "pushed": "2026-11-20T05:57:34Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/SoRT"
    },
    "commits": [
+    {
+     "sha": "6699b55",
+     "date": "2026-11-20T05:57:33Z",
+     "msg": "Sensor range options now follow the sensor chosen (HS40, bubbler, Vega C23)",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/6699b5571277480737a8366b6e0a9d4670b349d5"
+    },
+    {
+     "sha": "0753b4c",
+     "date": "2026-11-20T05:19:59Z",
+     "msg": "Add Gauge zero (AHD) question, filled from Flood-Net where it holds the figure",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/0753b4cc2428e5a459f3a65bd571e723535e32ba"
+    },
     {
      "sha": "10a4ee8",
      "date": "2026-11-17T03:25:29Z",
@@ -6029,18 +6017,6 @@
      "date": "2026-11-09T07:36:57Z",
      "msg": "Close-ups: one for every pin the others don't show, lettered A, B, C…; two to a row in Word",
      "url": "https://github.com/cdomotor-g/SoRT/commit/0746431e04df0a91480d66d78f62eab760ee11fa"
-    },
-    {
-     "sha": "014c17d",
-     "date": "2026-11-09T07:27:55Z",
-     "msg": "Map: re-fit every location once a pin change is final (Auto-fit tick box, on by default)",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/014c17df2b2a563d9a0686ac909d55dbfe5bbe1d"
-    },
-    {
-     "sha": "fe3a627",
-     "date": "2026-11-09T07:27:35Z",
-     "msg": "Forum date: a new session takes today's date, not an older session's",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/fe3a627b8c98817b2bd232656d9f39992c0b653b"
     }
    ],
    "issues": [],
@@ -6048,25 +6024,25 @@
    "release": null,
    "ci": [
     {
+     "name": "pages build and deployment",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/44684454087",
+     "date": "2026-11-20T05:58:14Z",
+     "event": "dynamic"
+    },
+    {
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/SoRT/actions/runs/44616896624",
      "date": "2026-11-19T21:15:42Z",
      "event": "schedule"
-    },
-    {
-     "name": "pages build and deployment",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/44010113736",
-     "date": "2026-11-17T03:26:16Z",
-     "event": "dynamic"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-11-17T03:25:29Z"
+    "date": "2026-11-20T05:57:33Z"
    }
   },
   {
@@ -7446,7 +7422,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "23 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "25 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
