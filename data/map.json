@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-20T12:32:24.317Z",
- "hash": "ff3123e4ddfa227b",
+ "generated": "2026-11-20T15:26:54.747Z",
+ "hash": "31addef75bacca2d",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -2232,44 +2232,36 @@
    "release": null,
    "ci": [
     {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44762914196",
+     "date": "2026-11-20T15:24:27Z",
+     "event": "schedule"
+    },
+    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44735314830",
-     "date": "2026-11-20T12:23:05Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44761774911",
+     "date": "2026-11-20T15:17:32Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44735168349",
-     "date": "2026-11-20T12:22:51Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44761560500",
+     "date": "2026-11-20T15:17:17Z",
      "event": "schedule"
     },
     {
-     "name": "Field photos from Google Drive",
+     "name": "Data archive into R2",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44734817148",
-     "date": "2026-11-20T12:19:34Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44755423174",
+     "date": "2026-11-20T14:42:05Z",
      "event": "schedule"
-    },
-    {
-     "name": "Web smoke test",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44732522618",
-     "date": "2026-11-20T12:03:16Z",
-     "event": "push"
-    },
-    {
-     "name": "CodeQL",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44732522620",
-     "date": "2026-11-20T12:07:23Z",
-     "event": "push"
     }
    ],
    "version": "20261120h",
@@ -3863,7 +3855,7 @@
     "tagline": "ALERT flood-telemetry receiver firmware for the Quansheng UV-K5 V3 and UV-K1, a fork of F4HWN.",
     "about": "A fork of the F4HWN firmware for the PY32F071 radios that adds an ALERT receiver app: it demodulates the 300-baud bursts on 151.5 MHz in software, decodes them, names the station from a table generated from Flood-Net's station list, logs to SPI flash and talks to a computer over USB-C. Our work is the app (App/app/alert_*), its host tools (tools/alert/, tools/hotflash.py), filters/ and docs/ALERT_SERIAL.md; everything else is upstream F4HWN. People get it through the quansheng_alert_ALL installer, and Flood-Net and RPi ALERT read it over serial.",
     "kind": "radio firmware (F4HWN fork)",
-    "logo": "tools/alert/screens/v2-list.png",
+    "logo": "tools/alert/screens/main-big.png",
     "site": "https://cdomotor-g.github.io/quansheng_alert_ALL/",
     "docs": {
      "readme": "README.md",
@@ -3874,9 +3866,10 @@
     },
     "status": {
      "phase": "beta",
-     "updated": "2026-10-31",
-     "summary": "Receiver v2 decodes on air (22 of 22 bursts) and ships through quansheng_alert_ALL; no firmware work since 1 October, and its built-in station table is a month behind Flood-Net.",
+     "updated": "2026-11-20",
+     "summary": "Receiver v2 decodes on air (22 of 22 bursts) and ships through quansheng_alert_ALL. A usability pass (2026-11-20) gave the screen four layouts, one big reading by default, a clear NEWEST / N NEWER marker, notes that confirm a key, and settings in the radio's own menu style with frequency and squelch first; it is drawn and checked on a computer but not yet tried on the radio.",
      "next": [
+      "Try the new layouts on the radio and keep or drop each from the owner's feedback (key 2 cycles them)",
       "Regenerate the built-in station table: Flood-Net now gives 451 sites, not 443",
       "Record which Flood-Net commit the built-in table was generated from",
       "Drop A2C's zero status-byte check; Flood-Net reads it as a time offset (cdomotor-g/MegaNet#209)",
@@ -3954,7 +3947,7 @@
      {
       "id": "host-tools",
       "name": "Host tools",
-      "what": "alertterm.py (the reference client), hotflash.py for flashing over USB-C, and the capture, simulation and layout checks.",
+      "what": "alertterm.py (the reference client), hotflash.py for flashing over USB-C, screens.py (every screen drawn on a computer by the firmware's own code), and the capture, simulation and layout checks.",
       "paths": [
        "tools/alert/",
        "tools/hotflash.py"
@@ -4042,7 +4035,7 @@
      {
       "id": "screens",
       "name": "Screen captures",
-      "what": "PNG captures of the v2 screens taken from the radio over SCREEN; the setup guide shows copies.",
+      "what": "Pictures of every screen of the ALERT app, drawn by tools/alert/screens.py with the firmware's own screen code, plus one real capture taken over SCREEN that they are checked against; the setup guide shows copies.",
       "component": "alert-app",
       "paths": [
        "tools/alert/screens/"
@@ -4118,12 +4111,30 @@
    "gh": {
     "description": "This is a fork of F4HWN firmware https://github.com/armel/uv-k5-firmware-custom by @muzkr and @armel",
     "archived": false,
-    "pushed": "2026-11-05T03:24:03Z",
+    "pushed": "2026-11-20T13:19:18Z",
     "homepage": null,
     "language": "C",
     "url": "https://github.com/cdomotor-g/quansheng_alert_v3"
    },
    "commits": [
+    {
+     "sha": "acc2b14",
+     "date": "2026-11-20T13:19:16Z",
+     "msg": "ALERT screens: opening settings clears a key's note",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/commit/acc2b14394d66d7c9fd4f15c93ce9cbbb42cdf2d"
+    },
+    {
+     "sha": "e673028",
+     "date": "2026-11-20T13:17:58Z",
+     "msg": "screens.py: the settings picture with four decimals, as the firmware shows",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/commit/e673028f6fae7e3144ccc143c896a794cf0675e8"
+    },
+    {
+     "sha": "3a6b716",
+     "date": "2026-11-20T13:15:03Z",
+     "msg": "ALERT screens: four layouts, a clear newest marker, radio-style settings",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/commit/3a6b7162651de51041be355f453bfc15cc5a97bd"
+    },
     {
      "sha": "41ed970",
      "date": "2026-11-05T03:24:01Z",
@@ -4177,24 +4188,6 @@
      "date": "2026-10-01T00:42:08Z",
      "msg": "fix: move the log and station regions off this radio's voice clips",
      "url": "https://github.com/cdomotor-g/quansheng_alert_v3/commit/ca0a5b435e062c37e27456675e48508b9043067b"
-    },
-    {
-     "sha": "35c269a",
-     "date": "2026-10-01T00:36:35Z",
-     "msg": "v2 phase B review fixes: one-step SET, stall budget, LOG OFF read-only, station end mark",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/commit/35c269a70dbbc5e5410c0088c3beb73423333b1a"
-    },
-    {
-     "sha": "1939e2e",
-     "date": "2026-09-30T23:52:29Z",
-     "msg": "v2 phase B: screens, NF/speaker/CSV, SPI log + station table, console, host client",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/commit/1939e2e9971469ebcbe4f7d7075e81e622aa9947"
-    },
-    {
-     "sha": "4d06107",
-     "date": "2026-09-30T22:53:07Z",
-     "msg": "fix: census choice persisted only on decode, bias never with the amp on",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/commit/4d06107feedae00cbebc0e254ec1d10618aa49ff"
     }
    ],
    "issues": [],
@@ -4202,25 +4195,25 @@
    "release": null,
    "ci": [
     {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/44623745318",
-     "date": "2026-11-19T21:56:45Z",
-     "event": "schedule"
-    },
-    {
      "name": "Build Firmware",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/41961356081",
-     "date": "2026-11-05T03:25:23Z",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/44743285478",
+     "date": "2026-11-20T13:20:02Z",
+     "event": "push"
+    },
+    {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/44742664953",
+     "date": "2026-11-20T13:15:26Z",
      "event": "push"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-11-05T03:24:01Z"
+    "date": "2026-11-20T13:19:16Z"
    }
   },
   {
@@ -4822,13 +4815,13 @@
       "from": "quansheng-v3",
       "provider": "screens",
       "into": "guide",
-      "what": "Screen captures of the V3 receiver, copied into docs/img/screens/ for the guide.",
+      "what": "Pictures of the V3 receiver's screens (drawn by quansheng_alert_v3's tools/alert/screens.py from the firmware's own screen code), copied into docs/img/screens/ for the guide.",
       "how": "vendored",
       "watch": [
        "tools/alert/screens/"
       ],
       "since": {
-       "date": "2026-10-20"
+       "date": "2026-11-20"
       },
       "on_change": "Copy the new or changed PNGs into docs/img/screens/ and check the guide's captions.",
       "drift_issue": true
@@ -4899,12 +4892,30 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-09T03:25:20Z",
+    "pushed": "2026-11-20T13:19:55Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL"
    },
    "commits": [
+    {
+     "sha": "b327ac1",
+     "date": "2026-11-20T13:19:54Z",
+     "msg": "firmware: refresh (quansheng_alert@a52700f, quansheng_alert_v3@acc2b14)",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/commit/b327ac1a9dc94ff2de3a2e4f388332d7d1cb04d0"
+    },
+    {
+     "sha": "558ad2e",
+     "date": "2026-11-20T13:18:50Z",
+     "msg": "firmware: refresh (quansheng_alert@a52700f, quansheng_alert_v3@e673028)",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/commit/558ad2e7b62361c42077824b5301e6ffb6f455cc"
+    },
+    {
+     "sha": "cf0f623",
+     "date": "2026-11-20T13:18:00Z",
+     "msg": "Guide: the receiver's new screens, keys and settings order",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/commit/cf0f6231d5d1fcb88bb5c1f28ec92fbe49debfa6"
+    },
     {
      "sha": "1e99b45",
      "date": "2026-11-09T03:25:19Z",
@@ -4958,24 +4969,6 @@
      "date": "2026-10-20T01:19:52Z",
      "msg": "fix: forward the site URL to docs/ while Pages publishes the repo root",
      "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/commit/5e0783074ae5bb85947ccf52fda3804469a3c3f7"
-    },
-    {
-     "sha": "88c4ee1",
-     "date": "2026-10-20T01:18:06Z",
-     "msg": "firmware: refresh (quansheng_alert@e922375, quansheng_alert_v3@ad166ca)",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/commit/88c4ee1e20373bccfcb9fe85bff04ee05532f682"
-    },
-    {
-     "sha": "81272f0",
-     "date": "2026-10-20T01:16:04Z",
-     "msg": "docs: the older UV-K5 now has the V3's decoder; say what it still needs",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/commit/81272f0c39bf8da41f090b85382c9122c4ae0770"
-    },
-    {
-     "sha": "4f653e0",
-     "date": "2026-10-20T00:39:19Z",
-     "msg": "fix: let the cable page's pin tables scroll on narrow phones",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/commit/4f653e02e7ee6acd361bc5308bb2d9e4a4beaf02"
     }
    ],
    "issues": [],
@@ -4987,41 +4980,41 @@
    },
    "ci": [
     {
-     "name": "Atlas",
+     "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/44622758782",
-     "date": "2026-11-19T21:50:40Z",
-     "event": "schedule"
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/44743371250",
+     "date": "2026-11-20T13:20:37Z",
+     "event": "dynamic"
     },
     {
      "name": "Refresh firmware",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/43798307163",
-     "date": "2026-11-16T03:28:36Z",
-     "event": "schedule"
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/44743294603",
+     "date": "2026-11-20T13:19:59Z",
+     "event": "workflow_dispatch"
     },
     {
-     "name": "pages build and deployment",
+     "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/42556314050",
-     "date": "2026-11-09T03:26:02Z",
-     "event": "dynamic"
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/44743101513",
+     "date": "2026-11-20T13:18:24Z",
+     "event": "push"
     },
     {
      "name": "Test the site",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/41961351352",
-     "date": "2026-11-05T03:25:21Z",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/44743101088",
+     "date": "2026-11-20T13:19:53Z",
      "event": "push"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-11-09T03:25:19Z"
+    "date": "2026-11-20T13:19:54Z"
    }
   },
   {
@@ -7262,16 +7255,25 @@
    "entry": "quansheng-serial-protocol",
    "to": "flood-net",
    "drift": {
-    "state": "current",
+    "state": "behind",
     "since": {
      "date": "2026-10-01",
      "commit": "c53066ab54b3909d5b90cfcdd0132c5510ec35e7",
      "commitDate": "2026-10-01T00:51:14Z"
     },
-    "behind": 0,
-    "commits": [],
-    "files": [],
-    "note": "7 newer commits upstream since it was last reviewed (2026-10-01), none to watched files."
+    "behind": 1,
+    "commits": [
+     {
+      "sha": "3a6b716",
+      "date": "2026-11-20T13:15:03Z",
+      "msg": "ALERT screens: four layouts, a clear newest marker, radio-style settings",
+      "url": "https://github.com/cdomotor-g/quansheng_alert_v3/commit/3a6b7162651de51041be355f453bfc15cc5a97bd"
+     }
+    ],
+    "files": [
+     "docs/ALERT_SERIAL.md"
+    ],
+    "note": "1 upstream change to watched files since it was last reviewed (2026-10-01)."
    }
   },
   {
@@ -7739,16 +7741,26 @@
    "entry": "quansheng-v3-serial",
    "to": "rpi-alert",
    "drift": {
-    "state": "current",
+    "state": "behind",
     "since": {
      "date": "2026-10-06",
      "commit": "c53066ab54b3909d5b90cfcdd0132c5510ec35e7",
      "commitDate": "2026-10-01T00:51:14Z"
     },
-    "behind": 0,
-    "commits": [],
-    "files": [],
-    "note": "7 newer commits upstream since it was last reviewed (2026-10-06), none to watched files."
+    "behind": 1,
+    "commits": [
+     {
+      "sha": "3a6b716",
+      "date": "2026-11-20T13:15:03Z",
+      "msg": "ALERT screens: four layouts, a clear newest marker, radio-style settings",
+      "url": "https://github.com/cdomotor-g/quansheng_alert_v3/commit/3a6b7162651de51041be355f453bfc15cc5a97bd"
+     }
+    ],
+    "files": [
+     "docs/ALERT_SERIAL.md",
+     "tools/alert/V2_SPEC.md"
+    ],
+    "note": "1 upstream change to watched files since it was last reviewed (2026-10-06)."
    }
   },
   {
@@ -8079,7 +8091,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "5 newer commits upstream since it was last reviewed (2026-10-20), none to watched files."
+    "note": "8 newer commits upstream since it was last reviewed (2026-10-20), none to watched files."
    }
   },
   {
@@ -8110,8 +8122,8 @@
    "drift": {
     "state": "current",
     "since": {
-     "commit": "41ed970",
-     "commitDate": "2026-11-05T03:24:01Z"
+     "commit": "acc2b14",
+     "commitDate": "2026-11-20T13:19:16Z"
     },
     "behind": 0,
     "commits": [],
@@ -8153,13 +8165,13 @@
    "from": "quansheng-v3",
    "provider": "screens",
    "into": "guide",
-   "what": "Screen captures of the V3 receiver, copied into docs/img/screens/ for the guide.",
+   "what": "Pictures of the V3 receiver's screens (drawn by quansheng_alert_v3's tools/alert/screens.py from the firmware's own screen code), copied into docs/img/screens/ for the guide.",
    "how": "vendored",
    "watch": [
     "tools/alert/screens/"
    ],
    "since": {
-    "date": "2026-10-20"
+    "date": "2026-11-20"
    },
    "on_change": "Copy the new or changed PNGs into docs/img/screens/ and check the guide's captions.",
    "drift_issue": true,
@@ -8168,14 +8180,14 @@
    "drift": {
     "state": "current",
     "since": {
-     "date": "2026-10-20",
-     "commit": "ad166ca93c17cb5765b17d52a49b1c2c7cc6fb44",
-     "commitDate": "2026-10-20T00:11:32Z"
+     "date": "2026-11-20",
+     "commit": "acc2b14394d66d7c9fd4f15c93ce9cbbb42cdf2d",
+     "commitDate": "2026-11-20T13:19:16Z"
     },
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "5 newer commits upstream since it was last reviewed (2026-10-20), none to watched files."
+    "note": "Up to date with upstream."
    }
   },
   {
@@ -8200,16 +8212,34 @@
    "entry": "v3-receiver-docs",
    "to": "quansheng-all",
    "drift": {
-    "state": "current",
+    "state": "behind",
     "since": {
      "date": "2026-10-20",
      "commit": "ad166ca93c17cb5765b17d52a49b1c2c7cc6fb44",
      "commitDate": "2026-10-20T00:11:32Z"
     },
-    "behind": 0,
-    "commits": [],
-    "files": [],
-    "note": "5 newer commits upstream since it was last reviewed (2026-10-20), none to watched files."
+    "behind": 2,
+    "commits": [
+     {
+      "sha": "acc2b14",
+      "date": "2026-11-20T13:19:16Z",
+      "msg": "ALERT screens: opening settings clears a key's note",
+      "url": "https://github.com/cdomotor-g/quansheng_alert_v3/commit/acc2b14394d66d7c9fd4f15c93ce9cbbb42cdf2d"
+     },
+     {
+      "sha": "3a6b716",
+      "date": "2026-11-20T13:15:03Z",
+      "msg": "ALERT screens: four layouts, a clear newest marker, radio-style settings",
+      "url": "https://github.com/cdomotor-g/quansheng_alert_v3/commit/3a6b7162651de51041be355f453bfc15cc5a97bd"
+     }
+    ],
+    "files": [
+     "tools/alert/V2_SPEC.md",
+     "docs/ALERT_SERIAL.md",
+     "App/app/alert_ui.c",
+     "App/app/alert.c"
+    ],
+    "note": "2 upstream changes to watched files since it was last reviewed (2026-10-20)."
    }
   },
   {
@@ -8331,8 +8361,14 @@
      "commit": "fdd3a6add695cf75fcafb145f697967cc75ecec0",
      "commitDate": "2026-10-13T05:13:30Z"
     },
-    "behind": 1,
+    "behind": 2,
     "commits": [
+     {
+      "sha": "3a6b716",
+      "date": "2026-11-20T13:15:03Z",
+      "msg": "ALERT screens: four layouts, a clear newest marker, radio-style settings",
+      "url": "https://github.com/cdomotor-g/quansheng_alert_v3/commit/3a6b7162651de51041be355f453bfc15cc5a97bd"
+     },
      {
       "sha": "ad166ca",
       "date": "2026-10-20T00:11:32Z",
@@ -8341,9 +8377,10 @@
      }
     ],
     "files": [
-     "README.md"
+     "README.md",
+     "docs/ALERT_SERIAL.md"
     ],
-    "note": "1 upstream change to watched files since it was last reviewed (2026-10-17)."
+    "note": "2 upstream changes to watched files since it was last reviewed (2026-10-17)."
    }
   },
   {
