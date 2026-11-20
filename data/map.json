@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-20T09:28:25.932Z",
- "hash": "deefd88b8c28e2ce",
+ "generated": "2026-11-20T12:32:24.317Z",
+ "hash": "ff3123e4ddfa227b",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1080,12 +1080,30 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-20T01:58:15Z",
+    "pushed": "2026-11-20T12:02:52Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "762e832",
+     "date": "2026-11-20T12:02:49Z",
+     "msg": "Station Health: Station cards — every station in a maintenance hub as a card",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/762e832025a322e92fe09618e0e2491219b2fbfb"
+    },
+    {
+     "sha": "67b2839",
+     "date": "2026-11-20T11:38:14Z",
+     "msg": "Licence coverage hover: a tidy card per licence on a fixed width instead of a thin squeezed column",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/67b283971bf52e7f63c4df7342f16a3a32135367"
+    },
+    {
+     "sha": "52848a8",
+     "date": "2026-11-20T11:33:10Z",
+     "msg": "Licence coverage hover lists every licence under the cursor; What's here card gains ACMA licensing above the land section",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/52848a82d9c20bb15250fc280f4a9dd5817a6fa2"
+    },
     {
      "sha": "49a9d6e",
      "date": "2026-11-20T01:58:12Z",
@@ -1139,24 +1157,6 @@
      "date": "2026-11-17T05:44:31Z",
      "msg": "More map layers: water, sewer and drainage pipes (#294)",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/13f60c3d45ac4fddb44d734e75cd100f86aded8f"
-    },
-    {
-     "sha": "1e56e74",
-     "date": "2026-11-17T05:16:05Z",
-     "msg": "More map layers in 3-D and in Views (#296)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/1e56e745a6826405cb11c9f3bf8ea0cfcd963fd7"
-    },
-    {
-     "sha": "269bc59",
-     "date": "2026-11-17T04:09:58Z",
-     "msg": "More map layers: storm tide gauges and exact weed sightings (#293)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/269bc59b41d423a2970a5cb21378347e33edd245"
-    },
-    {
-     "sha": "da54f07",
-     "date": "2026-11-17T03:24:32Z",
-     "msg": "Stations: set a station's antenna height; mark a station decommissioned",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/da54f07b0aa8f29e390f0af02122708edcabc9ea"
     }
    ],
    "issues": [
@@ -2232,33 +2232,49 @@
    "release": null,
    "ci": [
     {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44710586197",
-     "date": "2026-11-20T09:25:30Z",
-     "event": "schedule"
-    },
-    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44709638810",
-     "date": "2026-11-20T09:18:52Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44735314830",
+     "date": "2026-11-20T12:23:05Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44709472712",
-     "date": "2026-11-20T09:18:38Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44735168349",
+     "date": "2026-11-20T12:22:51Z",
      "event": "schedule"
+    },
+    {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44734817148",
+     "date": "2026-11-20T12:19:34Z",
+     "event": "schedule"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44732522618",
+     "date": "2026-11-20T12:03:16Z",
+     "event": "push"
+    },
+    {
+     "name": "CodeQL",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44732522620",
+     "date": "2026-11-20T12:07:23Z",
+     "event": "push"
     }
    ],
-   "version": "20261120e",
+   "version": "20261120h",
    "lastCommit": {
-    "date": "2026-11-20T01:58:12Z"
+    "date": "2026-11-20T12:02:49Z"
    }
   },
   {
@@ -7514,7 +7530,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "143 newer commits upstream since ed3ed3b, none to watched files."
+    "note": "146 newer commits upstream since ed3ed3b, none to watched files."
    }
   },
   {
@@ -8562,7 +8578,7 @@
      "commit": "87ab6ed00b060b13b3c91019f58a6da6d56c129d",
      "commitDate": "2026-11-01T23:59:08Z"
     },
-    "behind": 9,
+    "behind": 8,
     "commits": [
      {
       "sha": "da54f07",
@@ -8611,12 +8627,6 @@
       "date": "2026-11-04T23:55:15Z",
       "msg": "Station Health: a station out of every receiver's range is never taken as heard",
       "url": "https://github.com/cdomotor-g/MegaNet/commit/3c9f848416e6877c096bc66f4e94dd52b4d01a88"
-     },
-     {
-      "sha": "4438a01",
-      "date": "2026-11-04T05:17:56Z",
-      "msg": "Agent API: a station's benchmarks, in numbers (0102)",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/4438a019a9b47510654f31227aee3e26b26ba62c"
      }
     ],
     "files": [
@@ -8624,7 +8634,7 @@
      "worker/api.js",
      "worker/radio-path.js"
     ],
-    "note": "9 upstream changes to watched files since it was last reviewed (2026-11-01)."
+    "note": "8 upstream changes to watched files since it was last reviewed (2026-11-01)."
    }
   },
   {
@@ -8654,7 +8664,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "225 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "228 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8685,7 +8695,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "225 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "228 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
