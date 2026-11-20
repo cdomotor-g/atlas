@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-20T18:30:32.374Z",
- "hash": "f268b0c93aa855da",
+ "generated": "2026-11-20T21:27:33.008Z",
+ "hash": "e9b233071f32425f",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -2235,57 +2235,33 @@
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44792978592",
-     "date": "2026-11-20T18:27:54Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44819924098",
+     "date": "2026-11-20T21:23:45Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44791727494",
-     "date": "2026-11-20T18:19:56Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44818925538",
+     "date": "2026-11-20T21:17:06Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44791682826",
-     "date": "2026-11-20T18:20:28Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44818610944",
+     "date": "2026-11-20T21:15:41Z",
      "event": "schedule"
     },
     {
-     "name": "Fade margin re-sweep",
+     "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44773414128",
-     "date": "2026-11-20T16:27:58Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44804817695",
+     "date": "2026-11-20T19:44:04Z",
      "event": "schedule"
-    },
-    {
-     "name": "Field photos into R2",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44772160836",
-     "date": "2026-11-20T16:19:22Z",
-     "event": "schedule"
-    },
-    {
-     "name": "CodeQL",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44766313266",
-     "date": "2026-11-20T15:49:07Z",
-     "event": "push"
-    },
-    {
-     "name": "Web smoke test",
-     "status": "completed",
-     "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44766313300",
-     "date": "2026-11-20T16:55:53Z",
-     "event": "push"
     }
    ],
    "version": "20261120i",
@@ -3113,8 +3089,8 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/44611217012",
-     "date": "2026-11-19T20:41:52Z",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/44813664399",
+     "date": "2026-11-20T20:42:08Z",
      "event": "schedule"
     },
     {
@@ -4135,12 +4111,18 @@
    "gh": {
     "description": "This is a fork of F4HWN firmware https://github.com/armel/uv-k5-firmware-custom by @muzkr and @armel",
     "archived": false,
-    "pushed": "2026-11-20T13:19:18Z",
+    "pushed": "2026-11-20T20:18:22Z",
     "homepage": null,
     "language": "C",
     "url": "https://github.com/cdomotor-g/quansheng_alert_v3"
    },
    "commits": [
+    {
+     "sha": "2656619",
+     "date": "2026-11-20T20:18:19Z",
+     "msg": "ALERT settings: type the frequency with the number keys",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/commit/2656619c6d3ab4cac4c981d64dd9bc36bac6a63b"
+    },
     {
      "sha": "acc2b14",
      "date": "2026-11-20T13:19:16Z",
@@ -4206,12 +4188,6 @@
      "date": "2026-10-01T00:51:14Z",
      "msg": "docs: screenshots of the v2 screens, captured from the radio over SCREEN",
      "url": "https://github.com/cdomotor-g/quansheng_alert_v3/commit/c53066ab54b3909d5b90cfcdd0132c5510ec35e7"
-    },
-    {
-     "sha": "ca0a5b4",
-     "date": "2026-10-01T00:42:08Z",
-     "msg": "fix: move the log and station regions off this radio's voice clips",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/commit/ca0a5b435e062c37e27456675e48508b9043067b"
     }
    ],
    "issues": [],
@@ -4222,8 +4198,8 @@
      "name": "Build Firmware",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/44743285478",
-     "date": "2026-11-20T13:20:02Z",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/44810141491",
+     "date": "2026-11-20T20:19:28Z",
      "event": "push"
     },
     {
@@ -4237,7 +4213,7 @@
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-11-20T13:19:16Z"
+    "date": "2026-11-20T20:18:19Z"
    }
   },
   {
@@ -4916,12 +4892,24 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-20T13:19:55Z",
+    "pushed": "2026-11-20T20:19:29Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL"
    },
    "commits": [
+    {
+     "sha": "68c77b9",
+     "date": "2026-11-20T20:19:28Z",
+     "msg": "firmware: refresh (quansheng_alert@a52700f, quansheng_alert_v3@2656619)",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/commit/68c77b9b3d25b815bf734c9b07459502659b42c8"
+    },
+    {
+     "sha": "f76872b",
+     "date": "2026-11-20T20:18:49Z",
+     "msg": "Guide: type the frequency with the number keys",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/commit/f76872bf7d7ca9dc3ba4d536b2c9516377b6f21b"
+    },
     {
      "sha": "b327ac1",
      "date": "2026-11-20T13:19:54Z",
@@ -4981,18 +4969,6 @@
      "date": "2026-10-31T22:25:30Z",
      "msg": "Atlas: the setup site's blocker and the ways through",
      "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/commit/3052df9b1ae55009ced2a09f0a251204a5a620c2"
-    },
-    {
-     "sha": "bc8a46d",
-     "date": "2026-10-31T22:08:12Z",
-     "msg": "Atlas: describe the radio setup site for the map of all the repos",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/commit/bc8a46d645638f5d32f62cf541ca4210bb17ea91"
-    },
-    {
-     "sha": "5e07830",
-     "date": "2026-10-20T01:19:52Z",
-     "msg": "fix: forward the site URL to docs/ while Pages publishes the repo root",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/commit/5e0783074ae5bb85947ccf52fda3804469a3c3f7"
     }
    ],
    "issues": [],
@@ -5007,17 +4983,25 @@
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/44743371250",
-     "date": "2026-11-20T13:20:37Z",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/44810315931",
+     "date": "2026-11-20T20:20:23Z",
      "event": "dynamic"
     },
     {
      "name": "Refresh firmware",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/44743294603",
-     "date": "2026-11-20T13:19:59Z",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/44810228889",
+     "date": "2026-11-20T20:19:32Z",
      "event": "workflow_dispatch"
+    },
+    {
+     "name": "Test the site",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/44810220904",
+     "date": "2026-11-20T20:20:46Z",
+     "event": "push"
     },
     {
      "name": "Atlas",
@@ -5026,19 +5010,11 @@
      "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/44743101513",
      "date": "2026-11-20T13:18:24Z",
      "event": "push"
-    },
-    {
-     "name": "Test the site",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/44743101088",
-     "date": "2026-11-20T13:19:53Z",
-     "event": "push"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-11-20T13:19:54Z"
+    "date": "2026-11-20T20:19:28Z"
    }
   },
   {
@@ -6057,20 +6033,20 @@
    "release": null,
    "ci": [
     {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/44818636058",
+     "date": "2026-11-20T21:15:27Z",
+     "event": "schedule"
+    },
+    {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/SoRT/actions/runs/44684454087",
      "date": "2026-11-20T05:58:14Z",
      "event": "dynamic"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/44616896624",
-     "date": "2026-11-19T21:15:42Z",
-     "event": "schedule"
     }
    ],
    "version": null,
@@ -7771,8 +7747,14 @@
      "commit": "c53066ab54b3909d5b90cfcdd0132c5510ec35e7",
      "commitDate": "2026-10-01T00:51:14Z"
     },
-    "behind": 1,
+    "behind": 2,
     "commits": [
+     {
+      "sha": "2656619",
+      "date": "2026-11-20T20:18:19Z",
+      "msg": "ALERT settings: type the frequency with the number keys",
+      "url": "https://github.com/cdomotor-g/quansheng_alert_v3/commit/2656619c6d3ab4cac4c981d64dd9bc36bac6a63b"
+     },
      {
       "sha": "3a6b716",
       "date": "2026-11-20T13:15:03Z",
@@ -7784,7 +7766,7 @@
      "docs/ALERT_SERIAL.md",
      "tools/alert/V2_SPEC.md"
     ],
-    "note": "1 upstream change to watched files since it was last reviewed (2026-10-06)."
+    "note": "2 upstream changes to watched files since it was last reviewed (2026-10-06)."
    }
   },
   {
@@ -8115,7 +8097,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "8 newer commits upstream since it was last reviewed (2026-10-20), none to watched files."
+    "note": "9 newer commits upstream since it was last reviewed (2026-10-20), none to watched files."
    }
   },
   {
@@ -8146,8 +8128,8 @@
    "drift": {
     "state": "current",
     "since": {
-     "commit": "acc2b14",
-     "commitDate": "2026-11-20T13:19:16Z"
+     "commit": "2656619",
+     "commitDate": "2026-11-20T20:18:19Z"
     },
     "behind": 0,
     "commits": [],
@@ -8205,8 +8187,8 @@
     "state": "current",
     "since": {
      "date": "2026-11-20",
-     "commit": "acc2b14394d66d7c9fd4f15c93ce9cbbb42cdf2d",
-     "commitDate": "2026-11-20T13:19:16Z"
+     "commit": "2656619c6d3ab4cac4c981d64dd9bc36bac6a63b",
+     "commitDate": "2026-11-20T20:18:19Z"
     },
     "behind": 0,
     "commits": [],
@@ -8242,8 +8224,14 @@
      "commit": "ad166ca93c17cb5765b17d52a49b1c2c7cc6fb44",
      "commitDate": "2026-10-20T00:11:32Z"
     },
-    "behind": 2,
+    "behind": 3,
     "commits": [
+     {
+      "sha": "2656619",
+      "date": "2026-11-20T20:18:19Z",
+      "msg": "ALERT settings: type the frequency with the number keys",
+      "url": "https://github.com/cdomotor-g/quansheng_alert_v3/commit/2656619c6d3ab4cac4c981d64dd9bc36bac6a63b"
+     },
      {
       "sha": "acc2b14",
       "date": "2026-11-20T13:19:16Z",
@@ -8263,7 +8251,7 @@
      "App/app/alert_ui.c",
      "App/app/alert.c"
     ],
-    "note": "2 upstream changes to watched files since it was last reviewed (2026-10-20)."
+    "note": "3 upstream changes to watched files since it was last reviewed (2026-10-20)."
    }
   },
   {
