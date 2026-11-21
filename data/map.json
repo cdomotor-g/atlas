@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-21T18:27:50.714Z",
- "hash": "afebe43280acf43e",
+ "generated": "2026-11-21T21:26:59.826Z",
+ "hash": "303c124c311f95ba",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -2236,49 +2236,33 @@
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44935389304",
-     "date": "2026-11-21T18:24:55Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44951331620",
+     "date": "2026-11-21T21:24:02Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44934749993",
-     "date": "2026-11-21T18:18:09Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44950717974",
+     "date": "2026-11-21T21:17:09Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44934637347",
-     "date": "2026-11-21T18:17:32Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44950562841",
+     "date": "2026-11-21T21:16:16Z",
      "event": "schedule"
     },
     {
-     "name": "Fade margin re-sweep",
+     "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44924617158",
-     "date": "2026-11-21T16:28:07Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44942478637",
+     "date": "2026-11-21T19:44:10Z",
      "event": "schedule"
-    },
-    {
-     "name": "Field photos into R2",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44923898083",
-     "date": "2026-11-21T16:19:15Z",
-     "event": "schedule"
-    },
-    {
-     "name": "CodeQL",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44918558591",
-     "date": "2026-11-21T15:23:49Z",
-     "event": "push"
     }
    ],
    "version": "20261121a",
@@ -3057,6 +3041,25 @@
    ],
    "issues": [
     {
+     "n": 4,
+     "raw": "[Standalone] [Sonnet5/Med] Upstream moved: MegaNet changed quansheng.js, alert2.js",
+     "structure": "standalone",
+     "parent": null,
+     "model": "Sonnet5",
+     "effort": "Med",
+     "human": false,
+     "computer": false,
+     "title": "Upstream moved: MegaNet changed quansheng.js, alert2.js",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/issues/4",
+     "updated": "2026-11-21T20:41:57Z",
+     "created": "2026-11-21T20:41:57Z",
+     "comments": 0,
+     "labels": [],
+     "mentions": [
+      "meganet"
+     ]
+    },
+    {
      "n": 3,
      "raw": "[Standalone] [Opus5/High] One worker per stick: take MegaNet's lighter decoder and filter channels only around bursts",
      "structure": "standalone",
@@ -3095,7 +3098,7 @@
      ]
     }
    ],
-   "issueCount": 2,
+   "issueCount": 3,
    "release": {
     "tag": "v0.24.0",
     "date": "2026-11-19T00:18:13Z",
@@ -3106,8 +3109,8 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/44813664399",
-     "date": "2026-11-20T20:42:08Z",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/44947620719",
+     "date": "2026-11-21T20:42:01Z",
      "event": "schedule"
     },
     {
@@ -6053,8 +6056,8 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/44818636058",
-     "date": "2026-11-20T21:15:27Z",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/44950569173",
+     "date": "2026-11-21T21:15:40Z",
      "event": "schedule"
     },
     {
@@ -8896,6 +8899,13 @@
    "n": 113,
    "title": "Roadmap — resource allocation & sequencing for all issues",
    "url": "https://github.com/cdomotor-g/MegaNet/issues/113"
+  },
+  {
+   "in": "rpi-alert",
+   "about": "flood-net",
+   "n": 4,
+   "title": "Upstream moved: MegaNet changed quansheng.js, alert2.js",
+   "url": "https://github.com/cdomotor-g/RPi_ALERT/issues/4"
   },
   {
    "in": "rpi-alert",
