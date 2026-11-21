@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-20T21:27:33.008Z",
- "hash": "e9b233071f32425f",
+ "generated": "2026-11-21T00:43:32.669Z",
+ "hash": "e1015c6390be06df",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -109,9 +109,10 @@
     },
     "status": {
      "phase": "live",
-     "updated": "2026-11-11",
+     "updated": "2026-11-20",
      "summary": "Live and in daily use (database schema 113): this week added teams and the tasks handed to them, with the SoRT scope builder's hand-off, a driving mode that follows a station's route in 3-D, the agent API's changelog and email list, ACMA licences and radio paths in the API, the Repeaters tab and cuts to database I/O, while account email and the ACMA download link wait on the owner.",
      "now": [
+      "The tabs rationalised (November 2026): 62 tabs are 42 in 10 groups — tools that did one job between them are one tab with their old pages as views across its top (Nearby Transmitters, Signal Sources, the Decoder with a box that works out which decoder a paste needs, Charts, Inspections, Photos, Near Me, Bit Faults, Field Days, the Guide); Offline & Install is a banner button, Views is in Theme & layout, Admin opens with a list of its panels, and a pasted ARRO address in Ctrl+K reopens that page in ARRO admin; old links still land",
       "Base stations that are told about, and get themselves back (0113, RPi ALERT 0.23): the administrators are emailed when a base station has not checked in for 30 minutes and again when it is back; the Base Stations tab says what each station does when it loses touch and gives its own account of the last time; EPIC #288 is a baseline for an agent that watches the network and acts where it safely can — nothing built until the owner settles its ground rules",
       "Radio Licensing (kb-licensing.js, licence-docs.js): a Knowledge base lesson on what the transmitters and receivers need by way of an ACMA licence, every rule quoted from its document and opened at the sentence (docs/acma/ keeps RALI FX16, FX19 and the Fixed Licence determination); the 30 km question answered from them — a planning rule, not the law; the ACMA licences tool's fourth state, Beyond a licence's area, for the 203 gauges that report to a licensed repeater from outside its service area; and the label a transmitter at a shared site must carry",
       "Views on the Stations map (map-views.js): one press sets the map for a job — Overview and Site visit for everyone; Radio paths, Weak links, Backbone and Live traffic for instrument technicians; Rivers & catchments and Rainfall for flood forecasters; Property & easements and Land & tenure for property services — with the radio paths drawn as every path, best path only, bundled into trunks or repeater areas, as lines, flowing dashes or tails with a spotlight, auto-contrast and a Balance slider, saved views of your own, and easements and land tenure on the property boundaries",
@@ -1080,12 +1081,36 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-20T15:44:31Z",
+    "pushed": "2026-11-20T21:48:33Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "7a39439",
+     "date": "2026-11-20T21:48:30Z",
+     "msg": "Version stamp 20261120j for the tabs tidy-up",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/7a3943948225fe08f3e5afb3cbe91c34c4ef3953"
+    },
+    {
+     "sha": "349bd4e",
+     "date": "2026-11-20T21:48:13Z",
+     "msg": "Themes check: the menu is Theme & layout",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/349bd4e0bad5ecb000b5c69e8615e8f13a8b9167"
+    },
+    {
+     "sha": "50e2031",
+     "date": "2026-11-20T21:44:51Z",
+     "msg": "Checks follow the new groups: Field Camera, Look Around and the lessons",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/50e203165cafe99d3ee795addccc2bb61477c9cf"
+    },
+    {
+     "sha": "2ff02b2",
+     "date": "2026-11-20T21:34:07Z",
+     "msg": "Tabs rationalised: 62 tabs are 42 in 10 groups, merged tools as views of one tab",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/2ff02b20430d479656689352208e2c0fecca40ee"
+    },
     {
      "sha": "ea51aea",
      "date": "2026-11-20T15:44:29Z",
@@ -1133,30 +1158,6 @@
      "date": "2026-11-20T00:32:46Z",
      "msg": "Licence coverage: licensing in the hover, whose licences, Bureau-first",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/bbc2d726ac6bcd63f6ec351eab53744a7abdd313"
-    },
-    {
-     "sha": "ccfde96",
-     "date": "2026-11-20T00:06:07Z",
-     "msg": "Licence coverage: a new technicians' view of where the network is licensed",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/ccfde96b880a7adabbf8d4cea2f5389d593807c3"
-    },
-    {
-     "sha": "6b87ed5",
-     "date": "2026-11-18T21:43:50Z",
-     "msg": "State river gauges: live heights on the map pins and nearby station cards (#295)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/6b87ed5a844a1399d8641442bd994ce82a312cfc"
-    },
-    {
-     "sha": "415c491",
-     "date": "2026-11-17T18:49:14Z",
-     "msg": "Council cameras: the weekly refresh — 602 cameras from 49 councils",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/415c4916f0a95ffde62c8150411690ed63745db4"
-    },
-    {
-     "sha": "fcd661a",
-     "date": "2026-11-17T15:20:05Z",
-     "msg": "CI doctor: Map links — the ACMA-only search word 'licence' is now also in the map layers' credit lines; search 'transmitters'",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/fcd661a207c661351efdb142365d04b7dbb42434"
     }
    ],
    "issues": [
@@ -2232,41 +2233,57 @@
    "release": null,
    "ci": [
     {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44819924098",
-     "date": "2026-11-20T21:23:45Z",
-     "event": "schedule"
-    },
-    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44818925538",
-     "date": "2026-11-20T21:17:06Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44844969266",
+     "date": "2026-11-21T00:36:49Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44818610944",
-     "date": "2026-11-20T21:15:41Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44844862657",
+     "date": "2026-11-21T00:36:25Z",
+     "event": "schedule"
+    },
+    {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44844618599",
+     "date": "2026-11-21T00:33:39Z",
      "event": "schedule"
     },
     {
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44804817695",
-     "date": "2026-11-20T19:44:04Z",
-     "event": "schedule"
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44823573815",
+     "date": "2026-11-20T21:49:05Z",
+     "event": "push"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "completed",
+     "conclusion": "failure",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44823573506",
+     "date": "2026-11-20T23:13:36Z",
+     "event": "push"
+    },
+    {
+     "name": "CodeQL",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44823573350",
+     "date": "2026-11-20T21:53:57Z",
+     "event": "push"
     }
    ],
-   "version": "20261120i",
+   "version": "20261120j",
    "lastCommit": {
-    "date": "2026-11-20T15:44:29Z"
+    "date": "2026-11-20T21:48:30Z"
    }
   },
   {
@@ -4195,19 +4212,19 @@
    "release": null,
    "ci": [
     {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/44824694581",
+     "date": "2026-11-20T21:56:49Z",
+     "event": "schedule"
+    },
+    {
      "name": "Build Firmware",
      "status": "completed",
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/44810141491",
      "date": "2026-11-20T20:19:28Z",
-     "event": "push"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/44742664953",
-     "date": "2026-11-20T13:15:26Z",
      "event": "push"
     }
    ],
@@ -4980,6 +4997,14 @@
    },
    "ci": [
     {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/44823826873",
+     "date": "2026-11-20T21:50:42Z",
+     "event": "schedule"
+    },
+    {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
@@ -5001,14 +5026,6 @@
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/44810220904",
      "date": "2026-11-20T20:20:46Z",
-     "event": "push"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/44743101513",
-     "date": "2026-11-20T13:18:24Z",
      "event": "push"
     }
    ],
@@ -5551,8 +5568,8 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/44619613521",
-     "date": "2026-11-19T21:31:53Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/44820997665",
+     "date": "2026-11-20T21:31:32Z",
      "event": "schedule"
     },
     {
@@ -7524,15 +7541,25 @@
    "entry": "vendored-decoders",
    "to": "rpi-alert",
    "drift": {
-    "state": "current",
+    "state": "behind",
     "since": {
      "commit": "ed3ed3bf4d40c6c4dd4038ef069a04de5fee427c",
      "commitDate": "2026-11-08T03:06:56Z"
     },
-    "behind": 0,
-    "commits": [],
-    "files": [],
-    "note": "147 newer commits upstream since ed3ed3b, none to watched files."
+    "behind": 1,
+    "commits": [
+     {
+      "sha": "2ff02b2",
+      "date": "2026-11-20T21:34:07Z",
+      "msg": "Tabs rationalised: 62 tabs are 42 in 10 groups, merged tools as views of one tab",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/2ff02b20430d479656689352208e2c0fecca40ee"
+     }
+    ],
+    "files": [
+     "quansheng.js",
+     "alert2.js"
+    ],
+    "note": "1 upstream change to watched files since ed3ed3b."
    }
   },
   {
@@ -8713,7 +8740,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "229 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "233 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8744,7 +8771,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "229 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "233 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
