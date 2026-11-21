@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-21T03:28:40.069Z",
- "hash": "3385fa78ab11f5d7",
+ "generated": "2026-11-21T06:33:37.830Z",
+ "hash": "7e309b33150e75dc",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1081,12 +1081,24 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-20T21:48:33Z",
+    "pushed": "2026-11-21T05:20:24Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "2b2db70",
+     "date": "2026-11-21T05:20:19Z",
+     "msg": "Bump the version stamp to 20261121a",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/2b2db70bd7cd0baa3a49399cd7372b0275677e58"
+    },
+    {
+     "sha": "d55b0d7",
+     "date": "2026-11-21T05:20:06Z",
+     "msg": "ALERT2 IDs: a wheel and an ID grid, as the legacy addresses have",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/d55b0d744a1ca3c0709f19ca18d757f0933f3d0d"
+    },
     {
      "sha": "7a39439",
      "date": "2026-11-20T21:48:30Z",
@@ -1146,18 +1158,6 @@
      "date": "2026-11-20T01:33:46Z",
      "msg": "Field photos: a progress bar for each stage of a drop (open zips, check GPS, read overlay, upload)",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/73bc32df4283568290a44105bd9d707b63f23173"
-    },
-    {
-     "sha": "3e20a91",
-     "date": "2026-11-20T00:52:12Z",
-     "msg": "Before you dig: a new Property view and map tool for site works",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/3e20a91c06aa55facc88cb23037cff807ac5049b"
-    },
-    {
-     "sha": "bbc2d72",
-     "date": "2026-11-20T00:32:46Z",
-     "msg": "Licence coverage: licensing in the hover, whose licences, Bureau-first",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/bbc2d726ac6bcd63f6ec351eab53744a7abdd313"
     }
    ],
    "issues": [
@@ -2233,33 +2233,49 @@
    "release": null,
    "ci": [
     {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44861128805",
-     "date": "2026-11-21T03:26:33Z",
-     "event": "schedule"
-    },
-    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44860452304",
-     "date": "2026-11-21T03:18:48Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44875355118",
+     "date": "2026-11-21T06:24:04Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44860381501",
-     "date": "2026-11-21T03:18:53Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44875294842",
+     "date": "2026-11-21T06:23:53Z",
      "event": "schedule"
+    },
+    {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44875093281",
+     "date": "2026-11-21T06:20:50Z",
+     "event": "schedule"
+    },
+    {
+     "name": "CodeQL",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44870424152",
+     "date": "2026-11-21T05:23:55Z",
+     "event": "push"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "completed",
+     "conclusion": "failure",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44870424071",
+     "date": "2026-11-21T06:20:33Z",
+     "event": "push"
     }
    ],
-   "version": "20261120j",
+   "version": "20261121a",
    "lastCommit": {
-    "date": "2026-11-20T21:48:30Z"
+    "date": "2026-11-21T05:20:19Z"
    }
   },
   {
@@ -7565,7 +7581,7 @@
      "commit": "87ab6ed00b060b13b3c91019f58a6da6d56c129d",
      "commitDate": "2026-11-01T23:59:08Z"
     },
-    "behind": 4,
+    "behind": 3,
     "commits": [
      {
       "sha": "6b87ed5",
@@ -7584,18 +7600,12 @@
       "date": "2026-11-08T01:40:06Z",
       "msg": "Worker: /api/canopy (tree heights, read-only pass-through) and /api/ground (map tiles in R2) for #278",
       "url": "https://github.com/cdomotor-g/MegaNet/commit/64149056b5d05e8452b9a233038df3a0aa625f3d"
-     },
-     {
-      "sha": "a9ff548",
-      "date": "2026-11-04T06:06:55Z",
-      "msg": "SoRT's forum sessions: a store behind the forum passphrase (/api/sort/v1)",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/a9ff5487167e50e5c9da713687fa880fdaa2bdab"
      }
     ],
     "files": [
      "worker/index.js"
     ],
-    "note": "4 upstream changes to watched files since it was last reviewed (2026-11-01)."
+    "note": "3 upstream changes to watched files since it was last reviewed (2026-11-01)."
    }
   },
   {
@@ -8716,7 +8726,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "233 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "235 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8747,7 +8757,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "233 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "235 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
