@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-21T12:30:51.226Z",
- "hash": "34c50216a1b596b1",
+ "generated": "2026-11-21T15:26:42.985Z",
+ "hash": "641c97bdf3323499",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1081,12 +1081,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-21T05:20:24Z",
+    "pushed": "2026-11-21T15:19:24Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "cac3f1a",
+     "date": "2026-11-21T15:19:22Z",
+     "msg": "CI doctor: Plots, Tooltips, AR station finder — three checks left behind by the tabs rationalisation and a newer Chromium",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/cac3f1a6165aeb516157cb7244af3c8086bfbac5"
+    },
     {
      "sha": "2b2db70",
      "date": "2026-11-21T05:20:19Z",
@@ -1152,12 +1158,6 @@
      "date": "2026-11-20T01:58:12Z",
      "msg": "Hover notes over More map layers: what each layer shows under the pointer",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/49a9d6e94dfbd5158c8d8608b728c2e8af2f85f7"
-    },
-    {
-     "sha": "73bc32d",
-     "date": "2026-11-20T01:33:46Z",
-     "msg": "Field photos: a progress bar for each stage of a drop (open zips, check GPS, read overlay, upload)",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/73bc32df4283568290a44105bd9d707b63f23173"
     }
    ],
    "issues": [
@@ -2236,30 +2236,54 @@
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44904017977",
-     "date": "2026-11-21T12:27:55Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44918950619",
+     "date": "2026-11-21T15:23:50Z",
      "event": "schedule"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44918558579",
+     "date": "2026-11-21T15:19:31Z",
+     "event": "push"
+    },
+    {
+     "name": "CodeQL",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44918558591",
+     "date": "2026-11-21T15:23:49Z",
+     "event": "push"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44903474761",
-     "date": "2026-11-21T12:21:23Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44918283565",
+     "date": "2026-11-21T15:16:26Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44903371699",
-     "date": "2026-11-21T12:21:02Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44918207180",
+     "date": "2026-11-21T15:16:13Z",
+     "event": "schedule"
+    },
+    {
+     "name": "Data archive into R2",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/44914921499",
+     "date": "2026-11-21T14:40:21Z",
      "event": "schedule"
     }
    ],
    "version": "20261121a",
    "lastCommit": {
-    "date": "2026-11-21T05:20:19Z"
+    "date": "2026-11-21T15:19:22Z"
    }
   },
   {
@@ -8710,7 +8734,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "235 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "236 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8741,7 +8765,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "235 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "236 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
