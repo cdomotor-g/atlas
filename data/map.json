@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-23T06:47:17.265Z",
- "hash": "a7340b37634460ea",
+ "generated": "2026-11-23T09:31:51.533Z",
+ "hash": "0ab4b3227e311cf9",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1081,12 +1081,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-22T20:21:19Z",
+    "pushed": "2026-11-23T07:42:04Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "de76ab2",
+     "date": "2026-11-23T07:42:01Z",
+     "msg": "ALERT2 tab: pin the paste bar, decode on paste, fold the explainer below the results",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/de76ab23555278e75270c54bb7ac0756c0cb334e"
+    },
     {
      "sha": "a357cf7",
      "date": "2026-11-22T20:21:15Z",
@@ -1152,12 +1158,6 @@
      "date": "2026-11-20T21:44:51Z",
      "msg": "Checks follow the new groups: Field Camera, Look Around and the lessons",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/50e203165cafe99d3ee795addccc2bb61477c9cf"
-    },
-    {
-     "sha": "2ff02b2",
-     "date": "2026-11-20T21:34:07Z",
-     "msg": "Tabs rationalised: 62 tabs are 42 in 10 groups, merged tools as views of one tab",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/2ff02b20430d479656689352208e2c0fecca40ee"
     }
    ],
    "issues": [
@@ -2236,30 +2236,46 @@
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45125101534",
-     "date": "2026-11-23T06:35:22Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45146484276",
+     "date": "2026-11-23T09:22:56Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45124952905",
-     "date": "2026-11-23T06:34:57Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45146384328",
+     "date": "2026-11-23T09:23:16Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45124679318",
-     "date": "2026-11-23T06:31:38Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45146034304",
+     "date": "2026-11-23T09:20:01Z",
      "event": "schedule"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "completed",
+     "conclusion": "failure",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45133012747",
+     "date": "2026-11-23T08:53:00Z",
+     "event": "push"
+    },
+    {
+     "name": "CodeQL",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45133012712",
+     "date": "2026-11-23T07:46:27Z",
+     "event": "push"
     }
    ],
-   "version": "20261123a",
+   "version": "20261123b",
    "lastCommit": {
-    "date": "2026-11-22T20:21:15Z"
+    "date": "2026-11-23T07:42:01Z"
    }
   },
   {
@@ -4904,12 +4920,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-23T05:55:29Z",
+    "pushed": "2026-11-23T07:15:49Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL"
    },
    "commits": [
+    {
+     "sha": "7588a54",
+     "date": "2026-11-23T07:13:02Z",
+     "msg": "installer: send V3 flash pages slowly so the bootloader keeps every byte",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/commit/7588a5499c8130e596803bd49e620ce3e1db85e3"
+    },
     {
      "sha": "cdf14a5",
      "date": "2026-11-23T05:54:58Z",
@@ -4975,12 +4997,6 @@
      "date": "2026-11-02T03:24:54Z",
      "msg": "firmware: refresh (quansheng_alert@e922375, quansheng_alert_v3@988dfe6)",
      "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/commit/20bc76fb55230d6275d0940ef30a2b65177571c0"
-    },
-    {
-     "sha": "21ab7c5",
-     "date": "2026-11-01T02:59:48Z",
-     "msg": "fix: /flash/ and /cable/ open again while Pages serves the repository root",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/commit/21ab7c5f0b3e97da845c81bb552be190046bf7a7"
     }
    ],
    "issues": [],
@@ -4992,20 +5008,20 @@
    },
    "ci": [
     {
-     "name": "Test the site",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/45120733667",
-     "date": "2026-11-23T05:56:58Z",
-     "event": "push"
-    },
-    {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/45120733034",
-     "date": "2026-11-23T05:55:39Z",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/45129814360",
+     "date": "2026-11-23T07:16:29Z",
      "event": "dynamic"
+    },
+    {
+     "name": "Test the site",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/45129815862",
+     "date": "2026-11-23T07:19:07Z",
+     "event": "push"
     },
     {
      "name": "Refresh firmware",
@@ -5026,7 +5042,7 @@
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-11-23T05:54:58Z"
+    "date": "2026-11-23T07:13:02Z"
    }
   },
   {
@@ -7541,8 +7557,14 @@
      "commit": "ed3ed3bf4d40c6c4dd4038ef069a04de5fee427c",
      "commitDate": "2026-11-08T03:06:56Z"
     },
-    "behind": 1,
+    "behind": 2,
     "commits": [
+     {
+      "sha": "de76ab2",
+      "date": "2026-11-23T07:42:01Z",
+      "msg": "ALERT2 tab: pin the paste bar, decode on paste, fold the explainer below the results",
+      "url": "https://github.com/cdomotor-g/MegaNet/commit/de76ab23555278e75270c54bb7ac0756c0cb334e"
+     },
      {
       "sha": "2ff02b2",
       "date": "2026-11-20T21:34:07Z",
@@ -7554,7 +7576,7 @@
      "quansheng.js",
      "alert2.js"
     ],
-    "note": "1 upstream change to watched files since ed3ed3b."
+    "note": "2 upstream changes to watched files since ed3ed3b."
    }
   },
   {
@@ -8729,7 +8751,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "241 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "242 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8760,7 +8782,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "241 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "242 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
