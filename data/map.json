@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-23T03:31:59.045Z",
- "hash": "615bae09def2fcc1",
+ "generated": "2026-11-23T06:47:17.265Z",
+ "hash": "a7340b37634460ea",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -2233,27 +2233,27 @@
    "release": null,
    "ci": [
     {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45106399483",
-     "date": "2026-11-23T03:30:48Z",
-     "event": "schedule"
-    },
-    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45105512814",
-     "date": "2026-11-23T03:21:44Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45125101534",
+     "date": "2026-11-23T06:35:22Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45105449065",
-     "date": "2026-11-23T03:21:45Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45124952905",
+     "date": "2026-11-23T06:34:57Z",
+     "event": "schedule"
+    },
+    {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45124679318",
+     "date": "2026-11-23T06:31:38Z",
      "event": "schedule"
     }
    ],
@@ -4904,12 +4904,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-20T20:19:29Z",
+    "pushed": "2026-11-23T05:55:29Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL"
    },
    "commits": [
+    {
+     "sha": "cdf14a5",
+     "date": "2026-11-23T05:54:58Z",
+     "msg": "installer: shake hands again when a V3 falls back to waiting mid-flash",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/commit/cdf14a513470d88f2fdfdd20719f23fe76da3c06"
+    },
     {
      "sha": "68c77b9",
      "date": "2026-11-20T20:19:28Z",
@@ -4975,12 +4981,6 @@
      "date": "2026-11-01T02:59:48Z",
      "msg": "fix: /flash/ and /cable/ open again while Pages serves the repository root",
      "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/commit/21ab7c5f0b3e97da845c81bb552be190046bf7a7"
-    },
-    {
-     "sha": "3052df9",
-     "date": "2026-10-31T22:25:30Z",
-     "msg": "Atlas: the setup site's blocker and the ways through",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/commit/3052df9b1ae55009ced2a09f0a251204a5a620c2"
     }
    ],
    "issues": [],
@@ -4991,6 +4991,22 @@
     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/releases/tag/release"
    },
    "ci": [
+    {
+     "name": "Test the site",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/45120733667",
+     "date": "2026-11-23T05:56:58Z",
+     "event": "push"
+    },
+    {
+     "name": "pages build and deployment",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/45120733034",
+     "date": "2026-11-23T05:55:39Z",
+     "event": "dynamic"
+    },
     {
      "name": "Refresh firmware",
      "status": "completed",
@@ -5006,27 +5022,11 @@
      "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/45074254360",
      "date": "2026-11-22T21:49:54Z",
      "event": "schedule"
-    },
-    {
-     "name": "pages build and deployment",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/44810315931",
-     "date": "2026-11-20T20:20:23Z",
-     "event": "dynamic"
-    },
-    {
-     "name": "Test the site",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/44810220904",
-     "date": "2026-11-20T20:20:46Z",
-     "event": "push"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-11-20T20:19:28Z"
+    "date": "2026-11-23T05:54:58Z"
    }
   },
   {
