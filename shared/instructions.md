@@ -7,7 +7,7 @@ repository's file wins.
 
 ## Pushing
 - Push straight to `main` after a patch, without asking: `git pull --rebase origin main` first (other sessions and workflows commit to `main` too), then push. No pull requests, and no branches unless I ask — even where the session was set up to work on a `claude/…` branch.
-- Run the repository's own checks before you push (its `CLAUDE.md` says which).
+- Run the repository's own checks before pushing.
 - **Work on `main` from the start.** If the session put you on a `claude/…` branch, switch before your first commit: `git fetch origin main && git checkout -B main origin/main`. Otherwise the automatic "unpushed commits" check nudges you after every reply, costing an extra turn each. If you end up on a `claude/…` branch anyway, after pushing run `git branch -u origin/main` so the check sees it's pushed. When an automatic check nudges you and nothing needs doing, answer in one line: no run summary.
 
 ## Plain words
@@ -17,6 +17,9 @@ repository's file wins.
 ## Private data and names
 - Nothing private goes in a public repository — not in its files, issues or commit messages: no landholder names or contact details, no site codes (gate, padlock, logger or key codes), no passwords, keys or tokens, nothing copied from a private repository.
 - The Flood-Net app is **Flood-Net** in anything a person reads; its repository is `cdomotor-g/MegaNet`.
+
+## Mock-ups
+- Show mock-ups in the chat, not the repository: an image as a file sent to the chat, an interactive one as a page I can open. Commit only once I approve.
 
 ## Who clears what
 - `human` (and **Y** in the run summary) only for what needs my hands, money or say: hardware, a site, an order, a decision.
@@ -47,17 +50,17 @@ My Claude plan has a weekly allowance; treat it like fuel. `docs/usage.md` in th
 Reply A, B or C (or "go" for the ⭐).
 ```
 
-- **Same layout every time:** the heading word for word, this table with these five columns in this order, two or three rows lettered A, B, C, and ⭐ in the first column of the one you'd pick. No bullet-point version, nothing after the reply line, and no run summary (a card is not a run).
+- **Same layout every time:** the heading word for word, this table's five columns in order, two or three rows lettered A, B, C, ⭐ on your pick. No bullet version, nothing after the reply line, no run summary (a card is not a run).
 - **Model / Effort** use the app's own words: Haiku, Sonnet, Opus · Low, Medium, High, Extra, Max.
 - **Cost** is a share of my week: 🟢 under 1% · 🟡 1–5% · 🔴 over 5%. About US$14 at list price is 1%.
 - **This session:** ✅ right for the pick · ⬇️ more than it needs · ⬆️ less than it needs — and what to do about it.
 
 **Which setup.** Haiku / Low–Medium: looking up, renaming, formatting, filling data. Sonnet / Medium–High: most coding with a clear brief, bugs with a known cause, docs, tests. Opus / High: design across several parts, a bug nobody can pin down, security, safety or money. Extra or Max only after High has failed.
-- **Hand work down.** You can't change this session's model, but a subagent with `model: "sonnet"` or `"haiku"` can do bulk reading, searching and mechanical edits while you keep the decisions.
+- **Hand work down.** A subagent with `model: "sonnet"` or `"haiku"` can do bulk reading, searching and mechanical edits while you keep the decisions.
 - **Stop when it grows.** Past about twice its size, stop at a working point, push, and show a new sizing card: finish now, or the rest as issues tagged with their model/effort.
 - **Fresh sessions.** Every message re-reads the whole conversation, so a long chat costs more per reply. See *Hand-over* below.
-- **Research and unattended runs** work to a budget (default 2% of my week) and stop with what they have.
-- **Read lean.** Search before opening whole files, read only the part you need, parse big outputs with a script.
+- **Research and unattended runs** work to a budget (default 2% of my week), then stop.
+- **Read lean.** Search before opening files, read only what you need, parse big outputs with a script.
 
 ## Issue titles
 - Start every issue title with tags, so a list shows at a glance what it is and who can move it: `[<Structure>] [<Who>] <title>`.
