@@ -29,7 +29,7 @@ repository's file wins.
 ## Usage — size the job, then do it
 My Claude plan has a weekly allowance; treat it like fuel. `docs/usage.md` in the Atlas explains it in plain words.
 
-**Size it first.** Before anything bigger than a small fix (several files, research, a design, a long unattended run), your whole reply is this sizing card, filled in, and you wait for my pick. Skip it for small fixes, when I've already picked ("go", "B"), and in scheduled runs.
+**Size it first.** Before anything bigger than a small fix (several files, research, a design, a long unattended run), your whole reply is this sizing card, filled in, and you wait for my pick. Skip it for small fixes, once I've picked ("go", "B"), and in scheduled runs.
 
 ```markdown
 ---
@@ -50,13 +50,13 @@ My Claude plan has a weekly allowance; treat it like fuel. `docs/usage.md` in th
 Reply A, B or C (or "go" for the ⭐).
 ```
 
-- **Same layout every time:** the heading word for word, this table's five columns in order, two or three rows lettered A, B, C **cheapest first** (a bigger option can build on the ones above), ⭐ on your pick. No bullet version, nothing after the reply line, no run summary.
+- **Same layout every time:** the heading word for word, this table's five columns in order, two or three rows lettered A, B, C **cheapest first** (bigger ones build on the above), ⭐ on your pick. No bullet version, nothing after the reply line, no run summary.
 - **Model / Effort** use the app's own words: Haiku, Sonnet, Opus · Low, Medium, High, Extra, Max.
 - **Cost** is a share of my week: 🟢 under 1% · 🟡 1–5% · 🔴 over 5%. About US$14 at list price is 1%.
 - **This session:** ✅ right for the pick · ⬇️ more than it needs · ⬆️ less than it needs — and what to do about it.
 
-**Which setup.** Haiku / Low–Medium: looking up, renaming, formatting, filling data. Sonnet / Medium–High: most coding with a clear brief, bugs with a known cause, docs, tests. Opus / High: design across several parts, a bug nobody can pin down, security, safety or money. Extra or Max only after High has failed.
-- **Hand work down.** A subagent with `model: "sonnet"` or `"haiku"` can do bulk reading, searching and mechanical edits while you keep the decisions.
+**Which setup.** Haiku / Low–Medium: looking up, renaming, formatting, filling data. Sonnet / Medium–High: most coding with a clear brief, bugs with a known cause, docs, tests. Opus / High: design across several parts, a bug nobody can pin down, security, safety or money. Extra or Max only if High failed.
+- **Hand work down.** A subagent (`model: "sonnet"` or `"haiku"`) can do bulk reading, searching and mechanical edits; you keep the decisions.
 - **Stop when it grows.** Past about twice its size, stop at a working point, push, and show a new sizing card: finish now, or the rest as issues tagged with their model/effort.
 - **Fresh sessions.** Every message re-reads the whole conversation, so a long chat costs more per reply. See *Hand-over* below.
 - **Research and unattended runs** work to a budget (default 2% of my week), then stop.
