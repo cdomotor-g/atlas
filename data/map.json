@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-24T18:29:52.241Z",
- "hash": "31305504a149a1db",
+ "generated": "2026-11-24T21:26:37.205Z",
+ "hash": "186d701d6b375df0",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1081,12 +1081,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-23T07:42:04Z",
+    "pushed": "2026-11-24T18:49:09Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "33a93f6",
+     "date": "2026-11-24T18:49:07Z",
+     "msg": "Council cameras: the weekly refresh — 601 cameras from 49 councils",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/33a93f602208c003254a64e4037edf1ef9245dd9"
+    },
     {
      "sha": "de76ab2",
      "date": "2026-11-23T07:42:01Z",
@@ -1152,12 +1158,6 @@
      "date": "2026-11-20T21:48:13Z",
      "msg": "Themes check: the menu is Theme & layout",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/349bd4e0bad5ecb000b5c69e8615e8f13a8b9167"
-    },
-    {
-     "sha": "50e2031",
-     "date": "2026-11-20T21:44:51Z",
-     "msg": "Checks follow the new groups: Field Camera, Look Around and the lessons",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/50e203165cafe99d3ee795addccc2bb61477c9cf"
     }
    ],
    "issues": [
@@ -2236,46 +2236,46 @@
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45459524797",
-     "date": "2026-11-24T18:26:23Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45490720141",
+     "date": "2026-11-24T21:24:14Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45458260459",
-     "date": "2026-11-24T18:19:36Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45489484846",
+     "date": "2026-11-24T21:17:00Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45458160856",
-     "date": "2026-11-24T18:19:49Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45489262745",
+     "date": "2026-11-24T21:16:26Z",
      "event": "schedule"
     },
     {
-     "name": "Fade margin re-sweep",
+     "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45437684130",
-     "date": "2026-11-24T16:30:28Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45473181276",
+     "date": "2026-11-24T19:43:46Z",
      "event": "schedule"
     },
     {
-     "name": "Field photos into R2",
+     "name": "Refresh council cameras",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45436237829",
-     "date": "2026-11-24T16:22:12Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45463252572",
+     "date": "2026-11-24T18:49:12Z",
      "event": "schedule"
     }
    ],
    "version": "20261123b",
    "lastCommit": {
-    "date": "2026-11-23T07:42:01Z"
+    "date": "2026-11-24T18:49:07Z"
    }
   },
   {
@@ -3117,8 +3117,8 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/45262091984",
-     "date": "2026-11-23T20:42:35Z",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/45483440644",
+     "date": "2026-11-24T20:42:01Z",
      "event": "schedule"
     },
     {
@@ -6064,8 +6064,8 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/45267714756",
-     "date": "2026-11-23T21:15:35Z",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/45489320558",
+     "date": "2026-11-24T21:16:19Z",
      "event": "schedule"
     },
     {
@@ -8751,7 +8751,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "242 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "243 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
@@ -8782,7 +8782,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "242 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "243 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
