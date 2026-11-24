@@ -40,17 +40,17 @@ My Claude plan has a weekly allowance; treat it like fuel. `docs/usage.md` in th
 
 | | Option | What you get | Model / Effort | Cost |
 |---|---|---|---|---|
-| ⭐ | **A** | the core only | Sonnet / High | 🟡 ~2% |
-|  | **B** | all of it | Opus / High | 🔴 ~8% |
-|  | **C** | part now, the rest as issues | Sonnet / Medium | 🟢 ~0.5% now |
+|  | **A** | part now, the rest as issues | Sonnet / Medium | 🟢 ~0.5% now |
+| ⭐ | **B** | the core only | Sonnet / High | 🟡 ~2% |
+|  | **C** | all of it | Opus / High | 🔴 ~8% |
 
-**Pick:** A — why, in one line.
-**This session:** Opus / Extra · ⬇️ more than A needs: start A in a new session on Sonnet / High.
+**Pick:** B — why, in one line.
+**This session:** Opus / Extra · ⬇️ more than B needs: start B in a new session on Sonnet / High.
 
 Reply A, B or C (or "go" for the ⭐).
 ```
 
-- **Same layout every time:** the heading word for word, this table's five columns in order, two or three rows lettered A, B, C, ⭐ on your pick. No bullet version, nothing after the reply line, no run summary (a card is not a run).
+- **Same layout every time:** the heading word for word, this table's five columns in order, two or three rows lettered A, B, C **cheapest first** (a bigger option can build on the ones above), ⭐ on your pick. No bullet version, nothing after the reply line, no run summary.
 - **Model / Effort** use the app's own words: Haiku, Sonnet, Opus · Low, Medium, High, Extra, Max.
 - **Cost** is a share of my week: 🟢 under 1% · 🟡 1–5% · 🔴 over 5%. About US$14 at list price is 1%.
 - **This session:** ✅ right for the pick · ⬇️ more than it needs · ⬆️ less than it needs — and what to do about it.

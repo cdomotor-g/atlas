@@ -45,12 +45,12 @@ fix. The card always has the same layout, so you can read it at a glance:
 
 | | Option | What you get | Model / Effort | Cost |
 |---|---|---|---|---|
-|  | **A** | roads layer only | Sonnet / High | 🟡 ~2% |
-| ⭐ | **B** | roads plus relocation tools | Opus / High | 🔴 ~8% |
-|  | **C** | roads now, relocation tools as two roadmap issues | Sonnet / High | 🟡 ~2% now |
+|  | **A** | roads now, relocation tools as two roadmap issues | Sonnet / High | 🟡 ~2% now |
+|  | **B** | roads layer only | Sonnet / High | 🟡 ~2% |
+| ⭐ | **C** | roads plus relocation tools | Opus / High | 🔴 ~8% |
 
-**Pick:** B — the relocation tools reuse the road data, so doing them together saves a second pass.
-**This session:** Opus / Extra · ⬇️ more than B needs: start B in a new session on Opus / High.
+**Pick:** C — the relocation tools reuse the road data, so doing them together saves a second pass.
+**This session:** Opus / Extra · ⬇️ more than C needs: start C in a new session on Opus / High.
 
 Reply A, B or C (or "go" for the ⭐).
 
@@ -58,6 +58,7 @@ Reply A, B or C (or "go" for the ⭐).
 
 What the marks mean:
 
+- **A, B, C** run from cheapest to dearest, so a bigger option can build on the smaller ones above it.
 - **⭐** the option the session would pick.
 - **Cost** is a share of your week: 🟢 under 1% · 🟡 1–5% · 🔴 over 5%.
 - **This session:** ✅ right for the pick · ⬇️ more than it needs (you're overpaying) · ⬆️ less
@@ -146,5 +147,5 @@ Chats and Dispatch don't load the repository rules. To get the sizing card there
 to claude.ai → Settings → Your Claude → Instructions:
 
 ```text
-Before any job bigger than a quick answer or small fix, reply with only a sizing card and wait for my pick (skip it if I've already said "go"). Always this layout: a horizontal rule; the heading "# 📏 SIZING CARD"; a quote with "Job:" and my ask in ten words, then what makes it big in one sentence; then a table with exactly these columns: (blank for ⭐) | Option | What you get | Model / Effort | Cost — two or three rows lettered A, B, C, ⭐ on the one you'd pick. Model / Effort in the app's words (Haiku, Sonnet, Opus · Low, Medium, High, Extra, Max). Cost as a share of my weekly allowance (about US$14 at list price is 1%), marked 🟢 under 1%, 🟡 1–5%, 🔴 over 5%. Then "Pick:" with a one-line reason, "This session:" with its model / effort and ✅ right, ⬇️ more than needed or ⬆️ less than needed, and last "Reply A, B or C (or "go" for the ⭐)." Never a bullet-point version; no run summary on a card. If the work grows past about twice its size, stop at a working point and show a new card.
+Before any job bigger than a quick answer or small fix, reply with only a sizing card and wait for my pick (skip it if I've already said "go"). Always this layout: a horizontal rule; the heading "# 📏 SIZING CARD"; a quote with "Job:" and my ask in ten words, then what makes it big in one sentence; then a table with exactly these columns: (blank for ⭐) | Option | What you get | Model / Effort | Cost — two or three rows lettered A, B, C in order of cost, cheapest first (a bigger option can build on the smaller ones), ⭐ on the one you'd pick. Model / Effort in the app's words (Haiku, Sonnet, Opus · Low, Medium, High, Extra, Max). Cost as a share of my weekly allowance (about US$14 at list price is 1%), marked 🟢 under 1%, 🟡 1–5%, 🔴 over 5%. Then "Pick:" with a one-line reason, "This session:" with its model / effort and ✅ right, ⬇️ more than needed or ⬆️ less than needed, and last "Reply A, B or C (or "go" for the ⭐)." Never a bullet-point version; no run summary on a card. If the work grows past about twice its size, stop at a working point and show a new card.
 ```
