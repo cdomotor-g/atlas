@@ -4,7 +4,7 @@ The rules every one of cdomotor-g's repositories shares are written once, here:
 
 | File | Holds | Loaded in |
 |---|---|---|
-| [`shared/instructions.md`](../shared/instructions.md) | Pushing, plain words, private data, who clears what, usage (sizing a job before starting it, which model and effort, when to start fresh), issue titles, and the run summary every run ends with | every repository |
+| [`shared/instructions.md`](../shared/instructions.md) | Pushing, plain words, private data, who clears what, usage (sizing a job before starting it, which model and effort, when to start fresh, and the hand-over prompt), issue titles, and the run summary every run ends with | every repository |
 | [`shared/on-the-atlas.md`](../shared/on-the-atlas.md) | Working with the map: `atlas.json`, telling the repositories that rely on this one, asks, pins, status and blockers | repositories with an `atlas.json` |
 
 Change a rule there and every new session in every repository follows it. There are no
@@ -30,6 +30,29 @@ repository's file wins, so what is particular to one repository stays in that re
 Why not a copy in each repository: a copy has to be copied out to every repository after each
 change, by a session with all of them attached, and a repository nobody copied into quietly
 keeps the old rules.
+
+## Example: the hand-over
+
+When a run ends and a fresh chat would be cheaper, the run summary gets a last section. The one
+rule that matters for forking paths: open questions go *inside* the prompt with the likely answer
+already ticked, so there is one prompt, not one per answer. Paste it as it is to agree with
+every tick; change one line to disagree.
+
+````markdown
+## 🔁 Hand-over
+Pushed and the next job is a different one, so a new chat starts cheaper than this one.
+
+```text
+Goal: add the Flood-Net map page to the Atlas.
+Where things stand: the data side is pushed (commit abc1234); the page is not started.
+Next: build the page from data/map.json; run node test/check.mjs; push to main.
+Read first: README.md, docs/adding-a-repo.md.
+Settled / Open — treat ticked answers as mine, ask only what is blank:
+- Q1 Which zone? Q1.1 North · Q1.2 South  → Q1: Q1.2 (recommended)
+- Q2 Add a legend? Q2.1 Yes · Q2.2 No  → Q2:
+Start by sizing the job, then wait for my pick.
+```
+````
 
 ## Limits
 

@@ -8,7 +8,7 @@ repository's file wins.
 ## Pushing
 - Push straight to `main` after a patch, without asking: `git pull --rebase origin main` first (other sessions and workflows commit to `main` too), then push. No pull requests, and no branches unless I ask — even where the session was set up to work on a `claude/…` branch.
 - Run the repository's own checks before you push (its `CLAUDE.md` says which).
-- **Work on `main` from the start.** If the session put you on a `claude/…` branch, switch before your first commit: `git fetch origin main && git checkout -B main origin/main`. Otherwise the session's automatic "unpushed commits" check nudges you after every reply, and each nudge costs a whole extra turn. If you end up on a `claude/…` branch anyway, after pushing run `git branch -u origin/main` so the check sees it's pushed. When an automatic check nudges you and nothing needs doing, answer in one line: no run summary.
+- **Work on `main` from the start.** If the session put you on a `claude/…` branch, switch before your first commit: `git fetch origin main && git checkout -B main origin/main`. Otherwise the automatic "unpushed commits" check nudges you after every reply, costing an extra turn each. If you end up on a `claude/…` branch anyway, after pushing run `git branch -u origin/main` so the check sees it's pushed. When an automatic check nudges you and nothing needs doing, answer in one line: no run summary.
 
 ## Plain words
 - I'm not a software engineer. In anything a person reads — a page, a message, a doc, an issue, a commit message, a report — prefer the everyday word.
@@ -55,7 +55,7 @@ Reply A, B or C (or "go" for the ⭐).
 **Which setup.** Haiku / Low–Medium: looking up, renaming, formatting, filling data. Sonnet / Medium–High: most coding with a clear brief, bugs with a known cause, docs, tests. Opus / High: design across several parts, a bug nobody can pin down, security, safety or money. Extra or Max only after High has failed.
 - **Hand work down.** You can't change this session's model, but a subagent with `model: "sonnet"` or `"haiku"` can do bulk reading, searching and mechanical edits while you keep the decisions.
 - **Stop when it grows.** Past about twice its size, stop at a working point, push, and show a new sizing card: finish now, or the rest as issues tagged with their model/effort.
-- **Fresh sessions.** Every message re-reads the whole conversation. When work is pushed and the next job is different, or the context passes about 200,000 tokens, end with a three-to-six-line hand-over to paste into a new session (or suggest `/compact`).
+- **Fresh sessions.** Every message re-reads the whole conversation, so a long chat costs more per reply. See *Hand-over* below.
 - **Research and unattended runs** work to a budget (default 2% of my week) and stop with what they have.
 - **Read lean.** Search before opening whole files, read only the part you need, parse big outputs with a script.
 
@@ -94,10 +94,14 @@ When you finish a piece of work, end your reply with this report, filled in. A s
 - **Q1** The question. Options as **Q1.1**, **Q1.2**, the one you'd pick marked *(recommended)*.
 ```
 
-- **The marker.** A horizontal rule, then the 🏁 heading word for word, so I can find it by scrolling. N counts the summaries in this chat: Run 1 first, then one more than the last marker. A new chat starts at Run 1. Use it once per reply, at the start of the report: everything above it is working notes, and nothing comes after the report.
+- **The marker.** A horizontal rule, then the 🏁 heading word for word, so I can find it by scrolling. N counts the summaries in this chat: Run 1 first, then one more than the last marker. A new chat starts at Run 1. Use it once per reply, at the start of the report: everything above it is working notes, and nothing comes after the report but the hand-over.
 - **What I asked, then what came of it.** Straight under the heading, **You asked:** and my request in ten words at most (several asks joined with ·), so I can tell which request a report answers when I scroll back. Then one plain sentence on what the run achieved, listing every Y, S and Q point, or saying nothing needs me.
-- **Same sections, same letters, every repository.** These headings, emoji and order; leave out any that would be empty, and add none. Every point starts with its section's letter and number: **D** done · **C** checks · **N** not done · **Y** needs you · **S** needs your sign-in · **Q** questions. Nest with a dot (**D2.1**). Numbers restart each run, so when I reply "Q1: yes" or "Run 2 Y1", that's the point I mean.
+- **Same sections, same letters, every repository.** These headings, emoji and order; leave out empty ones, add none. Every point starts with its section's letter and number: **D** done · **C** checks · **N** not done · **Y** needs you · **S** needs your sign-in · **Q** questions. Nest with a dot (**D2.1**). Numbers restart each run, so when I reply "Q1: yes" or "Run 2 Y1", that's the point I mean.
 - **Checks show their result:** 🟢 passed · 🟡 passed with a warning · 🔴 failed · ⚪ not run, and why. Never call something fixed or passing that wasn't checked.
 - **Needs you, or needs your sign-in.** **Y** is only what needs my hands, money or say: hardware, a site, an order, a decision. What needs only my sign-in (a dashboard, a setting, an account page) is **S**: do it yourself if this session can use my computer; otherwise write it as a brief I can paste into Dispatch.
 - **Short.** One line a point, two at most: what happened and what it means for me, not how it was done.
-- **Plain words.** I'm not a software engineer, and I may read only this report. Prefer the everyday word. Where a technical term, an abbreviation, a word used in a special sense, or a mention of something I may not have seen (a file, a tool, an earlier step) is the clearest choice, add a few words saying what it is the first time. Name a thing by what it does, not only by its file or function name.
+- **Plain words.** I'm not a software engineer, and I may read only this report. Prefer the everyday word. Where a technical term, abbreviation, special-sense word, or something I may not have seen (a file, a tool, an earlier step) is clearest, say in a few words what it is the first time.
+
+## Hand-over — when a new chat is cheaper
+After the last section, judge whether a fresh chat would cost less than carrying on. You can't read your own size exactly, so go by signs: work is pushed and the next job differs; many files or long outputs read; many turns; past about 200,000 tokens. If not, add nothing.
+If so, add a final `## 🔁 Hand-over` (nothing after it): one line on why, then one code block I can tap and copy, a whole prompt for a new agent: the goal; where things stand (what's pushed, with links); next steps; files to read first; rules that matter; and **Settled / Open**. Each open question lists its options with my likely answer pre-ticked, like `Q1: Q1.2 (recommended)`. Tell the new agent to treat ticked answers as mine, ask only what is blank, and size the job first. If an answer changes the plan too much to write it, ask first and hand over next reply.
