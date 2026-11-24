@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-24T12:33:02.880Z",
- "hash": "8477bc2a2afa6c14",
+ "generated": "2026-11-24T15:28:01.543Z",
+ "hash": "6039777aad062f3f",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1206,9 +1206,9 @@
      "computer": false,
      "title": "CI doctor: 3-D view — \"opens from a page opened as a file\" red in CI, green locally",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/290",
-     "updated": "2026-11-23T15:10:36Z",
+     "updated": "2026-11-24T15:10:42Z",
      "created": "2026-11-13T15:34:57Z",
-     "comments": 9,
+     "comments": 10,
      "labels": [],
      "mentions": [],
      "triage": {
@@ -2233,27 +2233,35 @@
    "release": null,
    "ci": [
     {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45425248292",
+     "date": "2026-11-24T15:25:06Z",
+     "event": "schedule"
+    },
+    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45393119282",
-     "date": "2026-11-24T12:24:04Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45423824815",
+     "date": "2026-11-24T15:17:50Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45392993552",
-     "date": "2026-11-24T12:23:58Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45423681227",
+     "date": "2026-11-24T15:18:03Z",
      "event": "schedule"
     },
     {
-     "name": "Field photos from Google Drive",
+     "name": "Data archive into R2",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45392608508",
-     "date": "2026-11-24T12:20:54Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45416357210",
+     "date": "2026-11-24T14:40:01Z",
      "event": "schedule"
     }
    ],
