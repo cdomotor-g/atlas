@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-24T21:26:37.205Z",
- "hash": "186d701d6b375df0",
+ "generated": "2026-11-25T00:46:02.977Z",
+ "hash": "b60dd568b45d7156",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -2233,43 +2233,27 @@
    "release": null,
    "ci": [
     {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45490720141",
-     "date": "2026-11-24T21:24:14Z",
-     "event": "schedule"
-    },
-    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45489484846",
-     "date": "2026-11-24T21:17:00Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45519605032",
+     "date": "2026-11-25T00:38:17Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45489262745",
-     "date": "2026-11-24T21:16:26Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45519514571",
+     "date": "2026-11-25T00:38:09Z",
      "event": "schedule"
     },
     {
-     "name": "Atlas",
+     "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45473181276",
-     "date": "2026-11-24T19:43:46Z",
-     "event": "schedule"
-    },
-    {
-     "name": "Refresh council cameras",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45463252572",
-     "date": "2026-11-24T18:49:12Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45519182564",
+     "date": "2026-11-25T00:35:03Z",
      "event": "schedule"
     }
    ],
@@ -4226,8 +4210,8 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/45274669280",
-     "date": "2026-11-23T21:56:31Z",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_v3/actions/runs/45496045652",
+     "date": "2026-11-24T21:56:40Z",
      "event": "schedule"
     },
     {
@@ -5011,8 +4995,8 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/45273592392",
-     "date": "2026-11-23T21:50:01Z",
+     "url": "https://github.com/cdomotor-g/quansheng_alert_ALL/actions/runs/45495038934",
+     "date": "2026-11-24T21:50:25Z",
      "event": "schedule"
     },
     {
@@ -5579,8 +5563,8 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/45270461176",
-     "date": "2026-11-23T21:31:35Z",
+     "url": "https://github.com/cdomotor-g/open-ALERT/actions/runs/45491939691",
+     "date": "2026-11-24T21:31:45Z",
      "event": "schedule"
     },
     {
@@ -5977,12 +5961,24 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-20T05:57:34Z",
+    "pushed": "2026-11-24T23:33:20Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/SoRT"
    },
    "commits": [
+    {
+     "sha": "29251fd",
+     "date": "2026-11-24T23:33:18Z",
+     "msg": "Welcome back dialog: highlight Start a new session, plain Resume button",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/29251fd992162d38f30bf46fb297cabfa4b948e1"
+    },
+    {
+     "sha": "91d91ed",
+     "date": "2026-11-24T23:26:10Z",
+     "msg": "Water level sensors: Amazon bubbler takes BU07 only, HS40 defaults to GCO",
+     "url": "https://github.com/cdomotor-g/SoRT/commit/91d91edc9eb126545fa9c79fc7aaa7961f374864"
+    },
     {
      "sha": "6699b55",
      "date": "2026-11-20T05:57:33Z",
@@ -6042,18 +6038,6 @@
      "date": "2026-11-09T07:46:08Z",
      "msg": "Map: fit every location on first framing (page load, refresh, new station) when Auto-fit is on",
      "url": "https://github.com/cdomotor-g/SoRT/commit/6ac4164a5b2ab972217730deda2172c4b8f264f6"
-    },
-    {
-     "sha": "0d7eb41",
-     "date": "2026-11-09T07:38:54Z",
-     "msg": "Keep an older session's forum date unless it is actually changed, and ask first",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/0d7eb418f4854fd8332c7baaeee2b82a2db953c0"
-    },
-    {
-     "sha": "0746431",
-     "date": "2026-11-09T07:36:57Z",
-     "msg": "Close-ups: one for every pin the others don't show, lettered A, B, C…; two to a row in Word",
-     "url": "https://github.com/cdomotor-g/SoRT/commit/0746431e04df0a91480d66d78f62eab760ee11fa"
     }
    ],
    "issues": [],
@@ -6061,25 +6045,25 @@
    "release": null,
    "ci": [
     {
+     "name": "pages build and deployment",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/45510950816",
+     "date": "2026-11-24T23:34:02Z",
+     "event": "dynamic"
+    },
+    {
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/SoRT/actions/runs/45489320558",
      "date": "2026-11-24T21:16:19Z",
      "event": "schedule"
-    },
-    {
-     "name": "pages build and deployment",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/44684454087",
-     "date": "2026-11-20T05:58:14Z",
-     "event": "dynamic"
     }
    ],
    "version": null,
    "lastCommit": {
-    "date": "2026-11-20T05:57:33Z"
+    "date": "2026-11-24T23:33:18Z"
    }
   },
   {
@@ -7468,7 +7452,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "25 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
+    "note": "27 newer commits upstream since it was last reviewed (2026-11-05), none to watched files."
    }
   },
   {
