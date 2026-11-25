@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-25T12:33:32.787Z",
- "hash": "2212cdc52544fd4a",
+ "generated": "2026-11-25T15:27:15.704Z",
+ "hash": "4394c28cd0c6cce0",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1081,12 +1081,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-25T07:23:31Z",
+    "pushed": "2026-11-25T15:13:14Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "90f3ac9",
+     "date": "2026-11-25T15:13:09Z",
+     "msg": "CI doctor: Exports — the new Network Bulletins tab was neither offering a file nor exempt; exempt it with a reason",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/90f3ac94005433e89251558add9f8185e2011ef6"
+    },
     {
      "sha": "8120528",
      "date": "2026-11-25T07:23:28Z",
@@ -1152,12 +1158,6 @@
      "date": "2026-11-25T05:21:47Z",
      "msg": "Version stamp 20261125d; the panel counts include Riverside sites",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/e4878655a7787851e5a0f329e3da305c44e8d833"
-    },
-    {
-     "sha": "130efb7",
-     "date": "2026-11-25T05:21:37Z",
-     "msg": "Riverside sites: score a place near a river, and the river place by place as a strip",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/130efb767b0564a8ef23e9de39f352032d92983e"
     }
    ],
    "issues": [
@@ -2254,33 +2254,57 @@
    "release": null,
    "ci": [
     {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45644816936",
+     "date": "2026-11-25T15:24:38Z",
+     "event": "schedule"
+    },
+    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45613532015",
-     "date": "2026-11-25T12:25:04Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45643656213",
+     "date": "2026-11-25T15:18:30Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45613321230",
-     "date": "2026-11-25T12:24:35Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45643455838",
+     "date": "2026-11-25T15:18:26Z",
      "event": "schedule"
     },
     {
-     "name": "Field photos from Google Drive",
+     "name": "Web smoke test",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45642679967",
+     "date": "2026-11-25T15:13:25Z",
+     "event": "push"
+    },
+    {
+     "name": "CodeQL",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45612918350",
-     "date": "2026-11-25T12:21:13Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45642679961",
+     "date": "2026-11-25T15:17:38Z",
+     "event": "push"
+    },
+    {
+     "name": "Data archive into R2",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45636269160",
+     "date": "2026-11-25T14:42:01Z",
      "event": "schedule"
     }
    ],
-   "version": "20261125k",
+   "version": "20261125l",
    "lastCommit": {
-    "date": "2026-11-25T07:23:28Z"
+    "date": "2026-11-25T15:13:09Z"
    }
   },
   {
@@ -8741,7 +8765,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "264 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "265 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
