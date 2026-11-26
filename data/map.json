@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-26T09:29:17.360Z",
- "hash": "4b2ae376a54aa67b",
+ "generated": "2026-11-26T12:34:07.212Z",
+ "hash": "7aa8d906a938fb3a",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -2254,27 +2254,27 @@
    "release": null,
    "ci": [
     {
-     "name": "Field photos from Google Drive",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45791918881",
-     "date": "2026-11-26T09:26:09Z",
-     "event": "schedule"
-    },
-    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45790928261",
-     "date": "2026-11-26T09:19:49Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45819276560",
+     "date": "2026-11-26T12:24:04Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45790711442",
-     "date": "2026-11-26T09:19:16Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45819038778",
+     "date": "2026-11-26T12:23:29Z",
+     "event": "schedule"
+    },
+    {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45818655291",
+     "date": "2026-11-26T12:20:05Z",
      "event": "schedule"
     }
    ],
@@ -8720,16 +8720,12 @@
    "entry": "floodnet-benchmarks",
    "to": "sort",
    "drift": {
-    "state": "current",
-    "since": {
-     "date": "2026-11-04",
-     "commit": "65df6ff85c2b22b61aaabb5acd6c1c8b5a3e7afc",
-     "commitDate": "2026-11-04T23:56:13Z"
-    },
+    "state": "unknown",
+    "since": null,
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "266 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "GET /repos/cdomotor-g/MegaNet/compare/65df6ff85c2b22b61aaabb5acd6c1c8b5a3e7afc...main → 500 {\"message\":\"Server Error: Sorry, this diff is temporarily unavailabl"
    }
   },
   {
