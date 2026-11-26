@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-26T00:44:43.365Z",
- "hash": "63a03f3e1500f4fd",
+ "generated": "2026-11-26T03:30:16.013Z",
+ "hash": "365ce10f13e31ab2",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1081,12 +1081,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-25T15:13:14Z",
+    "pushed": "2026-11-26T01:23:35Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "1bf36f0",
+     "date": "2026-11-26T01:19:43Z",
+     "msg": "Message Log: Last hop and Offset columns and a Last hop filter",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/1bf36f0f1dfea9b74211237f2e0f915b0dd132f3"
+    },
     {
      "sha": "90f3ac9",
      "date": "2026-11-25T15:13:09Z",
@@ -1152,12 +1158,6 @@
      "date": "2026-11-25T05:24:28Z",
      "msg": "Version stamp 20261125f",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/388053c39924a8cf7fc0487f3ec457ff0ac4ba3b"
-    },
-    {
-     "sha": "e487865",
-     "date": "2026-11-25T05:21:47Z",
-     "msg": "Version stamp 20261125d; the panel counts include Riverside sites",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/e4878655a7787851e5a0f329e3da305c44e8d833"
     }
    ],
    "issues": [
@@ -2254,33 +2254,49 @@
    "release": null,
    "ci": [
     {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45749005179",
+     "date": "2026-11-26T03:27:19Z",
+     "event": "schedule"
+    },
+    {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45730003903",
-     "date": "2026-11-26T00:37:13Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45748260288",
+     "date": "2026-11-26T03:20:27Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45729928293",
-     "date": "2026-11-26T00:37:19Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45748128414",
+     "date": "2026-11-26T03:19:57Z",
      "event": "schedule"
     },
     {
-     "name": "Field photos from Google Drive",
+     "name": "Web smoke test",
+     "status": "completed",
+     "conclusion": "failure",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45735457636",
+     "date": "2026-11-26T02:26:01Z",
+     "event": "push"
+    },
+    {
+     "name": "CodeQL",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45729650771",
-     "date": "2026-11-26T00:34:11Z",
-     "event": "schedule"
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45735457605",
+     "date": "2026-11-26T01:28:52Z",
+     "event": "push"
     }
    ],
-   "version": "20261125l",
+   "version": "20261126a",
    "lastCommit": {
-    "date": "2026-11-25T15:13:09Z"
+    "date": "2026-11-26T01:19:43Z"
    }
   },
   {
@@ -7893,7 +7909,7 @@
      "commit": "66608567fb48e86c9b399ca51a391ae0cd41ffdd",
      "commitDate": "2026-09-30T04:58:36Z"
     },
-    "behind": 4,
+    "behind": 3,
     "commits": [
      {
       "sha": "b08b2a0",
@@ -7912,18 +7928,12 @@
       "date": "2026-11-05T05:51:43Z",
       "msg": "Mt Marrow AL as a repeater: Willowbank's addresses, two logger types, the station file",
       "url": "https://github.com/cdomotor-g/MegaNet/commit/decdc369afd07a436e34ddc370f89c0e727c2158"
-     },
-     {
-      "sha": "518ad0b",
-      "date": "2026-11-05T05:01:24Z",
-      "msg": "Loudoun Br AL was in the register twice: the copy retired, notes on where it stands",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/518ad0b685907527e2f95ea66b8df96f2b76d5af"
      }
     ],
     "files": [
      "stations.json"
     ],
-    "note": "4 upstream changes to watched files since it was last reviewed (2026-09-30)."
+    "note": "3 upstream changes to watched files since it was last reviewed (2026-09-30)."
    }
   },
   {
@@ -8038,7 +8048,7 @@
      "commit": "6ef4965",
      "commitDate": "2026-10-19T23:36:05Z"
     },
-    "behind": 4,
+    "behind": 3,
     "commits": [
      {
       "sha": "b08b2a0",
@@ -8057,18 +8067,12 @@
       "date": "2026-11-05T05:51:43Z",
       "msg": "Mt Marrow AL as a repeater: Willowbank's addresses, two logger types, the station file",
       "url": "https://github.com/cdomotor-g/MegaNet/commit/decdc369afd07a436e34ddc370f89c0e727c2158"
-     },
-     {
-      "sha": "518ad0b",
-      "date": "2026-11-05T05:01:24Z",
-      "msg": "Loudoun Br AL was in the register twice: the copy retired, notes on where it stands",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/518ad0b685907527e2f95ea66b8df96f2b76d5af"
      }
     ],
     "files": [
      "stations.json"
     ],
-    "note": "4 upstream changes to watched files since 6ef4965."
+    "note": "3 upstream changes to watched files since 6ef4965."
    }
   },
   {
@@ -8741,7 +8745,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "265 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "266 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
