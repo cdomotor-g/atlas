@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-27T06:37:42.692Z",
- "hash": "8a3fd2f2ac08f4ad",
+ "generated": "2026-11-27T09:28:49.753Z",
+ "hash": "f7219ad054092508",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1081,12 +1081,36 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-27T06:09:53Z",
+    "pushed": "2026-11-27T07:54:32Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "1f1d1a2",
+     "date": "2026-11-27T07:54:31Z",
+     "msg": "Roadmap: revision 261 — the Stations side panel by job, #299 opened",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/1f1d1a241367a7dcfe7f1ec61ae6e21544b2b03e"
+    },
+    {
+     "sha": "9393927",
+     "date": "2026-11-27T07:53:49Z",
+     "msg": "Version stamp 20261127b for the Stations side panel by job",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/9393927e01975a4fed7193ce2aeb077184990dc9"
+    },
+    {
+     "sha": "e1c3c5f",
+     "date": "2026-11-27T07:53:31Z",
+     "msg": "Side panel test: a window short enough to make the rail by job scroll",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/e1c3c5f63dbca3a3a6794b78d0ffdc171b963c0f"
+    },
+    {
+     "sha": "398c7cf",
+     "date": "2026-11-27T07:51:09Z",
+     "msg": "Stations side panel by job: Radio and Site lists, Map look on the map, Find a better site, tools in search",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/398c7cf51afb0ece70a481bae11c783dbd1a46a5"
+    },
     {
      "sha": "28ab9b5",
      "date": "2026-11-27T06:09:51Z",
@@ -1134,33 +1158,30 @@
      "date": "2026-11-25T05:51:18Z",
      "msg": "Version stamp 20261125j",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/80deb4be8747a7ef3b3846de9b6ee0f12558dbef"
-    },
-    {
-     "sha": "32fbac4",
-     "date": "2026-11-25T05:46:43Z",
-     "msg": "Retire the Classic look: Calm is the one everything is tested against",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/32fbac47ea424ba3b88243df35a7344b49e7062d"
-    },
-    {
-     "sha": "0af897d",
-     "date": "2026-11-25T05:40:36Z",
-     "msg": "Health chart: hollow dots for off-schedule battery readings, check-only toggle",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/0af897d4f828ac404ab33cc34129adf2a13e7f4f"
-    },
-    {
-     "sha": "b41feaf",
-     "date": "2026-11-25T05:28:55Z",
-     "msg": "Health chart: bright green hover line",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/b41feaf416707f7296216ea844b6e2f7ea2204f5"
-    },
-    {
-     "sha": "ff1a069",
-     "date": "2026-11-25T05:27:09Z",
-     "msg": "Station Health: battery dips heard at weak signal-to-noise are a watch, not act",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/ff1a069d09292cf902659e23f18aa53581dfb472"
     }
    ],
    "issues": [
+    {
+     "n": 299,
+     "raw": "[Standalone] [Opus5/High] Stations side panel, step 1: one station, one place",
+     "structure": "standalone",
+     "parent": null,
+     "model": "Opus5",
+     "effort": "High",
+     "human": false,
+     "computer": false,
+     "title": "Stations side panel, step 1: one station, one place",
+     "url": "https://github.com/cdomotor-g/MegaNet/issues/299",
+     "updated": "2026-11-27T07:54:14Z",
+     "created": "2026-11-27T07:54:14Z",
+     "comments": 0,
+     "labels": [],
+     "mentions": [],
+     "triage": {
+      "severity": 3,
+      "effort": "1d"
+     }
+    },
     {
      "n": 298,
      "raw": "[Standalone] [Sonnet5/Med] Browser checks still red after Classic's retirement: 3-D drag (map3d), plus twin and camera that were already red",
@@ -2239,7 +2260,7 @@
      "computer": false,
      "title": "Roadmap — resource allocation & sequencing for all issues",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/113",
-     "updated": "2026-11-25T06:46:31Z",
+     "updated": "2026-11-27T07:54:46Z",
      "created": "2026-08-13T00:13:50Z",
      "comments": 1,
      "labels": [],
@@ -2247,56 +2268,64 @@
       "meganet",
       "rpi_alert"
      ],
-     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1174k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
+     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1177k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
     }
    ],
-   "issueCount": 59,
+   "issueCount": 60,
    "release": null,
    "ci": [
+    {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45973684109",
+     "date": "2026-11-27T09:26:14Z",
+     "event": "schedule"
+    },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45951938866",
-     "date": "2026-11-27T06:27:14Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45972724912",
+     "date": "2026-11-27T09:19:25Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45951862362",
-     "date": "2026-11-27T06:27:30Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45972612574",
+     "date": "2026-11-27T09:19:12Z",
      "event": "schedule"
     },
     {
-     "name": "Field photos from Google Drive",
+     "name": "Roadmap sync",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45951598162",
-     "date": "2026-11-27T06:24:07Z",
-     "event": "schedule"
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45961712265",
+     "date": "2026-11-27T07:54:49Z",
+     "event": "push"
     },
     {
      "name": "CodeQL",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45950100864",
-     "date": "2026-11-27T06:13:51Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45961634842",
+     "date": "2026-11-27T07:58:29Z",
      "event": "push"
     },
     {
      "name": "Web smoke test",
-     "status": "in_progress",
-     "conclusion": null,
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45950100849",
-     "date": "2026-11-27T06:10:00Z",
+     "status": "completed",
+     "conclusion": "failure",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45961634851",
+     "date": "2026-11-27T08:59:40Z",
      "event": "push"
     }
    ],
-   "version": "20261127a",
+   "version": "20261127b",
    "lastCommit": {
-    "date": "2026-11-27T06:09:51Z"
+    "date": "2026-11-27T07:54:31Z"
    }
   },
   {
@@ -8692,7 +8721,7 @@
      "commit": "87ab6ed00b060b13b3c91019f58a6da6d56c129d",
      "commitDate": "2026-11-01T23:59:08Z"
     },
-    "behind": 6,
+    "behind": 5,
     "commits": [
      {
       "sha": "da54f07",
@@ -8723,12 +8752,6 @@
       "date": "2026-11-09T06:27:24Z",
       "msg": "Routes to a base check the channel: agent API, Best repeater, Hops to base",
       "url": "https://github.com/cdomotor-g/MegaNet/commit/acbcec8133214782dcd5fe1216b2c89cfd54c001"
-     },
-     {
-      "sha": "318fd32",
-      "date": "2026-11-05T05:11:02Z",
-      "msg": "Repeaters and bases on a 4 m antenna, not an assumed 10 m mast",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/318fd32d3399e6ac93fb23132caa963a23dd1086"
      }
     ],
     "files": [
@@ -8736,7 +8759,7 @@
      "worker/api.js",
      "worker/radio-path.js"
     ],
-    "note": "6 upstream changes to watched files since it was last reviewed (2026-11-01)."
+    "note": "5 upstream changes to watched files since it was last reviewed (2026-11-01)."
    }
   },
   {
@@ -8766,7 +8789,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "267 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "271 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
