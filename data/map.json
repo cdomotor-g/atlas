@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-27T18:29:43.282Z",
- "hash": "c0688b674c471fd5",
+ "generated": "2026-11-27T21:26:39.187Z",
+ "hash": "dd2da8dd6a21ae2b",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1081,12 +1081,30 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-27T15:28:47Z",
+    "pushed": "2026-11-27T21:05:15Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "5bd91ec",
+     "date": "2026-11-27T21:05:12Z",
+     "msg": "Field Camera: zoom, pitch and roll, position map, fill the screen on its side, copies saved by default; Look Around: aim at a station, talle",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/5bd91ecab68149e775e8efb8d600e84954effcf3"
+    },
+    {
+     "sha": "a84cbdb",
+     "date": "2026-11-27T20:26:47Z",
+     "msg": "Version stamp 20261127e; roadmap revision 263 for + Propose and + New on the station header",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/a84cbdb1a4327f1e30ad9497198b42ed8835cafe"
+    },
+    {
+     "sha": "2902350",
+     "date": "2026-11-27T20:26:33Z",
+     "msg": "Stations side panel: + Propose and + New on the picked station's header (#299 follow-up)",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/29023505ed96a29d18cf87776f0a6e1d198cac49"
+    },
     {
      "sha": "bdc104f",
      "date": "2026-11-27T15:28:43Z",
@@ -1140,24 +1158,6 @@
      "date": "2026-11-26T01:19:43Z",
      "msg": "Message Log: Last hop and Offset columns and a Last hop filter",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/1bf36f0f1dfea9b74211237f2e0f915b0dd132f3"
-    },
-    {
-     "sha": "90f3ac9",
-     "date": "2026-11-25T15:13:09Z",
-     "msg": "CI doctor: Exports — the new Network Bulletins tab was neither offering a file nor exempt; exempt it with a reason",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/90f3ac94005433e89251558add9f8185e2011ef6"
-    },
-    {
-     "sha": "8120528",
-     "date": "2026-11-25T07:23:28Z",
-     "msg": "Move the map's View and Imagery pills to the top, left of the button column",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/8120528f8f92a5a77afc8fad63668715f074cce5"
-    },
-    {
-     "sha": "66104a3",
-     "date": "2026-11-25T06:51:36Z",
-     "msg": "Health chart: ring the points the hover card is quoting",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/66104a349f6d246fb2f79733ec3aacbd4b0c4573"
     }
    ],
    "issues": [
@@ -2239,7 +2239,7 @@
      "computer": false,
      "title": "Roadmap — resource allocation & sequencing for all issues",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/113",
-     "updated": "2026-11-27T15:29:06Z",
+     "updated": "2026-11-27T20:27:03Z",
      "created": "2026-08-13T00:13:50Z",
      "comments": 1,
      "labels": [],
@@ -2247,7 +2247,7 @@
       "meganet",
       "rpi_alert"
      ],
-     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1179k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
+     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1181k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
     }
    ],
    "issueCount": 59,
@@ -2257,62 +2257,62 @@
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46049521676",
-     "date": "2026-11-27T18:26:52Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46070049609",
+     "date": "2026-11-27T21:24:06Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46048632333",
-     "date": "2026-11-27T18:19:54Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46069256728",
+     "date": "2026-11-27T21:16:59Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46048481597",
-     "date": "2026-11-27T18:19:27Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46069137705",
+     "date": "2026-11-27T21:16:35Z",
      "event": "schedule"
     },
     {
-     "name": "Fade margin re-sweep",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46033851915",
-     "date": "2026-11-27T16:28:43Z",
-     "event": "schedule"
-    },
-    {
-     "name": "Field photos into R2",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46032836374",
-     "date": "2026-11-27T16:21:12Z",
-     "event": "schedule"
+     "name": "Web smoke test",
+     "status": "in_progress",
+     "conclusion": null,
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46067957757",
+     "date": "2026-11-27T21:05:45Z",
+     "event": "push"
     },
     {
      "name": "CodeQL",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46025274647",
-     "date": "2026-11-27T15:34:20Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46067957875",
+     "date": "2026-11-27T21:10:49Z",
      "event": "push"
     },
     {
      "name": "Roadmap sync",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46025274630",
-     "date": "2026-11-27T15:29:10Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46063694264",
+     "date": "2026-11-27T20:27:07Z",
      "event": "push"
+    },
+    {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46058708942",
+     "date": "2026-11-27T19:44:10Z",
+     "event": "schedule"
     }
    ],
-   "version": "20261127d",
+   "version": "20261127f",
    "lastCommit": {
-    "date": "2026-11-27T15:28:43Z"
+    "date": "2026-11-27T21:05:12Z"
    }
   },
   {
@@ -3154,8 +3154,8 @@
      "name": "Atlas",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/45892908308",
-     "date": "2026-11-26T20:42:16Z",
+     "url": "https://github.com/cdomotor-g/RPi_ALERT/actions/runs/46065395005",
+     "date": "2026-11-27T20:42:25Z",
      "event": "schedule"
     },
     {
@@ -6107,20 +6107,20 @@
    "release": null,
    "ci": [
     {
+     "name": "Atlas",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/46069167853",
+     "date": "2026-11-27T21:16:24Z",
+     "event": "schedule"
+    },
+    {
      "name": "pages build and deployment",
      "status": "completed",
      "conclusion": "success",
      "url": "https://github.com/cdomotor-g/SoRT/actions/runs/45939612826",
      "date": "2026-11-27T04:23:39Z",
      "event": "dynamic"
-    },
-    {
-     "name": "Atlas",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/SoRT/actions/runs/45896851777",
-     "date": "2026-11-26T21:15:44Z",
-     "event": "schedule"
     }
    ],
    "version": null,
@@ -7931,7 +7931,7 @@
      "commit": "66608567fb48e86c9b399ca51a391ae0cd41ffdd",
      "commitDate": "2026-09-30T04:58:36Z"
     },
-    "behind": 3,
+    "behind": 2,
     "commits": [
      {
       "sha": "b08b2a0",
@@ -7944,18 +7944,12 @@
       "date": "2026-11-06T20:57:02Z",
       "msg": "Field Station 25W: a third radio system in the database and the station file",
       "url": "https://github.com/cdomotor-g/MegaNet/commit/bfaa4d7fb20bd3da72cdb7462fa4f97b14faca0a"
-     },
-     {
-      "sha": "decdc36",
-      "date": "2026-11-05T05:51:43Z",
-      "msg": "Mt Marrow AL as a repeater: Willowbank's addresses, two logger types, the station file",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/decdc369afd07a436e34ddc370f89c0e727c2158"
      }
     ],
     "files": [
      "stations.json"
     ],
-    "note": "3 upstream changes to watched files since it was last reviewed (2026-09-30)."
+    "note": "2 upstream changes to watched files since it was last reviewed (2026-09-30)."
    }
   },
   {
@@ -8070,7 +8064,7 @@
      "commit": "6ef4965",
      "commitDate": "2026-10-19T23:36:05Z"
     },
-    "behind": 3,
+    "behind": 2,
     "commits": [
      {
       "sha": "b08b2a0",
@@ -8083,18 +8077,12 @@
       "date": "2026-11-06T20:57:02Z",
       "msg": "Field Station 25W: a third radio system in the database and the station file",
       "url": "https://github.com/cdomotor-g/MegaNet/commit/bfaa4d7fb20bd3da72cdb7462fa4f97b14faca0a"
-     },
-     {
-      "sha": "decdc36",
-      "date": "2026-11-05T05:51:43Z",
-      "msg": "Mt Marrow AL as a repeater: Willowbank's addresses, two logger types, the station file",
-      "url": "https://github.com/cdomotor-g/MegaNet/commit/decdc369afd07a436e34ddc370f89c0e727c2158"
      }
     ],
     "files": [
      "stations.json"
     ],
-    "note": "3 upstream changes to watched files since 6ef4965."
+    "note": "2 upstream changes to watched files since 6ef4965."
    }
   },
   {
@@ -8776,7 +8764,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "274 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "277 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
