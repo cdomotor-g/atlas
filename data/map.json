@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-27T12:33:38.234Z",
- "hash": "85853b18170d3eaa",
+ "generated": "2026-11-27T15:27:03.582Z",
+ "hash": "770d874f03b7b6ed",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1081,12 +1081,18 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-27T07:54:32Z",
+    "pushed": "2026-11-27T13:43:23Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "cc78531",
+     "date": "2026-11-27T13:43:19Z",
+     "msg": "Stations: one station, one place — the side panel becomes the picked station (#299)",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/cc7853190e6eea1c52c69dcdc7a6ccf8fa19614b"
+    },
     {
      "sha": "1f1d1a2",
      "date": "2026-11-27T07:54:31Z",
@@ -1152,36 +1158,9 @@
      "date": "2026-11-25T05:51:37Z",
      "msg": "Roadmap: #298, the browser checks still red after Classic's retirement",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/384836f8f9dbb500524c8c44304e6d886585ae59"
-    },
-    {
-     "sha": "80deb4b",
-     "date": "2026-11-25T05:51:18Z",
-     "msg": "Version stamp 20261125j",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/80deb4be8747a7ef3b3846de9b6ee0f12558dbef"
     }
    ],
    "issues": [
-    {
-     "n": 299,
-     "raw": "[Standalone] [Opus5/High] Stations side panel, step 1: one station, one place",
-     "structure": "standalone",
-     "parent": null,
-     "model": "Opus5",
-     "effort": "High",
-     "human": false,
-     "computer": false,
-     "title": "Stations side panel, step 1: one station, one place",
-     "url": "https://github.com/cdomotor-g/MegaNet/issues/299",
-     "updated": "2026-11-27T07:54:14Z",
-     "created": "2026-11-27T07:54:14Z",
-     "comments": 0,
-     "labels": [],
-     "mentions": [],
-     "triage": {
-      "severity": 3,
-      "effort": "1d"
-     }
-    },
     {
      "n": 298,
      "raw": "[Standalone] [Sonnet5/Med] Browser checks still red after Classic's retirement: 3-D drag (map3d), plus twin and camera that were already red",
@@ -2260,7 +2239,7 @@
      "computer": false,
      "title": "Roadmap — resource allocation & sequencing for all issues",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/113",
-     "updated": "2026-11-27T07:54:46Z",
+     "updated": "2026-11-27T13:43:37Z",
      "created": "2026-08-13T00:13:50Z",
      "comments": 1,
      "labels": [],
@@ -2268,40 +2247,88 @@
       "meganet",
       "rpi_alert"
      ],
-     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1177k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
+     "excerpt": "[!IMPORTANT] This body is a generated excerpt. The roadmap itself is roadmap/roadmap-113.md — edit that, not this box. The full roadmap is ~1179k characters and a GitHub issue body caps at 65,536, so what follows is the allocation and sequencing view. Everything omitted is named at the bottom and is one click away. This is a living tracking issue, not a…"
     }
    ],
-   "issueCount": 60,
+   "issueCount": 59,
    "release": null,
    "ci": [
+    {
+     "name": "Field photos from Google Drive",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46024600894",
+     "date": "2026-11-27T15:24:26Z",
+     "event": "schedule"
+    },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45998325046",
-     "date": "2026-11-27T12:24:12Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46023506759",
+     "date": "2026-11-27T15:17:08Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45998156917",
-     "date": "2026-11-27T12:24:07Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46023447687",
+     "date": "2026-11-27T15:17:50Z",
      "event": "schedule"
     },
     {
-     "name": "Field photos from Google Drive",
+     "name": "Data archive into R2",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/45997793046",
-     "date": "2026-11-27T12:20:27Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46017721003",
+     "date": "2026-11-27T14:40:51Z",
      "event": "schedule"
+    },
+    {
+     "name": "Video MP4s",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46009655690",
+     "date": "2026-11-27T13:44:22Z",
+     "event": "workflow_run"
+    },
+    {
+     "name": "CodeQL",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46009556163",
+     "date": "2026-11-27T13:48:44Z",
+     "event": "push"
+    },
+    {
+     "name": "Roadmap sync",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46009555928",
+     "date": "2026-11-27T13:43:41Z",
+     "event": "push"
+    },
+    {
+     "name": "Bulletin voices",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46009555959",
+     "date": "2026-11-27T13:44:03Z",
+     "event": "push"
+    },
+    {
+     "name": "Web smoke test",
+     "status": "completed",
+     "conclusion": "failure",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46009556190",
+     "date": "2026-11-27T14:48:59Z",
+     "event": "push"
     }
    ],
-   "version": "20261127b",
+   "version": "20261127c",
    "lastCommit": {
-    "date": "2026-11-27T07:54:31Z"
+    "date": "2026-11-27T13:43:19Z"
    }
   },
   {
@@ -8765,7 +8792,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "271 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "272 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
