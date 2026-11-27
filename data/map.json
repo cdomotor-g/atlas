@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-27T15:27:03.582Z",
- "hash": "770d874f03b7b6ed",
+ "generated": "2026-11-27T18:29:43.282Z",
+ "hash": "c0688b674c471fd5",
  "owner": "cdomotor-g",
  "groups": [
   {
@@ -1081,12 +1081,24 @@
    "gh": {
     "description": null,
     "archived": false,
-    "pushed": "2026-11-27T13:43:23Z",
+    "pushed": "2026-11-27T15:28:47Z",
     "homepage": null,
     "language": "JavaScript",
     "url": "https://github.com/cdomotor-g/MegaNet"
    },
    "commits": [
+    {
+     "sha": "bdc104f",
+     "date": "2026-11-27T15:28:43Z",
+     "msg": "Version stamp 20261127d",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/bdc104f30a725cb2426399211a2cf9b63936036b"
+    },
+    {
+     "sha": "39593f4",
+     "date": "2026-11-27T15:28:40Z",
+     "msg": "CI doctor: Latency, Sensor sparklines, Repeater comparison — the side panel becoming the picked station (cc78531); keep Latency's pane on a ",
+     "url": "https://github.com/cdomotor-g/MegaNet/commit/39593f408e5d0baa059510e314c8c974c77ea00e"
+    },
     {
      "sha": "cc78531",
      "date": "2026-11-27T13:43:19Z",
@@ -1146,18 +1158,6 @@
      "date": "2026-11-25T06:51:36Z",
      "msg": "Health chart: ring the points the hover card is quoting",
      "url": "https://github.com/cdomotor-g/MegaNet/commit/66104a349f6d246fb2f79733ec3aacbd4b0c4573"
-    },
-    {
-     "sha": "0c8a11d",
-     "date": "2026-11-25T06:46:14Z",
-     "msg": "Raise the SoRT store's per-address brake from 120 to 300 requests a minute",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/0c8a11d8934ee13b74ee6c15a5ded85cd139e1da"
-    },
-    {
-     "sha": "384836f",
-     "date": "2026-11-25T05:51:37Z",
-     "msg": "Roadmap: #298, the browser checks still red after Classic's retirement",
-     "url": "https://github.com/cdomotor-g/MegaNet/commit/384836f8f9dbb500524c8c44304e6d886585ae59"
     }
    ],
    "issues": [
@@ -1172,9 +1172,9 @@
      "computer": false,
      "title": "Browser checks still red after Classic's retirement: 3-D drag (map3d), plus twin and camera that were already red",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/298",
-     "updated": "2026-11-25T05:51:33Z",
+     "updated": "2026-11-27T15:28:54Z",
      "created": "2026-11-25T05:51:33Z",
-     "comments": 0,
+     "comments": 1,
      "labels": [],
      "mentions": [],
      "triage": {
@@ -2239,7 +2239,7 @@
      "computer": false,
      "title": "Roadmap — resource allocation & sequencing for all issues",
      "url": "https://github.com/cdomotor-g/MegaNet/issues/113",
-     "updated": "2026-11-27T13:43:37Z",
+     "updated": "2026-11-27T15:29:06Z",
      "created": "2026-08-13T00:13:50Z",
      "comments": 1,
      "labels": [],
@@ -2257,78 +2257,62 @@
      "name": "Field photos from Google Drive",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46024600894",
-     "date": "2026-11-27T15:24:26Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46049521676",
+     "date": "2026-11-27T18:26:52Z",
      "event": "schedule"
     },
     {
      "name": "Field photos from Dropbox",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46023506759",
-     "date": "2026-11-27T15:17:08Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46048632333",
+     "date": "2026-11-27T18:19:54Z",
      "event": "schedule"
     },
     {
      "name": "Station health",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46023447687",
-     "date": "2026-11-27T15:17:50Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46048481597",
+     "date": "2026-11-27T18:19:27Z",
      "event": "schedule"
     },
     {
-     "name": "Data archive into R2",
+     "name": "Fade margin re-sweep",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46017721003",
-     "date": "2026-11-27T14:40:51Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46033851915",
+     "date": "2026-11-27T16:28:43Z",
      "event": "schedule"
     },
     {
-     "name": "Video MP4s",
+     "name": "Field photos into R2",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46009655690",
-     "date": "2026-11-27T13:44:22Z",
-     "event": "workflow_run"
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46032836374",
+     "date": "2026-11-27T16:21:12Z",
+     "event": "schedule"
     },
     {
      "name": "CodeQL",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46009556163",
-     "date": "2026-11-27T13:48:44Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46025274647",
+     "date": "2026-11-27T15:34:20Z",
      "event": "push"
     },
     {
      "name": "Roadmap sync",
      "status": "completed",
      "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46009555928",
-     "date": "2026-11-27T13:43:41Z",
-     "event": "push"
-    },
-    {
-     "name": "Bulletin voices",
-     "status": "completed",
-     "conclusion": "success",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46009555959",
-     "date": "2026-11-27T13:44:03Z",
-     "event": "push"
-    },
-    {
-     "name": "Web smoke test",
-     "status": "completed",
-     "conclusion": "failure",
-     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46009556190",
-     "date": "2026-11-27T14:48:59Z",
+     "url": "https://github.com/cdomotor-g/MegaNet/actions/runs/46025274630",
+     "date": "2026-11-27T15:29:10Z",
      "event": "push"
     }
    ],
-   "version": "20261127c",
+   "version": "20261127d",
    "lastCommit": {
-    "date": "2026-11-27T13:43:19Z"
+    "date": "2026-11-27T15:28:43Z"
    }
   },
   {
@@ -8792,7 +8776,7 @@
     "behind": 0,
     "commits": [],
     "files": [],
-    "note": "272 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
+    "note": "274 newer commits upstream since it was last reviewed (2026-11-04), none to watched files."
    }
   },
   {
